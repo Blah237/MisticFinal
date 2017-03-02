@@ -275,6 +275,7 @@ public class RocketController extends WorldController implements ContactListener
 		addObject(obj);
 
 		// Create the pile of boxes
+		/**
 		for (int ii = 0; ii < BOXES.length; ii += 2) {
 			int id = RandomController.rollInt(0,crateTextures.length-1);
 			TextureRegion texture = crateTextures[id];
@@ -288,7 +289,7 @@ public class RocketController extends WorldController implements ContactListener
 			box.setDrawScale(scale);
 			box.setTexture(texture);
 			addObject(box);
-		}
+		}**/
 
 		// Create the rocket avatar
 		dwidth  = rocketTexture.getRegionWidth()/scale.x;
