@@ -21,6 +21,8 @@ import edu.cornell.gdiac.util.*;
 import edu.cornell.gdiac.physics.*;
 import edu.cornell.gdiac.physics.obstacle.*;
 
+import java.util.ArrayList;
+
 /**
  * Gameplay specific controller for the rocket lander game.
  *
@@ -228,6 +230,17 @@ public class RocketController extends WorldController implements ContactListener
 	/**
 	 * Lays out the game geography.
 	 */
+	private void makeWall(PolygonObstacle po,String pname) {
+		po.setBodyType(BodyDef.BodyType.StaticBody);
+		po.setDensity(BASIC_DENSITY);
+		po.setFriction(BASIC_FRICTION);
+		po.setRestitution(BASIC_RESTITUTION);
+		po.setDrawScale(scale);
+		po.setTexture(earthTile);
+		po.setName(pname);
+		addObject(po);
+	}
+
 	private void populateLevel() {
 		// Add level goal
 		float dwidth  = goalTile.getRegionWidth()/scale.x;
@@ -241,6 +254,26 @@ public class RocketController extends WorldController implements ContactListener
 		goalDoor.setDrawScale(scale);
 		goalDoor.setTexture(goalTile);
 		addObject(goalDoor);
+
+		ArrayList<PolygonObstacle> Polylist = new ArrayList<PolygonObstacle>();
+		final float[] wallh = { 1.0f, 3.0f, 6.0f, 3.0f, 6.0f, 2.5f, 1.0f, 2.5f};
+		final float[] wallv = { 3.0f, 6.0f, 3.0f, 6.0f, 2.5f, 1.0f, 2.5f, 1.0f};
+
+
+		PolygonObstacle wall1 = new PolygonObstacle(wallh, 0, 0);
+		Polylist.add(wall1);
+		PolygonObstacle wall2 = new PolygonObstacle(wallh, 5, 0);
+		Polylist.add(wall2);
+		PolygonObstacle wall3 = new PolygonObstacle(wallh, 12, 0);
+		Polylist.add(wall3);
+		PolygonObstacle wall4 = new PolygonObstacle(wallh, 0, 2);
+		Polylist.add(wall4);
+
+
+
+		for ( PolygonObstacle i : Polylist) {
+			makeWall(i,"wall"+i.toString());
+		}
 
 		// Create ground pieces
 		PolygonObstacle obj;
@@ -273,9 +306,8 @@ public class RocketController extends WorldController implements ContactListener
 		obj.setTexture(earthTile);
 		obj.setName("wall3");
 		addObject(obj);
-
-		// Create the pile of boxes
 		/**
+		// Create the pile of boxes
 		for (int ii = 0; ii < BOXES.length; ii += 2) {
 			int id = RandomController.rollInt(0,crateTextures.length-1);
 			TextureRegion texture = crateTextures[id];
