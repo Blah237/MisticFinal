@@ -159,8 +159,8 @@ public class RocketModel extends BoxObstacle {
 	/**
 	 * Creates a new rocket at the origin.
 	 *
-	 * The size is expressed in physics units NOT pixels.  In order for 
-	 * drawing to work properly, you MUST set the drawScale. The drawScale 
+	 * The size is expressed in physics units NOT pixels.  In order for
+	 * drawing to work properly, you MUST set the drawScale. The drawScale
 	 * converts the physics units to pixels.
 	 *
 	 * @param width		The object width in physics units
@@ -173,8 +173,8 @@ public class RocketModel extends BoxObstacle {
 	/**
 	 * Creates a new rocket at the given position.
 	 *
-	 * The size is expressed in physics units NOT pixels.  In order for 
-	 * drawing to work properly, you MUST set the drawScale. The drawScale 
+	 * The size is expressed in physics units NOT pixels.  In order for
+	 * drawing to work properly, you MUST set the drawScale. The drawScale
 	 * converts the physics units to pixels.
 	 *
 	 * @param x  		Initial x position of the box center

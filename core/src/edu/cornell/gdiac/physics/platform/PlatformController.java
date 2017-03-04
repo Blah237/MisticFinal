@@ -254,19 +254,7 @@ public class PlatformController extends WorldController implements ContactListen
 			addObject(obj);
 	    }
 	    
-	    String pname = "platform";
-	    for (int ii = 0; ii < PLATFORMS.length; ii++) {
-	        PolygonObstacle obj;
-	    	obj = new PolygonObstacle(PLATFORMS[ii], 0, 0);
-			obj.setBodyType(BodyDef.BodyType.StaticBody);
-			obj.setDensity(BASIC_DENSITY);
-			obj.setFriction(BASIC_FRICTION);
-			obj.setRestitution(BASIC_RESTITUTION);
-			obj.setDrawScale(scale);
-			obj.setTexture(earthTile);
-			obj.setName(pname+ii);
-			addObject(obj);
-	    }
+
 
 		// Create dude
 		dwidth  = avatarTexture.getRegionWidth()/scale.x;
