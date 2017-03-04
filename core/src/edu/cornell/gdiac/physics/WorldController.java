@@ -365,7 +365,7 @@ public abstract class WorldController implements Screen {
 	 */
 	protected WorldController() {
 		this(new Rectangle(0,0,DEFAULT_WIDTH,DEFAULT_HEIGHT), 
-			 new Vector2(0,DEFAULT_GRAVITY));
+			 new Vector2(0,0));
 	}
 
 	/**

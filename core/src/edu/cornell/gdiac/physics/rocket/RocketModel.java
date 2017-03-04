@@ -48,7 +48,7 @@ public class RocketModel extends BoxObstacle {
 	/** The restitution of this rocket */
 	private static final float DEFAULT_RESTITUTION = 0.4f;
 	/** The thrust factor to convert player input into thrust */
-	private static final float DEFAULT_THRUST = 30.0f;
+	private static final float DEFAULT_THRUST = 5.0f;
 	/** The number of frames for the afterburner */
 	public static final int FIRE_FRAMES = 4;
 
@@ -159,8 +159,8 @@ public class RocketModel extends BoxObstacle {
 	/**
 	 * Creates a new rocket at the origin.
 	 *
-	 * The size is expressed in physics units NOT pixels.  In order for 
-	 * drawing to work properly, you MUST set the drawScale. The drawScale 
+	 * The size is expressed in physics units NOT pixels.  In order for
+	 * drawing to work properly, you MUST set the drawScale. The drawScale
 	 * converts the physics units to pixels.
 	 *
 	 * @param width		The object width in physics units
@@ -173,8 +173,8 @@ public class RocketModel extends BoxObstacle {
 	/**
 	 * Creates a new rocket at the given position.
 	 *
-	 * The size is expressed in physics units NOT pixels.  In order for 
-	 * drawing to work properly, you MUST set the drawScale. The drawScale 
+	 * The size is expressed in physics units NOT pixels.  In order for
+	 * drawing to work properly, you MUST set the drawScale. The drawScale
 	 * converts the physics units to pixels.
 	 *
 	 * @param x  		Initial x position of the box center
@@ -232,8 +232,10 @@ public class RocketModel extends BoxObstacle {
 
 		//#region INSERT CODE HERE
 		// Apply force to the rocket BODY, not the rocket
-		body.applyForceToCenter(force,true);
-		//#endregion
+		// Apply input movement as velocity not force, so starting
+		// and stopping is instantaneous
+		body.setLinearVelocity(force);
+		//#endregionx
 	}
 
 	// Animation methods (DO NOT CHANGE)

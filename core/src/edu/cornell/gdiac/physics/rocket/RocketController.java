@@ -21,6 +21,8 @@ import edu.cornell.gdiac.util.*;
 import edu.cornell.gdiac.physics.*;
 import edu.cornell.gdiac.physics.obstacle.*;
 
+import java.util.ArrayList;
+
 /**
  * Gameplay specific controller for the rocket lander game.
  *
@@ -32,7 +34,7 @@ import edu.cornell.gdiac.physics.obstacle.*;
  */
 public class RocketController extends WorldController implements ContactListener {
 	/** Reference to the rocket texture */
-	private static final String ROCK_TEXTURE = "rocket/rocket.png";
+	private static final String ROCK_TEXTURE = "mistic/gorf.png";
 	/** The reference for the afterburner textures  */
 	private static final String MAIN_FIRE_TEXTURE = "rocket/flames.png";
 	private static final String RGHT_FIRE_TEXTURE = "rocket/flames-right.png";
@@ -228,6 +230,17 @@ public class RocketController extends WorldController implements ContactListener
 	/**
 	 * Lays out the game geography.
 	 */
+	private void makeWall(PolygonObstacle po,String pname) {
+		po.setBodyType(BodyDef.BodyType.StaticBody);
+		po.setDensity(BASIC_DENSITY);
+		po.setFriction(BASIC_FRICTION);
+		po.setRestitution(BASIC_RESTITUTION);
+		po.setDrawScale(scale);
+		po.setTexture(earthTile);
+		po.setName(pname);
+		addObject(po);
+	}
+
 	private void populateLevel() {
 		// Add level goal
 		float dwidth  = goalTile.getRegionWidth()/scale.x;
@@ -240,7 +253,27 @@ public class RocketController extends WorldController implements ContactListener
 		goalDoor.setSensor(true);
 		goalDoor.setDrawScale(scale);
 		goalDoor.setTexture(goalTile);
-		addObject(goalDoor);
+		//addObject(goalDoor);
+
+		ArrayList<PolygonObstacle> Polylist = new ArrayList<PolygonObstacle>();
+		final float[] wallh = { 1.0f, 3.0f, 6.0f, 3.0f, 6.0f, 2.5f, 1.0f, 2.5f};
+		final float[] wallv = { 3.0f, 6.0f, 3.0f, 6.0f, 2.5f, 1.0f, 2.5f, 1.0f};
+
+
+		PolygonObstacle wall1 = new PolygonObstacle(wallh, 0, 0);
+		Polylist.add(wall1);
+		PolygonObstacle wall2 = new PolygonObstacle(wallh, 5, 0);
+		Polylist.add(wall2);
+		PolygonObstacle wall3 = new PolygonObstacle(wallh, 12, 0);
+		Polylist.add(wall3);
+		PolygonObstacle wall4 = new PolygonObstacle(wallh, 0, 2);
+		Polylist.add(wall4);
+
+
+
+		for ( PolygonObstacle i : Polylist) {
+			makeWall(i,"wall"+i.toString());
+		}
 
 		// Create ground pieces
 		PolygonObstacle obj;
@@ -273,22 +306,10 @@ public class RocketController extends WorldController implements ContactListener
 		obj.setTexture(earthTile);
 		obj.setName("wall3");
 		addObject(obj);
-		/**
-		// Create the pile of boxes
-		for (int ii = 0; ii < BOXES.length; ii += 2) {
-			int id = RandomController.rollInt(0,crateTextures.length-1);
-			TextureRegion texture = crateTextures[id];
-			dwidth  = texture.getRegionWidth()/scale.x;
-			dheight = texture.getRegionHeight()/scale.y;
-			BoxObstacle box = new BoxObstacle(BOXES[ii], BOXES[ii+1], dwidth, dheight);
-			box.setDensity(CRATE_DENSITY);
-			box.setFriction(CRATE_FRICTION);
-			box.setRestitution(BASIC_RESTITUTION);
-			box.setName("crate"+id);
-			box.setDrawScale(scale);
-			box.setTexture(texture);
-			addObject(box);
-		}**/
+
+		createLatern(6,6,1);
+		createLatern(13,6,1);
+		createLatern(8,8,0);
 
 		// Create the rocket avatar
 		dwidth  = rocketTexture.getRegionWidth()/scale.x;
@@ -307,6 +328,26 @@ public class RocketController extends WorldController implements ContactListener
 		addObject(rocket);
 	}
 
+	private void lightLatern(float x, float y){
+		createLatern(x,y,0);
+	}
+
+	private void createLatern(float x, float y, int i){
+		TextureRegion texture = crateTextures[i];
+		float dwidth  = texture.getRegionWidth()/scale.x;
+		float dheight = texture.getRegionHeight()/scale.y;
+		BoxObstacle box = new BoxObstacle(x, y, dwidth, dheight);
+
+		box.setDensity(CRATE_DENSITY);
+		box.setFriction(CRATE_FRICTION);
+		box.setRestitution(BASIC_RESTITUTION);
+		box.setBodyType(BodyDef.BodyType.StaticBody);
+		box.setName("crate"+i);
+		box.setDrawScale(scale);
+		box.setTexture(texture);
+		addObject(box);
+	}
+
 	/**
 	 * The core gameplay loop of this world.
 	 *
@@ -315,8 +356,8 @@ public class RocketController extends WorldController implements ContactListener
 	 * This method is called after input is read, but before collisions are resolved.
 	 * The very last thing that it should do is apply forces to the appropriate objects.
 	 *
-	 * @param delta Number of seconds since last animation frame
 	 */
+
 	public void update(float dt) {
 
 		//#region INSERT CODE HERE
@@ -332,9 +373,9 @@ public class RocketController extends WorldController implements ContactListener
 		//#endregion
 
 		// Animate the three burners
-		updateBurner(RocketModel.Burner.MAIN, rocket.getFY() > 1);
-		updateBurner(RocketModel.Burner.LEFT, rocket.getFX() > 1);
-		updateBurner(RocketModel.Burner.RIGHT, rocket.getFX() < -1);
+		//updateBurner(RocketModel.Burner.MAIN, rocket.getFY() > 1);
+		//updateBurner(RocketModel.Burner.LEFT, rocket.getFX() > 1);
+		//updateBurner(RocketModel.Burner.RIGHT, rocket.getFX() < -1);
 
 		// If we use sound, we must remember this.
 		SoundController.getInstance().update();
