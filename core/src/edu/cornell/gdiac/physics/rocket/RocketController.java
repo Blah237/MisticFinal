@@ -21,6 +21,7 @@ import edu.cornell.gdiac.util.*;
 import edu.cornell.gdiac.physics.*;
 import edu.cornell.gdiac.physics.obstacle.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
@@ -187,12 +188,9 @@ public class RocketController extends WorldController implements ContactListener
 			8.0f,  9.5f,  4.0f,  9.5f};
 
 	// The positions of the fireflies
-	private static final float[] Fireflies = { 14.5f, 14.25f,
-			13.0f, 12.00f, 16.0f, 12.00f,
-			11.5f,  9.75f, 14.5f,  9.75f, 17.5f, 9.75f,
-			13.0f,  7.50f, 16.0f,  7.50f,
-			11.5f,  5.25f, 14.5f,  5.25f, 17.5f, 5.25f,
-			10.0f,  3.00f, 13.0f,  3.00f, 16.0f, 3.00f, 19.0f, 3.0f};
+	private static final float[] Fireflies = { 14.5f, 10f,
+			13.0f, 3.00f, 3.0f, 7.f,
+			2.5f,  9.75f, 7.5f,  9.75f, 17.5f, 9.75f};
 
 	// Other game objects
 	/** The initial rocket position */
@@ -205,6 +203,7 @@ public class RocketController extends WorldController implements ContactListener
 	private BoxObstacle goalDoor;
 	/** Reference to the rocket/player avatar */
 	private RocketModel rocket;
+	private ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
 
 	/**
 	 * Creates and initialize a new instance of the rocket lander game
@@ -322,9 +321,9 @@ public class RocketController extends WorldController implements ContactListener
 		obj.setName("wall3");
 		addObject(obj);
 
-		createLatern(6,6,1);
-		createLatern(13,6,1);
-		createLatern(8,8,0);
+		createLatern(6,6);
+		createLatern(13,6);
+		createLatern(8,8);
 
 		//Create fireflies
 		for (int ii = 0; ii < Fireflies.length; ii += 2) {
@@ -358,12 +357,51 @@ public class RocketController extends WorldController implements ContactListener
 		addObject(rocket);
 	}
 
-	private void lightLatern(float x, float y){
-		createLatern(x,y,0);
+
+	private void toggleLatern(float x, float y){
+		Lantern l= getLantern(x,y);
+		if(l!=null) {
+			l.toggle();
+		}
 	}
 
-	private void createLatern(float x, float y, int i){
-		TextureRegion texture = crateTextures[i];
+	//Get the latern at this position
+	private Lantern getLantern(float x, float y){
+		int xi= (int)x;
+		int yi=(int)y;
+
+		for(Lantern l : Lanterns){
+			if ((Math.abs((int)l.x - xi ) < 3)
+					&& (Math.abs((int)l.y - yi ) < 3))return l;
+		}
+		return null;
+	}
+
+	class Lantern{
+		float x;
+		float y;
+		BoxObstacle bo;
+		boolean lit;
+
+		Lantern(float cx, float cy, BoxObstacle o){
+		x=cx;
+		y=cy;
+		bo=o;
+		lit=false;
+		}
+
+		void toggle(){
+			if(lit){
+				this.bo.setTexture(crateTextures[1]);
+				lit=false;
+			}else {
+				this.bo.setTexture(crateTextures[0]);
+				lit=true;
+			}
+		}
+	}
+	private void createLatern(float x, float y){
+		TextureRegion texture = crateTextures[1];
 		float dwidth  = texture.getRegionWidth()/scale.x;
 		float dheight = texture.getRegionHeight()/scale.y;
 		BoxObstacle box = new BoxObstacle(x, y, dwidth, dheight);
@@ -372,9 +410,11 @@ public class RocketController extends WorldController implements ContactListener
 		box.setFriction(CRATE_FRICTION);
 		box.setRestitution(BASIC_RESTITUTION);
 		box.setBodyType(BodyDef.BodyType.StaticBody);
-		box.setName("crate"+i);
+		box.setName("lantern");
 		box.setDrawScale(scale);
 		box.setTexture(texture);
+		Lantern l = new Lantern(x,y,box);
+		Lanterns.add(l);
 		addObject(box);
 	}
 
@@ -393,7 +433,10 @@ public class RocketController extends WorldController implements ContactListener
 		//#region INSERT CODE HERE
 		// Read from the input and add the force to the rocket model
 		// Then apply the force using the method you modified in RocketObject
-
+		boolean pressing = InputController.getInstance().didSecondary();
+		if(pressing){
+			toggleLatern(rocket.getX(),rocket.getY());
+		}
 		float forcex = InputController.getInstance().getHorizontal();
 		float forcey= InputController.getInstance().getVertical();
 		float rocketthrust = rocket.getThrust();
