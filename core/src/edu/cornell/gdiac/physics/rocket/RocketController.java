@@ -34,7 +34,7 @@ import java.util.ArrayList;
  */
 public class RocketController extends WorldController implements ContactListener {
 	/** Reference to the rocket texture */
-	private static final String ROCK_TEXTURE = "rocket/rocket.png";
+	private static final String ROCK_TEXTURE = "mistic/gorf.png";
 	/** The reference for the afterburner textures  */
 	private static final String MAIN_FIRE_TEXTURE = "rocket/flames.png";
 	private static final String RGHT_FIRE_TEXTURE = "rocket/flames-right.png";
@@ -253,7 +253,7 @@ public class RocketController extends WorldController implements ContactListener
 		goalDoor.setSensor(true);
 		goalDoor.setDrawScale(scale);
 		goalDoor.setTexture(goalTile);
-		addObject(goalDoor);
+		// addObject(goalDoor);
 
 		ArrayList<PolygonObstacle> Polylist = new ArrayList<PolygonObstacle>();
 		final float[] wallh = { 1.0f, 3.0f, 6.0f, 3.0f, 6.0f, 2.5f, 1.0f, 2.5f};
@@ -268,6 +268,9 @@ public class RocketController extends WorldController implements ContactListener
 		Polylist.add(wall3);
 		PolygonObstacle wall4 = new PolygonObstacle(wallh, 0, 2);
 		Polylist.add(wall4);
+
+//		PolygonObstacle wall5 = new PolygonObstacle(wallh, 15, 4);
+//		Polylist.add(wall5);
 
 
 
@@ -306,6 +309,7 @@ public class RocketController extends WorldController implements ContactListener
 		obj.setTexture(earthTile);
 		obj.setName("wall3");
 		addObject(obj);
+
 		/**
 		// Create the pile of boxes
 		for (int ii = 0; ii < BOXES.length; ii += 2) {
@@ -348,7 +352,7 @@ public class RocketController extends WorldController implements ContactListener
 	 * This method is called after input is read, but before collisions are resolved.
 	 * The very last thing that it should do is apply forces to the appropriate objects.
 	 *
-	 * @param delta Number of seconds since last animation frame
+	 * @param dt Number of seconds since last animation frame
 	 */
 	public void update(float dt) {
 
@@ -365,9 +369,9 @@ public class RocketController extends WorldController implements ContactListener
 		//#endregion
 
 		// Animate the three burners
-		updateBurner(RocketModel.Burner.MAIN, rocket.getFY() > 1);
-		updateBurner(RocketModel.Burner.LEFT, rocket.getFX() > 1);
-		updateBurner(RocketModel.Burner.RIGHT, rocket.getFX() < -1);
+//		updateBurner(RocketModel.Burner.MAIN, rocket.getFY() > 1);
+//		updateBurner(RocketModel.Burner.LEFT, rocket.getFX() > 1);
+//		updateBurner(RocketModel.Burner.RIGHT, rocket.getFX() < -1);
 
 		// If we use sound, we must remember this.
 		SoundController.getInstance().update();
@@ -444,7 +448,7 @@ public class RocketController extends WorldController implements ContactListener
 	 * prevents this from happening.
 	 *
 	 * @param  contact  	The two bodies that collided
-	 * @param  oldManfold  	The collision manifold before contact
+	 * @param  oldManifold  	The collision manifold before contact
 	 */
 
 	public void preSolve(Contact contact, Manifold oldManifold) {
