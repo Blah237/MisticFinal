@@ -38,6 +38,8 @@ public class RocketController extends WorldController implements ContactListener
 	/** Reference to the rocket texture */
 	private static final String ROCK_TEXTURE = "mistic/gorf.png";
 	private static final String BACKGROUND = "mistic/backgroundresize.png";
+	private static final String FIRE_FLY= "mistic/firefly.png";
+
 	/** The reference for the afterburner textures  */
 	private static final String MAIN_FIRE_TEXTURE = "rocket/flames.png";
 	private static final String RGHT_FIRE_TEXTURE = "rocket/flames-right.png";
@@ -59,6 +61,7 @@ public class RocketController extends WorldController implements ContactListener
 	/** Texture assets for the rocket */
 	private TextureRegion rocketTexture;
 	private TextureRegion backgroundTexture;
+	private TextureRegion fireflyTexture;
 	/** Texture filmstrip for the main afterburner */
 	private FilmStrip mainTexture;
 	/** Texture filmstrip for the main afterburner */
@@ -94,7 +97,9 @@ public class RocketController extends WorldController implements ContactListener
 		//Background
 		manager.load(BACKGROUND, Texture.class);
 		assets.add(BACKGROUND);
-
+		//Firefly
+		manager.load(FIRE_FLY, Texture.class);
+		assets.add(FIRE_FLY);
 		// Ship textures
 		manager.load(ROCK_TEXTURE, Texture.class);
 		assets.add(ROCK_TEXTURE);
@@ -139,6 +144,7 @@ public class RocketController extends WorldController implements ContactListener
 		}
 
 		rocketTexture = createTexture(manager,ROCK_TEXTURE,false);
+		fireflyTexture = createTexture(manager,FIRE_FLY,false);
 		mainTexture  = createFilmStrip(manager,MAIN_FIRE_TEXTURE,1,RocketModel.FIRE_FRAMES,RocketModel.FIRE_FRAMES);
 		leftTexture  = createFilmStrip(manager,LEFT_FIRE_TEXTURE,1,RocketModel.FIRE_FRAMES,RocketModel.FIRE_FRAMES);
 		rghtTexture  = createFilmStrip(manager,RGHT_FIRE_TEXTURE,1,RocketModel.FIRE_FRAMES,RocketModel.FIRE_FRAMES);
@@ -180,8 +186,8 @@ public class RocketController extends WorldController implements ContactListener
 	private static final float[] WALL3 = { 4.0f, 10.5f,  8.0f, 10.5f,
 			8.0f,  9.5f,  4.0f,  9.5f};
 
-	// The positions of the crate pyramid
-	private static final float[] BOXES = { 14.5f, 14.25f,
+	// The positions of the fireflies
+	private static final float[] Fireflies = { 14.5f, 14.25f,
 			13.0f, 12.00f, 16.0f, 12.00f,
 			11.5f,  9.75f, 14.5f,  9.75f, 17.5f, 9.75f,
 			13.0f,  7.50f, 16.0f,  7.50f,
@@ -282,6 +288,8 @@ public class RocketController extends WorldController implements ContactListener
 			makeWall(i,"wall"+i.toString());
 		}
 
+
+
 		// Create ground pieces
 		PolygonObstacle obj;
 		obj = new PolygonObstacle(WALL1, 0, 0);
@@ -318,6 +326,20 @@ public class RocketController extends WorldController implements ContactListener
 		createLatern(13,6,1);
 		createLatern(8,8,0);
 
+		//Create fireflies
+		for (int ii = 0; ii < Fireflies.length; ii += 2) {
+			TextureRegion texture = fireflyTexture;
+			dwidth  = texture.getRegionWidth()/scale.x;
+			dheight = texture.getRegionHeight()/scale.y;
+			BoxObstacle box = new BoxObstacle(Fireflies[ii], Fireflies[ii+1], dwidth, dheight);
+			box.setDensity(CRATE_DENSITY);
+			box.setFriction(CRATE_FRICTION);
+			box.setRestitution(BASIC_RESTITUTION);
+			box.setName("crate"+ii);
+			box.setDrawScale(scale);
+			box.setTexture(texture);
+			addObject(box);
+		}
 
 		// Create the rocket avatar
 		dwidth  = rocketTexture.getRegionWidth()/scale.x;
