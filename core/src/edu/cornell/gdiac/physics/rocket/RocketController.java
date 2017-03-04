@@ -23,6 +23,8 @@ import edu.cornell.gdiac.physics.obstacle.*;
 
 import java.util.ArrayList;
 
+
+
 /**
  * Gameplay specific controller for the rocket lander game.
  *
@@ -35,6 +37,7 @@ import java.util.ArrayList;
 public class RocketController extends WorldController implements ContactListener {
 	/** Reference to the rocket texture */
 	private static final String ROCK_TEXTURE = "mistic/gorf.png";
+	private static final String BACKGROUND = "mistic/backgroundresize.png";
 	/** The reference for the afterburner textures  */
 	private static final String MAIN_FIRE_TEXTURE = "rocket/flames.png";
 	private static final String RGHT_FIRE_TEXTURE = "rocket/flames-right.png";
@@ -55,6 +58,7 @@ public class RocketController extends WorldController implements ContactListener
 
 	/** Texture assets for the rocket */
 	private TextureRegion rocketTexture;
+	private TextureRegion backgroundTexture;
 	/** Texture filmstrip for the main afterburner */
 	private FilmStrip mainTexture;
 	/** Texture filmstrip for the main afterburner */
@@ -87,6 +91,9 @@ public class RocketController extends WorldController implements ContactListener
 			manager.load(CRATE_PREF + (ii + 1) +".png", Texture.class);
 			assets.add(CRATE_PREF + (ii + 1) +".png");
 		}
+		//Background
+		manager.load(BACKGROUND, Texture.class);
+		assets.add(BACKGROUND);
 
 		// Ship textures
 		manager.load(ROCK_TEXTURE, Texture.class);
@@ -135,7 +142,7 @@ public class RocketController extends WorldController implements ContactListener
 		mainTexture  = createFilmStrip(manager,MAIN_FIRE_TEXTURE,1,RocketModel.FIRE_FRAMES,RocketModel.FIRE_FRAMES);
 		leftTexture  = createFilmStrip(manager,LEFT_FIRE_TEXTURE,1,RocketModel.FIRE_FRAMES,RocketModel.FIRE_FRAMES);
 		rghtTexture  = createFilmStrip(manager,RGHT_FIRE_TEXTURE,1,RocketModel.FIRE_FRAMES,RocketModel.FIRE_FRAMES);
-
+		backgroundTexture = createTexture(manager,BACKGROUND,false);
 		SoundController sounds = SoundController.getInstance();
 		sounds.allocate(manager,MAIN_FIRE_SOUND);
 		sounds.allocate(manager,LEFT_FIRE_SOUND);
@@ -311,6 +318,7 @@ public class RocketController extends WorldController implements ContactListener
 		createLatern(13,6,1);
 		createLatern(8,8,0);
 
+
 		// Create the rocket avatar
 		dwidth  = rocketTexture.getRegionWidth()/scale.x;
 		dheight = rocketTexture.getRegionHeight()/scale.y;
@@ -406,11 +414,35 @@ public class RocketController extends WorldController implements ContactListener
 		}
 	}
 
+	public void draw(float dt) {
+		canvas.clear();
+
+		// Draw background unscaled.
+		canvas.begin();
+		canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth(),canvas.getHeight());
+		canvas.end();
+
+		canvas.begin();
+		for(Obstacle obj : objects) {
+			obj.draw(canvas);
+		}
+		canvas.end();
+
+		if (isDebug()) {
+			canvas.beginDebug();
+			for(Obstacle obj : objects) {
+				obj.drawDebug(canvas);
+			}
+			canvas.endDebug();
+		}
+		
+	}
+
 	/// CONTACT LISTENER METHODS
 	/**
 	 * Callback method for the start of a collision
 	 *
-	 * This method is called when we first get a collision between two objects.  We use 
+	 * This method is called when we first get a collision between two objects.  We use
 	 * this method to test if it is the "right" kind of collision.  In particular, we
 	 * use it to test if we made it to the win door.
 	 *
@@ -443,9 +475,9 @@ public class RocketController extends WorldController implements ContactListener
 	 *
 	 * This method is called just before Box2D resolves a collision.  We use this method
 	 * to implement sound on contact, using the algorithms outlined similar to those in
-	 * Ian Parberry's "Introduction to Game Physics with Box2D".  
+	 * Ian Parberry's "Introduction to Game Physics with Box2D".
 	 *
-	 * However, we cannot use the proper algorithms, because LibGDX does not implement 
+	 * However, we cannot use the proper algorithms, because LibGDX does not implement
 	 * b2GetPointStates from Box2D.  The danger with our approximation is that we may
 	 * get a collision over multiple frames (instead of detecting the first frame), and
 	 * so play a sound repeatedly.  Fortunately, the cooldown hack in SoundController
