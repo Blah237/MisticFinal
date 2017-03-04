@@ -435,7 +435,7 @@ public class RocketController extends WorldController implements ContactListener
 			}
 			canvas.endDebug();
 		}
-		
+
 	}
 
 	/// CONTACT LISTENER METHODS
