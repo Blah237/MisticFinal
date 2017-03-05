@@ -397,6 +397,8 @@ public class RocketController extends WorldController implements ContactListener
 		this.rocket.setFX(forcex * rocketthrust);
 		this.rocket.setFY(forcey * rocketthrust);
 		rocket.applyForce();
+		wrapInBounds(rocket);
+		// checkInBounds here!!!
 		//#endregion
 
 		// Animate the three burners
@@ -430,6 +432,28 @@ public class RocketController extends WorldController implements ContactListener
 			rocket.animateBurner(burner, false);
 			if (SoundController.getInstance().isActive(sound)) {
 				SoundController.getInstance().stop(sound);
+			}
+		}
+	}
+
+	/**
+	 * Function to tell if Gorf (rocket) is off screen and to wrap him around, with a
+	 * 0.1f position buffer
+	 *
+	 * @param rocket   Gorf character
+	 */
+	private void wrapInBounds(RocketModel rocket) {
+		if (!inBounds(rocket)) {
+			Vector2 currentPos = rocket.getPosition();
+			if (currentPos.x<=bounds.getX()) {
+				rocket.setPosition(bounds.getX()+bounds.getWidth()-0.1f,currentPos.y);
+			} else if (currentPos.x>=bounds.getX()+bounds.getWidth()) {
+				rocket.setPosition(bounds.getX()+0.1f,currentPos.y);
+			}
+			if (currentPos.y<=bounds.getY()) {
+				rocket.setPosition(currentPos.x,bounds.getY()+bounds.getHeight()-0.1f);
+			} else if (currentPos.y>=bounds.getY()+bounds.getHeight()) {
+				rocket.setPosition(currentPos.x,bounds.getY()+0.1f);
 			}
 		}
 	}
