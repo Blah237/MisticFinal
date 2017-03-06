@@ -485,9 +485,13 @@ public class RocketController extends WorldController implements ContactListener
 			if(lit){
 				this.bo.setTexture(crateTextures[1]);
 				lit=false;
+				firefly_count++;
 			}else {
-				this.bo.setTexture(crateTextures[0]);
-				lit=true;
+				if (firefly_count >=1) {
+					this.bo.setTexture(crateTextures[0]);
+					lit = true;
+					firefly_count = firefly_count - 1;
+				}
 			}
 		}
 	}
@@ -615,6 +619,8 @@ public class RocketController extends WorldController implements ContactListener
 		// Draw background unscaled.
 		canvas.begin();
 		canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth(),canvas.getHeight());
+		String message = "Fireflies Held: " + firefly_count;
+		canvas.drawText(message, displayFont, 5.0f, canvas.getHeight()-5.0f);
 		canvas.end();
 
 		canvas.begin();
@@ -630,6 +636,8 @@ public class RocketController extends WorldController implements ContactListener
 			}
 			canvas.endDebug();
 		}
+
+
 
 	}
 
