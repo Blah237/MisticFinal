@@ -194,7 +194,7 @@ public class RocketController extends WorldController implements ContactListener
 
 	// Other game objects
 	/** The initial rocket position */
-	private static Vector2 ROCK_POS = new Vector2(24, 4);
+	private static Vector2 ROCK_POS = new Vector2(9, 8);
 	/** The goal door position */
 	private static Vector2 GOAL_POS = new Vector2( 6, 12);
 
@@ -265,23 +265,99 @@ public class RocketController extends WorldController implements ContactListener
 		goalDoor.setSensor(true);
 		goalDoor.setDrawScale(scale);
 		goalDoor.setTexture(goalTile);
+
 		//addObject(goalDoor);
 
+		// {top left corner (LR),top left corner (UD),top right corner(LR),top right corner(UD),
+		// bottom right corner(LR),bottom right corner(UD),bottom left corner(LR),bottom left corner(UD)}
+		// height current gorf fits through walls: 3
 		ArrayList<PolygonObstacle> Polylist = new ArrayList<PolygonObstacle>();
-		final float[] wallh = { 1.0f, 3.0f, 6.0f, 3.0f, 6.0f, 2.5f, 1.0f, 2.5f};
-		final float[] wallv = { 3.0f, 6.0f, 3.0f, 6.0f, 2.5f, 1.0f, 2.5f, 1.0f};
+		final float[] wallH = {1.0f, 3.0f, 4.0f, 3.0f, 4.0f, 2.8f, 1.0f, 2.8f};
+		final float[] wallV = {1.0f, 4.0f, 1.2f, 4.0f, 1.2f, 1.5f, 1.0f, 1.5f};
+		final float[] wallDp = {3.7f, 3.5f, 4.0f, 3.5f, 1.5f, 1.5f, 1.2f, 1.5f};
+		final float[] wallDn = {3.7f, 1.5f, 4.0f, 1.5f, 1.5f, 3.5f, 1.2f, 3.5f};
 
-
-		PolygonObstacle wall1 = new PolygonObstacle(wallh, 0, 0);
+		// horizontal walls
+		PolygonObstacle wall1 = new PolygonObstacle(wallH, -1, 6.5f);
 		Polylist.add(wall1);
-		PolygonObstacle wall2 = new PolygonObstacle(wallh, 5, 0);
+		PolygonObstacle wall2 = new PolygonObstacle(wallH, -1, 2.5f);
 		Polylist.add(wall2);
-		PolygonObstacle wall3 = new PolygonObstacle(wallh, 12, 0);
+		PolygonObstacle wall11 = new PolygonObstacle(wallH, -1, -0.5f);
+		Polylist.add(wall11);
+		PolygonObstacle wall12 = new PolygonObstacle(wallH, 1.2f, -0.5f);
+		Polylist.add(wall12);
+		PolygonObstacle wall13 = new PolygonObstacle(wallH, 1.2f, 2.5f);
+		Polylist.add(wall13);
+		PolygonObstacle wall3 = new PolygonObstacle(wallH, 28, 6.5f);
 		Polylist.add(wall3);
-		PolygonObstacle wall4 = new PolygonObstacle(wallh, 0, 2);
+		PolygonObstacle wall4 = new PolygonObstacle(wallH, 28, 2.5f);
 		Polylist.add(wall4);
+		PolygonObstacle wall22 = new PolygonObstacle(wallH, 14, 12.5f);
+		Polylist.add(wall22);
+		PolygonObstacle wall23 = new PolygonObstacle(wallH, 17f, 12.5f);
+		Polylist.add(wall23);
+		PolygonObstacle wall34 = new PolygonObstacle(wallH, 14.3f, -1.5f);
+		Polylist.add(wall34);
+		PolygonObstacle wall35 = new PolygonObstacle(wallH, 4f, 2.5f);
+		Polylist.add(wall35);
 
+		// vertical walls
+		PolygonObstacle wall5 = new PolygonObstacle(wallV, 28, 1.5f);
+		Polylist.add(wall5);
+		PolygonObstacle wall6 = new PolygonObstacle(wallV, 25, 1.5f);
+		Polylist.add(wall6);
+		PolygonObstacle wall7 = new PolygonObstacle(wallV, 22.4f, -3);
+		Polylist.add(wall7);
+		PolygonObstacle wall8 = new PolygonObstacle(wallV, 7, 14);
+		Polylist.add(wall8);
+		PolygonObstacle wall9 = new PolygonObstacle(wallV, 4, -1.5f);
+		Polylist.add(wall9);
+		PolygonObstacle wall10 = new PolygonObstacle(wallV, 7, -1.5f);
+		Polylist.add(wall10);
+		PolygonObstacle wall20 = new PolygonObstacle(wallV, 14, 14f);
+		Polylist.add(wall20);
+		PolygonObstacle wall25 = new PolygonObstacle(wallV, 28, 8f);
+		Polylist.add(wall25);
+		PolygonObstacle wall26 = new PolygonObstacle(wallV, 28, 10.5f);
+		Polylist.add(wall26);
+		PolygonObstacle wall28 = new PolygonObstacle(wallV, 11.7f, 7.8f);
+		Polylist.add(wall28);
+		PolygonObstacle wall29 = new PolygonObstacle(wallV, 11.7f, 5.8f);
+		Polylist.add(wall29);
+		PolygonObstacle wall30 = new PolygonObstacle(wallV, 14.8f, 5.5f);
+		Polylist.add(wall30);
+		PolygonObstacle wall33 = new PolygonObstacle(wallV, 14.3f, -2.5f);
+		Polylist.add(wall33);
+		PolygonObstacle wall36 = new PolygonObstacle(wallV, 7f, 1f);
+		Polylist.add(wall36);
+		PolygonObstacle wall37 = new PolygonObstacle(wallV, 7f, 1.5f);
+		Polylist.add(wall37);
 
+		// diagonal positive walls
+		PolygonObstacle wall14 = new PolygonObstacle(wallDp, 1.5f, 8f);
+		Polylist.add(wall14);
+		PolygonObstacle wall17 = new PolygonObstacle(wallDp, 22.2f, -0.5f);
+		Polylist.add(wall17);
+		PolygonObstacle wall21 = new PolygonObstacle(wallDp, 14.5f, 8f);
+		Polylist.add(wall21);
+		PolygonObstacle wall24 = new PolygonObstacle(wallDp, 22.2f, 12f);
+		Polylist.add(wall24);
+
+		// diagonal negative walls
+		PolygonObstacle wall15 = new PolygonObstacle(wallDn, 4f, 8f);
+		Polylist.add(wall15);
+		PolygonObstacle wall16 = new PolygonObstacle(wallDn, 6.8f, 12f);
+		Polylist.add(wall16);
+		PolygonObstacle wall18 = new PolygonObstacle(wallDn, 17f, 8f);
+		Polylist.add(wall18);
+		PolygonObstacle wall19 = new PolygonObstacle(wallDn, 19.7f, 12f);
+		Polylist.add(wall19);
+		PolygonObstacle wall27 = new PolygonObstacle(wallDn, 9.03f, 10.3f);
+		Polylist.add(wall27);
+		PolygonObstacle wall31 = new PolygonObstacle(wallDn, 11.5f, 0f);
+		Polylist.add(wall31);
+		PolygonObstacle wall32 = new PolygonObstacle(wallDn, 14.7f, 3.5f);
+		Polylist.add(wall32);
 
 		for ( PolygonObstacle i : Polylist) {
 			makeWall(i,"wall"+i.toString());
@@ -290,40 +366,41 @@ public class RocketController extends WorldController implements ContactListener
 
 
 		// Create ground pieces
-		PolygonObstacle obj;
-		obj = new PolygonObstacle(WALL1, 0, 0);
-		obj.setBodyType(BodyDef.BodyType.StaticBody);
-		obj.setDensity(BASIC_DENSITY);
-		obj.setFriction(BASIC_FRICTION);
-		obj.setRestitution(BASIC_RESTITUTION);
-		obj.setDrawScale(scale);
-		obj.setTexture(earthTile);
-		obj.setName("wall1");
-		addObject(obj);
+//		PolygonObstacle obj;
+//		obj = new PolygonObstacle(WALL1, 0, 0);
+//		obj.setBodyType(BodyDef.BodyType.StaticBody);
+//		obj.setDensity(BASIC_DENSITY);
+//		obj.setFriction(BASIC_FRICTION);
+//		obj.setRestitution(BASIC_RESTITUTION);
+//		obj.setDrawScale(scale);
+//		obj.setTexture(earthTile);
+//		obj.setName("wall1");
+//		addObject(obj);
+//
+//		obj = new PolygonObstacle(WALL2, 0, 0);
+//		obj.setBodyType(BodyDef.BodyType.StaticBody);
+//		obj.setDensity(BASIC_DENSITY);
+//		obj.setFriction(BASIC_FRICTION);
+//		obj.setRestitution(BASIC_RESTITUTION);
+//		obj.setDrawScale(scale);
+//		obj.setTexture(earthTile);
+//		obj.setName("wall2");
+//		addObject(obj);
+//
+//		obj = new PolygonObstacle(WALL3, 0, 0);
+//		obj.setBodyType(BodyDef.BodyType.StaticBody);
+//		obj.setDensity(BASIC_DENSITY);
+//		obj.setFriction(BASIC_FRICTION);
+//		obj.setRestitution(BASIC_RESTITUTION);
+//		obj.setDrawScale(scale);
+//		obj.setTexture(earthTile);
+//		obj.setName("wall3");
+//		addObject(obj);
 
-		obj = new PolygonObstacle(WALL2, 0, 0);
-		obj.setBodyType(BodyDef.BodyType.StaticBody);
-		obj.setDensity(BASIC_DENSITY);
-		obj.setFriction(BASIC_FRICTION);
-		obj.setRestitution(BASIC_RESTITUTION);
-		obj.setDrawScale(scale);
-		obj.setTexture(earthTile);
-		obj.setName("wall2");
-		addObject(obj);
-
-		obj = new PolygonObstacle(WALL3, 0, 0);
-		obj.setBodyType(BodyDef.BodyType.StaticBody);
-		obj.setDensity(BASIC_DENSITY);
-		obj.setFriction(BASIC_FRICTION);
-		obj.setRestitution(BASIC_RESTITUTION);
-		obj.setDrawScale(scale);
-		obj.setTexture(earthTile);
-		obj.setName("wall3");
-		addObject(obj);
-
-		createLatern(6,6);
-		createLatern(13,6);
-		createLatern(8,8);
+		createLatern(5f,7.3f);
+		createLatern(13,5.5f);
+		createLatern(14,14);
+		createLatern(27.5f,14);
 
 		//Create fireflies
 		for (int ii = 0; ii < Fireflies.length; ii += 2) {
@@ -426,6 +503,7 @@ public class RocketController extends WorldController implements ContactListener
 	 * This method is called after input is read, but before collisions are resolved.
 	 * The very last thing that it should do is apply forces to the appropriate objects.
 	 *
+	 * @param dt Number of seconds since last animation frame
 	 */
 
 	public void update(float dt) {
@@ -443,9 +521,12 @@ public class RocketController extends WorldController implements ContactListener
 		this.rocket.setFX(forcex * rocketthrust);
 		this.rocket.setFY(forcey * rocketthrust);
 		rocket.applyForce();
+		wrapInBounds(rocket);
+		// checkInBounds here!!!
 		//#endregion
 
 		// Animate the three burners
+
 		//updateBurner(RocketModel.Burner.MAIN, rocket.getFY() > 1);
 		//updateBurner(RocketModel.Burner.LEFT, rocket.getFX() > 1);
 		//updateBurner(RocketModel.Burner.RIGHT, rocket.getFX() < -1);
@@ -479,6 +560,29 @@ public class RocketController extends WorldController implements ContactListener
 		}
 	}
 
+	/**
+	 * Function to tell if Gorf (rocket) is off screen and to wrap him around, with a
+	 * 0.1f position buffer
+	 *
+	 * @param rocket   Gorf character
+	 */
+	private void wrapInBounds(RocketModel rocket) {
+		if (!inBounds(rocket)) {
+			Vector2 currentPos = rocket.getPosition();
+			if (currentPos.x<=bounds.getX()) {
+				rocket.setPosition(bounds.getX()+bounds.getWidth()-0.1f,currentPos.y);
+			} else if (currentPos.x>=bounds.getX()+bounds.getWidth()) {
+				rocket.setPosition(bounds.getX()+0.1f,currentPos.y);
+			}
+			if (currentPos.y<=bounds.getY()) {
+				rocket.setPosition(currentPos.x,bounds.getY()+bounds.getHeight()-0.1f);
+			} else if (currentPos.y>=bounds.getY()+bounds.getHeight()) {
+				rocket.setPosition(currentPos.x,bounds.getY()+0.1f);
+			}
+		}
+	}
+
+	
 	public void draw(float dt) {
 		canvas.clear();
 
@@ -549,7 +653,7 @@ public class RocketController extends WorldController implements ContactListener
 	 * prevents this from happening.
 	 *
 	 * @param  contact  	The two bodies that collided
-	 * @param  oldManfold  	The collision manifold before contact
+	 * @param  oldManifold  	The collision manifold before contact
 	 */
 
 	public void preSolve(Contact contact, Manifold oldManifold) {
