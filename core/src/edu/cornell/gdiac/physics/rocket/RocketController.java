@@ -194,7 +194,7 @@ public class RocketController extends WorldController implements ContactListener
 
 	// Other game objects
 	/** The initial rocket position */
-	private static Vector2 ROCK_POS = new Vector2(18, 8);
+	private static Vector2 ROCK_POS = new Vector2(9, 8);
 	/** The goal door position */
 	private static Vector2 GOAL_POS = new Vector2( 6, 12);
 
@@ -296,6 +296,10 @@ public class RocketController extends WorldController implements ContactListener
 		Polylist.add(wall22);
 		PolygonObstacle wall23 = new PolygonObstacle(wallH, 17f, 12.5f);
 		Polylist.add(wall23);
+		PolygonObstacle wall34 = new PolygonObstacle(wallH, 14.3f, -1.5f);
+		Polylist.add(wall34);
+		PolygonObstacle wall35 = new PolygonObstacle(wallH, 4f, 2.5f);
+		Polylist.add(wall35);
 
 		// vertical walls
 		PolygonObstacle wall5 = new PolygonObstacle(wallV, 28, 1.5f);
@@ -322,6 +326,12 @@ public class RocketController extends WorldController implements ContactListener
 		Polylist.add(wall29);
 		PolygonObstacle wall30 = new PolygonObstacle(wallV, 14.8f, 5.5f);
 		Polylist.add(wall30);
+		PolygonObstacle wall33 = new PolygonObstacle(wallV, 14.3f, -2.5f);
+		Polylist.add(wall33);
+		PolygonObstacle wall36 = new PolygonObstacle(wallV, 7f, 1f);
+		Polylist.add(wall36);
+		PolygonObstacle wall37 = new PolygonObstacle(wallV, 7f, 1.5f);
+		Polylist.add(wall37);
 
 		// diagonal positive walls
 		PolygonObstacle wall14 = new PolygonObstacle(wallDp, 1.5f, 8f);
@@ -344,6 +354,10 @@ public class RocketController extends WorldController implements ContactListener
 		Polylist.add(wall19);
 		PolygonObstacle wall27 = new PolygonObstacle(wallDn, 9.03f, 10.3f);
 		Polylist.add(wall27);
+		PolygonObstacle wall31 = new PolygonObstacle(wallDn, 11.5f, 0f);
+		Polylist.add(wall31);
+		PolygonObstacle wall32 = new PolygonObstacle(wallDn, 14.7f, 3.5f);
+		Polylist.add(wall32);
 
 		for ( PolygonObstacle i : Polylist) {
 			makeWall(i,"wall"+i.toString());
@@ -383,9 +397,10 @@ public class RocketController extends WorldController implements ContactListener
 //		obj.setName("wall3");
 //		addObject(obj);
 
-//		createLatern(6,6);
-//		createLatern(13,6);
-//		createLatern(8,8);
+		createLatern(5f,7.3f);
+		createLatern(13,5.5f);
+		createLatern(14,14);
+		createLatern(27.5f,14);
 
 		//Create fireflies
 		for (int ii = 0; ii < Fireflies.length; ii += 2) {
