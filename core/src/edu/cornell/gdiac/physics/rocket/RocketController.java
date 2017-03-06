@@ -21,8 +21,9 @@ import edu.cornell.gdiac.util.*;
 import edu.cornell.gdiac.physics.*;
 import edu.cornell.gdiac.physics.obstacle.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-
+import java.util.LinkedList;
 
 
 /**
@@ -194,6 +195,15 @@ public class RocketController extends WorldController implements ContactListener
 			11.5f,  5.25f, 14.5f,  5.25f, 17.5f, 5.25f,
 			10.0f,  3.00f, 13.0f,  3.00f, 16.0f, 3.00f, 19.0f, 3.0f};
 
+	// the list of firefly objects' bodies
+	private static ArrayList<Body> fireflyObjects = new ArrayList<Body>();
+	// the list of firefly objects
+	private static ArrayList<BoxObstacle> fireflyObjectsO = new ArrayList<BoxObstacle>();
+	// the list of bodies that need to be removed at the end of this step
+	private static LinkedList<Body> scheduledForRemoval;
+	// the number of fireflies Gorf is holding
+	private static int firefly_count;
+
 	// Other game objects
 	/** The initial rocket position */
 	private static Vector2 ROCK_POS = new Vector2(24, 4);
@@ -216,6 +226,8 @@ public class RocketController extends WorldController implements ContactListener
 		setComplete(false);
 		setFailure(false);
 		world.setContactListener(this);
+		this.scheduledForRemoval = new LinkedList<Body>();
+		this.firefly_count = 0;
 	}
 
 	/**
@@ -339,6 +351,9 @@ public class RocketController extends WorldController implements ContactListener
 			box.setDrawScale(scale);
 			box.setTexture(texture);
 			addObject(box);
+			box.getBody().setUserData("firefly");
+			fireflyObjects.add(box.getBody());
+			fireflyObjectsO.add(box);
 		}
 
 		// Create the rocket avatar
@@ -409,6 +424,18 @@ public class RocketController extends WorldController implements ContactListener
 
 		// If we use sound, we must remember this.
 		SoundController.getInstance().update();
+
+		for (Body b : scheduledForRemoval) {
+			b.getWorld().destroyBody(b);
+			fireflyObjects.remove(b);
+			for (BoxObstacle o : fireflyObjectsO) {
+				if (b == o.getBody()) {
+					objects.remove(o);
+				}
+			}
+		}
+
+		scheduledForRemoval.clear();
 	}
 
 	/**
@@ -474,9 +501,12 @@ public class RocketController extends WorldController implements ContactListener
 		Body body1 = contact.getFixtureA().getBody();
 		Body body2 = contact.getFixtureB().getBody();
 
-		if( (body1.getUserData() == rocket   && body2.getUserData() == goalDoor) ||
-				(body1.getUserData() == goalDoor && body2.getUserData() == rocket)) {
-			setComplete(true);
+		if(body1 == rocket.getBody() && body2.getUserData() == "firefly") {
+			scheduledForRemoval.addLast(body2);
+			firefly_count++;
+		} else if(body2 == rocket.getBody() && body1.getUserData() == "firefly") {
+			scheduledForRemoval.addLast(body1);
+			firefly_count++;
 		}
 	}
 
@@ -520,18 +550,6 @@ public class RocketController extends WorldController implements ContactListener
 		cache.set(body1.getLinearVelocityFromWorldPoint(wp));
 		cache.sub(body2.getLinearVelocityFromWorldPoint(wp));
 		speed = cache.dot(worldManifold.getNormal());
-
-		// Play a sound if above threshold
-		if (speed > SOUND_THRESHOLD) {
-			String s1 = ((Obstacle)body1.getUserData()).getName();
-			String s2 = ((Obstacle)body2.getUserData()).getName();
-			if (s1.equals("rocket") || s1.startsWith("crate")) {
-				SoundController.getInstance().play(s1, COLLISION_SOUND, false, 0.5f);
-			}
-			if (s2.equals("rocket") || s2.startsWith("crate")) {
-				SoundController.getInstance().play(s2, COLLISION_SOUND, false, 0.5f);
-			}
-		}
 
 	}
 }
