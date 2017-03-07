@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4583673a-084f-4c36-8022-8c7d343aed20" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/GDXRoot.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/LoadingMode.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/WorldController$AssetState.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/WorldController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController$Lantern.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/untitled" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/LoadingMode.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/LoadingMode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/progressbar.png" afterPath="$PROJECT_DIR$/core/assets/shared/progressbar.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/WorldController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/WorldController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController$Lantern.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController$Lantern.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/util/XBox360Controller.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/util/XBox360Controller.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/WorldController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/WorldController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/rocket/RocketController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/rocket/RocketController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -41,8 +40,8 @@
       <file leaf-file-name="RocketController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/rocket/RocketController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8610">
-              <caret line="596" column="37" lean-forward="false" selection-start-line="596" selection-start-column="37" selection-end-line="596" selection-end-column="37" />
+            <state relative-caret-position="8775">
+              <caret line="607" column="37" lean-forward="false" selection-start-line="607" selection-start-column="37" selection-end-line="607" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -52,22 +51,22 @@
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/WorldController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="125">
-              <caret line="685" column="7" lean-forward="true" selection-start-line="685" selection-start-column="7" selection-end-line="685" selection-end-column="7" />
+              <caret line="686" column="7" lean-forward="false" selection-start-line="686" selection-start-column="7" selection-end-line="686" selection-end-column="7" />
               <folding>
-                <element signature="e#19931#19932#0" expanded="false" />
-                <marker date="1488855726000" expanded="true" signature="18200:18452" ph="/**...*/" />
-                <marker date="1488855726000" expanded="true" signature="18496:18520" ph="{...}" />
-                <marker date="1488855726000" expanded="true" signature="18523:18772" ph="/**...*/" />
-                <marker date="1488855726000" expanded="true" signature="18806:18961" ph="{...}" />
-                <marker date="1488855726000" expanded="true" signature="18964:19137" ph="/**...*/" />
-                <marker date="1488855726000" expanded="true" signature="19159:19200" ph="{...}" />
-                <marker date="1488855726000" expanded="true" signature="19203:19317" ph="/**...*/" />
-                <marker date="1488855726000" expanded="true" signature="19340:19381" ph="{...}" />
-                <marker date="1488855726000" expanded="true" signature="19385:19460" ph="/**...*/" />
-                <marker date="1488855726000" expanded="true" signature="19481:19551" ph="{...}" />
-                <marker date="1488855726000" expanded="true" signature="19554:19634" ph="/**...*/" />
-                <marker date="1488855726000" expanded="true" signature="19655:19726" ph="{...}" />
-                <marker date="1488855726000" expanded="true" signature="19729:19840" ph="/**...*/" />
+                <element signature="e#19932#19933#0" expanded="false" />
+                <marker date="1488860976000" expanded="true" signature="18201:18453" ph="/**...*/" />
+                <marker date="1488860976000" expanded="true" signature="18497:18521" ph="{...}" />
+                <marker date="1488860976000" expanded="true" signature="18524:18773" ph="/**...*/" />
+                <marker date="1488860976000" expanded="true" signature="18807:18962" ph="{...}" />
+                <marker date="1488860976000" expanded="true" signature="18965:19138" ph="/**...*/" />
+                <marker date="1488860976000" expanded="true" signature="19160:19201" ph="{...}" />
+                <marker date="1488860976000" expanded="true" signature="19204:19318" ph="/**...*/" />
+                <marker date="1488860976000" expanded="true" signature="19341:19382" ph="{...}" />
+                <marker date="1488860976000" expanded="true" signature="19386:19461" ph="/**...*/" />
+                <marker date="1488860976000" expanded="true" signature="19482:19552" ph="{...}" />
+                <marker date="1488860976000" expanded="true" signature="19555:19635" ph="/**...*/" />
+                <marker date="1488860976000" expanded="true" signature="19656:19727" ph="{...}" />
+                <marker date="1488860976000" expanded="true" signature="19730:19841" ph="/**...*/" />
               </folding>
             </state>
           </provider>
@@ -76,8 +75,8 @@
       <file leaf-file-name="LoadingMode.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/LoadingMode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5235">
-              <caret line="31" column="32" lean-forward="false" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+            <state relative-caret-position="-1725">
+              <caret line="405" column="55" lean-forward="true" selection-start-line="405" selection-start-column="55" selection-end-line="405" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -447,20 +446,20 @@
         <state relative-caret-position="8625">
           <caret line="613" column="9" lean-forward="false" selection-start-line="613" selection-start-column="9" selection-end-line="613" selection-end-column="9" />
           <folding>
-            <element signature="e#19931#19932#0" expanded="false" />
-            <marker date="1488855726000" expanded="true" signature="18200:18452" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="18496:18520" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="18523:18772" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="18806:18961" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="18964:19137" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19159:19200" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19203:19317" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19340:19381" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19385:19460" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19481:19551" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19554:19634" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19655:19726" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19729:19840" ph="/**...*/" />
+            <element signature="e#19932#19933#0" expanded="false" />
+            <marker date="1488860976000" expanded="true" signature="18201:18453" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="18497:18521" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="18524:18773" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="18807:18962" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="18965:19138" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19160:19201" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19204:19318" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19341:19382" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19386:19461" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19482:19552" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19555:19635" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19656:19727" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19730:19841" ph="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -488,20 +487,20 @@
         <state relative-caret-position="8625">
           <caret line="613" column="9" lean-forward="false" selection-start-line="613" selection-start-column="9" selection-end-line="613" selection-end-column="9" />
           <folding>
-            <element signature="e#19931#19932#0" expanded="false" />
-            <marker date="1488855726000" expanded="true" signature="18200:18452" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="18496:18520" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="18523:18772" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="18806:18961" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="18964:19137" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19159:19200" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19203:19317" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19340:19381" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19385:19460" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19481:19551" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19554:19634" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19655:19726" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19729:19840" ph="/**...*/" />
+            <element signature="e#19932#19933#0" expanded="false" />
+            <marker date="1488860976000" expanded="true" signature="18201:18453" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="18497:18521" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="18524:18773" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="18807:18962" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="18965:19138" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19160:19201" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19204:19318" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19341:19382" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19386:19461" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19482:19552" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19555:19635" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19656:19727" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19730:19841" ph="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -518,8 +517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/rocket/RocketController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8610">
-          <caret line="596" column="37" lean-forward="false" selection-start-line="596" selection-start-column="37" selection-end-line="596" selection-end-column="37" />
+        <state relative-caret-position="8775">
+          <caret line="607" column="37" lean-forward="false" selection-start-line="607" selection-start-column="37" selection-end-line="607" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -527,30 +526,30 @@
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/WorldController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
-          <caret line="685" column="7" lean-forward="true" selection-start-line="685" selection-start-column="7" selection-end-line="685" selection-end-column="7" />
+          <caret line="686" column="7" lean-forward="false" selection-start-line="686" selection-start-column="7" selection-end-line="686" selection-end-column="7" />
           <folding>
-            <element signature="e#19931#19932#0" expanded="false" />
-            <marker date="1488855726000" expanded="true" signature="18200:18452" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="18496:18520" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="18523:18772" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="18806:18961" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="18964:19137" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19159:19200" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19203:19317" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19340:19381" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19385:19460" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19481:19551" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19554:19634" ph="/**...*/" />
-            <marker date="1488855726000" expanded="true" signature="19655:19726" ph="{...}" />
-            <marker date="1488855726000" expanded="true" signature="19729:19840" ph="/**...*/" />
+            <element signature="e#19932#19933#0" expanded="false" />
+            <marker date="1488860976000" expanded="true" signature="18201:18453" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="18497:18521" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="18524:18773" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="18807:18962" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="18965:19138" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19160:19201" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19204:19318" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19341:19382" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19386:19461" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19482:19552" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19555:19635" ph="/**...*/" />
+            <marker date="1488860976000" expanded="true" signature="19656:19727" ph="{...}" />
+            <marker date="1488860976000" expanded="true" signature="19730:19841" ph="/**...*/" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/physics/LoadingMode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5235">
-          <caret line="31" column="32" lean-forward="false" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+        <state relative-caret-position="-1725">
+          <caret line="405" column="55" lean-forward="true" selection-start-line="405" selection-start-column="55" selection-end-line="405" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -173,6 +173,7 @@ public class RocketController extends WorldController implements ContactListener
 	private static final float BASIC_RESTITUTION = 0.1f;
 	/** Threshold for generating sound on collision */
 	private static final float SOUND_THRESHOLD = 1.0f;
+	private int countdown = 120;
 
 	// Since these appear only once, we do not care about the magic numbers.
 	// In an actual game, this information would go in a data file.
@@ -248,6 +249,8 @@ public class RocketController extends WorldController implements ContactListener
 		setComplete(false);
 		setFailure(false);
 		populateLevel();
+		countdown=120;
+
 	}
 
 	/**
@@ -408,10 +411,10 @@ public class RocketController extends WorldController implements ContactListener
 //		obj.setName("wall3");
 //		addObject(obj);
 
-		createLatern(5f,7.3f);
-		createLatern(13,5.5f);
-		createLatern(14,14);
-		createLatern(27.5f,14);
+		createLantern(5f,9.5f);
+		createLantern(13,7f);
+		createLantern(16,15);
+		createLantern(26f,14);
 
 		//Create fireflies
 		for (int ii = 0; ii < Fireflies.length; ii += 2) {
@@ -456,6 +459,13 @@ public class RocketController extends WorldController implements ContactListener
 		}
 	}
 
+	private boolean complete(ArrayList<Lantern> al){
+		for(Lantern l : Lanterns){
+			if(!l.lit) return false;
+		}
+		return true;
+	}
+
 	//Get the latern at this position
 	private Lantern getLantern(float x, float y){
 		int xi= (int)x;
@@ -495,7 +505,7 @@ public class RocketController extends WorldController implements ContactListener
 			}
 		}
 	}
-	private void createLatern(float x, float y){
+	private void createLantern(float x, float y){
 		TextureRegion texture = crateTextures[1];
 		float dwidth  = texture.getRegionWidth()/scale.x;
 		float dheight = texture.getRegionHeight()/scale.y;
@@ -529,6 +539,7 @@ public class RocketController extends WorldController implements ContactListener
 		//#region INSERT CODE HERE
 		// Read from the input and add the force to the rocket model
 		// Then apply the force using the method you modified in RocketObject
+
 		boolean pressing = InputController.getInstance().didSecondary();
 		if(pressing){
 			toggleLatern(rocket.getX(),rocket.getY());
@@ -620,6 +631,7 @@ public class RocketController extends WorldController implements ContactListener
 		canvas.begin();
 		canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth(),canvas.getHeight());
 		String message = "Fireflies Held: " + firefly_count;
+		displayFont.setColor(Color.YELLOW);
 		canvas.drawText(message, displayFont, 5.0f, canvas.getHeight()-5.0f);
 		canvas.end();
 
@@ -628,6 +640,20 @@ public class RocketController extends WorldController implements ContactListener
 			obj.draw(canvas);
 		}
 		canvas.end();
+
+		if(complete(Lanterns)){
+			if(countdown > 0){
+				canvas.begin();
+				String vic = "Victory!";
+				displayFont.setColor(Color.PURPLE);
+				canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
+				canvas.end();
+				countdown --;
+			}else if(countdown==0){
+				this.setComplete(true);
+			}
+
+		}
 
 		if (isDebug()) {
 			canvas.beginDebug();
