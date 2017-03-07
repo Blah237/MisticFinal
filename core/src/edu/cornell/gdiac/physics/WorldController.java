@@ -549,7 +549,15 @@ public abstract class WorldController implements Screen {
 		while (!addQueue.isEmpty()) {
 			addObject(addQueue.poll());
 		}
-		
+
+
+		if(complete){
+			displayFont.setColor(Color.PURPLE);
+			canvas.begin(); // DO NOT SCALE
+			canvas.drawTextCentered("Level Complete", displayFont, 0.0f);
+			canvas.end();
+			reset();
+		}
 		// Turn the physics engine crank.
 		world.step(WORLD_STEP,WORLD_VELOC,WORLD_POSIT);
 
@@ -603,6 +611,9 @@ public abstract class WorldController implements Screen {
 			canvas.begin(); // DO NOT SCALE
 			canvas.drawTextCentered("Level Complete", displayFont, 0.0f);
 			canvas.end();
+		if (complete) {
+			System.out.print("Hello!");
+
 		} else if (failed) {
 			displayFont.setColor(Color.RED);
 			canvas.begin(); // DO NOT SCALE
