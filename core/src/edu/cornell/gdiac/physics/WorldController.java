@@ -590,35 +590,36 @@ public abstract class WorldController implements Screen {
 	 */
 	public void draw(float delta) {
 		canvas.clear();
-		
+
 		canvas.begin();
-		for(Obstacle obj : objects) {
+		for (Obstacle obj : objects) {
 			obj.draw(canvas);
 		}
 		canvas.end();
-		
+
 		if (debug) {
 			canvas.beginDebug();
-			for(Obstacle obj : objects) {
+			for (Obstacle obj : objects) {
 				obj.drawDebug(canvas);
 			}
 			canvas.endDebug();
 		}
-		
+
 		// Final message
 		if (complete && !failed) {
 			displayFont.setColor(Color.PURPLE);
 			canvas.begin(); // DO NOT SCALE
 			canvas.drawTextCentered("Level Complete", displayFont, 0.0f);
 			canvas.end();
-		if (complete) {
-			System.out.print("Hello!");
+			if (complete) {
+				System.out.print("Hello!");
 
-		} else if (failed) {
-			displayFont.setColor(Color.RED);
-			canvas.begin(); // DO NOT SCALE
-			canvas.drawTextCentered("FAILURE!", displayFont, 0.0f);
-			canvas.end();
+			} else if (failed) {
+				displayFont.setColor(Color.RED);
+				canvas.begin(); // DO NOT SCALE
+				canvas.drawTextCentered("FAILURE!", displayFont, 0.0f);
+				canvas.end();
+			}
 		}
 	}
 	
