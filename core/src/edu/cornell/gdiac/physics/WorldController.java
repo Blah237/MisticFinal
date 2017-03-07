@@ -611,6 +611,7 @@ public abstract class WorldController implements Screen {
 			canvas.begin(); // DO NOT SCALE
 			canvas.drawTextCentered("Level Complete", displayFont, 0.0f);
 			canvas.end();
+		}
 		if (complete) {
 			System.out.print("Hello!");
 
