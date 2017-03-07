@@ -789,14 +789,24 @@ public class RocketController extends WorldController implements ContactListener
 				}
 			}
 			fogDelay = FOG_DELAY;
-		} else { fogDelay--; }
+		} else {
+			fogDelay--;
+		}
 
-		if (fireflyDelay == 0) {
-			if (firefly_count > 0) {
-				firefly_count--;
+		int xUnit = (int) Math.min(Math.max(0, Math.floor(rocket.getX() / BW * UNITS_W)), UNITS_W-1);
+		int yUnit = (int) Math.min(Math.max(0, Math.floor(rocket.getY() / BH * UNITS_H)), UNITS_H-1);
+
+		if (fogBoard[xUnit][yUnit]) {
+			if (fireflyDelay == 0) {
+				if (firefly_count > 0) {
+					firefly_count--;
+				}
+				fireflyDelay = FIREFLY_DELAY;
+			} else {
+				fireflyDelay--;
 			}
-			fireflyDelay = FIREFLY_DELAY;
-		} else { fireflyDelay--; }
+		}
+
 		// checkInBounds here!!!
 		//#endregion
 
