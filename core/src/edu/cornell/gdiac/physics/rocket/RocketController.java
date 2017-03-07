@@ -40,6 +40,7 @@ public class RocketController extends WorldController implements ContactListener
 	private static final String ROCK_TEXTURE = "mistic/gorf.png";
 	private static final String BACKGROUND = "mistic/backgroundresize.png";
 	private static final String FIRE_FLY= "mistic/firefly.png";
+	private static final String FOG_TEXTURE = "mistic/fog.png";
 
 	/** The reference for the afterburner textures  */
 	private static final String MAIN_FIRE_TEXTURE = "rocket/flames.png";
@@ -63,6 +64,7 @@ public class RocketController extends WorldController implements ContactListener
 	private TextureRegion rocketTexture;
 	private TextureRegion backgroundTexture;
 	private TextureRegion fireflyTexture;
+	private TextureRegion fogTexture;
 	/** Texture filmstrip for the main afterburner */
 	private FilmStrip mainTexture;
 	/** Texture filmstrip for the main afterburner */
@@ -101,6 +103,9 @@ public class RocketController extends WorldController implements ContactListener
 		//Firefly
 		manager.load(FIRE_FLY, Texture.class);
 		assets.add(FIRE_FLY);
+		//Fog
+		manager.load(FOG_TEXTURE, Texture.class);
+		assets.add(FOG_TEXTURE);
 		// Ship textures
 		manager.load(ROCK_TEXTURE, Texture.class);
 		assets.add(ROCK_TEXTURE);
@@ -146,6 +151,7 @@ public class RocketController extends WorldController implements ContactListener
 
 		rocketTexture = createTexture(manager,ROCK_TEXTURE,false);
 		fireflyTexture = createTexture(manager,FIRE_FLY,false);
+		fogTexture = createTexture(manager,FOG_TEXTURE,true);
 		mainTexture  = createFilmStrip(manager,MAIN_FIRE_TEXTURE,1,RocketModel.FIRE_FRAMES,RocketModel.FIRE_FRAMES);
 		leftTexture  = createFilmStrip(manager,LEFT_FIRE_TEXTURE,1,RocketModel.FIRE_FRAMES,RocketModel.FIRE_FRAMES);
 		rghtTexture  = createFilmStrip(manager,RGHT_FIRE_TEXTURE,1,RocketModel.FIRE_FRAMES,RocketModel.FIRE_FRAMES);
@@ -213,6 +219,20 @@ public class RocketController extends WorldController implements ContactListener
 	/** Reference to the rocket/player avatar */
 	private RocketModel rocket;
 	private ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
+	private BoxFog fog;
+	private boolean[][] board;
+	private boolean[][] fogBoard;
+	private float BW = DEFAULT_WIDTH;
+	private float BH = DEFAULT_HEIGHT;
+	private int UNITS_W = (int)(BW*3);
+	private int UNITS_H = (int)(BH*3);
+	private float UW = BW / UNITS_W;
+	private float UH = BH / UNITS_H;
+	private static int FOG_DELAY = 50;
+	private static int FIREFLY_DELAY = 150;
+	private int fogDelay = FOG_DELAY;
+	private int fireflyDelay = FIREFLY_DELAY;
+
 
 	/**
 	 * Creates and initialize a new instance of the rocket lander game
@@ -226,6 +246,8 @@ public class RocketController extends WorldController implements ContactListener
 		world.setContactListener(this);
 		this.scheduledForRemoval = new LinkedList<Body>();
 		this.firefly_count = 0;
+		initBoard();
+		initFogBoard();
 	}
 
 	/**
@@ -262,6 +284,123 @@ public class RocketController extends WorldController implements ContactListener
 		po.setTexture(earthTile);
 		po.setName(pname);
 		addObject(po);
+	}
+
+	private void initBoard() {
+		board = new boolean[UNITS_W][UNITS_H];
+	}
+
+	private void initFogBoard() {
+		fogBoard = new boolean[UNITS_W][UNITS_H];
+	}
+
+	private void initFog(float xpos, float ypos) {
+		float[] points = {0.0f, UH, UW, UH, UW, 0.0f, 0.0f, 0.0f};
+		int xUnit = (int)Math.floor(xpos / BW * UNITS_W);
+		int yUnit = (int)Math.floor(ypos / BH * UNITS_H);
+		Vector2 idx = new Vector2(xUnit, yUnit);
+
+		fog = new BoxFog(points,xpos,ypos,idx);
+
+		fog.setDrawScale(scale);
+		fog.setTexture(fogTexture);
+		fog.setBodyType(BodyDef.BodyType.StaticBody);
+		Filter filter = new Filter();
+		filter.categoryBits = 0x0002;
+		filter.maskBits = 0x0004;
+		fog.setFilterData(filter);
+
+		fog.setSleepingAllowed(true);
+		fog.setAwake(false);
+
+		addObject(fog);
+	}
+
+	private void initFogParticle(float xpos, float ypos) {
+		float[] points = {0.0f, UH, UW, UH, UW, 0.0f, 0.0f, 0.0f};
+		int xUnit = (int)Math.floor(xpos / BW * UNITS_W);
+		int yUnit = (int)Math.floor(ypos / BH * UNITS_H);
+		Vector2 idx = new Vector2(xUnit, yUnit);
+		BoxFogParticle particle;
+
+		particle = new BoxFogParticle(points,xpos,ypos,idx);
+		fog.addParticle(particle);
+
+		particle.setDrawScale(scale);
+		fog.setBodyType(BodyDef.BodyType.StaticBody);
+		particle.setTexture(fogTexture);
+		Filter filter = new Filter();
+		filter.categoryBits = 0x0002;
+		filter.maskBits = 0x0004;
+		particle.setFilterData(filter);
+
+		fog.setSleepingAllowed(true);
+		fog.setAwake(false);
+
+		addObject(particle);
+	}
+
+	private ArrayList<Vector2> getIndices(float idxX, float idxY, int n) {
+		ArrayList<Vector2> indices = new ArrayList<Vector2>();
+		for (int j=-n+1; j<n; j++) {
+			for (int i=-n+1; i<n; i++) {
+				if (j>0) {
+					if (i<0) {
+						indices.add(new Vector2(Math.max(0,idxX+i), Math.min(idxY+j,UNITS_H-1)));
+					} else if (i>0) {
+						indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.min(idxY+j,UNITS_H-1)));
+					} else {
+						indices.add(new Vector2(Math.min(Math.max(0, idxX), UNITS_W - 1), Math.min(idxY + j, UNITS_H - 1)));
+					}
+				} else if (j<0) {
+					if (i<0) {
+						indices.add(new Vector2(Math.max(0,idxX+i), Math.max(0,idxY+j)));
+					} else if (i>0) {
+						indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.max(0,idxY+j)));
+					} else {
+						indices.add(new Vector2(Math.min(Math.max(0, idxX), UNITS_W - 1), Math.max(0,idxY+j)));
+					}
+				}
+				else {
+					if (i<0) {
+						indices.add(new Vector2(Math.max(0,idxX+i), Math.min(Math.max(0,idxY),UNITS_H-1)));
+					} else if (i>0) {
+						indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.min(Math.max(0,idxY),UNITS_H-1)));
+					} else {
+						indices.add(new Vector2(Math.min(Math.max(0, idxX), UNITS_W - 1), Math.min(Math.max(0,idxY),UNITS_H-1)));
+					}
+				}
+			}
+//				indices.add(new Vector2(Math.max(0,idxX-i), Math.min(idxY+i,UNITS_H-1)));
+//				indices.add(new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.min(idxY+i,UNITS_H-1)));
+//				indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.min(idxY+i,UNITS_H-1)));
+//				indices.add(new Vector2(Math.max(0,idxX-i), Math.min(Math.max(0,idxY),UNITS_H-1)));
+//				indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.min(Math.max(0,idxY),UNITS_H-1)));
+//				indices.add(new Vector2(Math.max(0,idxX-i), Math.max(0,idxY-i)));
+//				indices.add(new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.max(0,idxY-i)));
+//				indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.max(0,idxY-i)));
+		}
+//		Vector2[] indices = {
+//				new Vector2(Math.max(0,idxX-1), Math.min(idxY+1,UNITS_H-1)),
+//				new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.min(idxY+1,UNITS_H-1)),
+//				new Vector2(Math.min(idxX+1,UNITS_W-1), Math.min(idxY+1,UNITS_H-1)),
+//				new Vector2(Math.max(0,idxX-1), Math.min(Math.max(0,idxY),UNITS_H-1)),
+//				new Vector2(Math.min(idxX+1,UNITS_W-1), Math.min(Math.max(0,idxY),UNITS_H-1)),
+//				new Vector2(Math.max(0,idxX-1), Math.max(0,idxY-1)),
+//				new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.max(0,idxY-1)),
+//				new Vector2(Math.min(idxX+1,UNITS_W-1), Math.max(0,idxY-1)),
+//
+//				new Vector2(Math.max(0,idxX-2), Math.min(idxY+2,UNITS_H-1)),
+//				new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.min(idxY+2,UNITS_H-1)),
+//				new Vector2(Math.min(idxX+2,UNITS_W-1), Math.min(idxY+2,UNITS_H-1)),
+//				new Vector2(Math.max(0,idxX-2), Math.min(Math.max(0,idxY),UNITS_H-1)),
+//				new Vector2(Math.min(idxX+2,UNITS_W-1), Math.min(Math.max(0,idxY),UNITS_H-1)),
+//				new Vector2(Math.max(0,idxX-2), Math.max(0,idxY-2)),
+//				new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.max(0,idxY-2)),
+//				new Vector2(Math.min(idxX+2,UNITS_W-1), Math.max(0,idxY-2))
+//		};
+
+		return indices;
 	}
 
 	private void populateLevel() {
@@ -372,9 +511,72 @@ public class RocketController extends WorldController implements ContactListener
 
 		for ( PolygonObstacle i : Polylist) {
 			makeWall(i,"wall"+i.toString());
+
+
+
+
+			float[] points = i.getPoints();
+			float x0 = points[0] + i.getX();
+			float y0 = points[1] + i.getY();
+			float x1 = points[2] + i.getX();
+			float y1 = points[3] + i.getY();
+			float x2 = points[4] + i.getX();
+			float y2 = points[5] + i.getY();
+			float dy = y1-y2;
+			float dx = x2-x1;
+			int xUnit = -1;
+			int yUnit = -1;
+			if (x1-x0-.2f < .01) {
+				for (float y = y2; y < y1; y += UH) {
+					xUnit = (int) Math.min(Math.max(0, Math.floor(x0 / BW * UNITS_W)), UNITS_W - 1);
+					yUnit = (int) Math.min(Math.max(0, Math.floor(y / BH * UNITS_H)), UNITS_H - 1);
+					board[xUnit][yUnit] = true;
+
+					ArrayList<Vector2> indices = getIndices(xUnit, yUnit,2);
+
+					for (int j=0; j<indices.size(); j++) {
+						board[(int)indices.get(j).x][(int)indices.get(j).y] = true;
+					}
+				}
+			} else if (dx == 0) {
+				for (float x=x0; x<x1; x+=UW) {
+					xUnit = (int) Math.min(Math.max(0, Math.floor(x / BW * UNITS_W)), UNITS_W-1);
+					yUnit = (int) Math.min(Math.max(0, Math.floor(y2 / BH * UNITS_H)), UNITS_H-1);
+					board[xUnit][yUnit] = true;
+
+					ArrayList<Vector2> indices = getIndices(xUnit, yUnit, 2);
+
+					for (int j=0; j<indices.size(); j++) {
+						board[(int)indices.get(j).x][(int)indices.get(j).y] = true;
+					}
+				}
+
+			} else {
+				float m = -dy / dx;
+				float y;
+				if (x1 > x2) {
+					float temp = x1;
+					x1 = x2;
+					x2 = temp;
+				}
+				for (float x = x1; x < x2; x += UW) {
+					y = y2 + m * (x - x1);
+
+					xUnit = (int) Math.min(Math.max(0, Math.floor(x / BW * UNITS_W)), UNITS_W-1);
+					yUnit = (int) Math.min(Math.max(0, Math.floor(y / BH * UNITS_H)), UNITS_H-1);
+					board[xUnit][yUnit] = true;
+
+					ArrayList<Vector2> indices = getIndices(xUnit, yUnit, 2);
+
+					for (int j=0; j<indices.size(); j++) {
+						board[(int)indices.get(j).x][(int)indices.get(j).y] = true;
+					}
+				}
+			}
+
 		}
 
-
+		initFog(10,8);
 
 		// Create ground pieces
 //		PolygonObstacle obj;
@@ -486,11 +688,28 @@ public class RocketController extends WorldController implements ContactListener
 				this.bo.setTexture(crateTextures[1]);
 				lit=false;
 				firefly_count++;
+
+				ArrayList<Vector2> indices = getIndices(x,y,3);
+
+				for (int i=0; i<indices.size(); i++) {
+					board[(int)indices.get(i).x][(int)indices.get(i).y] = false;
+				}
+
 			}else {
 				if (firefly_count >=1) {
 					this.bo.setTexture(crateTextures[0]);
 					lit = true;
 					firefly_count = firefly_count - 1;
+
+					int xUnit = (int) Math.min(Math.max(0, Math.floor(x / BW * UNITS_W)), UNITS_W-1);
+					int yUnit = (int) Math.min(Math.max(0, Math.floor(y / BH * UNITS_H)), UNITS_H-1);
+					board[xUnit][yUnit] = true;
+
+					ArrayList<Vector2> indices = getIndices(xUnit,yUnit,7);
+					for (int i=0; i<indices.size(); i++) {
+						board[(int)indices.get(i).x][(int)indices.get(i).y] = true;
+//						clearedBoard[(int)indices.get(i).x][(int)indices.get(i).y] = true;
+					}
 				}
 			}
 		}
@@ -508,6 +727,10 @@ public class RocketController extends WorldController implements ContactListener
 		box.setName("lantern");
 		box.setDrawScale(scale);
 		box.setTexture(texture);
+		Filter filter = new Filter();
+		filter.categoryBits = 0x0002;
+		filter.maskBits = 0x0004;
+		box.setFilterData(filter);
 		Lantern l = new Lantern(x,y,box);
 		Lanterns.add(l);
 		addObject(box);
@@ -540,6 +763,29 @@ public class RocketController extends WorldController implements ContactListener
 		this.rocket.setFY(forcey * rocketthrust);
 		rocket.applyForce();
 		wrapInBounds(rocket);
+
+
+		if (fogDelay == 0) {
+			BoardTuple fogBoards = fog.expand(board, fogBoard);
+			fogBoard = fogBoards.a;
+			boolean[][] newFogBoard = fogBoards.b;
+
+			for (int j = 0; j < UNITS_H; j++) {
+				for (int i = 0; i < UNITS_W; i++) {
+					if (newFogBoard[i][j]) {
+						initFogParticle(i * UW, j * UH);
+					}
+				}
+			}
+			fogDelay = FOG_DELAY;
+		} else { fogDelay--; }
+
+		if (fireflyDelay == 0) {
+			if (firefly_count > 0) {
+				firefly_count--;
+			}
+			fireflyDelay = FIREFLY_DELAY;
+		} else { fireflyDelay--; }
 		// checkInBounds here!!!
 		//#endregion
 
@@ -571,7 +817,7 @@ public class RocketController extends WorldController implements ContactListener
 	 * This method is here instead of the the rocket model because of our philosophy
 	 * that models should always be lightweight.  Animation includes sounds and other
 	 * assets that we do not want to process in the model
-	 *
+	 *+
 	 * @param  burner   The rocket burner to animate
 	 * @param  on       Whether to turn the animation on or off
 	 */

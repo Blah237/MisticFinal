@@ -53,6 +53,7 @@ public class PolygonObstacle extends SimpleObstacle {
 	private Vector2 sizeCache;
 	/** Cache of the polygon vertices (for resizing) */
 	private float[] vertices;
+	private float[] points;
 	
 	/** 
 	 * Returns the dimensions of this box
@@ -126,7 +127,11 @@ public class PolygonObstacle extends SimpleObstacle {
 		sizeCache.set(dimension.x,value);
 		setDimension(sizeCache);
 	}
-	
+
+	public float[] getPoints() {
+		return points;
+	}
+
 	/**
 	 * Creates a (not necessarily convex) polygon at the origin.
 	 *
@@ -156,6 +161,7 @@ public class PolygonObstacle extends SimpleObstacle {
 	public PolygonObstacle(float[] points, float x, float y) {
 		super(x, y);
 		assert points.length % 2 == 0;
+		this.points = points;
 		
 		// Compute the bounds.
 		initShapes(points);
