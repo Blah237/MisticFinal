@@ -242,7 +242,7 @@ public class RocketController extends WorldController implements ContactListener
 		objects.clear();
 		addQueue.clear();
 		world.dispose();
-
+		Lanterns = new ArrayList<Lantern>();
 		world = new World(gravity,false);
 		world.setContactListener(this);
 		setComplete(false);
