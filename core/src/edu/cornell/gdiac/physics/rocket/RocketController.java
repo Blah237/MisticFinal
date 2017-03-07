@@ -266,6 +266,9 @@ public class RocketController extends WorldController implements ContactListener
 		addQueue.clear();
 		world.dispose();
 		Lanterns = new ArrayList<Lantern>();
+		initBoard();
+		initFogBoard();
+		this.firefly_count = 0;
 		world = new World(gravity,false);
 		world.setContactListener(this);
 		setComplete(false);
@@ -805,7 +808,7 @@ public class RocketController extends WorldController implements ContactListener
 			} else {
 				fireflyDelay--;
 			}
-		}
+		} else { fireflyDelay = FIREFLY_DELAY; }
 
 		// checkInBounds here!!!
 		//#endregion
