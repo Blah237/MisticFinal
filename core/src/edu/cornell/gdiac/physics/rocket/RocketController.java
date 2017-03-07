@@ -206,6 +206,7 @@ public class RocketController extends WorldController implements ContactListener
 	private static int firefly_count;
 	//ticks
 	private static int ticks;
+	private static final int FIREFLY_DEATH_TIMER = 5;
 
 	// Other game objects
 	/** The initial rocket position */
@@ -961,11 +962,11 @@ public class RocketController extends WorldController implements ContactListener
 			scheduledForRemoval.addLast(body1);
 			firefly_count++;
 		}
-		if (ticks % 5 == 0 && ticks != 0 && body1 == rocket.getBody() && body2.getUserData() == "fog") {
+		if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == rocket.getBody() && body2.getUserData() == "fog") {
 			if (firefly_count > 0) {
 				firefly_count = firefly_count - 1;
 			}
-		} else if (ticks % 5 == 0 && ticks != 0 && body2 == rocket.getBody() && body1.getUserData() == "fog") {
+		} else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == rocket.getBody() && body1.getUserData() == "fog") {
 			if (firefly_count > 0) {
 				firefly_count = firefly_count - 1;
 			}
