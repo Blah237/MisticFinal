@@ -24,8 +24,7 @@ import edu.cornell.gdiac.physics.obstacle.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
-
-
+import static com.badlogic.gdx.math.MathUtils.random;
 /**
  * Gameplay specific controller for the rocket lander game.
  *
@@ -195,9 +194,7 @@ public class RocketController extends WorldController implements ContactListener
 			8.0f,  9.5f,  4.0f,  9.5f};
 
 	// The positions of the fireflies
-	private static final float[] Fireflies = { 14.5f, 10f,
-			13.0f, 3.00f, 3.0f, 7.f,
-			2.5f,  9.75f, 7.5f,  9.75f, 17.5f, 9.75f};
+	private static final float[] Fireflies = { 14.5f, 2f, 2.5f,  9.75f, 17.5f,  15.75f};
 
 	// the list of firefly objects' bodies
 	private static ArrayList<Body> fireflyObjects = new ArrayList<Body>();
@@ -620,23 +617,12 @@ public class RocketController extends WorldController implements ContactListener
 		createLantern(13,7f);
 		createLantern(16,15);
 		createLantern(26f,14);
+		createLantern(5,5);
+
 
 		//Create fireflies
 		for (int ii = 0; ii < Fireflies.length; ii += 2) {
-			TextureRegion texture = fireflyTexture;
-			dwidth  = texture.getRegionWidth()/scale.x;
-			dheight = texture.getRegionHeight()/scale.y;
-			BoxObstacle box = new BoxObstacle(Fireflies[ii], Fireflies[ii+1], dwidth, dheight);
-			box.setDensity(CRATE_DENSITY);
-			box.setFriction(CRATE_FRICTION);
-			box.setRestitution(BASIC_RESTITUTION);
-			box.setName("crate"+ii);
-			box.setDrawScale(scale);
-			box.setTexture(texture);
-			addObject(box);
-			box.getBody().setUserData("firefly");
-			fireflyObjects.add(box.getBody());
-			fireflyObjectsO.add(box);
+			createFirefly(Fireflies[ii],Fireflies[ii+1]);
 		}
 
 		// Create the rocket avatar
@@ -656,6 +642,22 @@ public class RocketController extends WorldController implements ContactListener
 		addObject(rocket);
 	}
 
+	private void createFirefly(float x,float y){
+		TextureRegion texture = fireflyTexture;
+		float dwidth  = texture.getRegionWidth()/scale.x;
+		float dheight = texture.getRegionHeight()/scale.y;
+		BoxObstacle box = new BoxObstacle(x, y, dwidth, dheight);
+		box.setDensity(CRATE_DENSITY);
+		box.setFriction(CRATE_FRICTION);
+		box.setRestitution(BASIC_RESTITUTION);
+		box.setName("firefly"+x+y);
+		box.setDrawScale(scale);
+		box.setTexture(texture);
+		addObject(box);
+		box.getBody().setUserData("firefly");
+		fireflyObjects.add(box.getBody());
+		fireflyObjectsO.add(box);
+	}
 
 	private void toggleLatern(float x, float y){
 		Lantern l= getLantern(x,y);
@@ -777,6 +779,11 @@ public class RocketController extends WorldController implements ContactListener
 		this.rocket.setFY(forcey * rocketthrust);
 		rocket.applyForce();
 		wrapInBounds(rocket);
+
+		if (random(250)==7) {
+			createFirefly(random(40), random(20));
+		}
+
 
 
 		if (fogDelay == 0) {
