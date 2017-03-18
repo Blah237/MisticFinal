@@ -14,7 +14,7 @@ package edu.cornell.gdiac.physics.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import edu.cornell.gdiac.physics.GDXRoot;
+import edu.cornell.gdiac.GDXRoot;
 
 /**
  * The main class of the game.
