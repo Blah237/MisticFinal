@@ -175,6 +175,9 @@ public class GameController extends WorldController implements ContactListener {
 	private static LinkedList<Body> scheduledForRemoval;
 	// the number of fireflies Gorf is holding
 	private static int firefly_count;
+	//ticks
+	private static int ticks;
+	private static final int FIREFLY_DEATH_TIMER = 5;
 
 	// Other game objects
 	/** The initial rocket position */
@@ -217,6 +220,7 @@ public class GameController extends WorldController implements ContactListener {
 		this.firefly_count = 0;
 		initBoard();
 		initFogBoard();
+		this.ticks = 0;
 	}
 
 	/**
@@ -288,6 +292,7 @@ public class GameController extends WorldController implements ContactListener {
 		fog.setAwake(false);
 
 		addObject(fog);
+		fog.getBody().setUserData("fog");
 	}
 
 	private void initFogParticle(float xpos, float ypos) {
@@ -770,6 +775,7 @@ public class GameController extends WorldController implements ContactListener {
 
 		// Animate the three burners
 
+
 		//updateBurner(GorfModel.Burner.MAIN, rocket.getFY() > 1);
 		//updateBurner(GorfModel.Burner.LEFT, rocket.getFX() > 1);
 		//updateBurner(GorfModel.Burner.RIGHT, rocket.getFX() < -1);
@@ -901,6 +907,15 @@ public class GameController extends WorldController implements ContactListener {
 		} else if(body2 == rocket.getBody() && body1.getUserData() == "firefly") {
 			scheduledForRemoval.addLast(body1);
 			firefly_count++;
+		}
+		if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == rocket.getBody() && body2.getUserData() == "fog") {
+			if (firefly_count > 0) {
+				firefly_count = firefly_count - 1;
+			}
+		} else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == rocket.getBody() && body1.getUserData() == "fog") {
+			if (firefly_count > 0) {
+				firefly_count = firefly_count - 1;
+			}
 		}
 	}
 
