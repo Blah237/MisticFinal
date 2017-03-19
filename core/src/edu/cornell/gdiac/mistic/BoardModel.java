@@ -7,8 +7,7 @@ public class BoardModel {
 
     /**
      * Each tile on the board has a set of attributes associated with it.
-     * However, no class other than board needs to access them directly.
-     * Therefore, we make this an inner class.
+     * Tiles cover the whole world
      */
     private static class Tile {
         /** Is this a maze wall block */

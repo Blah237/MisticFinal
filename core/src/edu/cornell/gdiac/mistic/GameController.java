@@ -190,6 +190,7 @@ public class GameController extends WorldController implements ContactListener {
 	private BoxObstacle goalDoor;
 	/** Reference to the rocket/player avatar */
 	private GorfModel rocket;
+	/** Arraylist of Lantern objects */
 	private ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
 	private BoxFog fog;
 	private boolean[][] board;
