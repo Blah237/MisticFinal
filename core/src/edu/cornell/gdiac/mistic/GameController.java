@@ -606,22 +606,6 @@ public class GameController extends WorldController implements ContactListener {
 		addObject(rocket);
 	}
 
-	private void createFirefly(float x,float y){
-		TextureRegion texture = fireflyTexture;
-		float dwidth  = texture.getRegionWidth()/scale.x;
-		float dheight = texture.getRegionHeight()/scale.y;
-		BoxObstacle box = new BoxObstacle(x, y, dwidth, dheight);
-		box.setDensity(CRATE_DENSITY);
-		box.setFriction(CRATE_FRICTION);
-		box.setRestitution(BASIC_RESTITUTION);
-		box.setName("firefly"+x+y);
-		box.setDrawScale(scale);
-		box.setTexture(texture);
-		addObject(box);
-		box.getBody().setUserData("firefly");
-		fireflyObjects.add(box.getBody());
-		fireflyObjectsO.add(box);
-	}
 
 	private void toggleLatern(float x, float y){
 		Lantern l= getLantern(x,y);
@@ -745,7 +729,7 @@ public class GameController extends WorldController implements ContactListener {
 		wrapInBounds(rocket);
 
 		if (random(250)==7) {
-			createFirefly(random(40), random(20));
+			//createFirefly(random(40), random(20));
 		}
 
 
