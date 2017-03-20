@@ -406,7 +406,7 @@ public class GameCanvas {
 	 * Nothing is flushed to the graphics card until the method end() is called.
 	 */
     public void begin() {
-    	camera.translate(0.1f,0);
+    	camera.translate(0,0);
 		spriteBatch.setProjectionMatrix(camera.combined);
     	spriteBatch.begin();
     	active = DrawPass.STANDARD;
