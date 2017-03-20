@@ -93,16 +93,16 @@ public class GameController extends WorldController implements ContactListener {
 		assets.add(ROCK_TEXTURE);
 
 		/**
-		// An Example of loading sounds
-		manager.load(MAIN_FIRE_SOUND, Sound.class);
-		assets.add(MAIN_FIRE_SOUND);
-		manager.load(LEFT_FIRE_SOUND, Sound.class);
-		assets.add(LEFT_FIRE_SOUND);
-		manager.load(RGHT_FIRE_SOUND, Sound.class);
-		assets.add(RGHT_FIRE_SOUND);
-		manager.load(COLLISION_SOUND, Sound.class);
-		assets.add(COLLISION_SOUND);
-		**/
+		 // An Example of loading sounds
+		 manager.load(MAIN_FIRE_SOUND, Sound.class);
+		 assets.add(MAIN_FIRE_SOUND);
+		 manager.load(LEFT_FIRE_SOUND, Sound.class);
+		 assets.add(LEFT_FIRE_SOUND);
+		 manager.load(RGHT_FIRE_SOUND, Sound.class);
+		 assets.add(RGHT_FIRE_SOUND);
+		 manager.load(COLLISION_SOUND, Sound.class);
+		 assets.add(COLLISION_SOUND);
+		 **/
 		super.preLoadContent(manager);
 	}
 
@@ -611,6 +611,22 @@ public class GameController extends WorldController implements ContactListener {
 		addObject(rocket);
 	}
 
+	private void createFirefly(float x,float y){
+		TextureRegion texture = fireflyTexture;
+		float dwidth  = texture.getRegionWidth()/scale.x;
+		float dheight = texture.getRegionHeight()/scale.y;
+		BoxObstacle box = new BoxObstacle(x, y, dwidth, dheight);
+		box.setDensity(CRATE_DENSITY);
+		box.setFriction(CRATE_FRICTION);
+		box.setRestitution(BASIC_RESTITUTION);
+		box.setName("firefly"+x+y);
+		box.setDrawScale(scale);
+		box.setTexture(texture);
+		addObject(box);
+		box.getBody().setUserData("firefly");
+		fireflyObjects.add(box.getBody());
+		fireflyObjectsO.add(box);
+	}
 
 	private void toggleLatern(float x, float y){
 		Lantern l= getLantern(x,y);
@@ -645,10 +661,10 @@ public class GameController extends WorldController implements ContactListener {
 		boolean lit;
 
 		Lantern(float cx, float cy, BoxObstacle o){
-		x=cx;
-		y=cy;
-		bo=o;
-		lit=false;
+			x=cx;
+			y=cy;
+			bo=o;
+			lit=false;
 		}
 
 		void toggle(){
@@ -734,7 +750,7 @@ public class GameController extends WorldController implements ContactListener {
 		wrapInBounds(rocket);
 
 		if (random(250)==7) {
-			//createFirefly(random(40), random(20));
+			createFirefly(random(40), random(20));
 		}
 
 
@@ -843,7 +859,7 @@ public class GameController extends WorldController implements ContactListener {
 		}
 	}
 
-	
+
 	public void draw(float dt) {
 		canvas.clear();
 
