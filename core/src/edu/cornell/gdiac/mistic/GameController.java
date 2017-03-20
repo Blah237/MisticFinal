@@ -41,8 +41,9 @@ public class GameController extends WorldController implements ContactListener {
 	private static final String BACKGROUND = "mistic/backgroundresize.png";
 	private static final String FIRE_FLY= "mistic/firefly.png";
 	private static final String FOG_TEXTURE = "mistic/fog.png";
+	private static final String MONSTER_TEXTURE = "mistic/monster01.png";
 
-	/** The reference for the afterburner textures  */
+	/** The reference for the afterburner textures */
 	/** Reference to the crate image assets */
 	private static final String CRATE_PREF = "mistic/crate0";
 	/** How many crate assets we have */
@@ -53,6 +54,7 @@ public class GameController extends WorldController implements ContactListener {
 	private TextureRegion backgroundTexture;
 	private TextureRegion fireflyTexture;
 	private TextureRegion fogTexture;
+	private TextureRegion monsterTexture;
 
 	/** Texture assets for the crates */
 	private TextureRegion[] crateTextures = new TextureRegion[MAX_CRATES];
@@ -91,6 +93,9 @@ public class GameController extends WorldController implements ContactListener {
 		// Ship textures
 		manager.load(ROCK_TEXTURE, Texture.class);
 		assets.add(ROCK_TEXTURE);
+		// Monster textures
+		manager.load(MONSTER_TEXTURE, Texture.class);
+		assets.add(MONSTER_TEXTURE);
 
 		/**
 		// An Example of loading sounds
@@ -130,6 +135,7 @@ public class GameController extends WorldController implements ContactListener {
 		fireflyTexture = createTexture(manager,FIRE_FLY,false);
 		fogTexture = createTexture(manager,FOG_TEXTURE,true);
 		backgroundTexture = createTexture(manager,BACKGROUND,false);
+		monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
 		SoundController sounds = SoundController.getInstance();
 
 		super.loadContent(manager);
@@ -610,6 +616,10 @@ public class GameController extends WorldController implements ContactListener {
 		rocket.setTexture(rocketTexture);
 
 		addObject(rocket);
+
+		float w = 6;
+		float h = 9;
+		createMonster(w, h);
 	}
 
 	private void createFirefly(float x,float y){
@@ -627,6 +637,21 @@ public class GameController extends WorldController implements ContactListener {
 		box.getBody().setUserData("firefly");
 		fireflyObjects.add(box.getBody());
 		fireflyObjectsO.add(box);
+	}
+
+	private void createMonster(float x, float y) {
+		TextureRegion texture = monsterTexture;
+		float dwidth  = texture.getRegionWidth()/scale.x;
+		float dheight = texture.getRegionHeight()/scale.y;
+		MonsterModel monster = new MonsterModel(x, y, dwidth, dheight);
+		monster.setDensity(CRATE_DENSITY);
+		monster.setFriction(CRATE_FRICTION);
+		monster.setRestitution(BASIC_RESTITUTION);
+		monster.setDrawScale(scale);
+		monster.setName("firefly"+x+y);
+		monster.setTexture(texture);
+		addObject(monster);
+		monster.getBody().setUserData("monster");
 	}
 
 	private void toggleLatern(float x, float y){
@@ -753,7 +778,6 @@ public class GameController extends WorldController implements ContactListener {
 		if (random(250)==7) {
 			createFirefly(random(40), random(20));
 		}
-
 
 
 		if (fogDelay == 0) {
