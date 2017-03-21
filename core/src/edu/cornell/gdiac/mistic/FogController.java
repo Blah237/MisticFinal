@@ -47,7 +47,6 @@ public class FogController extends GameController {
 	float spreadCount;
 	float spreadCountX;
 	float spreadCountY;
-	int numFireflies;
     private float BW = DEFAULT_WIDTH;
     private float BH = DEFAULT_HEIGHT;
 	private final int NX = 35;
@@ -68,14 +67,14 @@ public class FogController extends GameController {
         fogBoard[cy*NX+cx] = 1.1f;
         elementBoard = new int[NX][NY];
 
-		for (int i = 0; i<lanterns.size(); i++) {
-			int lx = (int)Math.floor(lanterns.get(i).getX() / BW * NX);
-			int ly = (int)Math.floor(lanterns.get(i).getY() / BH * NY);
-
-			elementBoard[lx][ly] = 1;
-			elementBoard[lx][ly+1] = 1;
-			elementBoard[lx][ly-1] = 1;
-		}
+//		for (int i = 0; i<lanterns.size(); i++) {
+//			int lx = (int)Math.floor(lanterns.get(i).getX() / BW * NX);
+//			int ly = (int)Math.floor(lanterns.get(i).getY() / BH * NY);
+//
+//			elementBoard[lx][ly] = 1;
+//			elementBoard[lx][ly+1] = 1;
+//			elementBoard[lx][ly-1] = 1;
+//		}
 
 //		for (int k=0; k<NX/10-1; k++) {
 //			elementBoard[k][NY / 2+1] = 1;
@@ -214,7 +213,6 @@ public class FogController extends GameController {
 		fogDelay = 0;
 		spreadType = -1;
 		thickness = 1;
-		numFireflies = 3;
 
 		vertexShader = Gdx.files.internal("mistic/fog.vert.glsl").readString();
 		fragmentShader = Gdx.files.internal("mistic/fog.frag.glsl").readString();
@@ -280,7 +278,7 @@ public class FogController extends GameController {
 		batch.setProjectionMatrix(cam.combined);
 	}
 
-	public void draw(GameCanvas canvas, ArrayList<Lantern> lanterns, GorfModel gorf) {
+	public void draw(GameCanvas canvas, ArrayList<Lantern> lanterns, GorfModel gorf, int numFireflies) {
 	    int numLanterns = 0;
         lanternsA = new float[lanterns.size()*2];
         for (int i=0; i<lanterns.size(); i++) {
