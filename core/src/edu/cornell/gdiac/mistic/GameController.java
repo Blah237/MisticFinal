@@ -43,6 +43,7 @@ public class GameController extends WorldController implements ContactListener {
 	private static final String BACKGROUND = "mistic/backgroundresize.png";
 	private static final String FIRE_FLY= "mistic/firefly.png";
 	private static final String FOG_TEXTURE = "mistic/fog.png";
+	private static final String FIRE_TRACK="mistic/fireflysprite.png";
 
 	/** The reference for the afterburner textures  */
 	/** Reference to the crate image assets */
@@ -53,6 +54,7 @@ public class GameController extends WorldController implements ContactListener {
 	private TextureRegion backgroundTexture;
 	private TextureRegion fireflyTexture;
 	private TextureRegion fogTexture;
+	private TextureRegion fireflyTrack;
 
 	/** Texture assets for the crates */
 	private TextureRegion litTexture;
@@ -95,7 +97,8 @@ public class GameController extends WorldController implements ContactListener {
 		// Ship textures
 		manager.load(GORF_TEXTURE, Texture.class);
 		assets.add(GORF_TEXTURE);
-
+		manager.load(FIRE_TRACK,Texture.class);
+		assets.add(FIRE_TRACK);
 		/**
 		 // An Example of loading sounds
 		 manager.load(MAIN_FIRE_SOUND, Sound.class);
@@ -132,6 +135,7 @@ public class GameController extends WorldController implements ContactListener {
 		fireflyTexture = createTexture(manager,FIRE_FLY,false);
 		fogTexture = createTexture(manager,FOG_TEXTURE,true);
 		backgroundTexture = createTexture(manager,BACKGROUND,false);
+		fireflyTrack=createTexture(manager,FIRE_TRACK,false);
 		SoundController sounds = SoundController.getInstance();
 
 		super.loadContent(manager);
@@ -737,9 +741,9 @@ public class GameController extends WorldController implements ContactListener {
 		// Draw background unscaled.
 		canvas.begin();
 		canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth(),canvas.getHeight());
-		String message = "Fireflies Held: " + firefly_count;
-		displayFont.setColor(Color.YELLOW);
-		canvas.drawText(message, displayFont, 5.0f, canvas.getHeight()-5.0f);
+		canvas.draw(fireflyTrack,0,0);
+		displayFont.setColor(Color.WHITE);
+		canvas.drawText(Integer.toString(firefly_count),displayFont,50,50);
 		canvas.end();
 
 		canvas.begin();
@@ -795,7 +799,7 @@ public class GameController extends WorldController implements ContactListener {
 	public void beginContact(Contact contact) {
 		Body body1 = contact.getFixtureA().getBody();
 		Body body2 = contact.getFixtureB().getBody();
-		
+
 		if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
 			if (firefly_count > 0) {
 				firefly_count = firefly_count - 1;
