@@ -217,6 +217,7 @@ public class GameController extends WorldController implements ContactListener {
 	private int fireflyDelay = FIREFLY_DELAY;
 
 
+
 	/**
 	 * Creates and initialize a new instance of the rocket lander game
 	 *
@@ -418,60 +419,60 @@ public class GameController extends WorldController implements ContactListener {
 		final float[] wallDn = {3.7f, 1.5f, 4.0f, 1.5f, 1.5f, 3.5f, 1.2f, 3.5f};
 
 		// horizontal walls
-//		PolygonObstacle wall1 = new PolygonObstacle(wallH, -1, 6.5f);
-//		Polylist.add(wall1);
-//		PolygonObstacle wall2 = new PolygonObstacle(wallH, -1, 2.5f);
-//		Polylist.add(wall2);
-//		PolygonObstacle wall11 = new PolygonObstacle(wallH, -1, -0.5f);
-//		Polylist.add(wall11);
-//		PolygonObstacle wall12 = new PolygonObstacle(wallH, 1.2f, -0.5f);
-//		Polylist.add(wall12);
-//		PolygonObstacle wall13 = new PolygonObstacle(wallH, 1.2f, 2.5f);
-//		Polylist.add(wall13);
-//		PolygonObstacle wall3 = new PolygonObstacle(wallH, 28, 6.5f);
-//		Polylist.add(wall3);
-//		PolygonObstacle wall4 = new PolygonObstacle(wallH, 28, 2.5f);
-//		Polylist.add(wall4);
-//		PolygonObstacle wall22 = new PolygonObstacle(wallH, 14, 12.5f);
-//		Polylist.add(wall22);
-//		PolygonObstacle wall23 = new PolygonObstacle(wallH, 17f, 12.5f);
-//		Polylist.add(wall23);
-//		PolygonObstacle wall34 = new PolygonObstacle(wallH, 14.3f, -1.5f);
-//		Polylist.add(wall34);
-//		PolygonObstacle wall35 = new PolygonObstacle(wallH, 4f, 2.5f);
-//		Polylist.add(wall35);
-//
-//		// vertical walls
-//		PolygonObstacle wall5 = new PolygonObstacle(wallV, 28, 1.5f);
-//		Polylist.add(wall5);
-//		PolygonObstacle wall6 = new PolygonObstacle(wallV, 25, 1.5f);
-//		Polylist.add(wall6);
-//		PolygonObstacle wall7 = new PolygonObstacle(wallV, 22.4f, -3);
-//		Polylist.add(wall7);
-//		PolygonObstacle wall8 = new PolygonObstacle(wallV, 7, 14);
-//		Polylist.add(wall8);
-//		PolygonObstacle wall9 = new PolygonObstacle(wallV, 4, -1.5f);
-//		Polylist.add(wall9);
-//		PolygonObstacle wall10 = new PolygonObstacle(wallV, 7, -1.5f);
-//		Polylist.add(wall10);
-//		PolygonObstacle wall20 = new PolygonObstacle(wallV, 14, 14f);
-//		Polylist.add(wall20);
-//		PolygonObstacle wall25 = new PolygonObstacle(wallV, 28, 8f);
-//		Polylist.add(wall25);
-//		PolygonObstacle wall26 = new PolygonObstacle(wallV, 28, 10.5f);
-//		Polylist.add(wall26);
-//		PolygonObstacle wall28 = new PolygonObstacle(wallV, 11.7f, 7.8f);
-//		Polylist.add(wall28);
-//		PolygonObstacle wall29 = new PolygonObstacle(wallV, 11.7f, 5.8f);
-//		Polylist.add(wall29);
-//		PolygonObstacle wall30 = new PolygonObstacle(wallV, 14.8f, 5.5f);
-//		Polylist.add(wall30);
-//		PolygonObstacle wall33 = new PolygonObstacle(wallV, 14.3f, -2.5f);
-//		Polylist.add(wall33);
-//		PolygonObstacle wall36 = new PolygonObstacle(wallV, 7f, 1f);
-//		Polylist.add(wall36);
-//		PolygonObstacle wall37 = new PolygonObstacle(wallV, 7f, 1.5f);
-//		Polylist.add(wall37);
+		PolygonObstacle wall1 = new PolygonObstacle(wallH, -1, 6.5f);
+		Polylist.add(wall1);
+		PolygonObstacle wall2 = new PolygonObstacle(wallH, -1, 2.5f);
+		Polylist.add(wall2);
+		PolygonObstacle wall11 = new PolygonObstacle(wallH, -1, -0.5f);
+		Polylist.add(wall11);
+		PolygonObstacle wall12 = new PolygonObstacle(wallH, 1.2f, -0.5f);
+		Polylist.add(wall12);
+		PolygonObstacle wall13 = new PolygonObstacle(wallH, 1.2f, 2.5f);
+		Polylist.add(wall13);
+		PolygonObstacle wall3 = new PolygonObstacle(wallH, 28, 6.5f);
+		Polylist.add(wall3);
+		PolygonObstacle wall4 = new PolygonObstacle(wallH, 28, 2.5f);
+		Polylist.add(wall4);
+		PolygonObstacle wall22 = new PolygonObstacle(wallH, 14, 12.5f);
+		Polylist.add(wall22);
+		PolygonObstacle wall23 = new PolygonObstacle(wallH, 17f, 12.5f);
+		Polylist.add(wall23);
+		PolygonObstacle wall34 = new PolygonObstacle(wallH, 14.3f, -1.5f);
+		Polylist.add(wall34);
+		PolygonObstacle wall35 = new PolygonObstacle(wallH, 4f, 2.5f);
+		Polylist.add(wall35);
+
+		// vertical walls
+		PolygonObstacle wall5 = new PolygonObstacle(wallV, 28, 1.5f);
+		Polylist.add(wall5);
+		PolygonObstacle wall6 = new PolygonObstacle(wallV, 25, 1.5f);
+		Polylist.add(wall6);
+		PolygonObstacle wall7 = new PolygonObstacle(wallV, 22.4f, -3);
+		Polylist.add(wall7);
+		PolygonObstacle wall8 = new PolygonObstacle(wallV, 7, 14);
+		Polylist.add(wall8);
+		PolygonObstacle wall9 = new PolygonObstacle(wallV, 4, -1.5f);
+		Polylist.add(wall9);
+		PolygonObstacle wall10 = new PolygonObstacle(wallV, 7, -1.5f);
+		Polylist.add(wall10);
+		PolygonObstacle wall20 = new PolygonObstacle(wallV, 14, 14f);
+		Polylist.add(wall20);
+		PolygonObstacle wall25 = new PolygonObstacle(wallV, 28, 8f);
+		Polylist.add(wall25);
+		PolygonObstacle wall26 = new PolygonObstacle(wallV, 28, 10.5f);
+		Polylist.add(wall26);
+		PolygonObstacle wall28 = new PolygonObstacle(wallV, 11.7f, 7.8f);
+		Polylist.add(wall28);
+		PolygonObstacle wall29 = new PolygonObstacle(wallV, 11.7f, 5.8f);
+		Polylist.add(wall29);
+		PolygonObstacle wall30 = new PolygonObstacle(wallV, 14.8f, 5.5f);
+		Polylist.add(wall30);
+		PolygonObstacle wall33 = new PolygonObstacle(wallV, 14.3f, -2.5f);
+		Polylist.add(wall33);
+		PolygonObstacle wall36 = new PolygonObstacle(wallV, 7f, 1f);
+		Polylist.add(wall36);
+		PolygonObstacle wall37 = new PolygonObstacle(wallV, 7f, 1.5f);
+		Polylist.add(wall37);
 //
 //		// diagonal positive walls
 //		PolygonObstacle wall14 = new PolygonObstacle(wallDp, 1.5f, 8f);
@@ -902,7 +903,6 @@ public class GameController extends WorldController implements ContactListener {
 		}
 	}
 
-	
 	public void draw(float dt) {
 		canvas.clear();
 
@@ -914,24 +914,36 @@ public class GameController extends WorldController implements ContactListener {
 		canvas.drawText(message, displayFont, 5.0f, canvas.getHeight()-5.0f);
 		canvas.end();
 
+		// Draw background on all sides and diagonals for wrap illusion
 		canvas.begin();
-		for(Obstacle obj : objects) {
+		canvas.draw(backgroundTexture, Color.WHITE, 0, canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth(), canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, 0, -canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth(), -canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth(), 0,canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth(), -canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth(), 0,canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth(), canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.end();
+
+		// now draw objects on current canvas that centered Gorf is actually in
+		canvas.begin(rocket.getPosition());
+		for (Obstacle obj: objects) {
 			obj.draw(canvas);
 		}
 		canvas.end();
 
-		if(complete(Lanterns)){
-			if(countdown > 0){
+		if (complete(Lanterns)) {
+			if (countdown > 0) {
 				canvas.begin();
 				String vic = "Victory!";
 				displayFont.setColor(Color.PURPLE);
 				canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
 				canvas.end();
 				countdown --;
-			}else if(countdown==0){
+			} else if (countdown==0) {
 				this.setComplete(true);
 			}
-
 		}
 
 		if (isDebug()) {
@@ -941,9 +953,6 @@ public class GameController extends WorldController implements ContactListener {
 			}
 			canvas.endDebug();
 		}
-
-
-
 	}
 
 	/// CONTACT LISTENER METHODS
