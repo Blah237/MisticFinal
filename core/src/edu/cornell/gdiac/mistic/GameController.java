@@ -1,7 +1,7 @@
 /*
  * RocketWorldController.java
  *
- * This is one of the files that you are expected to modify. Please limit changes to 
+ * This is one of the files that you are expected to modify. Please limit changes to
  * the regions that say INSERT CODE HERE.
  *
  * Author: Walker M. White
@@ -23,39 +23,41 @@ import edu.cornell.gdiac.obstacle.Obstacle;
 import edu.cornell.gdiac.obstacle.PolygonObstacle;
 import edu.cornell.gdiac.util.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import static com.badlogic.gdx.math.MathUtils.random;
+import edu.cornell.gdiac.mistic.Lantern;
 /**
  * Gameplay specific controller for the rocket lander game.
  *
- * You will notice that asset loading is not done with static methods this time.  
- * Instance asset loading makes it easier to process our game modes in a loop, which 
+ * You will notice that asset loading is not done with static methods this time.
+ * Instance asset loading makes it easier to process our game modes in a loop, which
  * is much more scalable. However, we still want the assets themselves to be static.
  * This is the purpose of our AssetState variable; it ensures that multiple instances
  * place nicely with the static assets.
  */
 public class GameController extends WorldController implements ContactListener {
 	/** Reference to the rocket texture */
-	private static final String ROCK_TEXTURE = "mistic/gorf.png";
+	private static final String GORF_TEXTURE = "mistic/gorf.png";
 	private static final String BACKGROUND = "mistic/backgroundresize.png";
 	private static final String FIRE_FLY= "mistic/firefly.png";
 	private static final String FOG_TEXTURE = "mistic/fog.png";
 
 	/** The reference for the afterburner textures  */
 	/** Reference to the crate image assets */
-	private static final String CRATE_PREF = "mistic/crate0";
-	/** How many crate assets we have */
-	private static final int MAX_CRATES = 2;
-
+	private static final String LIT_LANTERN = "mistic/lit.png";
+	private static final String UNLIT_LANTERN = "mistic/unlit.png";
 	/** Texture assets for the rocket */
-	private TextureRegion rocketTexture;
+	private TextureRegion gorfTexture;
 	private TextureRegion backgroundTexture;
 	private TextureRegion fireflyTexture;
 	private TextureRegion fogTexture;
 
 	/** Texture assets for the crates */
-	private TextureRegion[] crateTextures = new TextureRegion[MAX_CRATES];
+	private TextureRegion litTexture;
+	private TextureRegion unlitTexture;
+
 	/** Track asset loading from all instances and subclasses */
 	private AssetState rocketAssetState = AssetState.EMPTY;
 
@@ -75,22 +77,24 @@ public class GameController extends WorldController implements ContactListener {
 		}
 
 		rocketAssetState = AssetState.LOADING;
-		for (int ii = 0; ii < crateTextures.length; ii++) {
-			manager.load(CRATE_PREF + (ii + 1) +".png", Texture.class);
-			assets.add(CRATE_PREF + (ii + 1) +".png");
-		}
+
 		//Background
 		manager.load(BACKGROUND, Texture.class);
 		assets.add(BACKGROUND);
 		//Firefly
 		manager.load(FIRE_FLY, Texture.class);
 		assets.add(FIRE_FLY);
+		//Lantern
+		manager.load(LIT_LANTERN,Texture.class);
+		manager.load(UNLIT_LANTERN,Texture.class);
+		assets.add(LIT_LANTERN);
+		assets.add(UNLIT_LANTERN);
 		//Fog
 		manager.load(FOG_TEXTURE, Texture.class);
 		assets.add(FOG_TEXTURE);
 		// Ship textures
-		manager.load(ROCK_TEXTURE, Texture.class);
-		assets.add(ROCK_TEXTURE);
+		manager.load(GORF_TEXTURE, Texture.class);
+		assets.add(GORF_TEXTURE);
 
 		/**
 		 // An Example of loading sounds
@@ -121,12 +125,10 @@ public class GameController extends WorldController implements ContactListener {
 			return;
 		}
 
-		for (int ii = 0; ii < crateTextures.length; ii++) {
-			String filename = CRATE_PREF + (ii + 1) +".png";
-			crateTextures[ii] = createTexture(manager,filename,false);
-		}
 
-		rocketTexture = createTexture(manager,ROCK_TEXTURE,false);
+		litTexture=createTexture(manager,LIT_LANTERN,false);
+		unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
+		gorfTexture = createTexture(manager,GORF_TEXTURE,false);
 		fireflyTexture = createTexture(manager,FIRE_FLY,false);
 		fogTexture = createTexture(manager,FOG_TEXTURE,true);
 		backgroundTexture = createTexture(manager,BACKGROUND,false);
@@ -139,12 +141,8 @@ public class GameController extends WorldController implements ContactListener {
 	// Physics constants for initialization
 	/** Density of non-crate objects */
 	private static final float BASIC_DENSITY   = 0.0f;
-	/** Density of the crate objects */
-	private static final float CRATE_DENSITY   = 1.0f;
 	/** Friction of non-crate objects */
 	private static final float BASIC_FRICTION  = 0.1f;
-	/** Friction of the crate objects */
-	private static final float CRATE_FRICTION  = 0.3f;
 	/** Collision restitution for all objects */
 	private static final float BASIC_RESTITUTION = 0.1f;
 	/** Threshold for generating sound on collision */
@@ -164,15 +162,10 @@ public class GameController extends WorldController implements ContactListener {
 	private static final float[] WALL3 = { 4.0f, 10.5f,  8.0f, 10.5f,
 			8.0f,  9.5f,  4.0f,  9.5f};
 
-	// The positions of the fireflies
-	private static final float[] Fireflies = { 14.5f, 2f, 2.5f,  9.75f, 17.5f,  15.75f};
+	FireflyController fireflyController;
+	int Firefly_start=4;
 
-	// the list of firefly objects' bodies
-	private static ArrayList<Body> fireflyObjects = new ArrayList<Body>();
-	// the list of firefly objects
-	private static ArrayList<BoxObstacle> fireflyObjectsO = new ArrayList<BoxObstacle>();
-	// the list of bodies that need to be removed at the end of this step
-	private static LinkedList<Body> scheduledForRemoval;
+
 	// the number of fireflies Gorf is holding
 	private static int firefly_count;
 	//ticks
@@ -189,7 +182,7 @@ public class GameController extends WorldController implements ContactListener {
 	/** Reference to the goalDoor (for collision detection) */
 	private BoxObstacle goalDoor;
 	/** Reference to the rocket/player avatar */
-	private GorfModel rocket;
+	private Gorf gorf;
 	private ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
 	private BoxFog fog;
 	private boolean[][] board;
@@ -216,7 +209,7 @@ public class GameController extends WorldController implements ContactListener {
 		setComplete(false);
 		setFailure(false);
 		world.setContactListener(this);
-		this.scheduledForRemoval = new LinkedList<Body>();
+		this.fireflyController=new FireflyController(fireflyTexture, scale);
 		this.firefly_count = 0;
 		initBoard();
 		initFogBoard();
@@ -230,7 +223,7 @@ public class GameController extends WorldController implements ContactListener {
 	 */
 	public void reset() {
 		Vector2 gravity = new Vector2(world.getGravity() );
-
+		fireflyController = new FireflyController(fireflyTexture, scale);
 		for(Obstacle obj : objects) {
 			obj.deactivatePhysics(world);
 		}
@@ -240,7 +233,7 @@ public class GameController extends WorldController implements ContactListener {
 		Lanterns = new ArrayList<Lantern>();
 		initBoard();
 		initFogBoard();
-		this.firefly_count = 0;
+		this.firefly_count = 2;
 		world = new World(gravity,false);
 		world.setContactListener(this);
 		setComplete(false);
@@ -386,15 +379,6 @@ public class GameController extends WorldController implements ContactListener {
 		// Add level goal
 		float dwidth  = goalTile.getRegionWidth()/scale.x;
 		float dheight = goalTile.getRegionHeight()/scale.y;
-		goalDoor = new BoxObstacle(GOAL_POS.x,GOAL_POS.y,dwidth,dheight);
-		goalDoor.setBodyType(BodyDef.BodyType.StaticBody);
-		goalDoor.setDensity(0.0f);
-		goalDoor.setFriction(0.0f);
-		goalDoor.setRestitution(0.0f);
-		goalDoor.setSensor(true);
-		goalDoor.setDrawScale(scale);
-		goalDoor.setTexture(goalTile);
-
 		//addObject(goalDoor);
 
 		// {top left corner (LR),top left corner (UD),top right corner(LR),top right corner(UD),
@@ -557,38 +541,9 @@ public class GameController extends WorldController implements ContactListener {
 
 		initFog(10,8);
 
-		// Create ground pieces
-//		PolygonObstacle obj;
-//		obj = new PolygonObstacle(WALL1, 0, 0);
-//		obj.setBodyType(BodyDef.BodyType.StaticBody);
-//		obj.setDensity(BASIC_DENSITY);
-//		obj.setFriction(BASIC_FRICTION);
-//		obj.setRestitution(BASIC_RESTITUTION);
-//		obj.setDrawScale(scale);
-//		obj.setTexture(earthTile);
-//		obj.setName("wall1");
-//		addObject(obj);
-//
-//		obj = new PolygonObstacle(WALL2, 0, 0);
-//		obj.setBodyType(BodyDef.BodyType.StaticBody);
-//		obj.setDensity(BASIC_DENSITY);
-//		obj.setFriction(BASIC_FRICTION);
-//		obj.setRestitution(BASIC_RESTITUTION);
-//		obj.setDrawScale(scale);
-//		obj.setTexture(earthTile);
-//		obj.setName("wall2");
-//		addObject(obj);
-//
-//		obj = new PolygonObstacle(WALL3, 0, 0);
-//		obj.setBodyType(BodyDef.BodyType.StaticBody);
-//		obj.setDensity(BASIC_DENSITY);
-//		obj.setFriction(BASIC_FRICTION);
-//		obj.setRestitution(BASIC_RESTITUTION);
-//		obj.setDrawScale(scale);
-//		obj.setTexture(earthTile);
-//		obj.setName("wall3");
-//		addObject(obj);
-
+		/**
+		 * Initialize Lantern locations
+		 */
 		createLantern(5f,9.5f);
 		createLantern(13,7f);
 		createLantern(16,15);
@@ -596,44 +551,29 @@ public class GameController extends WorldController implements ContactListener {
 		createLantern(5,5);
 
 
-		//Create fireflies
-		for (int ii = 0; ii < Fireflies.length; ii += 2) {
-			createFirefly(Fireflies[ii],Fireflies[ii+1]);
+		/**
+		 * Spawn some initial fireflies
+		 */
+		for (int ii = 0; ii < Firefly_start; ii ++) {
+			createFirefly(canvas.getHeight(),canvas.getWidth());
 		}
 
-		// Create the rocket avatar
-		dwidth  = rocketTexture.getRegionWidth()/scale.x;
-		dheight = rocketTexture.getRegionHeight()/scale.y;
-		rocket = new GorfModel(ROCK_POS.x, ROCK_POS.y, dwidth, dheight);
-		rocket.setDrawScale(scale);
-		rocket.setTexture(rocketTexture);
-
-		addObject(rocket);
+		/**
+		 * Create Gorf
+		 */
+		dwidth  = gorfTexture.getRegionWidth()/scale.x;
+		dheight = gorfTexture.getRegionHeight()/scale.y;
+		gorf = new Gorf(ROCK_POS.x, ROCK_POS.y, dwidth, dheight);
+		gorf.setDrawScale(scale);
+		gorf.setTexture(gorfTexture);
+		addObject(gorf);
 	}
 
-	private void createFirefly(float x,float y){
-		TextureRegion texture = fireflyTexture;
-		float dwidth  = texture.getRegionWidth()/scale.x;
-		float dheight = texture.getRegionHeight()/scale.y;
-		BoxObstacle box = new BoxObstacle(x, y, dwidth, dheight);
-		box.setDensity(CRATE_DENSITY);
-		box.setFriction(CRATE_FRICTION);
-		box.setRestitution(BASIC_RESTITUTION);
-		box.setName("firefly"+x+y);
-		box.setDrawScale(scale);
-		box.setTexture(texture);
-		addObject(box);
-		box.getBody().setUserData("firefly");
-		fireflyObjects.add(box.getBody());
-		fireflyObjectsO.add(box);
-	}
-
-	private void toggleLatern(float x, float y){
-		Lantern l= getLantern(x,y);
-		if(l!=null) {
-			l.toggle();
-		}
-	}
+	/**
+	 * The GameController functions for Gorf-Lantern interactions
+	 * This includes code for incrementing and decrementing Gorf's firefly counter
+	 * And adds lanterns to the GameController object pool.
+	 */
 
 	private boolean complete(ArrayList<Lantern> al){
 		for(Lantern l : Lanterns){
@@ -648,77 +588,37 @@ public class GameController extends WorldController implements ContactListener {
 		int yi=(int)y;
 
 		for(Lantern l : Lanterns){
-			if ((Math.abs((int)l.x - xi ) < 3)
-					&& (Math.abs((int)l.y - yi ) < 3))return l;
+			if ((Math.abs((int)l.getX() - xi ) < 3)
+					&& (Math.abs((int)l.getY() - yi ) < 3))return l;
 		}
 		return null;
 	}
 
-	class Lantern{
-		float x;
-		float y;
-		BoxObstacle bo;
-		boolean lit;
-
-		Lantern(float cx, float cy, BoxObstacle o){
-			x=cx;
-			y=cy;
-			bo=o;
-			lit=false;
-		}
-
-		void toggle(){
-			if(lit){
-				this.bo.setTexture(crateTextures[1]);
-				lit=false;
-				firefly_count++;
-
-				ArrayList<Vector2> indices = getIndices(x,y,3);
-
-				for (int i=0; i<indices.size(); i++) {
-					board[(int)indices.get(i).x][(int)indices.get(i).y] = false;
-				}
-
-			}else {
-				if (firefly_count >=1) {
-					this.bo.setTexture(crateTextures[0]);
-					lit = true;
-					firefly_count = firefly_count - 1;
-
-					int xUnit = (int) Math.min(Math.max(0, Math.floor(x / BW * UNITS_W)), UNITS_W-1);
-					int yUnit = (int) Math.min(Math.max(0, Math.floor(y / BH * UNITS_H)), UNITS_H-1);
-					board[xUnit][yUnit] = true;
-
-					ArrayList<Vector2> indices = getIndices(xUnit,yUnit,7);
-					for (int i=0; i<indices.size(); i++) {
-						board[(int)indices.get(i).x][(int)indices.get(i).y] = true;
-//						clearedBoard[(int)indices.get(i).x][(int)indices.get(i).y] = true;
-					}
-				}
+	void toggle(Lantern l) {
+		if (l.lit) {
+			firefly_count++;
+			l.setTexture(unlitTexture);
+		} else {
+			l.setTexture(litTexture);
+			if (firefly_count >= 1) {
+				firefly_count = firefly_count - 1;
 			}
 		}
+		l.toggleLantern();
 	}
-	private void createLantern(float x, float y){
-		TextureRegion texture = crateTextures[1];
-		float dwidth  = texture.getRegionWidth()/scale.x;
-		float dheight = texture.getRegionHeight()/scale.y;
-		BoxObstacle box = new BoxObstacle(x, y, dwidth, dheight);
 
-		box.setDensity(CRATE_DENSITY);
-		box.setFriction(CRATE_FRICTION);
-		box.setRestitution(BASIC_RESTITUTION);
-		box.setBodyType(BodyDef.BodyType.StaticBody);
-		box.setName("lantern");
-		box.setDrawScale(scale);
-		box.setTexture(texture);
-		Filter filter = new Filter();
-		filter.categoryBits = 0x0002;
-		filter.maskBits = 0x0004;
-		box.setFilterData(filter);
-		Lantern l = new Lantern(x,y,box);
+	private void createLantern(float x, float y){
+		Lantern l = new Lantern(x,y,unlitTexture,litTexture,scale);
+		l.setTexture(unlitTexture);
 		Lanterns.add(l);
-		addObject(box);
+		addObject(l.object);
 	}
+
+	private void createFirefly(float x, float y){
+		fireflyController.spawn(x,y);
+	}
+
+
 
 	/**
 	 * The core gameplay loop of this world.
@@ -739,21 +639,24 @@ public class GameController extends WorldController implements ContactListener {
 
 		boolean pressing = InputController.getInstance().didSecondary();
 		if(pressing){
-			toggleLatern(rocket.getX(),rocket.getY());
+			Lantern l=getLantern(gorf.getX(),gorf.getY());
+			if (l!=null){
+				toggle(l);
+			}
 		}
+
 		float forcex = InputController.getInstance().getHorizontal();
 		float forcey= InputController.getInstance().getVertical();
-		float rocketthrust = rocket.getThrust();
-		this.rocket.setFX(forcex * rocketthrust);
-		this.rocket.setFY(forcey * rocketthrust);
-		rocket.applyForce();
-		wrapInBounds(rocket);
+		float moveacc = gorf.getThrust();
+		this.gorf.setFX(forcex*moveacc);
+		this.gorf.setFY(forcey*moveacc);
+		gorf.applyForce();
+		wrapInBounds(gorf);
 
 		if (random(250)==7) {
-			createFirefly(random(40), random(20));
+			createFirefly(canvas.getHeight(),canvas.getWidth());
+
 		}
-
-
 
 		if (fogDelay == 0) {
 			BoardTuple fogBoards = fog.expand(board, fogBoard);
@@ -772,8 +675,8 @@ public class GameController extends WorldController implements ContactListener {
 			fogDelay--;
 		}
 
-		int xUnit = (int) Math.min(Math.max(0, Math.floor(rocket.getX() / BW * UNITS_W)), UNITS_W-1);
-		int yUnit = (int) Math.min(Math.max(0, Math.floor(rocket.getY() / BH * UNITS_H)), UNITS_H-1);
+		int xUnit = (int) Math.min(Math.max(0, Math.floor(gorf.getX() / BW * UNITS_W)), UNITS_W-1);
+		int yUnit = (int) Math.min(Math.max(0, Math.floor(gorf.getY() / BH * UNITS_H)), UNITS_H-1);
 
 		if (fogBoard[xUnit][yUnit]) {
 			if (fireflyDelay == 0) {
@@ -786,19 +689,13 @@ public class GameController extends WorldController implements ContactListener {
 			}
 		} else { fireflyDelay = FIREFLY_DELAY; }
 
-		// checkInBounds here!!!
-		//#endregion
-
-		// Animate the three burners
-
-
-		//updateBurner(GorfModel.Burner.MAIN, rocket.getFY() > 1);
-		//updateBurner(GorfModel.Burner.LEFT, rocket.getFX() > 1);
-		//updateBurner(GorfModel.Burner.RIGHT, rocket.getFX() < -1);
-
-		// If we use sound, we must remember this.
 		SoundController.getInstance().update();
 
+		if(fireflyController.update(gorf.getX(),gorf.getY())){
+			firefly_count++;
+		}
+
+		/**
 		for (Body b : scheduledForRemoval) {
 			b.getWorld().destroyBody(b);
 			fireflyObjects.remove(b);
@@ -807,34 +704,8 @@ public class GameController extends WorldController implements ContactListener {
 					objects.remove(o);
 				}
 			}
-		}
+		}*/
 
-		scheduledForRemoval.clear();
-	}
-
-	/**
-	 * Updates that animation for a single burner
-	 *
-	 * This method is here instead of the the rocket model because of our philosophy
-	 * that models should always be lightweight.  Animation includes sounds and other
-	 * assets that we do not want to process in the model
-	 *+
-	 * @param  burner   The rocket burner to animate
-	 * @param  on       Whether to turn the animation on or off
-	 */
-	private void updateBurner(GorfModel.Burner burner, boolean on) {
-		String sound = rocket.getBurnerSound(burner);
-		if (on) {
-			rocket.animateBurner(burner, true);
-			if (!SoundController.getInstance().isActive(sound)) {
-				SoundController.getInstance().play(sound, sound, true);
-			}
-		} else {
-			rocket.animateBurner(burner, false);
-			if (SoundController.getInstance().isActive(sound)) {
-				SoundController.getInstance().stop(sound);
-			}
-		}
 	}
 
 	/**
@@ -843,7 +714,7 @@ public class GameController extends WorldController implements ContactListener {
 	 *
 	 * @param rocket   Gorf character
 	 */
-	private void wrapInBounds(GorfModel rocket) {
+	private void wrapInBounds(Gorf rocket) {
 		if (!inBounds(rocket)) {
 			Vector2 currentPos = rocket.getPosition();
 			if (currentPos.x<=bounds.getX()) {
@@ -873,7 +744,14 @@ public class GameController extends WorldController implements ContactListener {
 
 		canvas.begin();
 		for(Obstacle obj : objects) {
-			obj.draw(canvas);
+			if(obj.isActive()){
+				obj.draw(canvas);
+			}
+		}
+		for(Firefly f : fireflyController.fireflies){
+			if(!f.isDestroyed()){
+				f.getObject().draw(canvas);
+			}
 		}
 		canvas.end();
 
@@ -897,6 +775,7 @@ public class GameController extends WorldController implements ContactListener {
 				obj.drawDebug(canvas);
 			}
 			canvas.endDebug();
+			canvas.endDebug();
 		}
 
 
@@ -916,19 +795,22 @@ public class GameController extends WorldController implements ContactListener {
 	public void beginContact(Contact contact) {
 		Body body1 = contact.getFixtureA().getBody();
 		Body body2 = contact.getFixtureB().getBody();
-
-		if(body1 == rocket.getBody() && body2.getUserData() == "firefly") {
-			scheduledForRemoval.addLast(body2);
+		System.out.println(body1.getUserData());
+		if(body1 == gorf.getBody() && body2.getUserData() == "firefly") {
+			System.out.println("YOOOOOOOOO");
+			fireflyController.garbage.add(body2);
 			firefly_count++;
-		} else if(body2 == rocket.getBody() && body1.getUserData() == "firefly") {
-			scheduledForRemoval.addLast(body1);
+		} else if(body2 == gorf.getBody() && body1.getUserData() == "firefly") {
+			fireflyController.garbage.add(body1);
 			firefly_count++;
+			System.out.println("YOOOOOOOOO");
 		}
-		if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == rocket.getBody() && body2.getUserData() == "fog") {
+
+		if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
 			if (firefly_count > 0) {
 				firefly_count = firefly_count - 1;
 			}
-		} else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == rocket.getBody() && body1.getUserData() == "fog") {
+		} else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == gorf.getBody() && body1.getUserData() == "fog") {
 			if (firefly_count > 0) {
 				firefly_count = firefly_count - 1;
 			}
