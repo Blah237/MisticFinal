@@ -1,5 +1,6 @@
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.math.Vector2;
 import edu.cornell.gdiac.InputController;
 
 import java.util.LinkedList;
@@ -37,17 +38,49 @@ public class AIController extends InputController {
     /** The number of ticks since we started this controller */
     private long ticks;
 
+    /** How much did we move horizontally? */
+    private float horizontal;
+    /** How much did we move vertically? */
+    private float vertical;
+
+    private Vector2 scale;
+
     private LinkedList<Pair> finalpath;
 
-    public AIController(MonsterModel monster, BoardModel board, GorfModel gorf) {
+    public AIController(MonsterModel monster, BoardModel board, GorfModel gorf, Vector2 scale) {
         this.monster = monster;
         this.board = board;
         this.gorf = gorf;
+        this.scale = scale;
 
         state = FSMState.SPAWN;
         move  = direction.STOP;
         ticks = 0;
 
+    }
+
+
+
+    /**
+     * Returns the amount of sideways movement.
+     *
+     * -1 = left, 1 = right, 0 = still
+     *
+     * @return the amount of sideways movement.
+     */
+    public float getHorizontal() {
+        return horizontal;
+    }
+
+    /**
+     * Returns the amount of vertical movement.
+     *
+     * -1 = down, 1 = up, 0 = still
+     *
+     * @return the amount of vertical movement.
+     */
+    public float getVertical() {
+        return vertical;
     }
 
     /**
@@ -98,7 +131,9 @@ public class AIController extends InputController {
     private void changeStateIfApplicable() {
         // Add initialization code as necessary
         //#region PUT YOUR CODE HERE
-
+        Vector2 gorfPos = new Vector2(gorf.getPosition().x, gorf.getPosition().y);
+        int gorfTileX = board.screenToBoardX(gorfPos);
+        int gorfTileY = board.screenToBoardY(gorfPos);
         //#endregion
 
         // Next state depends on current state.
@@ -113,15 +148,18 @@ public class AIController extends InputController {
             case WANDER: // Do not pre-empt with FSMState in a case
                 // Insert checks and moving-to-??? transition code here
                 //#region PUT YOUR CODE HERE
-
+                //if (board.isFog(gorfTileX, gorfTileY)) {
+                    state = FSMState.CHASE;
+                //}
                 //#endregion
                 break;
 
             case CHASE: // Do not pre-empt with FSMState in a case
                 // insert checks and chasing-to-??? transition code here
                 //#region PUT YOUR CODE HERE
-
-                //if gorf leaves fog, wander
+                //if (board.isFog(gorfTileX, gorfTileY)) {
+                    //state = FSMState.WANDER;
+                //}
 
                 //#endregion
                 break;
@@ -151,11 +189,12 @@ public class AIController extends InputController {
         boolean setGoal = false; // Until we find a goal
 
         // Add initialization code as necessary
-        int theX = board.screenToBoard(gorf.getPosition().x);
-        int theY = board.screenToBoard(gorf.getPosition().y);
-        int targetX = board.screenToBoard(gorf.getPosition().x);
-        int targetY = board.screenToBoard(gorf.getPosition().y);
+        int theX = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y));
+        int theY = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y));
         //#region PUT YOUR CODE HERE
+        Vector2 gorfPos = new Vector2(gorf.getPosition().x *50.0f, gorf.getPosition().y * 50.0f);
+        int gorfTileX = board.screenToBoardX(gorfPos);
+        int gorfTileY = board.screenToBoardY(gorfPos);
         //#endregion
 
         switch (state) {
@@ -177,8 +216,6 @@ public class AIController extends InputController {
                 // in a state that won't work at the time)
 
                 //#region PUT YOUR CODE HERE
-
-
                 //#endregion
                 break;
 
@@ -187,7 +224,8 @@ public class AIController extends InputController {
                 // set setGoal to true if we marked any tiles.
 
                 //#region PUT YOUR CODE HERE
-
+                board.setGoal(gorfTileX, gorfTileY);
+                setGoal = true;
                 //#endregion
                 break;
         }
@@ -195,8 +233,8 @@ public class AIController extends InputController {
         // If we have no goals, mark current position as a goal
         // so we do not spend time looking for nothing:
         if (!setGoal) {
-            int sx = board.screenToBoard(monster.getX());
-            int sy = board.screenToBoard(monster.getY());
+            int sx = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y));
+            int sy = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y));
             board.setGoal(sx, sy);
         }
     }
@@ -227,9 +265,12 @@ public class AIController extends InputController {
     // http://stackoverflow.com/questions/8922060/how-to-trace-the-path-in-a-breadth-first-search
     private direction getMoveAlongPathToGoalTile() {
         //#region PUT YOUR CODE HERE
+        Vector2 monsterPos = monster.getPosition();
+        monsterPos.x = monsterPos.x * 50.0f;
+        monsterPos.y = monsterPos.y * 50.0f;
         Queue q = new LinkedList();
-        int start_x = board.screenToBoard(monster.getPosition().x);
-        int start_y = board.screenToBoard(monster.getPosition().y);
+        int start_x = board.screenToBoardX(monsterPos);
+        int start_y = board.screenToBoardY(monsterPos);
         board.setVisited(start_x, start_y);
         LinkedList<Pair> vlist;
         vlist = new LinkedList<Pair>();
@@ -294,7 +335,7 @@ public class AIController extends InputController {
         if (end.y < start.y && end.x == start.x) {
             return direction.UP;
         }
-        if (end.y > start.y && end.x == end.y) {
+        if (end.y > start.y && start.x == end.x) {
             return direction.DOWN;
         }
         if (end.x < start.x && end.y < start.y) {
@@ -303,13 +344,53 @@ public class AIController extends InputController {
         if (end.x < start.x && end.y > start.y) {
             return direction.DOWN_LEFT;
         }
-        if (end.x > start.x == end.y < start.y) {
+        if (end.x > start.x && end.y < start.y) {
             return direction.UP_RIGHT;
         }
-        if (end.x > start.x == end.y > start.y) {
+        if (end.x > start.x && end.y > start.y) {
             return direction.DOWN_RIGHT;
         }
         return direction.STOP;
+    }
+
+    public void setInput() {
+        horizontal = 0;
+        vertical = 0;
+        changeStateIfApplicable();
+        markGoalTiles();
+        direction the_move = getMoveAlongPathToGoalTile();
+        switch (the_move) {
+
+            case LEFT:
+               horizontal -= 0.5f;
+               break;
+            case RIGHT:
+                horizontal += 0.5f;
+                break;
+            case UP:
+                vertical -= 0.5f;
+                break;
+            case DOWN:
+                vertical += 0.5f;
+                break;
+            case UP_LEFT:
+                vertical -= 0.5f;
+                horizontal -= 0.5f;
+                break;
+            case DOWN_LEFT:
+                vertical += 0.5f;
+                horizontal -= 0.5f;
+                break;
+            case UP_RIGHT:
+                vertical -= 0.5f;
+                horizontal += 0.5f;
+                break;
+            case DOWN_RIGHT:
+                vertical += 0.5f;
+                horizontal += 0.5f;
+                break;
+
+        }
     }
     //#endregion
 

@@ -184,6 +184,8 @@ public class GameController extends WorldController implements ContactListener {
 	//ticks
 	private static int ticks;
 	private static final int FIREFLY_DEATH_TIMER = 5;
+	private AIController ai;
+	private static BoardModel tileBoard;
 
 	// Other game objects
 	/** The initial rocket position */
@@ -196,6 +198,8 @@ public class GameController extends WorldController implements ContactListener {
 	private BoxObstacle goalDoor;
 	/** Reference to the rocket/player avatar */
 	private GorfModel rocket;
+	/** Reference to the monster */
+	private MonsterModel monster;
 	/** Arraylist of Lantern objects */
 	private ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
 	private BoxFog fog;
@@ -524,7 +528,6 @@ public class GameController extends WorldController implements ContactListener {
 						board[(int)indices.get(j).x][(int)indices.get(j).y] = true;
 					}
 				}
-			} else if (dx == 0) {
 				for (float x=x0; x<x1; x+=UW) {
 					xUnit = (int) Math.min(Math.max(0, Math.floor(x / BW * UNITS_W)), UNITS_W-1);
 					yUnit = (int) Math.min(Math.max(0, Math.floor(y2 / BH * UNITS_H)), UNITS_H-1);
@@ -617,9 +620,13 @@ public class GameController extends WorldController implements ContactListener {
 
 		addObject(rocket);
 
-		float w = 6;
-		float h = 9;
+		float w = 9;
+		float h = 12;
 		createMonster(w, h);
+
+		Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*scale.x, canvas.getHeight()*scale.y);
+		this.tileBoard = new BoardModel(1000, 1000, screenSize);
+		this.ai = new AIController(monster, tileBoard, rocket, scale);
 	}
 
 	private void createFirefly(float x,float y){
@@ -644,11 +651,12 @@ public class GameController extends WorldController implements ContactListener {
 		float dwidth  = texture.getRegionWidth()/scale.x;
 		float dheight = texture.getRegionHeight()/scale.y;
 		MonsterModel monster = new MonsterModel(x, y, dwidth, dheight);
+		this.monster = monster;
 		monster.setDensity(CRATE_DENSITY);
 		monster.setFriction(CRATE_FRICTION);
 		monster.setRestitution(BASIC_RESTITUTION);
 		monster.setDrawScale(scale);
-		monster.setName("firefly"+x+y);
+		monster.setName("monster");
 		monster.setTexture(texture);
 		addObject(monster);
 		monster.getBody().setUserData("monster");
@@ -774,6 +782,16 @@ public class GameController extends WorldController implements ContactListener {
 		this.rocket.setFY(forcey * rocketthrust);
 		rocket.applyForce();
 		wrapInBounds(rocket);
+
+		ai.setInput();
+		float forceXMonster = ai.getHorizontal();
+		float forceYMonster = ai.getVertical();
+		float monsterthrust = monster.getThrust();
+		this.monster.setFX(forceXMonster * monsterthrust);
+		this.monster.setFY(forceYMonster * monsterthrust);
+		monster.applyForce();
+
+
 
 		if (random(250)==7) {
 			createFirefly(random(40), random(20));
