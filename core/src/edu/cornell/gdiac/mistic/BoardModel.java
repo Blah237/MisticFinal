@@ -302,6 +302,7 @@ public class BoardModel {
                 && !(the_tile.isLantern) && !(the_tile.isWall);
     }
 
+
     /**
      * Clears all marks on the board.
      *

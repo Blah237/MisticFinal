@@ -186,6 +186,8 @@ public class GameController extends WorldController implements ContactListener {
 	private static final int FIREFLY_DEATH_TIMER = 5;
 	private AIController ai;
 	private static BoardModel tileBoard;
+	private static boolean DEAD;
+
 
 	// Other game objects
 	/** The initial rocket position */
@@ -233,7 +235,7 @@ public class GameController extends WorldController implements ContactListener {
 		initBoard();
 		initFogBoard();
 		this.ticks = 0;
-		this.tileBoard = new BoardModel(100, 100, bounds);
+		this.DEAD = false;
 	}
 
 	/**
@@ -419,15 +421,6 @@ public class GameController extends WorldController implements ContactListener {
 		final float[] wallDp = {3.7f, 3.5f, 4.0f, 3.5f, 1.5f, 1.5f, 1.2f, 1.5f};
 		final float[] wallDn = {3.7f, 1.5f, 4.0f, 1.5f, 1.5f, 3.5f, 1.2f, 3.5f};
 
-		// for loop for tile walls
-		for (BoardModel.Tile t: tileBoard.tiles) {
-			if (t.isWall) {
-				BoxObstacle x = new BoxObstacle(tileBoard.getTileCenterX(t),tileBoard.getTileCenterY(t));
-				x.setTexture(earthTile);
-				objects.add(x);
-			}
-		}
-
 		// horizontal walls
 //		BoxObstacle square = new BoxObstacle(1,1);
 //		square.setTexture(earthTile);
@@ -600,8 +593,18 @@ public class GameController extends WorldController implements ContactListener {
 		float w = 9;
 		float h = 12;
 		createMonster(w, h);
-
 		Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*scale.x, canvas.getHeight()*scale.y);
+		this.tileBoard = new BoardModel(100, 100, screenSize);
+
+		// for loop for tile walls
+		for (BoardModel.Tile t: tileBoard.tiles) {
+			if (t.isWall) {
+				BoxObstacle x = new BoxObstacle(tileBoard.getTileCenterX(t),tileBoard.getTileCenterY(t));
+				x.setTexture(earthTile);
+				objects.add(x);
+			}
+		}
+
 		this.ai = new AIController(monster, tileBoard, rocket, scale);
 	}
 
@@ -921,6 +924,21 @@ public class GameController extends WorldController implements ContactListener {
 			}
 		}
 
+		if (DEAD) {
+			if (countdown > 0) {
+				canvas.begin();
+				String vic = "Game Over!";
+				displayFont.setColor(Color.PURPLE);
+				canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
+				canvas.end();
+				countdown --;
+			} else if (countdown==0) {
+				DEAD = false;
+				this.setComplete(true);
+			}
+		}
+
+
 		if (isDebug()) {
 			canvas.beginDebug();
 			for(Obstacle obj : objects) {
@@ -951,6 +969,15 @@ public class GameController extends WorldController implements ContactListener {
 			scheduledForRemoval.addLast(body1);
 			firefly_count++;
 		}
+
+
+		if (body1.getUserData() == "monster" && body2 == rocket.getBody()) {
+			this.DEAD = true;
+		}
+		if (body1 == rocket.getBody() && body2.getUserData() == "monster") {
+			this.DEAD = true;
+		}
+
 		if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == rocket.getBody() && body2.getUserData() == "fog") {
 			if (firefly_count > 0) {
 				firefly_count = firefly_count - 1;
