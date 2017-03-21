@@ -181,7 +181,7 @@ public class GameController extends WorldController implements ContactListener {
 
 	// Other game objects
 	/** The initial rocket position */
-	private static Vector2 ROCK_POS = new Vector2(9, 8);
+	private static Vector2 ROCK_POS = new Vector2(0, 0);
 	/** The goal door position */
 	private static Vector2 GOAL_POS = new Vector2( 6, 12);
 
@@ -205,6 +205,7 @@ public class GameController extends WorldController implements ContactListener {
 	private static int FIREFLY_DELAY = 150;
 	private int fogDelay = FOG_DELAY;
 	private int fireflyDelay = FIREFLY_DELAY;
+
 
 
 	/**
@@ -860,7 +861,6 @@ public class GameController extends WorldController implements ContactListener {
 		}
 	}
 
-	
 	public void draw(float dt) {
 		canvas.clear();
 
@@ -872,8 +872,8 @@ public class GameController extends WorldController implements ContactListener {
 		canvas.drawText(message, displayFont, 5.0f, canvas.getHeight()-5.0f);
 		canvas.end();
 
-		canvas.begin();
-		for(Obstacle obj : objects) {
+		canvas.begin(rocket.getPosition());
+		for(Obstacle obj: objects) {
 			obj.draw(canvas);
 		}
 		canvas.end();
@@ -886,7 +886,7 @@ public class GameController extends WorldController implements ContactListener {
 				canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
 				canvas.end();
 				countdown --;
-			}else if(countdown==0){
+			} else if(countdown==0){
 				this.setComplete(true);
 			}
 
