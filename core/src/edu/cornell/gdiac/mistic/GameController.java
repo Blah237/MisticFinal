@@ -518,8 +518,6 @@ public class GameController extends WorldController implements ContactListener {
 
         }
 
-        fog = new FogController(200,100,Lanterns);
-
         /**
          * Initialize Lantern locations
          */
@@ -561,6 +559,8 @@ public class GameController extends WorldController implements ContactListener {
         Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*scale.x, canvas.getHeight()*scale.y);
         this.tileBoard = new BoardModel(1000, 1000, screenSize);
         this.ai = new AIController(monster, tileBoard, gorf, scale);
+
+        fog = new FogController(200,100,Lanterns);
     }
 //
 //	private void createFirefly(float x,float y){
@@ -762,7 +762,7 @@ public class GameController extends WorldController implements ContactListener {
         canvas.drawText(Integer.toString(firefly_count),displayFont,50,50);
         canvas.end();
 
-        fog.draw(canvas, Lanterns, gorf);
+        fog.draw(canvas, Lanterns, gorf, firefly_count);
 
         // Draw background on all sides and diagonals for wrap illusion
         canvas.begin();
