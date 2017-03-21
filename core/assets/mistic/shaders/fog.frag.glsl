@@ -69,12 +69,10 @@ void main() {
         }
 
         vec2 lantern = lanterns[i];
-        float dx2 = abs(coord.x-lantern.x);
-//        min(abs(coord.x-lantern.x), abs(coord.x + (1-lantern.x)));
-//        dx2 = min(dx2, abs(lantern.x + (1-coord.x)));
-        float dy2 = abs(coord.y-lantern.y);
-//        min(abs(coord.y-lantern.y), abs(coord.y + (1-lantern.y)));
-//        dy2 = min(dy2, abs(lantern.y + (1-coord.y)));
+        float dx2 = min(abs(coord.x-lantern.x), abs(coord.x + (1-lantern.x)));
+        dx2 = min(dx2, abs(lantern.x + (1-coord.x)));
+        float dy2 = min(abs(coord.y-lantern.y), abs(coord.y + (1-lantern.y)));
+        dy2 = min(dy2, abs(lantern.y + (1-coord.y)));
 
         float dist2 = length(vec2(dx2,dy2));
         float fogThickness2 = smoothstep(.1, .2, dist2);

@@ -40,9 +40,8 @@ public class FogController extends GameController {
 	int fogDelay;
 	Vector2 fogOrigin;
 	private final int FBO_SIZE = 1024;
-	private final int NX = 35;
-	private final int NY = 35;
-	private final int FOG_DELAY = 20;
+
+	private final int FOG_DELAY = 80;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -51,6 +50,8 @@ public class FogController extends GameController {
 	int numFireflies;
     private float BW = DEFAULT_WIDTH;
     private float BH = DEFAULT_HEIGHT;
+	private final int NX = 35;
+	private final int NY = 35;
 
 	OrthographicCamera cam;
 	FPSLogger logger = new FPSLogger();
@@ -67,8 +68,138 @@ public class FogController extends GameController {
         fogBoard[cy*NX+cx] = 1.1f;
         elementBoard = new int[NX][NY];
 
-//		for (int i = 0; i<lanterns.size(); i++) {
-//            int lx = lanterns.get(i).getX() *
+		for (int i = 0; i<lanterns.size(); i++) {
+			int lx = (int)Math.floor(lanterns.get(i).getX() / BW * NX);
+			int ly = (int)Math.floor(lanterns.get(i).getY() / BH * NY);
+
+			elementBoard[lx][ly] = 1;
+			elementBoard[lx][ly+1] = 1;
+			elementBoard[lx][ly-1] = 1;
+		}
+
+		for (int k=0; k<NX/10-1; k++) {
+			elementBoard[k][NY / 2+1] = 1;
+		}
+
+		for (int a=1; a<6; a++) {
+			elementBoard[NX / 10 + a-2][NY / 2 + a] = 1;
+		}
+
+		elementBoard[NX / 10 + 3][NY / 2 + 4] = 1;
+		elementBoard[NX / 10 + 4][NY / 2 + 3] = 1;
+		elementBoard[NX / 10 + 5][NY / 2 + 2] = 1;
+
+		for(int b=0; b<NX/5-1; b++) {
+			elementBoard[b][NY / 10 + 1] = 1;
+		}
+
+		for(int b=0; b<NX/5+2; b++) {
+			elementBoard[b][NY / 10 + 7] = 1;
+		}
+
+		for(int b=0; b<NY/10+1; b++) {
+			elementBoard[NX/5-2][b] = 1;
+		}
+
+		for(int b=0; b<NY/10+7; b++) {
+			elementBoard[NX/5+1][b] = 1;
+		}
+
+		elementBoard[NX/2-1][0] = 1;
+		elementBoard[NX/2-1][1] = 1;
+		elementBoard[NX/2-1][2] = 1;
+
+		for(int b=0; b<4; b++) {
+			elementBoard[NX/2+b][2] = 1;
+		}
+
+		elementBoard[NX/2-1][3] = 1;
+		elementBoard[NX/2-2][4] = 1;
+		elementBoard[NX/2-3][5] = 1;
+
+		elementBoard[NX/2+3][10] = 1;
+		elementBoard[NX/2+2][11] = 1;
+		elementBoard[NX/2+1][12] = 1;
+		elementBoard[NX/2][13] = 1;
+
+		elementBoard[NX/2][14] = 1;
+		elementBoard[NX/2][15] = 1;
+		elementBoard[NX/2][16] = 1;
+		elementBoard[NX/2][17] = 1;
+
+		elementBoard[NX/2+3][21] = 1;
+		elementBoard[NX/2+2][20] = 1;
+		elementBoard[NX/2+1][19] = 1;
+		elementBoard[NX/2][18] = 1;
+
+		elementBoard[NX/2+4][20] = 1;
+		elementBoard[NX/2+5][19] = 1;
+		elementBoard[NX/2+6][18] = 1;
+
+
+		for(int b=0; b<5; b++) {
+			elementBoard[NX/4][NY-b-1] = 1;
+		}
+
+		for(int b=0; b<6; b++) {
+			elementBoard[NX/4+b][NY-6-b] = 1;
+		}
+
+		for(int b=0; b<10; b++) {
+			elementBoard[NX/4+5][NY-11-b] = 1;
+		}
+
+		for(int b=0; b<6; b++) {
+			elementBoard[NX/2-1][NY-b-1] = 1;
+		}
+
+		for(int b=0; b<7; b++) {
+			elementBoard[NX/2+b][NY-6] = 1;
+		}
+
+		elementBoard[NX/2+6][NY-7] = 1;
+		elementBoard[NX/2+7][NY-7] = 1;
+		elementBoard[NX/2+7][NY-8] = 1;
+		elementBoard[NX/2+8][NY-8] = 1;
+		elementBoard[NX/2+8][NY-9] = 1;
+		elementBoard[NX/2+9][NY-9] = 1;
+
+		elementBoard[NX/2+11][NY-6] = 1;
+		elementBoard[NX/2+11][NY-7] = 1;
+		elementBoard[NX/2+10][NY-7] = 1;
+		elementBoard[NX/2+10][NY-8] = 1;
+		elementBoard[NX/2+9][NY-8] = 1;
+
+		for(int b=0; b<10; b++) {
+			elementBoard[NX/2+14][NY-8-b] = 1;
+		}
+
+		for(int b=0; b<4; b++) {
+			elementBoard[NX-1-b][NY-17] = 1;
+		}
+
+		for(int b=0; b<4; b++) {
+			elementBoard[NX-1-b][NY/4+2] = 1;
+		}
+
+		for(int b=0; b<5; b++) {
+			elementBoard[NX-4][NY/4+2-b] = 1;
+		}
+
+		for(int b=0; b<5; b++) {
+			elementBoard[NX-7][NY/4+2-b] = 1;
+		}
+
+		elementBoard[NX-7][NY/4-3] = 1;
+		elementBoard[NX-8][NY/4-3] = 1;
+		elementBoard[NX-8][NY/4-4] = 1;
+		elementBoard[NX-9][NY/4-4] = 1;
+		elementBoard[NX-9][NY/4-5] = 1;
+		elementBoard[NX-10][NY/4-5] = 1;
+
+		for(int b=0; b<3; b++) {
+			elementBoard[NX-10][b] = 1;
+		}
 
 //		for (int k = 0; k<NX; k++) {
 //		    for (int l = 0; l<NY; l++) {
@@ -76,6 +207,7 @@ public class FogController extends GameController {
 //                elementBoard[k][20] = 1;
 //            }
 //		}
+
 		fogReachX = 0;
 		fogReachY = 0;
 		fogReach = 0;
