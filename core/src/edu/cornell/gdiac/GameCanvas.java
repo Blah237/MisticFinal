@@ -415,7 +415,7 @@ public class GameCanvas {
 	 * Nothing is flushed to the graphics card until the method end() is called.
 	 */
 	public void begin(Vector2 position) {
-		camera.position.set(position.x*30,position.y*30,0);
+		camera.position.set(position.x*32,position.y*32,0);
 		camera.update();
 		spriteBatch.setProjectionMatrix(camera.combined);
 		spriteBatch.begin();
