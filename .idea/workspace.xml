@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b76ef9bf-980a-43ba-a5db-4ce405be000a" name="Default" comment="" />
+    <list default="true" id="b76ef9bf-980a-43ba-a5db-4ce405be000a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
+    </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,10 +26,10 @@
       <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="764" column="41" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="908" selection-end-column="1" />
+            <state relative-caret-position="441">
+              <caret line="907" column="5" lean-forward="false" selection-start-line="907" selection-start-column="5" selection-end-line="907" selection-end-column="5" />
               <folding>
-                <element signature="e#0#35039#0" expanded="true" />
+                <element signature="e#0#35040#0" expanded="true" />
                 <element signature="imports" expanded="true" />
                 <element signature="e#8165#8174#0" expanded="true" />
                 <element signature="e#10421#10422#0" expanded="true" />
@@ -914,8 +916,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIController.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
       </list>
     </option>
   </component>
@@ -1446,7 +1448,7 @@
         <state relative-caret-position="405">
           <caret line="51" column="40" lean-forward="true" selection-start-line="51" selection-start-column="40" selection-end-line="51" selection-end-column="40" />
           <folding>
-            <element signature="e#0#35039#0" expanded="true" />
+            <element signature="e#0#35040#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#8165#8174#0" expanded="true" />
             <element signature="e#10421#10422#0" expanded="true" />
@@ -1539,7 +1541,7 @@
         <state relative-caret-position="12690">
           <caret line="874" column="18" lean-forward="true" selection-start-line="874" selection-start-column="18" selection-end-line="874" selection-end-column="18" />
           <folding>
-            <element signature="e#0#35039#0" expanded="true" />
+            <element signature="e#0#35040#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#8165#8174#0" expanded="true" />
             <element signature="e#10421#10422#0" expanded="true" />
@@ -1769,10 +1771,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="764" column="41" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="908" selection-end-column="1" />
+        <state relative-caret-position="441">
+          <caret line="907" column="5" lean-forward="false" selection-start-line="907" selection-start-column="5" selection-end-line="907" selection-end-column="5" />
           <folding>
-            <element signature="e#0#35039#0" expanded="true" />
+            <element signature="e#0#35040#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#8165#8174#0" expanded="true" />
             <element signature="e#10421#10422#0" expanded="true" />
