@@ -15,9 +15,10 @@ import com.badlogic.gdx.utils.Array;
 import edu.cornell.gdiac.GameCanvas;
 
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 
 
-public class FogController {
+public class FogController extends GameController {
 	PolygonSpriteBatch batch;
 	Texture wall;
 	TextureRegion fboRegion;
@@ -31,7 +32,7 @@ public class FogController {
 	float[] newFogBoard;
 	float[] reachBoard;
 	int[][] elementBoard;
-	Array<Float> lanterns;
+	ArrayList<Lantern> lanterns;
 	float[] lanternsA;
 	float fogReachX;
 	float fogReachY;
@@ -48,33 +49,33 @@ public class FogController {
 	float spreadCountX;
 	float spreadCountY;
 	int numFireflies;
+    private float BW = DEFAULT_WIDTH;
+    private float BH = DEFAULT_HEIGHT;
 
 	OrthographicCamera cam;
 	FPSLogger logger = new FPSLogger();
 
 
-	public FogController() {
+	public FogController(int x, int y, ArrayList<Lantern> lanterns) {
 		wall = new Texture("mistic/backgroundresize.png");
-		fogOrigin = new Vector2(200,100);
+		fogOrigin = new Vector2(x,y);
 		fogBoard = new float[NX*NY];
-		reachBoard = new float[NX*NY];
-		lanterns = new Array<Float>();
-		lanterns.add(5f);
-		lanterns.add(10f);
-		lanternsA = new float[lanterns.size];
-//		lanternsA = lanterns.toArray();
-		for (int i=0; i<lanterns.size; i++) {
-			lanternsA[i] = lanterns.get(i).floatValue();
-		}
-		System.out.println(lanterns.size/2);
+
 		int cx = (int)fogOrigin.x/(Gdx.graphics.getWidth()/NX);
 		int cy = (int)fogOrigin.y/(Gdx.graphics.getHeight()/NY);
-		fogBoard[cy*NX+cx] = 1.1f;
-		reachBoard[cy*NX+cx] = 1;
-		elementBoard = new int[NX][NY];
-		for (int k = 0; k<NX; k++) {
-			elementBoard[k][20] = 1;
-		}
+
+        fogBoard[cy*NX+cx] = 1.1f;
+        elementBoard = new int[NX][NY];
+
+//		for (int i = 0; i<lanterns.size(); i++) {
+//            int lx = lanterns.get(i).getX() *
+
+//		for (int k = 0; k<NX; k++) {
+//		    for (int l = 0; l<NY; l++) {
+//		        if
+//                elementBoard[k][20] = 1;
+//            }
+//		}
 		fogReachX = 0;
 		fogReachY = 0;
 		fogReach = 0;
@@ -105,9 +106,7 @@ public class FogController {
 		shader.setUniformf("fogReach", fogReach);
 //		shader.setUniformf("camOrigin", new Vector2(100,100));
 		shader.setUniformf("fogOrigin", fogOrigin);
-		shader.setUniform2fv("lanterns", lanternsA, 0, lanterns.size);
-		shader.setUniformi("numLanterns", lanterns.size/2);
-		shader.setUniformi("numFireflies", numFireflies);
+
 		shader.end();
 
 //		fboA = new FrameBuffer(Format.RGBA8888, FBO_SIZE, FBO_SIZE, false);
@@ -149,9 +148,19 @@ public class FogController {
 		batch.setProjectionMatrix(cam.combined);
 	}
 
-	public void draw(GameCanvas canvas) {
-
-
+	public void draw(GameCanvas canvas, ArrayList<Lantern> lanterns, Gorf gorf) {
+	    int numLanterns = 0;
+        lanternsA = new float[lanterns.size()*2];
+        for (int i=0; i<lanterns.size(); i++) {
+            if (lanterns.get(i).lit) {
+                System.out.println(lanterns.get(i).getX());
+                lanternsA[numLanterns*2] = lanterns.get(i).getX() / BW;
+                lanternsA[numLanterns*2+1] = lanterns.get(i).getY() / BH;
+                System.out.println(lanternsA[i*2]);
+                System.out.println(1-lanternsA[i*2+1]);
+                numLanterns++;
+            }
+        }
 
 //		fboA = new FrameBuffer(Format.RGBA8888, FBO_SIZE, FBO_SIZE, false);
 //		fboRegion = new TextureRegion(fboA.getColorBufferTexture());
@@ -191,8 +200,15 @@ public class FogController {
 		batch = canvas.getSpriteBatch();
 		batch.setShader(shader);
 
+        System.out.println(numLanterns);
+		System.out.println(lanternsA[0]);
+		System.out.println(lanternsA[1]);
 		shader.begin();
 		shader.setUniformf("fogReach", fogReach);
+        shader.setUniform2fv("lanterns", lanternsA, 0, numLanterns*2);
+		shader.setUniformi("numLanterns", numLanterns);
+        shader.setUniformi("numFireflies", numFireflies);
+        shader.setUniformf("gorfPos", gorf.getX() / BW, gorf.getY() / BH);
 		shader.end();
 
 //		Gdx.gl.glClearColor(0, 0, 0, 0);

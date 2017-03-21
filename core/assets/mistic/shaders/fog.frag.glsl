@@ -6,11 +6,12 @@ uniform sampler2D u_texture;
 //uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
 uniform float[NX*NY] fogBoard;
-uniform vec2[3] lanterns;
+uniform vec2[10] lanterns;
 uniform vec2 fogReachVec;
 uniform float fogReach;
 uniform int numLanterns;
 uniform int numFireflies;
+uniform vec2 gorfPos;
 //uniform float thickness;
 
 varying vec2 vTexCoord;
@@ -62,24 +63,26 @@ void main() {
 //        }
 //    }
 
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<10; i++) {
         if (i>=numLanterns) {
             break;
         }
 
-        vec2 lantern = lanterns[i]/vec2(NX,NY);
-        float dx2 = min(abs(coord.x-lantern.x), abs(coord.x + (1-lantern.x)));
-        dx2 = min(dx2, abs(lantern.x + (1-coord.x)));
-        float dy2 = min(abs(coord.y-lantern.y), abs(coord.y + (1-lantern.y)));
-        dy2 = min(dy2, abs(lantern.y + (1-coord.y)));
+        vec2 lantern = lanterns[i];
+        float dx2 = abs(coord.x-lantern.x);
+//        min(abs(coord.x-lantern.x), abs(coord.x + (1-lantern.x)));
+//        dx2 = min(dx2, abs(lantern.x + (1-coord.x)));
+        float dy2 = abs(coord.y-lantern.y);
+//        min(abs(coord.y-lantern.y), abs(coord.y + (1-lantern.y)));
+//        dy2 = min(dy2, abs(lantern.y + (1-coord.y)));
 
         float dist2 = length(vec2(dx2,dy2));
-        float fogThickness2 = smoothstep(.15, .3, dist2);
+        float fogThickness2 = smoothstep(.1, .2, dist2);
         fogThickness *= fogThickness2;
     }
 
-    float dx3 = abs(coord.x-.5);
-    float dy3 = abs(coord.y-.5);
+    float dx3 = abs(coord.x-gorfPos.x);
+    float dy3 = abs(coord.y-gorfPos.y);
 
     float dist3 = length(vec2(dx3, dy3));
     fogThickness *= smoothstep(min(numFireflies*.1, .3)-.15, min(numFireflies*.1, .3), dist3);
