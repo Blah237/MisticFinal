@@ -216,8 +216,8 @@ public class FogController extends GameController {
 		thickness = 1;
 		numFireflies = 3;
 
-		vertexShader = Gdx.files.internal("mistic/shaders/fog.vert.glsl").readString();
-		fragmentShader = Gdx.files.internal("mistic/shaders/fog.frag.glsl").readString();
+		vertexShader = Gdx.files.internal("mistic/fog.vert.glsl").readString();
+		fragmentShader = Gdx.files.internal("mistic/fog.frag.glsl").readString();
 		shader = new ShaderProgram(vertexShader, fragmentShader);
 
 		if (!shader.isCompiled()) {
