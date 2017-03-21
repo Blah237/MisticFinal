@@ -192,7 +192,7 @@ public class GameController extends WorldController implements ContactListener {
 	private GorfModel rocket;
 	/** Arraylist of Lantern objects */
 	private ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
-	private BoxFog fog;
+	private FogController fog;
 	private boolean[][] board;
 	private boolean[][] fogBoard;
 	private float BW = DEFAULT_WIDTH;
@@ -274,26 +274,28 @@ public class GameController extends WorldController implements ContactListener {
 	}
 
 	private void initFog(float xpos, float ypos) {
-		float[] points = {0.0f, UH, UW, UH, UW, 0.0f, 0.0f, 0.0f};
-		int xUnit = (int)Math.floor(xpos / BW * UNITS_W);
-		int yUnit = (int)Math.floor(ypos / BH * UNITS_H);
-		Vector2 idx = new Vector2(xUnit, yUnit);
 
-		fog = new BoxFog(points,xpos,ypos,idx);
-
-		fog.setDrawScale(scale);
-		fog.setTexture(fogTexture);
-		fog.setBodyType(BodyDef.BodyType.StaticBody);
-		Filter filter = new Filter();
-		filter.categoryBits = 0x0002;
-		filter.maskBits = 0x0004;
-		fog.setFilterData(filter);
-
-		fog.setSleepingAllowed(true);
-		fog.setAwake(false);
-
-		addObject(fog);
-		fog.getBody().setUserData("fog");
+		fog = new FogController();
+//		float[] points = {0.0f, UH, UW, UH, UW, 0.0f, 0.0f, 0.0f};
+//		int xUnit = (int)Math.floor(xpos / BW * UNITS_W);
+//		int yUnit = (int)Math.floor(ypos / BH * UNITS_H);
+//		Vector2 idx = new Vector2(xUnit, yUnit);
+//
+//		fog = new BoxFog(points,xpos,ypos,idx);
+//
+//		fog.setDrawScale(scale);
+//		fog.setTexture(fogTexture);
+//		fog.setBodyType(BodyDef.BodyType.StaticBody);
+//		Filter filter = new Filter();
+//		filter.categoryBits = 0x0002;
+//		filter.maskBits = 0x0004;
+//		fog.setFilterData(filter);
+//
+//		fog.setSleepingAllowed(true);
+//		fog.setAwake(false);
+//
+//		addObject(fog);
+//		fog.getBody().setUserData("fog");
 	}
 
 	private void initFogParticle(float xpos, float ypos) {
@@ -301,23 +303,23 @@ public class GameController extends WorldController implements ContactListener {
 		int xUnit = (int)Math.floor(xpos / BW * UNITS_W);
 		int yUnit = (int)Math.floor(ypos / BH * UNITS_H);
 		Vector2 idx = new Vector2(xUnit, yUnit);
-		BoxFogParticle particle;
+//		BoxFogParticle particle;
 
-		particle = new BoxFogParticle(points,xpos,ypos,idx);
-		fog.addParticle(particle);
+//		particle = new BoxFogParticle(points,xpos,ypos,idx);
+//		fog.addParticle(particle);
 
-		particle.setDrawScale(scale);
-		fog.setBodyType(BodyDef.BodyType.StaticBody);
-		particle.setTexture(fogTexture);
-		Filter filter = new Filter();
-		filter.categoryBits = 0x0002;
-		filter.maskBits = 0x0004;
-		particle.setFilterData(filter);
+//		particle.setDrawScale(scale);
+//		fog.setBodyType(BodyDef.BodyType.StaticBody);
+//		particle.setTexture(fogTexture);
+//		Filter filter = new Filter();
+//		filter.categoryBits = 0x0002;
+//		filter.maskBits = 0x0004;
+//		particle.setFilterData(filter);
 
-		fog.setSleepingAllowed(true);
-		fog.setAwake(false);
+//		fog.setSleepingAllowed(true);
+//		fog.setAwake(false);
 
-		addObject(particle);
+//		addObject(particle);
 	}
 
 	private ArrayList<Vector2> getIndices(float idxX, float idxY, int n) {
@@ -756,22 +758,22 @@ public class GameController extends WorldController implements ContactListener {
 
 
 
-		if (fogDelay == 0) {
-			BoardTuple fogBoards = fog.expand(board, fogBoard);
-			fogBoard = fogBoards.a;
-			boolean[][] newFogBoard = fogBoards.b;
-
-			for (int j = 0; j < UNITS_H; j++) {
-				for (int i = 0; i < UNITS_W; i++) {
-					if (newFogBoard[i][j]) {
-						initFogParticle(i * UW, j * UH);
-					}
-				}
-			}
-			fogDelay = FOG_DELAY;
-		} else {
-			fogDelay--;
-		}
+//		if (fogDelay == 0) {
+//			BoardTuple fogBoards = fog.expand(board, fogBoard);
+//			fogBoard = fogBoards.a;
+//			boolean[][] newFogBoard = fogBoards.b;
+//
+//			for (int j = 0; j < UNITS_H; j++) {
+//				for (int i = 0; i < UNITS_W; i++) {
+//					if (newFogBoard[i][j]) {
+//						initFogParticle(i * UW, j * UH);
+//					}
+//				}
+//			}
+//			fogDelay = FOG_DELAY;
+//		} else {
+//			fogDelay--;
+//		}
 
 		int xUnit = (int) Math.min(Math.max(0, Math.floor(rocket.getX() / BW * UNITS_W)), UNITS_W-1);
 		int yUnit = (int) Math.min(Math.max(0, Math.floor(rocket.getY() / BH * UNITS_H)), UNITS_H-1);
@@ -872,11 +874,19 @@ public class GameController extends WorldController implements ContactListener {
 		canvas.drawText(message, displayFont, 5.0f, canvas.getHeight()-5.0f);
 		canvas.end();
 
+		fog.draw(canvas);
+
 		canvas.begin();
 		for(Obstacle obj : objects) {
 			obj.draw(canvas);
 		}
+
+
 		canvas.end();
+
+//		canvas.begin();
+
+//		canvas.end();
 
 		if(complete(Lanterns)){
 			if(countdown > 0){
@@ -891,6 +901,8 @@ public class GameController extends WorldController implements ContactListener {
 			}
 
 		}
+
+
 
 		if (isDebug()) {
 			canvas.beginDebug();
@@ -977,5 +989,9 @@ public class GameController extends WorldController implements ContactListener {
 		cache.sub(body2.getLinearVelocityFromWorldPoint(wp));
 		speed = cache.dot(worldManifold.getNormal());
 
+	}
+
+	public float[] getFog() {
+		return fog.getFogBoard();
 	}
 }

@@ -116,6 +116,8 @@ public class GameCanvas {
 	/** Cache object to handle raw textures */
 	private TextureRegion holder;
 
+	public FrameBuffer fbo;
+
 	/**
 	 * Creates a new GameCanvas determined by the application configuration.
 	 *
@@ -151,6 +153,8 @@ public class GameCanvas {
 		tmp0  = new Vector3();
 		tmp1  = new Vector3();
 		tmp2d = new Vector2();
+
+//		fbo = new FrameBuffer();
 	}
 
     /**
@@ -411,6 +415,15 @@ public class GameCanvas {
     	spriteBatch.begin();
     	active = DrawPass.STANDARD;
     }
+
+    public void beginFog() {
+		spriteBatch.begin();
+
+	}
+
+	public void endFog() {
+
+	}
 
 	/**
 	 * Ends a drawing sequence, flushing textures to the graphics card.
@@ -1248,5 +1261,9 @@ public class GameCanvas {
 		out.val[15] = 0.0f;
 
 		return out;
+	}
+
+	public PolygonSpriteBatch getSpriteBatch() {
+		return spriteBatch;
 	}
 }
