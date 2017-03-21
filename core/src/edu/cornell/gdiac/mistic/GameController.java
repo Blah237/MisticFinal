@@ -44,8 +44,9 @@ public class GameController extends WorldController implements ContactListener {
 	private static final String FIRE_FLY= "mistic/firefly.png";
 	private static final String FOG_TEXTURE = "mistic/fog.png";
 	private static final String FIRE_TRACK="mistic/fireflysprite.png";
+	private static final String MONSTER_TEXTURE = "mistic/monster01.png";
 
-	/** The reference for the afterburner textures  */
+	/** The reference for the afterburner textures */
 	/** Reference to the crate image assets */
 	private static final String LIT_LANTERN = "mistic/lit.png";
 	private static final String UNLIT_LANTERN = "mistic/unlit.png";
@@ -55,6 +56,7 @@ public class GameController extends WorldController implements ContactListener {
 	private TextureRegion fireflyTexture;
 	private TextureRegion fogTexture;
 	private TextureRegion fireflyTrack;
+	private TextureRegion monsterTexture;
 
 	/** Texture assets for the crates */
 	private TextureRegion litTexture;
@@ -99,6 +101,11 @@ public class GameController extends WorldController implements ContactListener {
 		assets.add(GORF_TEXTURE);
 		manager.load(FIRE_TRACK,Texture.class);
 		assets.add(FIRE_TRACK);
+
+		// Monster textures
+		manager.load(MONSTER_TEXTURE, Texture.class);
+		assets.add(MONSTER_TEXTURE);
+
 		/**
 		 // An Example of loading sounds
 		 manager.load(MAIN_FIRE_SOUND, Sound.class);
@@ -136,6 +143,7 @@ public class GameController extends WorldController implements ContactListener {
 		fogTexture = createTexture(manager,FOG_TEXTURE,true);
 		backgroundTexture = createTexture(manager,BACKGROUND,false);
 		fireflyTrack=createTexture(manager,FIRE_TRACK,false);
+		monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
 		SoundController sounds = SoundController.getInstance();
 
 		super.loadContent(manager);
@@ -145,8 +153,12 @@ public class GameController extends WorldController implements ContactListener {
 	// Physics constants for initialization
 	/** Density of non-crate objects */
 	private static final float BASIC_DENSITY   = 0.0f;
+	/** Density of the crate objects */
+	private static final float CRATE_DENSITY   = 1.0f;
 	/** Friction of non-crate objects */
 	private static final float BASIC_FRICTION  = 0.1f;
+	/** Friction of the crate objects */
+	private static final float CRATE_FRICTION  = 0.3f;
 	/** Collision restitution for all objects */
 	private static final float BASIC_RESTITUTION = 0.1f;
 	/** Threshold for generating sound on collision */
@@ -175,6 +187,8 @@ public class GameController extends WorldController implements ContactListener {
 	//ticks
 	private static int ticks;
 	private static final int FIREFLY_DEATH_TIMER = 5;
+	private AIController ai;
+	private static BoardModel tileBoard;
 
 	// Other game objects
 	/** The initial rocket position */
@@ -186,8 +200,12 @@ public class GameController extends WorldController implements ContactListener {
 	/** Reference to the goalDoor (for collision detection) */
 	private BoxObstacle goalDoor;
 	/** Reference to the rocket/player avatar */
-	private Gorf gorf;
+	private GorfModel gorf;
+	/** Reference to the monster */
+	private MonsterModel monster;
+	/** Arraylist of Lantern objects */
 	private ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
+
 	private BoxFog fog;
 	private boolean[][] board;
 	private boolean[][] fogBoard;
@@ -201,6 +219,7 @@ public class GameController extends WorldController implements ContactListener {
 	private static int FIREFLY_DELAY = 150;
 	private int fogDelay = FOG_DELAY;
 	private int fireflyDelay = FIREFLY_DELAY;
+
 
 
 	/**
@@ -449,32 +468,32 @@ public class GameController extends WorldController implements ContactListener {
 		Polylist.add(wall36);
 		PolygonObstacle wall37 = new PolygonObstacle(wallV, 7f, 1.5f);
 		Polylist.add(wall37);
-
-		// diagonal positive walls
-		PolygonObstacle wall14 = new PolygonObstacle(wallDp, 1.5f, 8f);
-		Polylist.add(wall14);
-		PolygonObstacle wall17 = new PolygonObstacle(wallDp, 22.2f, -0.5f);
-		Polylist.add(wall17);
-		PolygonObstacle wall21 = new PolygonObstacle(wallDp, 14.5f, 8f);
-		Polylist.add(wall21);
-		PolygonObstacle wall24 = new PolygonObstacle(wallDp, 22.2f, 12f);
-		Polylist.add(wall24);
-
-		// diagonal negative walls
-		PolygonObstacle wall15 = new PolygonObstacle(wallDn, 4f, 8f);
-		Polylist.add(wall15);
-		PolygonObstacle wall16 = new PolygonObstacle(wallDn, 6.8f, 12f);
-		Polylist.add(wall16);
-		PolygonObstacle wall18 = new PolygonObstacle(wallDn, 17f, 8f);
-		Polylist.add(wall18);
-		PolygonObstacle wall19 = new PolygonObstacle(wallDn, 19.7f, 12f);
-		Polylist.add(wall19);
-		PolygonObstacle wall27 = new PolygonObstacle(wallDn, 9.03f, 10.3f);
-		Polylist.add(wall27);
-		PolygonObstacle wall31 = new PolygonObstacle(wallDn, 11.5f, 0f);
-		Polylist.add(wall31);
-		PolygonObstacle wall32 = new PolygonObstacle(wallDn, 14.7f, 3.5f);
-		Polylist.add(wall32);
+//
+//		// diagonal positive walls
+//		PolygonObstacle wall14 = new PolygonObstacle(wallDp, 1.5f, 8f);
+//		Polylist.add(wall14);
+//		PolygonObstacle wall17 = new PolygonObstacle(wallDp, 22.2f, -0.5f);
+//		Polylist.add(wall17);
+//		PolygonObstacle wall21 = new PolygonObstacle(wallDp, 14.5f, 8f);
+//		Polylist.add(wall21);
+//		PolygonObstacle wall24 = new PolygonObstacle(wallDp, 22.2f, 12f);
+//		Polylist.add(wall24);
+//
+//		// diagonal negative walls
+//		PolygonObstacle wall15 = new PolygonObstacle(wallDn, 4f, 8f);
+//		Polylist.add(wall15);
+//		PolygonObstacle wall16 = new PolygonObstacle(wallDn, 6.8f, 12f);
+//		Polylist.add(wall16);
+//		PolygonObstacle wall18 = new PolygonObstacle(wallDn, 17f, 8f);
+//		Polylist.add(wall18);
+//		PolygonObstacle wall19 = new PolygonObstacle(wallDn, 19.7f, 12f);
+//		Polylist.add(wall19);
+//		PolygonObstacle wall27 = new PolygonObstacle(wallDn, 9.03f, 10.3f);
+//		Polylist.add(wall27);
+//		PolygonObstacle wall31 = new PolygonObstacle(wallDn, 11.5f, 0f);
+//		Polylist.add(wall31);
+//		PolygonObstacle wall32 = new PolygonObstacle(wallDn, 14.7f, 3.5f);
+//		Polylist.add(wall32);
 
 		for ( PolygonObstacle i : Polylist) {
 			makeWall(i,"wall"+i.toString());
@@ -505,7 +524,6 @@ public class GameController extends WorldController implements ContactListener {
 						board[(int)indices.get(j).x][(int)indices.get(j).y] = true;
 					}
 				}
-			} else if (dx == 0) {
 				for (float x=x0; x<x1; x+=UW) {
 					xUnit = (int) Math.min(Math.max(0, Math.floor(x / BW * UNITS_W)), UNITS_W-1);
 					yUnit = (int) Math.min(Math.max(0, Math.floor(y2 / BH * UNITS_H)), UNITS_H-1);
@@ -567,17 +585,66 @@ public class GameController extends WorldController implements ContactListener {
 		 */
 		dwidth  = gorfTexture.getRegionWidth()/scale.x;
 		dheight = gorfTexture.getRegionHeight()/scale.y;
-		gorf = new Gorf(ROCK_POS.x, ROCK_POS.y, dwidth, dheight);
+		gorf = new GorfModel(ROCK_POS.x, ROCK_POS.y, dwidth, dheight);
 		gorf.setDrawScale(scale);
 		gorf.setTexture(gorfTexture);
 		addObject(gorf);
-	}
+
 
 	/**
 	 * The GameController functions for Gorf-Lantern interactions
 	 * This includes code for incrementing and decrementing Gorf's firefly counter
 	 * And adds lanterns to the GameController object pool.
 	 */
+
+		float w = 9;
+		float h = 12;
+		createMonster(w, h);
+
+	Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*scale.x, canvas.getHeight()*scale.y);
+		this.tileBoard = new BoardModel(1000, 1000, screenSize);
+		this.ai = new AIController(monster, tileBoard, gorf, scale);
+	}
+//
+//	private void createFirefly(float x,float y){
+//		TextureRegion texture = fireflyTexture;
+//		float dwidth  = texture.getRegionWidth()/scale.x;
+//		float dheight = texture.getRegionHeight()/scale.y;
+//		BoxObstacle box = new BoxObstacle(x, y, dwidth, dheight);
+//		box.setDensity(CRATE_DENSITY);
+//		box.setFriction(CRATE_FRICTION);
+//		box.setRestitution(BASIC_RESTITUTION);
+//		box.setName("firefly"+x+y);
+//		box.setDrawScale(scale);
+//		box.setTexture(texture);
+//		addObject(box);
+//		box.getBody().setUserData("firefly");
+//		fireflyObjects.add(box.getBody());
+//		fireflyObjectsO.add(box);
+//	}
+
+	private void createMonster(float x, float y) {
+		TextureRegion texture = monsterTexture;
+		float dwidth  = texture.getRegionWidth()/scale.x;
+		float dheight = texture.getRegionHeight()/scale.y;
+		MonsterModel monster = new MonsterModel(x, y, dwidth, dheight);
+		this.monster = monster;
+		monster.setDensity(CRATE_DENSITY);
+		monster.setFriction(CRATE_FRICTION);
+		monster.setRestitution(BASIC_RESTITUTION);
+		monster.setDrawScale(scale);
+		monster.setName("monster");
+		monster.setTexture(texture);
+		addObject(monster);
+		monster.getBody().setUserData("monster");
+	}
+
+	private void toggleLatern(float x, float y) {
+		Lantern l= getLantern(x,y);
+		if(l!=null) {
+			toggle(l);
+		}
+	}
 
 	private boolean complete(ArrayList<Lantern> al){
 		for(Lantern l : Lanterns){
@@ -586,7 +653,7 @@ public class GameController extends WorldController implements ContactListener {
 		return true;
 	}
 
-	//Get the latern at this position
+	//Get the lantern at this position
 	private Lantern getLantern(float x, float y){
 		int xi= (int)x;
 		int yi=(int)y;
@@ -657,10 +724,21 @@ public class GameController extends WorldController implements ContactListener {
 		gorf.applyForce();
 		wrapInBounds(gorf);
 
+		ai.setInput();
+		float forceXMonster = ai.getHorizontal();
+		float forceYMonster = ai.getVertical();
+		float monsterthrust = monster.getThrust();
+		this.monster.setFX(forceXMonster * monsterthrust);
+		this.monster.setFY(forceYMonster * monsterthrust);
+		monster.applyForce();
+
+
+
 		if (random(250)==7) {
 			createFirefly(canvas.getHeight(),canvas.getWidth());
 
 		}
+
 
 		if (fogDelay == 0) {
 			BoardTuple fogBoards = fog.expand(board, fogBoard);
@@ -718,7 +796,7 @@ public class GameController extends WorldController implements ContactListener {
 	 *
 	 * @param rocket   Gorf character
 	 */
-	private void wrapInBounds(Gorf rocket) {
+	private void wrapInBounds(GorfModel rocket) {
 		if (!inBounds(rocket)) {
 			Vector2 currentPos = rocket.getPosition();
 			if (currentPos.x<=bounds.getX()) {
@@ -734,7 +812,6 @@ public class GameController extends WorldController implements ContactListener {
 		}
 	}
 
-
 	public void draw(float dt) {
 		canvas.clear();
 
@@ -746,31 +823,43 @@ public class GameController extends WorldController implements ContactListener {
 		canvas.drawText(Integer.toString(firefly_count),displayFont,50,50);
 		canvas.end();
 
+		// Draw background on all sides and diagonals for wrap illusion
 		canvas.begin();
+		canvas.draw(backgroundTexture, Color.WHITE, 0, canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth(), canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, 0, -canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth(), -canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth(), 0,canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth(), -canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth(), 0,canvas.getWidth(),canvas.getHeight());
+		canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth(), canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+		canvas.end();
+
+		// now draw objects on current canvas that centered Gorf is actually in
+		canvas.begin(gorf.getPosition());
 		for(Obstacle obj : objects) {
 			if(obj.isActive()){
 				obj.draw(canvas);
 			}
 		}
-		for(Firefly f : fireflyController.fireflies){
+		for(Firefly f : fireflyController.fireflies) {
 			if(!f.isDestroyed()){
 				f.getObject().draw(canvas);
 			}
 		}
 		canvas.end();
 
-		if(complete(Lanterns)){
-			if(countdown > 0){
+		if (complete(Lanterns)) {
+			if (countdown > 0) {
 				canvas.begin();
 				String vic = "Victory!";
 				displayFont.setColor(Color.PURPLE);
 				canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
 				canvas.end();
 				countdown --;
-			}else if(countdown==0){
+			} else if (countdown==0) {
 				this.setComplete(true);
 			}
-
 		}
 
 		if (isDebug()) {
@@ -781,9 +870,6 @@ public class GameController extends WorldController implements ContactListener {
 			canvas.endDebug();
 			canvas.endDebug();
 		}
-
-
-
 	}
 
 	/// CONTACT LISTENER METHODS

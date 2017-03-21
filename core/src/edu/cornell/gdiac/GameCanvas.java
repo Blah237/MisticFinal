@@ -60,6 +60,14 @@ public class GameCanvas {
 		OPAQUE
 	}
 
+	/** Reverse the y-direction so that it is consistent with SpriteBatch */
+	private static final Vector3 UP_REVERSED = new Vector3(0,-1,0);
+	/** Field of view for the perspective */
+	private static final float FOV = 0.7f;
+	/** Near distance for perspective clipping */
+	private static final float NEAR_DIST = 10.0f;
+	/** Far distance for perspective clipping */
+	private static final float FAR_DIST  = 500.0f;
 
 	/** Drawing context to handle textures AND POLYGONS as sprites */
 	private PolygonSpriteBatch spriteBatch;
@@ -76,12 +84,30 @@ public class GameCanvas {
 	/** Camera for the underlying SpriteBatch */
 	private OrthographicCamera camera;
 
+	/** Target for Perspective FOV */
+	private Vector3 target;
+
+	/** Eye for Perspective FOV */
+	private Vector3 eye;
+
 	/** Value to cache window width (if we are currently full screen) */
 	int width;
 	/** Value to cache window height (if we are currently full screen) */
 	int height;
 
 	// CACHE OBJECTS
+	/** Projection Matrix */
+	private Matrix4 proj;
+	/** View Matrix */
+	private Matrix4 view;
+	/** Temporary Matrix (for Calculations) */
+	private Matrix4 tmpMat;
+
+	/** Temporary Vectors */
+	private Vector3 tmp0;
+	private Vector3 tmp1;
+	private Vector2 tmp2d;
+
 	/** Affine cache for current sprite to draw */
 	private Affine2 local;
 	/** Affine cache for all sprites this drawing pass */
@@ -103,8 +129,9 @@ public class GameCanvas {
 		debugRender = new ShapeRenderer();
 
 		// Set the projection matrix (for proper scaling)
-		camera = new OrthographicCamera(getWidth(),getHeight());
+		camera = new OrthographicCamera(getWidth()/2,getHeight()/2);
 		camera.setToOrtho(false);
+		camera.update();
 		spriteBatch.setProjectionMatrix(camera.combined);
 		debugRender.setProjectionMatrix(camera.combined);
 
@@ -113,6 +140,18 @@ public class GameCanvas {
 		local  = new Affine2();
 		global = new Matrix4();
 		vertex = new Vector2();
+
+//		// Initialize the perspective camera objects
+//		eye = new Vector3();
+//		target = new Vector3();
+//		view  = new Matrix4();
+//		proj  = new Matrix4();
+//
+//		// Initialize the cache objects
+//		tmpMat = new Matrix4();
+//		tmp0  = new Vector3();
+//		tmp1  = new Vector3();
+//		tmp2d = new Vector2();
 	}
 
     /**
@@ -362,12 +401,26 @@ public class GameCanvas {
 	 * Start a standard drawing sequence.
 	 *
 	 * Nothing is flushed to the graphics card until the method end() is called.
+	 * FOR LOADING SCREEN
 	 */
     public void begin() {
 		spriteBatch.setProjectionMatrix(camera.combined);
     	spriteBatch.begin();
     	active = DrawPass.STANDARD;
     }
+
+	/**
+	 * Start a standard drawing sequence.
+	 *
+	 * Nothing is flushed to the graphics card until the method end() is called.
+	 */
+	public void begin(Vector2 position) {
+		camera.position.set(position.x*32,position.y*32,0);
+		camera.update();
+		spriteBatch.setProjectionMatrix(camera.combined);
+		spriteBatch.begin();
+		active = DrawPass.STANDARD;
+	}
 
 	/**
 	 * Ends a drawing sequence, flushing textures to the graphics card.
@@ -1150,5 +1203,60 @@ public class GameCanvas {
 		local.rotate(180.0f*angle/(float)Math.PI);
 		local.scale(sx,sy);
 		local.translate(-ox,-oy);
+	}
+
+	/**
+	 * Sets the given matrix to a FOV perspective.
+	 *
+	 * The field of view matrix is computed as follows:
+	 *
+	 *        /
+	 *       /_
+	 *      /  \  <-  FOV
+	 * EYE /____|_____
+	 *
+	 * Let ys = cot(fov)
+	 * Let xs = ys / aspect
+	 * Let a = zfar / (znear - zfar)
+	 * The matrix is
+	 * | xs  0   0      0     |
+	 * | 0   ys  0      0     |
+	 * | 0   0   a  znear * a |
+	 * | 0   0  -1      0     |
+	 *
+	 * @param out Non-null matrix to store result
+	 * @param fov field of view y-direction in radians from center plane
+	 * @param aspect Width / Height
+	 * @param znear Near clip distance
+	 * @param zfar Far clip distance
+	 *
+	 * @returns Newly created matrix stored in out
+	 */
+	private Matrix4 setToPerspectiveFOV(Matrix4 out, float fov, float aspect, float znear, float zfar) {
+		float ys = (float)(1.0 / Math.tan(fov));
+		float xs = ys / aspect;
+		float a  = zfar / (znear - zfar);
+
+		out.val[0 ] = xs;
+		out.val[4 ] = 0.0f;
+		out.val[8 ] = 0.0f;
+		out.val[12] = 0.0f;
+
+		out.val[1 ] = 0.0f;
+		out.val[5 ] = ys;
+		out.val[9 ] = 0.0f;
+		out.val[13] = 0.0f;
+
+		out.val[2 ] = 0.0f;
+		out.val[6 ] = 0.0f;
+		out.val[10] = a;
+		out.val[14] = znear * a;
+
+		out.val[3 ] = 0.0f;
+		out.val[7 ] = 0.0f;
+		out.val[11] = -1.0f;
+		out.val[15] = 0.0f;
+
+		return out;
 	}
 }

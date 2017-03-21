@@ -27,7 +27,7 @@ import edu.cornell.gdiac.util.*;
  * Note that this class returns to static loading.  That is because there are
  * no other subclasses that we might loop through.
  */
-public class Gorf extends BoxObstacle {
+public class GorfModel extends BoxObstacle {
 	/**
 	 * Enumeration to identify the rocket afterburner
 	 */
@@ -166,7 +166,7 @@ public class Gorf extends BoxObstacle {
 	 * @param width		The object width in physics units
 	 * @param height	The object width in physics units
 	 */
-	public Gorf(float width, float height) {
+	public GorfModel(float width, float height) {
 		this(0,0,width,height);
 	}
 
@@ -182,7 +182,7 @@ public class Gorf extends BoxObstacle {
 	 * @param width		The object width in physics units
 	 * @param height	The object width in physics units
 	 */
-	public Gorf(float x, float y, float width, float height) {
+	public GorfModel(float x, float y, float width, float height) {
 		super(x,y,width,height);
 		force = new Vector2();
 		setDensity(DEFAULT_DENSITY);
