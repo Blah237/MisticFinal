@@ -1,5 +1,8 @@
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
 /**
  * Created by tbkepler on 3/18/17.
  */
@@ -32,17 +35,22 @@ public class BoardModel {
     private int height;
     /** The tile grid (with above dimensions) */
     private Tile[] tiles;
+    /** Height and width of a single tile in relation to the world bounds */
+    public float tileHeight = 0;
+    public float tileWidth = 0;
 
     /**
      * Creates a new board of the given size
      *
-     * @param width Board width in tiles
-     * @param height Board height in tiles
+     * @param width            Board width in tiles
+     * @param height           Board height in tiles
+     * @param screenDimensions Board width and height in screen dimensions
      */
-    public BoardModel(int width, int height) {
+    public BoardModel(int width, int height, Rectangle screenDimensions) {
         this.width = width;
         this.height = height;
-        tiles = new Tile[width * height];
+        this.tileHeight = (screenDimensions.y/height);
+        this.tileWidth = (screenDimensions.x/width);
         for (int ii = 0; ii < tiles.length; ii++) {
             tiles[ii] = new Tile();
         }
@@ -111,5 +119,41 @@ public class BoardModel {
         return height;
     }
 
+    /**
+     * Returns the tile height of this board's tiles
+     *
+     * @return height of one tile
+     */
+    public float getTileHeight() { return tileHeight; }
 
+    /**
+     * Returns the tile width of this board's tiles
+     *
+     * @return width of one tile
+     */
+    public float getTileWidth() { return tileWidth; }
+
+    /**
+     * Returns the board tile index for a screen position.
+     *
+     * @param f Screen position coordinate
+     *
+     * @return the board cell index for a screen position.
+     */
+    public int screenToBoardX(Vector2 position) {
+        int intX = (int)(position.x/tileWidth);
+        return intX;
+    }
+
+    /**
+     * Returns the board tile index for a screen position.
+     *
+     * @param f Screen position coordinate
+     *
+     * @return the board cell index for a screen position.
+     */
+    public int screenToBoardY(Vector2 position) {
+        int intY = (int)(position.y/tileHeight);
+        return intY;
+    }
 }
