@@ -30,7 +30,7 @@ public class AIController extends InputController {
     /** The game board */
     private BoardModel board;
     /** Gorf, the monster's potential (and only) target */
-    private Gorf gorf;
+    private GorfModel gorf;
     /** The monster's current state in the FSM */
     private FSMState state;
     /** The monster's next action */
@@ -47,7 +47,7 @@ public class AIController extends InputController {
 
     private LinkedList<Pair> finalpath;
 
-    public AIController(MonsterModel monster, BoardModel board, Gorf gorf, Vector2 scale) {
+    public AIController(MonsterModel monster, BoardModel board, GorfModel gorf, Vector2 scale) {
         this.monster = monster;
         this.board = board;
         this.gorf = gorf;
