@@ -13,7 +13,7 @@ public class BoardModel {
      * Each tile on the board has a set of attributes associated with it.
      * Tiles cover the whole world
      */
-    private static class Tile {
+    public static class Tile {
         /** Is this a maze wall block */
         public boolean isWall = false;
         /** Is this a lantern block */
@@ -39,10 +39,10 @@ public class BoardModel {
     /** The board height (in number of tiles) */
     private int height;
     /** The tile grid (with above dimensions) */
-    private Tile[] tiles;
+    public Tile[] tiles;
     /** Height and width of a single tile in relation to the world bounds */
-    public float tileHeight;
-    public float tileWidth;
+    private float tileHeight;
+    private float tileWidth;
 
     /**
      * Creates a new board of the given size
@@ -138,6 +138,26 @@ public class BoardModel {
      * @return width of one tile
      */
     public float getTileWidth() { return tileWidth; }
+
+    /**
+     * Returns x coordinate of the center of this tile object
+     *
+     * @param tile this tile object to find center of
+     * @return     X coordinate of tile center
+     */
+    public float getTileCenterX(Tile tile) {
+        return (tile.x*tileWidth)+(tileWidth/2);
+    }
+
+    /**
+     * Returns y coordinate of the center of this tile object
+     *
+     * @param tile this tile object to find center of
+     * @return     Y coordinate of tile center
+     */
+    public float getTileCenterY(Tile tile) {
+        return (tile.y*tileHeight)+(tileHeight/2);
+    }
 
     /**
      * Returns the board tile index for a screen position.
