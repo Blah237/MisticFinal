@@ -795,17 +795,7 @@ public class GameController extends WorldController implements ContactListener {
 	public void beginContact(Contact contact) {
 		Body body1 = contact.getFixtureA().getBody();
 		Body body2 = contact.getFixtureB().getBody();
-		System.out.println(body1.getUserData());
-		if(body1 == gorf.getBody() && body2.getUserData() == "firefly") {
-			System.out.println("YOOOOOOOOO");
-			fireflyController.garbage.add(body2);
-			firefly_count++;
-		} else if(body2 == gorf.getBody() && body1.getUserData() == "firefly") {
-			fireflyController.garbage.add(body1);
-			firefly_count++;
-			System.out.println("YOOOOOOOOO");
-		}
-
+		
 		if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
 			if (firefly_count > 0) {
 				firefly_count = firefly_count - 1;
