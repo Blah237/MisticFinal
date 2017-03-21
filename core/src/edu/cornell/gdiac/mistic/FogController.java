@@ -41,7 +41,7 @@ public class FogController extends GameController {
 	Vector2 fogOrigin;
 	private final int FBO_SIZE = 1024;
 
-	private final int FOG_DELAY = 80;
+	private final int FOG_DELAY = 60;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -283,11 +283,8 @@ public class FogController extends GameController {
         lanternsA = new float[lanterns.size()*2];
         for (int i=0; i<lanterns.size(); i++) {
             if (lanterns.get(i).lit) {
-                System.out.println(lanterns.get(i).getX());
                 lanternsA[numLanterns*2] = lanterns.get(i).getX() / BW;
                 lanternsA[numLanterns*2+1] = lanterns.get(i).getY() / BH;
-                System.out.println(lanternsA[i*2]);
-                System.out.println(1-lanternsA[i*2+1]);
                 numLanterns++;
             }
         }
@@ -303,7 +300,6 @@ public class FogController extends GameController {
 //		fboA.end();
 
 
-		System.out.println("rendering");
 		if (fogDelay <= 0) {
 			updateFog();
 			fogDelay = FOG_DELAY;
