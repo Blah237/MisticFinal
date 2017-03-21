@@ -189,6 +189,8 @@ public class GameController extends WorldController implements ContactListener {
 	private static final int FIREFLY_DEATH_TIMER = 5;
 	private AIController ai;
 	private static BoardModel tileBoard;
+	private static boolean DEAD;
+
 
 	// Other game objects
 	/** The initial rocket position */
@@ -237,6 +239,8 @@ public class GameController extends WorldController implements ContactListener {
 		initBoard();
 		initFogBoard();
 		this.ticks = 0;
+		this.DEAD = false;
+
 	}
 
 	/**
@@ -862,6 +866,22 @@ public class GameController extends WorldController implements ContactListener {
 			}
 		}
 
+		if (DEAD) {
+			if (countdown > 0) {
+				canvas.begin();
+				String vic = "Game Over!";
+				displayFont.setColor(Color.PURPLE);
+				canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
+				canvas.end();
+				countdown --;
+			} else if (countdown==0) {
+				DEAD = false;
+				this.setComplete(true);
+			}
+		}
+
+
+
 		if (isDebug()) {
 			canvas.beginDebug();
 			for(Obstacle obj : objects) {
@@ -885,6 +905,16 @@ public class GameController extends WorldController implements ContactListener {
 	public void beginContact(Contact contact) {
 		Body body1 = contact.getFixtureA().getBody();
 		Body body2 = contact.getFixtureB().getBody();
+
+
+		if (body1.getUserData() == "monster" && body2 == gorf.getBody()) {
+			this.DEAD = true;
+		}
+		if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
+			this.DEAD = true;
+		}
+
+
 
 		if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
 			if (firefly_count > 0) {
