@@ -359,6 +359,7 @@ public class AIController extends InputController {
         changeStateIfApplicable();
         markGoalTiles();
         direction the_move = getMoveAlongPathToGoalTile();
+
         switch (the_move) {
 
             case LEFT:

@@ -277,8 +277,9 @@ public class BoardModel {
      * @return true if a screen location is safe
      */
     public boolean isSafeAt(int x, int y) {
-        return x >= 0 && y >= 0 && x < width && y < height;
-                //&& !getTile(x, y).isLantern && !getTile(x,y).isWall;
+        Tile the_tile = getTile(x, y);
+        return x >= 0 && y >= 0 && x < width && y < height
+                && !(the_tile.isLantern) && !(the_tile.isWall);
     }
 
     /**
