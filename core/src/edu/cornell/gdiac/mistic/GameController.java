@@ -268,12 +268,15 @@ public class GameController extends WorldController implements ContactListener {
 	/**
 	 * Lays out the game geography.
 	 */
+
+
 	private void makeWall(PolygonObstacle po, String pname) {
 		po.setBodyType(BodyDef.BodyType.StaticBody);
 		po.setDensity(BASIC_DENSITY);
 		po.setFriction(BASIC_FRICTION);
 		po.setRestitution(BASIC_RESTITUTION);
 		po.setDrawScale(scale);
+		earthTile.getTexture().setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 		po.setTexture(earthTile);
 		po.setName(pname);
 		addObject(po);
@@ -593,15 +596,33 @@ public class GameController extends WorldController implements ContactListener {
 		float w = 9;
 		float h = 12;
 		createMonster(w, h);
-		Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*scale.x, canvas.getHeight()*scale.y);
-		this.tileBoard = new BoardModel(100, 100, screenSize);
+		Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()* scale.x, canvas.getHeight()*scale.y);
+		this.tileBoard = new BoardModel(100, 100, screenSize, scale);
+		for(int i=0;i<50;i++){
+			tileBoard.tiles[i].isWall=true;
+		}
+		for(int i=3000;i<3050;i++){
+			tileBoard.tiles[i].isWall=true;
+		}
+		
+
 
 		// for loop for tile walls
 		for (BoardModel.Tile t: tileBoard.tiles) {
+
 			if (t.isWall) {
-				BoxObstacle x = new BoxObstacle(tileBoard.getTileCenterX(t),tileBoard.getTileCenterY(t));
-				x.setTexture(earthTile);
-				objects.add(x);
+				BoxObstacle po= new BoxObstacle(tileBoard.getTileCenterX(t)/scale.x,
+						tileBoard.getTileCenterY(t)/scale.y,(earthTile.getRegionWidth()/scale.x)-1,
+						(earthTile.getRegionHeight()/scale.y)-1);
+				po.setBodyType(BodyDef.BodyType.StaticBody);
+				po.setDensity(BASIC_DENSITY);
+				po.setFriction(BASIC_FRICTION);
+				po.setRestitution(BASIC_RESTITUTION);
+				po.setDrawScale(scale);
+				po.setTexture(earthTile);
+				addObject(po);
+				System.out.println("Tile: "+t.x + ", "+t.y + ", Center: "+ tileBoard.getTileCenterX(t)/scale.x+
+						", "+tileBoard.getTileCenterY(t)/scale.y+ ", At: "+ po.getX()+ ", "+po.getY());
 			}
 		}
 

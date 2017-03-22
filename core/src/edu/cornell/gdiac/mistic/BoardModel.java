@@ -2,6 +2,7 @@ package edu.cornell.gdiac.mistic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -15,25 +16,34 @@ public class BoardModel {
      */
     public static class Tile {
         /** Is this a maze wall block */
-        public boolean isWall = false;
+        public boolean isWall;
         /** Is this a lantern block */
-        public boolean isLantern = false;
+        public boolean isLantern;
         /** Is this tile a fog spawn point */
-        public boolean isFogSpawn = false;
+        public boolean isFogSpawn;
         /** Is this tile a fog spawn point */
-        public boolean isFog = false;
+        public boolean isFog;
         /** Is there a familiar here */
-        public boolean hasFamiliar = false;
+        public boolean hasFamiliar;
         /** Has this tile been visited (Only including for possible AI purposes) */
-        public boolean visited = false;
+        public boolean visited;
         /** Has this tile been set as a goal*/
-        public boolean goal = false;
+        public boolean goal;
         /** X and Y index of this tile from bottom left corner (in number of tiles) */
-        public int x = 0;
-        public int y = 0;
+        public int y;
+        public int x;
+
+        public Tile(){
+            this.isWall=false;
+            this.isLantern=false;
+            this.isFogSpawn=false;
+            this.isFog=false;
+            this.hasFamiliar=false;
+        }
     }
 
     // Instance attributes
+    Vector2 scale;
     /** The board width (in number of tiles) */
     private int width;
     /** The board height (in number of tiles) */
@@ -51,12 +61,13 @@ public class BoardModel {
      * @param height           Board height in tiles
      * @param screenDimensions Board width and height in screen dimensions
      */
-    public BoardModel(int width, int height, Rectangle screenDimensions) {
+    public BoardModel(int width, int height, Rectangle screenDimensions, Vector2 scale) {
+        this.scale=scale;
         this.width = width;
         this.height = height;
         this.tileHeight = (screenDimensions.height/height);
         this.tileWidth = (screenDimensions.width/width);
-        tiles = new Tile[width * height];
+        this.tiles = new Tile[width * height];
         for (int ii = 0; ii < tiles.length; ii++) {
             tiles[ii] = new Tile();
         }
@@ -70,11 +81,6 @@ public class BoardModel {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 Tile tile = getTile(x, y);
-                tile.isWall = false;
-                tile.isLantern = false;
-                tile.isFogSpawn = false;
-                tile.hasFamiliar = false;
-                tile.visited = false;
                 tile.x = x;
                 tile.y = y;
             }
@@ -146,7 +152,8 @@ public class BoardModel {
      * @return     X coordinate of tile center
      */
     public float getTileCenterX(Tile tile) {
-        return (tile.x*tileWidth)+(tileWidth/2);
+
+        return ((tile.x*tileWidth)+(tileWidth/2))/scale.x;
     }
 
     /**
@@ -156,7 +163,8 @@ public class BoardModel {
      * @return     Y coordinate of tile center
      */
     public float getTileCenterY(Tile tile) {
-        return (tile.y*tileHeight)+(tileHeight/2);
+
+        return ((tile.y*tileHeight)+(tileHeight/2))/scale.y;
     }
 
     /**
