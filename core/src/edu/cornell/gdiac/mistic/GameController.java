@@ -596,37 +596,73 @@ public class GameController extends WorldController implements ContactListener {
 		float w = 9;
 		float h = 12;
 		createMonster(w, h);
-		Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()* scale.x, canvas.getHeight()*scale.y);
-		this.tileBoard = new BoardModel(100, 100, screenSize, scale);
+		Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth(), canvas.getHeight());
+		this.tileBoard = new BoardModel(100, 100, screenSize);
 		for(int i=0;i<50;i++){
-			tileBoard.tiles[i].isWall=true;
+			tileBoard.tiles[0][i].isWall=true;
 		}
-		for(int i=3000;i<3050;i++){
-			tileBoard.tiles[i].isWall=true;
+		for(int i=0;i<50;i++){
+			tileBoard.tiles[i][0].isWall=true;
+		}
+
+		for(int i=0;i<50;i++){
+			tileBoard.tiles[i][70].isWall=true;
+		}
+		for(int i=0;i<50;i++){
+			tileBoard.tiles[15][i].isWall=true;
+		}
+		for(int i=0;i<20;i++){
+			tileBoard.tiles[30][i].isWall=true;
+		}
+		for(int i=30;i<50;i++){
+			tileBoard.tiles[30][i].isWall=true;
+		}
+		for(int i=30;i<50;i++){
+			tileBoard.tiles[i][50].isWall=true;
+		}
+		for(int i=50;i<100;i++){
+			tileBoard.tiles[70][i].isWall=true;
+		}
+		for(int i=70;i<100;i++){
+			tileBoard.tiles[i][50].isWall=true;
+		}
+		for(int i=50;i<100;i++){
+			tileBoard.tiles[i][10].isWall=true;
+		}
+		for(int i=10;i<50;i++){
+			tileBoard.tiles[50][i].isWall=true;
 		}
 		
 
-
 		// for loop for tile walls
-		for (BoardModel.Tile t: tileBoard.tiles) {
+		for (BoardModel.Tile[] ta: tileBoard.tiles) {
+			for(BoardModel.Tile t :ta) {
 
-			if (t.isWall) {
-				BoxObstacle po= new BoxObstacle(tileBoard.getTileCenterX(t)/scale.x,
-						tileBoard.getTileCenterY(t)/scale.y,(earthTile.getRegionWidth()/scale.x)-1,
-						(earthTile.getRegionHeight()/scale.y)-1);
-				po.setBodyType(BodyDef.BodyType.StaticBody);
-				po.setDensity(BASIC_DENSITY);
-				po.setFriction(BASIC_FRICTION);
-				po.setRestitution(BASIC_RESTITUTION);
-				po.setDrawScale(scale);
-				po.setTexture(earthTile);
-				addObject(po);
-				System.out.println("Tile: "+t.x + ", "+t.y + ", Center: "+ tileBoard.getTileCenterX(t)/scale.x+
-						", "+tileBoard.getTileCenterY(t)/scale.y+ ", At: "+ po.getX()+ ", "+po.getY());
+				if (t.isWall) {
+					earthTile.setRegionHeight((int)(tileBoard.getTileHeight()));
+					earthTile.setRegionWidth((int)(tileBoard.getTileWidth()));
+					BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t)/scale.x,
+							tileBoard.getTileCenterY(t)/scale.y, earthTile.getRegionWidth()/scale.x,
+							earthTile.getRegionHeight()/scale.y);
+
+					po.setBodyType(BodyDef.BodyType.StaticBody);
+					po.setDensity(BASIC_DENSITY);
+					po.setFriction(BASIC_FRICTION);
+					po.setRestitution(BASIC_RESTITUTION);
+					po.setDrawScale(scale);
+					po.setTexture(earthTile);
+					addObject(po);
+					System.out.println("Tile: " + t.x + ", " + t.y + ", Center: " + tileBoard.getTileCenterX(t) / scale.x +
+							", " + tileBoard.getTileCenterY(t) / scale.y+ ", Corner: " + t.fx / scale.x +
+							", " + t.fy / scale.y );
+					System.out.println("Object size:"+po.getWidth() +", "+po.getHeight() +". Texture Size: "
+							+ earthTile.getRegionWidth() +", "+ earthTile.getRegionHeight());
+				}
 			}
 		}
 
-		this.ai = new AIController(monster, tileBoard, rocket, scale);
+
+		//this.ai = new AIController(monster, tileBoard, rocket, scale);
 	}
 
 	private void createFirefly(float x,float y) {
@@ -783,6 +819,7 @@ public class GameController extends WorldController implements ContactListener {
 		rocket.applyForce();
 		wrapInBounds(rocket);
 
+		/**
 		ai.setInput();
 		float forceXMonster = ai.getHorizontal();
 		float forceYMonster = ai.getVertical();
@@ -790,7 +827,7 @@ public class GameController extends WorldController implements ContactListener {
 		this.monster.setFX(forceXMonster * monsterthrust);
 		this.monster.setFY(forceYMonster * monsterthrust);
 		monster.applyForce();
-
+	**/
 
 
 		if (random(250)==7) {

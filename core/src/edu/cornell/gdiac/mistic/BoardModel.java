@@ -32,6 +32,9 @@ public class BoardModel {
         /** X and Y index of this tile from bottom left corner (in number of tiles) */
         public int y;
         public int x;
+        /**The X and Y coordinates of the bottom left corner on the screen*/
+        public float fy;
+        public float fx;
 
         public Tile(){
             this.isWall=false;
@@ -43,13 +46,12 @@ public class BoardModel {
     }
 
     // Instance attributes
-    Vector2 scale;
     /** The board width (in number of tiles) */
     private int width;
     /** The board height (in number of tiles) */
     private int height;
     /** The tile grid (with above dimensions) */
-    public Tile[] tiles;
+    public Tile[][] tiles;
     /** Height and width of a single tile in relation to the world bounds */
     private float tileHeight;
     private float tileWidth;
@@ -61,17 +63,24 @@ public class BoardModel {
      * @param height           Board height in tiles
      * @param screenDimensions Board width and height in screen dimensions
      */
-    public BoardModel(int width, int height, Rectangle screenDimensions, Vector2 scale) {
-        this.scale=scale;
+    public BoardModel(int width, int height, Rectangle screenDimensions) {
         this.width = width;
         this.height = height;
         this.tileHeight = (screenDimensions.height/height);
         this.tileWidth = (screenDimensions.width/width);
-        this.tiles = new Tile[width * height];
-        for (int ii = 0; ii < tiles.length; ii++) {
-            tiles[ii] = new Tile();
+        this.tiles = new Tile[width][height];
+        System.out.println("Canvas Size: "+ screenDimensions.width + ", "+screenDimensions.height+ ". Tile width: "+tileWidth + ", "+tileHeight);
+        for (int i = 0; i < width; i++) {
+            for(int j=0;j<height;j++){
+                Tile t=new Tile();
+                t.y=j;
+                t.x=i;
+                t.fx=j*tileWidth;
+                t.fy=i*tileHeight;
+                tiles[i][j]=t;
+                System.out.println("Tile: "+t.x+", "+t.y+". Pixel: "+t.fx + ", "+t.fy);
+            }
         }
-        resetTiles();
     }
 
     /**
@@ -83,6 +92,11 @@ public class BoardModel {
                 Tile tile = getTile(x, y);
                 tile.x = x;
                 tile.y = y;
+                tile.isWall=false;
+                tile.isLantern=false;
+                tile.isFogSpawn=false;
+                tile.isFog=false;
+                tile.hasFamiliar=false;
             }
         }
     }
@@ -98,7 +112,7 @@ public class BoardModel {
         if (!inBounds(x, y)) {
             return null;
         }
-        return tiles[x * height + y];
+        return tiles[x][y];
     }
 
     /**
@@ -153,7 +167,7 @@ public class BoardModel {
      */
     public float getTileCenterX(Tile tile) {
 
-        return ((tile.x*tileWidth)+(tileWidth/2))/scale.x;
+        return tile.fx+(tileWidth/2);
     }
 
     /**
@@ -164,13 +178,13 @@ public class BoardModel {
      */
     public float getTileCenterY(Tile tile) {
 
-        return ((tile.y*tileHeight)+(tileHeight/2))/scale.y;
+        return tile.fy+(tileHeight/2);
     }
 
     /**
      * Returns the board tile index for a screen position.
      *
-     * @param f Screen position coordinate
+     * @param position Screen position coordinate
      *
      * @return the board cell index for a screen position.
      */
@@ -182,7 +196,7 @@ public class BoardModel {
     /**
      * Returns the board tile index for a screen position.
      *
-     * @param f Screen position coordinate
+     * @param position Screen position coordinate
      *
      * @return the board cell index for a screen position.
      */
