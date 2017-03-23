@@ -579,16 +579,21 @@ public class GameController extends WorldController implements ContactListener {
         for(int i=50;i<100;i++){
             tileBoard.tiles[70][i].isWall=true;
         }
-        for(int i=70;i<100;i++){
+        for(int i=70;i<80;i++){
             tileBoard.tiles[i][50].isWall=true;
         }
         for(int i=50;i<100;i++){
             tileBoard.tiles[i][10].isWall=true;
         }
-        for(int i=10;i<50;i++){
+        for(int i=10;i<30;i++){
             tileBoard.tiles[50][i].isWall=true;
         }
-
+        for(int i=70;i<100;i++){
+            tileBoard.tiles[i][30].isWall=true;
+        }
+        for(int i=30;i<85;i++){
+            tileBoard.tiles[i][90].isWall=true;
+        }
 
         // for loop for tile walls
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
