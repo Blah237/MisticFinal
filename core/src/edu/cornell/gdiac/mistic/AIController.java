@@ -11,7 +11,7 @@ import java.util.Queue;
  */
 public class AIController extends InputController {
 
-    private static enum FSMState {
+    private enum FSMState {
         /** The monster just spawned */
         SPAWN,
         /** The monster is patrolling around without a target */
@@ -20,7 +20,7 @@ public class AIController extends InputController {
         CHASE,
     }
 
-    private static enum direction {
+    private enum direction {
         STOP, UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT,
     }
 
@@ -192,7 +192,7 @@ public class AIController extends InputController {
         int theX = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y));
         int theY = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y));
         //#region PUT YOUR CODE HERE
-        Vector2 gorfPos = new Vector2(gorf.getPosition().x *50.0f, gorf.getPosition().y * 50.0f);
+        Vector2 gorfPos = new Vector2((gorf.getPosition().x *50.0f)/scale.x, (gorf.getPosition().y * 50.0f)/scale.y);
         int gorfTileX = board.screenToBoardX(gorfPos);
         int gorfTileY = board.screenToBoardY(gorfPos);
         //#endregion
@@ -266,8 +266,8 @@ public class AIController extends InputController {
     private direction getMoveAlongPathToGoalTile() {
         //#region PUT YOUR CODE HERE
         Vector2 monsterPos = monster.getPosition();
-        monsterPos.x = monsterPos.x * 50.0f;
-        monsterPos.y = monsterPos.y * 50.0f;
+        monsterPos.x = (monsterPos.x * 50.0f)/scale.x;
+        monsterPos.y = (monsterPos.y * 50.0f)/scale.y;
         Queue q = new LinkedList();
         int start_x = board.screenToBoardX(monsterPos);
         int start_y = board.screenToBoardY(monsterPos);
@@ -320,8 +320,22 @@ public class AIController extends InputController {
             neighbors.add(new Pair(tile.x, tile.y + 1));
         }
         if (board.isSafeAt((tile.x),(tile.y - 1)) && !board.isVisited((tile.x),(tile.y - 1))) {
-            neighbors.add(new Pair(tile.x, tile.y - 1));
+            neighbors.add(new Pair(tile.x , tile.y - 1));
         }
+        if (board.isSafeAt((tile.x+ 1),(tile.y +1)) && !board.isVisited((tile.x + 1),(tile.y + 1))) {
+            neighbors.add(new Pair(tile.x + 1, tile.y + 1));
+        }
+        if (board.isSafeAt((tile.x + 1),(tile.y - 1)) && !board.isVisited((tile.x + 1),(tile.y - 1))) {
+            neighbors.add(new Pair(tile.x + 1, tile.y - 1));
+        }
+
+        if (board.isSafeAt((tile.x - 1),(tile.y + 1)) && !board.isVisited((tile.x - 1),(tile.y + 1))) {
+            neighbors.add(new Pair(tile.x - 1, tile.y + 1));
+        }
+        if (board.isSafeAt((tile.x - 1),(tile.y - 1)) && !board.isVisited((tile.x - 1),(tile.y - 1))) {
+            neighbors.add(new Pair(tile.x - 1, tile.y - 1));
+        }
+
         return neighbors;
     }
 
@@ -393,7 +407,6 @@ public class AIController extends InputController {
 
         }
     }
-    //#endregion
 
 
 }

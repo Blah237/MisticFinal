@@ -321,7 +321,7 @@ public class BoardModel {
     public boolean isSafeAt(int x, int y) {
         Tile the_tile = getTile(x, y);
         return x >= 0 && y >= 0 && x < width && y < height
-                && !(the_tile.isLantern) && !(the_tile.isWall);
+                && !(the_tile.isWall);
     }
 
 

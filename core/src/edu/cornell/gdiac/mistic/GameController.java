@@ -194,7 +194,7 @@ public class GameController extends WorldController implements ContactListener {
 
     // Other game objects
     /** The initial rocket position */
-    private static Vector2 ROCK_POS = new Vector2(9, 8);
+    private static Vector2 ROCK_POS = new Vector2(14, 8);
     /** The goal door position */
     private static Vector2 GOAL_POS = new Vector2( 6, 12);
 
@@ -622,7 +622,7 @@ public class GameController extends WorldController implements ContactListener {
             }
         }
 
-        // this.ai = new AIController(monster, tileBoard, gorf, scale);
+         this.ai = new AIController(monster, tileBoard, gorf, scale);
 
         // fog = new FogController(400,150,Lanterns);
     }
@@ -745,14 +745,14 @@ public class GameController extends WorldController implements ContactListener {
         gorf.applyForce();
         wrapInBounds(gorf);
 
-/**        ai.setInput();
+        ai.setInput();
         float forceXMonster = ai.getHorizontal();
         float forceYMonster = ai.getVertical();
         float monsterthrust = monster.getThrust();
         this.monster.setFX(forceXMonster * monsterthrust);
         this.monster.setFY(forceYMonster * monsterthrust);
         monster.applyForce();
-*/
+
 
 
         if (random(250)==7) {
