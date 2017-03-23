@@ -827,7 +827,7 @@ public class GameController extends WorldController implements ContactListener {
         canvas.begin();
         canvas.draw(fireflyTrack,0,0);
         displayFont.setColor(Color.WHITE);
-        canvas.drawText(Integer.toString(firefly_count),displayFont,50,50);
+        canvas.drawText(Integer.toString(firefly_count),displayFont,gorf.getPosition().x,gorf.getPosition().y*scale.y + 10.0f);
         canvas.end();
 
         // Draw background on all sides and diagonals for wrap illusion
