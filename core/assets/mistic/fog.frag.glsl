@@ -83,7 +83,7 @@ void main() {
     float dy3 = abs(coord.y-.5);
 
     float dist3 = length(vec2(dx3, dy3));
-    fogThickness *= smoothstep(min(numFireflies*.1, .3)-.15, min(numFireflies*.1, .3), dist3);
+    fogThickness *= smoothstep(min(numFireflies*.04, .3)-.15, min(numFireflies*.04, .3), dist3);
 
     fog *= min(1,fogThickness);
 //    gl_FragColor = vec4(1,0,0,1);

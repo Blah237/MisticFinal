@@ -686,7 +686,7 @@ public class GameController extends WorldController implements ContactListener {
 
         // this.ai = new AIController(monster, tileBoard, gorf, scale);
 
-         fog = new FogController(400,150,Lanterns, tileBoard);
+         fog = new FogController(9,12,Lanterns, tileBoard);
     }
 //
 //	private void createFirefly(float x,float y){

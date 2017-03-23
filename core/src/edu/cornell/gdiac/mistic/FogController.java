@@ -82,8 +82,8 @@ public class FogController {
 
 		elementBoard = new float[WX][WY];
 
-		int ox = (int)(fogOrigin.x / Gdx.graphics.getWidth() * WX);
-		int oy = (int)(fogOrigin.y / Gdx.graphics.getHeight() * WY);
+		int ox = (int)(fogOrigin.x / BW * WX);
+		int oy = (int)(fogOrigin.y / BH * WY);
 
 		fogBoard[ox][oy] = 1.1f;
 
