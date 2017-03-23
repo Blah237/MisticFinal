@@ -828,9 +828,9 @@ public class GameController extends WorldController implements ContactListener {
 
         // fog.draw(canvas, Lanterns, gorf, firefly_count);
         canvas.begin();
-        canvas.draw(fireflyTrack,0,0);
+        canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
         displayFont.setColor(Color.WHITE);
-        canvas.drawText(Integer.toString(firefly_count),displayFont,gorf.getPosition().x,gorf.getPosition().y*scale.y + 10.0f);
+        canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);
         canvas.end();
 
         // Draw background on all sides and diagonals for wrap illusion
@@ -918,20 +918,20 @@ public class GameController extends WorldController implements ContactListener {
         }
         if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
             this.DEAD = true;
-        }
+        }}
 
 
 
-        if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
-            if (firefly_count > 0) {
-                firefly_count = firefly_count - 1;
-            }
-        } else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == gorf.getBody() && body1.getUserData() == "fog") {
-            if (firefly_count > 0) {
-                firefly_count = firefly_count - 1;
-            }
-        }
-    }
+        //if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
+           // if (firefly_count > 0) {
+             //   firefly_count = firefly_count - 1;
+           // }
+        //} else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == gorf.getBody() && body1.getUserData() == "fog") {
+           // if (firefly_count > 0) {
+            //    firefly_count = firefly_count - 1;
+           // }
+       // }
+   // }
 
     /**
      * Callback method for the start of a collision
