@@ -364,6 +364,7 @@ public class GameController extends WorldController implements ContactListener {
         // {top left corner (LR),top left corner (UD),top right corner(LR),top right corner(UD),
         // bottom right corner(LR),bottom right corner(UD),bottom left corner(LR),bottom left corner(UD)}
         // height current gorf fits through walls: 3
+        /**
         ArrayList<PolygonObstacle> Polylist = new ArrayList<PolygonObstacle>();
         final float[] wallH = {1.0f, 3.0f, 4.0f, 3.0f, 4.0f, 2.8f, 1.0f, 2.8f};
         final float[] wallV = {1.0f, 4.0f, 1.2f, 4.0f, 1.2f, 1.5f, 1.0f, 1.5f};
@@ -516,7 +517,7 @@ public class GameController extends WorldController implements ContactListener {
                 }
             }
 
-        }
+        }*/
 
         /**
          * Initialize Lantern locations
@@ -556,9 +557,72 @@ public class GameController extends WorldController implements ContactListener {
         float h = 12;
         createMonster(w, h);
 
-        Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*scale.x, canvas.getHeight()*scale.y);
-        this.tileBoard = new BoardModel(1000, 1000, screenSize);
-        this.ai = new AIController(monster, tileBoard, gorf, scale);
+        Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth(), canvas.getHeight());
+        this.tileBoard = new BoardModel(100, 100, screenSize);
+        for(int i=0;i<50;i++){
+            tileBoard.tiles[0][i].isWall=true;
+        }
+        for(int i=0;i<50;i++){
+            tileBoard.tiles[i][0].isWall=true;
+        }
+
+        for(int i=0;i<50;i++){
+            tileBoard.tiles[i][70].isWall=true;
+        }
+        for(int i=0;i<50;i++){
+            tileBoard.tiles[15][i].isWall=true;
+        }
+        for(int i=0;i<20;i++){
+            tileBoard.tiles[30][i].isWall=true;
+        }
+        for(int i=30;i<50;i++){
+            tileBoard.tiles[30][i].isWall=true;
+        }
+        for(int i=30;i<50;i++){
+            tileBoard.tiles[i][50].isWall=true;
+        }
+        for(int i=50;i<100;i++){
+            tileBoard.tiles[70][i].isWall=true;
+        }
+        for(int i=70;i<100;i++){
+            tileBoard.tiles[i][50].isWall=true;
+        }
+        for(int i=50;i<100;i++){
+            tileBoard.tiles[i][10].isWall=true;
+        }
+        for(int i=10;i<50;i++){
+            tileBoard.tiles[50][i].isWall=true;
+        }
+
+
+        // for loop for tile walls
+        for (BoardModel.Tile[] ta: tileBoard.tiles) {
+            for(BoardModel.Tile t :ta) {
+
+                if (t.isWall) {
+                    earthTile.setRegionHeight((int)(tileBoard.getTileHeight()));
+                    earthTile.setRegionWidth((int)(tileBoard.getTileWidth()));
+                    BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t)/scale.x,
+                            tileBoard.getTileCenterY(t)/scale.y, earthTile.getRegionWidth()/scale.x,
+                            earthTile.getRegionHeight()/scale.y);
+
+                    po.setBodyType(BodyDef.BodyType.StaticBody);
+                    po.setDensity(BASIC_DENSITY);
+                    po.setFriction(BASIC_FRICTION);
+                    po.setRestitution(BASIC_RESTITUTION);
+                    po.setDrawScale(scale);
+                    po.setTexture(earthTile);
+                    addObject(po);
+                   /** System.out.println("Tile: " + t.x + ", " + t.y + ", Center: " + tileBoard.getTileCenterX(t) / scale.x +
+                            ", " + tileBoard.getTileCenterY(t) / scale.y+ ", Corner: " + t.fx / scale.x +
+                            ", " + t.fy / scale.y );
+                    System.out.println("Object size:"+po.getWidth() +", "+po.getHeight() +". Texture Size: "
+                            + earthTile.getRegionWidth() +", "+ earthTile.getRegionHeight());*/
+                }
+            }
+        }
+
+        // this.ai = new AIController(monster, tileBoard, gorf, scale);
 
         // fog = new FogController(400,150,Lanterns);
     }
@@ -639,7 +703,7 @@ public class GameController extends WorldController implements ContactListener {
         Lantern l = new Lantern(x,y,unlitTexture,litTexture,scale);
         l.setTexture(unlitTexture);
         Lanterns.add(l);
-        addObject(l.object);
+        //addObject(l.object);
     }
 
     private void createFirefly(float x, float y){
@@ -681,14 +745,14 @@ public class GameController extends WorldController implements ContactListener {
         gorf.applyForce();
         wrapInBounds(gorf);
 
-        ai.setInput();
+/**        ai.setInput();
         float forceXMonster = ai.getHorizontal();
         float forceYMonster = ai.getVertical();
         float monsterthrust = monster.getThrust();
         this.monster.setFX(forceXMonster * monsterthrust);
         this.monster.setFY(forceYMonster * monsterthrust);
         monster.applyForce();
-
+*/
 
 
         if (random(250)==7) {

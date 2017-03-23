@@ -2,6 +2,7 @@ package edu.cornell.gdiac.mistic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -13,24 +14,35 @@ public class BoardModel {
      * Each tile on the board has a set of attributes associated with it.
      * Tiles cover the whole world
      */
-    private static class Tile {
+    public static class Tile {
         /** Is this a maze wall block */
-        public boolean isWall = false;
+        public boolean isWall;
         /** Is this a lantern block */
-        public boolean isLantern = false;
+        public boolean isLantern;
         /** Is this tile a fog spawn point */
-        public boolean isFogSpawn = false;
+        public boolean isFogSpawn;
         /** Is this tile a fog spawn point */
-        public boolean isFog = false;
+        public boolean isFog;
         /** Is there a familiar here */
-        public boolean hasFamiliar = false;
+        public boolean hasFamiliar;
         /** Has this tile been visited (Only including for possible AI purposes) */
-        public boolean visited = false;
+        public boolean visited;
         /** Has this tile been set as a goal*/
-        public boolean goal = false;
+        public boolean goal;
         /** X and Y index of this tile from bottom left corner (in number of tiles) */
-        public int x = 0;
-        public int y = 0;
+        public int y;
+        public int x;
+        /**The X and Y coordinates of the bottom left corner on the screen*/
+        public float fy;
+        public float fx;
+
+        public Tile(){
+            this.isWall=false;
+            this.isLantern=false;
+            this.isFogSpawn=false;
+            this.isFog=false;
+            this.hasFamiliar=false;
+        }
     }
 
     // Instance attributes
@@ -39,10 +51,10 @@ public class BoardModel {
     /** The board height (in number of tiles) */
     private int height;
     /** The tile grid (with above dimensions) */
-    private Tile[] tiles;
+    public Tile[][] tiles;
     /** Height and width of a single tile in relation to the world bounds */
-    public float tileHeight;
-    public float tileWidth;
+    private float tileHeight;
+    private float tileWidth;
 
     /**
      * Creates a new board of the given size
@@ -56,11 +68,19 @@ public class BoardModel {
         this.height = height;
         this.tileHeight = (screenDimensions.height/height);
         this.tileWidth = (screenDimensions.width/width);
-        tiles = new Tile[width * height];
-        for (int ii = 0; ii < tiles.length; ii++) {
-            tiles[ii] = new Tile();
+        this.tiles = new Tile[width][height];
+       // System.out.println("Canvas Size: "+ screenDimensions.width + ", "+screenDimensions.height+ ". Tile width: "+tileWidth + ", "+tileHeight);
+        for (int i = 0; i < width; i++) {
+            for(int j=0;j<height;j++){
+                Tile t=new Tile();
+                t.y=j;
+                t.x=i;
+                t.fx=j*tileWidth;
+                t.fy=i*tileHeight;
+                tiles[i][j]=t;
+                //System.out.println("Tile: "+t.x+", "+t.y+". Pixel: "+t.fx + ", "+t.fy);
+            }
         }
-        resetTiles();
     }
 
     /**
@@ -70,13 +90,13 @@ public class BoardModel {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 Tile tile = getTile(x, y);
-                tile.isWall = false;
-                tile.isLantern = false;
-                tile.isFogSpawn = false;
-                tile.hasFamiliar = false;
-                tile.visited = false;
                 tile.x = x;
                 tile.y = y;
+                tile.isWall=false;
+                tile.isLantern=false;
+                tile.isFogSpawn=false;
+                tile.isFog=false;
+                tile.hasFamiliar=false;
             }
         }
     }
@@ -92,7 +112,7 @@ public class BoardModel {
         if (!inBounds(x, y)) {
             return null;
         }
-        return tiles[x * height + y];
+        return tiles[x][y];
     }
 
     /**
@@ -140,9 +160,31 @@ public class BoardModel {
     public float getTileWidth() { return tileWidth; }
 
     /**
+     * Returns x coordinate of the center of this tile object
+     *
+     * @param tile this tile object to find center of
+     * @return     X coordinate of tile center
+     */
+    public float getTileCenterX(Tile tile) {
+
+        return tile.fx+(tileWidth/2);
+    }
+
+    /**
+     * Returns y coordinate of the center of this tile object
+     *
+     * @param tile this tile object to find center of
+     * @return     Y coordinate of tile center
+     */
+    public float getTileCenterY(Tile tile) {
+
+        return tile.fy+(tileHeight/2);
+    }
+
+    /**
      * Returns the board tile index for a screen position.
      *
-     * @param f Screen position coordinate
+     * @param position Screen position coordinate
      *
      * @return the board cell index for a screen position.
      */
@@ -154,7 +196,7 @@ public class BoardModel {
     /**
      * Returns the board tile index for a screen position.
      *
-     * @param f Screen position coordinate
+     * @param position Screen position coordinate
      *
      * @return the board cell index for a screen position.
      */
@@ -281,6 +323,7 @@ public class BoardModel {
         return x >= 0 && y >= 0 && x < width && y < height
                 && !(the_tile.isLantern) && !(the_tile.isWall);
     }
+
 
     /**
      * Clears all marks on the board.
