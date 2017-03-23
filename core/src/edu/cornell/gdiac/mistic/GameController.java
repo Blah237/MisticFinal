@@ -754,7 +754,10 @@ public class GameController extends WorldController implements ContactListener {
     public void draw(float dt) {
         canvas.clear();
 
-        // Draw background unscaled.
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth(),canvas.getHeight());
+        canvas.end();
+
         fog.draw(canvas, Lanterns, gorf, firefly_count);
 
         canvas.begin();
