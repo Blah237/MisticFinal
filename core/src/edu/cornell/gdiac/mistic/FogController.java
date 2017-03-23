@@ -73,6 +73,8 @@ public class FogController {
 		wall = new Texture("mistic/backgroundresize.png");
 		fogOrigin = new Vector2(x,y);
 
+		this.tileBoard = tileBoard;
+
 		WX = tileBoard.getWidth();
 		WY = tileBoard.getHeight();
 		fogBoard = new float[WX][WY];
@@ -245,6 +247,7 @@ public class FogController {
 
 	public void update(ArrayList<Lantern> lanterns, GorfModel gorf, BoardModel tileBoard) {
 		int numLanterns = 0;
+
 		lanternsA = new float[lanterns.size()*2];
 		for (int i=0; i<lanterns.size(); i++) {
 			if (lanterns.get(i).lit) {
@@ -340,6 +343,7 @@ public class FogController {
 			}
 		}
 		fogBoard = newFogBoard;
+
 //		fogReach++;
 //		System.out.println(fogBoard/[21*NX+2]);
 
@@ -375,6 +379,22 @@ public class FogController {
 			newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], 1.1f * (1 - elementBoard[x][y2]));
 			newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], 1.1f * (1 - elementBoard[x1][y]));
 			newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], 1.1f * (1 - elementBoard[x2][y]));
+
+			if (newFogBoard[x][y1] == 1) {
+				tileBoard.setFog(x,y1);
+			}
+
+			if (fogBoard[x][y2] == 1) {
+				tileBoard.setFog(x,y2);
+			}
+
+			if (fogBoard[x1][y] == 1) {
+				tileBoard.setFog(x1,y);
+			}
+
+			if (fogBoard[x2][y] == 1) {
+				tileBoard.setFog(x2,y);
+			}
 		}
 		else if (spreadType == 1){
 			int ii, jj;
@@ -403,6 +423,10 @@ public class FogController {
 						//						System.out.println("fogBoard["+ii+"]["+jj+"] is now "+fogBoard[jj*WX+ii]);
 						//					}
 						//					newFogBoard[jj * WX + ii] = Math.max(newFogBoard[jj * WX + ii], .5f);
+					}
+
+					if (fogBoard[ii][jj] == 1) {
+						tileBoard.setFog(ii,jj);
 					}
 				}
 			}
