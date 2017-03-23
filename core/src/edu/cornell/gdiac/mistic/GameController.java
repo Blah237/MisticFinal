@@ -186,7 +186,7 @@ public class GameController extends WorldController implements ContactListener {
     private static int firefly_count;
     //ticks
     private static int ticks;
-    private static final int FIREFLY_DEATH_TIMER = 5;
+    private static final int FIREFLY_DEATH_TIMcrER = 5;
     private AIController ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
@@ -519,16 +519,7 @@ public class GameController extends WorldController implements ContactListener {
 
         }*/
 
-        /**
-         * Initialize Lantern locations
-         */
-        createLantern(5f,9.5f);
-        createLantern(13,7f);
-        createLantern(16,15);
-        createLantern(26f,14);
-        createLantern(5,5);
-
-
+ 
         /**
          * Spawn some initial fireflies
          */
@@ -559,6 +550,10 @@ public class GameController extends WorldController implements ContactListener {
 
         Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth(), canvas.getHeight());
         this.tileBoard = new BoardModel(100, 100, screenSize);
+        tileBoard.tiles[0][55].isLantern=true;
+        tileBoard.tiles[50][30].isLantern=true;
+        tileBoard.tiles[50][70].isLantern=true;
+        tileBoard.tiles[25][90].isLantern=true;
         for(int i=0;i<50;i++){
             tileBoard.tiles[0][i].isWall=true;
         }
@@ -584,21 +579,29 @@ public class GameController extends WorldController implements ContactListener {
         for(int i=50;i<100;i++){
             tileBoard.tiles[70][i].isWall=true;
         }
-        for(int i=70;i<100;i++){
+        for(int i=70;i<80;i++){
             tileBoard.tiles[i][50].isWall=true;
         }
         for(int i=50;i<100;i++){
             tileBoard.tiles[i][10].isWall=true;
         }
-        for(int i=10;i<50;i++){
+        for(int i=10;i<30;i++){
             tileBoard.tiles[50][i].isWall=true;
         }
-
+        for(int i=70;i<100;i++){
+            tileBoard.tiles[i][30].isWall=true;
+        }
+        for(int i=30;i<85;i++){
+            tileBoard.tiles[i][90].isWall=true;
+        }
 
         // for loop for tile walls
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
-
+                if(t.isLantern){
+                    createLantern(tileBoard.getTileCenterX(t)/scale.x,
+                            tileBoard.getTileCenterY(t)/scale.y);
+                }
                 if (t.isWall) {
                     earthTile.setRegionHeight((int)(tileBoard.getTileHeight()));
                     earthTile.setRegionWidth((int)(tileBoard.getTileWidth()));
@@ -680,8 +683,8 @@ public class GameController extends WorldController implements ContactListener {
         int yi=(int)y;
 
         for(Lantern l : Lanterns){
-            if ((Math.abs((int)l.getX() - xi ) < 3)
-                    && (Math.abs((int)l.getY() - yi ) < 3))return l;
+            if ((Math.abs((int)l.getX() - xi ) < 5)
+                    && (Math.abs((int)l.getY() - yi ) < 5))return l;
         }
         return null;
     }
@@ -703,7 +706,7 @@ public class GameController extends WorldController implements ContactListener {
         Lantern l = new Lantern(x,y,unlitTexture,litTexture,scale);
         l.setTexture(unlitTexture);
         Lanterns.add(l);
-        //addObject(l.object);
+        addObject(l.object);
     }
 
     private void createFirefly(float x, float y){
