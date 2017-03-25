@@ -132,8 +132,8 @@ public class AIController extends InputController {
         // Add initialization code as necessary
         //#region PUT YOUR CODE HERE
         Vector2 gorfPos = new Vector2(gorf.getPosition().x, gorf.getPosition().y);
-        int gorfTileX = board.screenToBoardX(gorfPos);
-        int gorfTileY = board.screenToBoardY(gorfPos);
+        int gorfTileX = board.screenToBoardX(gorfPos.x);
+        int gorfTileY = board.screenToBoardY(gorfPos.y);
         //#endregion
 
         // Next state depends on current state.
@@ -189,12 +189,12 @@ public class AIController extends InputController {
         boolean setGoal = false; // Until we find a goal
 
         // Add initialization code as necessary
-        int theX = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y));
-        int theY = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y));
+        int theX = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y).x);
+        int theY = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y).y);
         //#region PUT YOUR CODE HERE
         Vector2 gorfPos = new Vector2((gorf.getPosition().x *50.0f)/scale.x, (gorf.getPosition().y * 50.0f)/scale.y);
-        int gorfTileX = board.screenToBoardX(gorfPos);
-        int gorfTileY = board.screenToBoardY(gorfPos);
+        int gorfTileX = board.screenToBoardX(gorfPos.x);
+        int gorfTileY = board.screenToBoardY(gorfPos.y);
         //#endregion
 
         switch (state) {
@@ -233,8 +233,8 @@ public class AIController extends InputController {
         // If we have no goals, mark current position as a goal
         // so we do not spend time looking for nothing:
         if (!setGoal) {
-            int sx = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y));
-            int sy = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y));
+            int sx = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y).x);
+            int sy = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y).y);
             board.setGoal(sx, sy);
         }
     }
@@ -269,8 +269,8 @@ public class AIController extends InputController {
         monsterPos.x = (monsterPos.x * 50.0f)/scale.x;
         monsterPos.y = (monsterPos.y * 50.0f)/scale.y;
         Queue q = new LinkedList();
-        int start_x = board.screenToBoardX(monsterPos);
-        int start_y = board.screenToBoardY(monsterPos);
+        int start_x = board.screenToBoardX(monsterPos.x);
+        int start_y = board.screenToBoardY(monsterPos.y);
         board.setVisited(start_x, start_y);
         LinkedList<Pair> vlist;
         vlist = new LinkedList<Pair>();

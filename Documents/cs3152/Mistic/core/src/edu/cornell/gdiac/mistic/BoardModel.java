@@ -184,24 +184,24 @@ public class BoardModel {
     /**
      * Returns the board tile index for a screen position.
      *
-     * @param position Screen position coordinate
+     * @param x Screen position x
      *
      * @return the board cell index for a screen position.
      */
-    public int screenToBoardX(Vector2 position) {
-        int intX = (int)(position.x/tileWidth);
+    public int screenToBoardX(float x) {
+        int intX = (int)(x/tileWidth);
         return intX;
     }
 
     /**
      * Returns the board tile index for a screen position.
      *
-     * @param position Screen position coordinate
+     * @param y Screen position y
      *
      * @return the board cell index for a screen position.
      */
-    public int screenToBoardY(Vector2 position) {
-        int intY = (int)(position.y/tileHeight);
+    public int screenToBoardY(float y) {
+        int intY = (int)(y/tileHeight);
         return intY;
     }
 
@@ -239,6 +239,14 @@ public class BoardModel {
         }
 
         return getTile(x, y).isFog;
+    }
+
+    public boolean isWall(int x, int y) {
+        if (!inBounds(x, y)) {
+            return false;
+        }
+
+        return getTile(x, y).isWall;
     }
 
     /**

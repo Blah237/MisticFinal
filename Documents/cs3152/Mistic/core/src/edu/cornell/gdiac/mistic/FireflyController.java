@@ -64,7 +64,7 @@ public class FireflyController {
         for(Firefly F : fireflies){
             float dx= Math.abs((F.getX()/scale.x)-x);
             float dy= Math.abs((F.getY()/scale.y)-y);
-            if (dx < 1f && dy < 1f){
+            if (dx < 2.5f && dy < 2f){
                 return F;
             }
         }

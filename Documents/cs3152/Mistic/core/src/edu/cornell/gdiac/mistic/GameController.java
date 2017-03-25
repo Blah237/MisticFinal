@@ -164,20 +164,6 @@ public class GameController extends WorldController implements ContactListener {
     /** Threshold for generating sound on collision */
     private static final float SOUND_THRESHOLD = 1.0f;
     private int countdown = 120;
-
-    // Since these appear only once, we do not care about the magic numbers.
-    // In an actual game, this information would go in a data file.
-    // Wall vertices
-    private static final float[] WALL1 = { 0.0f, 18.0f, 16.0f, 18.0f, 16.0f, 17.0f,
-            8.0f, 15.0f,  1.0f, 17.0f,  2.0f,  7.0f,
-            3.0f,  5.0f,  3.0f,  1.0f, 16.0f,  1.0f,
-            16.0f,  0.0f,  0.0f,  0.0f};
-    private static final float[] WALL2 = {32.0f, 18.0f, 32.0f,  0.0f, 16.0f,  0.0f,
-            16.0f,  1.0f, 31.0f,  1.0f, 30.0f, 10.0f,
-            31.0f, 16.0f, 16.0f, 17.0f, 16.0f, 18.0f};
-    private static final float[] WALL3 = { 4.0f, 10.5f,  8.0f, 10.5f,
-            8.0f,  9.5f,  4.0f,  9.5f};
-
     FireflyController fireflyController;
     int Firefly_start=4;
 
@@ -194,10 +180,7 @@ public class GameController extends WorldController implements ContactListener {
 
     // Other game objects
     /** The initial rocket position */
-    private static Vector2 ROCK_POS = new Vector2(14, 8);
-    /** The goal door position */
-    private static Vector2 GOAL_POS = new Vector2( 6, 12);
-
+    private static Vector2 GORF_POS = new Vector2(14, 8);
     // Physics objects for the game
     /** Reference to the goalDoor (for collision detection) */
     private BoxObstacle goalDoor;
@@ -236,8 +219,6 @@ public class GameController extends WorldController implements ContactListener {
         world.setContactListener(this);
         this.fireflyController=new FireflyController(fireflyTexture, scale);
         this.firefly_count = 0;
-        initBoard();
-        initFogBoard();
         this.ticks = 0;
         this.DEAD = false;
 
@@ -258,8 +239,6 @@ public class GameController extends WorldController implements ContactListener {
         addQueue.clear();
         world.dispose();
         Lanterns = new ArrayList<Lantern>();
-        initBoard();
-        initFogBoard();
         this.firefly_count = 2;
         world = new World(gravity,false);
         world.setContactListener(this);
@@ -273,266 +252,14 @@ public class GameController extends WorldController implements ContactListener {
     /**
      * Lays out the game geography.
      */
-    private void makeWall(PolygonObstacle po, String pname) {
-        po.setBodyType(BodyDef.BodyType.StaticBody);
-        po.setDensity(BASIC_DENSITY);
-        po.setFriction(BASIC_FRICTION);
-        po.setRestitution(BASIC_RESTITUTION);
-        po.setDrawScale(scale);
-        po.setTexture(earthTile);
-        po.setName(pname);
-        addObject(po);
-    }
-
-    private void initBoard() {
-        board = new boolean[UNITS_W][UNITS_H];
-    }
-
-    private void initFogBoard() {
-        fogBoard = new boolean[UNITS_W][UNITS_H];
-    }
-
-    private ArrayList<Vector2> getIndices(float idxX, float idxY, int n) {
-        ArrayList<Vector2> indices = new ArrayList<Vector2>();
-        for (int j=-n+1; j<n; j++) {
-            for (int i=-n+1; i<n; i++) {
-                if (j>0) {
-                    if (i<0) {
-                        indices.add(new Vector2(Math.max(0,idxX+i), Math.min(idxY+j,UNITS_H-1)));
-                    } else if (i>0) {
-                        indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.min(idxY+j,UNITS_H-1)));
-                    } else {
-                        indices.add(new Vector2(Math.min(Math.max(0, idxX), UNITS_W - 1), Math.min(idxY + j, UNITS_H - 1)));
-                    }
-                } else if (j<0) {
-                    if (i<0) {
-                        indices.add(new Vector2(Math.max(0,idxX+i), Math.max(0,idxY+j)));
-                    } else if (i>0) {
-                        indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.max(0,idxY+j)));
-                    } else {
-                        indices.add(new Vector2(Math.min(Math.max(0, idxX), UNITS_W - 1), Math.max(0,idxY+j)));
-                    }
-                }
-                else {
-                    if (i<0) {
-                        indices.add(new Vector2(Math.max(0,idxX+i), Math.min(Math.max(0,idxY),UNITS_H-1)));
-                    } else if (i>0) {
-                        indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.min(Math.max(0,idxY),UNITS_H-1)));
-                    } else {
-                        indices.add(new Vector2(Math.min(Math.max(0, idxX), UNITS_W - 1), Math.min(Math.max(0,idxY),UNITS_H-1)));
-                    }
-                }
-            }
-//				indices.add(new Vector2(Math.max(0,idxX-i), Math.min(idxY+i,UNITS_H-1)));
-//				indices.add(new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.min(idxY+i,UNITS_H-1)));
-//				indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.min(idxY+i,UNITS_H-1)));
-//				indices.add(new Vector2(Math.max(0,idxX-i), Math.min(Math.max(0,idxY),UNITS_H-1)));
-//				indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.min(Math.max(0,idxY),UNITS_H-1)));
-//				indices.add(new Vector2(Math.max(0,idxX-i), Math.max(0,idxY-i)));
-//				indices.add(new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.max(0,idxY-i)));
-//				indices.add(new Vector2(Math.min(idxX+i,UNITS_W-1), Math.max(0,idxY-i)));
-        }
-//		Vector2[] indices = {
-//				new Vector2(Math.max(0,idxX-1), Math.min(idxY+1,UNITS_H-1)),
-//				new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.min(idxY+1,UNITS_H-1)),
-//				new Vector2(Math.min(idxX+1,UNITS_W-1), Math.min(idxY+1,UNITS_H-1)),
-//				new Vector2(Math.max(0,idxX-1), Math.min(Math.max(0,idxY),UNITS_H-1)),
-//				new Vector2(Math.min(idxX+1,UNITS_W-1), Math.min(Math.max(0,idxY),UNITS_H-1)),
-//				new Vector2(Math.max(0,idxX-1), Math.max(0,idxY-1)),
-//				new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.max(0,idxY-1)),
-//				new Vector2(Math.min(idxX+1,UNITS_W-1), Math.max(0,idxY-1)),
-//
-//				new Vector2(Math.max(0,idxX-2), Math.min(idxY+2,UNITS_H-1)),
-//				new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.min(idxY+2,UNITS_H-1)),
-//				new Vector2(Math.min(idxX+2,UNITS_W-1), Math.min(idxY+2,UNITS_H-1)),
-//				new Vector2(Math.max(0,idxX-2), Math.min(Math.max(0,idxY),UNITS_H-1)),
-//				new Vector2(Math.min(idxX+2,UNITS_W-1), Math.min(Math.max(0,idxY),UNITS_H-1)),
-//				new Vector2(Math.max(0,idxX-2), Math.max(0,idxY-2)),
-//				new Vector2(Math.min(Math.max(0,idxX),UNITS_W-1), Math.max(0,idxY-2)),
-//				new Vector2(Math.min(idxX+2,UNITS_W-1), Math.max(0,idxY-2))
-//		};
-
-        return indices;
-    }
-
     private void populateLevel() {
-        // Add level goal
-        float dwidth  = goalTile.getRegionWidth()/scale.x;
-        float dheight = goalTile.getRegionHeight()/scale.y;
-        //addObject(goalDoor);
-
-        // {top left corner (LR),top left corner (UD),top right corner(LR),top right corner(UD),
-        // bottom right corner(LR),bottom right corner(UD),bottom left corner(LR),bottom left corner(UD)}
-        // height current gorf fits through walls: 3
-        /**
-        ArrayList<PolygonObstacle> Polylist = new ArrayList<PolygonObstacle>();
-        final float[] wallH = {1.0f, 3.0f, 4.0f, 3.0f, 4.0f, 2.8f, 1.0f, 2.8f};
-        final float[] wallV = {1.0f, 4.0f, 1.2f, 4.0f, 1.2f, 1.5f, 1.0f, 1.5f};
-        final float[] wallDp = {3.7f, 3.5f, 4.0f, 3.5f, 1.5f, 1.5f, 1.2f, 1.5f};
-        final float[] wallDn = {3.7f, 1.5f, 4.0f, 1.5f, 1.5f, 3.5f, 1.2f, 3.5f};
-
-        // horizontal walls
-        PolygonObstacle wall1 = new PolygonObstacle(wallH, -1, 6.5f);
-        Polylist.add(wall1);
-        PolygonObstacle wall2 = new PolygonObstacle(wallH, -1, 2.5f);
-        Polylist.add(wall2);
-        PolygonObstacle wall11 = new PolygonObstacle(wallH, -1, -0.5f);
-        Polylist.add(wall11);
-        PolygonObstacle wall12 = new PolygonObstacle(wallH, 1.2f, -0.5f);
-        Polylist.add(wall12);
-        PolygonObstacle wall13 = new PolygonObstacle(wallH, 1.2f, 2.5f);
-        Polylist.add(wall13);
-        PolygonObstacle wall3 = new PolygonObstacle(wallH, 28, 6.5f);
-        Polylist.add(wall3);
-        PolygonObstacle wall4 = new PolygonObstacle(wallH, 28, 2.5f);
-        Polylist.add(wall4);
-        PolygonObstacle wall22 = new PolygonObstacle(wallH, 14, 12.5f);
-        Polylist.add(wall22);
-        PolygonObstacle wall23 = new PolygonObstacle(wallH, 17f, 12.5f);
-        Polylist.add(wall23);
-        PolygonObstacle wall34 = new PolygonObstacle(wallH, 14.3f, -1.5f);
-        Polylist.add(wall34);
-        PolygonObstacle wall35 = new PolygonObstacle(wallH, 4f, 2.5f);
-        Polylist.add(wall35);
-
-        // vertical walls
-        PolygonObstacle wall5 = new PolygonObstacle(wallV, 28, 1.5f);
-        Polylist.add(wall5);
-        PolygonObstacle wall6 = new PolygonObstacle(wallV, 25, 1.5f);
-        Polylist.add(wall6);
-        PolygonObstacle wall7 = new PolygonObstacle(wallV, 22.4f, -3);
-        Polylist.add(wall7);
-        PolygonObstacle wall8 = new PolygonObstacle(wallV, 7, 14);
-        Polylist.add(wall8);
-        PolygonObstacle wall9 = new PolygonObstacle(wallV, 4, -1.5f);
-        Polylist.add(wall9);
-        PolygonObstacle wall10 = new PolygonObstacle(wallV, 7, -1.5f);
-        Polylist.add(wall10);
-        PolygonObstacle wall20 = new PolygonObstacle(wallV, 14, 14f);
-        Polylist.add(wall20);
-        PolygonObstacle wall25 = new PolygonObstacle(wallV, 28, 8f);
-        Polylist.add(wall25);
-        PolygonObstacle wall26 = new PolygonObstacle(wallV, 28, 10.5f);
-        Polylist.add(wall26);
-        PolygonObstacle wall28 = new PolygonObstacle(wallV, 11.7f, 7.8f);
-        Polylist.add(wall28);
-        PolygonObstacle wall29 = new PolygonObstacle(wallV, 11.7f, 5.8f);
-        Polylist.add(wall29);
-        PolygonObstacle wall30 = new PolygonObstacle(wallV, 14.8f, 5.5f);
-        Polylist.add(wall30);
-        PolygonObstacle wall33 = new PolygonObstacle(wallV, 14.3f, -2.5f);
-        Polylist.add(wall33);
-        PolygonObstacle wall36 = new PolygonObstacle(wallV, 7f, 1f);
-        Polylist.add(wall36);
-        PolygonObstacle wall37 = new PolygonObstacle(wallV, 7f, 1.5f);
-        Polylist.add(wall37);
-//
-//		// diagonal positive walls
-//		PolygonObstacle wall14 = new PolygonObstacle(wallDp, 1.5f, 8f);
-//		Polylist.add(wall14);
-//		PolygonObstacle wall17 = new PolygonObstacle(wallDp, 22.2f, -0.5f);
-//		Polylist.add(wall17);
-//		PolygonObstacle wall21 = new PolygonObstacle(wallDp, 14.5f, 8f);
-//		Polylist.add(wall21);
-//		PolygonObstacle wall24 = new PolygonObstacle(wallDp, 22.2f, 12f);
-//		Polylist.add(wall24);
-//
-//		// diagonal negative walls
-//		PolygonObstacle wall15 = new PolygonObstacle(wallDn, 4f, 8f);
-//		Polylist.add(wall15);
-//		PolygonObstacle wall16 = new PolygonObstacle(wallDn, 6.8f, 12f);
-//		Polylist.add(wall16);
-//		PolygonObstacle wall18 = new PolygonObstacle(wallDn, 17f, 8f);
-//		Polylist.add(wall18);
-//		PolygonObstacle wall19 = new PolygonObstacle(wallDn, 19.7f, 12f);
-//		Polylist.add(wall19);
-//		PolygonObstacle wall27 = new PolygonObstacle(wallDn, 9.03f, 10.3f);
-//		Polylist.add(wall27);
-//		PolygonObstacle wall31 = new PolygonObstacle(wallDn, 11.5f, 0f);
-//		Polylist.add(wall31);
-//		PolygonObstacle wall32 = new PolygonObstacle(wallDn, 14.7f, 3.5f);
-//		Polylist.add(wall32);
-
-        for ( PolygonObstacle i : Polylist) {
-            makeWall(i,"wall"+i.toString());
-
-
-
-
-            float[] points = i.getPoints();
-            float x0 = points[0] + i.getX();
-            float y0 = points[1] + i.getY();
-            float x1 = points[2] + i.getX();
-            float y1 = points[3] + i.getY();
-            float x2 = points[4] + i.getX();
-            float y2 = points[5] + i.getY();
-            float dy = y1-y2;
-            float dx = x2-x1;
-            int xUnit = -1;
-            int yUnit = -1;
-            if (x1-x0-.2f < .01) {
-                for (float y = y2; y < y1; y += UH) {
-                    xUnit = (int) Math.min(Math.max(0, Math.floor(x0 / BW * UNITS_W)), UNITS_W - 1);
-                    yUnit = (int) Math.min(Math.max(0, Math.floor(y / BH * UNITS_H)), UNITS_H - 1);
-                    board[xUnit][yUnit] = true;
-
-                    ArrayList<Vector2> indices = getIndices(xUnit, yUnit,2);
-
-                    for (int j=0; j<indices.size(); j++) {
-                        board[(int)indices.get(j).x][(int)indices.get(j).y] = true;
-                    }
-                }
-                for (float x=x0; x<x1; x+=UW) {
-                    xUnit = (int) Math.min(Math.max(0, Math.floor(x / BW * UNITS_W)), UNITS_W-1);
-                    yUnit = (int) Math.min(Math.max(0, Math.floor(y2 / BH * UNITS_H)), UNITS_H-1);
-                    board[xUnit][yUnit] = true;
-
-                    ArrayList<Vector2> indices = getIndices(xUnit, yUnit, 2);
-
-                    for (int j=0; j<indices.size(); j++) {
-                        board[(int)indices.get(j).x][(int)indices.get(j).y] = true;
-                    }
-                }
-
-            } else {
-                float m = -dy / dx;
-                float y;
-                if (x1 > x2) {
-                    float temp = x1;
-                    x1 = x2;
-                    x2 = temp;
-                }
-                for (float x = x1; x < x2; x += UW) {
-                    y = y2 + m * (x - x1);
-
-                    xUnit = (int) Math.min(Math.max(0, Math.floor(x / BW * UNITS_W)), UNITS_W-1);
-                    yUnit = (int) Math.min(Math.max(0, Math.floor(y / BH * UNITS_H)), UNITS_H-1);
-                    board[xUnit][yUnit] = true;
-
-                    ArrayList<Vector2> indices = getIndices(xUnit, yUnit, 2);
-
-                    for (int j=0; j<indices.size(); j++) {
-                        board[(int)indices.get(j).x][(int)indices.get(j).y] = true;
-                    }
-                }
-            }
-
-        }*/
-
- 
-        /**
-         * Spawn some initial fireflies
-         */
-        for (int ii = 0; ii < Firefly_start; ii ++) {
-            createFirefly(canvas.getHeight(),canvas.getWidth());
-        }
 
         /**
          * Create Gorf
          */
-        dwidth  = gorfTexture.getRegionWidth()/scale.x;
-        dheight = gorfTexture.getRegionHeight()/scale.y;
-        gorf = new GorfModel(ROCK_POS.x, ROCK_POS.y, dwidth, dheight);
+        float dwidth  = gorfTexture.getRegionWidth()/scale.x;
+        float dheight = gorfTexture.getRegionHeight()/scale.y;
+        gorf = new GorfModel(GORF_POS.x, GORF_POS.y, dwidth, dheight);
         gorf.setDrawScale(scale);
         gorf.setTexture(gorfTexture);
         addObject(gorf);
@@ -627,26 +354,14 @@ public class GameController extends WorldController implements ContactListener {
         }
 
          this.ai = new AIController(monster, tileBoard, gorf, scale);
+        /**
+         * Spawn some initial fireflies
+         */
+        for (int ii = 0; ii < Firefly_start; ii ++) {
+            createFirefly(canvas.getHeight(),canvas.getWidth());
+        }
 
-        // fog = new FogController(400,150,Lanterns);
     }
-//
-//	private void createFirefly(float x,float y){
-//		TextureRegion texture = fireflyTexture;
-//		float dwidth  = texture.getRegionWidth()/scale.x;
-//		float dheight = texture.getRegionHeight()/scale.y;
-//		BoxObstacle box = new BoxObstacle(x, y, dwidth, dheight);
-//		box.setDensity(CRATE_DENSITY);
-//		box.setFriction(CRATE_FRICTION);
-//		box.setRestitution(BASIC_RESTITUTION);
-//		box.setName("firefly"+x+y);
-//		box.setDrawScale(scale);
-//		box.setTexture(texture);
-//		addObject(box);
-//		box.getBody().setUserData("firefly");
-//		fireflyObjects.add(box.getBody());
-//		fireflyObjectsO.add(box);
-//	}
 
     private void createMonster(float x, float y) {
         TextureRegion texture = monsterTexture;
@@ -711,7 +426,14 @@ public class GameController extends WorldController implements ContactListener {
     }
 
     private void createFirefly(float x, float y){
-        fireflyController.spawn(x,y);
+        System.out.println(x + ", " + y);
+        int tx = tileBoard.screenToBoardX(x);
+        int ty = tileBoard.screenToBoardY(y);
+        System.out.println(tx + ", " + ty);
+        if(!tileBoard.isFog(tx,ty) && !tileBoard.isWall(tx,ty)){
+            fireflyController.spawn(x,y);
+        }
+
     }
 
 
@@ -761,22 +483,8 @@ public class GameController extends WorldController implements ContactListener {
 
         if (random(250)==7) {
             createFirefly(canvas.getHeight(),canvas.getWidth());
-
         }
 
-        int xUnit = (int) Math.min(Math.max(0, Math.floor(gorf.getX() / BW * UNITS_W)), UNITS_W-1);
-        int yUnit = (int) Math.min(Math.max(0, Math.floor(gorf.getY() / BH * UNITS_H)), UNITS_H-1);
-
-        if (fogBoard[xUnit][yUnit]) {
-            if (fireflyDelay == 0) {
-                if (firefly_count > 0) {
-                    firefly_count--;
-                }
-                fireflyDelay = FIREFLY_DELAY;
-            } else {
-                fireflyDelay--;
-            }
-        } else { fireflyDelay = FIREFLY_DELAY; }
 
         SoundController.getInstance().update();
 
