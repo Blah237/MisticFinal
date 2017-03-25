@@ -281,20 +281,29 @@ public class GameController extends WorldController implements ContactListener {
         tileBoard.tiles[50][30].isLantern=true;
         tileBoard.tiles[50][70].isLantern=true;
         tileBoard.tiles[25][90].isLantern=true;
-        for(int i=0;i<50;i++){
+        for(int i=30;i<50;i++){
             tileBoard.tiles[0][i].isWall=true;
         }
-        for(int i=0;i<50;i++){
+        for(int i=0;i<10;i++){
+            tileBoard.tiles[0][i].isWall=true;
+        }
+        for(int i=0;i<10;i++){
+            tileBoard.tiles[99][i].isWall=true;
+        }
+        for(int i=25;i<40;i++){
             tileBoard.tiles[i][0].isWall=true;
         }
 
-        for(int i=0;i<50;i++){
-            tileBoard.tiles[i][70].isWall=true;
+        for(int i=0;i<15;i++){
+            tileBoard.tiles[i][99].isWall=true;
         }
-        for(int i=0;i<50;i++){
+        for(int i=25;i<40;i++){
+            tileBoard.tiles[i][99].isWall=true;
+        }
+        for(int i=0;i<55;i++){
             tileBoard.tiles[15][i].isWall=true;
         }
-        for(int i=0;i<20;i++){
+        for(int i=0;i<10;i++){
             tileBoard.tiles[30][i].isWall=true;
         }
         for(int i=30;i<50;i++){
@@ -312,6 +321,9 @@ public class GameController extends WorldController implements ContactListener {
         for(int i=50;i<100;i++){
             tileBoard.tiles[i][10].isWall=true;
         }
+        for(int i=30;i<55;i++){
+            tileBoard.tiles[99][i].isWall=true;
+        }
         for(int i=10;i<30;i++){
             tileBoard.tiles[50][i].isWall=true;
         }
@@ -319,7 +331,7 @@ public class GameController extends WorldController implements ContactListener {
             tileBoard.tiles[i][30].isWall=true;
         }
         for(int i=30;i<85;i++){
-            tileBoard.tiles[i][90].isWall=true;
+            tileBoard.tiles[i][75].isWall=true;
         }
 
 

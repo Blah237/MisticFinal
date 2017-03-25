@@ -75,8 +75,8 @@ public class BoardModel {
                 Tile t=new Tile();
                 t.y=j;
                 t.x=i;
-                t.fx=j*tileWidth;
-                t.fy=i*tileHeight;
+                t.fx=i*tileWidth;
+                t.fy=j*tileHeight;
                 tiles[i][j]=t;
                 //System.out.println("Tile: "+t.x+", "+t.y+". Pixel: "+t.fx + ", "+t.fy);
             }
