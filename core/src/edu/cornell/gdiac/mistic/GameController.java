@@ -10,7 +10,6 @@
  */
 package edu.cornell.gdiac.mistic;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.assets.*;
 import com.badlogic.gdx.graphics.*;
@@ -187,7 +186,7 @@ public class GameController extends WorldController implements ContactListener {
     private static int firefly_count;
     //ticks
     private static int ticks;
-    private static final int FIREFLY_DEATH_TIMER = 5;
+    private static final int FIREFLY_DEATH_TIMcrER = 5;
     private AIController ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
@@ -209,7 +208,7 @@ public class GameController extends WorldController implements ContactListener {
     /** Arraylist of Lantern objects */
     public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
 
-    private FogController fog;
+     private FogController fog;
     private boolean[][] board;
     private boolean[][] fogBoard;
     private float BW = DEFAULT_WIDTH;
@@ -241,6 +240,7 @@ public class GameController extends WorldController implements ContactListener {
         initFogBoard();
         this.ticks = 0;
         this.DEAD = false;
+
     }
 
     /**
@@ -550,18 +550,17 @@ public class GameController extends WorldController implements ContactListener {
 
         Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth(), canvas.getHeight());
         this.tileBoard = new BoardModel(100, 100, screenSize);
-
         tileBoard.tiles[0][55].isLantern=true;
         tileBoard.tiles[50][30].isLantern=true;
         tileBoard.tiles[50][70].isLantern=true;
         tileBoard.tiles[25][90].isLantern=true;
-
         for(int i=0;i<50;i++){
             tileBoard.tiles[0][i].isWall=true;
         }
         for(int i=0;i<50;i++){
             tileBoard.tiles[i][0].isWall=true;
         }
+
         for(int i=0;i<50;i++){
             tileBoard.tiles[i][70].isWall=true;
         }
@@ -628,65 +627,7 @@ public class GameController extends WorldController implements ContactListener {
 
          this.ai = new AIController(monster, tileBoard, gorf, scale);
 
-        for(int i=0;i<50;i++){
-            tileBoard.tiles[i][70].isWall=true;
-        }
-        for(int i=0;i<50;i++){
-            tileBoard.tiles[15][i].isWall=true;
-        }
-        for(int i=0;i<20;i++){
-            tileBoard.tiles[30][i].isWall=true;
-        }
-        for(int i=30;i<50;i++){
-            tileBoard.tiles[30][i].isWall=true;
-        }
-        for(int i=30;i<50;i++){
-            tileBoard.tiles[i][50].isWall=true;
-        }
-        for(int i=50;i<100;i++){
-            tileBoard.tiles[70][i].isWall=true;
-        }
-        for(int i=70;i<100;i++){
-            tileBoard.tiles[i][50].isWall=true;
-        }
-        for(int i=50;i<100;i++){
-            tileBoard.tiles[i][10].isWall=true;
-        }
-        for(int i=10;i<50;i++){
-            tileBoard.tiles[50][i].isWall=true;
-        }
-
-
-        // for loop for tile walls
-        for (BoardModel.Tile[] ta: tileBoard.tiles) {
-            for(BoardModel.Tile t :ta) {
-
-                if (t.isWall) {
-                    earthTile.setRegionHeight((int)(tileBoard.getTileHeight()));
-                    earthTile.setRegionWidth((int)(tileBoard.getTileWidth()));
-                    BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t)/scale.x,
-                            tileBoard.getTileCenterY(t)/scale.y, earthTile.getRegionWidth()/scale.x,
-                            earthTile.getRegionHeight()/scale.y);
-
-                    po.setBodyType(BodyDef.BodyType.StaticBody);
-                    po.setDensity(BASIC_DENSITY);
-                    po.setFriction(BASIC_FRICTION);
-                    po.setRestitution(BASIC_RESTITUTION);
-                    po.setDrawScale(scale);
-                    po.setTexture(earthTile);
-                    addObject(po);
-                   /** System.out.println("Tile: " + t.x + ", " + t.y + ", Center: " + tileBoard.getTileCenterX(t) / scale.x +
-                            ", " + tileBoard.getTileCenterY(t) / scale.y+ ", Corner: " + t.fx / scale.x +
-                            ", " + t.fy / scale.y );
-                    System.out.println("Object size:"+po.getWidth() +", "+po.getHeight() +". Texture Size: "
-                            + earthTile.getRegionWidth() +", "+ earthTile.getRegionHeight());*/
-                }
-            }
-        }
-
-        // this.ai = new AIController(monster, tileBoard, gorf, scale);
-
-         fog = new FogController(9,12,Lanterns, tileBoard);
+         fog = new FogController(400,150,Lanterns, tileBoard);
     }
 //
 //	private void createFirefly(float x,float y){
@@ -765,7 +706,7 @@ public class GameController extends WorldController implements ContactListener {
         Lantern l = new Lantern(x,y,unlitTexture,litTexture,scale);
         l.setTexture(unlitTexture);
         Lanterns.add(l);
-        //addObject(l.object);
+        addObject(l.object);
     }
 
     private void createFirefly(float x, float y){
@@ -807,14 +748,14 @@ public class GameController extends WorldController implements ContactListener {
         gorf.applyForce();
         wrapInBounds(gorf);
 
-/**        ai.setInput();
+        ai.setInput();
         float forceXMonster = ai.getHorizontal();
         float forceYMonster = ai.getVertical();
         float monsterthrust = monster.getThrust();
         this.monster.setFX(forceXMonster * monsterthrust);
         this.monster.setFY(forceYMonster * monsterthrust);
         monster.applyForce();
-*/
+
 
 
         if (random(250)==7) {
@@ -887,12 +828,11 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth(),canvas.getHeight());
         canvas.end();
 
-        fog.draw(canvas, firefly_count);
-
+         fog.draw(canvas, firefly_count);
         canvas.begin();
-        canvas.draw(fireflyTrack,0,0);
+        canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
         displayFont.setColor(Color.WHITE);
-        canvas.drawText(Integer.toString(firefly_count),displayFont,50,50);
+        canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);
         canvas.end();
 
         // Draw background on all sides and diagonals for wrap illusion
@@ -944,7 +884,7 @@ public class GameController extends WorldController implements ContactListener {
                 countdown --;
             } else if (countdown==0) {
                 DEAD = false;
-//                this.setComplete(true);
+                this.setComplete(true);
             }
         }
 
@@ -980,20 +920,20 @@ public class GameController extends WorldController implements ContactListener {
         }
         if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
             this.DEAD = true;
-        }
+        }}
 
 
 
-        if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
-            if (firefly_count > 0) {
-                firefly_count = firefly_count - 1;
-            }
-        } else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == gorf.getBody() && body1.getUserData() == "fog") {
-            if (firefly_count > 0) {
-                firefly_count = firefly_count - 1;
-            }
-        }
-    }
+        //if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
+           // if (firefly_count > 0) {
+             //   firefly_count = firefly_count - 1;
+           // }
+        //} else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == gorf.getBody() && body1.getUserData() == "fog") {
+           // if (firefly_count > 0) {
+            //    firefly_count = firefly_count - 1;
+           // }
+       // }
+   // }
 
     /**
      * Callback method for the start of a collision
@@ -1036,9 +976,5 @@ public class GameController extends WorldController implements ContactListener {
         cache.sub(body2.getLinearVelocityFromWorldPoint(wp));
         speed = cache.dot(worldManifold.getNormal());
 
-    }
-
-    public BoardModel getTileBoard() {
-        return tileBoard;
     }
 }

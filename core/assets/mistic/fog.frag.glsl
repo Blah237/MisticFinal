@@ -6,7 +6,7 @@ uniform sampler2D u_texture;
 //uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
 uniform float[NX*NY] fogBoard;
-uniform vec2[10] lanterns;
+//uniform vec2[10] lanterns;
 uniform vec2 fogReachVec;
 uniform float fogReach;
 uniform int numLanterns;
@@ -49,41 +49,41 @@ void main() {
 
 
 //    int i = 1;
-    fogThickness *= fogBoard[cellY*NX + cellX];
+//    fogThickness *= fogBoard[cellY*NX + cellX];
 //    float fogThickness = fogBoard[cellY*NX + cellX]*thickness;
 
-//    for (int i=0; i<NX; i++) {
-//        if (i == cellX) {
-//            for (int j=0; j<NY; j++) {
-//                if (j == cellY) {
-//                    fogThickness *= fogBoard[j];
-//                    break;
-//                }
-//            }
-//        }
-//    }
-
-    for (int i=0; i<10; i++) {
-        if (i>=numLanterns) {
-            break;
+    for (int i=0; i<NX; i++) {
+        if (i == cellX) {
+            for (int j=0; j<NY; j++) {
+                if (j == cellY) {
+                    fogThickness *= fogBoard[j*NX + i];
+                    break;
+                }
+            }
         }
-
-        vec2 lantern = lanterns[i];
-        float dx2 = min(abs(coord.x-lantern.x), abs(coord.x + (1-lantern.x)));
-        dx2 = min(dx2, abs(lantern.x + (1-coord.x)));
-        float dy2 = min(abs(coord.y-lantern.y), abs(coord.y + (1-lantern.y)));
-        dy2 = min(dy2, abs(lantern.y + (1-coord.y)));
-
-        float dist2 = length(vec2(dx2,dy2));
-        float fogThickness2 = smoothstep(.1, .2, dist2);
-        fogThickness *= fogThickness2;
     }
+
+//    for (int i=0; i<10; i++) {
+//        if (i>=numLanterns) {
+//            break;
+//        }
+//
+//        vec2 lantern = lanterns[i];
+//        float dx2 = min(abs(coord.x-lantern.x), abs(coord.x + (1-lantern.x)));
+//        dx2 = min(dx2, abs(lantern.x + (1-coord.x)));
+//        float dy2 = min(abs(coord.y-lantern.y), abs(coord.y + (1-lantern.y)));
+//        dy2 = min(dy2, abs(lantern.y + (1-coord.y)));
+//
+//        float dist2 = length(vec2(dx2,dy2));
+//        float fogThickness2 = smoothstep(.1, .2, dist2);
+//        fogThickness *= fogThickness2;
+//    }
 
     float dx3 = abs(coord.x-.5);
     float dy3 = abs(coord.y-.5);
 
     float dist3 = length(vec2(dx3, dy3));
-    fogThickness *= smoothstep(min(numFireflies*.04, .3)-.15, min(numFireflies*.04, .3), dist3);
+    fogThickness *= smoothstep(min(numFireflies*.05, .3)-.15, min(numFireflies*.05, .3), dist3);
 
     fog *= min(1,fogThickness);
 //    gl_FragColor = vec4(1,0,0,1);

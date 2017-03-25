@@ -82,8 +82,8 @@ public class FogController {
 
 		elementBoard = new float[WX][WY];
 
-		int ox = (int)(fogOrigin.x / BW * WX);
-		int oy = (int)(fogOrigin.y / BH * WY);
+		int ox = (int)(fogOrigin.x / Gdx.graphics.getWidth() * WX);
+		int oy = (int)(fogOrigin.y / Gdx.graphics.getHeight() * WY);
 
 		fogBoard[ox][oy] = 1.1f;
 
@@ -198,7 +198,9 @@ public class FogController {
 //		System.out.println(lanternsA[0]);
 //		System.out.println(lanternsA[1]);
 		shader.begin();
-		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
+		for (int i=0; i<NX*NY; i++) {
+			shader.setUniformf("fogBoard["+i+"]", fogBoardCam[i]);
+		}
 		shader.setUniformf("fogReach", fogReach);
 //        shader.setUniform2fv("lanterns", lanternsA, 0, numLanterns*2);
 //		shader.setUniformi("numLanterns", numLanterns);
