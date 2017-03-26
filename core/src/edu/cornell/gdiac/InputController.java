@@ -306,18 +306,18 @@ public class InputController {
 		// Directional controls
 		horizontal = (secondary ? horizontal : 0.0f);
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			horizontal += 1.0f;
+			horizontal += 2.0f;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			horizontal -= 1.0f;
+			horizontal -= 2.0f;
 		}
 		
 		vertical = (secondary ? vertical : 0.0f);
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			vertical += 1.0f;
+			vertical += 2.0f;
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			vertical -= 1.0f;
+			vertical -= 2.0f;
 		}
 		
 		// Mouse results
