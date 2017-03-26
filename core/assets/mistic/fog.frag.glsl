@@ -5,7 +5,7 @@ uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
 //uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
-uniform float[NX*NY] fogBoard;
+uniform float fogBoard[NX*NY];
 //uniform vec2[10] lanterns;
 uniform vec2 fogReachVec;
 uniform float fogReach;
