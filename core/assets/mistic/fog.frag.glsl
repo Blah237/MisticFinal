@@ -23,10 +23,10 @@ void main() {
 //    origin *= (dim.x/dim.y);
 //    float fogReach = pow(coord.x, 2) / pow(fogReach.x/NX, 2) + pow(coord.y, 2) / pow(fogReach.y/NY, 2);
 //    float dist = length((coord-origin)*(dim.x/dim.y));
-    float dx = min(abs(coord.x-origin.x), abs(coord.x + (1-origin.x)));       // FUTURE NOTE: upper bound (currently 1) should be the world map width normalized in terms of screen [0.1], i.e if map was 2x width of screen, then upper bound = 2
-    dx = min(dx, abs(origin.x + (1-coord.x)));
-    float dy = min(abs(coord.y-origin.y), abs(coord.y + (1-origin.y)));
-    dy = min(dy, origin.y + abs((1-coord.y)));
+    float dx = min(abs(coord.x-origin.x), abs(coord.x + (1.0-origin.x)));       // FUTURE NOTE: upper bound (currently 1) should be the world map width normalized in terms of screen [0.1], i.e if map was 2x width of screen, then upper bound = 2
+    dx = min(dx, abs(origin.x + (1.0-coord.x)));
+    float dy = min(abs(coord.y-origin.y), abs(coord.y + (1.0-origin.y)));
+    dy = min(dy, origin.y + abs((1.0-coord.y)));
 //    float theta = atan(dy/dx);
 //    float fogReach = (fogReachVec.x*fogReachVec.y) / sqrt(pow(fogReachVec.x*sin(theta), 2) + pow(fogReachVec.y*cos(theta), 2));
     float dist = length(vec2(dx,dy));     // FUTURE NOTE: issue with this -- when wrap around gets closer to the origin, reverts back to original dist even if it was stopped by an obstacle in the middle -- causes the flip in fog curvature
@@ -37,7 +37,7 @@ void main() {
 //    float fogReach = 1;
 //    float fogVal = fogBoard[cell];
 //    float fogReach = reachBoard[cellY*NX + cellX]/NX;
-    float fogThickness = 1-smoothstep(fogReach/NX-.5, fogReach/NX, dist);
+    float fogThickness = 1.0-smoothstep(fogReach/NX-.5, fogReach/NX, dist);
 //    float fogThickness = max(0,1-dist/fogReach);
 //
     vec4 texColor = texture2D(u_texture, vTexCoord);
@@ -45,7 +45,7 @@ void main() {
 //    float a = -gl_FragCoord.y;
 //    float b = 480/dim.y;
 //    float c = a/b;
-    vec3 fog = vec3(.5,0,.65);
+    vec3 fog = vec3(.5,0.0,.65);
 
 
 //    int i = 1;
@@ -85,10 +85,10 @@ void main() {
     float dist3 = length(vec2(dx3, dy3));
     fogThickness *= smoothstep(min(numFireflies*.05, .3)-.15, min(numFireflies*.05, .3), dist3);
 
-    fog *= min(1,fogThickness);
+    fog *= min(1.0,fogThickness);
 //    gl_FragColor = vec4(1,0,0,1);
     gl_FragColor = texColor;
-    gl_FragColor.rgb *= max(0,1-fogThickness);        // FUTURE NOTE: for firefly light radius, first multiply firefly mask by fogThickness, where 0 (firefly lit) fades out to 1 (full strength fog), then multiply resultant mask in current fashion
+    gl_FragColor.rgb *= max(0.0,1.0-fogThickness);        // FUTURE NOTE: for firefly light radius, first multiply firefly mask by fogThickness, where 0 (firefly lit) fades out to 1 (full strength fog), then multiply resultant mask in current fashion
 //    gl_FragColor.rgba += vec4(fog,max(1,1-fogThickness));
     gl_FragColor.rgb += fog;                       //              fogThickness also needs to be multiplied by the fogBoard(worldCellPos): 0 fog in places with no fog and full fog effect in fogged spaces, i.e. fog is calculated from fog radius
 //    gl_FragColor.a *= max(0,1-fogThickness);

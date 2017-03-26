@@ -139,7 +139,9 @@ public class FogController {
 		shader.pedantic = false;
 
 		shader.begin();
-		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
+		for (int i=0; i<NX*NY; i++) {
+			shader.setUniformf("fogBoard["+i+"]", fogBoardCam[i]);
+		}
 //		shader.setUniform1fv("reachBoard", reachBoard, 0, NX*NY);
 		shader.setUniformf("dim", Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 //		shader.setUniformf("fogReachVec", fogReachX, fogReachY);
