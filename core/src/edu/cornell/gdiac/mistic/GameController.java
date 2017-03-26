@@ -195,12 +195,8 @@ public class GameController extends WorldController implements ContactListener {
     // Other game objects
     /** The initial rocket position */
     private static Vector2 ROCK_POS = new Vector2(14, 8);
-    /** The goal door position */
-    private static Vector2 GOAL_POS = new Vector2( 6, 12);
 
     // Physics objects for the game
-    /** Reference to the goalDoor (for collision detection) */
-    private BoxObstacle goalDoor;
     /** Reference to the rocket/player avatar */
     public GorfModel gorf;
     /** Reference to the monster */
@@ -532,7 +528,7 @@ public class GameController extends WorldController implements ContactListener {
          */
         dwidth  = gorfTexture.getRegionWidth()/scale.x;
         dheight = gorfTexture.getRegionHeight()/scale.y;
-        gorf = new GorfModel(ROCK_POS.x, ROCK_POS.y, dwidth, dheight);
+        gorf = new GorfModel(ROCK_POS.x, ROCK_POS.y, dwidth*0.75f, dheight*0.75f);
         gorf.setDrawScale(scale);
         gorf.setTexture(gorfTexture);
         addObject(gorf);
@@ -546,9 +542,9 @@ public class GameController extends WorldController implements ContactListener {
 
         float w = 9;
         float h = 12;
-        createMonster(w, h);
+        //createMonster(w, h);
 
-        Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth(), canvas.getHeight());
+        Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
         this.tileBoard = new BoardModel(100, 100, screenSize);
         tileBoard.tiles[0][55].isLantern=true;
         tileBoard.tiles[50][30].isLantern=true;
@@ -748,13 +744,13 @@ public class GameController extends WorldController implements ContactListener {
         gorf.applyForce();
         wrapInBounds(gorf);
 
-        ai.setInput();
-        float forceXMonster = ai.getHorizontal();
-        float forceYMonster = ai.getVertical();
-        float monsterthrust = monster.getThrust();
-        this.monster.setFX(forceXMonster * monsterthrust);
-        this.monster.setFY(forceYMonster * monsterthrust);
-        monster.applyForce();
+//        ai.setInput();
+//        float forceXMonster = ai.getHorizontal();
+//        float forceYMonster = ai.getVertical();
+//        float monsterthrust = monster.getThrust();
+//        this.monster.setFX(forceXMonster * monsterthrust);
+//        this.monster.setFY(forceYMonster * monsterthrust);
+//        monster.applyForce();
 
 
 
@@ -806,13 +802,13 @@ public class GameController extends WorldController implements ContactListener {
         if (!inBounds(rocket)) {
             Vector2 currentPos = rocket.getPosition();
             if (currentPos.x<=bounds.getX()) {
-                rocket.setPosition(bounds.getX()+bounds.getWidth()-0.1f,currentPos.y);
-            } else if (currentPos.x>=bounds.getX()+bounds.getWidth()) {
+                rocket.setPosition(bounds.getX()+(bounds.getWidth()*2)-0.1f,currentPos.y);
+            } else if (currentPos.x>=bounds.getX()+(bounds.getWidth()*2)) {
                 rocket.setPosition(bounds.getX()+0.1f,currentPos.y);
             }
             if (currentPos.y<=bounds.getY()) {
-                rocket.setPosition(currentPos.x,bounds.getY()+bounds.getHeight()-0.1f);
-            } else if (currentPos.y>=bounds.getY()+bounds.getHeight()) {
+                rocket.setPosition(currentPos.x,bounds.getY()+(bounds.getHeight()*2)-0.1f);
+            } else if (currentPos.y>=bounds.getY()+(bounds.getHeight()*2)) {
                 rocket.setPosition(currentPos.x,bounds.getY()+0.1f);
             }
         }
@@ -823,7 +819,7 @@ public class GameController extends WorldController implements ContactListener {
 
         // Draw background unscaled.
         canvas.begin();
-        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth(),canvas.getHeight());
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.end();
 
         // fog.draw(canvas, Lanterns, gorf, firefly_count);
@@ -835,14 +831,14 @@ public class GameController extends WorldController implements ContactListener {
 
         // Draw background on all sides and diagonals for wrap illusion
         canvas.begin();
-        canvas.draw(backgroundTexture, Color.WHITE, 0, canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
-        canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth(), canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
-        canvas.draw(backgroundTexture, Color.WHITE, 0, -canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
-        canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth(), -canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
-        canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth(), 0,canvas.getWidth(),canvas.getHeight());
-        canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth(), -canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
-        canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth(), 0,canvas.getWidth(),canvas.getHeight());
-        canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth(), canvas.getHeight(),canvas.getWidth(),canvas.getHeight());
+        canvas.draw(backgroundTexture, Color.WHITE, 0, canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth()*2, canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.draw(backgroundTexture, Color.WHITE, 0, -canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth()*2, -canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth()*2, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, -canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.end();
 
         // now draw objects on current canvas that centered Gorf is actually in
