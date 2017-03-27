@@ -1,23 +1,26 @@
-#define NX 35
-#define NY 35
+#define NX 50
+#define NY 50
 
 uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
-//uniform vec2 res;//The width and height of our screen
+uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
-uniform float fogBoard[NX*NY];
-//uniform vec2[10] lanterns;
+//uniform float fogBoard[2500];
+//uniform vec2 lanterns[10];
 uniform vec2 fogReachVec;
 uniform float fogReach;
 uniform int numLanterns;
 uniform int numFireflies;
 uniform vec2 gorfPos;
 //uniform float thickness;
+uniform float leftOffset;
+uniform float botOffset;
 
 varying vec2 vTexCoord;
 
 void main() {
-    vec2 coord = gl_FragCoord.xy / dim.xy;      // FUTURE NOTE: should get coord in terms of world/map -- convert gl_FragCoord to world space by adding dim/2 and subtracting cameraPos, then divide by world width
+    vec2 coord = (gl_FragCoord.xy / res.xy);      // FUTURE NOTE: should get coord in terms of world/map -- convert gl_FragCoord to world space by adding dim/2 and subtracting cameraPos, then divide by world width
+    vec2 boardCoord = (gl_FragCoord.xy + vec2(leftOffset, botOffset)) / dim.xy;
     vec2 origin = fogOrigin / dim.xy;
 //    coord *= (dim.x/dim.y);
 //    origin *= (dim.x/dim.y);
@@ -32,15 +35,16 @@ void main() {
     float dist = length(vec2(dx,dy));     // FUTURE NOTE: issue with this -- when wrap around gets closer to the origin, reverts back to original dist even if it was stopped by an obstacle in the middle -- causes the flip in fog curvature
 //    float fogThickness = dist/fogReach;                               Possible fix: instead of implementing wrap-around, start a new fog at the wrap around point? This introduces a problem with radius depending on if it's just the fog is tightly curved and only the tip wraps around at first or if the fog has become very flat and/or multiple fog units wrap at once
 //    float fogThickness = smoothstep(fogReach, fogReach-.1, dist);      // FUTURE NOTE: (dim.x/NX) should be in terms of map/world coordinates instead, i.e. worldWidht/NX
-    int cellX = min(NX-1, int(coord.x*NX));
-    int cellY = min(NY-1, int(coord.y*NY));
+    int cellX = min(NX-1, int(boardCoord.x*NX));
+    int cellY = min(NY-1, int(boardCoord.y*NY));
 //    float fogReach = 1;
 //    float fogVal = fogBoard[cell];
 //    float fogReach = reachBoard[cellY*NX + cellX]/NX;
     float fogThickness = 1.0-smoothstep(fogReach/NX-.5, fogReach/NX, dist);
 //    float fogThickness = max(0,1-dist/fogReach);
-//
-    vec4 texColor = texture2D(u_texture, vTexCoord);
+
+//    vec4 texColor = texture(u_texture, vTexCoord);
+    vec4 texColor = vec4(1,1,1,1);
 
 //    float a = -gl_FragCoord.y;
 //    float b = 480/dim.y;
@@ -52,16 +56,16 @@ void main() {
 //    fogThickness *= fogBoard[cellY*NX + cellX];
 //    float fogThickness = fogBoard[cellY*NX + cellX]*thickness;
 
-    for (int i=0; i<NX; i++) {
-        if (i == cellX) {
-            for (int j=0; j<NY; j++) {
-                if (j == cellY) {
-                    fogThickness *= fogBoard[j*NX + i];
-                    break;
-                }
-            }
-        }
-    }
+//    for (int i=0; i<NX; i++) {
+//        if (i == cellX) {
+//            for (int j=0; j<NY; j++) {
+//                if (j == cellY) {
+//                    fogThickness *= fogBoard[j*NX + i];
+//                    break;
+//                }
+//            }
+//        }
+//    }
 
 //    for (int i=0; i<10; i++) {
 //        if (i>=numLanterns) {
