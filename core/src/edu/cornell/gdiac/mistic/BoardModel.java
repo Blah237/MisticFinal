@@ -346,6 +346,14 @@ public class BoardModel {
         return getTile(x, y).visited;
     }
 
+    public boolean isFogSpawn(int x, int y) {
+        if (!inBounds(x, y)) {
+            return false;
+        }
+
+        return getTile(x, y).isFogSpawn;
+    }
+
     /**
      * Returns true if a tile location is safe (i.e. there is a tile there)
      *

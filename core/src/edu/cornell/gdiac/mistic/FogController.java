@@ -107,11 +107,11 @@ public class FogController {
 
 		elementBoard = new float[WX][WY];
 
-		int ox = (int)(fogOrigin.x / Gdx.graphics.getWidth() * WX);
-		int oy = (int)(fogOrigin.y / Gdx.graphics.getHeight() * WY);
+//		int ox = (int)(fogOrigin.x / Gdx.graphics.getWidth() * WX);
+//		int oy = (int)(fogOrigin.y / Gdx.graphics.getHeight() * WY);
 
-		fogBoard[ox][oy] = 1.1f;
-
+		int ox = -1;
+		int oy = -1;
 
 		for (int i=0; i<WX; i++) {
 			for (int j=0; j<WY; j++) {
@@ -119,14 +119,20 @@ public class FogController {
 					elementBoard[i][j] = .9f;
 				} else if (tileBoard.isLantern(j,i)) {
 					elementBoard[i][j] = .5f;
+				} else if (tileBoard.isFogSpawn(j,i)) {
+					ox = j / BW * Gdx.graphics.getWidth();
+					oy = i / BH * Gdx.graphics.getHeight();
 				}
 			}
 		}
+
+		fogBoard[ox][oy] = 1.1f;
 
 //		for (int i=0; i<WX; i++) {
 //			elementBoard[(int)WY/4][i] = .9f;
 //		}
 
+		litLanternsA = new float[0];
 
 //		int cx = (int) Math.floor(i / WX * NX);
 //		int cy = (int) Math.floor(i / WY * NY);
@@ -168,9 +174,7 @@ public class FogController {
 		System.out.println(NX*cellW/.5f);
 
 		shader.begin();
-		for (int i=0; i<NX*NY; i++) {
-//			shader.setUniformf("fogBoard["+i+"]", fogBoardCam[i]);
-		}
+		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
 //		shader.setUniform1fv("reachBoard", reachBoard, 0, NX*NY);
 		shader.setUniformf("dim", NX*cellW/.5f, NY*cellH/.5f);		// should be NX*cellW? aka graphics width...?
 		shader.setUniformf("res", Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -230,11 +234,9 @@ public class FogController {
 //		System.out.println(lanternsA[0]);
 //		System.out.println(lanternsA[1]);
 		shader.begin();
-		for (int i=0; i<NX*NY; i++) {
-//			shader.setUniformf("fogBoard["+i+"]", fogBoardCam[i]);
-		}
+		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
 		shader.setUniformf("fogReach", fogReach);
-//        shader.setUniform2fv("lanterns", litLanternsA, 0, litLanternsA.length);
+        shader.setUniform2fv("lanterns", litLanternsA, 0, litLanternsA.length);
 		shader.setUniformi("numLanterns", litLanternsA.length/2);
         shader.setUniformi("numFireflies", numFireflies);
 //        shader.setUniformf("gorfPos", gorf.getX() / BW, gorf.getY() / BH);
@@ -308,9 +310,9 @@ public class FogController {
 					}
 				}
 			}
-			System.out.println((litLanterns.get(i).getX() / BW * Gdx.graphics.getWidth()));
-			litLanternsA[i*2] = (litLanterns.get(i).getX() / BW * Gdx.graphics.getWidth() - (gorf.getX() - Gdx.graphics.getWidth() / 2.0f)) / Gdx.graphics.getWidth();
-			litLanternsA[i*2+1] = (litLanterns.get(i).getY() / BH * Gdx.graphics.getHeight() - (gorf.getY() - Gdx.graphics.getHeight() / 2.0f)) / Gdx.graphics.getHeight();
+			System.out.println((litLanterns.get(i).getX() / BW * Gdx.graphics.getWidth() - (gorf.getX() / BW * Gdx.graphics.getWidth() - .5f * Gdx.graphics.getWidth() / 2.0f)) / (.5f * Gdx.graphics.getWidth()));
+			litLanternsA[i*2] = (litLanterns.get(i).getX() / BW * Gdx.graphics.getWidth() - (gorf.getX() / BW * Gdx.graphics.getWidth() - .5f * Gdx.graphics.getWidth() / 2.0f)) / (.5f * Gdx.graphics.getWidth());
+			litLanternsA[i*2+1] = (litLanterns.get(i).getY() / BH * Gdx.graphics.getHeight() - (gorf.getY() / BH * Gdx.graphics.getHeight() - .5f * Gdx.graphics.getHeight() / 2.0f)) / (.5f * Gdx.graphics.getHeight());
 		}
 
 
