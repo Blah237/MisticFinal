@@ -308,6 +308,7 @@ public class FogController {
 					}
 				}
 			}
+			System.out.println((litLanterns.get(i).getX() / BW * Gdx.graphics.getWidth()));
 			litLanternsA[i*2] = (litLanterns.get(i).getX() / BW * Gdx.graphics.getWidth() - (gorf.getX() - Gdx.graphics.getWidth() / 2.0f)) / Gdx.graphics.getWidth();
 			litLanternsA[i*2+1] = (litLanterns.get(i).getY() / BH * Gdx.graphics.getHeight() - (gorf.getY() - Gdx.graphics.getHeight() / 2.0f)) / Gdx.graphics.getHeight();
 		}
