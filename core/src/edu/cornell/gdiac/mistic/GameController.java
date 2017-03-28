@@ -550,6 +550,7 @@ public class GameController extends WorldController implements ContactListener {
 
         Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth(), canvas.getHeight());
         this.tileBoard = new BoardModel(100, 100, screenSize);
+        tileBoard.tiles[10][25].isFogSpawn=true;
         tileBoard.tiles[0][55].isLantern=true;
         tileBoard.tiles[50][30].isLantern=true;
         tileBoard.tiles[50][70].isLantern=true;

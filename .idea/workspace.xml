@@ -7,19 +7,150 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/backgroundresize.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/firefly.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/fireflysprite.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/fog.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/gorf.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/lit.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/loadingscreen.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/monster01.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/play.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/unlit.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/LightPixel7.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/MarkerFelt.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/Minecraft.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/Minecraftia.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/RetroGame.ttf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/earthtile.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/goaldoor.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/loading.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/play.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/progressbar.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GDXRoot.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$BlendState.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$DrawPass.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/InputController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/LoadingMode.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/WorldController$AssetState.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/WorldController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$FSMState.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$Pair.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$direction.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardTuple.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFog.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFogParticle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$Burner.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$Burner.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Lantern.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/MazeModel.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Monster.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/MonsterModel.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/BoxObstacle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$1.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$Orientation.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/ComplexObstacle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/Obstacle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/ObstacleSelector.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/PolygonObstacle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/SimpleObstacle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/WheelObstacle.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_39292.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_40278.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_39292.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_40278.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_39292.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_40278.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_39292.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_40278.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/FilmStrip.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$Entry.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryIterator.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryPool.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$ValueIterator.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/RandomController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/ScreenListener.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/SoundController$ActiveSound.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/SoundController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/XBox360Controller.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/desktop/build/classes/main/edu/cornell/gdiac/physics/desktop/DesktopLauncher.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradle/wrapper/gradle-wrapper.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/fog.frag.glsl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/fog.vert.glsl" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/plague.p" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/GDXRoot.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/GameCanvas.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/InputController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/LoadingMode.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/WorldController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/AIController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoardTuple.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoxFog.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoxFogParticle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/Firefly.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/FireflyController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/GameController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/GorfModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/Lantern.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/MazeModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/MonsterModel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/BoxObstacle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/CapsuleObstacle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/ComplexObstacle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/Obstacle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/ObstacleSelector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/PolygonObstacle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/SimpleObstacle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/WheelObstacle.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/FilmStrip.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/PooledList.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/RandomController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/ScreenListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/SoundController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/XBox360Controller.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/desktop/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/desktop/src/edu/cornell/gdiac/physics/desktop/DesktopLauncher.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradle.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradle/wrapper/gradle-wrapper.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradlew" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradlew.bat" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Documents/cs3152/Mistic/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/InputController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/InputController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$1.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$FSMState.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$FSMState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$Pair.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$Pair.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$direction.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$direction.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
     </list>
-    <ignored path="$PROJECT_DIR$/core/.gradle/" />
-    <ignored path="$PROJECT_DIR$/core/build/" />
-    <ignored path="$PROJECT_DIR$/desktop/.gradle/" />
-    <ignored path="$PROJECT_DIR$/desktop/build/" />
-    <ignored path="$PROJECT_DIR$/.gradle/" />
-    <ignored path="$PROJECT_DIR$/build/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,21 +175,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="589" column="9" lean-forward="true" selection-start-line="589" selection-start-column="9" selection-end-line="589" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameCanvas.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1664">
-              <caret line="433" column="35" lean-forward="true" selection-start-line="433" selection-start-column="35" selection-end-line="433" selection-end-column="35" />
+            <state relative-caret-position="125">
+              <caret line="536" column="37" lean-forward="true" selection-start-line="536" selection-start-column="37" selection-end-line="536" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -68,19 +189,19 @@
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="6620">
-              <caret line="353" column="40" lean-forward="true" selection-start-line="353" selection-start-column="40" selection-end-line="353" selection-end-column="40" />
+              <caret line="353" column="40" lean-forward="false" selection-start-line="353" selection-start-column="40" selection-end-line="353" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#8089#8098#0" expanded="true" />
+                <element signature="e#5228#5237#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,8 +210,18 @@
       <file leaf-file-name="fog.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state relative-caret-position="400">
+              <caret line="72" column="50" lean-forward="false" selection-start-line="72" selection-start-column="50" selection-end-line="72" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameCanvas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1664">
+              <caret line="433" column="35" lean-forward="false" selection-start-line="433" selection-start-column="35" selection-end-line="433" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -108,6 +239,8 @@
       <find>.5</find>
       <find>zoo</find>
       <find>tileboard</find>
+      <find>system</find>
+      <find>litlanternsA.lengt</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -855,9 +988,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       </list>
     </option>
@@ -981,74 +1113,12 @@
       </pane>
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/core/assets" />
-  </component>
   <component name="RunManager" selected="Application.Unnamed">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
-      <module name="" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="PM_INSTALL_OPTIONS" value="" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="DEBUGGER_TYPE" value="Java" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <Java />
-      <Profilers>
-        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
-        <option name="GAPID_ENABLED" value="false" />
-        <option name="GAPID_DISABLE_PCS" value="false" />
-        <option name="SUPPORT_LIB_ENABLED" value="true" />
-        <option name="INSTRUMENTATION_ENABLED" value="true" />
-      </Profilers>
-      <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
-      <module name="" />
-      <option name="TESTING_TYPE" value="0" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="DEBUGGER_TYPE" value="Java" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <Java />
-      <Profilers>
-        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
-        <option name="GAPID_ENABLED" value="false" />
-        <option name="GAPID_DISABLE_PCS" value="false" />
-        <option name="SUPPORT_LIB_ENABLED" value="true" />
-        <option name="INSTRUMENTATION_ENABLED" value="true" />
-      </Profilers>
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -1074,22 +1144,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list />
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <method />
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -1109,52 +1163,6 @@
       </option>
       <envs />
       <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="JarApplication" factoryName="JAR Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SCRATCH_FILE_ID" value="0" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Mistic" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -1238,7 +1246,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.50213677" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.49786323" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932165" sideWeight="0.49786323" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1326,7 +1334,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#8089#8098#0" expanded="true" />
+            <element signature="e#5228#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1354,7 +1362,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#8089#8098#0" expanded="true" />
+            <element signature="e#5228#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1382,7 +1390,7 @@
         <state relative-caret-position="3760">
           <caret line="204" column="36" lean-forward="true" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
           <folding>
-            <element signature="e#8089#8098#0" expanded="true" />
+            <element signature="e#5228#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1402,7 +1410,7 @@
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <element signature="e#8089#8098#0" expanded="true" />
+            <element signature="e#5228#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1422,7 +1430,7 @@
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <element signature="e#8089#8098#0" expanded="true" />
+            <element signature="e#5228#5237#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1442,28 +1450,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl">
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding>
-            <element signature="e#8089#8098#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6620">
-          <caret line="353" column="40" lean-forward="true" selection-start-line="353" selection-start-column="40" selection-end-line="353" selection-end-column="40" />
+        <state relative-caret-position="125">
+          <caret line="536" column="37" lean-forward="true" selection-start-line="536" selection-start-column="37" selection-end-line="536" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1471,107 +1461,44 @@
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1664">
-          <caret line="433" column="35" lean-forward="true" selection-start-line="433" selection-start-column="35" selection-end-line="433" selection-end-column="35" />
+          <caret line="433" column="35" lean-forward="false" selection-start-line="433" selection-start-column="35" selection-end-line="433" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="589" column="9" lean-forward="true" selection-start-line="589" selection-start-column="9" selection-end-line="589" selection-end-column="9" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>desktop_main:jar</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>core</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Gradle: com.badlogicgames.gdx:gdx-backend-lwjgl:1.9.5</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6620">
+          <caret line="353" column="40" lean-forward="false" selection-start-line="353" selection-start-column="40" selection-end-line="353" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="72" column="50" lean-forward="false" selection-start-line="72" selection-start-column="50" selection-end-line="72" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#5228#5237#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>
