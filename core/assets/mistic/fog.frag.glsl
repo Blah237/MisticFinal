@@ -5,7 +5,7 @@ uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
 uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
-//uniform float fogBoard[2500];
+uniform float fogBoard[NX*NY];
 //uniform vec2 lanterns[10];
 uniform vec2 fogReachVec;
 uniform float fogReach;
@@ -35,15 +35,15 @@ void main() {
     float dist = length(vec2(dx,dy));     // FUTURE NOTE: issue with this -- when wrap around gets closer to the origin, reverts back to original dist even if it was stopped by an obstacle in the middle -- causes the flip in fog curvature
 //    float fogThickness = dist/fogReach;                               Possible fix: instead of implementing wrap-around, start a new fog at the wrap around point? This introduces a problem with radius depending on if it's just the fog is tightly curved and only the tip wraps around at first or if the fog has become very flat and/or multiple fog units wrap at once
 //    float fogThickness = smoothstep(fogReach, fogReach-.1, dist);      // FUTURE NOTE: (dim.x/NX) should be in terms of map/world coordinates instead, i.e. worldWidht/NX
-    int cellX = min(int(NX-1), int(boardCoord.x*NX));
-    int cellY = min(int(NY-1), int(boardCoord.y*NY));
+    int cellX = int(boardCoord.x*float(NX));
+    int cellY = int(boardCoord.y*float(NY));
 //    float fogReach = 1;
 //    float fogVal = fogBoard[cell];
 //    float fogReach = reachBoard[cellY*NX + cellX]/NX;
     float fogThickness = 1.0-smoothstep(fogReach/float(NX)-.5, fogReach/float(NX), dist);
 //    float fogThickness = max(0,1-dist/fogReach);
 
-    vec4 texColor = texture(u_texture, vTexCoord);
+    vec4 texColor = texture2D(u_texture, vTexCoord);
 //    vec4 texColor = vec4(1,1,1,1);
 
 //    float a = -gl_FragCoord.y;
