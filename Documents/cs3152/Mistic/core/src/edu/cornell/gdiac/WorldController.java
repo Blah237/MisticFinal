@@ -219,11 +219,9 @@ public abstract class WorldController implements Screen {
 	public static final int WORLD_POSIT = 2;
 	
 	/** Width of the game world in Box2d units */
-	protected static final float DEFAULT_WIDTH  = 64.0f;
+	protected static final float DEFAULT_WIDTH  = 128.0f;
 	/** Height of the game world in Box2d units */
-	protected static final float DEFAULT_HEIGHT = 36.0f;
-	/** The default value of gravity (going down) */
-	protected static final float DEFAULT_GRAVITY = -4.9f;
+	protected static final float DEFAULT_HEIGHT = 72.0f;
 	
 	/** Reference to the game canvas */
 	protected GameCanvas canvas;
@@ -399,7 +397,7 @@ public abstract class WorldController implements Screen {
 	protected WorldController(Rectangle bounds, Vector2 gravity) {
 		assets = new Array<String>();
 		world = new World(gravity,false);
-		this.bounds = new Rectangle(bounds);
+		this.bounds = new Rectangle(0,0,bounds.width,bounds.height);
 		this.scale = new Vector2(1,1);
 		complete = false;
 		failed = false;
@@ -461,8 +459,8 @@ public abstract class WorldController implements Screen {
 	 * @return true if the object is in bounds.
 	 */
 	public boolean inBounds(Obstacle obj) {
-		boolean horiz = (bounds.x <= obj.getX() && obj.getX() <= bounds.x+bounds.width);
-		boolean vert  = (bounds.y <= obj.getY() && obj.getY() <= bounds.y+bounds.height);
+		boolean horiz = (bounds.x <= obj.getX() && obj.getX() <= bounds.x+(bounds.width*2));
+		boolean vert  = (bounds.y <= obj.getY() && obj.getY() <= bounds.y+(bounds.height*2));
 		return horiz && vert;
 	}
 	

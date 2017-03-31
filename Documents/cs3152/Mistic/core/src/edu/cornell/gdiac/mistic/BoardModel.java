@@ -69,7 +69,7 @@ public class BoardModel {
         this.tileHeight = (screenDimensions.height/height);
         this.tileWidth = (screenDimensions.width/width);
         this.tiles = new Tile[width][height];
-       // System.out.println("Canvas Size: "+ screenDimensions.width + ", "+screenDimensions.height+ ". Tile width: "+tileWidth + ", "+tileHeight);
+        // System.out.println("Canvas Size: "+ screenDimensions.width + ", "+screenDimensions.height+ ". Tile width: "+tileWidth + ", "+tileHeight);
         for (int i = 0; i < width; i++) {
             for(int j=0;j<height;j++){
                 Tile t=new Tile();

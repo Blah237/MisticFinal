@@ -23,6 +23,7 @@ public class FireflyController {
     private static final float FIREFLY_DENSITY = 1.0f;
     private static final float FIREFLY_FRICTION  = 0.3f;
     private static final float FIREFLY_RESTITUTION = 0.1f;
+    BoardModel board;
     private TextureRegion tex;
     private Vector2 scale;
     /**The time between firefly spawns*/
@@ -31,16 +32,17 @@ public class FireflyController {
     protected ArrayList<Body> fireflyBodies;
     protected ArrayList<Body> garbage;
 
-    public FireflyController(TextureRegion texture, Vector2 scale){
+    public FireflyController(TextureRegion texture, Vector2 scale, BoardModel board){
         fireflies=new ArrayList<Firefly>();
         fireflyBodies=new ArrayList<Body>();
         garbage= new ArrayList<Body>();
         tex=texture;
+        this.board=board;
         this.scale=scale;
     }
 
-    public boolean update(float x, float y){
-        Firefly f=getFirefly(x,y);
+    public boolean update(GorfModel gorf){
+        Firefly f=getFirefly(gorf);
         if(f!=null&&!f.isDestroyed()){
             f.setDestroyed();
             return true;
@@ -52,19 +54,22 @@ public class FireflyController {
         garbage=new ArrayList<Body>();
     }
 
-    public Firefly spawn(float height, float width){
-        float x= random(width);
-        float y=random(height);
-        Firefly f = create(x,y);
-        //fireflyBodies.add(ob.getBody());
-        return f;
+    public Firefly spawn(){
+        int x= random(100);
+        int y=random(100);
+        BoardModel.Tile t= board.tiles[x][y];
+        if(!t.isWall){
+            Firefly f = create(t.fx,t.fy);
+            return f;
+        }
+        return spawn();
     }
 
-    public Firefly getFirefly(float x, float y){
+    public Firefly getFirefly(GorfModel gorf){
         for(Firefly F : fireflies){
-            float dx= Math.abs((F.getX()/scale.x)-x);
-            float dy= Math.abs((F.getY()/scale.y)-y);
-            if (dx < 2.5f && dy < 2f){
+            float dx= Math.abs((F.getX()/scale.x)-gorf.getX());
+            float dy= Math.abs((F.getY()/scale.y)-gorf.getY());
+            if (dx < gorf.getWidth() && dy < gorf.getHeight()){
                 return F;
             }
         }
