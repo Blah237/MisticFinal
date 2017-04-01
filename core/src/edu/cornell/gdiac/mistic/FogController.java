@@ -46,9 +46,6 @@ public class FogController {
 	private final int NX = 50;
 	private final int NY = 50;
 
-	private final int BW = 64;
-	private final int BH = 36;
-
 	private int WX;
 	private int WY;
 
@@ -67,12 +64,17 @@ public class FogController {
 	float fogOriginCamX;
 	float fogOriginCamY;
 
+	private final float BOUNDARY = 1.1f;
+	private final float FOG = 1.0f;
+	private final float WALL = 0.9f;
+	private final float LANTERN = 0.5f;
 
-	OrthographicCamera cam;
+
+//	OrthographicCamera cam;
 	FPSLogger logger = new FPSLogger();
 
 
-	public FogController(int x, int y, ArrayList<Lantern> lanterns, BoardModel tileBoard) {
+	public FogController(int x, int y, BoardModel tileBoard, GameCanvas canvas) {
 		wall = new Texture("mistic/backgroundresize.png");
 		fogOrigin = new Vector2(x,y);
 
@@ -81,14 +83,14 @@ public class FogController {
 		WX = tileBoard.getWidth();
 		WY = tileBoard.getHeight();
 
-		tileW = Gdx.graphics.getWidth() / (float)WX;
-		tileH = Gdx.graphics.getHeight() / (float)WY;
+		tileW = canvas.getWidth() / (float)WX;
+		tileH = canvas.getHeight() / (float)WY;
 
 		boardTilesPerCamViewX = (int)Math.floor(.5f * WX) + 1;
 		boardTilesPerCamViewY = (int)Math.floor(.5f * WY) + 1;
 
-		cellW = boardTilesPerCamViewX*tileW / NX;
-		cellH = boardTilesPerCamViewY*tileH / NY;
+		cellW = boardTilesPerCamViewX*tileW / (float)NX;
+		cellH = boardTilesPerCamViewY*tileH / (float)NY;
 
 		fogBoard = new float[WX][WY];
 		fogBoardCam = new float[NX*NY];
@@ -98,16 +100,16 @@ public class FogController {
 		for (int i=0; i<WX; i++) {
 			for (int j=0; j<WY; j++) {
 				if (tileBoard.isWall(j,i)) {
-					elementBoard[i][j] = .9f;
+					elementBoard[i][j] = WALL;
 				} else if (tileBoard.isLantern(j,i)) {
-					elementBoard[i][j] = .5f;
+					elementBoard[i][j] = LANTERN;
 				} else if (tileBoard.isFogSpawn(j,i)) {
 					fogOrigin = new Vector2(j,i);
 				}
 			}
 		}
 
-		fogBoard[(int)fogOrigin.x][(int)fogOrigin.y] = 1.1f;
+		fogBoard[(int)fogOrigin.x][(int)fogOrigin.y] = BOUNDARY;
 
 		litLanternsA = new float[0];
 
@@ -133,16 +135,14 @@ public class FogController {
 		shader.pedantic = false;
 
 		shader.begin();
-		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
 		shader.setUniformf("dim", NX*cellW/.5f, NY*cellH/.5f);		// should be NX*cellW? aka graphics width...?
-		shader.setUniformf("res", Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		shader.setUniformf("fogReach", fogReach);
+		shader.setUniformf("res", canvas.getWidth(), canvas.getHeight());
 		shader.end();
 	}
 
 	public void resize(int width, int height) {
-		cam.setToOrtho(false, width, height);
-		batch.setProjectionMatrix(cam.combined);
+//		cam.setToOrtho(false, width, height);
+//		batch.setProjectionMatrix(cam.combined);
 		//bind the shader, then set the uniform, then unbind the shader
 		shader.begin();
 		shader.setUniformf("res", width, height);
@@ -170,16 +170,16 @@ public class FogController {
 
 		batch.enableBlending();
 
-		batch.draw(wall, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		batch.draw(wall, 0, 0, canvas.getWidth(), canvas.getHeight());
 
 		batch.end();
 
 		logger.log();
 	}
 
-	public void update(ArrayList<Lantern> lanterns, GorfModel gorf, BoardModel tileBoard) {
-		fogOriginCamX = (fogOrigin.x / WX * Gdx.graphics.getWidth() - (gorf.getX() / BW * Gdx.graphics.getWidth() - .5f * Gdx.graphics.getWidth() / 2.0f)) / (.5f * Gdx.graphics.getWidth());
-		fogOriginCamY = (fogOrigin.y / WY * Gdx.graphics.getHeight() - (gorf.getY() / BH * Gdx.graphics.getHeight() - .5f * Gdx.graphics.getHeight() / 2.0f)) / (.5f * Gdx.graphics.getHeight());
+	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, GameCanvas canvas, Vector2 scale) {
+		fogOriginCamX = (fogOrigin.x / WX * canvas.getWidth() - (gorf.getX() * scale.x - .5f * canvas.getWidth() / 2.0f)) / (.5f * canvas.getWidth());
+		fogOriginCamY = (fogOrigin.y / WY * canvas.getHeight() - (gorf.getY() * scale.y - .5f * canvas.getHeight() / 2.0f)) / (.5f * canvas.getHeight());
 
 		Array<Lantern> litLanterns = new Array<Lantern>();
 		for (int i=0; i<lanterns.size(); i++) {
@@ -190,12 +190,12 @@ public class FogController {
 
 		litLanternsA = new float[litLanterns.size*2];
 		for (int i=0; i<litLanterns.size; i++) {
-			Vector2 lanternPos = new Vector2((int)(litLanterns.get(i).getX() / BW * WX), (int)(litLanterns.get(i).getY() / BH * WY));
+			Vector2 lanternPos = new Vector2((int)(litLanterns.get(i).getX() * scale.x / canvas.getWidth() * WX), (int)(litLanterns.get(i).getY() * scale.y / canvas.getHeight() * WY));
 			for (int j=-6; j<7; j++) {
 				for (int k=-6; k<6; k++) {
 					if (j==-6 || j==6 || k==-6 || k==6) {
 						if (lanternPos.x+j > 0 && lanternPos.x+j < WX && lanternPos.y+k > 0 && lanternPos.y+k < WY) {
-							fogBoard[(int)lanternPos.x+j][(int)lanternPos.y+k] = 1.1f;
+							fogBoard[(int)lanternPos.x+j][(int)lanternPos.y+k] = BOUNDARY;
 						}
 					} else {
 						if (lanternPos.x+j > 0 && lanternPos.x+j < WX && lanternPos.y+k > 0 && lanternPos.y+k < WY) {
@@ -204,8 +204,8 @@ public class FogController {
 					}
 				}
 			}
-			litLanternsA[i*2] = (litLanterns.get(i).getX() / BW * Gdx.graphics.getWidth() - (gorf.getX() / BW * Gdx.graphics.getWidth() - .5f * Gdx.graphics.getWidth() / 2.0f)) / (.5f * Gdx.graphics.getWidth());
-			litLanternsA[i*2+1] = (litLanterns.get(i).getY() / BH * Gdx.graphics.getHeight() - (gorf.getY() / BH * Gdx.graphics.getHeight() - .5f * Gdx.graphics.getHeight() / 2.0f)) / (.5f * Gdx.graphics.getHeight());
+			litLanternsA[i*2] = (litLanterns.get(i).getX() * scale.x - (gorf.getX() * scale.x - .5f * canvas.getWidth() / 2.0f)) / (.5f * canvas.getWidth());
+			litLanternsA[i*2+1] = (litLanterns.get(i).getY() * scale.y - (gorf.getY() * scale.y - .5f * canvas.getHeight() / 2.0f)) / (.5f * canvas.getHeight());
 		}
 
 		if (fogDelay <= 0) {
@@ -214,7 +214,7 @@ public class FogController {
 //			fogReach++;
 			thickness++;
 //			System.out.println(fogReach);
-//			System.out.println(fogBoard[(int)(Math.floor(fogOrigin.y/Gdx.graphics.getHeight()*NY)+Math.floor(fogOrigin.y/Gdx.graphics.getWidth()*NX)+fogReach)]);
+//			System.out.println(fogBoard[(int)(Math.floor(fogOrigin.y/canvas.getHeight()*NY)+Math.floor(fogOrigin.y/canvas.getWidth()*NX)+fogReach)]);
 		}
 		else {
 			fogDelay--;
@@ -223,7 +223,7 @@ public class FogController {
 //		fogReachX+=(1f/FOG_DELAY * spreadCountX/spreadCount);
 //		fogReachY+=(1f/FOG_DELAY * spreadCountY/spreadCount);
 
-		gorfPos = new Vector2((gorf.getX()) / BW * WX, gorf.getY() / BH * WY);
+		gorfPos = new Vector2((gorf.getX()) * scale.x / canvas.getWidth() * WX, gorf.getY() * scale.y / canvas.getHeight() * WY);
 
 		int startTileX = (int)(gorfPos.x - (boardTilesPerCamViewX + 1) / 2);
 		int startTileY = (int)(gorfPos.y - (boardTilesPerCamViewY + 1) / 2);
@@ -242,9 +242,8 @@ public class FogController {
 				}
 			}
 		}
-
-		boardLeftOffset = (((gorf.getX()) / BW * Gdx.graphics.getWidth() - .5f * Gdx.graphics.getWidth() / 2.0f) % tileW) / .5f;
-		boardBotOffset = (((gorf.getY()) / BH * Gdx.graphics.getHeight() - .5f * Gdx.graphics.getHeight() / 2.0f) % tileH) / .5f;
+		boardLeftOffset = ((gorf.getX() * scale.x - .5f * canvas.getWidth() / 2.0f) % tileW) / .5f;
+		boardBotOffset = ((gorf.getY() * scale.y - .5f * canvas.getHeight() / 2.0f) % tileH) / .5f;
 	}
 
 	private void updateFog() {
@@ -254,7 +253,7 @@ public class FogController {
 		newFogBoard = fogBoard.clone();
 		for (int i = 0; i < WX; i++) {
 			for (int j = 0; j < WY; j++) {
-				if (fogBoard[i][j] == 1.1f) {
+				if (fogBoard[i][j] == BOUNDARY) {
 					spreadFog(i,j);
 					spreadCount++;
 					if (spreadType == 0 || spreadType == 1 || spreadType == 2) {
@@ -290,10 +289,10 @@ public class FogController {
 				y2 = 0;
 			}
 
-			newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], 1.1f * (1 - elementBoard[x][y1]));
-			newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], 1.1f * (1 - elementBoard[x][y2]));
-			newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], 1.1f * (1 - elementBoard[x1][y]));
-			newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], 1.1f * (1 - elementBoard[x2][y]));
+			newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], BOUNDARY * (1 - elementBoard[x][y1]));
+			newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], BOUNDARY * (1 - elementBoard[x][y2]));
+			newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], BOUNDARY * (1 - elementBoard[x1][y]));
+			newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], BOUNDARY * (1 - elementBoard[x2][y]));
 
 			if (newFogBoard[x][y1] == 1) {
 				tileBoard.setFog(x,y1);
@@ -332,7 +331,7 @@ public class FogController {
 					if (i == x && j == y) {
 						newFogBoard[i][j] = 1 - elementBoard[ii][jj];
 					} else {
-						newFogBoard[ii][jj] = Math.max(newFogBoard[ii][jj], 1.1f * (1 - elementBoard[ii][jj]));
+						newFogBoard[ii][jj] = Math.max(newFogBoard[ii][jj], BOUNDARY * (1 - elementBoard[ii][jj]));
 					}
 
 					if (fogBoard[ii][jj] == 1) {
@@ -353,8 +352,8 @@ public class FogController {
 //				x2 = 0;
 //			}
 //
-//			newFogBoard[y * WX + x1] = Math.max(newFogBoard[y * WX + x1], 1.1f * (1 - elementBoard[x1][y]));
-//			newFogBoard[y * WX + x2] = Math.max(newFogBoard[y * WX + x2], 1.1f * (1 - elementBoard[x2][y]));
+//			newFogBoard[y * WX + x1] = Math.max(newFogBoard[y * WX + x1], BOUNDARY * (1 - elementBoard[x1][y]));
+//			newFogBoard[y * WX + x2] = Math.max(newFogBoard[y * WX + x2], BOUNDARY * (1 - elementBoard[x2][y]));
 //		} else {
 //			newFogBoard[y * WX + x] = 1 - elementBoard[x][y];
 //
@@ -367,8 +366,8 @@ public class FogController {
 //				y2 = 0;
 //			}
 //
-//			newFogBoard[y1 * WX + x] = Math.max(newFogBoard[y1 * WX + x], 1.1f * (1 - elementBoard[x][y1]));
-//			newFogBoard[y2 * WX + x] = Math.max(newFogBoard[y2 * WX + x], 1.1f * (1 - elementBoard[x][y2]));
+//			newFogBoard[y1 * WX + x] = Math.max(newFogBoard[y1 * WX + x], BOUNDARY * (1 - elementBoard[x][y1]));
+//			newFogBoard[y2 * WX + x] = Math.max(newFogBoard[y2 * WX + x], BOUNDARY * (1 - elementBoard[x][y2]));
 //		}
 	}
 }
