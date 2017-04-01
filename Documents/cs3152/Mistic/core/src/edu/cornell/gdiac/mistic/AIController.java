@@ -1,6 +1,7 @@
 package edu.cornell.gdiac.mistic;
 
 import com.badlogic.gdx.math.Vector2;
+import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.InputController;
 
 import java.util.LinkedList;
@@ -189,8 +190,8 @@ public class AIController extends InputController {
         boolean setGoal = false; // Until we find a goal
 
         // Add initialization code as necessary
-        int theX = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y).x);
-        int theY = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y).y);
+        int theX = board.screenToBoardX(monster.getPosition().x);
+        int theY = board.screenToBoardY(monster.getPosition().y);
         //#region PUT YOUR CODE HERE
         Vector2 gorfPos = new Vector2((gorf.getPosition().x *50.0f)/scale.x, (gorf.getPosition().y * 50.0f)/scale.y);
         int gorfTileX = board.screenToBoardX(gorfPos.x);
@@ -233,8 +234,8 @@ public class AIController extends InputController {
         // If we have no goals, mark current position as a goal
         // so we do not spend time looking for nothing:
         if (!setGoal) {
-            int sx = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y).x);
-            int sy = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y).y);
+            int sx = board.screenToBoardX(monster.getPosition().x);
+            int sy = board.screenToBoardY(monster.getPosition().y);
             board.setGoal(sx, sy);
         }
     }
@@ -377,32 +378,32 @@ public class AIController extends InputController {
         switch (the_move) {
 
             case LEFT:
-               horizontal -= 0.5f;
+               horizontal -= 1.9f;
                break;
             case RIGHT:
-                horizontal += 0.5f;
+                horizontal += 1.9f;
                 break;
             case UP:
-                vertical -= 0.5f;
+                vertical -= 1.9f;
                 break;
             case DOWN:
-                vertical += 0.5f;
+                vertical += 1.9f;
                 break;
             case UP_LEFT:
-                vertical -= 0.5f;
-                horizontal -= 0.5f;
+                vertical -= 1.9f;
+                horizontal -= 1.9f;
                 break;
             case DOWN_LEFT:
-                vertical += 0.5f;
-                horizontal -= 0.5f;
+                vertical += 1.9f;
+                horizontal -= 1.9f;
                 break;
             case UP_RIGHT:
-                vertical -= 0.5f;
-                horizontal += 0.5f;
+                vertical -= 1.9f;
+                horizontal += 1.9f;
                 break;
             case DOWN_RIGHT:
-                vertical += 0.5f;
-                horizontal += 0.5f;
+                vertical += 1.9f;
+                horizontal += 1.9f;
                 break;
 
         }
