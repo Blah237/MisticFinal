@@ -7,542 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/backgroundresize.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/firefly.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/fireflysprite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/fog.frag.glsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/fog.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/fog.vert.glsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/gorf.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/lit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/loadingscreen.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/monster01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/plague.p" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/mistic/unlit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/LightPixel7.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/MarkerFelt.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/Minecraft.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/Minecraftia.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/RetroGame.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/earthtile.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/goaldoor.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/loading.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/assets/shared/progressbar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GDXRoot.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$BlendState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$DrawPass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/InputController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/LoadingMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/WorldController$AssetState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/WorldController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$FSMState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$Pair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$direction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardTuple.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFogParticle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$Burner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$Burner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Lantern.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/MazeModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Monster.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/MonsterModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/BoxObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$Orientation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/ComplexObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/Obstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/ObstacleSelector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/PolygonObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/SimpleObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/WheelObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/FilmStrip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$Entry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryPool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$ValueIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/RandomController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/ScreenListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/SoundController$ActiveSound.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/SoundController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/XBox360Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/GDXRoot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/GameCanvas.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/InputController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/LoadingMode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/WorldController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/AIController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoardTuple.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoxFog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoxFogParticle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/Firefly.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/GorfModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/Lantern.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/MazeModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/MonsterModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/BoxObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/CapsuleObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/ComplexObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/Obstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/ObstacleSelector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/PolygonObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/SimpleObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/WheelObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/FilmStrip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/PooledList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/RandomController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/ScreenListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/SoundController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/XBox360Controller.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/desktop/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/desktop/build/classes/main/edu/cornell/gdiac/physics/desktop/DesktopLauncher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/desktop/src/edu/cornell/gdiac/physics/desktop/DesktopLauncher.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/gradle.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/gradle/wrapper/gradle-wrapper.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/gradle/wrapper/gradle-wrapper.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/gradlew" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/gradlew.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/Documents/cs3152/Mistic/settings.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/backgroundresize.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/firefly.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/fireflysprite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/fog.frag.glsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/fog.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/fog.vert.glsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/gorf.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/lit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/loadingscreen.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/monster01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/plague.p" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/mistic/unlit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/LightPixel7.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/MarkerFelt.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/Minecraft.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/Minecraftia.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/RetroGame.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/earthtile.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/goaldoor.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/loading.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/assets/shared/progressbar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/GDXRoot.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/GameCanvas$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/GameCanvas$BlendState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/GameCanvas$DrawPass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/InputController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/LoadingMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/WorldController$AssetState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/WorldController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$FSMState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$Pair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$direction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/AIController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/BoardTuple.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFogParticle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$Burner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$Burner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/Lantern.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/MazeModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/Monster.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/mistic/MonsterModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/BoxObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$Orientation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/ComplexObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/Obstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/ObstacleSelector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/PolygonObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/SimpleObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/obstacle/WheelObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/FilmStrip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/PooledList$Entry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryPool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/PooledList$ValueIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/PooledList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/RandomController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/ScreenListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/SoundController$ActiveSound.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/SoundController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/build/classes/main/edu/cornell/gdiac/util/XBox360Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/GDXRoot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/GameCanvas.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/InputController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/LoadingMode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/WorldController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/AIController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/BoardTuple.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/BoxFog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/BoxFogParticle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/Firefly.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/GorfModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/Lantern.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/MazeModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/mistic/MonsterModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/obstacle/BoxObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/obstacle/CapsuleObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/obstacle/ComplexObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/obstacle/Obstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/obstacle/ObstacleSelector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/obstacle/PolygonObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/obstacle/SimpleObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/obstacle/WheelObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/util/FilmStrip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/util/PooledList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/util/RandomController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/util/ScreenListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/util/SoundController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/core/src/edu/cornell/gdiac/util/XBox360Controller.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/desktop/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/desktop/build/classes/main/edu/cornell/gdiac/physics/desktop/DesktopLauncher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/desktop/src/edu/cornell/gdiac/physics/desktop/DesktopLauncher.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/gradle.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/gradle/wrapper/gradle-wrapper.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/gradle/wrapper/gradle-wrapper.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/gradlew" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/gradlew.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic-beausbranch/settings.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/backgroundresize.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/firefly.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/fireflysprite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/fog.frag.glsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/fog.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/fog.vert.glsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/gorf.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/lit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/loadingscreen.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/monster01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/plague.p" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/mistic/unlit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/LightPixel7.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/MarkerFelt.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/Minecraft.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/Minecraftia.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/RetroGame.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/earthtile.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/goaldoor.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/loading.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/assets/shared/progressbar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GDXRoot.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$BlendState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$DrawPass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/InputController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/LoadingMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/WorldController$AssetState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/WorldController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$FSMState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$Pair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$direction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardTuple.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFogParticle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$Burner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$Burner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Lantern.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/MazeModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Monster.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/MonsterModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/BoxObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$Orientation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/ComplexObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/Obstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/ObstacleSelector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/PolygonObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/SimpleObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/WheelObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/FilmStrip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$Entry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryPool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$ValueIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/RandomController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/ScreenListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/SoundController$ActiveSound.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/SoundController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/XBox360Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/GDXRoot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/GameCanvas.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/InputController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/LoadingMode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/WorldController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/AIController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoardTuple.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoxFog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoxFogParticle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/Firefly.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/GorfModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/Lantern.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/MazeModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/MonsterModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/BoxObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/CapsuleObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/ComplexObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/Obstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/ObstacleSelector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/PolygonObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/SimpleObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/WheelObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/FilmStrip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/PooledList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/RandomController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/ScreenListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/SoundController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/XBox360Controller.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/desktop/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/desktop/build/classes/main/edu/cornell/gdiac/physics/desktop/DesktopLauncher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/desktop/src/edu/cornell/gdiac/physics/desktop/DesktopLauncher.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/gradle.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/gradle/wrapper/gradle-wrapper.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/gradle/wrapper/gradle-wrapper.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/gradlew" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/gradlew.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Documents/cs3152/Mistic/settings.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/Mistic-dayz/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/backgroundresize.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/firefly.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/fireflysprite.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/fog.frag.glsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/fog.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/fog.vert.glsl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/gorf.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/lit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/loadingscreen.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/monster01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/plague.p" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/mistic/unlit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/LightPixel7.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/MarkerFelt.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/Minecraft.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/Minecraftia.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/RetroGame.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/earthtile.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/goaldoor.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/loading.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/play.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/assets/shared/progressbar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GDXRoot.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$BlendState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas$DrawPass.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/InputController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/LoadingMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/WorldController$AssetState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/WorldController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$FSMState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$Pair.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController$direction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/AIController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoardTuple.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/BoxFogParticle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf$Burner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Gorf.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$Burner.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Lantern.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/MazeModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/Monster.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/mistic/MonsterModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/BoxObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle$Orientation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/CapsuleObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/ComplexObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/Obstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/ObstacleSelector.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/PolygonObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/SimpleObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/obstacle/WheelObstacle.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BACKUP_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_BASE_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_LOCAL_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_39292.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/physics/rocket/RocketController_REMOTE_40278.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/FilmStrip.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$Entry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$EntryPool.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList$ValueIterator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/PooledList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/RandomController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/ScreenListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/SoundController$ActiveSound.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/SoundController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/build/classes/main/edu/cornell/gdiac/util/XBox360Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/GDXRoot.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/GameCanvas.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/InputController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/LoadingMode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/WorldController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/AIController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoardTuple.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoxFog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/BoxFogParticle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/Firefly.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/GorfModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/Lantern.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/MazeModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/mistic/MonsterModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/BoxObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/CapsuleObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/ComplexObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/Obstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/ObstacleSelector.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/PolygonObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/SimpleObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/obstacle/WheelObstacle.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/FilmStrip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/PooledList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/RandomController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/ScreenListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/SoundController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/core/src/edu/cornell/gdiac/util/XBox360Controller.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/desktop/build.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/desktop/build/classes/main/edu/cornell/gdiac/physics/desktop/DesktopLauncher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/desktop/src/edu/cornell/gdiac/physics/desktop/DesktopLauncher.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradle.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradle/wrapper/gradle-wrapper.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradle/wrapper/gradle-wrapper.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradlew" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/gradlew.bat" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Documents/cs3152/Mistic/settings.gradle" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/hs_err_pid13588.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/hs_err_pid4932.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/hs_err_pid5544.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/hs_err_pid600.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/hs_err_pid9644.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIController.class" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/firefly.png" afterPath="$PROJECT_DIR$/core/assets/mistic/firefly.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/LightPixel7.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/LightPixel7.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/Minecraft.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/Minecraft.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/Minecraftia.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/Minecraftia.ttf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/RetroGame.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/RetroGame.ttf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GDXRoot.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GDXRoot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew.bat" afterPath="$PROJECT_DIR$/gradlew.bat" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -599,11 +76,9 @@
       <file leaf-file-name="BoardModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="260" column="7" lean-forward="true" selection-start-line="260" selection-start-column="7" selection-end-line="260" selection-end-column="7" />
-              <folding>
-                <marker date="1491188997357" expanded="true" signature="9464:9471" ph="{...}" />
-              </folding>
+            <state relative-caret-position="376">
+              <caret line="237" column="25" lean-forward="true" selection-start-line="237" selection-start-column="25" selection-end-line="237" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -611,11 +86,9 @@
       <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
-              <folding>
-                <element signature="e#5127#5136#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="160">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1763,9 +1236,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-          <folding>
-            <marker date="1491188997357" expanded="true" signature="9464:9471" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1773,9 +1244,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4040">
           <caret line="218" column="14" lean-forward="true" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="14" />
-          <folding>
-            <element signature="e#5127#5136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1817,9 +1286,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#5127#5136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1843,9 +1310,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#5127#5136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1869,9 +1334,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3760">
           <caret line="204" column="36" lean-forward="true" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
-          <folding>
-            <element signature="e#5127#5136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1887,9 +1350,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding>
-            <element signature="e#5127#5136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1905,9 +1366,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding>
-            <element signature="e#5127#5136#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1967,16 +1426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
-          <folding>
-            <element signature="e#5127#5136#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -1985,13 +1434,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="260" column="7" lean-forward="true" selection-start-line="260" selection-start-column="7" selection-end-line="260" selection-end-column="7" />
-          <folding>
-            <marker date="1491188997357" expanded="true" signature="9464:9471" ph="{...}" />
-          </folding>
+        <state relative-caret-position="376">
+          <caret line="237" column="25" lean-forward="true" selection-start-line="237" selection-start-column="25" selection-end-line="237" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
