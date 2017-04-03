@@ -116,6 +116,8 @@ public class GameCanvas {
 	/** Cache object to handle raw textures */
 	private TextureRegion holder;
 
+	public FrameBuffer fbo;
+
 	/**
 	 * Creates a new GameCanvas determined by the application configuration.
 	 *
@@ -129,8 +131,9 @@ public class GameCanvas {
 		debugRender = new ShapeRenderer();
 
 		// Set the projection matrix (for proper scaling)
-		camera = new OrthographicCamera(getWidth(),getHeight());
+		camera = new OrthographicCamera(getWidth()/2,getHeight()/2);
 		camera.setToOrtho(false);
+		camera.update();
 		spriteBatch.setProjectionMatrix(camera.combined);
 		debugRender.setProjectionMatrix(camera.combined);
 
@@ -140,17 +143,17 @@ public class GameCanvas {
 		global = new Matrix4();
 		vertex = new Vector2();
 
-		// Initialize the perspective camera objects
-		eye = new Vector3();
-		target = new Vector3();
-		view  = new Matrix4();
-		proj  = new Matrix4();
-
-		// Initialize the cache objects
-		tmpMat = new Matrix4();
-		tmp0  = new Vector3();
-		tmp1  = new Vector3();
-		tmp2d = new Vector2();
+//		// Initialize the perspective camera objects
+//		eye = new Vector3();
+//		target = new Vector3();
+//		view  = new Matrix4();
+//		proj  = new Matrix4();
+//
+//		// Initialize the cache objects
+//		tmpMat = new Matrix4();
+//		tmp0  = new Vector3();
+//		tmp1  = new Vector3();
+//		tmp2d = new Vector2();
 	}
 
     /**
@@ -373,10 +376,6 @@ public class GameCanvas {
     	global.mulLeft(camera.combined);
 		spriteBatch.setProjectionMatrix(global);
 
-		view.setToLookAt(eye,target,UP_REVERSED);
-		setToPerspectiveFOV(proj, FOV, (float)getWidth() / (float)getHeight(), NEAR_DIST, FAR_DIST);
-		tmpMat.set(view).mulLeft(proj);
-
 		setBlendState(BlendState.NO_PREMULT);
 		spriteBatch.begin();
     	active = DrawPass.STANDARD;
@@ -404,13 +403,36 @@ public class GameCanvas {
 	 * Start a standard drawing sequence.
 	 *
 	 * Nothing is flushed to the graphics card until the method end() is called.
+	 * FOR LOADING SCREEN
 	 */
     public void begin() {
-    	camera.translate(0.1f,0);
 		spriteBatch.setProjectionMatrix(camera.combined);
     	spriteBatch.begin();
     	active = DrawPass.STANDARD;
     }
+
+    public void beginFog() {
+		spriteBatch.begin();
+
+	}
+
+	public void endFog() {
+
+	}
+
+	/**
+	 * Start a standard drawing sequence.
+	 *
+	 * Nothing is flushed to the graphics card until the method end() is called.
+	 */
+	public void begin(Vector2 position) {
+		camera.position.set(position.x*8f,position.y*8f,0);
+		camera.zoom = 0.95f;
+		camera.update();
+		spriteBatch.setProjectionMatrix(camera.combined);
+		spriteBatch.begin();
+		active = DrawPass.STANDARD;
+	}
 
 	/**
 	 * Ends a drawing sequence, flushing textures to the graphics card.
@@ -1248,5 +1270,9 @@ public class GameCanvas {
 		out.val[15] = 0.0f;
 
 		return out;
+	}
+
+	public PolygonSpriteBatch getSpriteBatch() {
+		return spriteBatch;
 	}
 }
