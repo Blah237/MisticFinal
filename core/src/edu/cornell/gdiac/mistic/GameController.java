@@ -396,13 +396,15 @@ public class GameController extends WorldController implements ContactListener {
         if (l.lit) {
             firefly_count++;
             l.setTexture(unlitTexture);
+            l.toggleLantern();
         } else {
-            l.setTexture(litTexture);
             if (firefly_count >= 1) {
                 firefly_count = firefly_count - 1;
+                l.setTexture(litTexture);
+                l.toggleLantern();
             }
         }
-        l.toggleLantern();
+
     }
 
     private void createLantern(float x, float y){
@@ -435,9 +437,10 @@ public class GameController extends WorldController implements ContactListener {
 
         boolean pressing = InputController.getInstance().didSecondary();
         if(pressing){
-            Lantern l=getLantern(gorf.getX(),gorf.getY());
-            if (l!=null){
-                toggle(l);
+
+                Lantern l = getLantern(gorf.getX(), gorf.getY());
+                if (l!=null){
+                    toggle(l);
             }
         }
 
