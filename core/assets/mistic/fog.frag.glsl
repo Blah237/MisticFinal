@@ -1,5 +1,5 @@
-#define NX 50
-#define NY 50
+#define NX 35
+#define NY 35
 
 uniform vec2 fogOrigin;
 uniform sampler2D u_texture;

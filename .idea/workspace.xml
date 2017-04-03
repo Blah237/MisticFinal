@@ -7,10 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Mistic" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew.bat" afterPath="$PROJECT_DIR$/gradlew.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -64,7 +62,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BoardModel.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BoardModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="497">
@@ -79,18 +77,18 @@
       <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1800">
-              <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+            <state relative-caret-position="460">
+              <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fog.frag.glsl" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fog.frag.glsl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+            <state relative-caret-position="20">
+              <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -882,10 +880,10 @@
       <list>
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
-        <option value="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+        <option value="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
       </list>
     </option>
   </component>
@@ -1464,22 +1462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -1494,6 +1476,22 @@
           <folding>
             <marker date="1491188997357" expanded="true" signature="9464:9471" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
