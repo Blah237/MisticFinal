@@ -7,17 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/firefly.png" afterPath="$PROJECT_DIR$/core/assets/mistic/firefly.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/LightPixel7.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/LightPixel7.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/Minecraft.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/Minecraft.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/Minecraftia.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/Minecraftia.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/RetroGame.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/RetroGame.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Mistic" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew.bat" afterPath="$PROJECT_DIR$/gradlew.bat" />
     </list>
@@ -66,7 +57,7 @@
       <file leaf-file-name="WorldController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6460">
+            <state relative-caret-position="6220">
               <caret line="350" column="41" lean-forward="false" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
               <folding />
             </state>
@@ -76,9 +67,11 @@
       <file leaf-file-name="BoardModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="237" column="25" lean-forward="true" selection-start-line="237" selection-start-column="25" selection-end-line="237" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="497">
+              <caret line="244" column="30" lean-forward="true" selection-start-line="244" selection-start-column="30" selection-end-line="244" selection-end-column="30" />
+              <folding>
+                <marker date="1491188997357" expanded="true" signature="9464:9471" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,8 +79,8 @@
       <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="1800">
+              <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -106,7 +99,7 @@
       <file leaf-file-name="GameCanvas.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7980">
+            <state relative-caret-position="8300">
               <caret line="430" column="24" lean-forward="false" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
               <folding>
                 <element signature="e#0#43057#0" expanded="true" />
@@ -1218,6 +1211,58 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="43" column="63" lean-forward="false" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6220">
+          <caret line="350" column="41" lean-forward="false" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1491188997357" expanded="true" signature="9464:9471" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1800">
+          <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8300">
+          <caret line="430" column="24" lean-forward="false" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#43057#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -1236,7 +1281,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-          <folding />
+          <folding>
+            <marker date="1491188997357" expanded="true" signature="9464:9471" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1386,7 +1433,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6460">
+        <state relative-caret-position="6220">
           <caret line="350" column="41" lean-forward="false" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
           <folding />
         </state>
@@ -1394,7 +1441,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7980">
+        <state relative-caret-position="8300">
           <caret line="430" column="24" lean-forward="false" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
           <folding>
             <element signature="e#0#43057#0" expanded="true" />
@@ -1406,7 +1453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1365">
           <caret line="36" column="35" lean-forward="false" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1426,27 +1472,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="225" column="4" lean-forward="false" selection-start-line="225" selection-start-column="4" selection-end-line="241" selection-end-column="5" />
+        <state relative-caret-position="1800">
+          <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
+    <entry file="file://$USER_HOME$/Desktop/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="196">
+          <caret line="225" column="4" lean-forward="false" selection-start-line="225" selection-start-column="4" selection-end-line="241" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="237" column="25" lean-forward="true" selection-start-line="237" selection-start-column="25" selection-end-line="237" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="497">
+          <caret line="244" column="30" lean-forward="true" selection-start-line="244" selection-start-column="30" selection-end-line="244" selection-end-column="30" />
+          <folding>
+            <marker date="1491188997357" expanded="true" signature="9464:9471" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
