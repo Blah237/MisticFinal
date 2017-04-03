@@ -43,8 +43,8 @@ public class FogController {
 	float spreadCount;
 	float spreadCountX;
 	float spreadCountY;
-	private final int NX = 35;
-	private final int NY = 35;
+	private final int NX = 50;
+	private final int NY = 50;
 
 	private int WX;
 	private int WY;
