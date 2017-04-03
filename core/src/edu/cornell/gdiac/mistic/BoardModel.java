@@ -69,14 +69,14 @@ public class BoardModel {
         this.tileHeight = (screenDimensions.height/height);
         this.tileWidth = (screenDimensions.width/width);
         this.tiles = new Tile[width][height];
-       // System.out.println("Canvas Size: "+ screenDimensions.width + ", "+screenDimensions.height+ ". Tile width: "+tileWidth + ", "+tileHeight);
+        // System.out.println("Canvas Size: "+ screenDimensions.width + ", "+screenDimensions.height+ ". Tile width: "+tileWidth + ", "+tileHeight);
         for (int i = 0; i < width; i++) {
             for(int j=0;j<height;j++){
                 Tile t=new Tile();
                 t.y=j;
                 t.x=i;
-                t.fx=j*tileWidth;
-                t.fy=i*tileHeight;
+                t.fx=i*tileWidth;
+                t.fy=j*tileHeight;
                 tiles[i][j]=t;
                 //System.out.println("Tile: "+t.x+", "+t.y+". Pixel: "+t.fx + ", "+t.fy);
             }
@@ -184,24 +184,24 @@ public class BoardModel {
     /**
      * Returns the board tile index for a screen position.
      *
-     * @param position Screen position coordinate
+     * @param x Screen position x
      *
      * @return the board cell index for a screen position.
      */
-    public int screenToBoardX(Vector2 position) {
-        int intX = (int)(position.x/tileWidth);
+    public int screenToBoardX(float x) {
+        int intX = (int)(x/tileWidth);
         return intX;
     }
 
     /**
      * Returns the board tile index for a screen position.
      *
-     * @param position Screen position coordinate
+     * @param y Screen position y
      *
      * @return the board cell index for a screen position.
      */
-    public int screenToBoardY(Vector2 position) {
-        int intY = (int)(position.y/tileHeight);
+    public int screenToBoardY(float y) {
+        int intY = (int)(y/tileHeight);
         return intY;
     }
 
@@ -224,6 +224,32 @@ public class BoardModel {
     }
 
     /**
+     * Returns true if the tile is a fog.
+     *
+     * A tile position that is not on the board will always evaluate to false.
+     *
+     * @param x The x index for the Tile cell
+     * @param y The y index for the Tile cell
+     *
+     * @return true if the tile is a goal.
+     */
+    public boolean isFog(int x, int y) {
+        if (!inBounds(x, y)) {
+            return false;
+        }
+
+        return getTile(x, y).isFog;
+    }
+
+    public boolean isWall(int x, int y) {
+        if (!inBounds(x, y)) {
+            return false;
+        }
+
+        return getTile(x, y).isWall;
+    }
+
+    /**
      * Returns true if the tile is a lantern.
      *
      * A tile position that is not on the board will always evaluate to false.
@@ -242,24 +268,6 @@ public class BoardModel {
     }
 
     /**
-     * Returns true if the tile is a wall.
-     *
-     * A tile position that is not on the board will always evaluate to false.
-     *
-     * @param x The x index for the Tile cell
-     * @param y The y index for the Tile cell
-     *
-     * @return true if the tile is a wall.
-     */
-    public boolean isWall(int x, int y) {
-        if (!inBounds(x, y)) {
-            return false;
-        }
-
-        return getTile(x, y).isWall;
-    }
-
-    /**
      * Returns true if the tile is a fog.
      *
      * A tile position that is not on the board will always evaluate to false.
@@ -267,25 +275,7 @@ public class BoardModel {
      * @param x The x index for the Tile cell
      * @param y The y index for the Tile cell
      *
-     * @return true if the tile is a fog.
-     */
-    public boolean isFog(int x, int y) {
-        if (!inBounds(x, y)) {
-            return false;
-        }
-
-        return getTile(x, y).isFog;
-    }
-
-    /**
-     * Returns true if the tile is a fog.
-     *
-     * A tile position that is not on the board will always evaluate to false.
-     *
-     * @param x The x index for the Tile cell
-     * @param y The y index for the Tile cell
-     *
-     * @return true if the tile is a fog.
+     * @return true if the tile is a goal.
      */
     public void setFog(int x, int y) {
         if (!inBounds(x,y)) {
@@ -346,14 +336,6 @@ public class BoardModel {
         return getTile(x, y).visited;
     }
 
-    public boolean isFogSpawn(int x, int y) {
-        if (!inBounds(x, y)) {
-            return false;
-        }
-
-        return getTile(x, y).isFogSpawn;
-    }
-
     /**
      * Returns true if a tile location is safe (i.e. there is a tile there)
      *
@@ -366,6 +348,14 @@ public class BoardModel {
         Tile the_tile = getTile(x, y);
         return x >= 0 && y >= 0 && x < width && y < height
                 && !(the_tile.isWall);
+    }
+
+    public boolean isFogSpawn(int x, int y) {
+        if (!inBounds(x, y)) {
+            return false;
+        }
+
+        return getTile(x, y).isFogSpawn;
     }
 
 
