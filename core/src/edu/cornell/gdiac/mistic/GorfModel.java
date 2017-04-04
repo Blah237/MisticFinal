@@ -48,7 +48,7 @@ public class GorfModel extends BoxObstacle {
 	/** The restitution of this rocket */
 	private static final float DEFAULT_RESTITUTION = 0.4f;
 	/** The thrust factor to convert player input into thrust */
-	private static final float DEFAULT_THRUST = 5.0f;
+	private static final float DEFAULT_THRUST = 15.0f;
 	/** The number of frames for the afterburner */
 	public static final int FIRE_FRAMES = 4;
 
@@ -264,7 +264,7 @@ public class GorfModel extends BoxObstacle {
 	 *
 	 * @param  burner   enumeration to identify the afterburner
 	 *
-	 * @param  node the animation node for the given afterburner
+	 *
 	 */
 	public void setBurnerStrip(Burner burner, FilmStrip strip) {
 		switch (burner) {

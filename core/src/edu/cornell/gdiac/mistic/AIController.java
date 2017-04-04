@@ -1,6 +1,10 @@
 package edu.cornell.gdiac.mistic;
 
 import com.badlogic.gdx.math.Vector2;
+<<<<<<< HEAD
+=======
+import edu.cornell.gdiac.GameCanvas;
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
 import edu.cornell.gdiac.InputController;
 
 import java.util.LinkedList;
@@ -11,7 +15,11 @@ import java.util.Queue;
  */
 public class AIController extends InputController {
 
+<<<<<<< HEAD
     private static enum FSMState {
+=======
+    private enum FSMState {
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
         /** The monster just spawned */
         SPAWN,
         /** The monster is patrolling around without a target */
@@ -20,7 +28,11 @@ public class AIController extends InputController {
         CHASE,
     }
 
+<<<<<<< HEAD
     private static enum direction {
+=======
+    private enum direction {
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
         STOP, UP, UP_RIGHT, RIGHT, DOWN_RIGHT, DOWN, DOWN_LEFT, LEFT, UP_LEFT,
     }
 
@@ -132,8 +144,13 @@ public class AIController extends InputController {
         // Add initialization code as necessary
         //#region PUT YOUR CODE HERE
         Vector2 gorfPos = new Vector2(gorf.getPosition().x, gorf.getPosition().y);
+<<<<<<< HEAD
         int gorfTileX = board.screenToBoardX(gorfPos);
         int gorfTileY = board.screenToBoardY(gorfPos);
+=======
+        int gorfTileX = board.screenToBoardX(gorfPos.x);
+        int gorfTileY = board.screenToBoardY(gorfPos.y);
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
         //#endregion
 
         // Next state depends on current state.
@@ -189,12 +206,21 @@ public class AIController extends InputController {
         boolean setGoal = false; // Until we find a goal
 
         // Add initialization code as necessary
+<<<<<<< HEAD
         int theX = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y));
         int theY = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y));
         //#region PUT YOUR CODE HERE
         Vector2 gorfPos = new Vector2(gorf.getPosition().x *50.0f, gorf.getPosition().y * 50.0f);
         int gorfTileX = board.screenToBoardX(gorfPos);
         int gorfTileY = board.screenToBoardY(gorfPos);
+=======
+        int theX = board.screenToBoardX(monster.getPosition().x);
+        int theY = board.screenToBoardY(monster.getPosition().y);
+        //#region PUT YOUR CODE HERE
+        Vector2 gorfPos = new Vector2((gorf.getPosition().x *50.0f)/scale.x, (gorf.getPosition().y * 50.0f)/scale.y);
+        int gorfTileX = board.screenToBoardX(gorfPos.x);
+        int gorfTileY = board.screenToBoardY(gorfPos.y);
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
         //#endregion
 
         switch (state) {
@@ -233,8 +259,13 @@ public class AIController extends InputController {
         // If we have no goals, mark current position as a goal
         // so we do not spend time looking for nothing:
         if (!setGoal) {
+<<<<<<< HEAD
             int sx = board.screenToBoardX(new Vector2(monster.getPosition().x, monster.getPosition().y));
             int sy = board.screenToBoardY(new Vector2(monster.getPosition().x, monster.getPosition().y));
+=======
+            int sx = board.screenToBoardX(monster.getPosition().x);
+            int sy = board.screenToBoardY(monster.getPosition().y);
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
             board.setGoal(sx, sy);
         }
     }
@@ -266,11 +297,19 @@ public class AIController extends InputController {
     private direction getMoveAlongPathToGoalTile() {
         //#region PUT YOUR CODE HERE
         Vector2 monsterPos = monster.getPosition();
+<<<<<<< HEAD
         monsterPos.x = monsterPos.x * 50.0f;
         monsterPos.y = monsterPos.y * 50.0f;
         Queue q = new LinkedList();
         int start_x = board.screenToBoardX(monsterPos);
         int start_y = board.screenToBoardY(monsterPos);
+=======
+        monsterPos.x = (monsterPos.x * 50.0f)/scale.x;
+        monsterPos.y = (monsterPos.y * 50.0f)/scale.y;
+        Queue q = new LinkedList();
+        int start_x = board.screenToBoardX(monsterPos.x);
+        int start_y = board.screenToBoardY(monsterPos.y);
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
         board.setVisited(start_x, start_y);
         LinkedList<Pair> vlist;
         vlist = new LinkedList<Pair>();
@@ -320,8 +359,27 @@ public class AIController extends InputController {
             neighbors.add(new Pair(tile.x, tile.y + 1));
         }
         if (board.isSafeAt((tile.x),(tile.y - 1)) && !board.isVisited((tile.x),(tile.y - 1))) {
+<<<<<<< HEAD
             neighbors.add(new Pair(tile.x, tile.y - 1));
         }
+=======
+            neighbors.add(new Pair(tile.x , tile.y - 1));
+        }
+        if (board.isSafeAt((tile.x+ 1),(tile.y +1)) && !board.isVisited((tile.x + 1),(tile.y + 1))) {
+            neighbors.add(new Pair(tile.x + 1, tile.y + 1));
+        }
+        if (board.isSafeAt((tile.x + 1),(tile.y - 1)) && !board.isVisited((tile.x + 1),(tile.y - 1))) {
+            neighbors.add(new Pair(tile.x + 1, tile.y - 1));
+        }
+
+        if (board.isSafeAt((tile.x - 1),(tile.y + 1)) && !board.isVisited((tile.x - 1),(tile.y + 1))) {
+            neighbors.add(new Pair(tile.x - 1, tile.y + 1));
+        }
+        if (board.isSafeAt((tile.x - 1),(tile.y - 1)) && !board.isVisited((tile.x - 1),(tile.y - 1))) {
+            neighbors.add(new Pair(tile.x - 1, tile.y - 1));
+        }
+
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
         return neighbors;
     }
 
@@ -363,6 +421,7 @@ public class AIController extends InputController {
         switch (the_move) {
 
             case LEFT:
+<<<<<<< HEAD
                horizontal -= 0.5f;
                break;
             case RIGHT:
@@ -389,11 +448,42 @@ public class AIController extends InputController {
             case DOWN_RIGHT:
                 vertical += 0.5f;
                 horizontal += 0.5f;
+=======
+               horizontal -= 1.9f;
+               break;
+            case RIGHT:
+                horizontal += 1.9f;
+                break;
+            case UP:
+                vertical -= 1.9f;
+                break;
+            case DOWN:
+                vertical += 1.9f;
+                break;
+            case UP_LEFT:
+                vertical -= 1.9f;
+                horizontal -= 1.9f;
+                break;
+            case DOWN_LEFT:
+                vertical += 1.9f;
+                horizontal -= 1.9f;
+                break;
+            case UP_RIGHT:
+                vertical -= 1.9f;
+                horizontal += 1.9f;
+                break;
+            case DOWN_RIGHT:
+                vertical += 1.9f;
+                horizontal += 1.9f;
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
                 break;
 
         }
     }
+<<<<<<< HEAD
     //#endregion
+=======
+>>>>>>> ee8cc6417dd5493778848ece018c6e2c4d1442a0
 
 
 }

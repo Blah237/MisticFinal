@@ -116,6 +116,8 @@ public class GameCanvas {
 	/** Cache object to handle raw textures */
 	private TextureRegion holder;
 
+	public FrameBuffer fbo;
+
 	/**
 	 * Creates a new GameCanvas determined by the application configuration.
 	 *
@@ -408,6 +410,29 @@ public class GameCanvas {
     	spriteBatch.begin();
     	active = DrawPass.STANDARD;
     }
+
+    public void beginFog() {
+		spriteBatch.begin();
+
+	}
+
+	public void endFog() {
+
+	}
+
+	/**
+	 * Start a standard drawing sequence.
+	 *
+	 * Nothing is flushed to the graphics card until the method end() is called.
+	 */
+	public void begin(Vector2 position) {
+		camera.position.set(position.x*8f,position.y*8f,0);
+		camera.zoom = 0.95f;
+		camera.update();
+		spriteBatch.setProjectionMatrix(camera.combined);
+		spriteBatch.begin();
+		active = DrawPass.STANDARD;
+	}
 
 	/**
 	 * Start a standard drawing sequence.
@@ -1258,5 +1283,9 @@ public class GameCanvas {
 		out.val[15] = 0.0f;
 
 		return out;
+	}
+
+	public PolygonSpriteBatch getSpriteBatch() {
+		return spriteBatch;
 	}
 }
