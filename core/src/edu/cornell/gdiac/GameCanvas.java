@@ -1275,4 +1275,6 @@ public class GameCanvas {
 	public PolygonSpriteBatch getSpriteBatch() {
 		return spriteBatch;
 	}
+
+	public float getZoom() { return camera.zoom; }
 }

@@ -188,7 +188,7 @@ public class GameController extends WorldController implements ContactListener {
     /** Arraylist of Lantern objects */
     public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
 
-    // private FogController fog;
+     private FogController fog;
     private boolean[][] board;
     private boolean[][] fogBoard;
     private float BW = DEFAULT_WIDTH;
@@ -354,7 +354,7 @@ public class GameController extends WorldController implements ContactListener {
 
          this.ai = new AIController(monster, tileBoard, gorf, scale);
 
-        // fog = new FogController(400,150,Lanterns);
+         fog = new FogController(400,150,Lanterns);
     }
 
     private void createMonster(float x, float y) {
@@ -515,7 +515,7 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.end();
 
-        // fog.draw(canvas, Lanterns, gorf, firefly_count);
+        fog.draw(canvas, Lanterns, gorf, firefly_count);
         canvas.begin();
         canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
         displayFont.setColor(Color.WHITE);

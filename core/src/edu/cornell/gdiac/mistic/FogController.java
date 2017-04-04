@@ -43,8 +43,8 @@ public class FogController {
 	float spreadCount;
 	float spreadCountX;
 	float spreadCountY;
-	private final int NX = 50;
-	private final int NY = 50;
+	private final int NX = 35;
+	private final int NY = 35;
 
 	private int WX;
 	private int WY;
@@ -69,6 +69,8 @@ public class FogController {
 	private final float WALL = 0.9f;
 	private final float LANTERN = 0.5f;
 
+	float zoom;
+
 
 //	OrthographicCamera cam;
 	FPSLogger logger = new FPSLogger();
@@ -77,6 +79,9 @@ public class FogController {
 	public FogController(int x, int y, BoardModel tileBoard, GameCanvas canvas) {
 		wall = new Texture("mistic/backgroundresize.png");
 		fogOrigin = new Vector2(x,y);
+
+		zoom = canvas.getZoom();
+		System.out.println(zoom);
 
 		this.tileBoard = tileBoard;
 
