@@ -168,9 +168,6 @@ public class GameController extends WorldController implements ContactListener {
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
-    //ticks
-    private static int ticks;
-    private static final int FIREFLY_DEATH_TIMcrER = 5;
     private AIController ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
@@ -198,9 +195,10 @@ public class GameController extends WorldController implements ContactListener {
     private float UW = BW / UNITS_W;
     private float UH = BH / UNITS_H;
     private static int FOG_DELAY = 50;
-    private static int FIREFLY_DELAY = 150;
+    private static int FIREFLY_DELAY = 200;
     private int fogDelay = FOG_DELAY;
     private int fireflyDelay = FIREFLY_DELAY;
+    private int fireflyDeathTimer;
 
 
 
@@ -216,8 +214,8 @@ public class GameController extends WorldController implements ContactListener {
         world.setContactListener(this);
         this.fireflyController=new FireflyController(fireflyTexture, scale,tileBoard);
         this.firefly_count = 0;
-        this.ticks = 0;
         this.DEAD = false;
+        this.fireflyDeathTimer=0;
 
     }
 
@@ -237,6 +235,7 @@ public class GameController extends WorldController implements ContactListener {
         Lanterns = new ArrayList<Lantern>();
         fireflyController = new FireflyController(fireflyTexture, scale,tileBoard);
         this.firefly_count = 2;
+        this.fireflyDeathTimer=0;
         world = new World(gravity,false);
         world.setContactListener(this);
         setComplete(false);
@@ -447,6 +446,24 @@ public class GameController extends WorldController implements ContactListener {
                     toggle(l);
             }
         }
+        float Gorfx= gorf.getPosition().x * scale.x;
+        float Gorfy= gorf.getPosition().y * scale.y;
+        BoardModel.Tile gorftile= tileBoard.tiles[tileBoard.screenToBoardX(Gorfx)][tileBoard.screenToBoardY(Gorfy)];
+        boolean inFog=gorftile.isFog;
+
+        if (inFog){
+            fireflyDeathTimer+=1;
+            if(fireflyDeathTimer>fireflyDelay){
+                if(firefly_count!=0) {
+                    firefly_count -= 1;
+                }
+                fireflyDeathTimer=0;
+            }
+        }
+        if(!inFog){
+            fireflyDeathTimer=0;
+        }
+
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
@@ -466,7 +483,7 @@ public class GameController extends WorldController implements ContactListener {
 
 
 
-        if (random(500)==10) {
+        if (random(100)==10) {
             fireflyController.spawn();
         }
 
@@ -638,18 +655,6 @@ public class GameController extends WorldController implements ContactListener {
             this.DEAD = true;
         }}
 
-
-
-        //if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
-           // if (firefly_count > 0) {
-             //   firefly_count = firefly_count - 1;
-           // }
-        //} else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == gorf.getBody() && body1.getUserData() == "fog") {
-           // if (firefly_count > 0) {
-            //    firefly_count = firefly_count - 1;
-           // }
-       // }
-   // }
 
     /**
      * Callback method for the start of a collision

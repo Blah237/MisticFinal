@@ -58,7 +58,7 @@ public class FireflyController {
         int x= random(99);
         int y=random(99);
         BoardModel.Tile t= board.tiles[x][y];
-        if(!t.isWall){
+        if(!t.isWall& !t.isFog){
             Firefly f = create(t.fx,t.fy);
             return f;
         }
