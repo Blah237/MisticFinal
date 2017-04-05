@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import edu.cornell.gdiac.GameCanvas;
@@ -37,14 +38,14 @@ public class FogController {
 	Vector2 fogOrigin;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 60;
+	private final int FOG_DELAY = 80;
 	int spreadType;
 	float thickness;
 	float spreadCount;
 	float spreadCountX;
 	float spreadCountY;
-	private final int NX = 50;
-	private final int NY = 50;
+	private final int NX = 24;
+	private final int NY = 24;
 
 	private int WX;
 	private int WY;
@@ -69,25 +70,34 @@ public class FogController {
 	private final float WALL = 0.9f;
 	private final float LANTERN = 0.5f;
 
+	float zoom;
+	Vector2 screenDim;
+	float canvasScale;
+	Vector2 res;
+	Vector2 dim;
+
 
 //	OrthographicCamera cam;
 	FPSLogger logger = new FPSLogger();
 
 
-	public FogController(int x, int y, BoardModel tileBoard, GameCanvas canvas) {
+	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale) {
 		wall = new Texture("mistic/backgroundresize.png");
-		fogOrigin = new Vector2(x,y);
+		screenDim = new Vector2(screensize.getWidth(), screensize.getHeight());
+		res = new Vector2(canvas.getWidth(), canvas.getHeight());
 
-		this.tileBoard = tileBoard;
+		this.canvasScale = canvasScale;
+//		this.tileBoard = tileBoard;
+		zoom = canvas.getZoom();
 
 		WX = tileBoard.getWidth();
 		WY = tileBoard.getHeight();
 
-		tileW = canvas.getWidth() / (float)WX;
-		tileH = canvas.getHeight() / (float)WY;
+		tileW = screenDim.x / (float)WX;
+		tileH = screenDim.y / (float)WY;
 
-		boardTilesPerCamViewX = (int)Math.floor(.5f * WX) + 1;
-		boardTilesPerCamViewY = (int)Math.floor(.5f * WY) + 1;
+		boardTilesPerCamViewX = (int)Math.ceil(zoom * WX / canvasScale) + 1;
+		boardTilesPerCamViewY = (int)Math.ceil(zoom * WY / canvasScale) + 1;
 
 		cellW = boardTilesPerCamViewX*tileW / (float)NX;
 		cellH = boardTilesPerCamViewY*tileH / (float)NY;
@@ -99,12 +109,12 @@ public class FogController {
 
 		for (int i=0; i<WX; i++) {
 			for (int j=0; j<WY; j++) {
-				if (tileBoard.isWall(j,i)) {
+				if (tileBoard.isWall(i,j)) {
 					elementBoard[i][j] = WALL;
-				} else if (tileBoard.isLantern(j,i)) {
+				} else if (tileBoard.isLantern(i,j)) {
 					elementBoard[i][j] = LANTERN;
-				} else if (tileBoard.isFogSpawn(j,i)) {
-					fogOrigin = new Vector2(j,i);
+				} else if (tileBoard.isFogSpawn(i,j)) {
+					fogOrigin = new Vector2(i,j);
 				}
 			}
 		}
@@ -134,13 +144,15 @@ public class FogController {
 
 		shader.pedantic = false;
 
+		dim = new Vector2(NX*cellW, NY*cellH);
+
 		shader.begin();
-		shader.setUniformf("dim", NX*cellW/.5f, NY*cellH/.5f);		// should be NX*cellW? aka graphics width...?
+		shader.setUniformf("dim", dim.x/zoom, dim.y/zoom);		// should be NX*cellW? aka graphics width...?
 		shader.setUniformf("res", canvas.getWidth(), canvas.getHeight());
 		shader.end();
 	}
 
-	public void resize(int width, int height) {
+	public void screenResize(int width, int height) {
 //		cam.setToOrtho(false, width, height);
 //		batch.setProjectionMatrix(cam.combined);
 		//bind the shader, then set the uniform, then unbind the shader
@@ -174,12 +186,12 @@ public class FogController {
 
 		batch.end();
 
-		logger.log();
+//		logger.log();
 	}
 
-	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, GameCanvas canvas, Vector2 scale) {
-		fogOriginCamX = (fogOrigin.x / WX * canvas.getWidth() - (gorf.getX() * scale.x - .5f * canvas.getWidth() / 2.0f)) / (.5f * canvas.getWidth());
-		fogOriginCamY = (fogOrigin.y / WY * canvas.getHeight() - (gorf.getY() * scale.y - .5f * canvas.getHeight() / 2.0f)) / (.5f * canvas.getHeight());
+	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, GameCanvas canvas, Vector2 scale, BoardModel tileBoard) {
+		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 
 		Array<Lantern> litLanterns = new Array<Lantern>();
 		for (int i=0; i<lanterns.size(); i++) {
@@ -190,31 +202,31 @@ public class FogController {
 
 		litLanternsA = new float[litLanterns.size*2];
 		for (int i=0; i<litLanterns.size; i++) {
-			Vector2 lanternPos = new Vector2((int)(litLanterns.get(i).getX() * scale.x / canvas.getWidth() * WX), (int)(litLanterns.get(i).getY() * scale.y / canvas.getHeight() * WY));
+			Vector2 lanternPos = new Vector2((int)(litLanterns.get(i).getX() * scale.x / screenDim.x * WX), (int)(litLanterns.get(i).getY() * scale.y / screenDim.y * WY));
 			for (int j=-6; j<7; j++) {
-				for (int k=-6; k<6; k++) {
-					if (j==-6 || j==6 || k==-6 || k==6) {
-						if (lanternPos.x+j > 0 && lanternPos.x+j < WX && lanternPos.y+k > 0 && lanternPos.y+k < WY) {
-							fogBoard[(int)lanternPos.x+j][(int)lanternPos.y+k] = BOUNDARY;
+				for (int k = -6; k < 6; k++) {
+					if (j == -6 || j == 6 || k == -6 || k == 6) {
+						if (lanternPos.x + j > 0 && lanternPos.x + j < WX && lanternPos.y + k > 0 && lanternPos.y + k < WY) {
+							fogBoard[(int) lanternPos.x + j][(int) lanternPos.y + k] = BOUNDARY;
 						}
 					} else {
-						if (lanternPos.x+j > 0 && lanternPos.x+j < WX && lanternPos.y+k > 0 && lanternPos.y+k < WY) {
-							fogBoard[(int)lanternPos.x+j][(int)lanternPos.y+k] = 0.0f;
+						if (lanternPos.x + j > 0 && lanternPos.x + j < WX && lanternPos.y + k > 0 && lanternPos.y + k < WY) {
+							fogBoard[(int) lanternPos.x + j][(int) lanternPos.y + k] = 0.0f;
 						}
 					}
 				}
 			}
-			litLanternsA[i*2] = (litLanterns.get(i).getX() * scale.x - (gorf.getX() * scale.x - .5f * canvas.getWidth() / 2.0f)) / (.5f * canvas.getWidth());
-			litLanternsA[i*2+1] = (litLanterns.get(i).getY() * scale.y - (gorf.getY() * scale.y - .5f * canvas.getHeight() / 2.0f)) / (.5f * canvas.getHeight());
+			litLanternsA[i*2] = (litLanterns.get(i).getX() * scale.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+			litLanternsA[i*2+1] = (litLanterns.get(i).getY() * scale.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 		}
 
 		if (fogDelay <= 0) {
-			updateFog();
+			updateFog(tileBoard);
 			fogDelay = FOG_DELAY;
 //			fogReach++;
 			thickness++;
 //			System.out.println(fogReach);
-//			System.out.println(fogBoard[(int)(Math.floor(fogOrigin.y/canvas.getHeight()*NY)+Math.floor(fogOrigin.y/canvas.getWidth()*NX)+fogReach)]);
+//			System.out.println(fogBoard[(int)(Math.floor(fogOrigin.y/screenDim.y*NY)+Math.floor(fogOrigin.y/screenDim.x*NX)+fogReach)]);
 		}
 		else {
 			fogDelay--;
@@ -223,16 +235,32 @@ public class FogController {
 //		fogReachX+=(1f/FOG_DELAY * spreadCountX/spreadCount);
 //		fogReachY+=(1f/FOG_DELAY * spreadCountY/spreadCount);
 
-		gorfPos = new Vector2((gorf.getX()) * scale.x / canvas.getWidth() * WX, gorf.getY() * scale.y / canvas.getHeight() * WY);
+		gorfPos = new Vector2(gorf.getX() * scale.x + scale.x/2f, gorf.getY() * scale.y + scale.y/2f);		// in pixels
+//		System.out.println(gorfPos.x - boardTilesPerCamViewX * tileW / 2f);
+		int startTileX = (int)Math.floor((gorfPos.x - res.x * zoom / 2f) / screenDim.x * WX);
+		int startTileY = (int)Math.floor((gorfPos.y - res.y * zoom / 2f) / screenDim.y * WY);
 
-		int startTileX = (int)(gorfPos.x - (boardTilesPerCamViewX + 1) / 2);
-		int startTileY = (int)(gorfPos.y - (boardTilesPerCamViewY + 1) / 2);
+		if (startTileX % 2 == 1) {
+			startTileX--;
+		}
+		if (startTileY % 2 == 1) {
+			startTileY--;
+		}
+//		System.out.println(startTileX);
 
 		fogBoardCam = new float[NX*NY];
+		int camTileX = 0;
 		for (int i=0; i<boardTilesPerCamViewX; i++) {
+			if (i>0 && i%2 == 0) {
+				camTileX++;
+			}
+			int camTileY = 0;
 			for (int j=0; j<boardTilesPerCamViewY; j++) {
-				int camTileX = (int)((float)i/boardTilesPerCamViewX * NX);
-				int camTileY = (int)((float)j/boardTilesPerCamViewY * NY);
+				if (j>0 && j%2 == 0) {
+					camTileY++;
+				}
+//				int camTileX = (int)((float)i/boardTilesPerCamViewX * NX);
+//				int camTileY = (int)((float)j/boardTilesPerCamViewY * NY);
 				if (startTileX+i > 0 && startTileY+j > 0 && startTileX+i < WX && startTileY+j < WY) {
 					if (fogBoardCam[camTileY * NX + camTileX] != 0) {
 						fogBoardCam[camTileY * NX + camTileX] = Math.min(fogBoardCam[camTileY * NX + camTileX], fogBoard[startTileX + i][startTileY + j]);
@@ -242,11 +270,13 @@ public class FogController {
 				}
 			}
 		}
-		boardLeftOffset = ((gorf.getX() * scale.x - .5f * canvas.getWidth() / 2.0f) % tileW) / .5f;
-		boardBotOffset = ((gorf.getY() * scale.y - .5f * canvas.getHeight() / 2.0f) % tileH) / .5f;
+
+		boardLeftOffset = ((((gorfPos.x - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
+		boardBotOffset = ((((gorfPos.y - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
+//		System.out.println(boardLeftOffset);
 	}
 
-	private void updateFog() {
+	private void updateFog(BoardModel tileBoard) {
 		spreadCount = 0;
 		spreadCountX = 0;
 		spreadCountY = 0;
@@ -254,7 +284,7 @@ public class FogController {
 		for (int i = 0; i < WX; i++) {
 			for (int j = 0; j < WY; j++) {
 				if (fogBoard[i][j] == BOUNDARY) {
-					spreadFog(i,j);
+					spreadFog(i,j,tileBoard);
 					spreadCount++;
 					if (spreadType == 0 || spreadType == 1 || spreadType == 2) {
 						spreadCountX++;
@@ -268,7 +298,7 @@ public class FogController {
 		fogBoard = newFogBoard;
 	}
 
-	private void spreadFog(int x, int y) {
+	private void spreadFog(int x, int y, BoardModel tileBoard) {
 		spreadType = MathUtils.random(0,2);
 		if (spreadType == 0) {
 			newFogBoard[x][y] = 1 - elementBoard[x][y];
