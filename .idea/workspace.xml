@@ -7,7 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
@@ -45,11 +46,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="356" column="49" lean-forward="false" selection-start-line="356" selection-start-column="49" selection-end-line="356" selection-end-column="49" />
+            <state relative-caret-position="284">
+              <caret line="356" column="9" lean-forward="true" selection-start-line="356" selection-start-column="9" selection-end-line="356" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -58,9 +59,26 @@
       <file leaf-file-name="WorldController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3340">
+            <state relative-caret-position="6220">
               <caret line="350" column="41" lean-forward="false" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
-              <folding />
+              <folding>
+                <element signature="e#0#19766#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#9083#9084#0" expanded="false" />
+                <element signature="e#9102#9103#0" expanded="false" />
+                <element signature="e#9306#9307#0" expanded="false" />
+                <element signature="e#9326#9327#0" expanded="false" />
+                <element signature="e#9519#9520#0" expanded="false" />
+                <element signature="e#9541#9542#0" expanded="false" />
+                <element signature="e#9999#10000#0" expanded="false" />
+                <element signature="e#10019#10020#0" expanded="false" />
+                <element signature="e#10420#10421#0" expanded="false" />
+                <element signature="e#10440#10441#0" expanded="false" />
+                <element signature="e#10649#10650#0" expanded="false" />
+                <element signature="e#10669#10670#0" expanded="false" />
+                <element signature="e#19731#19732#0" expanded="false" />
+                <element signature="e#19762#19763#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,20 +86,20 @@
       <file leaf-file-name="BoardModel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3920">
+            <state relative-caret-position="1357">
               <caret line="228" column="78" lean-forward="false" selection-start-line="228" selection-start-column="78" selection-end-line="228" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+            <state relative-caret-position="-1860">
+              <caret line="107" column="41" lean-forward="true" selection-start-line="107" selection-start-column="41" selection-end-line="107" selection-end-column="41" />
               <folding>
-                <element signature="e#5197#5206#0" expanded="true" />
+                <element signature="e#5471#5480#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,8 +108,8 @@
       <file leaf-file-name="fog.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+            <state relative-caret-position="400">
+              <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -100,11 +118,9 @@
       <file leaf-file-name="GameCanvas.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="1278" column="50" lean-forward="true" selection-start-line="1278" selection-start-column="50" selection-end-line="1278" selection-end-column="50" />
-              <folding>
-                <element signature="e#0#43106#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="220">
+              <caret line="135" column="28" lean-forward="false" selection-start-line="135" selection-start-column="28" selection-end-line="135" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -133,8 +149,10 @@
       <find>moveacc</find>
       <find>forcex</find>
       <find>gorf</find>
-      <find>zoom</find>
       <find>fog</find>
+      <find>zoom</find>
+      <find>new fo</find>
+      <find>canvassc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -883,10 +901,10 @@
       <list>
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
-        <option value="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
+        <option value="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       </list>
     </option>
   </component>
@@ -1133,20 +1151,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="1932" height="1047" extended-state="1" />
+    <frame x="-7" y="0" width="1932" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.50213677" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.49786323" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932165" sideWeight="0.49786323" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1157,8 +1175,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39934355" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39934355" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1188,10 +1206,10 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932165" sideWeight="0.49786323" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32932165" sideWeight="0.49786323" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.53899574" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53899574" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1223,7 +1241,7 @@
         <state relative-caret-position="3760">
           <caret line="204" column="36" lean-forward="true" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1241,7 +1259,7 @@
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1259,7 +1277,7 @@
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1282,7 +1300,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6220">
           <caret line="350" column="41" lean-forward="false" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="e#0#19766#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#9083#9084#0" expanded="false" />
+            <element signature="e#9102#9103#0" expanded="false" />
+            <element signature="e#9306#9307#0" expanded="false" />
+            <element signature="e#9326#9327#0" expanded="false" />
+            <element signature="e#9519#9520#0" expanded="false" />
+            <element signature="e#9541#9542#0" expanded="false" />
+            <element signature="e#9999#10000#0" expanded="false" />
+            <element signature="e#10019#10020#0" expanded="false" />
+            <element signature="e#10420#10421#0" expanded="false" />
+            <element signature="e#10440#10441#0" expanded="false" />
+            <element signature="e#10649#10650#0" expanded="false" />
+            <element signature="e#10669#10670#0" expanded="false" />
+            <element signature="e#19731#19732#0" expanded="false" />
+            <element signature="e#19762#19763#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1290,9 +1325,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8300">
           <caret line="430" column="24" lean-forward="false" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#43106#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1325,7 +1358,7 @@
         <state relative-caret-position="1800">
           <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1357,7 +1390,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6220">
           <caret line="350" column="41" lean-forward="false" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="e#0#19766#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#9083#9084#0" expanded="false" />
+            <element signature="e#9102#9103#0" expanded="false" />
+            <element signature="e#9306#9307#0" expanded="false" />
+            <element signature="e#9326#9327#0" expanded="false" />
+            <element signature="e#9519#9520#0" expanded="false" />
+            <element signature="e#9541#9542#0" expanded="false" />
+            <element signature="e#9999#10000#0" expanded="false" />
+            <element signature="e#10019#10020#0" expanded="false" />
+            <element signature="e#10420#10421#0" expanded="false" />
+            <element signature="e#10440#10441#0" expanded="false" />
+            <element signature="e#10649#10650#0" expanded="false" />
+            <element signature="e#10669#10670#0" expanded="false" />
+            <element signature="e#19731#19732#0" expanded="false" />
+            <element signature="e#19762#19763#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1374,7 +1424,7 @@
         <state relative-caret-position="1800">
           <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1391,9 +1441,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8300">
           <caret line="430" column="24" lean-forward="false" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#43106#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1409,7 +1457,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7040">
           <caret line="352" column="41" lean-forward="false" selection-start-line="352" selection-start-column="41" selection-end-line="352" selection-end-column="41" />
-          <folding />
+          <folding>
+            <element signature="e#0#19766#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#9083#9084#0" expanded="false" />
+            <element signature="e#9102#9103#0" expanded="false" />
+            <element signature="e#9306#9307#0" expanded="false" />
+            <element signature="e#9326#9327#0" expanded="false" />
+            <element signature="e#9519#9520#0" expanded="false" />
+            <element signature="e#9541#9542#0" expanded="false" />
+            <element signature="e#9999#10000#0" expanded="false" />
+            <element signature="e#10019#10020#0" expanded="false" />
+            <element signature="e#10420#10421#0" expanded="false" />
+            <element signature="e#10440#10441#0" expanded="false" />
+            <element signature="e#10649#10650#0" expanded="false" />
+            <element signature="e#10669#10670#0" expanded="false" />
+            <element signature="e#19731#19732#0" expanded="false" />
+            <element signature="e#19762#19763#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1426,7 +1491,7 @@
         <state relative-caret-position="4040">
           <caret line="218" column="14" lean-forward="true" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="14" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1443,9 +1508,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7980">
           <caret line="430" column="24" lean-forward="false" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#43106#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1470,7 +1533,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1496,7 +1559,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1522,7 +1585,7 @@
         <state relative-caret-position="3760">
           <caret line="204" column="36" lean-forward="true" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1540,7 +1603,7 @@
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1558,7 +1621,7 @@
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1591,55 +1654,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6220">
+          <caret line="350" column="41" lean-forward="false" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#19766#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#9083#9084#0" expanded="false" />
+            <element signature="e#9102#9103#0" expanded="false" />
+            <element signature="e#9306#9307#0" expanded="false" />
+            <element signature="e#9326#9327#0" expanded="false" />
+            <element signature="e#9519#9520#0" expanded="false" />
+            <element signature="e#9541#9542#0" expanded="false" />
+            <element signature="e#9999#10000#0" expanded="false" />
+            <element signature="e#10019#10020#0" expanded="false" />
+            <element signature="e#10420#10421#0" expanded="false" />
+            <element signature="e#10440#10441#0" expanded="false" />
+            <element signature="e#10649#10650#0" expanded="false" />
+            <element signature="e#10669#10670#0" expanded="false" />
+            <element signature="e#19731#19732#0" expanded="false" />
+            <element signature="e#19762#19763#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="135" column="28" lean-forward="false" selection-start-line="135" selection-start-column="28" selection-end-line="135" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3920">
+        <state relative-caret-position="1357">
           <caret line="228" column="78" lean-forward="false" selection-start-line="228" selection-start-column="78" selection-end-line="228" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="356" column="9" lean-forward="true" selection-start-line="356" selection-start-column="9" selection-end-line="356" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        <state relative-caret-position="400">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3340">
-          <caret line="350" column="41" lean-forward="false" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="1278" column="50" lean-forward="true" selection-start-line="1278" selection-start-column="50" selection-end-line="1278" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#43106#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+        <state relative-caret-position="-1860">
+          <caret line="107" column="41" lean-forward="true" selection-start-line="107" selection-start-column="41" selection-end-line="107" selection-end-column="41" />
           <folding>
-            <element signature="e#5197#5206#0" expanded="true" />
+            <element signature="e#5471#5480#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="356" column="49" lean-forward="false" selection-start-line="356" selection-start-column="49" selection-end-line="356" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>

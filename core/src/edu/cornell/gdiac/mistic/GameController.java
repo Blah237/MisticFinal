@@ -273,10 +273,14 @@ public class GameController extends WorldController implements ContactListener {
 
         Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
         this.tileBoard = new BoardModel(100, 100, screenSize);
+
+        tileBoard.tiles[20][40].isFogSpawn=true;
+
         tileBoard.tiles[0][55].isLantern=true;
         tileBoard.tiles[50][30].isLantern=true;
         tileBoard.tiles[50][70].isLantern=true;
         tileBoard.tiles[25][90].isLantern=true;
+
         for(int i=0;i<10;i++){
             tileBoard.tiles[0][i].isWall=true;
         }
@@ -354,7 +358,7 @@ public class GameController extends WorldController implements ContactListener {
 
          this.ai = new AIController(monster, tileBoard, gorf, scale);
 
-         fog = new FogController(400,150,Lanterns);
+         fog = new FogController(tileBoard, canvas, screenSize, 2.0f);
     }
 
     private void createMonster(float x, float y) {
@@ -483,6 +487,8 @@ public class GameController extends WorldController implements ContactListener {
          }
          }*/
 
+        fog.update(gorf,Lanterns,canvas,scale,tileBoard);
+
     }
 
     /**
@@ -511,19 +517,16 @@ public class GameController extends WorldController implements ContactListener {
         canvas.clear();
 
         // Draw background unscaled.
+        fog.draw(canvas, firefly_count);
+
         canvas.begin();
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-        canvas.end();
 
-        fog.draw(canvas, Lanterns, gorf, firefly_count);
-        canvas.begin();
         canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
         displayFont.setColor(Color.WHITE);
         canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);
-        canvas.end();
 
         // Draw background on all sides and diagonals for wrap illusion
-        canvas.begin();
         canvas.draw(backgroundTexture, Color.WHITE, 0, canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth()*2, canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.draw(backgroundTexture, Color.WHITE, 0, -canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
@@ -532,6 +535,7 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, -canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, 0,canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, canvas.getHeight()*2,canvas.getWidth()*2,canvas.getHeight()*2);
+
         canvas.end();
 
         // now redraw objects on surrounding canvases
@@ -576,13 +580,12 @@ public class GameController extends WorldController implements ContactListener {
         for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
         canvas.end();
 
+        canvas.begin();
         if (complete(Lanterns)) {
             if (countdown > 0) {
-                canvas.begin();
                 String vic = "Victory!";
                 displayFont.setColor(Color.PURPLE);
                 canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
-                canvas.end();
                 countdown --;
             } else if (countdown==0) {
                 this.setComplete(true);
@@ -591,19 +594,15 @@ public class GameController extends WorldController implements ContactListener {
 
         if (DEAD) {
             if (countdown > 0) {
-                canvas.begin();
                 String vic = "Game Over!";
                 displayFont.setColor(Color.PURPLE);
                 canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
-                canvas.end();
                 countdown --;
             } else if (countdown==0) {
                 DEAD = false;
                 this.setComplete(true);
             }
         }
-
-
 
         if (isDebug()) {
             canvas.beginDebug();
@@ -613,6 +612,8 @@ public class GameController extends WorldController implements ContactListener {
             canvas.endDebug();
             canvas.endDebug();
         }
+
+        canvas.end();
     }
 
     /// CONTACT LISTENER METHODS
