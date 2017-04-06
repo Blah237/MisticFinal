@@ -36,15 +36,15 @@ void main() {
     int cellX = int(boardCoord.x*float(NX));
     int cellY = int(boardCoord.y*float(NY));
 
-    float fogThickness = 1.0-smoothstep(fogReach/float(NX)-.5, fogReach/float(NX), dist);
+//    float fogThickness = 1.0-smoothstep(fogReach/float(NX)-.5, fogReach/float(NX), dist);
 
     vec4 texColor = texture2D(u_texture, vTexCoord);
 
     vec3 fog = vec3(.5,0.0,.65);
 
 
-    fogThickness *= fogBoard[cellY*NX + cellX];
-//    float fogThickness = fogBoard[cellY*NX + cellX];
+//    fogThickness *= fogBoard[cellY*NX + cellX];
+    float fogThickness = fogBoard[cellY*NX + cellX];
 
     for (int i=0; i<10; i++) {
         if (i>=numLanterns) {
@@ -58,7 +58,7 @@ void main() {
         dy2 = min(dy2, abs(lantern.y + (2.0-coord.y)));
 
         float dist2 = length(vec2(dx2,dy2));
-        float fogThickness2 = smoothstep(.2, .3, dist2);
+        float fogThickness2 = smoothstep(.15, .25, dist2);
         fogThickness *= fogThickness2;
     }
 

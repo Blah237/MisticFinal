@@ -277,12 +277,12 @@ public class BoardModel {
      *
      * @return true if the tile is a goal.
      */
-    public void setFog(int x, int y) {
+    public void setFog(int x, int y, boolean val) {
         if (!inBounds(x,y)) {
             Gdx.app.error("Board", "Illegal tile "+x+","+y, new IndexOutOfBoundsException());
             return;
         }
-        getTile(x, y).isFog = true;
+        getTile(x, y).isFog = val;
     }
 
 

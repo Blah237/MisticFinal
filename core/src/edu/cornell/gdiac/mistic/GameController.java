@@ -358,7 +358,7 @@ public class GameController extends WorldController implements ContactListener {
 
          this.ai = new AIController(monster, tileBoard, gorf, scale);
 
-         fog = new FogController(tileBoard, canvas, screenSize, 2.0f);
+         fog = new FogController(tileBoard, canvas, screenSize, 2.0f, scale);
     }
 
     private void createMonster(float x, float y) {
@@ -487,7 +487,7 @@ public class GameController extends WorldController implements ContactListener {
          }
          }*/
 
-        fog.update(gorf,Lanterns,canvas,scale,tileBoard);
+        fog.update(gorf,Lanterns,tileBoard);
 
     }
 
