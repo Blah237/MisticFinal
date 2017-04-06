@@ -16,6 +16,10 @@ import com.badlogic.gdx.utils.Array;
 import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.WorldController;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -77,6 +81,8 @@ public class FogController {
 	Vector2 res;
 	Vector2 dim;
 	Vector2 scale;
+
+	Array<Vector2> newFog;
 
 
 //	OrthographicCamera cam;
@@ -168,6 +174,7 @@ public class FogController {
 	}
 
 	public void draw(GameCanvas canvas, int numFireflies) {
+		System.out.println(canvas.getHeight());
 		batch = canvas.getSpriteBatch();
 		batch.setShader(shader);
 
@@ -203,6 +210,7 @@ public class FogController {
 
 		updateLanterns(lanterns, tileBoard);
 
+		newFog = new Array<Vector2>();
 		if (fogDelay <= 0) {
 			updateFog(tileBoard);
 			fogDelay = FOG_DELAY;
@@ -297,137 +305,66 @@ public class FogController {
 
 	private void spreadFog(int x, int y, BoardModel tileBoard) {
 
-//		for (int w=10; w<11; w++) {
-//			for (int e=12; e<13; e++) {
-//				System.out.println(fogBoard[w][e]);
-//				newFogBoard[w][e] = 4f;
-//				System.out.println(fogBoard[w][e]);
-//				System.out.println("");
-//			}
-//		}
-
-
-
-		spreadType = MathUtils.random(0,3);
-
-
+		spreadType = MathUtils.random(0,20);
 
 		if (spreadType == 0) {
-
-
 			newFogBoard[x][y] = 1 - elementBoard[x][y];
-
-
-
-			int x1 = x - 1;
-			int x2 = x + 1;
-			int y1 = y - 1;
-			int y2 = y + 1;
-
-			if (x1 == -1) {
-				x1 = WX - 1;
-			} else if (x2 == WX) {
-				x2 = 0;
-			}
-			if (y1 == -1) {
-				y1 = WY - 1;
-			} else if (y2 == WY) {
-				y2 = 0;
+			if (newFogBoard[x][y] == 1) {
+				tileBoard.setFog(x, y, true);
+				newFog.add(new Vector2(x,y));
 			}
 
-//			System.out.println(fogBoard[10][12]);
-//			newFogBoard[10][12] = 4f;
-//			System.out.println(fogBoard[10][12]);
-//			System.out.println("");
+			int x1 = (x - 1 + WX) % WX;
+			int x2 = (x + 1     ) % WX;
+			int y1 = (y - 1 + WY) % WY;
+			int y2 = (y + 1     ) % WY;
 
-
-
-
-//			System.out.println(fogBoard[x][y1]);
 			newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], BOUNDARY * (1 - elementBoard[x][y1]));
 			newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], BOUNDARY * (1 - elementBoard[x][y2]));
 			newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], BOUNDARY * (1 - elementBoard[x1][y]));
 			newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], BOUNDARY * (1 - elementBoard[x2][y]));
-
-//			newFogBoard[x][y1] = 4f;
-
-//			System.out.println(newFogBoard[x][y1]);
-//			System.out.println(fogBoard[x][y1]);
-//			System.out.println("");
-
-			if (newFogBoard[x][y1] == 1) {
-				tileBoard.setFog(x,y1,true);
-			}
-
-			if (fogBoard[x][y2] == 1) {
-				tileBoard.setFog(x,y2,true);
-			}
-
-			if (fogBoard[x1][y] == 1) {
-				tileBoard.setFog(x1,y,true);
-			}
-
-			if (fogBoard[x2][y] == 1) {
-				tileBoard.setFog(x2,y,true);
-			}
 		}
 		else if (spreadType == 1){
 			int ii, jj;
 			for (int i=x-1; i<=x+1; i++) {
+
+				ii = (i + WX) % WX;
+
 				for (int j=y-1; j<=y+1; j++) {
-					ii = (i + WX) % WX;
+
 					jj = (j + WY) % WY;
-//					if (i == -1) {
-//						ii = WX - 1;
-//					} else if (i == WX) {
-//						ii = 0;
-//					}
-//					if (j == -1) {
-//						jj = WY - 1;
-//					} else if (j == WY) {
-//						jj = 0;
-//					}
 
 					if (i == x && j == y) {
 						newFogBoard[i][j] = 1 - elementBoard[i][j];
+						if (newFogBoard[i][j] == 1) {
+							tileBoard.setFog(i,j,true);
+							newFog.add(new Vector2(i,j));
+						}
 					} else {
 						newFogBoard[ii][jj] = Math.max(newFogBoard[ii][jj], BOUNDARY * (1 - elementBoard[ii][jj]));
-					}
-
-					if (fogBoard[ii][jj] == 1) {
-						tileBoard.setFog(ii,jj,true);
 					}
 				}
 			}
 		}
+
+		// Spreading unidirectionally sometimes causes holes to form in the fog, because (actually have no idea why this happens...)
 //		else if (spreadType == 2){
-//			newFogBoard[y * WX + x] = 1 - elementBoard[x][y];
+//			newFogBoard[x][y] = 1 - elementBoard[x][y];
 //
-//			int x1 = x - 1;
-//			int x2 = x + 1;
+//			int x1 = (x - 1 + WX) % WX;
+//			int x2 = (x + 1     ) % WX;
 //
-//			if (x1 == -1) {
-//				x1 = WX - 1;
-//			} else if (x2 == WX) {
-//				x2 = 0;
-//			}
+//			newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], BOUNDARY * (1 - elementBoard[x1][y]));
+//			newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], BOUNDARY * (1 - elementBoard[x2][y]));
+//		}
+//		else if (spreadType == 3){
+//			newFogBoard[x][y] = 1 - elementBoard[x][y];
 //
-//			newFogBoard[y * WX + x1] = Math.max(newFogBoard[y * WX + x1], BOUNDARY * (1 - elementBoard[x1][y]));
-//			newFogBoard[y * WX + x2] = Math.max(newFogBoard[y * WX + x2], BOUNDARY * (1 - elementBoard[x2][y]));
-//		} else {
-//			newFogBoard[y * WX + x] = 1 - elementBoard[x][y];
+//			int y1 = (y - 1 + WY) % WY;
+//			int y2 = (y + 1     ) % WY;
 //
-//			int y1 = y - 1;
-//			int y2 = y + 1;
-//
-//			if (y1 == -1) {
-//				y1 = WY - 1;
-//			} else if (y2 == WY) {
-//				y2 = 0;
-//			}
-//
-//			newFogBoard[y1 * WX + x] = Math.max(newFogBoard[y1 * WX + x], BOUNDARY * (1 - elementBoard[x][y1]));
-//			newFogBoard[y2 * WX + x] = Math.max(newFogBoard[y2 * WX + x], BOUNDARY * (1 - elementBoard[x][y2]));
+//			newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], BOUNDARY * (1 - elementBoard[x][y1]));
+//			newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], BOUNDARY * (1 - elementBoard[x][y2]));
 //		}
 	}
 
@@ -454,52 +391,37 @@ public class FogController {
 			}
 
 			for (int j=-7; j<=7; j++) {
-				lx = (int)((lanternPos.x + j + WX) % WX);
+				lx = (int) ((lanternPos.x + j + WX) % WX);
 				int bound;
-				if (j==-7 || j==7) {
+				if (j == -7 || j == 7) {
 					bound = 2;
-				} else if (j==-6 || j==6) {
+				} else if (j == -6 || j == 6) {
 					bound = 4;
-				} else if (j==-5 || j==5) {
+				} else if (j == -5 || j == 5) {
 					bound = 5;
-				} else if (j==-4 || j==4) {
+				} else if (j == -4 || j == 4) {
 					bound = 6;
-				} else if (j==-3 || j==3) {
+				} else if (j == -3 || j == 3) {
 					bound = 6;
 				} else {
 					bound = 7;
 				}
 
-				ly = (int)((lanternPos.y - bound - 1 + WY) % WY);
+				ly = (int) ((lanternPos.y - bound - 1 + WY) % WY);
 
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 
-				for (int k=-bound; k<=bound; k++) {
-					ly = (int)((lanternPos.y + k + WY) % WY);
+				for (int k = -bound; k <= bound; k++) {
+					ly = (int) ((lanternPos.y + k + WY) % WY);
 					fogBoard[lx][ly] = 0f;
 					tileBoard.setFog(lx, ly, false);
 				}
 
-				ly = (int)((lanternPos.y + bound + 1) % WY);
+				ly = (int) ((lanternPos.y + bound + 1) % WY);
 
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
-
-
-//				for (int k = -6; k < 6; k++) {
-//					if (j == -6 || j == 6 || k == -6 || k == 6) {
-//						if (lanternPos.x + j > 0 && lanternPos.x + j < WX && lanternPos.y + k > 0 && lanternPos.y + k < WY) {
-//							fogBoard[(int) lanternPos.x + j][(int) lanternPos.y + k] = BOUNDARY;
-//							tileBoard.setFog((int) lanternPos.x + j, (int) lanternPos.y + k, false);
-//						}
-//					} else {
-//						if (lanternPos.x + j > 0 && lanternPos.x + j < WX && lanternPos.y + k > 0 && lanternPos.y + k < WY) {
-//							fogBoard[(int) lanternPos.x + j][(int) lanternPos.y + k] = 0.0f;
-//							tileBoard.setFog((int) lanternPos.x + j, (int) lanternPos.y + k, false);
-//						}
-//					}
-//				}
 			}
 
 			for (int h=-2; h<=2; h++) {
@@ -512,5 +434,38 @@ public class FogController {
 			litLanternsA[i*2] = (litLanterns.get(i).getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 			litLanternsA[i*2+1] = (litLanterns.get(i).getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 		}
+	}
+
+	public void generatePerlin() {
+		final int WIDTH = 1080, HEIGHT = 576;
+
+		double[] data = new double[WIDTH * HEIGHT];
+		int count = 0;
+
+		Perlin perlin = new Perlin();
+		for (int y = 0; y < HEIGHT; y++) {
+			for (int x = 0; x < WIDTH; x++) {
+				data[count++] = perlin.noise(10.0 * (double)x / WIDTH, 10.0 * (double)y / HEIGHT);
+			}
+		}
+
+		double minValue = data[0], maxValue = data[0];
+		for (int i = 0; i < data.length; i++) {
+			minValue = Math.min(data[i], minValue);
+			maxValue = Math.max(data[i], maxValue);
+		}
+
+		int[] pixelData = new int[WIDTH * HEIGHT];
+		for (int i = 0; i < data.length; i++) {
+			pixelData[i] = (int) (255 * (data[i] - minValue) / (maxValue - minValue));
+		}
+
+//		Pixmap perlinPix = new Pixmap(WIDTH, HEIGHT, )
+		BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
+		img.getRaster().setPixels(0, 0, WIDTH, HEIGHT, pixelData);
+	}
+
+	public Array<Vector2> getNewFog() {
+		return newFog;
 	}
 }
