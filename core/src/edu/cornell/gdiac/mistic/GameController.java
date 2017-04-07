@@ -517,11 +517,23 @@ public class GameController extends WorldController implements ContactListener {
         canvas.clear();
 
         // Draw background unscaled.
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.end();
+
         fog.draw(canvas, firefly_count);
 
         canvas.begin();
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.end();
 
+
+
+        canvas.getSpriteBatch().setShader(null);    // this is causing fog shading to not wrap
+
+
+
+        canvas.begin();
         canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
         displayFont.setColor(Color.WHITE);
         canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);

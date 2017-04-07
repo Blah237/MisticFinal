@@ -1,9 +1,15 @@
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.PixmapIO;
+import com.badlogic.gdx.graphics.Texture;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 
 /**
  * Created by Altair on 4/6/2017.
@@ -140,14 +146,23 @@ public class Perlin {
             pixelData[i] = (int) (255 * (data[i] - minValue) / (maxValue - minValue));
         }
 
-        BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
-        img.getRaster().setPixels(0, 0, WIDTH, HEIGHT, pixelData);
-
-        File output = new File("image.jpg");
-        try {
-            ImageIO.write(img, "jpg", output);
-        } catch (IOException e) {
-            e.printStackTrace();
+        ByteBuffer byteBuffer = ByteBuffer.allocate(4*pixelData.length);
+        for (int j=0; j<pixelData.length; j++) {
+            byteBuffer.putInt(pixelData[j]);
         }
+        byte[] pixelBytes = byteBuffer.array();
+
+        Pixmap perlinPix = new Pixmap(pixelBytes, 0, WIDTH*HEIGHT);
+        Texture perlinTex = new Texture(perlinPix);
+        PixmapIO.writePNG(new FileHandle("image.jpg"), perlinPix);
+//        BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
+//        img.getRaster().setPixels(0, 0, WIDTH, HEIGHT, pixelData);
+//
+//        File output = new File("image.jpg");
+//        try {
+//            ImageIO.write(img, "jpg", output);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }

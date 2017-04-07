@@ -2,6 +2,7 @@ package edu.cornell.gdiac.mistic;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -27,7 +28,7 @@ import java.util.Arrays;
 
 public class FogController {
 	PolygonSpriteBatch batch;
-	Texture wall;
+	Texture bg;
 	String vertexShader;
 	String fragmentShader;
 	ShaderProgram shader;
@@ -84,13 +85,14 @@ public class FogController {
 
 	Array<Vector2> newFog;
 
+	Texture perlinTex;
 
 //	OrthographicCamera cam;
 	FPSLogger logger = new FPSLogger();
 
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
-		wall = new Texture("mistic/backgroundresize.png");
+		bg = new Texture("mistic/backgroundresize.png");
 		screenDim = new Vector2(screensize.getWidth(), screensize.getHeight());
 		res = new Vector2(canvas.getWidth(), canvas.getHeight());
 		this.scale = scale;
@@ -162,6 +164,8 @@ public class FogController {
 		shader.setUniformf("dim", dim.x/zoom, dim.y/zoom);		// should be NX*cellW? aka graphics width...?
 		shader.setUniformf("res", canvas.getWidth(), canvas.getHeight());
 		shader.end();
+
+		generatePerlin();
 	}
 
 	public void screenResize(int width, int height) {
@@ -178,7 +182,16 @@ public class FogController {
 		batch = canvas.getSpriteBatch();
 		batch.setShader(shader);
 
+
+
 		shader.begin();
+
+		perlinTex.bind(1);
+		shader.setUniformi("u_texture_perlin", 1);
+
+		bg.bind(0);
+		shader.setUniformi("u_texture", 0);
+
 		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
 		shader.setUniformf("fogReach", fogReach);
         shader.setUniform2fv("lanterns", litLanternsA, 0, litLanternsA.length);
@@ -187,6 +200,7 @@ public class FogController {
 		shader.setUniformf("fogOrigin", fogOriginCamX, fogOriginCamY);
 		shader.setUniformf("leftOffset", boardLeftOffset);
 		shader.setUniformf("botOffset", boardBotOffset);
+//		shader.setUniformi
 		shader.end();
 
 		batch.begin();
@@ -194,8 +208,9 @@ public class FogController {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		batch.enableBlending();
+		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-		batch.draw(wall, 0, 0, canvas.getWidth(), canvas.getHeight());
+		batch.draw(bg, 0, 0, screenDim.x, screenDim.y);
 
 		batch.end();
 
@@ -436,6 +451,7 @@ public class FogController {
 		}
 	}
 
+	// Adapted from code provided at http://flafla2.github.io/2014/08/09/perlinnoise.html
 	public void generatePerlin() {
 		final int WIDTH = 1080, HEIGHT = 576;
 
@@ -445,7 +461,7 @@ public class FogController {
 		Perlin perlin = new Perlin();
 		for (int y = 0; y < HEIGHT; y++) {
 			for (int x = 0; x < WIDTH; x++) {
-				data[count++] = perlin.noise(10.0 * (double)x / WIDTH, 10.0 * (double)y / HEIGHT);
+				data[count++] = perlin.noise(30.0 * (double)x / WIDTH, 15.0 * (double)y / HEIGHT);
 			}
 		}
 
@@ -460,9 +476,28 @@ public class FogController {
 			pixelData[i] = (int) (255 * (data[i] - minValue) / (maxValue - minValue));
 		}
 
-//		Pixmap perlinPix = new Pixmap(WIDTH, HEIGHT, )
-		BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
-		img.getRaster().setPixels(0, 0, WIDTH, HEIGHT, pixelData);
+        BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
+        img.getRaster().setPixels(0, 0, WIDTH, HEIGHT, pixelData);
+
+        File output = new File("image.png");
+        try {
+            ImageIO.write(img, "png", output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//		ByteBuffer byteBuffer = ByteBuffer.allocate(4*pixelData.length);
+//		for (int j=0; j<pixelData.length; j++) {
+//			byteBuffer.putInt(pixelData[j]);
+//		}
+//		byte[] pixelBytes = byteBuffer.array();
+//		System.out.println(pixelData[1]);
+//		System.out.println((byte)pixelData[1]);
+//		System.out.println(byteBuffer.get(7));
+//		Pixmap perlinPix = new Pixmap(pixelBytes, 0, WIDTH*HEIGHT);
+		Pixmap perlinPix = new Pixmap(new FileHandle("image.png"));
+		perlinTex = new Texture(perlinPix);
+		PixmapIO.writePNG(new FileHandle("image2.png"), perlinPix);
 	}
 
 	public Array<Vector2> getNewFog() {

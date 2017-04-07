@@ -3,6 +3,7 @@
 
 uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
+uniform sampler2D u_texture_perlin;
 uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
 uniform float fogBoard[NX*NY];
@@ -68,8 +69,19 @@ void main() {
     float dist3 = length(vec2(dx3, dy3));
     fogThickness *= smoothstep(min(.1 + float(numFireflies)*.05, .4)-.15, min(.1 + float(numFireflies)*.05, .4), dist3);
 
+    fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
     fog *= min(1.0,fogThickness);
+    fog *= max(.8, texture2D(u_texture_perlin, vTexCoord).a);
+
     gl_FragColor = texColor;
+//    gl_FragColor = vec4(fog, fogThickness);
     gl_FragColor.rgb *= max(0.0,1.0-fogThickness);
     gl_FragColor.rgb += fog;
+//    if (fogThickness > 0) {
+//        gl_FragColor.a *= texture2D(u_texture_perlin, vTexCoord).a;
+//    }
+
+//    gl_FragColor.a = 0;
+
+//    gl_FragColor = texColor;
  }
