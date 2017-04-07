@@ -55,6 +55,6 @@ public class Firefly{
 
     public boolean isDestroyed(){return this.destroyed;}
 
-    public void setDestroyed(){this.destroyed=true;}
+    public void setDestroyed(boolean b){this.destroyed=b;}
 
 }

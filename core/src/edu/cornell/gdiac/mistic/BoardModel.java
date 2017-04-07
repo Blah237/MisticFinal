@@ -190,6 +190,8 @@ public class BoardModel {
      */
     public int screenToBoardX(float x) {
         int intX = (int)(x/tileWidth);
+        if(intX==width){return intX-1;}
+
         return intX;
     }
 
@@ -202,6 +204,7 @@ public class BoardModel {
      */
     public int screenToBoardY(float y) {
         int intY = (int)(y/tileHeight);
+        if(intY==height){return intY-1;}
         return intY;
     }
 

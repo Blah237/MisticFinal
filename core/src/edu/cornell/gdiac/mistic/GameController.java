@@ -138,6 +138,8 @@ public class GameController extends WorldController implements ContactListener {
 
         litTexture=createTexture(manager,LIT_LANTERN,false);
         unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
+        litTexture.setRegion( litTexture.getRegionX()-3, litTexture.getRegionY()+20, litTexture.getRegionWidth(), litTexture.getRegionHeight()+22);
+        unlitTexture.setRegion(unlitTexture.getRegionX()-3,unlitTexture.getRegionY()+20,unlitTexture.getRegionWidth(),unlitTexture.getRegionHeight()+22);
         gorfTexture = createTexture(manager,GORF_TEXTURE,false);
         fireflyTexture = createTexture(manager,FIRE_FLY,false);
         fogTexture = createTexture(manager,FOG_TEXTURE,true);
@@ -168,9 +170,6 @@ public class GameController extends WorldController implements ContactListener {
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
-    //ticks
-    private static int ticks;
-    private static final int FIREFLY_DEATH_TIMcrER = 5;
     private AIController ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
@@ -198,9 +197,10 @@ public class GameController extends WorldController implements ContactListener {
     private float UW = BW / UNITS_W;
     private float UH = BH / UNITS_H;
     private static int FOG_DELAY = 50;
-    private static int FIREFLY_DELAY = 150;
+    private static int FIREFLY_DELAY = 200;
     private int fogDelay = FOG_DELAY;
     private int fireflyDelay = FIREFLY_DELAY;
+    private int fireflyDeathTimer;
 
 
 
@@ -216,8 +216,8 @@ public class GameController extends WorldController implements ContactListener {
         world.setContactListener(this);
         this.fireflyController=new FireflyController(fireflyTexture, scale,tileBoard);
         this.firefly_count = 0;
-        this.ticks = 0;
         this.DEAD = false;
+        this.fireflyDeathTimer=0;
 
     }
 
@@ -237,6 +237,7 @@ public class GameController extends WorldController implements ContactListener {
         Lanterns = new ArrayList<Lantern>();
         fireflyController = new FireflyController(fireflyTexture, scale,tileBoard);
         this.firefly_count = 2;
+        this.fireflyDeathTimer=0;
         world = new World(gravity,false);
         world.setContactListener(this);
         setComplete(false);
@@ -438,7 +439,6 @@ public class GameController extends WorldController implements ContactListener {
         //#region INSERT CODE HERE
         // Read from the input and add the force to the rocket model
         // Then apply the force using the method you modified in RocketObject
-
         boolean pressing = InputController.getInstance().didSecondary();
         if(pressing){
 
@@ -446,6 +446,24 @@ public class GameController extends WorldController implements ContactListener {
                 if (l!=null){
                     toggle(l);
             }
+        }
+
+        float Gorfx= gorf.getPosition().x * scale.x;
+        float Gorfy= gorf.getPosition().y * scale.y;
+        BoardModel.Tile gorftile= tileBoard.tiles[tileBoard.screenToBoardX(Gorfx)][tileBoard.screenToBoardY(Gorfy)];
+        boolean inFog=gorftile.isFog;
+
+        if (inFog){
+            fireflyDeathTimer+=1;
+            if(fireflyDeathTimer>fireflyDelay){
+                if(firefly_count!=0) {
+                    firefly_count -= 1;
+                }
+                fireflyDeathTimer=0;
+            }
+        }
+        if(!inFog){
+            fireflyDeathTimer=0;
         }
 
         float forcex = InputController.getInstance().getHorizontal();
@@ -466,7 +484,7 @@ public class GameController extends WorldController implements ContactListener {
 
 
 
-        if (random(500)==10) {
+        if (random(200)==10) {
             fireflyController.spawn();
         }
 
@@ -517,9 +535,9 @@ public class GameController extends WorldController implements ContactListener {
         canvas.clear();
 
         // Draw background unscaled.
-        canvas.begin();
-        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-        canvas.end();
+//        canvas.begin();
+//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+//        canvas.end();
 
         fog.draw(canvas, firefly_count);
 
@@ -527,11 +545,7 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.end();
 
-
-
         canvas.getSpriteBatch().setShader(null);    // this is causing fog shading to not wrap
-
-
 
         canvas.begin();
         canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
@@ -553,43 +567,46 @@ public class GameController extends WorldController implements ContactListener {
         // now redraw objects on surrounding canvases
         canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null && !f.isDestroyed()){f.getObject().draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
         canvas.end();
 
         //diagonal canvases
         canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
         canvas.end();
 
         // main canvas
         canvas.begin(gorf.getPosition());
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(!f.isDestroyed()){f.getObject().draw(canvas);}}
+
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);
+        //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
+        }}
         canvas.end();
 
         canvas.begin();
@@ -650,18 +667,6 @@ public class GameController extends WorldController implements ContactListener {
             this.DEAD = true;
         }}
 
-
-
-        //if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body1 == gorf.getBody() && body2.getUserData() == "fog") {
-           // if (firefly_count > 0) {
-             //   firefly_count = firefly_count - 1;
-           // }
-        //} else if (ticks % FIREFLY_DEATH_TIMER == 0 && ticks != 0 && body2 == gorf.getBody() && body1.getUserData() == "fog") {
-           // if (firefly_count > 0) {
-            //    firefly_count = firefly_count - 1;
-           // }
-       // }
-   // }
 
     /**
      * Callback method for the start of a collision
