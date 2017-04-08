@@ -52,7 +52,6 @@ public class FireflyController {
         return fireflies;
     }
 
-
     public Firefly spawn(){
         int x= random(99);
         int y=random(99);
@@ -75,9 +74,7 @@ public class FireflyController {
             }
         }
             return null;
-
     }
-
 
 
     public void add(Firefly f){
@@ -97,7 +94,4 @@ public class FireflyController {
         this.add(f);
         return f;
     }
-
-
-
 }

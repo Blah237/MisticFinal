@@ -62,7 +62,6 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion litTexture;
     private TextureRegion unlitTexture;
 
-
     /** Track asset loading from all instances and subclasses */
     private AssetState rocketAssetState = AssetState.EMPTY;
 
@@ -141,7 +140,6 @@ public class GameController extends WorldController implements ContactListener {
         unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
         litTexture.setRegion( litTexture.getRegionX()-3, litTexture.getRegionY()+20, litTexture.getRegionWidth(), litTexture.getRegionHeight()+22);
         unlitTexture.setRegion(unlitTexture.getRegionX()-3,unlitTexture.getRegionY()+20,unlitTexture.getRegionWidth(),unlitTexture.getRegionHeight()+22);
-
         gorfTexture = createTexture(manager,GORF_TEXTURE,false);
         fireflyTexture = createTexture(manager,FIRE_FLY,false);
         fogTexture = createTexture(manager,FOG_TEXTURE,true);
@@ -361,7 +359,7 @@ public class GameController extends WorldController implements ContactListener {
 
          this.ai = new AIController(monster, tileBoard, gorf, scale);
 
-         fog = new FogController(tileBoard, canvas, screenSize, 2.0f);
+         fog = new FogController(tileBoard, canvas, screenSize, 2.0f, scale);
     }
 
     private void createMonster(float x, float y) {
@@ -449,6 +447,7 @@ public class GameController extends WorldController implements ContactListener {
                     toggle(l);
             }
         }
+
         float Gorfx= gorf.getPosition().x * scale.x;
         float Gorfy= gorf.getPosition().y * scale.y;
         BoardModel.Tile gorftile= tileBoard.tiles[tileBoard.screenToBoardX(Gorfx)][tileBoard.screenToBoardY(Gorfy)];
@@ -466,7 +465,6 @@ public class GameController extends WorldController implements ContactListener {
         if(!inFog){
             fireflyDeathTimer=0;
         }
-
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
@@ -507,7 +505,7 @@ public class GameController extends WorldController implements ContactListener {
          }
          }*/
 
-        fog.update(gorf,Lanterns,canvas,scale,tileBoard);
+        fog.update(gorf,Lanterns,tileBoard);
 
     }
 
@@ -537,11 +535,19 @@ public class GameController extends WorldController implements ContactListener {
         canvas.clear();
 
         // Draw background unscaled.
+//        canvas.begin();
+//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+//        canvas.end();
+
         fog.draw(canvas, firefly_count);
 
         canvas.begin();
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        canvas.end();
 
+        canvas.getSpriteBatch().setShader(null);    // this is causing fog shading to not wrap
+
+        canvas.begin();
         canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
         displayFont.setColor(Color.WHITE);
         canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);
@@ -597,6 +603,7 @@ public class GameController extends WorldController implements ContactListener {
         // main canvas
         canvas.begin(gorf.getPosition());
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
+
         for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);
         //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
         }}
