@@ -28,14 +28,12 @@ public class FireflyController {
     private Vector2 scale;
     /**The time between firefly spawns*/
     private float SPAWN_TIME;
-    protected ArrayList<Firefly> fireflies;
-    protected ArrayList<Body> fireflyBodies;
-    protected ArrayList<Body> garbage;
+    private int MAX_FIREFLIES=7;
+    private int maxfireflies = MAX_FIREFLIES;
+    protected Firefly[] fireflies;
 
     public FireflyController(TextureRegion texture, Vector2 scale, BoardModel board){
-        fireflies=new ArrayList<Firefly>();
-        fireflyBodies=new ArrayList<Body>();
-        garbage= new ArrayList<Body>();
+        fireflies=new Firefly[maxfireflies];
         tex=texture;
         this.board=board;
         this.scale=scale;
@@ -43,56 +41,57 @@ public class FireflyController {
 
     public boolean update(GorfModel gorf){
         Firefly f=getFirefly(gorf);
-        if(f!=null&&!f.isDestroyed()){
-            f.setDestroyed();
+        if(f!=null){
+            f.setDestroyed(true);
             return true;
         }
         return false;
     }
 
-    public void resetGarbage(){
-        garbage=new ArrayList<Body>();
+    public Firefly[] getFireflies(){
+        return fireflies;
     }
 
     public Firefly spawn(){
         int x= random(99);
         int y=random(99);
         BoardModel.Tile t= board.tiles[x][y];
-        if(!t.isWall){
+        if(!t.isWall& !t.isFog){
             Firefly f = create(t.fx,t.fy);
             return f;
         }
-        return spawn();
+        return null;
     }
 
     public Firefly getFirefly(GorfModel gorf){
-        for(Firefly F : fireflies){
-            float dx= Math.abs((F.getX()/scale.x)-gorf.getX());
-            float dy= Math.abs((F.getY()/scale.y)-gorf.getY());
-            if (dx < gorf.getWidth() && dy < gorf.getHeight()){
-                return F;
+        for(Firefly F : fireflies) {
+            if (F!=null && !F.isDestroyed()) {
+                float dx = Math.abs((F.getX() / scale.x) - gorf.getX());
+                float dy = Math.abs((F.getY() / scale.y) - gorf.getY());
+                if (dx < gorf.getWidth() && dy < gorf.getHeight()) {
+                    return F;
+                }
             }
         }
-        return null;
+            return null;
     }
 
 
+    public void add(Firefly f){
+        for(int i=0; i<fireflies.length; i++){
+            if(fireflies[i]==null){
+                fireflies[i]=f;
+                return;
+            }else if (fireflies[i].isDestroyed()){
+                fireflies[i]=f;
+                return;
+            }
+        }
+    }
 
     public Firefly create(float x, float y){
         Firefly f= new Firefly(x,y,tex);
-        fireflies.add(f);
+        this.add(f);
         return f;
     }
-
-    public Firefly getFirefly(Body b){
-        for(Firefly f : fireflies){
-            if(f.getObject().getBody()==b){
-                return f;
-            }
-        }
-        return null;
-    }
-
-
-
 }

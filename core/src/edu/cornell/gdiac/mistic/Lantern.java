@@ -33,8 +33,8 @@ public class Lantern {
         this.position=new Vector2(x,y);
         this.lit=false;
         this.unlitTex=unlitTexture;
-        this.litTex=unlitTexture;
-        this.object = new BoxObstacle(x,y,unlitTexture.getRegionWidth()/scale.x,unlitTexture.getRegionHeight()/scale.y);
+        this.litTex=litTexture;
+        this.object = new BoxObstacle(x,y,unlitTexture.getRegionWidth()/(scale.x*8),unlitTexture.getRegionHeight()/(scale.y*8));
         object.setDensity(LAMP_DENSITY);
         object.setFriction(LAMP_FRICTION);
         object.setRestitution(LAMP_RESTITUTION);

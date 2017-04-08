@@ -190,6 +190,8 @@ public class BoardModel {
      */
     public int screenToBoardX(float x) {
         int intX = (int)(x/tileWidth);
+        if(intX==width){return intX-1;}
+
         return intX;
     }
 
@@ -202,6 +204,7 @@ public class BoardModel {
      */
     public int screenToBoardY(float y) {
         int intY = (int)(y/tileHeight);
+        if(intY==height){return intY-1;}
         return intY;
     }
 
@@ -250,6 +253,24 @@ public class BoardModel {
     }
 
     /**
+     * Returns true if the tile is a lantern.
+     *
+     * A tile position that is not on the board will always evaluate to false.
+     *
+     * @param x The x index for the Tile cell
+     * @param y The y index for the Tile cell
+     *
+     * @return true if the tile is a lantern.
+     */
+    public boolean isLantern(int x, int y) {
+        if (!inBounds(x, y)) {
+            return false;
+        }
+
+        return getTile(x, y).isLantern;
+    }
+
+    /**
      * Returns true if the tile is a fog.
      *
      * A tile position that is not on the board will always evaluate to false.
@@ -259,12 +280,12 @@ public class BoardModel {
      *
      * @return true if the tile is a goal.
      */
-    public void setFog(int x, int y) {
+    public void setFog(int x, int y, boolean val) {
         if (!inBounds(x,y)) {
             Gdx.app.error("Board", "Illegal tile "+x+","+y, new IndexOutOfBoundsException());
             return;
         }
-        getTile(x, y).isFog = true;
+        getTile(x, y).isFog = val;
     }
 
 
@@ -330,6 +351,14 @@ public class BoardModel {
         Tile the_tile = getTile(x, y);
         return x >= 0 && y >= 0 && x < width && y < height
                 && !(the_tile.isWall);
+    }
+
+    public boolean isFogSpawn(int x, int y) {
+        if (!inBounds(x, y)) {
+            return false;
+        }
+
+        return getTile(x, y).isFogSpawn;
     }
 
 

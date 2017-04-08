@@ -2,6 +2,7 @@ package edu.cornell.gdiac.mistic;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,202 +11,131 @@ import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import edu.cornell.gdiac.GameCanvas;
+import edu.cornell.gdiac.WorldController;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
-public class FogController extends GameController {
+public class FogController {
 	PolygonSpriteBatch batch;
-	Texture wall;
-	TextureRegion fboRegion;
+	Texture bg;
 	String vertexShader;
 	String fragmentShader;
 	ShaderProgram shader;
-	FrameBuffer fboA;
-	FrameBuffer fboB;
-	FrameBuffer temp;
-	float[] fogBoard;
-	float[] newFogBoard;
-	float[] reachBoard;
-	int[][] elementBoard;
-	ArrayList<Lantern> lanterns;
-	float[] lanternsA;
+	float[][] fogBoard;
+	float[][] newFogBoard;
+	float[] fogBoardCam;
+	BoardModel tileBoard;
+	float[][] elementBoard;
 	float fogReachX;
 	float fogReachY;
 	float fogReach;
 	int fogDelay;
 	Vector2 fogOrigin;
-	private final int FBO_SIZE = 1024;
+	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 60;
+	private final int FOG_DELAY = 20;
 	int spreadType;
 	float thickness;
 	float spreadCount;
 	float spreadCountX;
 	float spreadCountY;
-    private float BW = DEFAULT_WIDTH;
-    private float BH = DEFAULT_HEIGHT;
-	private final int NX = 35;
-	private final int NY = 35;
+	private final int NX = 24;
+	private final int NY = 24;
 
-	OrthographicCamera cam;
+	private int WX;
+	private int WY;
+
+	private float tileW;
+	private float tileH;
+	private float cellW;
+	private float cellH;
+	private float boardLeftOffset;
+	private float boardBotOffset;
+
+	int boardTilesPerCamViewX;
+	int boardTilesPerCamViewY;
+
+	float[] litLanternsA;
+
+	float fogOriginCamX;
+	float fogOriginCamY;
+
+	private final float BOUNDARY = 0.8f;
+	private final float FOG = 1.0f;
+	private final float WALL = 0.9f;
+	private final float LANTERN = 0.5f;
+
+	float zoom;
+	Vector2 screenDim;
+	float canvasScale;
+	Vector2 res;
+	Vector2 dim;
+	Vector2 scale;
+
+	Array<Vector2> newFog;
+
+	Texture perlinTex;
+
+//	OrthographicCamera cam;
 	FPSLogger logger = new FPSLogger();
 
 
-	public FogController(int x, int y, ArrayList<Lantern> lanterns) {
-		wall = new Texture("mistic/backgroundresize.png");
-		fogOrigin = new Vector2(x,y);
-		fogBoard = new float[NX*NY];
+	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
+		bg = new Texture("mistic/backgroundresize.png");
+		screenDim = new Vector2(screensize.getWidth(), screensize.getHeight());
+		res = new Vector2(canvas.getWidth(), canvas.getHeight());
+		this.scale = scale;
 
-		int cx = (int)fogOrigin.x/(Gdx.graphics.getWidth()/NX);
-		int cy = (int)fogOrigin.y/(Gdx.graphics.getHeight()/NY);
+		this.canvasScale = canvasScale;
+//		this.tileBoard = tileBoard;
+		zoom = canvas.getZoom();
 
-        fogBoard[cy*NX+cx] = 1.1f;
-        elementBoard = new int[NX][NY];
+		WX = tileBoard.getWidth();
+		WY = tileBoard.getHeight();
 
-//		for (int i = 0; i<lanterns.size(); i++) {
-//			int lx = (int)Math.floor(lanterns.get(i).getX() / BW * NX);
-//			int ly = (int)Math.floor(lanterns.get(i).getY() / BH * NY);
-//
-//			elementBoard[lx][ly] = 1;
-//			elementBoard[lx][ly+1] = 1;
-//			elementBoard[lx][ly-1] = 1;
-//		}
+		tileW = screenDim.x / (float)WX;
+		tileH = screenDim.y / (float)WY;
 
-//		for (int k=0; k<NX/10-1; k++) {
-//			elementBoard[k][NY / 2+1] = 1;
-//		}
-//
-//		for (int a=1; a<6; a++) {
-//			elementBoard[NX / 10 + a-2][NY / 2 + a] = 1;
-//		}
-//
-//		elementBoard[NX / 10 + 3][NY / 2 + 4] = 1;
-//		elementBoard[NX / 10 + 4][NY / 2 + 3] = 1;
-//		elementBoard[NX / 10 + 5][NY / 2 + 2] = 1;
-//
-//		for(int b=0; b<NX/5-1; b++) {
-//			elementBoard[b][NY / 10 + 1] = 1;
-//		}
-//
-//		for(int b=0; b<NX/5+2; b++) {
-//			elementBoard[b][NY / 10 + 7] = 1;
-//		}
-//
-//		for(int b=0; b<NY/10+1; b++) {
-//			elementBoard[NX/5-2][b] = 1;
-//		}
-//
-//		for(int b=0; b<NY/10+7; b++) {
-//			elementBoard[NX/5+1][b] = 1;
-//		}
-//
-//		elementBoard[NX/2-1][0] = 1;
-//		elementBoard[NX/2-1][1] = 1;
-//		elementBoard[NX/2-1][2] = 1;
-//
-//		for(int b=0; b<4; b++) {
-//			elementBoard[NX/2+b][2] = 1;
-//		}
-//
-//		elementBoard[NX/2-1][3] = 1;
-//		elementBoard[NX/2-2][4] = 1;
-//		elementBoard[NX/2-3][5] = 1;
-//
-//		elementBoard[NX/2+3][10] = 1;
-//		elementBoard[NX/2+2][11] = 1;
-//		elementBoard[NX/2+1][12] = 1;
-//		elementBoard[NX/2][13] = 1;
-//
-//		elementBoard[NX/2][14] = 1;
-//		elementBoard[NX/2][15] = 1;
-//		elementBoard[NX/2][16] = 1;
-//		elementBoard[NX/2][17] = 1;
-//
-//		elementBoard[NX/2+3][21] = 1;
-//		elementBoard[NX/2+2][20] = 1;
-//		elementBoard[NX/2+1][19] = 1;
-//		elementBoard[NX/2][18] = 1;
-//
-//		elementBoard[NX/2+4][20] = 1;
-//		elementBoard[NX/2+5][19] = 1;
-//		elementBoard[NX/2+6][18] = 1;
-//
-//
-//		for(int b=0; b<5; b++) {
-//			elementBoard[NX/4][NY-b-1] = 1;
-//		}
-//
-//		for(int b=0; b<6; b++) {
-//			elementBoard[NX/4+b][NY-6-b] = 1;
-//		}
-//
-//		for(int b=0; b<10; b++) {
-//			elementBoard[NX/4+5][NY-11-b] = 1;
-//		}
-//
-//		for(int b=0; b<6; b++) {
-//			elementBoard[NX/2-1][NY-b-1] = 1;
-//		}
-//
-//		for(int b=0; b<7; b++) {
-//			elementBoard[NX/2+b][NY-6] = 1;
-//		}
-//
-//		elementBoard[NX/2+6][NY-7] = 1;
-//		elementBoard[NX/2+7][NY-7] = 1;
-//		elementBoard[NX/2+7][NY-8] = 1;
-//		elementBoard[NX/2+8][NY-8] = 1;
-//		elementBoard[NX/2+8][NY-9] = 1;
-//		elementBoard[NX/2+9][NY-9] = 1;
-//
-//		elementBoard[NX/2+11][NY-6] = 1;
-//		elementBoard[NX/2+11][NY-7] = 1;
-//		elementBoard[NX/2+10][NY-7] = 1;
-//		elementBoard[NX/2+10][NY-8] = 1;
-//		elementBoard[NX/2+9][NY-8] = 1;
-//
-//		for(int b=0; b<10; b++) {
-//			elementBoard[NX/2+14][NY-8-b] = 1;
-//		}
-//
-//		for(int b=0; b<4; b++) {
-//			elementBoard[NX-1-b][NY-17] = 1;
-//		}
-//
-//		for(int b=0; b<4; b++) {
-//			elementBoard[NX-1-b][NY/4+2] = 1;
-//		}
-//
-//		for(int b=0; b<5; b++) {
-//			elementBoard[NX-4][NY/4+2-b] = 1;
-//		}
-//
-//		for(int b=0; b<5; b++) {
-//			elementBoard[NX-7][NY/4+2-b] = 1;
-//		}
-//
-//		elementBoard[NX-7][NY/4-3] = 1;
-//		elementBoard[NX-8][NY/4-3] = 1;
-//		elementBoard[NX-8][NY/4-4] = 1;
-//		elementBoard[NX-9][NY/4-4] = 1;
-//		elementBoard[NX-9][NY/4-5] = 1;
-//		elementBoard[NX-10][NY/4-5] = 1;
-//
-//		for(int b=0; b<3; b++) {
-//			elementBoard[NX-10][b] = 1;
-//		}
+		boardTilesPerCamViewX = (int)Math.ceil(zoom * WX / canvasScale) + 1;
+		boardTilesPerCamViewY = (int)Math.ceil(zoom * WY / canvasScale) + 1;
 
-//		for (int k = 0; k<NX; k++) {
-//		    for (int l = 0; l<NY; l++) {
-//		        if
-//                elementBoard[k][20] = 1;
-//            }
-//		}
+		cellW = boardTilesPerCamViewX*tileW / (float)NX;
+		cellH = boardTilesPerCamViewY*tileH / (float)NY;
+
+		fogBoard = new float[WX][WY];
+		fogBoardCam = new float[NX*NY];
+		newFogBoard = new float[WX][WY];
+
+		elementBoard = new float[WX][WY];
+
+		for (int i=0; i<WX; i++) {
+			for (int j=0; j<WY; j++) {
+				if (tileBoard.isWall(i,j)) {
+					elementBoard[i][j] = WALL;
+				}
+//				else if (tileBoard.isLantern(i,j)) {
+//					elementBoard[i][j] = LANTERN;
+//				}
+				else if (tileBoard.isFogSpawn(i,j)) {
+					fogOrigin = new Vector2(i,j);
+				}
+			}
+		}
+
+		fogBoard[(int)fogOrigin.x][(int)fogOrigin.y] = BOUNDARY;
+
+		litLanternsA = new float[0];
 
 		fogReachX = 0;
 		fogReachY = 0;
@@ -228,85 +158,81 @@ public class FogController extends GameController {
 
 		shader.pedantic = false;
 
-		shader.begin();
-		shader.setUniform1fv("fogBoard", fogBoard, 0, NX*NY);
-//		shader.setUniform1fv("reachBoard", reachBoard, 0, NX*NY);
-		shader.setUniformf("dim", Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		shader.setUniformf("fogReachVec", fogReachX, fogReachY);
-		shader.setUniformf("fogReach", fogReach);
-//		shader.setUniformf("camOrigin", new Vector2(100,100));
-		shader.setUniformf("fogOrigin", fogOrigin);
+		dim = new Vector2(NX*cellW, NY*cellH);
 
+		shader.begin();
+		shader.setUniformf("dim", dim.x/zoom, dim.y/zoom);		// should be NX*cellW? aka graphics width...?
+		shader.setUniformf("res", canvas.getWidth(), canvas.getHeight());
 		shader.end();
 
-//		fboA = new FrameBuffer(Format.RGBA8888, FBO_SIZE, FBO_SIZE, false);
-//		fboB = new FrameBuffer(Format.RGBA8888, FBO_SIZE, FBO_SIZE, false);
-//		fboRegion = new TextureRegion(fboA.getColorBufferTexture());
-//		fboRegion.flip(false, true);
-
-		cam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		cam.setToOrtho(false);
-
-
-//		batch = new SpriteBatch();
-//		batch.setShader(shader);
-
-//		batch.setShader(shader);
-//		resizeBatch(FBO_SIZE, FBO_SIZE);
-
-//		fboA.begin();
-//		batch.begin();
-//		batch.draw(wall, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		batch.flush();
-//
-//		fboA.end();
-//		batch.end();
-//		batch.setShader(shader);
+		generatePerlin();
 	}
 
-	public void resize(int width, int height) {
-		cam.setToOrtho(false, width, height);
-		batch.setProjectionMatrix(cam.combined);
+	public void screenResize(int width, int height) {
+//		cam.setToOrtho(false, width, height);
+//		batch.setProjectionMatrix(cam.combined);
 		//bind the shader, then set the uniform, then unbind the shader
 		shader.begin();
-		shader.setUniformf("dim", width, height);
+		shader.setUniformf("res", width, height);
 		shader.end();
 	}
 
-	void resizeBatch(int width, int height) {
-		cam.setToOrtho(false, width, height);
-		batch.setProjectionMatrix(cam.combined);
+	public void draw(GameCanvas canvas, int numFireflies) {
+		//System.out.println(canvas.getHeight());
+		batch = canvas.getSpriteBatch();
+		batch.setShader(shader);
+
+
+
+		shader.begin();
+
+		perlinTex.bind(1);
+		shader.setUniformi("u_texture_perlin", 1);
+
+		bg.bind(0);
+		shader.setUniformi("u_texture", 0);
+
+		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
+		shader.setUniformf("fogReach", fogReach);
+        shader.setUniform2fv("lanterns", litLanternsA, 0, litLanternsA.length);
+		shader.setUniformi("numLanterns", litLanternsA.length/2);
+        shader.setUniformi("numFireflies", numFireflies);
+		shader.setUniformf("fogOrigin", fogOriginCamX, fogOriginCamY);
+		shader.setUniformf("leftOffset", boardLeftOffset);
+		shader.setUniformf("botOffset", boardBotOffset);
+//		shader.setUniformi
+		shader.end();
+
+		batch.begin();
+		Gdx.gl.glClearColor(0, 0, 0, 0);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		batch.enableBlending();
+		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+		batch.draw(bg, 0, 0, screenDim.x, screenDim.y);
+
+		batch.end();
+
+		logger.log();
 	}
 
-	public void draw(GameCanvas canvas, ArrayList<Lantern> lanterns, GorfModel gorf, int numFireflies) {
-	    int numLanterns = 0;
-        lanternsA = new float[lanterns.size()*2];
-        for (int i=0; i<lanterns.size(); i++) {
-            if (lanterns.get(i).lit) {
-                lanternsA[numLanterns*2] = lanterns.get(i).getX() / BW;
-                lanternsA[numLanterns*2+1] = lanterns.get(i).getY() / BH;
-                numLanterns++;
-            }
-        }
+	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, BoardModel tileBoard) {
+		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 
-//		fboA = new FrameBuffer(Format.RGBA8888, FBO_SIZE, FBO_SIZE, false);
-//		fboRegion = new TextureRegion(fboA.getColorBufferTexture());
-//		fboRegion.flip(false, true);
-//
-//		fboA.begin();
-//		batch.begin();
-//		batch.draw(wall, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		batch.flush();
-//		fboA.end();
+		gorfPos = new Vector2(gorf.getX() * scale.x + scale.x/2f, gorf.getY() * scale.y + scale.y/2f);		// in pixels
 
+		updateLanterns(lanterns, tileBoard);
 
+		newFog = new Array<Vector2>();
 		if (fogDelay <= 0) {
-			updateFog();
+			updateFog(tileBoard);
 			fogDelay = FOG_DELAY;
 //			fogReach++;
 			thickness++;
 //			System.out.println(fogReach);
-//			System.out.println(fogBoard[(int)(Math.floor(fogOrigin.y/Gdx.graphics.getHeight()*NY)+Math.floor(fogOrigin.y/Gdx.graphics.getWidth()*NX)+fogReach)]);
+//			System.out.println(fogBoard[(int)(Math.floor(fogOrigin.y/screenDim.y*NY)+Math.floor(fogOrigin.y/screenDim.x*NX)+fogReach)]);
 		}
 		else {
 			fogDelay--;
@@ -314,78 +240,71 @@ public class FogController extends GameController {
 		fogReach+=(1f/FOG_DELAY);
 //		fogReachX+=(1f/FOG_DELAY * spreadCountX/spreadCount);
 //		fogReachY+=(1f/FOG_DELAY * spreadCountY/spreadCount);
-//		System.out.println(fogReachX);
-//		System.out.println(fogReachY);
-//		System.out.println();
-//		System.out.println(fogReach);
-//		updateFog();
 
 
-//		fboB.begin();
+//		System.out.println(gorfPos.x - boardTilesPerCamViewX * tileW / 2f);
+		int startTileX = (int)Math.floor((gorfPos.x - res.x * zoom / 2f) / screenDim.x * WX);
+		int startTileY = (int)Math.floor((gorfPos.y - res.y * zoom / 2f) / screenDim.y * WY);
 
-		batch = canvas.getSpriteBatch();
-		batch.setShader(shader);
+		if (startTileX % 2 == 1) {
+			startTileX--;
+		}
+		if (startTileY % 2 == 1) {
+			startTileY--;
+		}
+//		System.out.println(startTileX);
 
-        System.out.println(numLanterns);
-		System.out.println(lanternsA[0]);
-		System.out.println(lanternsA[1]);
-		shader.begin();
-		shader.setUniformf("fogReach", fogReach);
-        shader.setUniform2fv("lanterns", lanternsA, 0, numLanterns*2);
-		shader.setUniformi("numLanterns", numLanterns);
-        shader.setUniformi("numFireflies", numFireflies);
-        shader.setUniformf("gorfPos", gorf.getX() / BW, gorf.getY() / BH);
-		shader.end();
+//		fogBoard = newFogBoard;
+		fogBoardCam = new float[NX*NY];
+		int camTileX = 0;
+		for (int i=0; i<boardTilesPerCamViewX; i++) {
+			if (i>0 && i%2 == 0) {
+//			if (i>0) {
+				camTileX++;
+			}
+			int camTileY = 0;
+			for (int j=0; j<boardTilesPerCamViewY; j++) {
+				if (j>0 && j%2 == 0) {
+//				if (j>0) {
+					camTileY++;
+				}
+//				int camTileX = (int)((float)i/boardTilesPerCamViewX * NX);
+//				int camTileY = (int)((float)j/boardTilesPerCamViewY * NY);
+				int tileX = (startTileX+i + WX) % WX;
+				int tileY = (startTileY+j + WY) % WY;
+//				if (startTileX+i > 0 && startTileY+j > 0 && startTileX+i < WX && startTileY+j < WY) {
+				if (fogBoardCam[camTileY * NX + camTileX] != 0) {
+					fogBoardCam[camTileY * NX + camTileX] = Math.min(fogBoardCam[camTileY * NX + camTileX], fogBoard[tileX][tileY]);
+				} else {
+					fogBoardCam[camTileY * NX + camTileX] = fogBoard[tileX][tileY];
+				}
+//				}
+//				System.out.println(fogBoard[60][60]);
+			}
+		}
 
-//		Gdx.gl.glClearColor(0, 0, 0, 0);
-//		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		batch.begin();
-		Gdx.gl.glClearColor(0, 0, 0, 0);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//		fboRegion.setTexture(fboA.getColorBufferTexture());
-//		fboRegion.flip(false, true);
-//		batch.draw(fboRegion, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		// use -1 to ignore.. somebody should fix this in LibGDX :\
-//		batch.setBlendFunction(-1, -1);
-
-		// setup our alpha blending to avoid blending twice
-//		Gdx.gl20.glBlendFuncSeparate(GL20.GL_SRC_ALPHA,
-//				GL20.GL_ONE_MINUS_SRC_ALPHA, GL20.GL_ONE, GL20.GL_ONE);
-
-
-		batch.enableBlending();
-
-		batch.draw(wall, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-//		batch.flush();
-//		fboB.end();
-
-//		batch.setShader(shader);
-//		resizeBatch(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-//		fboRegion.setTexture(fboB.getColorBufferTexture());
-//		fboRegion.flip(false, true);
-//		batch.draw(wall, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-
-		batch.end();
-
-//		temp = fboA;
-//		fboA = fboB;
-//		fboB = temp;
-
-		logger.log();
+		boardLeftOffset = ((((gorfPos.x - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
+		boardBotOffset = ((((gorfPos.y - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
+//		System.out.println(boardLeftOffset);
 	}
 
-	private void updateFog() {
+	private void updateFog(BoardModel tileBoard) {
 		spreadCount = 0;
 		spreadCountX = 0;
 		spreadCountY = 0;
-		newFogBoard = fogBoard.clone();
-		for (int i = 0; i < NX; i++) {
-			for (int j = 0; j < NY; j++) {
-//				fogBoard[j*NX+i] = 1;
-				if (fogBoard[j*NX+i] == 1.1f) {
-					spreadFog(i,j);
+
+		newFogBoard = new float[WX][WY];
+
+		for (int q=0; q<WX; q++) {
+			newFogBoard[q] = fogBoard[q].clone();
+		}
+
+		for (int i = 0; i < WX; i++) {
+			for (int j = 0; j < WY; j++) {
+				if (fogBoard[i][j] == BOUNDARY) {
+//					System.out.println(newFogBoard[i][j]);
+//					System.out.println(fogBoard[i][j]);
+					spreadFog(i,j,tileBoard);
 					spreadCount++;
 					if (spreadType == 0 || spreadType == 1 || spreadType == 2) {
 						spreadCountX++;
@@ -397,106 +316,191 @@ public class FogController extends GameController {
 			}
 		}
 		fogBoard = newFogBoard;
-//		fogReach++;
-//		System.out.println(fogBoard/[21*NX+2]);
-
-		shader.begin();
-		shader.setUniform1fv("fogBoard", fogBoard, 0, NX*NY);
-//		shader.setUniform1fv("reachBoard", reachBoard, 0, NX*NY);
-//		shader.setUniformf("fogReach", fogReach);
-		shader.end();
 	}
 
-	private void spreadFog(int x, int y) {
-		spreadType = MathUtils.random(0,2);
+	private void spreadFog(int x, int y, BoardModel tileBoard) {
+
+		spreadType = MathUtils.random(0,20);
+
 		if (spreadType == 0) {
-			newFogBoard[y * NX + x] = 1 - elementBoard[x][y];
-
-			int x1 = x - 1;
-			int x2 = x + 1;
-			int y1 = y - 1;
-			int y2 = y + 1;
-
-			if (x1 == -1) {
-				x1 = NX - 1;
-			} else if (x2 == NX) {
-				x2 = 0;
-			}
-			if (y1 == -1) {
-				y1 = NY - 1;
-			} else if (y2 == NY) {
-				y2 = 0;
+			newFogBoard[x][y] = 1 - elementBoard[x][y];
+			if (newFogBoard[x][y] == 1) {
+				tileBoard.setFog(x, y, true);
+				newFog.add(new Vector2(x,y));
 			}
 
-			newFogBoard[y1 * NX + x] = Math.max(newFogBoard[y1 * NX + x], 1.1f * (1 - elementBoard[x][y1]));
-			newFogBoard[y2 * NX + x] = Math.max(newFogBoard[y2 * NX + x], 1.1f * (1 - elementBoard[x][y2]));
-			newFogBoard[y * NX + x1] = Math.max(newFogBoard[y * NX + x1], 1.1f * (1 - elementBoard[x1][y]));
-			newFogBoard[y * NX + x2] = Math.max(newFogBoard[y * NX + x2], 1.1f * (1 - elementBoard[x2][y]));
+			int x1 = (x - 1 + WX) % WX;
+			int x2 = (x + 1     ) % WX;
+			int y1 = (y - 1 + WY) % WY;
+			int y2 = (y + 1     ) % WY;
+
+			newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], BOUNDARY * (1 - elementBoard[x][y1]));
+			newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], BOUNDARY * (1 - elementBoard[x][y2]));
+			newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], BOUNDARY * (1 - elementBoard[x1][y]));
+			newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], BOUNDARY * (1 - elementBoard[x2][y]));
 		}
 		else if (spreadType == 1){
 			int ii, jj;
-			for (int i = x - 1; i <= x + 1; i++) {
-				for (int j = y - 1; j <= y + 1; j++) {
-					ii = i;
-					jj = j;
-					if (i == -1) {
-						ii = NX - 1;
-					} else if (i == NX) {
-						ii = 0;
-					}
-					if (j == -1) {
-						jj = NY - 1;
-					} else if (j == NY) {
-						jj = 0;
-					}
+			for (int i=x-1; i<=x+1; i++) {
 
+				ii = (i + WX) % WX;
+
+				for (int j=y-1; j<=y+1; j++) {
+
+					jj = (j + WY) % WY;
 
 					if (i == x && j == y) {
-						newFogBoard[j * NX + i] = 1 - elementBoard[ii][jj];
+						newFogBoard[i][j] = 1 - elementBoard[i][j];
+						if (newFogBoard[i][j] == 1) {
+							tileBoard.setFog(i,j,true);
+							newFog.add(new Vector2(i,j));
+						}
 					} else {
-						newFogBoard[jj * NX + ii] = Math.max(newFogBoard[jj * NX + ii], 1.1f * (1 - elementBoard[ii][jj]));
-						//					if(elementBoard[ii][jj]==1) {
-						//						System.out.println("Obstacle here");
-						//						System.out.println("fogBoard["+ii+"]["+jj+"] is now "+fogBoard[jj*NX+ii]);
-						//					}
-						//					newFogBoard[jj * NX + ii] = Math.max(newFogBoard[jj * NX + ii], .5f);
+						newFogBoard[ii][jj] = Math.max(newFogBoard[ii][jj], BOUNDARY * (1 - elementBoard[ii][jj]));
 					}
 				}
 			}
 		}
+
+		// Spreading unidirectionally sometimes causes holes to form in the fog, because (actually have no idea why this happens...)
 //		else if (spreadType == 2){
-//			newFogBoard[y * NX + x] = 1 - elementBoard[x][y];
+//			newFogBoard[x][y] = 1 - elementBoard[x][y];
 //
-//			int x1 = x - 1;
-//			int x2 = x + 1;
+//			int x1 = (x - 1 + WX) % WX;
+//			int x2 = (x + 1     ) % WX;
 //
-//			if (x1 == -1) {
-//				x1 = NX - 1;
-//			} else if (x2 == NX) {
-//				x2 = 0;
-//			}
+//			newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], BOUNDARY * (1 - elementBoard[x1][y]));
+//			newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], BOUNDARY * (1 - elementBoard[x2][y]));
+//		}
+//		else if (spreadType == 3){
+//			newFogBoard[x][y] = 1 - elementBoard[x][y];
 //
-//			newFogBoard[y * NX + x1] = Math.max(newFogBoard[y * NX + x1], 1.1f * (1 - elementBoard[x1][y]));
-//			newFogBoard[y * NX + x2] = Math.max(newFogBoard[y * NX + x2], 1.1f * (1 - elementBoard[x2][y]));
-//		} else {
-//			newFogBoard[y * NX + x] = 1 - elementBoard[x][y];
+//			int y1 = (y - 1 + WY) % WY;
+//			int y2 = (y + 1     ) % WY;
 //
-//			int y1 = y - 1;
-//			int y2 = y + 1;
-//
-//			if (y1 == -1) {
-//				y1 = NY - 1;
-//			} else if (y2 == NY) {
-//				y2 = 0;
-//			}
-//
-//			newFogBoard[y1 * NX + x] = Math.max(newFogBoard[y1 * NX + x], 1.1f * (1 - elementBoard[x][y1]));
-//			newFogBoard[y2 * NX + x] = Math.max(newFogBoard[y2 * NX + x], 1.1f * (1 - elementBoard[x][y2]));
+//			newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], BOUNDARY * (1 - elementBoard[x][y1]));
+//			newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], BOUNDARY * (1 - elementBoard[x][y2]));
 //		}
 	}
 
-	public float[] getFogBoard() {
-		return fogBoard;
+	private void updateLanterns(ArrayList<Lantern> lanterns, BoardModel tileBoard) {
+		Array<Lantern> litLanterns = new Array<Lantern>();
+		for (int i=0; i<lanterns.size(); i++) {
+			if (lanterns.get(i).lit) {
+				litLanterns.add(lanterns.get(i));
+			}
+		}
+
+		litLanternsA = new float[litLanterns.size*2];
+		for (int i=0; i<litLanterns.size; i++) {
+			Vector2 lanternPos = new Vector2((int)(litLanterns.get(i).getX() * scale.x / screenDim.x * WX), (int)(litLanterns.get(i).getY() * scale.y / screenDim.y * WY));
+
+			int lx;
+			int ly;
+
+			for (int g=-2; g<=2; g++) {
+				lx = (int)((lanternPos.x + g + WX) % WX);
+				ly = (int)((lanternPos.y - 8 + WX) % WX);
+				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
+				tileBoard.setFog(lx, ly, false);
+			}
+
+			for (int j=-7; j<=7; j++) {
+				lx = (int) ((lanternPos.x + j + WX) % WX);
+				int bound;
+				if (j == -7 || j == 7) {
+					bound = 2;
+				} else if (j == -6 || j == 6) {
+					bound = 4;
+				} else if (j == -5 || j == 5) {
+					bound = 5;
+				} else if (j == -4 || j == 4) {
+					bound = 6;
+				} else if (j == -3 || j == 3) {
+					bound = 6;
+				} else {
+					bound = 7;
+				}
+
+				ly = (int) ((lanternPos.y - bound - 1 + WY) % WY);
+
+				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
+				tileBoard.setFog(lx, ly, false);
+
+				for (int k = -bound; k <= bound; k++) {
+					ly = (int) ((lanternPos.y + k + WY) % WY);
+					fogBoard[lx][ly] = 0f;
+					tileBoard.setFog(lx, ly, false);
+				}
+
+				ly = (int) ((lanternPos.y + bound + 1) % WY);
+
+				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
+				tileBoard.setFog(lx, ly, false);
+			}
+
+			for (int h=-2; h<=2; h++) {
+				lx = (int)((lanternPos.x + h + WX) % WX);
+				ly = (int)((lanternPos.y + 8) % WX);
+				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
+				tileBoard.setFog(lx, ly, false);
+			}
+
+			litLanternsA[i*2] = (litLanterns.get(i).getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+			litLanternsA[i*2+1] = (litLanterns.get(i).getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+		}
 	}
 
+	// Adapted from code provided at http://flafla2.github.io/2014/08/09/perlinnoise.html
+	public void generatePerlin() {
+		final int WIDTH = 1080, HEIGHT = 576;
+
+		double[] data = new double[WIDTH * HEIGHT];
+		int count = 0;
+
+		Perlin perlin = new Perlin();
+		for (int y = 0; y < HEIGHT; y++) {
+			for (int x = 0; x < WIDTH; x++) {
+				data[count++] = perlin.noise(30.0 * (double)x / WIDTH, 15.0 * (double)y / HEIGHT);
+			}
+		}
+
+		double minValue = data[0], maxValue = data[0];
+		for (int i = 0; i < data.length; i++) {
+			minValue = Math.min(data[i], minValue);
+			maxValue = Math.max(data[i], maxValue);
+		}
+
+		int[] pixelData = new int[WIDTH * HEIGHT];
+		for (int i = 0; i < data.length; i++) {
+			pixelData[i] = (int) (255 * (data[i] - minValue) / (maxValue - minValue));
+		}
+
+        BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
+        img.getRaster().setPixels(0, 0, WIDTH, HEIGHT, pixelData);
+
+        File output = new File("image.png");
+        try {
+            ImageIO.write(img, "png", output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//		ByteBuffer byteBuffer = ByteBuffer.allocate(4*pixelData.length);
+//		for (int j=0; j<pixelData.length; j++) {
+//			byteBuffer.putInt(pixelData[j]);
+//		}
+//		byte[] pixelBytes = byteBuffer.array();
+//		System.out.println(pixelData[1]);
+//		System.out.println((byte)pixelData[1]);
+//		System.out.println(byteBuffer.get(7));
+//		Pixmap perlinPix = new Pixmap(pixelBytes, 0, WIDTH*HEIGHT);
+		Pixmap perlinPix = new Pixmap(new FileHandle("image.png"));
+		perlinTex = new Texture(perlinPix);
+		PixmapIO.writePNG(new FileHandle("image2.png"), perlinPix);
+	}
+
+	public Array<Vector2> getNewFog() {
+		return newFog;
+	}
 }
