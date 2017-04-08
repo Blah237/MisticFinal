@@ -1,8 +1,9 @@
-#define NX 50
-#define NY 50
+#define NX 24
+#define NY 24
 
 uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
+uniform sampler2D u_texture_perlin;
 uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
 uniform float fogBoard[NX*NY];
@@ -20,7 +21,7 @@ varying vec2 vTexCoord;
 
 void main() {
     vec2 coord = (gl_FragCoord.xy / res.xy);      // FUTURE NOTE: should get coord in terms of world/map -- convert gl_FragCoord to world space by adding dim/2 and subtracting cameraPos, then divide by world width
-    vec2 boardCoord = (gl_FragCoord.xy + vec2(leftOffset, botOffset)) / dim.xy;
+    vec2 boardCoord = gl_FragCoord.xy / dim.xy + vec2(leftOffset, botOffset);
     vec2 origin = fogOrigin;
 //    coord *= (dim.x/dim.y);
 //    origin *= (dim.x/dim.y);
@@ -36,15 +37,15 @@ void main() {
     int cellX = int(boardCoord.x*float(NX));
     int cellY = int(boardCoord.y*float(NY));
 
-    float fogThickness = 1.0-smoothstep(fogReach/float(NX)-.5, fogReach/float(NX), dist);
+//    float fogThickness = 1.0-smoothstep(fogReach/float(NX)-.5, fogReach/float(NX), dist);
 
     vec4 texColor = texture2D(u_texture, vTexCoord);
 
     vec3 fog = vec3(.5,0.0,.65);
 
 
-    fogThickness *= fogBoard[cellY*NX + cellX];
-//    float fogThickness = fogBoard[cellY*NX + cellX]*thickness;
+//    fogThickness *= fogBoard[cellY*NX + cellX];
+    float fogThickness = fogBoard[cellY*NX + cellX];
 
     for (int i=0; i<10; i++) {
         if (i>=numLanterns) {
@@ -58,7 +59,7 @@ void main() {
         dy2 = min(dy2, abs(lantern.y + (2.0-coord.y)));
 
         float dist2 = length(vec2(dx2,dy2));
-        float fogThickness2 = smoothstep(.2, .3, dist2);
+        float fogThickness2 = smoothstep(.15, .25, dist2);
         fogThickness *= fogThickness2;
     }
 
@@ -68,8 +69,19 @@ void main() {
     float dist3 = length(vec2(dx3, dy3));
     fogThickness *= smoothstep(min(.1 + float(numFireflies)*.05, .4)-.15, min(.1 + float(numFireflies)*.05, .4), dist3);
 
+    fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
     fog *= min(1.0,fogThickness);
+    fog *= max(.8, texture2D(u_texture_perlin, vTexCoord).a);
+
     gl_FragColor = texColor;
+//    gl_FragColor = vec4(fog, fogThickness);
     gl_FragColor.rgb *= max(0.0,1.0-fogThickness);
     gl_FragColor.rgb += fog;
+//    if (fogThickness > 0) {
+//        gl_FragColor.a *= texture2D(u_texture_perlin, vTexCoord).a;
+//    }
+
+//    gl_FragColor.a = 0;
+
+//    gl_FragColor = texColor;
  }

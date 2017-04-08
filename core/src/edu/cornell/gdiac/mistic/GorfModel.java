@@ -184,12 +184,14 @@ public class GorfModel extends BoxObstacle {
 	 */
 	public GorfModel(float x, float y, float width, float height) {
 		super(x,y,width,height);
+		//getTexture().setRegion(getTexture().getRegionX(),getTexture().getRegionY(),getTexture().getRegionWidth(),getTexture().getRegionHeight());
+
 		force = new Vector2();
 		setDensity(DEFAULT_DENSITY);
 		setDensity(DEFAULT_DENSITY);
 		setFriction(DEFAULT_FRICTION);
 		setRestitution(DEFAULT_RESTITUTION);
-		setName("rocket");
+		setName("gorf");
 	}
 
 	/**
@@ -259,34 +261,6 @@ public class GorfModel extends BoxObstacle {
 		return null;
 	}
 
-	/**
-	 * Sets the animation node for the given afterburner
-	 *
-	 * @param  burner   enumeration to identify the afterburner
-	 *
-	 *
-	 */
-	public void setBurnerStrip(Burner burner, FilmStrip strip) {
-		switch (burner) {
-			case MAIN:
-				mainBurner = strip;
-				break;
-			case LEFT:
-				leftBurner = strip;
-				if (strip != null) {
-					leftOrigin.set(strip.getRegionWidth()/2.0f,strip.getRegionHeight()/2.0f);
-				}
-				break;
-			case RIGHT:
-				rghtBurner = strip;
-				if (strip != null) {
-					rghtOrigin.set(strip.getRegionWidth()/2.0f,strip.getRegionHeight()/2.0f);
-				}
-				break;
-			default:
-				assert false : "Invalid burner enumeration";
-		}
-	}
 
 	/**
 	 * Returns the key for the sound to accompany the given afterburner
@@ -310,6 +284,8 @@ public class GorfModel extends BoxObstacle {
 		assert false : "Invalid burner enumeration";
 		return null;
 	}
+
+
 
 	/**
 	 * Sets the key for the sound to accompany the given afterburner
@@ -408,6 +384,7 @@ public class GorfModel extends BoxObstacle {
 		// Flames
 		if (mainBurner != null) {
 			float offsety = mainBurner.getRegionHeight()-origin.y;
+			canvas.draw(mainBurner,Color.WHITE,origin.x,offsety,getX()*drawScale.x,getY()*drawScale.x,getAngle(),1,1);
 			canvas.draw(mainBurner,Color.WHITE,origin.x,offsety,getX()*drawScale.x,getY()*drawScale.x,getAngle(),1,1);
 		}
 		if (leftBurner != null) {
