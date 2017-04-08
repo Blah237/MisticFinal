@@ -178,7 +178,7 @@ public class FogController {
 	}
 
 	public void draw(GameCanvas canvas, int numFireflies) {
-		System.out.println(canvas.getHeight());
+		//System.out.println(canvas.getHeight());
 		batch = canvas.getSpriteBatch();
 		batch.setShader(shader);
 

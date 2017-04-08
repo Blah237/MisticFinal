@@ -24,6 +24,7 @@ import edu.cornell.gdiac.obstacle.PolygonObstacle;
 import edu.cornell.gdiac.util.*;
 
 import javax.swing.*;
+import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import static com.badlogic.gdx.math.MathUtils.random;
@@ -45,6 +46,12 @@ public class GameController extends WorldController implements ContactListener {
     private static final String FOG_TEXTURE = "mistic/fog.png";
     private static final String FIRE_TRACK="mistic/fireflysprite.png";
     private static final String MONSTER_TEXTURE = "mistic/monster01.png";
+    private static final String[] MIST_WALLS= {"mistic/mistblock/mistblock1.png",
+            "mistic/mistblock/mistblock2.png", "mistic/mistblock/mistblock3.png", "mistic/mistblock/mistblock4.png",
+            "mistic/mistblock/mistblock5.png", "mistic/mistblock/mistblock6.png", "mistic/mistblock/mistblock7.png",
+            "mistic/mistblock/mistblock8.png", "mistic/mistblock/mistblock9.png", "mistic/mistblock/mistblock10.png",
+            "mistic/mistblock/mistblock11.png", "mistic/mistblock/mistblock12.png", "mistic/mistblock/mistblock13.png",
+            "mistic/mistblock/mistblock14.png","mistic/mistblock/mistblock15.png", "mistic/mistblock/mistblock16.png"};
 
     /** The reference for the afterburner textures */
     /** Reference to the crate image assets */
@@ -57,7 +64,7 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion fogTexture;
     private TextureRegion fireflyTrack;
     private TextureRegion monsterTexture;
-
+    private TextureRegion[] mistwalls = new TextureRegion[MIST_WALLS.length];
     /** Texture assets for the crates */
     private TextureRegion litTexture;
     private TextureRegion unlitTexture;
@@ -106,6 +113,12 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(MONSTER_TEXTURE, Texture.class);
         assets.add(MONSTER_TEXTURE);
 
+        //mist wall textures
+        for(String m : MIST_WALLS){
+            manager.load(m, Texture.class);
+            assets.add(m);
+        }
+
         /**
          // An Example of loading sounds
          manager.load(MAIN_FIRE_SOUND, Sound.class);
@@ -146,6 +159,10 @@ public class GameController extends WorldController implements ContactListener {
         backgroundTexture = createTexture(manager,BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
+
+        for(int i=0;i<MIST_WALLS.length;i++){
+            mistwalls[0]= createTexture(manager, MIST_WALLS[0], false);
+        }
         SoundController sounds = SoundController.getInstance();
 
         super.loadContent(manager);
