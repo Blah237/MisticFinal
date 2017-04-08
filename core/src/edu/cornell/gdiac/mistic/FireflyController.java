@@ -60,7 +60,7 @@ public class FireflyController {
             Firefly f = create(t.fx,t.fy);
             return f;
         }
-        return spawn();
+        return null;
     }
 
     public Firefly getFirefly(GorfModel gorf){
