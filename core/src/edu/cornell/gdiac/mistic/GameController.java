@@ -10,22 +10,26 @@
  */
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.assets.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.*;
+import edu.cornell.gdiac.util.*;
 
 import edu.cornell.gdiac.InputController;
 import edu.cornell.gdiac.WorldController;
 import edu.cornell.gdiac.obstacle.BoxObstacle;
 import edu.cornell.gdiac.obstacle.Obstacle;
 import edu.cornell.gdiac.obstacle.PolygonObstacle;
-import edu.cornell.gdiac.util.*;
+
 
 import javax.swing.*;
 import javax.xml.soap.Text;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
@@ -71,6 +75,10 @@ public class GameController extends WorldController implements ContactListener {
 
     /** Track asset loading from all instances and subclasses */
     private AssetState rocketAssetState = AssetState.EMPTY;
+    /** The reader to process JSON files */
+    private JsonReader jsonReader;
+    /** The JSON defining the level model */
+    private JsonValue levelFormat;
 
     /**
      * Preloads the assets for this controller.
@@ -112,6 +120,9 @@ public class GameController extends WorldController implements ContactListener {
         // Monster textures
         manager.load(MONSTER_TEXTURE, Texture.class);
         assets.add(MONSTER_TEXTURE);
+
+        //Json Reader
+        jsonReader = new JsonReader();
 
         //mist wall textures
         for(String m : MIST_WALLS){
@@ -265,8 +276,9 @@ public class GameController extends WorldController implements ContactListener {
     }
 
     private void populateLevel() {
-
-
+        // Set the path for the level json HERE
+        // NOTE: Tiled_Demo's 1-3 will NOT COMPILE
+        levelFormat = jsonReader.parse(Gdx.files.internal("jsons/Tiled_Demo_4.json"));
 
         /**
          * Create Gorf
@@ -278,7 +290,6 @@ public class GameController extends WorldController implements ContactListener {
         gorf.setTexture(gorfTexture);
         addObject(gorf);
 
-
         /**
          * The GameController functions for Gorf-Lantern interactions
          * This includes code for incrementing and decrementing Gorf's firefly counter
@@ -289,58 +300,51 @@ public class GameController extends WorldController implements ContactListener {
         float h = 12;
         //createMonster(w, h);
 
+        // get every texture's group id in the json and map it to it's actual object's name
+        HashMap<Integer,Character> textureIDs = new HashMap<Integer,Character>();
+        JsonValue tilesets = levelFormat.get("tilesets").child();
+        while (tilesets!=null) {
+            textureIDs.put(tilesets.get("firstgid").asInt(),tilesets.get("name").asChar());
+            tilesets = tilesets.next();
+        }
+        System.out.print(textureIDs.toString());
+
+        // initialize BoardModel
         Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
-        this.tileBoard = new BoardModel(100, 100, screenSize);
+        this.tileBoard = new BoardModel(levelFormat.get("width").asInt(), levelFormat.get("height").asInt(), screenSize);
 
-        tileBoard.tiles[20][40].isFogSpawn=true;
+        // get json data as array
+        int[] maze = levelFormat.get("layers").get(1).get("data").asIntArray();
 
-        tileBoard.tiles[0][55].isLantern=true;
-        tileBoard.tiles[50][30].isLantern=true;
-        tileBoard.tiles[50][70].isLantern=true;
-        tileBoard.tiles[25][90].isLantern=true;
+        // for loop for adding info from json data array to the board model
+        int i = 0; int j = 0;
+        for (int t : maze) {
+            if (t!=0&&textureIDs.containsKey(t)) {
+                Character c = textureIDs.get(t);
+                switch (c) {
+                    case 'w':
+                        tileBoard.tiles[i][j].isWall=true;
+                        break;
+                    case 'l':
+                        tileBoard.tiles[i][j].isLantern=true;
+                        break;
+                    case 'g':
+                        // SPAWN GORF HERE LATER!!!
+                        break;
+                    case 'f':
+                        tileBoard.tiles[i][j].isFogSpawn=true;
+                        break;
+                    case 'x':
+                        tileBoard.tiles[i][j].hasFamiliar=true;
+                        break;
+                    default:
+                        break;
+                }
+            }
 
-        for(int i=0;i<10;i++){
-            tileBoard.tiles[0][i].isWall=true;
-        }
-        for(int i=30;i<50;i++){
-            tileBoard.tiles[0][i].isWall=true;
-        }
-        for(int i=0;i<50;i++){
-            tileBoard.tiles[i][0].isWall=true;
-        }
-
-        for(int i=0;i<50;i++){
-            tileBoard.tiles[i][70].isWall=true;
-        }
-        for(int i=0;i<50;i++){
-            tileBoard.tiles[15][i].isWall=true;
-        }
-        for(int i=0;i<20;i++){
-            tileBoard.tiles[30][i].isWall=true;
-        }
-        for(int i=30;i<50;i++){
-            tileBoard.tiles[30][i].isWall=true;
-        }
-        for(int i=30;i<50;i++){
-            tileBoard.tiles[i][50].isWall=true;
-        }
-        for(int i=50;i<100;i++){
-            tileBoard.tiles[70][i].isWall=true;
-        }
-        for(int i=70;i<80;i++){
-            tileBoard.tiles[i][50].isWall=true;
-        }
-        for(int i=50;i<100;i++){
-            tileBoard.tiles[i][10].isWall=true;
-        }
-        for(int i=10;i<30;i++){
-            tileBoard.tiles[50][i].isWall=true;
-        }
-        for(int i=70;i<100;i++){
-            tileBoard.tiles[i][30].isWall=true;
-        }
-        for(int i=30;i<85;i++){
-            tileBoard.tiles[i][90].isWall=true;
+            // increment the counters
+            if (i<99) {i++;} else {i=0;}
+            if (i==0) {j++;}
         }
 
         // for loop for tile walls
@@ -356,7 +360,6 @@ public class GameController extends WorldController implements ContactListener {
                     BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t)/scale.x,
                             tileBoard.getTileCenterY(t)/scale.y, earthTile.getRegionWidth()/scale.x,
                             earthTile.getRegionHeight()/scale.y);
-
                     po.setBodyType(BodyDef.BodyType.StaticBody);
                     po.setDensity(BASIC_DENSITY);
                     po.setFriction(BASIC_FRICTION);
@@ -364,17 +367,12 @@ public class GameController extends WorldController implements ContactListener {
                     po.setDrawScale(scale);
                     po.setTexture(earthTile);
                     addObject(po);
-                   /** System.out.println("Tile: " + t.x + ", " + t.y + ", Center: " + tileBoard.getTileCenterX(t) / scale.x +
-                            ", " + tileBoard.getTileCenterY(t) / scale.y+ ", Corner: " + t.fx / scale.x +
-                            ", " + t.fy / scale.y );
-                    System.out.println("Object size:"+po.getWidth() +", "+po.getHeight() +". Texture Size: "
-                            + earthTile.getRegionWidth() +", "+ earthTile.getRegionHeight());*/
                 }
             }
             fireflyController=new FireflyController(fireflyTexture,scale,tileBoard);
         }
 
-         this.ai = new AIController(monster, tileBoard, gorf, scale);
+        this.ai = new AIController(monster, tileBoard, gorf, scale);
 
          fog = new FogController(tileBoard, canvas, screenSize, 2.0f, scale);
     }
