@@ -57,6 +57,10 @@ public class GameController extends WorldController implements ContactListener {
             "mistic/mistblock/mistblock11.png", "mistic/mistblock/mistblock12.png", "mistic/mistblock/mistblock13.png",
             "mistic/mistblock/mistblock14.png","mistic/mistblock/mistblock15.png", "mistic/mistblock/mistblock16.png"};
 
+    private static final String[] FAMILIARS={
+            "mistic/familiars/cat.png","mistic/familiars/chicken.png","mistic/familiars/hedgehog.png",
+            "mistic/familiars/tortoise.png",
+    };
     /** The reference for the afterburner textures */
     /** Reference to the crate image assets */
     private static final String LIT_LANTERN = "mistic/lit.png";
@@ -69,6 +73,7 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion fireflyTrack;
     private TextureRegion monsterTexture;
     private TextureRegion[] mistwalls = new TextureRegion[MIST_WALLS.length];
+    private TextureRegion[] familiarTex = new TextureRegion[FAMILIARS.length];
     /** Texture assets for the crates */
     private TextureRegion litTexture;
     private TextureRegion unlitTexture;
@@ -130,6 +135,11 @@ public class GameController extends WorldController implements ContactListener {
             assets.add(m);
         }
 
+        for(String f : FAMILIARS){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
+
         /**
          // An Example of loading sounds
          manager.load(MAIN_FIRE_SOUND, Sound.class);
@@ -174,6 +184,9 @@ public class GameController extends WorldController implements ContactListener {
         for(int i=0;i<MIST_WALLS.length;i++){
             mistwalls[i]= createTexture(manager, MIST_WALLS[i], false);
         }
+        for(int i=0;i<FAMILIARS.length;i++){
+            familiarTex[i]= createTexture(manager,FAMILIARS[i], false);
+        }
         SoundController sounds = SoundController.getInstance();
 
         super.loadContent(manager);
@@ -214,6 +227,8 @@ public class GameController extends WorldController implements ContactListener {
     private MonsterModel monster;
     /** Arraylist of Lantern objects */
     public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
+    private Familiar familiars;
+
 
      private FogController fog;
     private boolean[][] board;
@@ -347,21 +362,23 @@ public class GameController extends WorldController implements ContactListener {
             if (i==0) {j++;}
         }
 
-        // for loop for tile walls
+        // Initializer
+        ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
+
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
-                if(t.isLantern){
-                    createLantern(tileBoard.getTileCenterX(t)/scale.x,
-                            tileBoard.getTileCenterY(t)/scale.y);
+                if (t.isLantern) {
+                    createLantern(tileBoard.getTileCenterX(t) / scale.x,
+                            tileBoard.getTileCenterY(t) / scale.y);
                 }
                 if (t.isWall) {
 
-                    int wall_i = random(mistwalls.length-1);
+                    int wall_i = random(mistwalls.length - 1);
                     TextureRegion mistwall = mistwalls[wall_i];
 
-                    BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t)/scale.x,
-                            tileBoard.getTileCenterY(t)/scale.y, tileBoard.getTileWidth()/scale.x,
-                            tileBoard.getTileHeight()/scale.y);
+                    BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                            tileBoard.getTileCenterY(t) / scale.y, tileBoard.getTileWidth() / scale.x,
+                            tileBoard.getTileHeight() / scale.y);
                     po.setBodyType(BodyDef.BodyType.StaticBody);
                     po.setDensity(BASIC_DENSITY);
                     po.setFriction(BASIC_FRICTION);
@@ -370,8 +387,23 @@ public class GameController extends WorldController implements ContactListener {
                     po.setTexture(mistwall);
                     addObject(po);
                 }
+                if (t.hasFamiliar) {
+                    familiarPositions.add(t);
+                }
             }
-            fireflyController=new FireflyController(fireflyTexture,scale,tileBoard);
+
+        }
+        fireflyController=new FireflyController(fireflyTexture,scale,tileBoard);
+        Vector2[] familiarVectors= new Vector2[familiarPositions.size()];
+        for(int k=0;k<familiarPositions.size();k++){
+            familiarVectors[k]= new Vector2(familiarPositions.get(k).fx/scale.x,familiarPositions.get(k).fy/scale.y);
+        }
+        if(familiarVectors.length!=0) {
+            familiars = new Familiar(familiarTex, familiarVectors, scale);
+            System.out.println(familiars.getX() + ", "+ familiars.getY()+", "+familiars.getTexture());
+            System.out.println(familiars.object.getX() + ", "+ familiars.object.getY()+", "+familiars.object.getTexture());
+
+            addObject(familiars.object);
         }
 
         this.ai = new AIController(monster, tileBoard, gorf, scale);
@@ -393,14 +425,6 @@ public class GameController extends WorldController implements ContactListener {
         monster.setTexture(texture);
         addObject(monster);
         monster.getBody().setUserData("monster");
-    }
-
-
-    private boolean complete(ArrayList<Lantern> al){
-        for(Lantern l : Lanterns){
-            if(!l.lit) return false;
-        }
-        return true;
     }
 
     //Get the lantern at this position
@@ -464,6 +488,8 @@ public class GameController extends WorldController implements ContactListener {
                     toggle(l);
             }
         }
+
+        familiars.update(gorf);
 
         float Gorfx= gorf.getPosition().x * scale.x;
         float Gorfy= gorf.getPosition().y * scale.y;
@@ -628,11 +654,11 @@ public class GameController extends WorldController implements ContactListener {
         canvas.end();
 
         canvas.begin();
-        if (complete(Lanterns)) {
+        if (familiars.collectAll) {
             if (countdown > 0) {
                 String vic = "Victory!";
                 displayFont.setColor(Color.PURPLE);
-                canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
+                canvas.drawText(vic, displayFont, canvas.getWidth(), canvas.getHeight()/2);
                 countdown --;
             } else if (countdown==0) {
                 this.setComplete(true);

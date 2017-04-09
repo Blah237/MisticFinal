@@ -1,5 +1,6 @@
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -15,11 +16,14 @@ import static com.badlogic.gdx.utils.JsonValue.ValueType.object;
  */
 public class Familiar {
 
-    Vector2 scale;
-    Vector2 position;
-    boolean collected;
-    BoxObstacle object;
-    TextureRegion tex;
+    private Vector2 scale;
+    private Vector2 position;
+    private boolean collected;
+    public BoxObstacle object;
+    private TextureRegion[] texList;
+    private Vector2[] posList;
+    private int NUM_FAM;
+    public boolean collectAll;
 
 
 
@@ -27,11 +31,17 @@ public class Familiar {
     private static final float FRICTION  = 0.3f;
     private static final float RESTITUTION = 0.1f;
 
-    public Familiar(float x, float y, TextureRegion texture, Vector2 scale){
+    public Familiar(TextureRegion[] textures, Vector2[] positions, Vector2 scale){
         this.scale=scale;
-        this.position=new Vector2(x,y);
-        this.tex=texture;
-        this.object = new BoxObstacle(x,y,tex.getRegionWidth()/(scale.x),tex.getRegionHeight()/(scale.y));
+        this.collectAll=false;
+        this.setCollected(false);
+        this.posList=positions;
+        this.position=posList[0];
+        this.texList=textures;
+        NUM_FAM=0;
+        this.object = new BoxObstacle(position.x,position.y,
+                texList[0].getRegionWidth()/(scale.x*2),texList[0].getRegionHeight()/(scale.y*2));
+        object.setTexture(texList[0]);
         object.setDensity(DENSITY);
         object.setFriction(FRICTION);
         object.setRestitution(RESTITUTION);
@@ -41,6 +51,31 @@ public class Familiar {
     }
 
 
+
+    public void update(GorfModel gorf) {
+        checkCollected(gorf);
+        if (collected) {
+            NUM_FAM += 1;
+            if (NUM_FAM < posList.length) {
+                this.object.setTexture(texList[NUM_FAM]);
+                this.position = posList[NUM_FAM];
+                this.object.setPosition(this.position);
+                this.collected = false;
+            }else{
+                this.collectAll=true;
+            }
+        }
+    }
+
+    public void checkCollected(GorfModel gorf){
+        float dx = Math.abs((this.object.getX()) - gorf.getX());
+        float dy = Math.abs((this.object.getY()) - gorf.getY());
+        if (dx < gorf.getWidth() && dy < gorf.getHeight()) {
+            setCollected(true);
+        }else{
+            setCollected(false);
+        }
+    }
 
     public void setTexture(TextureRegion tex){
         this.object.setTexture(tex);
@@ -57,4 +92,6 @@ public class Familiar {
     public float getY(){
         return this.position.y;
     }
+
+    public TextureRegion getTexture(){return this.texList[NUM_FAM];}
 }
