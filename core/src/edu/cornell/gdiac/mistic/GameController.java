@@ -172,7 +172,7 @@ public class GameController extends WorldController implements ContactListener {
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
 
         for(int i=0;i<MIST_WALLS.length;i++){
-            mistwalls[0]= createTexture(manager, MIST_WALLS[0], false);
+            mistwalls[i]= createTexture(manager, MIST_WALLS[i], false);
         }
         SoundController sounds = SoundController.getInstance();
 
@@ -355,17 +355,19 @@ public class GameController extends WorldController implements ContactListener {
                             tileBoard.getTileCenterY(t)/scale.y);
                 }
                 if (t.isWall) {
-                    earthTile.setRegionHeight((int)(tileBoard.getTileHeight()));
-                    earthTile.setRegionWidth((int)(tileBoard.getTileWidth()));
+
+                    int wall_i = random(mistwalls.length-1);
+                    TextureRegion mistwall = mistwalls[wall_i];
+
                     BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t)/scale.x,
-                            tileBoard.getTileCenterY(t)/scale.y, earthTile.getRegionWidth()/scale.x,
-                            earthTile.getRegionHeight()/scale.y);
+                            tileBoard.getTileCenterY(t)/scale.y, tileBoard.getTileWidth()/scale.x,
+                            tileBoard.getTileHeight()/scale.y);
                     po.setBodyType(BodyDef.BodyType.StaticBody);
                     po.setDensity(BASIC_DENSITY);
                     po.setFriction(BASIC_FRICTION);
                     po.setRestitution(BASIC_RESTITUTION);
                     po.setDrawScale(scale);
-                    po.setTexture(earthTile);
+                    po.setTexture(mistwall);
                     addObject(po);
                 }
             }
