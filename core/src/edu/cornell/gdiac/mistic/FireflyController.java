@@ -40,6 +40,7 @@ public class FireflyController {
     }
 
     public boolean update(GorfModel gorf){
+        fogDeath();
         Firefly f=getFirefly(gorf);
         if(f!=null){
             f.setDestroyed(true);
@@ -62,6 +63,17 @@ public class FireflyController {
         }
         return null;
     }
+
+    public void fogDeath(){
+        for(Firefly f : fireflies){
+            if(f!=null){
+                if (board.tiles[board.screenToBoardX(f.getX())][board.screenToBoardY(f.getY())].isFog){
+                    f.setDestroyed(true);
+                }
+            }
+        }
+    }
+
 
     public Firefly getFirefly(GorfModel gorf){
         for(Firefly F : fireflies) {
