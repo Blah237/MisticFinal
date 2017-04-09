@@ -499,9 +499,10 @@ public class GameController extends WorldController implements ContactListener {
 //        this.monster.setFY(forceYMonster * monsterthrust);
 //        monster.applyForce();
 
-
-
-        if (random(200)==10) {
+        int firefly_p=300;
+        if(firefly_count<=2)firefly_p=200;
+        if(firefly_count>=5)firefly_p=500;
+        if (random(firefly_p)==10) {
             fireflyController.spawn();
         }
 

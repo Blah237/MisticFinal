@@ -28,7 +28,7 @@ public class FireflyController {
     private Vector2 scale;
     /**The time between firefly spawns*/
     private float SPAWN_TIME;
-    private int MAX_FIREFLIES=7;
+    private int MAX_FIREFLIES=5;
     private int maxfireflies = MAX_FIREFLIES;
     protected Firefly[] fireflies;
 
