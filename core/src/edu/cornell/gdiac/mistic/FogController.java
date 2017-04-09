@@ -177,6 +177,10 @@ public class FogController {
 		shader.end();
 	}
 
+	public ShaderProgram getShader() {
+		return shader;
+	}
+
 	public void draw(GameCanvas canvas, int numFireflies) {
 		System.out.println(canvas.getHeight());
 		batch = canvas.getSpriteBatch();
@@ -461,7 +465,7 @@ public class FogController {
 		Perlin perlin = new Perlin();
 		for (int y = 0; y < HEIGHT; y++) {
 			for (int x = 0; x < WIDTH; x++) {
-				data[count++] = perlin.noise(30.0 * (double)x / WIDTH, 15.0 * (double)y / HEIGHT);
+				data[count++] = perlin.noise(50.0 * (double)x / WIDTH, 25.0 * (double)y / HEIGHT);
 			}
 		}
 

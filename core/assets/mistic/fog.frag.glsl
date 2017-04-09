@@ -23,7 +23,7 @@ void main() {
     vec2 coord = (gl_FragCoord.xy / res.xy);      // FUTURE NOTE: should get coord in terms of world/map -- convert gl_FragCoord to world space by adding dim/2 and subtracting cameraPos, then divide by world width
     vec2 boardCoord = gl_FragCoord.xy / dim.xy + vec2(leftOffset, botOffset);
     vec2 origin = fogOrigin;
-//    coord *= (dim.x/dim.y);
+    coord.x *= (res.x/res.y);
 //    origin *= (dim.x/dim.y);
 //    float fogReach = pow(coord.x, 2) / pow(fogReach.x/NX, 2) + pow(coord.y, 2) / pow(fogReach.y/NY, 2);
 //    float dist = length((coord-origin)*(dim.x/dim.y));
@@ -67,7 +67,7 @@ void main() {
     float dy3 = abs(coord.y-.5);
 
     float dist3 = length(vec2(dx3, dy3));
-    fogThickness *= smoothstep(min(.1 + float(numFireflies)*.05, .4)-.15, min(.1 + float(numFireflies)*.05, .4), dist3);
+    fogThickness *= smoothstep(min(.12 + float(numFireflies)*.03, .4)-.1, min(.12 + float(numFireflies)*.05, .4), dist3);
 
     fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
     fog *= min(1.0,fogThickness);
