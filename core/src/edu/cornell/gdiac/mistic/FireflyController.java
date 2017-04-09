@@ -80,7 +80,7 @@ public class FireflyController {
             if (F!=null && !F.isDestroyed()) {
                 float dx = Math.abs((F.getX() / scale.x) - gorf.getX());
                 float dy = Math.abs((F.getY() / scale.y) - gorf.getY());
-                if (dx < gorf.getWidth() && dy < gorf.getHeight()) {
+                if (dx < gorf.getWidth()/1.5 && dy < gorf.getHeight()/1.5) {
                     return F;
                 }
             }
