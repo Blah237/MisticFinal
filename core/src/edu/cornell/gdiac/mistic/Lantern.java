@@ -39,7 +39,7 @@ public class Lantern {
         object.setFriction(LAMP_FRICTION);
         object.setRestitution(LAMP_RESTITUTION);
         object.setBodyType(BodyDef.BodyType.StaticBody);
-        object.setName("lantern"+x+y);
+        object.setName("lantern");
         object.setDrawScale(scale);
     }
 

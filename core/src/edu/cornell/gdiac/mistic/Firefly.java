@@ -34,6 +34,7 @@ public class Firefly{
         object.setTexture(texture);
     }
 
+
     public void setPosition(float x, float y){
         this.position.set(x,y);
     }
