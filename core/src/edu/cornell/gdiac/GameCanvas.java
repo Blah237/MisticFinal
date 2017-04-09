@@ -419,6 +419,7 @@ public class GameCanvas {
 	 */
 	public void begin(Vector2 position) {
 		camera.position.set(position.x*8f,position.y*8f,0);
+		camera.zoom = 0.65f;
 		camera.update();
 		spriteBatch.setProjectionMatrix(camera.combined);
 		spriteBatch.begin();
@@ -1267,5 +1268,5 @@ public class GameCanvas {
 		return spriteBatch;
 	}
 
-	public float getZoom() { return camera.zoom; };
+	public float getZoom() { return camera.zoom; }
 }
