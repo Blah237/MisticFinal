@@ -53,17 +53,17 @@ void main() {
         }
 
         vec2 lantern = lanterns[i];
-        float dx2 = min(abs(coord.x-lantern.x), abs(coord.x + (2.0-lantern.x)));
+        float dx2 = min(abs(coord.x-lantern.x), abs(coord.x + (2.0-lantern.x))) * (res.x/res.y);
         dx2 = min(dx2, abs(lantern.x + (2.0-coord.x)));
-        float dy2 = min(abs(coord.y-lantern.y), abs(coord.y + (2.0-lantern.y)));
-        dy2 = min(dy2, abs(lantern.y + (2.0-coord.y)));
+        float dy2 = min(abs(coord.y-.06-lantern.y), abs(coord.y-.06 + (2.0-lantern.y)));
+        dy2 = min(dy2, abs(lantern.y + (2.0-coord.y-.06)));
 
         float dist2 = length(vec2(dx2,dy2));
-        float fogThickness2 = smoothstep(.15, .25, dist2);
+        float fogThickness2 = smoothstep(.25, .5, dist2);
         fogThickness *= fogThickness2;
     }
 
-    float dx3 = abs(coord.x-.5);
+    float dx3 = abs(coord.x-.5) * (res.x/res.y);
     float dy3 = abs(coord.y-.5);
 
     float dist3 = length(vec2(dx3, dy3));

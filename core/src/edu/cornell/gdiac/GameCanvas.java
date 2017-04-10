@@ -434,6 +434,18 @@ public class GameCanvas {
     	active = DrawPass.INACTIVE;
     }
 
+    public void setCamera(Vector2 position) {
+		camera.position.set(position.x*8f,position.y*8f,0);
+//		camera.zoom = 0.59f;
+		camera.update();
+	}
+
+	public void resetCamera() {
+		camera.position.set(getWidth()/2,getHeight()/2,0);
+		camera.zoom = 1f;
+		camera.update();
+	}
+
 	/**
 	 * Draws the tinted texture at the given position.
 	 *

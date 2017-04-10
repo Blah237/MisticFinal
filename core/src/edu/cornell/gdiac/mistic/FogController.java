@@ -44,7 +44,7 @@ public class FogController {
 	Vector2 fogOrigin;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 5;
+	private final int FOG_DELAY = 1;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -182,7 +182,7 @@ public class FogController {
 		return shader;
 	}
 
-	public void draw(GameCanvas canvas, int numFireflies) {
+	public void draw(GameCanvas canvas, TextureRegion fboRegion, int numFireflies) {
 		//System.out.println(canvas.getHeight());
 		batch = canvas.getSpriteBatch();
 		batch.setShader(shader);
@@ -215,7 +215,7 @@ public class FogController {
 		batch.enableBlending();
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-		batch.draw(bg, 0, 0, screenDim.x, screenDim.y);
+		batch.draw(fboRegion, 0, 0, screenDim.x, screenDim.y);
 
 		batch.end();
 
@@ -398,17 +398,19 @@ public class FogController {
 			int ly;
 
 			for (int g=-2; g<=2; g++) {
-				ly = (int)((lanternPos.y + g + WX) % WX);
-				lx = (int)((lanternPos.x - 4 + WX) % WX);
+				lx = (int)((lanternPos.x + g + WX) % WX);
+				ly = (int)((lanternPos.y - 8 + WY) % WY) + 2;
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 			}
 
-			for (int j=-3; j<=3; j++) {
-				lx = (int) ((lanternPos.x + j + WX) % WX);
+			for (int j=-7; j<=7; j++) {
+				ly = (int) ((lanternPos.y + j + WY) % WY) + 2;
 				int bound;
-				if (j == -3 || j == 3) {
+				if (j == -7 || j == 7) {
 					bound = 2;
+				} else if (j == -6 || j == 6 || j == -5 || j == 5) {
+					bound = 3;
 //				} else if (j == -2 || j == 2) {
 //					bound = 2;
 //				} else if (j == -5 || j == 5) {
@@ -418,29 +420,29 @@ public class FogController {
 //				} else if (j == -3 || j == 3) {
 //					bound = 6;
 				} else {
-					bound = 3;
+					bound = 4;
 				}
 
-				ly = (int) ((lanternPos.y - bound - 1 + WY) % WY);
+				lx = (int) ((lanternPos.x - bound - 1 + WX) % WX);
 
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 
 				for (int k = -bound; k <= bound; k++) {
-					ly = (int) ((lanternPos.y + k + WY) % WY);
+					lx = (int) ((lanternPos.x + k + WX) % WX);
 					fogBoard[lx][ly] = 0f;
 					tileBoard.setFog(lx, ly, false);
 				}
 
-				ly = (int) ((lanternPos.y + bound + 1) % WY);
+				ly = (int) ((lanternPos.y + bound + 1) % WY) + 2;
 
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 			}
 
 			for (int h=-2; h<=2; h++) {
-				ly = (int)((lanternPos.y + h + WX) % WX);
-				lx = (int)((lanternPos.x + 4) % WX);
+				lx = (int)((lanternPos.x + h + WX) % WX);
+				ly = (int)((lanternPos.y + 8) % WY) + 2;
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 			}
