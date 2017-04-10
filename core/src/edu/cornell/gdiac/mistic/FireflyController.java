@@ -28,7 +28,7 @@ public class FireflyController {
     private Vector2 scale;
     /**The time between firefly spawns*/
     private float SPAWN_TIME;
-    private int MAX_FIREFLIES=7;
+    private int MAX_FIREFLIES=5;
     private int maxfireflies = MAX_FIREFLIES;
     protected Firefly[] fireflies;
 
@@ -40,6 +40,7 @@ public class FireflyController {
     }
 
     public boolean update(GorfModel gorf){
+        fogDeath();
         Firefly f=getFirefly(gorf);
         if(f!=null){
             f.setDestroyed(true);
@@ -60,15 +61,26 @@ public class FireflyController {
             Firefly f = create(t.fx,t.fy);
             return f;
         }
-        return spawn();
+        return null;
     }
+
+    public void fogDeath(){
+        for(Firefly f : fireflies){
+            if(f!=null){
+                if (board.tiles[board.screenToBoardX(f.getX())][board.screenToBoardY(f.getY())].isFog){
+                    f.setDestroyed(true);
+                }
+            }
+        }
+    }
+
 
     public Firefly getFirefly(GorfModel gorf){
         for(Firefly F : fireflies) {
             if (F!=null && !F.isDestroyed()) {
                 float dx = Math.abs((F.getX() / scale.x) - gorf.getX());
                 float dy = Math.abs((F.getY() / scale.y) - gorf.getY());
-                if (dx < gorf.getWidth() && dy < gorf.getHeight()) {
+                if (dx < gorf.getWidth()/1.5 && dy < gorf.getHeight()/1.5) {
                     return F;
                 }
             }

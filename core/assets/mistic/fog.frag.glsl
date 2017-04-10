@@ -1,5 +1,5 @@
-#define NX 24
-#define NY 24
+#define NX 31
+#define NY 31
 
 uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
@@ -23,7 +23,7 @@ void main() {
     vec2 coord = (gl_FragCoord.xy / res.xy);      // FUTURE NOTE: should get coord in terms of world/map -- convert gl_FragCoord to world space by adding dim/2 and subtracting cameraPos, then divide by world width
     vec2 boardCoord = gl_FragCoord.xy / dim.xy + vec2(leftOffset, botOffset);
     vec2 origin = fogOrigin;
-    coord.x *= (res.x/res.y);
+//    coord.x *= (res.x/res.y);
 //    origin *= (dim.x/dim.y);
 //    float fogReach = pow(coord.x, 2) / pow(fogReach.x/NX, 2) + pow(coord.y, 2) / pow(fogReach.y/NY, 2);
 //    float dist = length((coord-origin)*(dim.x/dim.y));
