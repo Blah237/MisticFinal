@@ -109,7 +109,7 @@ public class FogController {
 
 		boardTilesPerCamViewX = (int)Math.ceil(zoom * WX / canvasScale) + 1;
 		boardTilesPerCamViewY = (int)Math.ceil(zoom * WY / canvasScale) + 1;
-		System.out.println(boardTilesPerCamViewX);
+//		System.out.println(boardTilesPerCamViewX);
 
 		cellW = boardTilesPerCamViewX*tileW / (float)NX;
 		cellH = boardTilesPerCamViewY*tileH / (float)NY;
@@ -257,7 +257,7 @@ public class FogController {
 //		if (startTileY % 2 == 1) {
 //			startTileY--;
 //		}
-		System.out.println(startTileX);
+//		System.out.println(startTileX);
 
 //		fogBoard = newFogBoard;
 		fogBoardCam = new float[NX*NY];
@@ -282,7 +282,7 @@ public class FogController {
 
 		boardLeftOffset = ((((gorfPos.x - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
 		boardBotOffset = ((((gorfPos.y - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
-		System.out.println(boardLeftOffset);
+//		System.out.println(boardLeftOffset);
 //		System.out.println(gorf.getX());
 	}
 
