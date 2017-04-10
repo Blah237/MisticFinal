@@ -530,7 +530,7 @@ public class GameController extends WorldController implements ContactListener {
 //        monster.applyForce();
 
         firefly_counter++;
-        if (firefly_counter==200) {
+        if (firefly_counter==150) {
             firefly_counter=0;
             fireflyController.spawn();
         }
