@@ -249,6 +249,23 @@ public class GameController extends WorldController implements ContactListener {
 
     private FrameBuffer fbo;
     private TextureRegion fboRegion;
+    private FrameBuffer fbo1;
+    private TextureRegion fboRegion1;
+    private FrameBuffer fbo2;
+    private TextureRegion fboRegion2;
+    private FrameBuffer fbo3;
+    private TextureRegion fboRegion3;
+    private FrameBuffer fbo4;
+    private TextureRegion fboRegion4;
+    private FrameBuffer fbo5;
+    private TextureRegion fboRegion5;
+    private FrameBuffer fbo6;
+    private TextureRegion fboRegion6;
+    private FrameBuffer fbo7;
+    private TextureRegion fboRegion7;
+    private FrameBuffer fbo8;
+    private TextureRegion fboRegion8;
+
     OrthographicCamera cam;
 
 
@@ -293,9 +310,42 @@ public class GameController extends WorldController implements ContactListener {
         populateLevel();
         countdown=120;
 
-        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*3), (int)(Gdx.graphics.getHeight()*3), false);
-        fboRegion = new TextureRegion(fbo.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*3), (int)(Gdx.graphics.getHeight()*3));
+        fbo1 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
+        fboRegion1 = new TextureRegion(fbo1.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
+        fboRegion1.flip(false, true);
+
+        fbo2 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
+        fboRegion2 = new TextureRegion(fbo2.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
+        fboRegion2.flip(false, true);
+
+        fbo3 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
+        fboRegion3 = new TextureRegion(fbo3.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
+        fboRegion3.flip(false, true);
+
+        fbo4 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
+        fboRegion4 = new TextureRegion(fbo4.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
+        fboRegion4.flip(false, true);
+
+        fbo5 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
+        fboRegion5 = new TextureRegion(fbo5.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
+        fboRegion5.flip(false, true);
+
+        fbo6 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
+        fboRegion6 = new TextureRegion(fbo6.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
+        fboRegion6.flip(false, true);
+
+        fbo7 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
+        fboRegion7 = new TextureRegion(fbo7.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
+        fboRegion7.flip(false, true);
+
+        fbo8 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
+        fboRegion8 = new TextureRegion(fbo8.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
+        fboRegion8.flip(false, true);
+
+        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
+        fboRegion = new TextureRegion(fbo.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
         fboRegion.flip(false, true);
+
 
         cam = new OrthographicCamera(Gdx.graphics.getWidth(),
                 Gdx.graphics.getHeight());
@@ -617,219 +667,10 @@ public class GameController extends WorldController implements ContactListener {
 
         // Draw background on all sides and diagonals for wrap illusion
 
-        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(0, canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(0, -canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, -canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, 0));
-            canvas.end();
-        }
-
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, -canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, 0));
-            canvas.end();
-        }
-
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-
-        // main canvas
         canvas.resetCamera();
         canvas.getSpriteBatch().setShader(null);
-        Gdx.gl.glDisable(GL20.GL_SCISSOR_TEST);
+
+        // main canvas
         fbo.begin();
         canvas.clear();
         canvas.begin();
@@ -840,11 +681,38 @@ public class GameController extends WorldController implements ContactListener {
         }}
         canvas.end();
         fbo.end();
+
+
         canvas.setShader(fog.getShader());
         fog.prepShader(firefly_count);
         canvas.begin(gorf.getPosition());
+        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(0, canvas.getHeight() * 2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, canvas.getHeight() * 2));
+        }
+        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(0, -canvas.getHeight() * 2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, -canvas.getHeight() * 2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, 0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, -canvas.getHeight() * 2));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, 0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, canvas.getHeight() * 2));
+        }
         fog.draw(canvas, fboRegion, new Vector2(0, 0));
         canvas.end();
+
 
         canvas.resetCamera();
         canvas.getSpriteBatch().setShader(null);

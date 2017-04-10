@@ -44,7 +44,7 @@ public class FogController {
 	Vector2 fogOrigin;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 1;
+	private final int FOG_DELAY = 5;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -91,6 +91,36 @@ public class FogController {
 	FPSLogger logger = new FPSLogger();
 	Texture boundaryFog;
 
+	Array<Integer> sTiles;
+	Array<Integer> wTiles;
+	Array<Integer> nTiles;
+	Array<Integer> eTiles;
+	Array<Integer> swTiles;
+	Array<Integer> nwTiles;
+	Array<Integer> neTiles;
+	Array<Integer> seTiles;
+	Array<Integer> ewTiles;
+	Array<Integer> nsTiles;
+	Array<Integer> sewTiles;
+	Array<Integer> nswTiles;
+	Array<Integer> newTiles;
+	Array<Integer> nseTiles;
+
+	private final int S = 1;
+	private final int W = 2;
+	private final int N = 3;
+	private final int E = 4;
+	private final int SW = 5;
+	private final int NW = 6;
+	private final int NE = 7;
+	private final int SE = 8;
+	private final int EW = 9;
+	private final int NS = 10;
+	private final int SEW = 11;
+	private final int NSW = 12;
+	private final int NEW = 13;
+	private final int NSE = 14;
+
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
 		bg = new Texture("mistic/backgroundresize.png");
@@ -102,6 +132,21 @@ public class FogController {
 		this.canvasScale = canvasScale;
 //		this.tileBoard = tileBoard;
 //		zoom = canvas.getZoom();
+
+		Array<Integer> sTiles = new Array<Integer>();
+		Array<Integer> wTiles = new Array<Integer>();
+		Array<Integer> nTiles = new Array<Integer>();
+		Array<Integer> eTiles = new Array<Integer>();
+		Array<Integer> swTiles = new Array<Integer>();
+		Array<Integer> nwTiles = new Array<Integer>();
+		Array<Integer> neTiles = new Array<Integer>();
+		Array<Integer> seTiles = new Array<Integer>();
+		Array<Integer> ewTiles = new Array<Integer>();
+		Array<Integer> nsTiles = new Array<Integer>();
+		Array<Integer> sewTiles = new Array<Integer>();
+		Array<Integer> nswTiles = new Array<Integer>();
+		Array<Integer> newTiles = new Array<Integer>();
+		Array<Integer> nseTiles = new Array<Integer>();
 
 		WX = tileBoard.getWidth();
 		WY = tileBoard.getHeight();
