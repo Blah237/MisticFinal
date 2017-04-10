@@ -448,7 +448,7 @@ public class GameController extends WorldController implements ContactListener {
             l.toggleLantern();
         } else {
             if (firefly_count >= 1) {
-                firefly_count = firefly_count - 1;
+                firefly_count = firefly_count - 2;
                 l.setTexture(litTexture);
                 l.toggleLantern();
             }
@@ -618,33 +618,33 @@ public class GameController extends WorldController implements ContactListener {
         canvas.end();
         canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
         canvas.end();
 
         //diagonal canvases
         canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
         canvas.end();
 
         // main canvas
