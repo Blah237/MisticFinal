@@ -45,7 +45,11 @@ void main() {
 
 
 //    fogThickness *= fogBoard[cellY*NX + cellX];
-    float fogThickness = fogBoard[cellY*NX + cellX];
+      float fogThickness = fogBoard[cellY*NX + cellX];
+//    float fogThickness = 0.0;
+//    if (fogBoard[cellY*NX + cellX] == 1) {
+//        fogThickness = fogBoard[cellY*NX + cellX];
+//    }
 
     for (int i=0; i<10; i++) {
         if (i>=numLanterns) {
@@ -65,7 +69,7 @@ void main() {
     float dy3 = abs(coord.y-.5);
 
     float dist3 = length(vec2(dx3, dy3));
-    fogThickness *= smoothstep(min(.12 + float(numFireflies)*.03, .4)-.1, min(.12 + float(numFireflies)*.05, .4), dist3);
+    fogThickness *= smoothstep(min(.17 + float(numFireflies)*.04, .4)-.15, min(.12 + float(numFireflies)*.04, .4), dist3);
 
     fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
     fog *= min(1.0,fogThickness);

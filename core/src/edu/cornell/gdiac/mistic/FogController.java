@@ -89,10 +89,12 @@ public class FogController {
 
 //	OrthographicCamera cam;
 	FPSLogger logger = new FPSLogger();
+	Texture boundaryFog;
 
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
 		bg = new Texture("mistic/backgroundresize.png");
+		boundaryFog = new Texture("mistic/boundary_fog.png");
 		screenDim = new Vector2(screensize.getWidth(), screensize.getHeight());
 		res = new Vector2(canvas.getWidth(), canvas.getHeight());
 		this.scale = scale;
@@ -211,7 +213,6 @@ public class FogController {
 
 
 
-
 //		batch.begin();
 //		Gdx.gl.glClearColor(0, 0, 0, 0);
 //		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -220,6 +221,16 @@ public class FogController {
 //		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 		batch.draw(fboRegion, pos.x, pos.y, screenDim.x, screenDim.y);
+
+//		batch.setShader(null);
+//
+//		for (int i=0; i<WX; i++) {
+//			for (int j = 0; j < WY; j++) {
+//				if (fogBoard[i][j] == BOUNDARY) {
+//					canvas.draw(boundaryFog, Color.WHITE, i * tileW, j * tileH, tileW, tileH);
+//				}
+//			}
+//		}
 
 //		batch.end();
 
@@ -230,7 +241,7 @@ public class FogController {
 		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 
-		gorfPos = new Vector2(gorf.getX() * scale.x + scale.x/2f, gorf.getY() * scale.y + scale.y/2f);		// in pixels
+		gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
 
 		updateLanterns(lanterns, tileBoard);
 
