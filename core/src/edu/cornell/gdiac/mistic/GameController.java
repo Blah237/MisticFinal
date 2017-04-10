@@ -244,6 +244,7 @@ public class GameController extends WorldController implements ContactListener {
     private int fogDelay = FOG_DELAY;
     private int fireflyDelay = FIREFLY_DELAY;
     private int fireflyDeathTimer;
+    private int firefly_counter=0;
 
 
 
@@ -400,9 +401,6 @@ public class GameController extends WorldController implements ContactListener {
         }
         if(familiarVectors.length!=0) {
             familiars = new Familiar(familiarTex, familiarVectors, scale);
-            System.out.println(familiars.getX() + ", "+ familiars.getY()+", "+familiars.getTexture());
-            System.out.println(familiars.object.getX() + ", "+ familiars.object.getY()+", "+familiars.object.getTexture());
-
             addObject(familiars.object);
         }
 
@@ -525,10 +523,9 @@ public class GameController extends WorldController implements ContactListener {
 //        this.monster.setFY(forceYMonster * monsterthrust);
 //        monster.applyForce();
 
-        int firefly_p=300;
-        if(firefly_count<=2)firefly_p=200;
-        if(firefly_count>=5)firefly_p=500;
-        if (random(firefly_p)==10) {
+        firefly_counter++;
+        if (firefly_counter==200) {
+            firefly_counter=0;
             fireflyController.spawn();
         }
 
