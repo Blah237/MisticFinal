@@ -1,12 +1,7 @@
 /*
- * RocketWorldController.java
+ * GameController.java
+ * Copyright Mishka 2017
  *
- * This is one of the files that you are expected to modify. Please limit changes to
- * the regions that say INSERT CODE HERE.
- *
- * Author: Walker M. White
- * Based on original PhysicsDemo Lab by Don Holden, 2007
- * LibGDX version, 2/6/2015
  */
 package edu.cornell.gdiac.mistic;
 
@@ -48,7 +43,7 @@ public class GameController extends WorldController implements ContactListener {
     private static final String BACKGROUND = "mistic/backgroundresize.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
     private static final String FOG_TEXTURE = "mistic/fog.png";
-    private static final String FIRE_TRACK="mistic/fireflysprite.png";
+    private static final String FIRE_TRACK="mistic/fireflyicon.png";
     private static final String MONSTER_TEXTURE = "mistic/monster01.png";
     private static final String[] MIST_WALLS= {"mistic/mistblock/mistblock1.png",
             "mistic/mistblock/mistblock2.png", "mistic/mistblock/mistblock3.png", "mistic/mistblock/mistblock4.png",
@@ -65,6 +60,12 @@ public class GameController extends WorldController implements ContactListener {
     /** Reference to the crate image assets */
     private static final String LIT_LANTERN = "mistic/lit.png";
     private static final String UNLIT_LANTERN = "mistic/unlit.png";
+    private static final String FIREFLY_ANIMATE="mistic/firefly-sprite.png";
+
+
+    private FilmStrip fireflyAnimation;
+
+
     /** Texture assets for the rocket */
     private TextureRegion gorfTexture;
     private TextureRegion backgroundTexture;
@@ -126,6 +127,8 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(MONSTER_TEXTURE, Texture.class);
         assets.add(MONSTER_TEXTURE);
 
+        manager.load(FIREFLY_ANIMATE,Texture.class);
+        assets.add(FIREFLY_ANIMATE);
         //Json Reader
         jsonReader = new JsonReader();
 
@@ -180,6 +183,8 @@ public class GameController extends WorldController implements ContactListener {
         backgroundTexture = createTexture(manager,BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
+
+        fireflyAnimation=createFilmStrip(manager, FIREFLY_ANIMATE, 1, Firefly.FRAMES,Firefly.FRAMES);
 
         for(int i=0;i<MIST_WALLS.length;i++){
             mistwalls[i]= createTexture(manager, MIST_WALLS[i], false);
@@ -394,6 +399,7 @@ public class GameController extends WorldController implements ContactListener {
 
         }
         fireflyController=new FireflyController(fireflyTexture,scale,tileBoard);
+        fireflyController.setFireflyAnimation(fireflyAnimation);
         Vector2[] familiarVectors= new Vector2[familiarPositions.size()];
         for(int k=0;k<familiarPositions.size();k++){
             familiarVectors[k]= new Vector2(familiarPositions.get(k).fx/scale.x,familiarPositions.get(k).fy/scale.y);
@@ -494,7 +500,7 @@ public class GameController extends WorldController implements ContactListener {
         boolean inFog=gorftile.isFog;
 
         if (inFog){
-            System.out.println(fireflyDeathTimer);
+            //System.out.println(fireflyDeathTimer);
             fireflyDeathTimer+=1;
             if(fireflyDeathTimer>fireflyDelay){
                 if(firefly_count!=0) {
@@ -534,7 +540,7 @@ public class GameController extends WorldController implements ContactListener {
         if(fireflyController.update(gorf)){
             firefly_count++;
         }
-
+        fireflyController.updateFireflyAnimation(true);
         /**
          for (Body b : scheduledForRemoval) {
          b.getWorld().destroyBody(b);
@@ -608,7 +614,7 @@ public class GameController extends WorldController implements ContactListener {
         // now redraw objects on surrounding canvases
         canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null && !f.isDestroyed()){f.getObject().draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null && !f.isDestroyed()){f.draw(canvas);}}
         canvas.end();
         canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
@@ -645,7 +651,7 @@ public class GameController extends WorldController implements ContactListener {
         canvas.begin(gorf.getPosition());
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
 
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
         //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
         }}
         canvas.end();
