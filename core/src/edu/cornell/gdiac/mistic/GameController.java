@@ -240,7 +240,7 @@ public class GameController extends WorldController implements ContactListener {
     private float UW = BW / UNITS_W;
     private float UH = BH / UNITS_H;
     private static int FOG_DELAY = 50;
-    private static int FIREFLY_DELAY = 200;
+    private static int FIREFLY_DELAY = 100;
     private int fogDelay = FOG_DELAY;
     private int fireflyDelay = FIREFLY_DELAY;
     private int fireflyDeathTimer;
@@ -494,6 +494,7 @@ public class GameController extends WorldController implements ContactListener {
         boolean inFog=gorftile.isFog;
 
         if (inFog){
+            System.out.println(fireflyDeathTimer);
             fireflyDeathTimer+=1;
             if(fireflyDeathTimer>fireflyDelay){
                 if(firefly_count!=0) {
