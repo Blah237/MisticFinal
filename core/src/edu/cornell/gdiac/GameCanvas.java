@@ -133,7 +133,7 @@ public class GameCanvas {
 		// Set the projection matrix (for proper scaling)
 		camera = new OrthographicCamera(getWidth()/2,getHeight()/2);
 		camera.setToOrtho(false);
-		camera.zoom = 0.65f;
+//		camera.zoom = 0.65f;
 		camera.update();
 		spriteBatch.setProjectionMatrix(camera.combined);
 		debugRender.setProjectionMatrix(camera.combined);
@@ -419,7 +419,7 @@ public class GameCanvas {
 	 */
 	public void begin(Vector2 position) {
 		camera.position.set(position.x*8f,position.y*8f,0);
-		camera.zoom = 0.65f;
+		camera.zoom = 0.59f;
 		camera.update();
 		spriteBatch.setProjectionMatrix(camera.combined);
 		spriteBatch.begin();

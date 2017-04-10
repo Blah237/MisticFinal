@@ -56,7 +56,7 @@ public class FireflyController {
     public void spawn(){
         int x= random(99);
         int y=random(99);
-        System.out.println("Firefly at: "+ x + ", "+y);
+        //System.out.println("Firefly at: "+ x + ", "+y);
         BoardModel.Tile t= board.tiles[x][y];
         if(!(t.isWall || t.isFog)){
            create(t.fx,t.fy);

@@ -323,7 +323,6 @@ public class GameController extends WorldController implements ContactListener {
             textureIDs.put(tilesets.get("firstgid").asInt(),tilesets.get("name").asChar());
             tilesets = tilesets.next();
         }
-        System.out.print(textureIDs.toString());
 
         // initialize BoardModel
         Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
