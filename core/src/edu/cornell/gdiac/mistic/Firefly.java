@@ -52,7 +52,7 @@ public class Firefly {
             } else {
                 cycle = true;
             }
-            System.out.println(fireflyAnimation.getFrame());
+           // System.out.println(fireflyAnimation.getFrame());
             // Increment
             if (cycle) {
                 fireflyAnimation.setFrame(fireflyAnimation.getFrame()+1);
