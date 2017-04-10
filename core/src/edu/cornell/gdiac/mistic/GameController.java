@@ -1,12 +1,7 @@
 /*
- * RocketWorldController.java
+ * GameController.java
+ * Copyright Mishka 2017
  *
- * This is one of the files that you are expected to modify. Please limit changes to
- * the regions that say INSERT CODE HERE.
- *
- * Author: Walker M. White
- * Based on original PhysicsDemo Lab by Don Holden, 2007
- * LibGDX version, 2/6/2015
  */
 package edu.cornell.gdiac.mistic;
 
@@ -49,7 +44,7 @@ public class GameController extends WorldController implements ContactListener {
     private static final String BACKGROUND = "mistic/backgroundresize.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
     private static final String FOG_TEXTURE = "mistic/fog.png";
-    private static final String FIRE_TRACK="mistic/fireflysprite.png";
+    private static final String FIRE_TRACK="mistic/fireflyicon.png";
     private static final String MONSTER_TEXTURE = "mistic/monster01.png";
     private static final String[] MIST_WALLS= {"mistic/mistblock/mistblock1.png",
             "mistic/mistblock/mistblock2.png", "mistic/mistblock/mistblock3.png", "mistic/mistblock/mistblock4.png",
@@ -66,6 +61,12 @@ public class GameController extends WorldController implements ContactListener {
     /** Reference to the crate image assets */
     private static final String LIT_LANTERN = "mistic/lit.png";
     private static final String UNLIT_LANTERN = "mistic/unlit.png";
+    private static final String FIREFLY_ANIMATE="mistic/firefly-sprite.png";
+
+
+    private FilmStrip fireflyAnimation;
+
+
     /** Texture assets for the rocket */
     private TextureRegion gorfTexture;
     private TextureRegion backgroundTexture;
@@ -127,6 +128,8 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(MONSTER_TEXTURE, Texture.class);
         assets.add(MONSTER_TEXTURE);
 
+        manager.load(FIREFLY_ANIMATE,Texture.class);
+        assets.add(FIREFLY_ANIMATE);
         //Json Reader
         jsonReader = new JsonReader();
 
@@ -181,6 +184,8 @@ public class GameController extends WorldController implements ContactListener {
         backgroundTexture = createTexture(manager,BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
+
+        fireflyAnimation=createFilmStrip(manager, FIREFLY_ANIMATE, 1, Firefly.FRAMES,Firefly.FRAMES);
 
         for(int i=0;i<MIST_WALLS.length;i++){
             mistwalls[i]= createTexture(manager, MIST_WALLS[i], false);
@@ -456,6 +461,7 @@ public class GameController extends WorldController implements ContactListener {
 
         }
         fireflyController=new FireflyController(fireflyTexture,scale,tileBoard);
+        fireflyController.setFireflyAnimation(fireflyAnimation);
         Vector2[] familiarVectors= new Vector2[familiarPositions.size()];
         for(int k=0;k<familiarPositions.size();k++){
             familiarVectors[k]= new Vector2(familiarPositions.get(k).fx/scale.x,familiarPositions.get(k).fy/scale.y);
@@ -556,7 +562,6 @@ public class GameController extends WorldController implements ContactListener {
         boolean inFog=gorftile.isFog;
 
         if (inFog){
-//            System.out.println(fireflyDeathTimer);
             fireflyDeathTimer+=1;
             if(fireflyDeathTimer>fireflyDelay){
                 if(firefly_count!=0) {
@@ -596,7 +601,7 @@ public class GameController extends WorldController implements ContactListener {
         if(fireflyController.update(gorf)){
             firefly_count++;
         }
-
+        fireflyController.updateFireflyAnimation(true);
         /**
          for (Body b : scheduledForRemoval) {
          b.getWorld().destroyBody(b);
@@ -637,36 +642,7 @@ public class GameController extends WorldController implements ContactListener {
     public void draw(float dt) {
         canvas.clear();
 
-        // Draw background unscaled.
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-
-//        fog.draw(canvas, firefly_count);
-
-
-
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-//        cam.setToOrtho(false, fbo.getWidth(), fbo.getHeight());
-//        canvas.getSpriteBatch().setProjectionMatrix(cam.combined);
-
-//        fbo.begin();
-
-//        canvas.setWidth(fbo.getWidth());
-//        canvas.setHeight(fbo.getHeight());
-
-//        cam.setToOrtho(false, canvas.getWidth(), canvas.getHeight());
-//        canvas.getSpriteBatch().setProjectionMatrix(cam.combined);
-
-
-
-//        canvas.getSpriteBatch().setShader(null);    // this is causing fog shading to not wrap
-
         // Draw background on all sides and diagonals for wrap illusion
-
         canvas.resetCamera();
         canvas.getSpriteBatch().setShader(null);
 

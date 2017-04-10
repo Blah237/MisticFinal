@@ -28,18 +28,6 @@ import edu.cornell.gdiac.util.*;
  * no other subclasses that we might loop through.
  */
 public class GorfModel extends BoxObstacle {
-	/**
-	 * Enumeration to identify the rocket afterburner
-	 */
-	public enum Burner {
-		/** The main afterburner */
-		MAIN,
-		/** The left side thruster */
-		LEFT,
-		/** The right side thruster */
-		RIGHT
-	};
-
 	// Default physics values
 	/** The density of this rocket */
 	private static final float DEFAULT_DENSITY  =  1.0f;
@@ -49,32 +37,9 @@ public class GorfModel extends BoxObstacle {
 	private static final float DEFAULT_RESTITUTION = 0.4f;
 	/** The thrust factor to convert player input into thrust */
 	private static final float DEFAULT_THRUST = 15.0f;
-	/** The number of frames for the afterburner */
-	public static final int FIRE_FRAMES = 4;
 
 	/** The force to apply to this rocket */
 	private Vector2 force;
-
-	/** The texture filmstrip for the left animation node */
-	FilmStrip mainBurner;
-	/** The associated sound for the main afterburner */
-	String mainSound;
-	/** The animation phase for the main afterburner */
-	boolean mainCycle = true;
-
-	/** The texture filmstrip for the left animation node */
-	FilmStrip leftBurner;
-	/** The associated sound for the left side burner */
-	String leftSound;
-	/** The animation phase for the left side burner */
-	boolean leftCycle = true;
-
-	/** The texture filmstrip for the left animation node */
-	FilmStrip rghtBurner;
-	/** The associated sound for the right side burner */
-	String rghtSound;
-	/** The associated sound for the right side burner */
-	boolean rghtCycle  = true;
 
 	/** Cache object for transforming the force according the object angle */
 	public Affine2 affineCache = new Affine2();
@@ -240,158 +205,5 @@ public class GorfModel extends BoxObstacle {
 		//#endregionx
 	}
 
-	// Animation methods (DO NOT CHANGE)
-	/**
-	 * Returns the animation node for the given afterburner
-	 *
-	 * @param  burner   enumeration to identify the afterburner
-	 *
-	 * @return the animation node for the given afterburner
-	 */
-	public FilmStrip getBurnerStrip(Burner burner) {
-		switch (burner) {
-			case MAIN:
-				return mainBurner;
-			case LEFT:
-				return leftBurner;
-			case RIGHT:
-				return rghtBurner;
-		}
-		assert false : "Invalid burner enumeration";
-		return null;
-	}
 
-
-	/**
-	 * Returns the key for the sound to accompany the given afterburner
-	 *
-	 * The key should either refer to a valid sound loaded in the AssetManager or
-	 * be empty ("").  If the key is "", then no sound will play.
-	 *
-	 * @param  burner   enumeration to identify the afterburner
-	 *
-	 * @return the key for the sound to accompany the given afterburner
-	 */
-	public String getBurnerSound(Burner burner) {
-		switch (burner) {
-			case MAIN:
-				return mainSound;
-			case LEFT:
-				return leftSound;
-			case RIGHT:
-				return rghtSound;
-		}
-		assert false : "Invalid burner enumeration";
-		return null;
-	}
-
-
-
-	/**
-	 * Sets the key for the sound to accompany the given afterburner
-	 *
-	 * The key should either refer to a valid sound loaded in the AssetManager or
-	 * be empty ("").  If the key is "", then no sound will play.
-	 *
-	 * @param  burner   enumeration to identify the afterburner
-	 * @param  key      the key for the sound to accompany the main afterburner
-	 */
-	public void setBurnerSound(Burner burner, String key) {
-		switch (burner) {
-			case MAIN:
-				mainSound = key;
-				break;
-			case LEFT:
-				leftSound = key;
-				break;
-			case RIGHT:
-				rghtSound = key;
-				break;
-			default:
-				assert false : "Invalid burner enumeration";
-		}
-	}
-
-	/**
-	 * Animates the given burner.
-	 *
-	 * If the animation is not active, it will reset to the initial animation frame.
-	 *
-	 * @param  burner   The reference to the rocket burner
-	 * @param  on       Whether the animation is active
-	 */
-	public void animateBurner(Burner burner, boolean on) {
-		FilmStrip node = null;
-		boolean  cycle = true;
-
-		switch (burner) {
-			case MAIN:
-				node  = mainBurner;
-				cycle = mainCycle;
-				break;
-			case LEFT:
-				node  = leftBurner;
-				cycle = leftCycle;
-				break;
-			case RIGHT:
-				node  = rghtBurner;
-				cycle = rghtCycle;
-				break;
-			default:
-				assert false : "Invalid burner enumeration";
-		}
-
-		if (on) {
-			// Turn on the flames and go back and forth
-			if (node.getFrame() == 0 || node.getFrame() == 1) {
-				cycle = true;
-			} else if (node.getFrame() == node.getSize()-1) {
-				cycle = false;
-			}
-
-			// Increment
-			if (cycle) {
-				node.setFrame(node.getFrame()+1);
-			} else {
-				node.setFrame(node.getFrame()-1);
-			}
-		} else {
-			node.setFrame(0);
-		}
-
-		switch (burner) {
-			case MAIN:
-				mainCycle = cycle;
-				break;
-			case LEFT:
-				leftCycle = cycle;
-				break;
-			case RIGHT:
-				rghtCycle = cycle;
-				break;
-			default:
-				assert false : "Invalid burner enumeration";
-		}
-	}
-
-	/**
-	 * Draws the physics object.
-	 *
-	 * @param canvas Drawing context
-	 */
-	public void draw(GameCanvas canvas) {
-		super.draw(canvas);  // Ship
-		// Flames
-		if (mainBurner != null) {
-			float offsety = mainBurner.getRegionHeight()-origin.y;
-			canvas.draw(mainBurner,Color.WHITE,origin.x,offsety,getX()*drawScale.x,getY()*drawScale.x,getAngle(),1,1);
-			canvas.draw(mainBurner,Color.WHITE,origin.x,offsety,getX()*drawScale.x,getY()*drawScale.x,getAngle(),1,1);
-		}
-		if (leftBurner != null) {
-			canvas.draw(leftBurner,Color.WHITE,leftOrigin.x,leftOrigin.y,getX()*drawScale.x,getY()*drawScale.x,getAngle(),1,1);
-		}
-		if (rghtBurner != null) {
-			canvas.draw(rghtBurner,Color.WHITE,rghtOrigin.x,rghtOrigin.y,getX()*drawScale.x,getY()*drawScale.x,getAngle(),1,1);
-		}
-	}
 }
