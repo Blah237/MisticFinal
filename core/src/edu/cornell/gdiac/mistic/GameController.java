@@ -241,10 +241,11 @@ public class GameController extends WorldController implements ContactListener {
     private float UW = BW / UNITS_W;
     private float UH = BH / UNITS_H;
     private static int FOG_DELAY = 50;
-    private static int FIREFLY_DELAY = 200;
+    private static int FIREFLY_DELAY = 100;
     private int fogDelay = FOG_DELAY;
     private int fireflyDelay = FIREFLY_DELAY;
     private int fireflyDeathTimer;
+    private int firefly_counter=0;
 
     private FrameBuffer fbo;
     private TextureRegion fboRegion;
@@ -334,7 +335,6 @@ public class GameController extends WorldController implements ContactListener {
             textureIDs.put(tilesets.get("firstgid").asInt(),tilesets.get("name").asChar());
             tilesets = tilesets.next();
         }
-        System.out.print(textureIDs.toString());
 
         // initialize BoardModel
         Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
@@ -412,9 +412,6 @@ public class GameController extends WorldController implements ContactListener {
         }
         if(familiarVectors.length!=0) {
             familiars = new Familiar(familiarTex, familiarVectors, scale);
-            System.out.println(familiars.getX() + ", "+ familiars.getY()+", "+familiars.getTexture());
-            System.out.println(familiars.object.getX() + ", "+ familiars.object.getY()+", "+familiars.object.getTexture());
-
             addObject(familiars.object);
         }
 
@@ -509,6 +506,7 @@ public class GameController extends WorldController implements ContactListener {
         boolean inFog=gorftile.isFog;
 
         if (inFog){
+            System.out.println(fireflyDeathTimer);
             fireflyDeathTimer+=1;
             if(fireflyDeathTimer>fireflyDelay){
                 if(firefly_count!=0) {
@@ -537,10 +535,9 @@ public class GameController extends WorldController implements ContactListener {
 //        this.monster.setFY(forceYMonster * monsterthrust);
 //        monster.applyForce();
 
-        int firefly_p=300;
-        if(firefly_count<=2)firefly_p=200;
-        if(firefly_count>=5)firefly_p=500;
-        if (random(firefly_p)==10) {
+        firefly_counter++;
+        if (firefly_counter==200) {
+            firefly_counter=0;
             fireflyController.spawn();
         }
 

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" line="295" />
-    <bookmark url="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" line="766" />
+    <bookmark url="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" line="296" />
+    <bookmark url="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" line="763" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/image.png" afterPath="$PROJECT_DIR$/core/assets/image.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/image2.png" afterPath="$PROJECT_DIR$/core/assets/image2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock10.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock10.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock6.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock6.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock8.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock8.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
     </list>
@@ -41,15 +41,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="779" column="8" lean-forward="false" selection-start-line="779" selection-start-column="8" selection-end-line="779" selection-end-column="8" />
+            <state relative-caret-position="303">
+              <caret line="774" column="0" lean-forward="false" selection-start-line="774" selection-start-column="0" selection-end-line="774" selection-end-column="0" />
               <folding>
                 <element signature="e#9395#9404#0" expanded="true" />
-                <element signature="e#12834#12853#0" expanded="true" />
-                <element signature="e#14684#14701#0" expanded="true" />
+                <element signature="e#12869#12888#0" expanded="true" />
+                <element signature="e#14670#14687#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,18 +75,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="468" column="32" lean-forward="true" selection-start-line="468" selection-start-column="32" selection-end-line="468" selection-end-column="42" />
+            <state relative-caret-position="107">
+              <caret line="106" column="40" lean-forward="true" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4664#4665#0" expanded="true" />
-                <element signature="e#4684#4685#0" expanded="true" />
-                <element signature="e#11272#11281#0" expanded="true" />
-                <element signature="e#15093#15094#0" expanded="true" />
-                <element signature="e#15113#15114#0" expanded="true" />
+                <element signature="e#4639#4640#0" expanded="true" />
+                <element signature="e#4659#4660#0" expanded="true" />
+                <element signature="e#11211#11220#0" expanded="true" />
+                <element signature="e#15032#15033#0" expanded="true" />
+                <element signature="e#15052#15053#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,7 +154,6 @@
       <find>new Go</find>
       <find>origin</find>
       <find>defaul</find>
-      <find>head</find>
       <find>popul</find>
       <find>resize</find>
       <find>draw</find>
@@ -162,6 +161,7 @@
       <find>setc</find>
       <find>getsha</find>
       <find>begin</find>
+      <find>head</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -911,9 +911,9 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
         <option value="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       </list>
     </option>
   </component>
@@ -1292,8 +1292,8 @@
           <caret line="43" column="63" lean-forward="false" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
           <folding>
             <element signature="e#9395#9404#0" expanded="true" />
-            <element signature="e#12834#12853#0" expanded="true" />
-            <element signature="e#14684#14701#0" expanded="true" />
+            <element signature="e#12869#12888#0" expanded="true" />
+            <element signature="e#14670#14687#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1312,11 +1312,11 @@
           <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4684#4685#0" expanded="true" />
-            <element signature="e#11272#11281#0" expanded="true" />
-            <element signature="e#15093#15094#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
+            <element signature="e#4639#4640#0" expanded="true" />
+            <element signature="e#4659#4660#0" expanded="true" />
+            <element signature="e#11211#11220#0" expanded="true" />
+            <element signature="e#15032#15033#0" expanded="true" />
+            <element signature="e#15052#15053#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1342,8 +1342,8 @@
           <caret line="43" column="63" lean-forward="false" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
           <folding>
             <element signature="e#9395#9404#0" expanded="true" />
-            <element signature="e#12834#12853#0" expanded="true" />
-            <element signature="e#14684#14701#0" expanded="true" />
+            <element signature="e#12869#12888#0" expanded="true" />
+            <element signature="e#14670#14687#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1387,11 +1387,11 @@
           <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4684#4685#0" expanded="true" />
-            <element signature="e#11272#11281#0" expanded="true" />
-            <element signature="e#15093#15094#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
+            <element signature="e#4639#4640#0" expanded="true" />
+            <element signature="e#4659#4660#0" expanded="true" />
+            <element signature="e#11211#11220#0" expanded="true" />
+            <element signature="e#15032#15033#0" expanded="true" />
+            <element signature="e#15052#15053#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1431,8 +1431,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#9395#9404#0" expanded="true" />
-            <element signature="e#12834#12853#0" expanded="true" />
-            <element signature="e#14684#14701#0" expanded="true" />
+            <element signature="e#12869#12888#0" expanded="true" />
+            <element signature="e#14670#14687#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1476,11 +1476,11 @@
           <caret line="218" column="14" lean-forward="true" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4684#4685#0" expanded="true" />
-            <element signature="e#11272#11281#0" expanded="true" />
-            <element signature="e#15093#15094#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
+            <element signature="e#4639#4640#0" expanded="true" />
+            <element signature="e#4659#4660#0" expanded="true" />
+            <element signature="e#11211#11220#0" expanded="true" />
+            <element signature="e#15032#15033#0" expanded="true" />
+            <element signature="e#15052#15053#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1520,8 +1520,8 @@
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
           <folding>
             <element signature="e#9395#9404#0" expanded="true" />
-            <element signature="e#12834#12853#0" expanded="true" />
-            <element signature="e#14684#14701#0" expanded="true" />
+            <element signature="e#12869#12888#0" expanded="true" />
+            <element signature="e#14670#14687#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1540,11 +1540,11 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4684#4685#0" expanded="true" />
-            <element signature="e#11272#11281#0" expanded="true" />
-            <element signature="e#15093#15094#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
+            <element signature="e#4639#4640#0" expanded="true" />
+            <element signature="e#4659#4660#0" expanded="true" />
+            <element signature="e#11211#11220#0" expanded="true" />
+            <element signature="e#15032#15033#0" expanded="true" />
+            <element signature="e#15052#15053#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1555,8 +1555,8 @@
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
           <folding>
             <element signature="e#9395#9404#0" expanded="true" />
-            <element signature="e#12834#12853#0" expanded="true" />
-            <element signature="e#14684#14701#0" expanded="true" />
+            <element signature="e#12869#12888#0" expanded="true" />
+            <element signature="e#14670#14687#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1575,11 +1575,11 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4684#4685#0" expanded="true" />
-            <element signature="e#11272#11281#0" expanded="true" />
-            <element signature="e#15093#15094#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
+            <element signature="e#4639#4640#0" expanded="true" />
+            <element signature="e#4659#4660#0" expanded="true" />
+            <element signature="e#11211#11220#0" expanded="true" />
+            <element signature="e#15032#15033#0" expanded="true" />
+            <element signature="e#15052#15053#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1590,8 +1590,8 @@
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
           <folding>
             <element signature="e#9395#9404#0" expanded="true" />
-            <element signature="e#12834#12853#0" expanded="true" />
-            <element signature="e#14684#14701#0" expanded="true" />
+            <element signature="e#12869#12888#0" expanded="true" />
+            <element signature="e#14670#14687#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1610,11 +1610,11 @@
           <caret line="204" column="36" lean-forward="true" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4684#4685#0" expanded="true" />
-            <element signature="e#11272#11281#0" expanded="true" />
-            <element signature="e#15093#15094#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
+            <element signature="e#4639#4640#0" expanded="true" />
+            <element signature="e#4659#4660#0" expanded="true" />
+            <element signature="e#11211#11220#0" expanded="true" />
+            <element signature="e#15032#15033#0" expanded="true" />
+            <element signature="e#15052#15053#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1625,8 +1625,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#9395#9404#0" expanded="true" />
-            <element signature="e#12834#12853#0" expanded="true" />
-            <element signature="e#14684#14701#0" expanded="true" />
+            <element signature="e#12869#12888#0" expanded="true" />
+            <element signature="e#14670#14687#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1637,11 +1637,11 @@
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4684#4685#0" expanded="true" />
-            <element signature="e#11272#11281#0" expanded="true" />
-            <element signature="e#15093#15094#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
+            <element signature="e#4639#4640#0" expanded="true" />
+            <element signature="e#4659#4660#0" expanded="true" />
+            <element signature="e#11211#11220#0" expanded="true" />
+            <element signature="e#15032#15033#0" expanded="true" />
+            <element signature="e#15052#15053#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1652,8 +1652,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#9395#9404#0" expanded="true" />
-            <element signature="e#12834#12853#0" expanded="true" />
-            <element signature="e#14684#14701#0" expanded="true" />
+            <element signature="e#12869#12888#0" expanded="true" />
+            <element signature="e#14670#14687#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1664,11 +1664,11 @@
           <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4684#4685#0" expanded="true" />
-            <element signature="e#11272#11281#0" expanded="true" />
-            <element signature="e#15093#15094#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
+            <element signature="e#4639#4640#0" expanded="true" />
+            <element signature="e#4659#4660#0" expanded="true" />
+            <element signature="e#11211#11220#0" expanded="true" />
+            <element signature="e#15032#15033#0" expanded="true" />
+            <element signature="e#15052#15053#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1740,12 +1740,12 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1491851056835" expanded="true" signature="59:123869" ph="..." />
-            <marker date="1491851056835" expanded="true" signature="237:331" ph="..." />
-            <marker date="1491851056835" expanded="true" signature="123795:123812" ph="..." />
-            <marker date="1491851056835" expanded="true" signature="123795:123830" ph="..." />
-            <marker date="1491851056835" expanded="true" signature="123795:123843" ph="..." />
-            <marker date="1491851056835" expanded="true" signature="123795:123858" ph="..." />
+            <marker date="1491851310312" expanded="true" signature="59:123907" ph="..." />
+            <marker date="1491851310312" expanded="true" signature="237:331" ph="..." />
+            <marker date="1491851310312" expanded="true" signature="123833:123850" ph="..." />
+            <marker date="1491851310312" expanded="true" signature="123833:123868" ph="..." />
+            <marker date="1491851310312" expanded="true" signature="123833:123881" ph="..." />
+            <marker date="1491851310312" expanded="true" signature="123833:123896" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1824,21 +1824,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="468" column="32" lean-forward="true" selection-start-line="468" selection-start-column="32" selection-end-line="468" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-            <element signature="e#4684#4685#0" expanded="true" />
-            <element signature="e#11272#11281#0" expanded="true" />
-            <element signature="e#15093#15094#0" expanded="true" />
-            <element signature="e#15113#15114#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
@@ -1852,12 +1837,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="779" column="8" lean-forward="false" selection-start-line="779" selection-start-column="8" selection-end-line="779" selection-end-column="8" />
+        <state relative-caret-position="303">
+          <caret line="774" column="0" lean-forward="false" selection-start-line="774" selection-start-column="0" selection-end-line="774" selection-end-column="0" />
           <folding>
             <element signature="e#9395#9404#0" expanded="true" />
-            <element signature="e#12834#12853#0" expanded="true" />
-            <element signature="e#14684#14701#0" expanded="true" />
+            <element signature="e#12869#12888#0" expanded="true" />
+            <element signature="e#14670#14687#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="106" column="40" lean-forward="true" selection-start-line="106" selection-start-column="40" selection-end-line="106" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4639#4640#0" expanded="true" />
+            <element signature="e#4659#4660#0" expanded="true" />
+            <element signature="e#11211#11220#0" expanded="true" />
+            <element signature="e#15032#15033#0" expanded="true" />
+            <element signature="e#15052#15053#0" expanded="true" />
           </folding>
         </state>
       </provider>

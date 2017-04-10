@@ -53,15 +53,14 @@ public class FireflyController {
         return fireflies;
     }
 
-    public Firefly spawn(){
+    public void spawn(){
         int x= random(99);
         int y=random(99);
+        //System.out.println("Firefly at: "+ x + ", "+y);
         BoardModel.Tile t= board.tiles[x][y];
-        if(!t.isWall& !t.isFog){
-            Firefly f = create(t.fx,t.fy);
-            return f;
+        if(!(t.isWall || t.isFog)){
+           create(t.fx,t.fy);
         }
-        return null;
     }
 
     public void fogDeath(){
@@ -101,9 +100,8 @@ public class FireflyController {
         }
     }
 
-    public Firefly create(float x, float y){
+    public void create(float x, float y){
         Firefly f= new Firefly(x,y,tex);
         this.add(f);
-        return f;
     }
 }

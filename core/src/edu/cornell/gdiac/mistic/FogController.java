@@ -109,7 +109,6 @@ public class FogController {
 
 		boardTilesPerCamViewX = (int)Math.ceil(zoom * WX / canvasScale) + 1;
 		boardTilesPerCamViewY = (int)Math.ceil(zoom * WY / canvasScale) + 1;
-//		System.out.println(boardTilesPerCamViewX);
 
 		cellW = boardTilesPerCamViewX*tileW / (float)NX;
 		cellH = boardTilesPerCamViewY*tileH / (float)NY;
@@ -155,7 +154,8 @@ public class FogController {
 		}
 
 		if (shader.getLog().length()!=0)
-			System.out.println(shader.getLog());
+			shader.getLog();
+			//System.out.println(shader.getLog());
 
 		shader.pedantic = false;
 
@@ -261,7 +261,6 @@ public class FogController {
 //		if (startTileY % 2 == 1) {
 //			startTileY--;
 //		}
-//		System.out.println(startTileX);
 
 //		fogBoard = newFogBoard;
 		fogBoardCam = new float[NX*NY];
