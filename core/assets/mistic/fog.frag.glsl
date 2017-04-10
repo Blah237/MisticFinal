@@ -45,7 +45,11 @@ void main() {
 
 
 //    fogThickness *= fogBoard[cellY*NX + cellX];
-    float fogThickness = fogBoard[cellY*NX + cellX];
+      float fogThickness = fogBoard[cellY*NX + cellX];
+//    float fogThickness = 0.0;
+//    if (fogBoard[cellY*NX + cellX] == 1) {
+//        fogThickness = fogBoard[cellY*NX + cellX];
+//    }
 
     for (int i=0; i<10; i++) {
         if (i>=numLanterns) {
@@ -53,25 +57,23 @@ void main() {
         }
 
         vec2 lantern = lanterns[i];
-        float dx2 = min(abs(coord.x-lantern.x), abs(coord.x + (2.0-lantern.x)));
-        dx2 = min(dx2, abs(lantern.x + (2.0-coord.x)));
-        float dy2 = min(abs(coord.y-lantern.y), abs(coord.y + (2.0-lantern.y)));
-        dy2 = min(dy2, abs(lantern.y + (2.0-coord.y)));
+        float dx2 = abs(coord.x-lantern.x) * (res.x/res.y);
+        float dy2 = abs(coord.y-.06-lantern.y);
 
         float dist2 = length(vec2(dx2,dy2));
-        float fogThickness2 = smoothstep(.15, .25, dist2);
+        float fogThickness2 = smoothstep(.25, .5, dist2);
         fogThickness *= fogThickness2;
     }
 
-    float dx3 = abs(coord.x-.5);
+    float dx3 = abs(coord.x-.5) * (res.x/res.y);
     float dy3 = abs(coord.y-.5);
 
     float dist3 = length(vec2(dx3, dy3));
-    fogThickness *= smoothstep(min(.12 + float(numFireflies)*.03, .4)-.1, min(.12 + float(numFireflies)*.05, .4), dist3);
+    fogThickness *= smoothstep(min(.17 + float(numFireflies)*.04, .4)-.15, min(.12 + float(numFireflies)*.04, .4), dist3);
 
     fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
     fog *= min(1.0,fogThickness);
-    fog *= max(.8, texture2D(u_texture_perlin, vTexCoord).a);
+    fog *= max(.7, texture2D(u_texture_perlin, vTexCoord).a);
 
     gl_FragColor = texColor;
 //    gl_FragColor = vec4(fog, fogThickness);

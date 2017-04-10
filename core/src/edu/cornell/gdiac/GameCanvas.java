@@ -420,6 +420,8 @@ public class GameCanvas {
 	public void begin(Vector2 position) {
 		camera.position.set(position.x*8f,position.y*8f,0);
 		camera.zoom = 0.59f;
+		camera.viewportHeight = getHeight();
+		camera.viewportWidth = getWidth();
 		camera.update();
 		spriteBatch.setProjectionMatrix(camera.combined);
 		spriteBatch.begin();
@@ -433,6 +435,14 @@ public class GameCanvas {
     	spriteBatch.end();
     	active = DrawPass.INACTIVE;
     }
+
+	public void resetCamera() {
+		camera.position.set(getWidth(),getHeight(),0);
+		camera.zoom = 1f;
+		camera.viewportHeight = getHeight()*2f;
+		camera.viewportWidth = getWidth()*2f;
+		camera.update();
+	}
 
 	/**
 	 * Draws the tinted texture at the given position.
@@ -1269,4 +1279,8 @@ public class GameCanvas {
 	}
 
 	public float getZoom() { return camera.zoom; }
+
+	public void setShader(ShaderProgram shader) {
+		spriteBatch.setShader(shader);
+	}
 }

@@ -44,7 +44,7 @@ public class FogController {
 	Vector2 fogOrigin;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 5;
+	private final int FOG_DELAY = 1;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -89,10 +89,12 @@ public class FogController {
 
 //	OrthographicCamera cam;
 	FPSLogger logger = new FPSLogger();
+	Texture boundaryFog;
 
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
 		bg = new Texture("mistic/backgroundresize.png");
+		boundaryFog = new Texture("mistic/boundary_fog.png");
 		screenDim = new Vector2(screensize.getWidth(), screensize.getHeight());
 		res = new Vector2(canvas.getWidth(), canvas.getHeight());
 		this.scale = scale;
@@ -109,7 +111,6 @@ public class FogController {
 
 		boardTilesPerCamViewX = (int)Math.ceil(zoom * WX / canvasScale) + 1;
 		boardTilesPerCamViewY = (int)Math.ceil(zoom * WY / canvasScale) + 1;
-		//System.out.println(boardTilesPerCamViewX);
 
 		cellW = boardTilesPerCamViewX*tileW / (float)NX;
 		cellH = boardTilesPerCamViewY*tileH / (float)NY;
@@ -183,13 +184,7 @@ public class FogController {
 		return shader;
 	}
 
-	public void draw(GameCanvas canvas, int numFireflies) {
-		//System.out.println(canvas.getHeight());
-		batch = canvas.getSpriteBatch();
-		batch.setShader(shader);
-
-
-
+	public void prepShader(int numFireflies) {
 		shader.begin();
 
 		perlinTex.bind(1);
@@ -200,25 +195,44 @@ public class FogController {
 
 		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
 		shader.setUniformf("fogReach", fogReach);
-        shader.setUniform2fv("lanterns", litLanternsA, 0, litLanternsA.length);
+		shader.setUniform2fv("lanterns", litLanternsA, 0, litLanternsA.length);
 		shader.setUniformi("numLanterns", litLanternsA.length/2);
-        shader.setUniformi("numFireflies", numFireflies);
+		shader.setUniformi("numFireflies", numFireflies);
 		shader.setUniformf("fogOrigin", fogOriginCamX, fogOriginCamY);
 		shader.setUniformf("leftOffset", boardLeftOffset);
 		shader.setUniformf("botOffset", boardBotOffset);
 //		shader.setUniformi
 		shader.end();
+	}
 
-		batch.begin();
-		Gdx.gl.glClearColor(0, 0, 0, 0);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	public void draw(GameCanvas canvas, TextureRegion fboRegion, Vector2 pos) {
+		//System.out.println(canvas.getHeight());
+		batch = canvas.getSpriteBatch();
+//		batch.setShader(shader);
 
-		batch.enableBlending();
-		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-		batch.draw(bg, 0, 0, screenDim.x, screenDim.y);
 
-		batch.end();
+
+//		batch.begin();
+//		Gdx.gl.glClearColor(0, 0, 0, 0);
+//		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//
+//		batch.enableBlending();
+//		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+		batch.draw(fboRegion, pos.x, pos.y, screenDim.x, screenDim.y);
+
+//		batch.setShader(null);
+//
+//		for (int i=0; i<WX; i++) {
+//			for (int j = 0; j < WY; j++) {
+//				if (fogBoard[i][j] == BOUNDARY) {
+//					canvas.draw(boundaryFog, Color.WHITE, i * tileW, j * tileH, tileW, tileH);
+//				}
+//			}
+//		}
+
+//		batch.end();
 
 		logger.log();
 	}
@@ -227,7 +241,7 @@ public class FogController {
 		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 
-		gorfPos = new Vector2(gorf.getX() * scale.x + scale.x/2f, gorf.getY() * scale.y + scale.y/2f);		// in pixels
+		gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
 
 		updateLanterns(lanterns, tileBoard);
 
@@ -258,7 +272,6 @@ public class FogController {
 //		if (startTileY % 2 == 1) {
 //			startTileY--;
 //		}
-		//System.out.println(startTileX);
 
 //		fogBoard = newFogBoard;
 		fogBoardCam = new float[NX*NY];
@@ -399,17 +412,19 @@ public class FogController {
 			int ly;
 
 			for (int g=-2; g<=2; g++) {
-				ly = (int)((lanternPos.y + g + WX) % WX);
-				lx = (int)((lanternPos.x - 4 + WX) % WX);
+				lx = (int)((lanternPos.x + g + WX) % WX);
+				ly = (int)((lanternPos.y - 8 + WY) % WY) + 2;
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 			}
 
-			for (int j=-3; j<=3; j++) {
-				lx = (int) ((lanternPos.x + j + WX) % WX);
+			for (int j=-7; j<=7; j++) {
+				ly = (int) ((lanternPos.y + j + WY) % WY) + 2;
 				int bound;
-				if (j == -3 || j == 3) {
+				if (j == -7 || j == 7) {
 					bound = 2;
+				} else if (j == -6 || j == 6 || j == -5 || j == 5) {
+					bound = 3;
 //				} else if (j == -2 || j == 2) {
 //					bound = 2;
 //				} else if (j == -5 || j == 5) {
@@ -419,29 +434,29 @@ public class FogController {
 //				} else if (j == -3 || j == 3) {
 //					bound = 6;
 				} else {
-					bound = 3;
+					bound = 4;
 				}
 
-				ly = (int) ((lanternPos.y - bound - 1 + WY) % WY);
+				lx = (int) ((lanternPos.x - bound - 1 + WX) % WX);
 
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 
 				for (int k = -bound; k <= bound; k++) {
-					ly = (int) ((lanternPos.y + k + WY) % WY);
+					lx = (int) ((lanternPos.x + k + WX) % WX);
 					fogBoard[lx][ly] = 0f;
 					tileBoard.setFog(lx, ly, false);
 				}
 
-				ly = (int) ((lanternPos.y + bound + 1) % WY);
+				ly = (int) ((lanternPos.y + bound + 1) % WY) + 2;
 
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 			}
 
 			for (int h=-2; h<=2; h++) {
-				ly = (int)((lanternPos.y + h + WX) % WX);
-				lx = (int)((lanternPos.x + 4) % WX);
+				lx = (int)((lanternPos.x + h + WX) % WX);
+				ly = (int)((lanternPos.y + 8) % WY) + 2;
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 			}
@@ -461,7 +476,7 @@ public class FogController {
 		Perlin perlin = new Perlin();
 		for (int y = 0; y < HEIGHT; y++) {
 			for (int x = 0; x < WIDTH; x++) {
-				data[count++] = perlin.noise(50.0 * (double)x / WIDTH, 25.0 * (double)y / HEIGHT);
+				data[count++] = Math.sqrt((perlin.noise(50.0 * (double)x / WIDTH, 25.0 * (double)y / HEIGHT)) * 10);
 			}
 		}
 
@@ -481,7 +496,7 @@ public class FogController {
 
         File output = new File("image.png");
         try {
-            ImageIO.write(img, "png", output);
+            ImageIO.write(img, "jpg", output);
         } catch (IOException e) {
             e.printStackTrace();
         }
