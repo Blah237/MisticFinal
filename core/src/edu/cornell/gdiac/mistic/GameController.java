@@ -292,8 +292,8 @@ public class GameController extends WorldController implements ContactListener {
         populateLevel();
         countdown=120;
 
-        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()), (int)(Gdx.graphics.getHeight()), false);
-        fboRegion = new TextureRegion(fbo.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()), (int)(Gdx.graphics.getHeight()));
+        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*3), (int)(Gdx.graphics.getHeight()*3), false);
+        fboRegion = new TextureRegion(fbo.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*3), (int)(Gdx.graphics.getHeight()*3));
         fboRegion.flip(false, true);
 
         cam = new OrthographicCamera(Gdx.graphics.getWidth(),
@@ -611,233 +611,207 @@ public class GameController extends WorldController implements ContactListener {
 //        canvas.setWidth(fbo.getWidth());
 //        canvas.setHeight(fbo.getHeight());
 
-        cam.setToOrtho(false, canvas.getWidth(), canvas.getHeight());
-        canvas.getSpriteBatch().setProjectionMatrix(cam.combined);
+//        cam.setToOrtho(false, canvas.getWidth(), canvas.getHeight());
+//        canvas.getSpriteBatch().setProjectionMatrix(cam.combined);
 
-        canvas.resetCamera();
-        fbo.begin();
-        Gdx.gl.glClearColor(0, 0, 0, 0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        canvas.begin();
-        canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-        canvas.end();
-        fbo.end();
-        canvas.begin(gorf.getPosition());
-        canvas.draw(fboRegion, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-        canvas.end();
+
 
 //        canvas.getSpriteBatch().setShader(null);    // this is causing fog shading to not wrap
 
-//        canvas.begin();
-//        canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
-//        displayFont.setColor(Color.WHITE);
-//        canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);
-
         // Draw background on all sides and diagonals for wrap illusion
-//        canvas.resetCamera();
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-//        fbo.end();
-//        canvas.begin(gorf.getPosition());
-//        canvas.draw(fboRegion, 0, canvas.getHeight());
-//        canvas.end();
-//
-//        canvas.resetCamera();
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-//        fbo.end();
-//        canvas.begin(gorf.getPosition());
-//        canvas.draw(fboRegion, canvas.getWidth(), canvas.getHeight());
-//        canvas.end();
-//
-//        canvas.resetCamera();
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-//        fbo.end();
-//        canvas.begin(gorf.getPosition());
-//        canvas.draw(fboRegion, 0, -canvas.getHeight());
-//        canvas.end();
-//
-//        canvas.resetCamera();
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-//        fbo.end();
-//        canvas.begin(gorf.getPosition());
-//        canvas.draw(fboRegion, canvas.getWidth(), -canvas.getHeight());
-//        canvas.end();
-//
-//        canvas.resetCamera();
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-//        fbo.end();
-//        canvas.begin(gorf.getPosition());
-//        canvas.draw(fboRegion, canvas.getWidth(), 0);
-//        canvas.end();
-//
-//        canvas.resetCamera();
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-//        fbo.end();
-//        canvas.begin(gorf.getPosition());
-//        canvas.draw(fboRegion, -canvas.getWidth(), -canvas.getHeight());
-//        canvas.end();
-//
-//        canvas.resetCamera();
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-//        fbo.end();
-//        canvas.begin(gorf.getPosition());
-//        canvas.draw(fboRegion, -canvas.getWidth(), 0);
-//        canvas.end();
-//
-//        canvas.resetCamera();
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-//        fbo.end();
-//        canvas.begin(gorf.getPosition());
-//        canvas.draw(fboRegion, -canvas.getWidth(), canvas.getHeight());
-//        canvas.end();
-//
-//        canvas.end();
-
-        //now redraw objects on surrounding canvases
-//        canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
-//        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null && !f.isDestroyed()){f.getObject().draw(canvas);}}
-//        canvas.end();
-//        canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
-//        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
-//        canvas.end();
-//        canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
-//        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
-//        canvas.end();
-//        canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
-//        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
-//        canvas.end();
-//
-//        //diagonal canvases
-//        canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
-//        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
-//        canvas.end();
-//        canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
-//        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
-//        canvas.end();
-//        canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
-//        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
-//        canvas.end();
-//        canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
-//        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
-//        canvas.end();
-
-
-
-//        // main canvas
         canvas.resetCamera();
-
-        cam.setToOrtho(false, fbo.getWidth()*2, fbo.getHeight()*2);
-        canvas.getSpriteBatch().setProjectionMatrix(cam.combined);
-
+        canvas.getSpriteBatch().setShader(null);
         fbo.begin();
-        Gdx.gl.glClearColor(0, 0, 0, 0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        canvas.clear();
         canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null && !f.isDestroyed()){f.getObject().draw(canvas);}}
+        canvas.end();
+        fbo.end();
+        canvas.setShader(fog.getShader());
+        fog.prepShader(firefly_count);
+        canvas.begin(gorf.getPosition());
+        fog.draw(canvas, fboRegion, new Vector2(0, canvas.getHeight()*2));
+        canvas.end();
 
+        canvas.resetCamera();
+        canvas.getSpriteBatch().setShader(null);
+        fbo.begin();
+        canvas.clear();
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        canvas.end();
+        fbo.end();
+        canvas.setShader(fog.getShader());
+        fog.prepShader(firefly_count);
+        canvas.begin(gorf.getPosition());
+        fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth()*2, canvas.getHeight()*2));
+        canvas.end();
+
+        canvas.resetCamera();
+        canvas.getSpriteBatch().setShader(null);
+        fbo.begin();
+        canvas.clear();
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        canvas.end();
+        fbo.end();
+        canvas.setShader(fog.getShader());
+        fog.prepShader(firefly_count);
+        canvas.begin(gorf.getPosition());
+        fog.draw(canvas, fboRegion, new Vector2(0, -canvas.getHeight()*2));
+        canvas.end();
+
+        canvas.resetCamera();
+        canvas.getSpriteBatch().setShader(null);
+        fbo.begin();
+        canvas.clear();
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        canvas.end();
+        fbo.end();
+        canvas.setShader(fog.getShader());
+        fog.prepShader(firefly_count);
+        canvas.begin(gorf.getPosition());
+        fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth()*2, -canvas.getHeight()*2));
+        canvas.end();
+
+        canvas.resetCamera();
+        canvas.getSpriteBatch().setShader(null);
+        fbo.begin();
+        canvas.clear();
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        canvas.end();
+        fbo.end();
+        canvas.setShader(fog.getShader());
+        fog.prepShader(firefly_count);
+        canvas.begin(gorf.getPosition());
+        fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth()*2, 0));
+        canvas.end();
+
+        canvas.resetCamera();
+        canvas.getSpriteBatch().setShader(null);
+        fbo.begin();
+        canvas.clear();
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        canvas.end();
+        fbo.end();
+        canvas.setShader(fog.getShader());
+        fog.prepShader(firefly_count);
+        canvas.begin(gorf.getPosition());
+        fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth()*2, -canvas.getHeight()*2));
+        canvas.end();
+
+        canvas.resetCamera();
+        canvas.getSpriteBatch().setShader(null);
+        fbo.begin();
+        canvas.clear();
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        canvas.end();
+        fbo.end();
+        canvas.setShader(fog.getShader());
+        fog.prepShader(firefly_count);
+        canvas.begin(gorf.getPosition());
+        fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth()*2, 0));
+        canvas.end();
+
+        canvas.resetCamera();
+        canvas.getSpriteBatch().setShader(null);
+        fbo.begin();
+        canvas.clear();
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
+        canvas.end();
+        fbo.end();
+        canvas.setShader(fog.getShader());
+        fog.prepShader(firefly_count);
+        canvas.begin(gorf.getPosition());
+        fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth()*2, canvas.getHeight()*2));
+        canvas.end();
+
+
+        // main canvas
+        canvas.resetCamera();
+        canvas.getSpriteBatch().setShader(null);
+        Gdx.gl.glDisable(GL20.GL_SCISSOR_TEST);
+        fbo.begin();
+        canvas.clear();
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
         for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);
         //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
         }}
         canvas.end();
-
         fbo.end();
+        canvas.setShader(fog.getShader());
+        fog.prepShader(firefly_count);
         canvas.begin(gorf.getPosition());
-        canvas.draw(fboRegion, Color.WHITE, 0, 0, canvas.getWidth(), canvas.getHeight());
+        fog.draw(canvas, fboRegion, new Vector2(0, 0));
         canvas.end();
 
+        canvas.resetCamera();
+        canvas.getSpriteBatch().setShader(null);
+        canvas.begin(gorf.getPosition());
 
+        canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
+        displayFont.setColor(Color.WHITE);
+        canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);
 
-//        canvas.setCamera(gorf.getPosition());
-//
+        canvas.end();
+        
+        canvas.begin();
+        if (familiars.collectAll) {
+            if (countdown > 0) {
+                String vic = "Victory!";
+                displayFont.setColor(Color.PURPLE);
+                canvas.drawText(vic, displayFont, canvas.getWidth(), canvas.getHeight()/2);
+                countdown --;
+            } else if (countdown==0) {
+                this.setComplete(true);
+            }
+        }
 
-//
-//        canvas.begin();
-//        if (familiars.collectAll) {
-//            if (countdown > 0) {
-//                String vic = "Victory!";
-//                displayFont.setColor(Color.PURPLE);
-//                canvas.drawText(vic, displayFont, canvas.getWidth(), canvas.getHeight()/2);
-//                countdown --;
-//            } else if (countdown==0) {
-//                this.setComplete(true);
-//            }
-//        }
-//
-//        if (DEAD) {
-//            if (countdown > 0) {
-//                String vic = "Game Over!";
-//                displayFont.setColor(Color.PURPLE);
-//                canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
-//                countdown --;
-//            } else if (countdown==0) {
-//                DEAD = false;
-//                this.setComplete(true);
-//            }
-//        }
-//
-//        if (isDebug()) {
-//            canvas.beginDebug();
-//            for(Obstacle obj : objects) {
-//                obj.drawDebug(canvas);
-//            }
-//            canvas.endDebug();
-//            canvas.endDebug();
-//        }
-//
-//        canvas.end();
-//        fbo.end();
+        if (DEAD) {
+            if (countdown > 0) {
+                String vic = "Game Over!";
+                displayFont.setColor(Color.PURPLE);
+                canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
+                countdown --;
+            } else if (countdown==0) {
+                DEAD = false;
+                this.setComplete(true);
+            }
+        }
 
+        if (isDebug()) {
+            canvas.beginDebug();
+            for(Obstacle obj : objects) {
+                obj.drawDebug(canvas);
+            }
+            canvas.endDebug();
+            canvas.endDebug();
+        }
+        canvas.end();
 
-
-//        canvas.setZoom(.59f);
-//        fog.draw(canvas, fboRegion, firefly_count);
     }
 
     /// CONTACT LISTENER METHODS

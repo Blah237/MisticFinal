@@ -53,10 +53,8 @@ void main() {
         }
 
         vec2 lantern = lanterns[i];
-        float dx2 = min(abs(coord.x-lantern.x), abs(coord.x + (2.0-lantern.x))) * (res.x/res.y);
-        dx2 = min(dx2, abs(lantern.x + (2.0-coord.x)));
-        float dy2 = min(abs(coord.y-.06-lantern.y), abs(coord.y-.06 + (2.0-lantern.y)));
-        dy2 = min(dy2, abs(lantern.y + (2.0-coord.y-.06)));
+        float dx2 = abs(coord.x-lantern.x) * (res.x/res.y);
+        float dy2 = abs(coord.y-.06-lantern.y);
 
         float dist2 = length(vec2(dx2,dy2));
         float fogThickness2 = smoothstep(.25, .5, dist2);
@@ -71,7 +69,7 @@ void main() {
 
     fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
     fog *= min(1.0,fogThickness);
-    fog *= max(.8, texture2D(u_texture_perlin, vTexCoord).a);
+    fog *= max(.7, texture2D(u_texture_perlin, vTexCoord).a);
 
     gl_FragColor = texColor;
 //    gl_FragColor = vec4(fog, fogThickness);

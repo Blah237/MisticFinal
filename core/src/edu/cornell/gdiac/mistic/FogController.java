@@ -182,13 +182,7 @@ public class FogController {
 		return shader;
 	}
 
-	public void draw(GameCanvas canvas, TextureRegion fboRegion, int numFireflies) {
-		//System.out.println(canvas.getHeight());
-		batch = canvas.getSpriteBatch();
-		batch.setShader(shader);
-
-
-
+	public void prepShader(int numFireflies) {
 		shader.begin();
 
 		perlinTex.bind(1);
@@ -199,25 +193,35 @@ public class FogController {
 
 		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
 		shader.setUniformf("fogReach", fogReach);
-        shader.setUniform2fv("lanterns", litLanternsA, 0, litLanternsA.length);
+		shader.setUniform2fv("lanterns", litLanternsA, 0, litLanternsA.length);
 		shader.setUniformi("numLanterns", litLanternsA.length/2);
-        shader.setUniformi("numFireflies", numFireflies);
+		shader.setUniformi("numFireflies", numFireflies);
 		shader.setUniformf("fogOrigin", fogOriginCamX, fogOriginCamY);
 		shader.setUniformf("leftOffset", boardLeftOffset);
 		shader.setUniformf("botOffset", boardBotOffset);
 //		shader.setUniformi
 		shader.end();
+	}
 
-		batch.begin();
-		Gdx.gl.glClearColor(0, 0, 0, 0);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	public void draw(GameCanvas canvas, TextureRegion fboRegion, Vector2 pos) {
+		//System.out.println(canvas.getHeight());
+		batch = canvas.getSpriteBatch();
+//		batch.setShader(shader);
 
-		batch.enableBlending();
-		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-		batch.draw(fboRegion, 0, 0, screenDim.x, screenDim.y);
 
-		batch.end();
+
+
+//		batch.begin();
+//		Gdx.gl.glClearColor(0, 0, 0, 0);
+//		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//
+//		batch.enableBlending();
+//		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+		batch.draw(fboRegion, pos.x, pos.y, screenDim.x, screenDim.y);
+
+//		batch.end();
 
 		logger.log();
 	}
@@ -462,7 +466,7 @@ public class FogController {
 		Perlin perlin = new Perlin();
 		for (int y = 0; y < HEIGHT; y++) {
 			for (int x = 0; x < WIDTH; x++) {
-				data[count++] = perlin.noise(50.0 * (double)x / WIDTH, 25.0 * (double)y / HEIGHT);
+				data[count++] = Math.sqrt((perlin.noise(50.0 * (double)x / WIDTH, 25.0 * (double)y / HEIGHT)) * 10);
 			}
 		}
 
@@ -482,7 +486,7 @@ public class FogController {
 
         File output = new File("image.png");
         try {
-            ImageIO.write(img, "png", output);
+            ImageIO.write(img, "jpg", output);
         } catch (IOException e) {
             e.printStackTrace();
         }
