@@ -8,8 +8,8 @@ uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
 uniform float fogBoard[NX*NY];
 uniform vec2 lanterns[10];
-uniform vec2 fogReachVec;
-uniform float fogReach;
+//uniform vec2 fogReachVec;
+//uniform float fogReach;
 uniform int numLanterns;
 uniform int numFireflies;
 uniform vec2 gorfPos;
@@ -45,11 +45,11 @@ void main() {
 
 
 //    fogThickness *= fogBoard[cellY*NX + cellX];
-      float fogThickness = fogBoard[cellY*NX + cellX];
-//    float fogThickness = 0.0;
-//    if (fogBoard[cellY*NX + cellX] == 1) {
-//        fogThickness = fogBoard[cellY*NX + cellX];
-//    }
+//      float fogThickness = fogBoard[cellY*NX + cellX];
+    float fogThickness = 0.0;
+    if (fogBoard[cellY*NX + cellX] == 1) {
+        fogThickness = fogBoard[cellY*NX + cellX];
+    }
 
     for (int i=0; i<10; i++) {
         if (i>=numLanterns) {

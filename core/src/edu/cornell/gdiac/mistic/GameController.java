@@ -581,33 +581,41 @@ public class GameController extends WorldController implements ContactListener {
 
 
         canvas.setShader(fog.getShader());
-        canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
         fog.prepShader(firefly_count);
         canvas.begin(gorf.getPosition());
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
             fog.draw(canvas, fboRegion, new Vector2(0, canvas.getHeight() * 2));
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
             fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, canvas.getHeight() * 2));
         }
         if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
             fog.draw(canvas, fboRegion, new Vector2(0, -canvas.getHeight() * 2));
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
             fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, -canvas.getHeight() * 2));
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f) {
+            canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
             fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, 0));
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
             fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, -canvas.getHeight() * 2));
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f) {
+            canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
             fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, 0));
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
             fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, canvas.getHeight() * 2));
         }
+        canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
         fog.draw(canvas, fboRegion, new Vector2(0, 0));
         canvas.end();
 
