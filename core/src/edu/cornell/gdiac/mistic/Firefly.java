@@ -9,6 +9,8 @@ import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.obstacle.BoxObstacle;
 import edu.cornell.gdiac.util.FilmStrip;
 
+import static com.badlogic.gdx.math.MathUtils.random;
+
 /**
  * This is a class to store the important information for a single firefly.
  * The class is lightweight, and mainly getters and setters for location and deletion status.
@@ -25,7 +27,7 @@ public class Firefly {
     private static final float FIREFLY_FRICTION  = 0.3f;
     private static final float FIREFLY_RESTITUTION = 0.1f;
     private Vector2 scale = new Vector2(1f,1f);
-    public static final int FRAMES = 14;
+    public static final int FRAMES = 15;
 
     public Firefly(float x, float y, TextureRegion texture, FilmStrip animation) {
         position = new Vector2(x,y);
@@ -62,6 +64,7 @@ public class Firefly {
         } else {
             fireflyAnimation.setFrame(0);
         }
+
     }
 
     public void setPosition(float x, float y){
