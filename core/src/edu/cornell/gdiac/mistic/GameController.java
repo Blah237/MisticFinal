@@ -443,9 +443,9 @@ public class GameController extends WorldController implements ContactListener {
          * And adds lanterns to the GameController object pool.
          */
 
-        float w = 9;
+        float w = 3;
         float h = 12;
-        //createMonster(w, h);
+        createMonster(w, h);
 
 
 
@@ -618,13 +618,13 @@ public class GameController extends WorldController implements ContactListener {
         gorf.applyForce();
         wrapInBounds(gorf);
 
-//        ai.setInput();
-//        float forceXMonster = ai.getHorizontal();
-//        float forceYMonster = ai.getVertical();
-//        float monsterthrust = monster.getThrust();
-//        this.monster.setFX(forceXMonster * monsterthrust);
-//        this.monster.setFY(forceYMonster * monsterthrust);
-//        monster.applyForce();
+        ai.setInput();
+        float forceXMonster = ai.getHorizontal();
+        float forceYMonster = ai.getVertical();
+        float monsterthrust = monster.getThrust();
+        this.monster.setFX(forceXMonster * monsterthrust);
+        this.monster.setFY(forceYMonster * monsterthrust);
+        monster.applyForce();
 
         firefly_counter++;
         if (firefly_counter==150) {

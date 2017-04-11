@@ -33,7 +33,7 @@ public class SteeringAgent implements Steerable<Vector2> {
     boolean independentFacing;
     private float zeroLinearSpeedThreshold;
     SteeringBehavior<Vector2> steeringBehavior;
-    MonsterModel ai;
+    public MonsterModel ai;
 
     private float boundingRadius;
     private boolean tagged;
@@ -52,10 +52,10 @@ public class SteeringAgent implements Steerable<Vector2> {
     /* Here you should implement missing methods inherited from Steerable */
 
 
-    public void update (float delta) {
-        if (steeringBehavior != null) {
+   // public void update (float delta) {
+       // if (steeringBehavior != null) {
             // Calculate steering acceleration
-            steeringBehavior.calculateSteering(steeringOutput);
+          //  steeringBehavior.calculateSteering(steeringOutput);
 
             /*
              * Here you might want to add a motor control layer filtering steering accelerations.
@@ -68,28 +68,28 @@ public class SteeringAgent implements Steerable<Vector2> {
              */
 
             // Apply steering acceleration to move this agent
-            applySteering(steeringOutput, delta);
-        }
-    }
+           // applySteering(steeringOutput, delta);
+      //  }
+   // }
 
-    private void applySteering (SteeringAcceleration<Vector2> steering, float time) {
+    //private void applySteering (SteeringAcceleration<Vector2> steering, float time) {
         // Update position and linear velocity. Velocity is trimmed to maximum speed
-        this.position.mulAdd(linearVelocity, time);
-        this.linearVelocity.mulAdd(steering.linear, time).limit(this.getMaxLinearSpeed());
+       // this.position.mulAdd(linearVelocity, time);
+       // this.linearVelocity.mulAdd(steering.linear, time).limit(this.getMaxLinearSpeed());
 
         // Update orientation and angular velocity
-        if (independentFacing) {
-            this.orientation += angularVelocity * time;
-            this.angularVelocity += steering.angular * time;
-        } else {
+       // if (independentFacing) {
+           // this.orientation += angularVelocity * time;
+          //  this.angularVelocity += steering.angular * time;
+       // } else {
             // For non-independent facing we have to align orientation to linear velocity
-            float newOrientation = calculateOrientationFromLinearVelocity(this);
-            if (newOrientation != this.orientation) {
-                this.angularVelocity = (newOrientation - this.orientation) * time;
-                this.orientation = newOrientation;
-            }
-        }
-    }
+          //  float newOrientation = calculateOrientationFromLinearVelocity(this);
+          //  if (newOrientation != this.orientation) {
+           //     this.angularVelocity = (newOrientation - this.orientation) * time;
+            //    this.orientation = newOrientation;
+          //  }
+      //  }
+   // }
 
     public SteeringBehavior<Vector2> getSteeringBehavior() {
         return steeringBehavior;
