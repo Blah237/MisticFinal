@@ -84,9 +84,10 @@ public class GameController extends WorldController implements ContactListener {
     private static final String HUD_WHITE_NUMBER_8 = "mistic/numbers_white/numbers_8.png";
     private static final String HUD_WHITE_NUMBER_9 = "mistic/numbers_white/numbers_9.png";
     private static final String HUD_WHITE_NUMBER_SLASH = "mistic/numbers_white/numbers_slash.png";
+    private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
 
     private FilmStrip fireflyAnimation;
-
+    private FilmStrip pawAnimation;
 
     /** Texture assets for the rocket */
     private TextureRegion gorfTexture;
@@ -211,6 +212,9 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(HUD_WHITE_NUMBER_SLASH, Texture.class);
         assets.add(HUD_WHITE_NUMBER_SLASH);
 
+        manager.load(HUD_PAW_ANIMATE, Texture.class);
+        assets.add(HUD_PAW_ANIMATE);
+
         //mist wall textures
         for(String m : MIST_WALLS){
             manager.load(m, Texture.class);
@@ -277,6 +281,7 @@ public class GameController extends WorldController implements ContactListener {
         HUDWhiteNumber_9 = createTexture(manager, HUD_WHITE_NUMBER_9, false);
         HUDWhiteNumber_x = createTexture(manager, HUD_WHITE_NUMBER_X, false);
         HUDWhiteNumber_slash = createTexture(manager, HUD_WHITE_NUMBER_SLASH, false);
+        pawAnimation = createFilmStrip(manager, HUD_PAW_ANIMATE, 1, 2, 2);
 
 
 
@@ -311,6 +316,10 @@ public class GameController extends WorldController implements ContactListener {
     private static final float SOUND_THRESHOLD = 1.0f;
     private int countdown = 120;
     FireflyController fireflyController;
+
+    //HUD Stuff
+    int pawTimer = 60;
+    boolean pawTimerStart = false;
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
@@ -566,7 +575,22 @@ public class GameController extends WorldController implements ContactListener {
             }
         }
 
+        int f = familiars.getNumFam();
         familiars.update(gorf);
+        int f2 = familiars.getNumFam();
+        if (f2 > f) {
+            pawAnimation.setFrame(1);
+            pawTimerStart = true;
+        }
+
+        if (pawTimerStart == true) {
+            pawTimer = pawTimer - 1;
+            if (pawTimer == 0) {
+                pawAnimation.setFrame(0);
+                pawTimer = 60;
+                pawTimerStart = false;
+            }
+        }
 
         float Gorfx= gorf.getPosition().x * scale.x;
         float Gorfy= gorf.getPosition().y * scale.y;
@@ -712,6 +736,8 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(HUDWindow, gorf.getPosition().x * scale.x + 85.0f, gorf.getPosition().y * scale.y + 105.0f);
         canvas.draw(HUDWhiteFirefly, gorf.getPosition().x * scale.x + 117.0f, gorf.getPosition().y * scale.y + 122.0f);
         canvas.draw(HUDWhiteNumber_x, gorf.getPosition().x * scale.x + 150.0f, gorf.getPosition().y * scale.y + 129.0f);
+        canvas.draw(pawAnimation, gorf.getPosition().x * scale.x + 200.0f, gorf.getPosition().y * scale.y + 125.0f);
+        canvas.draw(HUDWhiteNumber_x, gorf.getPosition().x * scale.x + 233.0f, gorf.getPosition().y * scale.y + 129.0f);
 
 
         if (firefly_count / 10.0 < 1) {
@@ -783,6 +809,31 @@ public class GameController extends WorldController implements ContactListener {
             }
         }
 
+        if (familiars.getNumFam() / 10.0 < 1) {
+
+            switch (familiars.getNumFam()) {
+                case 0: canvas.draw(HUDWhiteNumber_0, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 1: canvas.draw(HUDWhiteNumber_1, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 2: canvas.draw(HUDWhiteNumber_2, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 3: canvas.draw(HUDWhiteNumber_3, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 4: canvas.draw(HUDWhiteNumber_4, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 5: canvas.draw(HUDWhiteNumber_5, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 6: canvas.draw(HUDWhiteNumber_6, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 7: canvas.draw(HUDWhiteNumber_7, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 8: canvas.draw(HUDWhiteNumber_8, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 9: canvas.draw(HUDWhiteNumber_9, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+            }
+        }
         canvas.end();
 
 
@@ -791,7 +842,7 @@ public class GameController extends WorldController implements ContactListener {
             if (countdown > 0) {
                 String vic = "Victory!";
                 displayFont.setColor(Color.PURPLE);
-                canvas.drawText(vic, displayFont, canvas.getWidth(), canvas.getHeight()/2);
+                canvas.drawText(vic, displayFont, gorf.getPosition().x, gorf.getPosition().y);
                 countdown --;
             } else if (countdown==0) {
                 this.setComplete(true);
@@ -802,7 +853,7 @@ public class GameController extends WorldController implements ContactListener {
             if (countdown > 0) {
                 String vic = "Game Over!";
                 displayFont.setColor(Color.PURPLE);
-                canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
+                canvas.drawText(vic, displayFont, gorf.getPosition().x, gorf.getPosition().y);
                 countdown --;
             } else if (countdown==0) {
                 DEAD = false;
