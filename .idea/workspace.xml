@@ -5,119 +5,116 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/__MACOSX/._catfamiliar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/__MACOSX/._chickenfamiliar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/__MACOSX/._hedgehogfamiliar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/__MACOSX/._tortoisefamiliar.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/artifacts/desktop_main_jar/desktop_main.jar" afterPath="$PROJECT_DIR$/classes/artifacts/desktop_main_jar/desktop_main.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/image.jpg" afterPath="$PROJECT_DIR$/core/assets/image.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/image.png" afterPath="$PROJECT_DIR$/core/assets/image.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/image2.png" afterPath="$PROJECT_DIR$/core/assets/image2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/backgroundresize.png" afterPath="$PROJECT_DIR$/core/assets/mistic/backgroundresize.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/cat.png" afterPath="$PROJECT_DIR$/core/assets/mistic/familiars/cat.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/catfamiliar.png" afterPath="$PROJECT_DIR$/core/assets/mistic/familiars/catfamiliar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/chicken.png" afterPath="$PROJECT_DIR$/core/assets/mistic/familiars/chicken.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/chickenfamiliar.png" afterPath="$PROJECT_DIR$/core/assets/mistic/familiars/chickenfamiliar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/hedgehog.png" afterPath="$PROJECT_DIR$/core/assets/mistic/familiars/hedgehog.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/hedgehogfamiliar.png" afterPath="$PROJECT_DIR$/core/assets/mistic/familiars/hedgehogfamiliar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/tortoise.png" afterPath="$PROJECT_DIR$/core/assets/mistic/familiars/tortoise.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/familiars/tortoisefamiliar.png" afterPath="$PROJECT_DIR$/core/assets/mistic/familiars/tortoisefamiliar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/firefly.png" afterPath="$PROJECT_DIR$/core/assets/mistic/firefly.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fireflysprite.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fireflysprite.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/gorf.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorf.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/lit.png" afterPath="$PROJECT_DIR$/core/assets/mistic/lit.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/litbig.png" afterPath="$PROJECT_DIR$/core/assets/mistic/litbig.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/loadingscreen.gif" afterPath="$PROJECT_DIR$/core/assets/mistic/loadingscreen.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock1.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/HUD window.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/._paw.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/._spritesheet_HUDfirefly.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/._spritesheet_paw.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0000_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0001_9.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0002_8.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0003_7.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0004_6.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0005_5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0006_4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0007_3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0008_2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0009_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0010_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_purple/._numbers_0011_x-(purple).png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._.DS_Store" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0000_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0001_9.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0002_8.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0003_7.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0004_6.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0005_5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0006_4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0007_3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0008_2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0009_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0010__.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_white/._numbers_0011_x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_yellow/._numbers_0005_5-(yellow).png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_yellow/._numbers_0006_4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_yellow/._numbers_0007_3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_yellow/._numbers_0008_2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_yellow/._numbers_0009_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/__MACOSX/numbers_yellow/._numbers_0010_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0000_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0001_9.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0002_8.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0003_7.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0004_6.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0005_5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0006_4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0007_3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0008_2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0009_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0010_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_purple/numbers_0011_x-(purple).png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0000_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0001_9.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0002_8.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0003_7.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0004_6.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0005_5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0006_4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0007_3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0008_2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0009_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0010__.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_white/numbers_0011_x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_yellow/numbers_0005_5-(yellow).png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_yellow/numbers_0006_4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_yellow/numbers_0007_3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_yellow/numbers_0008_2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_yellow/numbers_0009_1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/numbers_yellow/numbers_0010_0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/paw.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/purple_firefly.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/spritesheet_HUDfirefly.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/spritesheet_paw.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/HUDelements/white_firefly.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/firefly-sprite.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/fireflyicon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock17.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock18.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock19.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock20.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock21.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock22.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock23.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock24.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock25.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock26.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock27.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock28.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock29.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock30.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock31.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock32.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel$Burner.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/boundary_fog.png" afterPath="$PROJECT_DIR$/core/assets/mistic/boundary_fog.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock10.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock10.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock11.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock11.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock12.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock12.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock13.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock13.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock14.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock14.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock15.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock15.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock16.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock16.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock2.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock3.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock4.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock5.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock5.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock6.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock7.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock7.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock8.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock8.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock9.png" afterPath="$PROJECT_DIR$/core/assets/mistic/mistblock/mistblock9.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/monster01.png" afterPath="$PROJECT_DIR$/core/assets/mistic/monster01.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/play.png" afterPath="$PROJECT_DIR$/core/assets/mistic/play.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/spritesheet_firefly.png" afterPath="$PROJECT_DIR$/core/assets/mistic/spritesheet_firefly.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/unlit.png" afterPath="$PROJECT_DIR$/core/assets/mistic/unlit.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/unlitbig.png" afterPath="$PROJECT_DIR$/core/assets/mistic/unlitbig.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/LightPixel7.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/LightPixel7.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/MarkerFelt.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/MarkerFelt.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/Minecraft.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/Minecraft.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/Minecraftia.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/Minecraftia.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/RetroGame.ttf" afterPath="$PROJECT_DIR$/core/assets/shared/RetroGame.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/earthtile.png" afterPath="$PROJECT_DIR$/core/assets/shared/earthtile.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/goaldoor.png" afterPath="$PROJECT_DIR$/core/assets/shared/goaldoor.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/loading.png" afterPath="$PROJECT_DIR$/core/assets/shared/loading.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/play.png" afterPath="$PROJECT_DIR$/core/assets/shared/play.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/shared/progressbar.png" afterPath="$PROJECT_DIR$/core/assets/shared/progressbar.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GDXRoot.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GDXRoot.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController$AssetState.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController$AssetState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/Mistic.iml" afterPath="$PROJECT_DIR$/.idea/modules/Mistic.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/core/core_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/core/core_main.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/jsons/Tiled_Demo.json" afterPath="$PROJECT_DIR$/core/assets/jsons/Tiled_Demo.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/jsons/Tiled_Demo_2.json" afterPath="$PROJECT_DIR$/core/assets/jsons/Tiled_Demo_2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/jsons/Tiled_Demo_3.json" afterPath="$PROJECT_DIR$/core/assets/jsons/Tiled_Demo_3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/jsons/Tiled_Demo_4.json" afterPath="$PROJECT_DIR$/core/assets/jsons/Tiled_Demo_4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.vert.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.vert.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/plague.p" afterPath="$PROJECT_DIR$/core/assets/mistic/plague.p" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build.gradle" afterPath="$PROJECT_DIR$/core/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GDXRoot.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GDXRoot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/LoadingMode.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/LoadingMode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardTuple.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardTuple.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoxFog.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoxFog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoxFogParticle.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoxFogParticle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Familiar.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Familiar.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Firefly.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Firefly.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MazeModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MazeModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MonsterModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MonsterModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/BoxObstacle.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/BoxObstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/CapsuleObstacle.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/CapsuleObstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/ComplexObstacle.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/ComplexObstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/Obstacle.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/Obstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/ObstacleSelector.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/ObstacleSelector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/PolygonObstacle.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/PolygonObstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/SimpleObstacle.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/SimpleObstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/WheelObstacle.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/obstacle/WheelObstacle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/FilmStrip.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/FilmStrip.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/PooledList.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/PooledList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/RandomController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/RandomController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/ScreenListener.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/ScreenListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/XBox360Controller.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/XBox360Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/desktop/build.gradle" afterPath="$PROJECT_DIR$/desktop/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/desktop/resources/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/desktop/resources/META-INF/MANIFEST.MF" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/desktop/src/edu/cornell/gdiac/physics/desktop/DesktopLauncher.java" afterPath="$PROJECT_DIR$/desktop/src/edu/cornell/gdiac/physics/desktop/DesktopLauncher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle.properties" afterPath="$PROJECT_DIR$/gradle.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew.bat" afterPath="$PROJECT_DIR$/gradlew.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -154,10 +151,12 @@
       <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7661">
-              <caret line="182" column="72" lean-forward="true" selection-start-line="182" selection-start-column="72" selection-end-line="182" selection-end-column="72" />
+            <state relative-caret-position="1984">
+              <caret line="706" column="33" lean-forward="true" selection-start-line="706" selection-start-column="33" selection-end-line="706" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#9957#9966#0" expanded="true" />
+                <element signature="e#13597#13614#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -166,25 +165,13 @@
       <file leaf-file-name="WorldController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2850">
-              <caret line="217" column="5" lean-forward="false" selection-start-line="217" selection-start-column="5" selection-end-line="217" selection-end-column="5" />
+            <state relative-caret-position="3960">
+              <caret line="279" column="5" lean-forward="false" selection-start-line="279" selection-start-column="5" selection-end-line="279" selection-end-column="5" />
               <folding>
-                <element signature="e#0#19766#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#9083#9084#0" expanded="false" />
-                <element signature="e#9102#9103#0" expanded="false" />
-                <element signature="e#9306#9307#0" expanded="false" />
-                <element signature="e#9326#9327#0" expanded="false" />
-                <element signature="e#9519#9520#0" expanded="false" />
-                <element signature="e#9541#9542#0" expanded="false" />
-                <element signature="e#9999#10000#0" expanded="false" />
-                <element signature="e#10019#10020#0" expanded="false" />
-                <element signature="e#10420#10421#0" expanded="false" />
-                <element signature="e#10440#10441#0" expanded="false" />
-                <element signature="e#10649#10650#0" expanded="false" />
-                <element signature="e#10669#10670#0" expanded="false" />
-                <element signature="e#19731#19732#0" expanded="false" />
-                <element signature="e#19762#19763#0" expanded="false" />
+                <element signature="e#0#21405#0" expanded="false" />
+                <element signature="e#21370#21371#0" expanded="false" />
+                <element signature="e#21401#21402#0" expanded="false" />
+                <marker date="1491886460000" expanded="false" signature="721:731" ph="..." />
               </folding>
             </state>
           </provider>
@@ -194,9 +181,9 @@
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="7755">
-              <caret line="519" column="5" lean-forward="false" selection-start-line="519" selection-start-column="5" selection-end-line="519" selection-end-column="5" />
+              <caret line="564" column="5" lean-forward="false" selection-start-line="564" selection-start-column="5" selection-end-line="564" selection-end-column="5" />
               <folding>
-                <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+                <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
               </folding>
             </state>
           </provider>
@@ -218,7 +205,7 @@
             <state relative-caret-position="2416">
               <caret line="1224" column="55" lean-forward="false" selection-start-line="1224" selection-start-column="55" selection-end-line="1224" selection-end-column="55" />
               <folding>
-                <marker date="1491871978000" expanded="true" signature="43404:43405" ph="{...}" />
+                <marker date="1491886460000" expanded="true" signature="43404:43405" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -242,8 +229,8 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1491860546000" expanded="true" signature="59:126896" ph="..." />
-                <marker date="1491860546000" expanded="true" signature="126870:126885" ph="..." />
+                <marker date="1491886547000" expanded="true" signature="59:121078" ph="..." />
+                <marker date="1491886547000" expanded="true" signature="121052:121067" ph="..." />
               </folding>
             </state>
           </provider>
@@ -1027,6 +1014,7 @@
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/ai/gdx-ai/tests/com/badlogic/gdx/ai/pfa/indexed/IndexedAStarPathFinderTest.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
       </list>
     </option>
   </component>
@@ -1318,6 +1306,8 @@
           <caret line="43" column="63" lean-forward="false" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9957#9966#0" expanded="true" />
+            <element signature="e#13597#13614#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1335,7 +1325,7 @@
         <state relative-caret-position="1800">
           <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
           <folding>
-            <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+            <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1355,6 +1345,8 @@
           <caret line="43" column="63" lean-forward="false" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9957#9966#0" expanded="true" />
+            <element signature="e#13597#13614#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1364,22 +1356,10 @@
         <state relative-caret-position="6220">
           <caret line="350" column="41" lean-forward="false" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
           <folding>
-            <element signature="e#0#19766#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#9083#9084#0" expanded="false" />
-            <element signature="e#9102#9103#0" expanded="false" />
-            <element signature="e#9306#9307#0" expanded="false" />
-            <element signature="e#9326#9327#0" expanded="false" />
-            <element signature="e#9519#9520#0" expanded="false" />
-            <element signature="e#9541#9542#0" expanded="false" />
-            <element signature="e#9999#10000#0" expanded="false" />
-            <element signature="e#10019#10020#0" expanded="false" />
-            <element signature="e#10420#10421#0" expanded="false" />
-            <element signature="e#10440#10441#0" expanded="false" />
-            <element signature="e#10649#10650#0" expanded="false" />
-            <element signature="e#10669#10670#0" expanded="false" />
-            <element signature="e#19731#19732#0" expanded="false" />
-            <element signature="e#19762#19763#0" expanded="false" />
+            <element signature="e#0#21405#0" expanded="false" />
+            <element signature="e#21370#21371#0" expanded="false" />
+            <element signature="e#21401#21402#0" expanded="false" />
+            <marker date="1491886460000" expanded="false" signature="721:731" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1397,7 +1377,7 @@
         <state relative-caret-position="1800">
           <caret line="106" column="49" lean-forward="false" selection-start-line="106" selection-start-column="49" selection-end-line="106" selection-end-column="49" />
           <folding>
-            <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+            <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1415,7 +1395,7 @@
         <state relative-caret-position="8300">
           <caret line="430" column="24" lean-forward="false" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
           <folding>
-            <marker date="1491871978000" expanded="true" signature="43404:43405" ph="{...}" />
+            <marker date="1491886460000" expanded="true" signature="43404:43405" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1426,6 +1406,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9957#9966#0" expanded="true" />
+            <element signature="e#13597#13614#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1435,22 +1417,10 @@
         <state relative-caret-position="7040">
           <caret line="352" column="41" lean-forward="false" selection-start-line="352" selection-start-column="41" selection-end-line="352" selection-end-column="41" />
           <folding>
-            <element signature="e#0#19766#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#9083#9084#0" expanded="false" />
-            <element signature="e#9102#9103#0" expanded="false" />
-            <element signature="e#9306#9307#0" expanded="false" />
-            <element signature="e#9326#9327#0" expanded="false" />
-            <element signature="e#9519#9520#0" expanded="false" />
-            <element signature="e#9541#9542#0" expanded="false" />
-            <element signature="e#9999#10000#0" expanded="false" />
-            <element signature="e#10019#10020#0" expanded="false" />
-            <element signature="e#10420#10421#0" expanded="false" />
-            <element signature="e#10440#10441#0" expanded="false" />
-            <element signature="e#10649#10650#0" expanded="false" />
-            <element signature="e#10669#10670#0" expanded="false" />
-            <element signature="e#19731#19732#0" expanded="false" />
-            <element signature="e#19762#19763#0" expanded="false" />
+            <element signature="e#0#21405#0" expanded="false" />
+            <element signature="e#21370#21371#0" expanded="false" />
+            <element signature="e#21401#21402#0" expanded="false" />
+            <marker date="1491886460000" expanded="false" signature="721:731" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1468,7 +1438,7 @@
         <state relative-caret-position="4040">
           <caret line="218" column="14" lean-forward="true" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="14" />
           <folding>
-            <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+            <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1486,7 +1456,7 @@
         <state relative-caret-position="7980">
           <caret line="430" column="24" lean-forward="false" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
           <folding>
-            <marker date="1491871978000" expanded="true" signature="43404:43405" ph="{...}" />
+            <marker date="1491886460000" expanded="true" signature="43404:43405" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1497,6 +1467,8 @@
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9957#9966#0" expanded="true" />
+            <element signature="e#13597#13614#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1514,7 +1486,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+            <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1525,6 +1497,8 @@
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9957#9966#0" expanded="true" />
+            <element signature="e#13597#13614#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1542,7 +1516,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+            <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1553,6 +1527,8 @@
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9957#9966#0" expanded="true" />
+            <element signature="e#13597#13614#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1570,7 +1546,7 @@
         <state relative-caret-position="3760">
           <caret line="204" column="36" lean-forward="true" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
           <folding>
-            <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+            <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1581,6 +1557,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9957#9966#0" expanded="true" />
+            <element signature="e#13597#13614#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1590,7 +1568,7 @@
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+            <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1601,6 +1579,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9957#9966#0" expanded="true" />
+            <element signature="e#13597#13614#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1610,7 +1590,7 @@
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
-            <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+            <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1668,8 +1648,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1491860546000" expanded="true" signature="59:126896" ph="..." />
-            <marker date="1491860546000" expanded="true" signature="126870:126885" ph="..." />
+            <marker date="1491886547000" expanded="true" signature="59:121078" ph="..." />
+            <marker date="1491886547000" expanded="true" signature="121052:121067" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1707,25 +1687,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2850">
-          <caret line="217" column="5" lean-forward="false" selection-start-line="217" selection-start-column="5" selection-end-line="217" selection-end-column="5" />
+        <state relative-caret-position="3960">
+          <caret line="279" column="5" lean-forward="false" selection-start-line="279" selection-start-column="5" selection-end-line="279" selection-end-column="5" />
           <folding>
-            <element signature="e#0#19766#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#9083#9084#0" expanded="false" />
-            <element signature="e#9102#9103#0" expanded="false" />
-            <element signature="e#9306#9307#0" expanded="false" />
-            <element signature="e#9326#9327#0" expanded="false" />
-            <element signature="e#9519#9520#0" expanded="false" />
-            <element signature="e#9541#9542#0" expanded="false" />
-            <element signature="e#9999#10000#0" expanded="false" />
-            <element signature="e#10019#10020#0" expanded="false" />
-            <element signature="e#10420#10421#0" expanded="false" />
-            <element signature="e#10440#10441#0" expanded="false" />
-            <element signature="e#10649#10650#0" expanded="false" />
-            <element signature="e#10669#10670#0" expanded="false" />
-            <element signature="e#19731#19732#0" expanded="false" />
-            <element signature="e#19762#19763#0" expanded="false" />
+            <element signature="e#0#21405#0" expanded="false" />
+            <element signature="e#21370#21371#0" expanded="false" />
+            <element signature="e#21401#21402#0" expanded="false" />
+            <marker date="1491886460000" expanded="false" signature="721:731" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1733,9 +1701,9 @@
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7755">
-          <caret line="519" column="5" lean-forward="false" selection-start-line="519" selection-start-column="5" selection-end-line="519" selection-end-column="5" />
+          <caret line="564" column="5" lean-forward="false" selection-start-line="564" selection-start-column="5" selection-end-line="564" selection-end-column="5" />
           <folding>
-            <marker date="1491871978000" expanded="false" signature="42:132" ph="..." />
+            <marker date="1491886538000" expanded="false" signature="42:132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1753,7 +1721,7 @@
         <state relative-caret-position="2416">
           <caret line="1224" column="55" lean-forward="false" selection-start-line="1224" selection-start-column="55" selection-end-line="1224" selection-end-column="55" />
           <folding>
-            <marker date="1491871978000" expanded="true" signature="43404:43405" ph="{...}" />
+            <marker date="1491886460000" expanded="true" signature="43404:43405" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1770,10 +1738,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7661">
-          <caret line="182" column="72" lean-forward="true" selection-start-line="182" selection-start-column="72" selection-end-line="182" selection-end-column="72" />
+        <state relative-caret-position="1984">
+          <caret line="706" column="33" lean-forward="true" selection-start-line="706" selection-start-column="33" selection-end-line="706" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9957#9966#0" expanded="true" />
+            <element signature="e#13597#13614#0" expanded="true" />
           </folding>
         </state>
       </provider>

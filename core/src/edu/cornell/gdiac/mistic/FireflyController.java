@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import edu.cornell.gdiac.obstacle.BoxObstacle;
+import edu.cornell.gdiac.util.FilmStrip;
 
 
 import java.lang.reflect.Array;
@@ -30,7 +31,8 @@ public class FireflyController {
     private float SPAWN_TIME;
     private int MAX_FIREFLIES=5;
     private int maxfireflies = MAX_FIREFLIES;
-    protected Firefly[] fireflies;
+    public Firefly[] fireflies;
+    private FilmStrip animate;
 
     public FireflyController(TextureRegion texture, Vector2 scale, BoardModel board){
         fireflies=new Firefly[maxfireflies];
@@ -101,7 +103,21 @@ public class FireflyController {
     }
 
     public void create(float x, float y){
-        Firefly f= new Firefly(x,y,tex);
+        Firefly f= new Firefly(x,y,tex,animate);
         this.add(f);
+    }
+
+    public void setFireflyAnimation(FilmStrip animation){
+        this.animate= animation;
+    }
+
+    public void updateFireflyAnimation(boolean on){
+        if(on){
+            for(Firefly f:fireflies){
+                if(f!=null){
+                    f.fireflyAnimate(on);
+                }
+            }
+        }
     }
 }

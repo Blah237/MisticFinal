@@ -1,12 +1,7 @@
 /*
- * RocketWorldController.java
+ * GameController.java
+ * Copyright Mishka 2017
  *
- * This is one of the files that you are expected to modify. Please limit changes to
- * the regions that say INSERT CODE HERE.
- *
- * Author: Walker M. White
- * Based on original PhysicsDemo Lab by Don Holden, 2007
- * LibGDX version, 2/6/2015
  */
 package edu.cornell.gdiac.mistic;
 
@@ -18,6 +13,7 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.*;
+import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.util.*;
 
 import edu.cornell.gdiac.InputController;
@@ -49,14 +45,19 @@ public class GameController extends WorldController implements ContactListener {
     private static final String BACKGROUND = "mistic/backgroundresize.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
     private static final String FOG_TEXTURE = "mistic/fog.png";
-    private static final String FIRE_TRACK="mistic/fireflysprite.png";
+    private static final String FIRE_TRACK="mistic/fireflyicon.png";
     private static final String MONSTER_TEXTURE = "mistic/monster01.png";
     private static final String[] MIST_WALLS= {"mistic/mistblock/mistblock1.png",
             "mistic/mistblock/mistblock2.png", "mistic/mistblock/mistblock3.png", "mistic/mistblock/mistblock4.png",
             "mistic/mistblock/mistblock5.png", "mistic/mistblock/mistblock6.png", "mistic/mistblock/mistblock7.png",
             "mistic/mistblock/mistblock8.png", "mistic/mistblock/mistblock9.png", "mistic/mistblock/mistblock10.png",
             "mistic/mistblock/mistblock11.png", "mistic/mistblock/mistblock12.png", "mistic/mistblock/mistblock13.png",
-            "mistic/mistblock/mistblock14.png","mistic/mistblock/mistblock15.png", "mistic/mistblock/mistblock16.png"};
+            "mistic/mistblock/mistblock14.png","mistic/mistblock/mistblock15.png", "mistic/mistblock/mistblock16.png",
+            "mistic/mistblock/mistblock17.png","mistic/mistblock/mistblock18.png", "mistic/mistblock/mistblock19.png",
+            "mistic/mistblock/mistblock20.png","mistic/mistblock/mistblock21.png", "mistic/mistblock/mistblock22.png",
+            "mistic/mistblock/mistblock23.png","mistic/mistblock/mistblock24.png", "mistic/mistblock/mistblock25.png",
+            "mistic/mistblock/mistblock26.png","mistic/mistblock/mistblock27.png", "mistic/mistblock/mistblock28.png",
+            "mistic/mistblock/mistblock29.png","mistic/mistblock/mistblock30.png"};
 
     private static final String[] FAMILIARS={
             "mistic/familiars/cat.png","mistic/familiars/chicken.png","mistic/familiars/hedgehog.png",
@@ -66,6 +67,12 @@ public class GameController extends WorldController implements ContactListener {
     /** Reference to the crate image assets */
     private static final String LIT_LANTERN = "mistic/lit.png";
     private static final String UNLIT_LANTERN = "mistic/unlit.png";
+    private static final String FIREFLY_ANIMATE="mistic/firefly-sprite.png";
+
+
+    private FilmStrip fireflyAnimation;
+
+
     /** Texture assets for the rocket */
     private TextureRegion gorfTexture;
     private TextureRegion backgroundTexture;
@@ -81,10 +88,9 @@ public class GameController extends WorldController implements ContactListener {
 
     /** Track asset loading from all instances and subclasses */
     private AssetState rocketAssetState = AssetState.EMPTY;
-    /** The reader to process JSON files */
-    private JsonReader jsonReader;
-    /** The JSON defining the level model */
-    private JsonValue levelFormat;
+
+    Rectangle screenSize;
+
 
     /**
      * Preloads the assets for this controller.
@@ -100,6 +106,7 @@ public class GameController extends WorldController implements ContactListener {
         if (rocketAssetState != AssetState.EMPTY) {
             return;
         }
+
 
         rocketAssetState = AssetState.LOADING;
 
@@ -127,8 +134,9 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(MONSTER_TEXTURE, Texture.class);
         assets.add(MONSTER_TEXTURE);
 
-        //Json Reader
-        jsonReader = new JsonReader();
+        manager.load(FIREFLY_ANIMATE,Texture.class);
+        assets.add(FIREFLY_ANIMATE);
+
 
         //mist wall textures
         for(String m : MIST_WALLS){
@@ -165,7 +173,7 @@ public class GameController extends WorldController implements ContactListener {
      *
      * @param manager Reference to global asset manager.
      */
-    public void loadContent(AssetManager manager) {
+    public void loadContent(AssetManager manager, GameCanvas canvas) {
         if (rocketAssetState != AssetState.LOADING) {
             return;
         }
@@ -182,6 +190,8 @@ public class GameController extends WorldController implements ContactListener {
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
 
+        fireflyAnimation=createFilmStrip(manager, FIREFLY_ANIMATE, 1, Firefly.FRAMES,Firefly.FRAMES);
+
         for(int i=0;i<MIST_WALLS.length;i++){
             mistwalls[i]= createTexture(manager, MIST_WALLS[i], false);
         }
@@ -190,8 +200,10 @@ public class GameController extends WorldController implements ContactListener {
         }
         SoundController sounds = SoundController.getInstance();
 
-        super.loadContent(manager);
+        super.loadContent(manager, canvas);
+        tileBoard=super.gettileBoard();
         rocketAssetState = AssetState.COMPLETE;
+
     }
 
     // Physics constants for initialization
@@ -230,10 +242,7 @@ public class GameController extends WorldController implements ContactListener {
     public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
     private Familiar familiars;
 
-
     private FogController fog;
-    private boolean[][] board;
-    private boolean[][] fogBoard;
     private float BW = DEFAULT_WIDTH;
     private float BH = DEFAULT_HEIGHT;
     private int UNITS_W = (int)(BW*3);
@@ -249,6 +258,23 @@ public class GameController extends WorldController implements ContactListener {
 
     private FrameBuffer fbo;
     private TextureRegion fboRegion;
+    private FrameBuffer fbo1;
+    private TextureRegion fboRegion1;
+    private FrameBuffer fbo2;
+    private TextureRegion fboRegion2;
+    private FrameBuffer fbo3;
+    private TextureRegion fboRegion3;
+    private FrameBuffer fbo4;
+    private TextureRegion fboRegion4;
+    private FrameBuffer fbo5;
+    private TextureRegion fboRegion5;
+    private FrameBuffer fbo6;
+    private TextureRegion fboRegion6;
+    private FrameBuffer fbo7;
+    private TextureRegion fboRegion7;
+    private FrameBuffer fbo8;
+    private TextureRegion fboRegion8;
+
     OrthographicCamera cam;
 
 
@@ -293,20 +319,14 @@ public class GameController extends WorldController implements ContactListener {
         populateLevel();
         countdown=120;
 
-        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*3), (int)(Gdx.graphics.getHeight()*3), false);
-        fboRegion = new TextureRegion(fbo.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*3), (int)(Gdx.graphics.getHeight()*3));
+        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2, false);
+        fboRegion = new TextureRegion(fbo.getColorBufferTexture(), Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
         fboRegion.flip(false, true);
-
-        cam = new OrthographicCamera(Gdx.graphics.getWidth(),
-                Gdx.graphics.getHeight());
-        cam.setToOrtho(false);
-
     }
 
     private void populateLevel() {
         // Set the path for the level json HERE
         // NOTE: Tiled_Demo's 1-3 will NOT COMPILE
-        levelFormat = jsonReader.parse(Gdx.files.internal("jsons/Tiled_Demo_4.json"));
 
         /**
          * Create Gorf
@@ -328,54 +348,11 @@ public class GameController extends WorldController implements ContactListener {
         float h = 12;
         //createMonster(w, h);
 
-        // get every texture's group id in the json and map it to it's actual object's name
-        HashMap<Integer,Character> textureIDs = new HashMap<Integer,Character>();
-        JsonValue tilesets = levelFormat.get("tilesets").child();
-        while (tilesets!=null) {
-            textureIDs.put(tilesets.get("firstgid").asInt(),tilesets.get("name").asChar());
-            tilesets = tilesets.next();
-        }
 
-        // initialize BoardModel
-        Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
-        this.tileBoard = new BoardModel(levelFormat.get("width").asInt(), levelFormat.get("height").asInt(), screenSize);
-
-        // get json data as array
-        int[] maze = levelFormat.get("layers").get(1).get("data").asIntArray();
-
-        // for loop for adding info from json data array to the board model
-        int i = 0; int j = 0;
-        for (int t : maze) {
-            if (t!=0&&textureIDs.containsKey(t)) {
-                Character c = textureIDs.get(t);
-                switch (c) {
-                    case 'w':
-                        tileBoard.tiles[i][j].isWall=true;
-                        break;
-                    case 'l':
-                        tileBoard.tiles[i][j].isLantern=true;
-                        break;
-                    case 'g':
-                        // SPAWN GORF HERE LATER!!!
-                        break;
-                    case 'f':
-                        tileBoard.tiles[i][j].isFogSpawn=true;
-                        break;
-                    case 'x':
-                        tileBoard.tiles[i][j].hasFamiliar=true;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            // increment the counters
-            if (i<99) {i++;} else {i=0;}
-            if (i==0) {j++;}
-        }
 
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
+
 
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
@@ -406,6 +383,7 @@ public class GameController extends WorldController implements ContactListener {
 
         }
         fireflyController=new FireflyController(fireflyTexture,scale,tileBoard);
+        fireflyController.setFireflyAnimation(fireflyAnimation);
         Vector2[] familiarVectors= new Vector2[familiarPositions.size()];
         for(int k=0;k<familiarPositions.size();k++){
             familiarVectors[k]= new Vector2(familiarPositions.get(k).fx/scale.x,familiarPositions.get(k).fy/scale.y);
@@ -417,7 +395,7 @@ public class GameController extends WorldController implements ContactListener {
 
         this.ai = new AIController(monster, tileBoard, gorf, scale);
 
-         fog = new FogController(tileBoard, canvas, screenSize, 2.0f, scale);
+         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
     }
 
     private void createMonster(float x, float y) {
@@ -453,8 +431,8 @@ public class GameController extends WorldController implements ContactListener {
             l.setTexture(unlitTexture);
             l.toggleLantern();
         } else {
-            if (firefly_count >= 1) {
-                firefly_count = firefly_count - 1;
+            if (firefly_count >= 2) {
+                firefly_count = firefly_count - 2;
                 l.setTexture(litTexture);
                 l.toggleLantern();
             }
@@ -506,7 +484,6 @@ public class GameController extends WorldController implements ContactListener {
         boolean inFog=gorftile.isFog;
 
         if (inFog){
-//            System.out.println(fireflyDeathTimer);
             fireflyDeathTimer+=1;
             if(fireflyDeathTimer>fireflyDelay){
                 if(firefly_count!=0) {
@@ -536,17 +513,16 @@ public class GameController extends WorldController implements ContactListener {
 //        monster.applyForce();
 
         firefly_counter++;
-        if (firefly_counter==200) {
+        if (firefly_counter==150) {
             firefly_counter=0;
             fireflyController.spawn();
         }
 
         SoundController.getInstance().update();
-
         if(fireflyController.update(gorf)){
             firefly_count++;
         }
-
+        fireflyController.updateFireflyAnimation(true);
         /**
          for (Body b : scheduledForRemoval) {
          b.getWorld().destroyBody(b);
@@ -587,267 +563,58 @@ public class GameController extends WorldController implements ContactListener {
     public void draw(float dt) {
         canvas.clear();
 
-        // Draw background unscaled.
-//        canvas.begin();
-//        canvas.draw(backgroundTexture, Color.WHITE, 0, 0,canvas.getWidth()*2,canvas.getHeight()*2);
-//        canvas.end();
-
-//        fog.draw(canvas, firefly_count);
-
-
-
-//        fbo.begin();
-//        Gdx.gl.glClearColor(0, 0, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-//        cam.setToOrtho(false, fbo.getWidth(), fbo.getHeight());
-//        canvas.getSpriteBatch().setProjectionMatrix(cam.combined);
-
-//        fbo.begin();
-
-//        canvas.setWidth(fbo.getWidth());
-//        canvas.setHeight(fbo.getHeight());
-
-//        cam.setToOrtho(false, canvas.getWidth(), canvas.getHeight());
-//        canvas.getSpriteBatch().setProjectionMatrix(cam.combined);
-
-
-
-//        canvas.getSpriteBatch().setShader(null);    // this is causing fog shading to not wrap
-
         // Draw background on all sides and diagonals for wrap illusion
-
-        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(0, canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(0, -canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, -canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, 0));
-            canvas.end();
-        }
-
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, -canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, 0));
-            canvas.end();
-        }
-
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            canvas.resetCamera();
-            canvas.getSpriteBatch().setShader(null);
-            fbo.begin();
-            canvas.clear();
-            canvas.begin();
-            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-            for (Obstacle obj : objects) {
-                if (obj.isActive()) {
-                    obj.draw(canvas);
-                }
-            }
-            for (Firefly f : fireflyController.fireflies) {
-                if (f != null && !f.isDestroyed()) {
-                    f.getObject().draw(canvas);
-                }
-            }
-            canvas.end();
-            fbo.end();
-            canvas.setShader(fog.getShader());
-            fog.prepShader(firefly_count);
-            canvas.begin(gorf.getPosition());
-            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, canvas.getHeight() * 2));
-            canvas.end();
-        }
-
-
-        // main canvas
         canvas.resetCamera();
         canvas.getSpriteBatch().setShader(null);
-        Gdx.gl.glDisable(GL20.GL_SCISSOR_TEST);
+
+        // main canvas
         fbo.begin();
         canvas.clear();
         canvas.begin();
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
         //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
         }}
         canvas.end();
         fbo.end();
+
+
         canvas.setShader(fog.getShader());
+        canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
         fog.prepShader(firefly_count);
         canvas.begin(gorf.getPosition());
+        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(0, canvas.getHeight() * 2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, canvas.getHeight() * 2));
+        }
+        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(0, -canvas.getHeight() * 2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, -canvas.getHeight() * 2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(canvas.getWidth() * 2, 0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, -canvas.getHeight() * 2));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, 0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            fog.draw(canvas, fboRegion, new Vector2(-canvas.getWidth() * 2, canvas.getHeight() * 2));
+        }
         fog.draw(canvas, fboRegion, new Vector2(0, 0));
         canvas.end();
 
+        // UI
         canvas.resetCamera();
         canvas.getSpriteBatch().setShader(null);
+        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
         canvas.begin(gorf.getPosition());
 
         canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
@@ -855,7 +622,8 @@ public class GameController extends WorldController implements ContactListener {
         canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);
 
         canvas.end();
-        
+
+
         canvas.begin();
         if (familiars.collectAll) {
             if (countdown > 0) {
