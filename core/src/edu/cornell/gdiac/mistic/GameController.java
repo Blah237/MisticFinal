@@ -70,7 +70,7 @@ public class GameController extends WorldController implements ContactListener {
     private static final String FIREFLY_ANIMATE="mistic/firefly-sprite.png";
 
     /** Texture refrences for the HUD**/
-    private static final String HUD_WINDOW_TEXTURE = "mistic/HUD_window.png";
+    private static final String HUD_WINDOW_TEXTURE = "mistic/hud_window.png";
     private static final String HUD_WHITE_FIREFLY_TEXTURE = "mistic/white_firefly.png";
     private static final String HUD_WHITE_NUMBER_X = "mistic/numbers_white/numbers_x.png";
     private static final String HUD_WHITE_NUMBER_0 = "mistic/numbers_white/numbers_0.png";

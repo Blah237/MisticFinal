@@ -1,5 +1,7 @@
+/*
 package edu.cornell.gdiac.mistic;
-
+*/
+/**
 import com.badlogic.gdx.ai.steer.Steerable;
 import com.badlogic.gdx.ai.steer.SteeringAcceleration;
 import com.badlogic.gdx.ai.steer.SteeringBehavior;
@@ -8,17 +10,24 @@ import com.badlogic.gdx.ai.tests.steer.box2d.Box2dSteeringUtils;
 import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.Vector2;
 
-/**
+
  * Created by Nathaniel on 4/1/17.
- */
+ *//*
+
 public class SteeringAgent implements Steerable<Vector2> {
 
     private enum FSMState {
-        /** The monster just spawned */
+        */
+/** The monster just spawned *//*
+
         SPAWN,
-        /** The monster is patrolling around without a target */
+        */
+/** The monster is patrolling around without a target *//*
+
         WANDER,
-        /** The ship has a target*/
+        */
+/** The ship has a target*//*
+
         CHASE,
     }
 
@@ -49,7 +58,9 @@ public class SteeringAgent implements Steerable<Vector2> {
 
         return character.vectorToAngle(character.getLinearVelocity());
     }
-    /* Here you should implement missing methods inherited from Steerable */
+    */
+/* Here you should implement missing methods inherited from Steerable *//*
+
 
 
     public void update (float delta) {
@@ -57,7 +68,8 @@ public class SteeringAgent implements Steerable<Vector2> {
             // Calculate steering acceleration
             steeringBehavior.calculateSteering(steeringOutput);
 
-            /*
+            */
+/*
              * Here you might want to add a motor control layer filtering steering accelerations.
              *
              * For instance, a car in a driving game has physical constraints on its movement:
@@ -65,7 +77,8 @@ public class SteeringAgent implements Steerable<Vector2> {
              * - the faster it moves, the slower it can turn (without going into a skid)
              * - it can brake much more quickly than it can accelerate
              * - it only moves in the direction it is facing (ignoring power slides)
-             */
+             *//*
+
 
             // Apply steering acceleration to move this agent
             applySteering(steeringOutput, delta);
@@ -208,3 +221,4 @@ public class SteeringAgent implements Steerable<Vector2> {
         return boundingRadius;
     }
 }
+*/
