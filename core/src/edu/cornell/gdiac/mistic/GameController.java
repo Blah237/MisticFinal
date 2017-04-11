@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.*;
+import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.util.*;
 
 import edu.cornell.gdiac.InputController;
@@ -315,47 +316,9 @@ public class GameController extends WorldController implements ContactListener {
         populateLevel();
         countdown=120;
 
-        fbo1 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
-        fboRegion1 = new TextureRegion(fbo1.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
-        fboRegion1.flip(false, true);
-
-        fbo2 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
-        fboRegion2 = new TextureRegion(fbo2.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
-        fboRegion2.flip(false, true);
-
-        fbo3 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
-        fboRegion3 = new TextureRegion(fbo3.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
-        fboRegion3.flip(false, true);
-
-        fbo4 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
-        fboRegion4 = new TextureRegion(fbo4.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
-        fboRegion4.flip(false, true);
-
-        fbo5 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
-        fboRegion5 = new TextureRegion(fbo5.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
-        fboRegion5.flip(false, true);
-
-        fbo6 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
-        fboRegion6 = new TextureRegion(fbo6.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
-        fboRegion6.flip(false, true);
-
-        fbo7 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
-        fboRegion7 = new TextureRegion(fbo7.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
-        fboRegion7.flip(false, true);
-
-        fbo8 = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
-        fboRegion8 = new TextureRegion(fbo8.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
-        fboRegion8.flip(false, true);
-
-        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2), false);
-        fboRegion = new TextureRegion(fbo.getColorBufferTexture(), (int)(Gdx.graphics.getWidth()*2), (int)(Gdx.graphics.getHeight()*2));
+        fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2, false);
+        fboRegion = new TextureRegion(fbo.getColorBufferTexture(), Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
         fboRegion.flip(false, true);
-
-
-        cam = new OrthographicCamera(Gdx.graphics.getWidth(),
-                Gdx.graphics.getHeight());
-        cam.setToOrtho(false);
-
     }
 
     private void populateLevel() {
@@ -660,6 +623,7 @@ public class GameController extends WorldController implements ContactListener {
 
 
         canvas.setShader(fog.getShader());
+        canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
         fog.prepShader(firefly_count);
         canvas.begin(gorf.getPosition());
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
@@ -689,9 +653,9 @@ public class GameController extends WorldController implements ContactListener {
         fog.draw(canvas, fboRegion, new Vector2(0, 0));
         canvas.end();
 
-
         canvas.resetCamera();
         canvas.getSpriteBatch().setShader(null);
+        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
         canvas.begin(gorf.getPosition());
 
         canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
