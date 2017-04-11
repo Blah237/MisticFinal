@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.*;
+import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.util.*;
 
 import edu.cornell.gdiac.InputController;
@@ -87,10 +88,9 @@ public class GameController extends WorldController implements ContactListener {
 
     /** Track asset loading from all instances and subclasses */
     private AssetState rocketAssetState = AssetState.EMPTY;
-    /** The reader to process JSON files */
-    private JsonReader jsonReader;
-    /** The JSON defining the level model */
-    private JsonValue levelFormat;
+
+    Rectangle screenSize;
+
 
     /**
      * Preloads the assets for this controller.
@@ -106,6 +106,7 @@ public class GameController extends WorldController implements ContactListener {
         if (rocketAssetState != AssetState.EMPTY) {
             return;
         }
+
 
         rocketAssetState = AssetState.LOADING;
 
@@ -135,8 +136,7 @@ public class GameController extends WorldController implements ContactListener {
 
         manager.load(FIREFLY_ANIMATE,Texture.class);
         assets.add(FIREFLY_ANIMATE);
-        //Json Reader
-        jsonReader = new JsonReader();
+
 
         //mist wall textures
         for(String m : MIST_WALLS){
@@ -173,7 +173,7 @@ public class GameController extends WorldController implements ContactListener {
      *
      * @param manager Reference to global asset manager.
      */
-    public void loadContent(AssetManager manager) {
+    public void loadContent(AssetManager manager, GameCanvas canvas) {
         if (rocketAssetState != AssetState.LOADING) {
             return;
         }
@@ -200,8 +200,10 @@ public class GameController extends WorldController implements ContactListener {
         }
         SoundController sounds = SoundController.getInstance();
 
-        super.loadContent(manager);
+        super.loadContent(manager, canvas);
+        tileBoard=super.gettileBoard();
         rocketAssetState = AssetState.COMPLETE;
+
     }
 
     // Physics constants for initialization
@@ -240,10 +242,7 @@ public class GameController extends WorldController implements ContactListener {
     public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
     private Familiar familiars;
 
-
     private FogController fog;
-    private boolean[][] board;
-    private boolean[][] fogBoard;
     private float BW = DEFAULT_WIDTH;
     private float BH = DEFAULT_HEIGHT;
     private int UNITS_W = (int)(BW*3);
@@ -366,7 +365,6 @@ public class GameController extends WorldController implements ContactListener {
     private void populateLevel() {
         // Set the path for the level json HERE
         // NOTE: Tiled_Demo's 1-3 will NOT COMPILE
-        levelFormat = jsonReader.parse(Gdx.files.internal("jsons/Tiled_Demo_4.json"));
 
         /**
          * Create Gorf
@@ -388,54 +386,11 @@ public class GameController extends WorldController implements ContactListener {
         float h = 12;
         //createMonster(w, h);
 
-        // get every texture's group id in the json and map it to it's actual object's name
-        HashMap<Integer,Character> textureIDs = new HashMap<Integer,Character>();
-        JsonValue tilesets = levelFormat.get("tilesets").child();
-        while (tilesets!=null) {
-            textureIDs.put(tilesets.get("firstgid").asInt(),tilesets.get("name").asChar());
-            tilesets = tilesets.next();
-        }
 
-        // initialize BoardModel
-        Rectangle screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
-        this.tileBoard = new BoardModel(levelFormat.get("width").asInt(), levelFormat.get("height").asInt(), screenSize);
-
-        // get json data as array
-        int[] maze = levelFormat.get("layers").get(1).get("data").asIntArray();
-
-        // for loop for adding info from json data array to the board model
-        int i = 0; int j = 0;
-        for (int t : maze) {
-            if (t!=0&&textureIDs.containsKey(t)) {
-                Character c = textureIDs.get(t);
-                switch (c) {
-                    case 'w':
-                        tileBoard.tiles[i][j].isWall=true;
-                        break;
-                    case 'l':
-                        tileBoard.tiles[i][j].isLantern=true;
-                        break;
-                    case 'g':
-                        // SPAWN GORF HERE LATER!!!
-                        break;
-                    case 'f':
-                        tileBoard.tiles[i][j].isFogSpawn=true;
-                        break;
-                    case 'x':
-                        tileBoard.tiles[i][j].hasFamiliar=true;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            // increment the counters
-            if (i<99) {i++;} else {i=0;}
-            if (i==0) {j++;}
-        }
 
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
+
 
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
@@ -478,7 +433,7 @@ public class GameController extends WorldController implements ContactListener {
 
         this.ai = new AIController(monster, tileBoard, gorf, scale);
 
-         fog = new FogController(tileBoard, canvas, screenSize, 2.0f, scale);
+         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
     }
 
     private void createMonster(float x, float y) {
@@ -602,7 +557,6 @@ public class GameController extends WorldController implements ContactListener {
         }
 
         SoundController.getInstance().update();
-
         if(fireflyController.update(gorf)){
             firefly_count++;
         }
@@ -732,6 +686,7 @@ public class GameController extends WorldController implements ContactListener {
         canvas.end();
 
 
+        //UI
         canvas.resetCamera();
         canvas.getSpriteBatch().setShader(null);
         canvas.begin(gorf.getPosition());
@@ -741,7 +696,8 @@ public class GameController extends WorldController implements ContactListener {
         canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);
 
         canvas.end();
-        
+
+
         canvas.begin();
         if (familiars.collectAll) {
             if (countdown > 0) {
