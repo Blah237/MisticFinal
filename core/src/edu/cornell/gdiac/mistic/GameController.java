@@ -51,7 +51,12 @@ public class GameController extends WorldController implements ContactListener {
             "mistic/mistblock/mistblock5.png", "mistic/mistblock/mistblock6.png", "mistic/mistblock/mistblock7.png",
             "mistic/mistblock/mistblock8.png", "mistic/mistblock/mistblock9.png", "mistic/mistblock/mistblock10.png",
             "mistic/mistblock/mistblock11.png", "mistic/mistblock/mistblock12.png", "mistic/mistblock/mistblock13.png",
-            "mistic/mistblock/mistblock14.png","mistic/mistblock/mistblock15.png", "mistic/mistblock/mistblock16.png"};
+            "mistic/mistblock/mistblock14.png","mistic/mistblock/mistblock15.png", "mistic/mistblock/mistblock16.png",
+            "mistic/mistblock/mistblock17.png","mistic/mistblock/mistblock18.png", "mistic/mistblock/mistblock19.png",
+            "mistic/mistblock/mistblock20.png","mistic/mistblock/mistblock21.png", "mistic/mistblock/mistblock22.png",
+            "mistic/mistblock/mistblock23.png","mistic/mistblock/mistblock24.png", "mistic/mistblock/mistblock25.png",
+            "mistic/mistblock/mistblock26.png","mistic/mistblock/mistblock27.png", "mistic/mistblock/mistblock28.png",
+            "mistic/mistblock/mistblock29.png","mistic/mistblock/mistblock30.png"};
 
     private static final String[] FAMILIARS={
             "mistic/familiars/cat.png","mistic/familiars/chicken.png","mistic/familiars/hedgehog.png",
@@ -657,7 +662,6 @@ public class GameController extends WorldController implements ContactListener {
         }}
         canvas.end();
         fbo.end();
-
 
 
         canvas.setShader(fog.getShader());
