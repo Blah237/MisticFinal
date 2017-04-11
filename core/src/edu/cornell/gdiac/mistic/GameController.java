@@ -317,9 +317,12 @@ public class GameController extends WorldController implements ContactListener {
     private int countdown = 120;
     FireflyController fireflyController;
 
+    ArrayList<Obstacle> edgewalls = new ArrayList<Obstacle>();
     //HUD Stuff
     int pawTimer = 60;
     boolean pawTimerStart = false;
+
+
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
@@ -474,6 +477,9 @@ public class GameController extends WorldController implements ContactListener {
                     po.setDrawScale(scale);
                     po.setTexture(mistwall);
                     addObject(po);
+                    if(t.x==0 || t.y==0){
+                        edgewalls.add(po);
+                    }
                 }
                 if (t.hasFamiliar) {
                     familiarPositions.add(t);
@@ -526,7 +532,7 @@ public class GameController extends WorldController implements ContactListener {
 
     void toggle(Lantern l) {
         if (l.lit) {
-            firefly_count++;
+            firefly_count+=2;
             l.setTexture(unlitTexture);
             l.toggleLantern();
         } else {
