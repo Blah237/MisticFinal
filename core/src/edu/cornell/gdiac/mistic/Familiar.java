@@ -24,6 +24,7 @@ public class Familiar {
     private Vector2[] posList;
     private int NUM_FAM;
     public boolean collectAll;
+    public boolean one_collected;
 
 
 
@@ -91,6 +92,9 @@ public class Familiar {
 
     public float getY(){
         return this.position.y;
+    }
+
+    public int getNumFam() { return NUM_FAM;
     }
 
     public TextureRegion getTexture(){return this.texList[NUM_FAM];}

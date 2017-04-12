@@ -69,9 +69,25 @@ public class GameController extends WorldController implements ContactListener {
     private static final String UNLIT_LANTERN = "mistic/unlit.png";
     private static final String FIREFLY_ANIMATE="mistic/firefly-sprite.png";
 
+    /** Texture refrences for the HUD**/
+    private static final String HUD_WINDOW_TEXTURE = "mistic/hud_window.png";
+    private static final String HUD_WHITE_FIREFLY_TEXTURE = "mistic/white_firefly.png";
+    private static final String HUD_WHITE_NUMBER_X = "mistic/numbers_white/numbers_x.png";
+    private static final String HUD_WHITE_NUMBER_0 = "mistic/numbers_white/numbers_0.png";
+    private static final String HUD_WHITE_NUMBER_1 = "mistic/numbers_white/numbers_1.png";
+    private static final String HUD_WHITE_NUMBER_2 = "mistic/numbers_white/numbers_2.png";
+    private static final String HUD_WHITE_NUMBER_3 = "mistic/numbers_white/numbers_3.png";
+    private static final String HUD_WHITE_NUMBER_4 = "mistic/numbers_white/numbers_4.png";
+    private static final String HUD_WHITE_NUMBER_5 = "mistic/numbers_white/numbers_5.png";
+    private static final String HUD_WHITE_NUMBER_6 = "mistic/numbers_white/numbers_6.png";
+    private static final String HUD_WHITE_NUMBER_7 = "mistic/numbers_white/numbers_7.png";
+    private static final String HUD_WHITE_NUMBER_8 = "mistic/numbers_white/numbers_8.png";
+    private static final String HUD_WHITE_NUMBER_9 = "mistic/numbers_white/numbers_9.png";
+    private static final String HUD_WHITE_NUMBER_SLASH = "mistic/numbers_white/numbers_slash.png";
+    private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
 
     private FilmStrip fireflyAnimation;
-
+    private FilmStrip pawAnimation;
 
     /** Texture assets for the rocket */
     private TextureRegion gorfTexture;
@@ -85,6 +101,22 @@ public class GameController extends WorldController implements ContactListener {
     /** Texture assets for the crates */
     private TextureRegion litTexture;
     private TextureRegion unlitTexture;
+
+    /** Texture assets for HUD **/
+    private TextureRegion HUDWindow;
+    private TextureRegion HUDWhiteFirefly;
+    private TextureRegion HUDWhiteNumber_x;
+    private TextureRegion HUDWhiteNumber_0;
+    private TextureRegion HUDWhiteNumber_1;
+    private TextureRegion HUDWhiteNumber_2;
+    private TextureRegion HUDWhiteNumber_3;
+    private TextureRegion HUDWhiteNumber_4;
+    private TextureRegion HUDWhiteNumber_5;
+    private TextureRegion HUDWhiteNumber_6;
+    private TextureRegion HUDWhiteNumber_7;
+    private TextureRegion HUDWhiteNumber_8;
+    private TextureRegion HUDWhiteNumber_9;
+    private TextureRegion HUDWhiteNumber_slash;
 
     /** Track asset loading from all instances and subclasses */
     private AssetState rocketAssetState = AssetState.EMPTY;
@@ -137,6 +169,51 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(FIREFLY_ANIMATE,Texture.class);
         assets.add(FIREFLY_ANIMATE);
 
+        //HUD textures
+        manager.load(HUD_WINDOW_TEXTURE,Texture.class);
+        assets.add(HUD_WINDOW_TEXTURE);
+
+        manager.load(HUD_WHITE_FIREFLY_TEXTURE, Texture.class);
+        assets.add(HUD_WHITE_FIREFLY_TEXTURE);
+
+        manager.load(HUD_WHITE_NUMBER_0, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_0);
+
+        manager.load(HUD_WHITE_NUMBER_1, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_1);
+
+        manager.load(HUD_WHITE_NUMBER_2, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_2);
+
+        manager.load(HUD_WHITE_NUMBER_3, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_3);
+
+        manager.load(HUD_WHITE_NUMBER_4, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_4);
+
+        manager.load(HUD_WHITE_NUMBER_5, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_5);
+
+        manager.load(HUD_WHITE_NUMBER_6, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_6);
+
+        manager.load(HUD_WHITE_NUMBER_7, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_7);
+
+        manager.load(HUD_WHITE_NUMBER_8, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_8);
+
+        manager.load(HUD_WHITE_NUMBER_9, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_9);
+
+        manager.load(HUD_WHITE_NUMBER_X, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_X);
+
+        manager.load(HUD_WHITE_NUMBER_SLASH, Texture.class);
+        assets.add(HUD_WHITE_NUMBER_SLASH);
+
+        manager.load(HUD_PAW_ANIMATE, Texture.class);
+        assets.add(HUD_PAW_ANIMATE);
 
         //mist wall textures
         for(String m : MIST_WALLS){
@@ -190,6 +267,24 @@ public class GameController extends WorldController implements ContactListener {
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
 
+        HUDWindow = createTexture(manager, HUD_WINDOW_TEXTURE, false);
+        HUDWhiteFirefly = createTexture(manager, HUD_WHITE_FIREFLY_TEXTURE, false);
+        HUDWhiteNumber_0 = createTexture(manager, HUD_WHITE_NUMBER_0, false);
+        HUDWhiteNumber_1 = createTexture(manager, HUD_WHITE_NUMBER_1, false);
+        HUDWhiteNumber_2 = createTexture(manager, HUD_WHITE_NUMBER_2, false);
+        HUDWhiteNumber_3 = createTexture(manager, HUD_WHITE_NUMBER_3, false);
+        HUDWhiteNumber_4 = createTexture(manager, HUD_WHITE_NUMBER_4, false);
+        HUDWhiteNumber_5 = createTexture(manager, HUD_WHITE_NUMBER_5, false);
+        HUDWhiteNumber_6 = createTexture(manager, HUD_WHITE_NUMBER_6, false);
+        HUDWhiteNumber_7 = createTexture(manager, HUD_WHITE_NUMBER_7, false);
+        HUDWhiteNumber_8 = createTexture(manager, HUD_WHITE_NUMBER_8, false);
+        HUDWhiteNumber_9 = createTexture(manager, HUD_WHITE_NUMBER_9, false);
+        HUDWhiteNumber_x = createTexture(manager, HUD_WHITE_NUMBER_X, false);
+        HUDWhiteNumber_slash = createTexture(manager, HUD_WHITE_NUMBER_SLASH, false);
+        pawAnimation = createFilmStrip(manager, HUD_PAW_ANIMATE, 1, 2, 2);
+
+
+
         fireflyAnimation=createFilmStrip(manager, FIREFLY_ANIMATE, 1, Firefly.FRAMES,Firefly.FRAMES);
 
         for(int i=0;i<MIST_WALLS.length;i++){
@@ -221,6 +316,13 @@ public class GameController extends WorldController implements ContactListener {
     private static final float SOUND_THRESHOLD = 1.0f;
     private int countdown = 120;
     FireflyController fireflyController;
+
+    ArrayList<Obstacle> edgewalls = new ArrayList<Obstacle>();
+    //HUD Stuff
+    int pawTimer = 60;
+    boolean pawTimerStart = false;
+
+
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
@@ -258,24 +360,6 @@ public class GameController extends WorldController implements ContactListener {
 
     private FrameBuffer fbo;
     private TextureRegion fboRegion;
-    private FrameBuffer fbo1;
-    private TextureRegion fboRegion1;
-    private FrameBuffer fbo2;
-    private TextureRegion fboRegion2;
-    private FrameBuffer fbo3;
-    private TextureRegion fboRegion3;
-    private FrameBuffer fbo4;
-    private TextureRegion fboRegion4;
-    private FrameBuffer fbo5;
-    private TextureRegion fboRegion5;
-    private FrameBuffer fbo6;
-    private TextureRegion fboRegion6;
-    private FrameBuffer fbo7;
-    private TextureRegion fboRegion7;
-    private FrameBuffer fbo8;
-    private TextureRegion fboRegion8;
-
-    OrthographicCamera cam;
 
 
 
@@ -375,6 +459,9 @@ public class GameController extends WorldController implements ContactListener {
                     po.setDrawScale(scale);
                     po.setTexture(mistwall);
                     addObject(po);
+                    if(t.x==0 || t.y==0){
+                        edgewalls.add(po);
+                    }
                 }
                 if (t.hasFamiliar) {
                     familiarPositions.add(t);
@@ -427,7 +514,7 @@ public class GameController extends WorldController implements ContactListener {
 
     void toggle(Lantern l) {
         if (l.lit) {
-            firefly_count++;
+            firefly_count+=2;
             l.setTexture(unlitTexture);
             l.toggleLantern();
         } else {
@@ -476,11 +563,26 @@ public class GameController extends WorldController implements ContactListener {
             }
         }
 
+        int f = familiars.getNumFam();
         familiars.update(gorf);
+        int f2 = familiars.getNumFam();
+        if (f2 > f) {
+            pawAnimation.setFrame(1);
+            pawTimerStart = true;
+        }
+
+        if (pawTimerStart == true) {
+            pawTimer = pawTimer - 1;
+            if (pawTimer == 0) {
+                pawAnimation.setFrame(0);
+                pawTimer = 60;
+                pawTimerStart = false;
+            }
+        }
 
         float Gorfx= gorf.getPosition().x * scale.x;
         float Gorfy= gorf.getPosition().y * scale.y;
-        BoardModel.Tile gorftile= tileBoard.tiles[tileBoard.screenToBoardX(Gorfx)][tileBoard.screenToBoardY(Gorfy)];
+        BoardModel.Tile gorftile= tileBoard.tiles[tileBoard.screenToBoardX(Gorfx)][tileBoard.screenToBoardY(Gorfy)];        // NOTE: got an ArrayIndexOutOfBoundsException at some obscure tile?
         boolean inFog=gorftile.isFog;
 
         if (inFog){
@@ -625,10 +727,109 @@ public class GameController extends WorldController implements ContactListener {
         canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
         canvas.begin(gorf.getPosition());
 
-        canvas.draw(fireflyTrack,gorf.getPosition().x * scale.x,gorf.getPosition().y * scale.y);
-        displayFont.setColor(Color.WHITE);
-        canvas.drawText(Integer.toString(firefly_count),displayFont,(gorf.getPosition().x * scale.x)+50.0f,gorf.getPosition().y*scale.y + 40.0f);
 
+        displayFont.setColor(Color.WHITE);
+        canvas.draw(HUDWindow, gorf.getPosition().x * scale.x + 85.0f, gorf.getPosition().y * scale.y + 105.0f);
+        canvas.draw(HUDWhiteFirefly, gorf.getPosition().x * scale.x + 117.0f, gorf.getPosition().y * scale.y + 122.0f);
+        canvas.draw(HUDWhiteNumber_x, gorf.getPosition().x * scale.x + 150.0f, gorf.getPosition().y * scale.y + 129.0f);
+        canvas.draw(pawAnimation, gorf.getPosition().x * scale.x + 200.0f, gorf.getPosition().y * scale.y + 125.0f);
+        canvas.draw(HUDWhiteNumber_x, gorf.getPosition().x * scale.x + 233.0f, gorf.getPosition().y * scale.y + 129.0f);
+
+
+        if (firefly_count / 10.0 < 1) {
+
+            switch (firefly_count) {
+                case 0: canvas.draw(HUDWhiteNumber_0, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 1: canvas.draw(HUDWhiteNumber_1, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 2: canvas.draw(HUDWhiteNumber_2, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 3: canvas.draw(HUDWhiteNumber_3, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 4: canvas.draw(HUDWhiteNumber_4, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 5: canvas.draw(HUDWhiteNumber_5, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 6: canvas.draw(HUDWhiteNumber_6, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 7: canvas.draw(HUDWhiteNumber_7, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 8: canvas.draw(HUDWhiteNumber_8, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 9: canvas.draw(HUDWhiteNumber_9, gorf.getPosition().x * scale.x + 162.0f, gorf.getPosition().y * scale.y + 127.0f);
+            }
+        } else {
+            int tensplace = firefly_count/10;
+            int onesplace = firefly_count % 10;
+
+            switch (tensplace) {
+                case 1: canvas.draw(HUDWhiteNumber_1, gorf.getPosition().x * scale.x + 161.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 2: canvas.draw(HUDWhiteNumber_2, gorf.getPosition().x * scale.x + 161.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 3: canvas.draw(HUDWhiteNumber_3, gorf.getPosition().x * scale.x + 161.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 4: canvas.draw(HUDWhiteNumber_4, gorf.getPosition().x * scale.x + 161.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 5: canvas.draw(HUDWhiteNumber_5, gorf.getPosition().x * scale.x + 161.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 6: canvas.draw(HUDWhiteNumber_6, gorf.getPosition().x * scale.x + 161.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 7: canvas.draw(HUDWhiteNumber_7, gorf.getPosition().x * scale.x + 161.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 8: canvas.draw(HUDWhiteNumber_8, gorf.getPosition().x * scale.x + 161.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 9: canvas.draw(HUDWhiteNumber_9, gorf.getPosition().x * scale.x + 161.0f, gorf.getPosition().y * scale.y + 126.0f);
+            }
+
+            switch (onesplace) {
+                case 1: canvas.draw(HUDWhiteNumber_1, gorf.getPosition().x * scale.x + 172.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 2: canvas.draw(HUDWhiteNumber_2, gorf.getPosition().x * scale.x + 172.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 3: canvas.draw(HUDWhiteNumber_3, gorf.getPosition().x * scale.x + 172.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 4: canvas.draw(HUDWhiteNumber_4, gorf.getPosition().x * scale.x + 172.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 5: canvas.draw(HUDWhiteNumber_5, gorf.getPosition().x * scale.x + 172.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 6: canvas.draw(HUDWhiteNumber_6, gorf.getPosition().x * scale.x + 172.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 7: canvas.draw(HUDWhiteNumber_7, gorf.getPosition().x * scale.x + 172.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 8: canvas.draw(HUDWhiteNumber_8, gorf.getPosition().x * scale.x + 172.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+                case 9: canvas.draw(HUDWhiteNumber_9, gorf.getPosition().x * scale.x + 172.0f, gorf.getPosition().y * scale.y + 126.0f);
+                    break;
+            }
+        }
+
+        if (familiars.getNumFam() / 10.0 < 1) {
+
+            switch (familiars.getNumFam()) {
+                case 0: canvas.draw(HUDWhiteNumber_0, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 1: canvas.draw(HUDWhiteNumber_1, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 2: canvas.draw(HUDWhiteNumber_2, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 3: canvas.draw(HUDWhiteNumber_3, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 4: canvas.draw(HUDWhiteNumber_4, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 5: canvas.draw(HUDWhiteNumber_5, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 6: canvas.draw(HUDWhiteNumber_6, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 7: canvas.draw(HUDWhiteNumber_7, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 8: canvas.draw(HUDWhiteNumber_8, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+                case 9: canvas.draw(HUDWhiteNumber_9, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                    break;
+            }
+        }
         canvas.end();
 
 
@@ -637,7 +838,7 @@ public class GameController extends WorldController implements ContactListener {
             if (countdown > 0) {
                 String vic = "Victory!";
                 displayFont.setColor(Color.PURPLE);
-                canvas.drawText(vic, displayFont, canvas.getWidth(), canvas.getHeight()/2);
+                canvas.drawText(vic, displayFont, gorf.getPosition().x, gorf.getPosition().y);
                 countdown --;
             } else if (countdown==0) {
                 this.setComplete(true);
@@ -648,7 +849,7 @@ public class GameController extends WorldController implements ContactListener {
             if (countdown > 0) {
                 String vic = "Game Over!";
                 displayFont.setColor(Color.PURPLE);
-                canvas.drawText(vic, displayFont, canvas.getWidth()/4, canvas.getHeight()/2);
+                canvas.drawText(vic, displayFont, gorf.getPosition().x, gorf.getPosition().y);
                 countdown --;
             } else if (countdown==0) {
                 DEAD = false;
