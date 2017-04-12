@@ -19,17 +19,20 @@ import edu.cornell.gdiac.util.ScreenListener;
 public class MenuController extends WorldController implements Screen {
     private static final String BACKGROUND = "mistic/spritesheet_menu.png";
     private FilmStrip menu;
-
+    private static final String FIREFLY = "mistic/spritesheet_firefly_menu.png";
+    private FilmStrip firefly;
 
     private int inputTimer = 10;
     private boolean timerGo = false;
 
+    private int firflyAnimateTimer = 10;
+
     private AssetState menuAssetState = AssetState.EMPTY;
     private ScreenListener listener;
 
-    public static int EXIT_TO_PLAY = 100;
-    public static int EXIT_TO_LEVEL_SELECT = 101;
-    public static int EXIT_TO_OPTIONS = 102;
+    public static final int EXIT_TO_PLAY = 100;
+    public static final int EXIT_TO_LEVEL_SELECT = 101;
+    public static final int EXIT_TO_OPTIONS = 102;
 
     public void preLoadContent(AssetManager manager) {
         if (menuAssetState != AssetState.EMPTY) {
@@ -42,6 +45,9 @@ public class MenuController extends WorldController implements Screen {
         manager.load(BACKGROUND, Texture.class);
         assets.add(BACKGROUND);
 
+        manager.load(FIREFLY, Texture.class);
+        assets.add(FIREFLY);
+
         super.preLoadContent(manager);
     }
 
@@ -51,6 +57,7 @@ public class MenuController extends WorldController implements Screen {
         }
 
         menu = createFilmStrip(manager, BACKGROUND, 2, 2, 3);
+        firefly = createFilmStrip(manager, FIREFLY, 1, 15, 15);
 
     }
 
@@ -95,6 +102,10 @@ public class MenuController extends WorldController implements Screen {
                 menu.setFrame(2);
             }
         }
+        firflyAnimateTimer--;
+        if (firflyAnimateTimer == 0) {
+            firflyAnimateTimer = 10;
+        }
 
     }
 @Override
@@ -112,10 +123,26 @@ public void render(float dt) {
 
 
     public void draw(float dt) {
-            canvas.clear();
-            canvas.resetCamera();
-            canvas.begin();
-            canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
+        canvas.clear();
+        canvas.resetCamera();
+        canvas.begin();
+        canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
+            switch (menu.getFrame()) {
+                case 0: canvas.draw(firefly, canvas.getWidth() / 2.0f - 270.0f, canvas.getHeight() / 2.0f + 140.0f);
+                    break;
+                case 1: canvas.draw(firefly, canvas.getWidth() / 2.0f - 270.0f, canvas.getHeight() / 2.0f + 15.0f);
+                    break;
+                case 2: canvas.draw(firefly, canvas.getWidth() / 2.0f - 270.0f, canvas.getHeight() / 2.0f - 110.0f);
+                    break;
+            }
+            if (firflyAnimateTimer == 1) {
+                if (firefly.getFrame() != firefly.getSize() - 1) {
+                    firefly.setFrame(firefly.getFrame() + 1);
+                } else {
+                    firefly.setFrame(0);
+                }
+            }
+
             canvas.end();
 
     }

@@ -70,8 +70,8 @@ public class AIControllerS {
         int tileX = board.screenToBoardX(monsterPos.x * 8.0f);
         int tileY = board.screenToBoardY(monsterPos.y * 8.0f);
         if (board.isFog(tileX, tileY) || board.isFogSpawn(tileX, tileY)) {
-            monster.setFX(steering.linear.x * 5.0f);
-            monster.setFY(steering.linear.y * 5.0f);
+            monster.setFX(steering.linear.x * 6.0f);
+            monster.setFY(steering.linear.y * 6.0f);
             monster.applyForce();
         }
 

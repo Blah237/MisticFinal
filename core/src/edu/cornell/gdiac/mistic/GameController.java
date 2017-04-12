@@ -467,9 +467,9 @@ public class GameController extends WorldController implements ContactListener {
         for (int x = 0; x < tileBoard.getWidth(); x++) {
             for (int y = 0; y < tileBoard.getWidth(); y++) {
                 if (tileBoard.isFogSpawn(x, y)) {
-                    System.out.print("yay");
                     BoardModel.Tile the_tile = tileBoard.getTile(x + 2,y);
                     createMonster(tileBoard.getTileCenterX(the_tile) / scale.x, tileBoard.getTileCenterY(the_tile) / scale.y);
+                    break;
                 }
             }
         }
