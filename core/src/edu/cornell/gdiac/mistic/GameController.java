@@ -9,6 +9,7 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.assets.*;
+import com.badlogic.gdx.audio.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.*;
@@ -86,6 +87,11 @@ public class GameController extends WorldController implements ContactListener {
     private static final String HUD_WHITE_NUMBER_SLASH = "mistic/numbers_white/numbers_slash.png";
     private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
 
+    // The SoundController, Music and sfx
+    SoundController sounds = SoundController.getInstance();
+    private static final String A_PEACE_SONG = "sounds/A_Peace_DEMO2.mp3";
+    private static final String B_MARSH_SONG = "sounds/B_Marsh_DEMO2.mp3";
+
     private FilmStrip fireflyAnimation;
     private FilmStrip pawAnimation;
 
@@ -138,7 +144,6 @@ public class GameController extends WorldController implements ContactListener {
         if (rocketAssetState != AssetState.EMPTY) {
             return;
         }
-
 
         rocketAssetState = AssetState.LOADING;
 
@@ -226,6 +231,12 @@ public class GameController extends WorldController implements ContactListener {
             assets.add(f);
         }
 
+        //music files
+        manager.load(A_PEACE_SONG, Sound.class);
+        assets.add(A_PEACE_SONG);
+        manager.load(B_MARSH_SONG, Sound.class);
+        assets.add(B_MARSH_SONG);
+
         /**
          // An Example of loading sounds
          manager.load(MAIN_FIRE_SOUND, Sound.class);
@@ -293,12 +304,14 @@ public class GameController extends WorldController implements ContactListener {
         for(int i=0;i<FAMILIARS.length;i++){
             familiarTex[i]= createTexture(manager,FAMILIARS[i], false);
         }
-        SoundController sounds = SoundController.getInstance();
+
+        // allocate sounds
+        sounds.allocate(manager,A_PEACE_SONG);
+        sounds.allocate(manager,B_MARSH_SONG);
 
         super.loadContent(manager, canvas);
         tileBoard=super.gettileBoard();
         rocketAssetState = AssetState.COMPLETE;
-
     }
 
     // Physics constants for initialization
@@ -406,12 +419,15 @@ public class GameController extends WorldController implements ContactListener {
         fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2, false);
         fboRegion = new TextureRegion(fbo.getColorBufferTexture(), Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
         fboRegion.flip(false, true);
+
+        // Stop all existing instances, and then re-play
+        //if (sounds.isActive("A")) {sounds.stop("A");}
+        sounds.stop("B");
+        sounds.play("A",A_PEACE_SONG,false);
+        sounds.play("B",B_MARSH_SONG,true);
     }
 
     private void populateLevel() {
-        // Set the path for the level json HERE
-        // NOTE: Tiled_Demo's 1-3 will NOT COMPILE
-
         /**
          * Create Gorf
          */
