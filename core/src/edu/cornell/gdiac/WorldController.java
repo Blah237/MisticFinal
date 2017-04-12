@@ -750,5 +750,4 @@ public abstract class WorldController implements Screen {
 	public void setScreenListener(ScreenListener listener) {
 		this.listener = listener;
 	}
-
 }

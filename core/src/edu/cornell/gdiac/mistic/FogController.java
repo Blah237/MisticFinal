@@ -45,7 +45,7 @@ public class FogController {
 	Vector2 fogOrigin;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 5;
+	private final int FOG_DELAY = 1;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -93,22 +93,25 @@ public class FogController {
 	Texture boundaryFog;
 
 	IntArray boundaryTiles;
+	IntArray boundaryTilesCam;
+	float[] boundaryTilesCamA;
 	Array<Vector2> boundaryPos;
+	float[][] boundaryFogBoard;
 
-	private final int N = 1;
-	private final int E = 2;
-	private final int S = 3;
-	private final int W = 4;
-	private final int NE = 5;
-	private final int SE = 6;
-	private final int SW = 7;
-	private final int NW = 8;
-	private final int NS = 9;
-	private final int EW = 10;
-	private final int NEW = 11;
-	private final int NSE = 12;
-	private final int NSW = 13;
-	private final int SEW = 14;
+	private final float N = .1f;
+	private final float E = .2f;
+	private final float S = .3f;
+	private final float W = .4f;
+	private final float NE = .5f;
+	private final float SE = .6f;
+	private final float SW = .7f;
+	private final float NW = .8f;
+	private final float NS = .9f;
+	private final float EW = .10f;
+	private final float NEW = .11f;
+	private final float NSE = .12f;
+	private final float NSW = .13f;
+	private final float SEW = .14f;
 
 	Texture nTex;
 	Texture eTex;
@@ -152,6 +155,7 @@ public class FogController {
 //		zoom = canvas.getZoom();
 
 		boundaryTiles = new IntArray();
+		boundaryTilesCam = new IntArray();
 		boundaryPos = new Array<Vector2>();
 
 		WX = tileBoard.getWidth();
@@ -238,11 +242,53 @@ public class FogController {
 	public void prepShader(int numFireflies) {
 		shader.begin();
 
+		sewTex.bind(15);
+		shader.setUniformi("u_texture_sew", 15);
+
+		newTex.bind(14);
+		shader.setUniformi("u_texture_new", 14);
+
+		nswTex.bind(13);
+		shader.setUniformi("u_texture_nsw", 13);
+
+		nseTex.bind(12);
+		shader.setUniformi("u_texture_nse", 12);
+
+		ewTex.bind(11);
+		shader.setUniformi("u_texture_ew", 11);
+
+		nsTex.bind(10);
+		shader.setUniformi("u_texture_ns", 10);
+
+		nwTex.bind(9);
+		shader.setUniformi("u_texture_nw", 9);
+
+		swTex.bind(8);
+		shader.setUniformi("u_texture_sw", 8);
+
+		seTex.bind(7);
+		shader.setUniformi("u_texture_se", 7);
+
+		neTex.bind(6);
+		shader.setUniformi("u_texture_ne", 6);
+
+		wTex.bind(5);
+		shader.setUniformi("u_texture_w", 5);
+
+		sTex.bind(4);
+		shader.setUniformi("u_texture_s", 4);
+
+		eTex.bind(3);
+		shader.setUniformi("u_texture_e", 3);
+
+		nTex.bind(2);
+		shader.setUniformi("u_texture_n", 2);
+
 		perlinTex.bind(1);
 		shader.setUniformi("u_texture_perlin", 1);
 
 		perlinTex.bind(0);
-		shader.setUniformi("u_texture", 0);
+//		shader.setUniformi("u_texture", 0);
 
 		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
 //		shader.setUniformf("fogReach", fogReach);
@@ -252,6 +298,9 @@ public class FogController {
 		shader.setUniformf("fogOrigin", fogOriginCamX, fogOriginCamY);
 		shader.setUniformf("leftOffset", boardLeftOffset);
 		shader.setUniformf("botOffset", boardBotOffset);
+		shader.setUniform1fv("boundaryTiles", boundaryTilesCamA, 0, boundaryTilesCamA.length);
+		shader.setUniformf("tileW", tileW);
+		shader.setUniformf("tileH", tileH);
 		shader.end();
 	}
 
@@ -279,6 +328,10 @@ public class FogController {
 //			}
 //		}
 
+		logger.log();
+	}
+
+	public void drawBoundaries(GameCanvas canvas) {
 		Texture t;
 		for (int i=0; i<boundaryTiles.size; i++) {
 			switch(boundaryTiles.get(i)) {
@@ -318,8 +371,6 @@ public class FogController {
 		}
 
 //		batch.end();
-
-		logger.log();
 	}
 
 	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, BoardModel tileBoard) {
@@ -346,12 +397,23 @@ public class FogController {
 //		fogReachX+=(1f/FOG_DELAY * spreadCountX/spreadCount);
 //		fogReachY+=(1f/FOG_DELAY * spreadCountY/spreadCount);
 
-		updateBoundary();
+		boundaryFogBoard = new float[WX][WY];
+		for (int q=0; q<WX; q++) {
+			boundaryFogBoard[q] = fogBoard[q].clone();
+		}
+//		updateBoundary();
 
 
 //		System.out.println(gorfPos.x - boardTilesPerCamViewX * tileW / 2f);
-		int startTileX = (int)Math.floor((gorfPos.x - res.x * zoom / 2f) / screenDim.x * WX);
-		int startTileY = (int)Math.floor((gorfPos.y - res.y * zoom / 2f) / screenDim.y * WY);
+		int startTileX;
+		int startTileY;
+		if (gorf.isColliding()) {
+			startTileX = (int) Math.floor((gorfPos.x - res.x * zoom / 2f) / screenDim.x * WX);
+			startTileY = (int) Math.floor((gorfPos.y - res.y * zoom / 2f) / screenDim.y * WY);
+		} else {
+			startTileX = (int) Math.floor((gorfPos.x + (gorf.getFX() / 61f * scale.x) - res.x * zoom / 2f) / screenDim.x * WX);
+			startTileY = (int) Math.floor((gorfPos.y + (gorf.getFY() / 61f * scale.y) - res.y * zoom / 2f) / screenDim.y * WY);
+		}
 
 //		if (startTileX % 2 == 1) {
 //			startTileX--;
@@ -370,10 +432,17 @@ public class FogController {
 				int tileY = (startTileY+j + WY) % WY;
 //				if (startTileX+i > 0 && startTileY+j > 0 && startTileX+i < WX && startTileY+j < WY) {
 				if (fogBoardCam[camTileY * NX + camTileX] != 0) {
-					fogBoardCam[camTileY * NX + camTileX] = Math.min(fogBoardCam[camTileY * NX + camTileX], fogBoard[tileX][tileY]);
+					fogBoardCam[camTileY * NX + camTileX] = Math.min(fogBoardCam[camTileY * NX + camTileX], boundaryFogBoard[tileX][tileY]);
 				} else {
-					fogBoardCam[camTileY * NX + camTileX] = fogBoard[tileX][tileY];
+					fogBoardCam[camTileY * NX + camTileX] = boundaryFogBoard[tileX][tileY];
 				}
+
+//				for (int a=0; a<boundaryPos.size; a++) {
+//					Vector2 b = boundaryPos.get(a);
+//					if (b.x == tileX && b.y == tileY) {
+//						boundaryTilesCam.add(boundaryTiles.get(a));
+//					}
+//				}
 //				}
 //				System.out.println(fogBoard[60][60]);
 				camTileY++;
@@ -381,8 +450,18 @@ public class FogController {
 			camTileX++;
 		}
 
-		boardLeftOffset = ((((gorfPos.x - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
-		boardBotOffset = ((((gorfPos.y - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
+		boundaryTilesCamA = new float[boundaryTiles.size];
+		for (int k=0; k<boundaryTilesCam.size; k++) {
+			boundaryTilesCamA[k] = (float)boundaryTilesCam.get(k);
+		}
+
+		if (gorf.isColliding()) {
+			boardLeftOffset = ((((gorfPos.x - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
+			boardBotOffset = ((((gorfPos.y - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
+		} else {
+			boardLeftOffset = ((((gorfPos.x + (gorf.getFX() / 61f * scale.x) - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
+			boardBotOffset = ((((gorfPos.y + (gorf.getFY() / 61f * scale.y) - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
+		}
 //		System.out.println(boardLeftOffset);
 //		System.out.println(gorf.getX());
 	}
@@ -490,64 +569,79 @@ public class FogController {
 		for (int i=0; i<WX; i++) {
 			for (int j = 0; j < WY; j++) {
 				if (fogBoard[i][j] == BOUNDARY) {
-					if (fogBoard[i][(j+1) % WY] == (int)FOG) {
+					if ( fogBoard[i][(j+1) % WY]    == (int)FOG
+					  && fogBoard[(i+1) % WX][j]    == (int)FOG
+					  && fogBoard[i][(j-1+WY) % WY] == (int)FOG
+					  && fogBoard[(i-1+WX) % WX][j] == (int)FOG ) {
+						fogBoard[i][j] = FOG;
+					} else if (fogBoard[i][(j+1) % WY] == (int)FOG) {
 						if (fogBoard[i][(j-1+WY) % WY] == (int)FOG) {
-							if (fogBoard[(i+1) % NX][j] == (int)FOG) {				// NSEW (set boundary to full fog)
-								if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {
-									fogBoard[i][j] = FOG;
-								} else {											// NSE
-									boundaryTiles.add(NSE);
-									boundaryPos.add(new Vector2(i,j));
-								}
+							if (fogBoard[(i+1) % NX][j] == (int)FOG) {				// NSE
+//								boundaryTiles.add(NSE);
+								boundaryFogBoard[i][j] = NSE;
+//								boundaryPos.add(new Vector2(i,j));
 							} else if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {	// NSW
-								boundaryTiles.add(NSW);
-								boundaryPos.add(new Vector2(i,j));
+//								boundaryTiles.add(NSW);
+								boundaryFogBoard[i][j] = NSW;
+//								boundaryPos.add(new Vector2(i,j));
 							} else {												// NS
-								boundaryTiles.add(NS);
-								boundaryPos.add(new Vector2(i,j));
+//								boundaryTiles.add(NS);
+								boundaryFogBoard[i][j] = NS;
+//								boundaryPos.add(new Vector2(i,j));
 							}
 						} else if (fogBoard[(i+1) % WX][j] == (int)FOG) {
 							if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {			// NEW
-								boundaryTiles.add(NEW);
-								boundaryPos.add(new Vector2(i,j));
+//								boundaryTiles.add(NEW);
+								boundaryFogBoard[i][j] = NEW;
+//								boundaryPos.add(new Vector2(i,j));
 							} else {												// NE
-								boundaryTiles.add(NE);
-								boundaryPos.add(new Vector2(i,j));
+//								boundaryTiles.add(NE);
+								boundaryFogBoard[i][j] = NE;
+//								boundaryPos.add(new Vector2(i,j));
 							}
 						} else if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {		// NW
-							boundaryTiles.add(NW);
-							boundaryPos.add(new Vector2(i,j));
+//							boundaryTiles.add(NW);
+							boundaryFogBoard[i][j] = NW;
+//							boundaryPos.add(new Vector2(i,j));
 						} else {													// N
-							boundaryTiles.add(N);
-							boundaryPos.add(new Vector2(i,j));
-						}
-					} else if (fogBoard[(i+1) % WX][j] == (int)FOG) {
-						if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {				// EW
-							boundaryTiles.add(EW);
-							boundaryPos.add(new Vector2(i,j));
-						} else {													// E
-							boundaryTiles.add(E);
-							boundaryPos.add(new Vector2(i,j));
+//							boundaryTiles.add(N);
+							boundaryFogBoard[i][j] = N;
+//							boundaryPos.add(new Vector2(i,j));
 						}
 					} else if (fogBoard[i][(j-1+WY) % WY] == (int)FOG) {
 						if (fogBoard[(i+1) % WX][j] == (int)FOG) {
 							if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {			// SEW
-								boundaryTiles.add(SEW);
-								boundaryPos.add(new Vector2(i,j));
+//								boundaryTiles.add(SEW);
+								boundaryFogBoard[i][j] = SEW;
+//								boundaryPos.add(new Vector2(i,j));
 							} else {												// SE
-								boundaryTiles.add(SE);
-								boundaryPos.add(new Vector2(i,j));
+//								boundaryTiles.add(SE);
+								boundaryFogBoard[i][j] = SE;
+//								boundaryPos.add(new Vector2(i,j));
 							}
 						} else if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {		// SW
-							boundaryTiles.add(SW);
-							boundaryPos.add(new Vector2(i,j));
+//							boundaryTiles.add(SW);
+							boundaryFogBoard[i][j] = SW;
+//							boundaryPos.add(new Vector2(i,j));
 						} else {													// S
-							boundaryTiles.add(S);
-							boundaryPos.add(new Vector2(i,j));
+//							boundaryTiles.add(S);
+							boundaryFogBoard[i][j] = S;
+//							boundaryPos.add(new Vector2(i,j));
+						}
+					} else if (fogBoard[(i+1) % WX][j] == (int)FOG) {
+						if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {				// EW
+//							boundaryTiles.add(EW);
+							boundaryFogBoard[i][j] = EW;
+//							boundaryPos.add(new Vector2(i,j));
+						} else {													// E
+//							boundaryTiles.add(E);
+							boundaryFogBoard[i][j] = E;
+//							boundaryPos.add(new Vector2(i,j));
 						}
 					} else if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {			// W
-						boundaryTiles.add(W);
-						boundaryPos.add(new Vector2(i,j));
+//						boundaryTiles.add(W);
+						boundaryFogBoard[i][j] = W;
+//						boundaryPos.add(new Vector2(i,j));
 					}
 				}
 			}
@@ -631,7 +725,7 @@ public class FogController {
 		double[] data = new double[WIDTH * HEIGHT];
 		int count = 0;
 
-		Perlin perlin = new Perlin();
+		Perlin perlin = new Perlin(25);
 		for (int y = 0; y < HEIGHT; y++) {
 			for (int x = 0; x < WIDTH; x++) {
 				data[count++] = Math.sqrt((perlin.noise(50.0 * (double)x / WIDTH, 25.0 * (double)y / HEIGHT)) * 10);
