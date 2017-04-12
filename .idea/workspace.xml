@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GameCanvas.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/SteeringAgent.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/SteeringAgent.java" />
     </list>
@@ -32,19 +27,168 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="840" column="37" lean-forward="true" selection-start-line="840" selection-start-column="37" selection-end-line="840" selection-end-column="37" />
+            <state relative-caret-position="427">
+              <caret line="668" column="18" lean-forward="false" selection-start-line="668" selection-start-column="18" selection-end-line="668" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#14719#14729#0" expanded="true" />
-                <element signature="e#15402#15411#0" expanded="true" />
-                <element signature="e#16255#16265#0" expanded="true" />
-                <element signature="e#16380#16390#0" expanded="true" />
-                <element signature="e#16511#16521#0" expanded="true" />
-                <element signature="e#20067#20084#0" expanded="true" />
+                <element signature="e#15400#15409#0" expanded="true" />
+                <element signature="e#16253#16263#0" expanded="true" />
+                <element signature="e#16378#16388#0" expanded="true" />
+                <element signature="e#16509#16519#0" expanded="true" />
+                <element signature="e#20065#20082#0" expanded="true" />
+                <marker date="1491999494896" expanded="false" signature="48511:48522" ph=" { " />
+                <marker date="1491999494896" expanded="false" signature="48547:48553" ph=" }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AIControllerS.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="434" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2997#2998#0" expanded="true" />
+                <element signature="e#3033#3034#0" expanded="true" />
+                <element signature="e#3109#3110#0" expanded="true" />
+                <element signature="e#3167#3168#0" expanded="true" />
+                <element signature="e#3884#3885#0" expanded="true" />
+                <element signature="e#3931#3932#0" expanded="true" />
+                <element signature="e#4006#4007#0" expanded="true" />
+                <element signature="e#4086#4087#0" expanded="true" />
+                <element signature="e#4569#4570#0" expanded="true" />
+                <element signature="e#4631#4632#0" expanded="true" />
+                <element signature="e#4703#4704#0" expanded="true" />
+                <element signature="e#4735#4736#0" expanded="true" />
+                <element signature="e#4881#4882#0" expanded="true" />
+                <element signature="e#4913#4914#0" expanded="true" />
+                <element signature="e#5065#5066#0" expanded="true" />
+                <element signature="e#5097#5098#0" expanded="true" />
+                <element signature="e#5257#5258#0" expanded="true" />
+                <element signature="e#5289#5290#0" expanded="true" />
+                <element signature="e#5444#5445#0" expanded="true" />
+                <element signature="e#5476#5477#0" expanded="true" />
+                <element signature="e#5639#5640#0" expanded="true" />
+                <element signature="e#5680#5681#0" expanded="true" />
+                <element signature="e#5743#5744#0" expanded="true" />
+                <element signature="e#5775#5776#0" expanded="true" />
+                <element signature="e#5837#5838#0" expanded="true" />
+                <element signature="e#5884#5885#0" expanded="true" />
+                <element signature="e#5939#5940#0" expanded="true" />
+                <element signature="e#5978#5979#0" expanded="true" />
+                <element signature="e#6045#6046#0" expanded="true" />
+                <element signature="e#6086#6087#0" expanded="true" />
+                <element signature="e#6552#6553#0" expanded="true" />
+                <element signature="e#6609#6610#0" expanded="true" />
+                <element signature="e#6684#6685#0" expanded="true" />
+                <element signature="e#6764#6765#0" expanded="true" />
+                <element signature="e#7247#7248#0" expanded="true" />
+                <element signature="e#7309#7310#0" expanded="true" />
+                <element signature="e#7381#7382#0" expanded="true" />
+                <element signature="e#7413#7414#0" expanded="true" />
+                <element signature="e#7559#7560#0" expanded="true" />
+                <element signature="e#7594#7595#0" expanded="true" />
+                <element signature="e#7746#7747#0" expanded="true" />
+                <element signature="e#7781#7782#0" expanded="true" />
+                <element signature="e#7941#7942#0" expanded="true" />
+                <element signature="e#7976#7977#0" expanded="true" />
+                <element signature="e#8113#8114#0" expanded="true" />
+                <element signature="e#8148#8149#0" expanded="true" />
+                <element signature="e#8311#8312#0" expanded="true" />
+                <element signature="e#8367#8368#0" expanded="true" />
+                <element signature="e#8430#8431#0" expanded="true" />
+                <element signature="e#8487#8488#0" expanded="true" />
+                <element signature="e#8549#8550#0" expanded="true" />
+                <element signature="e#8596#8597#0" expanded="true" />
+                <element signature="e#8651#8652#0" expanded="true" />
+                <element signature="e#8690#8691#0" expanded="true" />
+                <element signature="e#8757#8758#0" expanded="true" />
+                <element signature="e#8798#8799#0" expanded="true" />
+                <element signature="e#8975#8976#0" expanded="true" />
+                <element signature="e#9016#9017#0" expanded="true" />
+                <element signature="e#9075#9076#0" expanded="true" />
+                <element signature="e#9107#9108#0" expanded="true" />
+                <element signature="e#9256#9257#0" expanded="true" />
+                <element signature="e#9288#9289#0" expanded="true" />
+                <element signature="e#9378#9379#0" expanded="true" />
+                <element signature="e#9419#9420#0" expanded="true" />
+                <element signature="e#9487#9488#0" expanded="true" />
+                <element signature="e#9549#9550#0" expanded="true" />
+                <element signature="e#9621#9622#0" expanded="true" />
+                <element signature="e#9653#9654#0" expanded="true" />
+                <element signature="e#9799#9800#0" expanded="true" />
+                <element signature="e#9831#9832#0" expanded="true" />
+                <element signature="e#9983#9984#0" expanded="true" />
+                <element signature="e#10015#10016#0" expanded="true" />
+                <element signature="e#10175#10176#0" expanded="true" />
+                <element signature="e#10207#10208#0" expanded="true" />
+                <element signature="e#10362#10363#0" expanded="true" />
+                <element signature="e#10394#10395#0" expanded="true" />
+                <element signature="e#10557#10558#0" expanded="true" />
+                <element signature="e#10598#10599#0" expanded="true" />
+                <element signature="e#10661#10662#0" expanded="true" />
+                <element signature="e#10693#10694#0" expanded="true" />
+                <element signature="e#10755#10756#0" expanded="true" />
+                <element signature="e#10787#10788#0" expanded="true" />
+                <element signature="e#10842#10843#0" expanded="true" />
+                <element signature="e#10878#10879#0" expanded="true" />
+                <marker date="1491999466891" expanded="false" signature="1146:1155" ph="&lt;~&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SteeringAgent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/SteeringAgent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="54" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+              <folding>
+                <element signature="e#1840#1841#0" expanded="true" />
+                <element signature="e#1879#1880#0" expanded="true" />
+                <element signature="e#2131#2132#0" expanded="true" />
+                <element signature="e#2186#2187#0" expanded="true" />
+                <element signature="e#2241#2242#0" expanded="true" />
+                <element signature="e#2297#2298#0" expanded="true" />
+                <element signature="e#2344#2345#0" expanded="true" />
+                <element signature="e#2373#2374#0" expanded="true" />
+                <element signature="e#2432#2433#0" expanded="true" />
+                <element signature="e#2468#2469#0" expanded="true" />
+                <element signature="e#2518#2519#0" expanded="true" />
+                <element signature="e#2567#2568#0" expanded="true" />
+                <element signature="e#2618#2619#0" expanded="true" />
+                <element signature="e#2664#2665#0" expanded="true" />
+                <element signature="e#2731#2732#0" expanded="true" />
+                <element signature="e#2800#2801#0" expanded="true" />
+                <element signature="e#2864#2865#0" expanded="true" />
+                <element signature="e#2927#2928#0" expanded="true" />
+                <element signature="e#3142#3143#0" expanded="true" />
+                <element signature="e#3184#3185#0" expanded="true" />
+                <element signature="e#3248#3249#0" expanded="true" />
+                <element signature="e#3295#3296#0" expanded="true" />
+                <element signature="e#3369#3370#0" expanded="true" />
+                <element signature="e#3422#3423#0" expanded="true" />
+                <element signature="e#3476#3477#0" expanded="true" />
+                <element signature="e#3513#3514#0" expanded="true" />
+                <element signature="e#3586#3587#0" expanded="true" />
+                <element signature="e#3638#3639#0" expanded="true" />
+                <element signature="e#3699#3700#0" expanded="true" />
+                <element signature="e#3743#3744#0" expanded="true" />
+                <element signature="e#3951#3952#0" expanded="true" />
+                <element signature="e#3989#3990#0" expanded="true" />
+                <element signature="e#4064#4065#0" expanded="true" />
+                <element signature="e#4118#4119#0" expanded="true" />
+                <element signature="e#4180#4181#0" expanded="true" />
+                <element signature="e#4225#4226#0" expanded="true" />
+                <element signature="e#4436#4437#0" expanded="true" />
+                <element signature="e#4473#4474#0" expanded="true" />
+                <marker date="1491999474172" expanded="false" signature="886:895" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -83,11 +227,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="160">
-              <caret line="55" column="30" lean-forward="true" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+              <caret line="55" column="30" lean-forward="false" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,18 +253,19 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>head</find>
       <find>aicontro</find>
       <find>aic</find>
       <find>json</find>
       <find>addob</find>
       <find>ai</find>
-      <find>ai.</find>
-      <find>aicon</find>
       <find>wall</find>
       <find>reset</find>
       <find>fogorigin</find>
       <find>fogorigincamx</find>
+      <find>head</find>
+      <find>aicon</find>
+      <find>AICon</find>
+      <find>ai.</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -869,12 +1014,12 @@
       <list>
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/SteeringAgent.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
         <option value="$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/SteeringAgent.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
       </list>
     </option>
   </component>
@@ -1358,11 +1503,13 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#14719#14729#0" expanded="true" />
-            <element signature="e#15402#15411#0" expanded="true" />
-            <element signature="e#16255#16265#0" expanded="true" />
-            <element signature="e#16380#16390#0" expanded="true" />
-            <element signature="e#16511#16521#0" expanded="true" />
-            <element signature="e#20067#20084#0" expanded="true" />
+            <element signature="e#15400#15409#0" expanded="true" />
+            <element signature="e#16253#16263#0" expanded="true" />
+            <element signature="e#16378#16388#0" expanded="true" />
+            <element signature="e#16509#16519#0" expanded="true" />
+            <element signature="e#20065#20082#0" expanded="true" />
+            <marker date="1491999494896" expanded="false" signature="48511:48522" ph=" { " />
+            <marker date="1491999494896" expanded="false" signature="48547:48553" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -1422,11 +1569,13 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#14719#14729#0" expanded="true" />
-            <element signature="e#15402#15411#0" expanded="true" />
-            <element signature="e#16255#16265#0" expanded="true" />
-            <element signature="e#16380#16390#0" expanded="true" />
-            <element signature="e#16511#16521#0" expanded="true" />
-            <element signature="e#20067#20084#0" expanded="true" />
+            <element signature="e#15400#15409#0" expanded="true" />
+            <element signature="e#16253#16263#0" expanded="true" />
+            <element signature="e#16378#16388#0" expanded="true" />
+            <element signature="e#16509#16519#0" expanded="true" />
+            <element signature="e#20065#20082#0" expanded="true" />
+            <marker date="1491999494896" expanded="false" signature="48511:48522" ph=" { " />
+            <marker date="1491999494896" expanded="false" signature="48547:48553" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -1456,11 +1605,13 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#14719#14729#0" expanded="true" />
-            <element signature="e#15402#15411#0" expanded="true" />
-            <element signature="e#16255#16265#0" expanded="true" />
-            <element signature="e#16380#16390#0" expanded="true" />
-            <element signature="e#16511#16521#0" expanded="true" />
-            <element signature="e#20067#20084#0" expanded="true" />
+            <element signature="e#15400#15409#0" expanded="true" />
+            <element signature="e#16253#16263#0" expanded="true" />
+            <element signature="e#16378#16388#0" expanded="true" />
+            <element signature="e#16509#16519#0" expanded="true" />
+            <element signature="e#20065#20082#0" expanded="true" />
+            <marker date="1491999494896" expanded="false" signature="48511:48522" ph=" { " />
+            <marker date="1491999494896" expanded="false" signature="48547:48553" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -1490,11 +1641,13 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#14719#14729#0" expanded="true" />
-            <element signature="e#15402#15411#0" expanded="true" />
-            <element signature="e#16255#16265#0" expanded="true" />
-            <element signature="e#16380#16390#0" expanded="true" />
-            <element signature="e#16511#16521#0" expanded="true" />
-            <element signature="e#20067#20084#0" expanded="true" />
+            <element signature="e#15400#15409#0" expanded="true" />
+            <element signature="e#16253#16263#0" expanded="true" />
+            <element signature="e#16378#16388#0" expanded="true" />
+            <element signature="e#16509#16519#0" expanded="true" />
+            <element signature="e#20065#20082#0" expanded="true" />
+            <marker date="1491999494896" expanded="false" signature="48511:48522" ph=" { " />
+            <marker date="1491999494896" expanded="false" signature="48547:48553" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -1524,11 +1677,13 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#14719#14729#0" expanded="true" />
-            <element signature="e#15402#15411#0" expanded="true" />
-            <element signature="e#16255#16265#0" expanded="true" />
-            <element signature="e#16380#16390#0" expanded="true" />
-            <element signature="e#16511#16521#0" expanded="true" />
-            <element signature="e#20067#20084#0" expanded="true" />
+            <element signature="e#15400#15409#0" expanded="true" />
+            <element signature="e#16253#16263#0" expanded="true" />
+            <element signature="e#16378#16388#0" expanded="true" />
+            <element signature="e#16509#16519#0" expanded="true" />
+            <element signature="e#20065#20082#0" expanded="true" />
+            <marker date="1491999494896" expanded="false" signature="48511:48522" ph=" { " />
+            <marker date="1491999494896" expanded="false" signature="48547:48553" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -1550,11 +1705,13 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#14719#14729#0" expanded="true" />
-            <element signature="e#15402#15411#0" expanded="true" />
-            <element signature="e#16255#16265#0" expanded="true" />
-            <element signature="e#16380#16390#0" expanded="true" />
-            <element signature="e#16511#16521#0" expanded="true" />
-            <element signature="e#20067#20084#0" expanded="true" />
+            <element signature="e#15400#15409#0" expanded="true" />
+            <element signature="e#16253#16263#0" expanded="true" />
+            <element signature="e#16378#16388#0" expanded="true" />
+            <element signature="e#16509#16519#0" expanded="true" />
+            <element signature="e#20065#20082#0" expanded="true" />
+            <marker date="1491999494896" expanded="false" signature="48511:48522" ph=" { " />
+            <marker date="1491999494896" expanded="false" signature="48547:48553" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -1706,9 +1863,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1491999176356" expanded="true" signature="59:116877" ph="..." />
-            <marker date="1491999176356" expanded="true" signature="98:192" ph="..." />
-            <marker date="1491999176356" expanded="true" signature="116851:116866" ph="..." />
+            <marker date="1491999494965" expanded="true" signature="59:135594" ph="..." />
+            <marker date="1491999494965" expanded="true" signature="98:192" ph="..." />
+            <marker date="1491999494965" expanded="true" signature="135568:135583" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1732,34 +1889,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/SteeringAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="56" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
-          <folding>
-            <marker date="1491994918198" expanded="false" signature="950:959" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="434" selection-end-column="3" />
-          <folding>
-            <marker date="1491994918218" expanded="false" signature="1218:1227" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="448" column="25" lean-forward="false" selection-start-line="448" selection-start-column="25" selection-end-line="448" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="523">
@@ -1767,22 +1896,6 @@
           <folding>
             <element signature="e#6109#6110#0" expanded="true" />
             <element signature="e#6134#6135#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="840" column="37" lean-forward="true" selection-start-line="840" selection-start-column="37" selection-end-line="840" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#14719#14729#0" expanded="true" />
-            <element signature="e#15402#15411#0" expanded="true" />
-            <element signature="e#16255#16265#0" expanded="true" />
-            <element signature="e#16380#16390#0" expanded="true" />
-            <element signature="e#16511#16521#0" expanded="true" />
-            <element signature="e#20067#20084#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1806,9 +1919,178 @@
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
-          <caret line="55" column="30" lean-forward="true" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+          <caret line="55" column="30" lean-forward="false" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="448" column="25" lean-forward="false" selection-start-line="448" selection-start-column="25" selection-end-line="448" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="434" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2997#2998#0" expanded="true" />
+            <element signature="e#3033#3034#0" expanded="true" />
+            <element signature="e#3109#3110#0" expanded="true" />
+            <element signature="e#3167#3168#0" expanded="true" />
+            <element signature="e#3884#3885#0" expanded="true" />
+            <element signature="e#3931#3932#0" expanded="true" />
+            <element signature="e#4006#4007#0" expanded="true" />
+            <element signature="e#4086#4087#0" expanded="true" />
+            <element signature="e#4569#4570#0" expanded="true" />
+            <element signature="e#4631#4632#0" expanded="true" />
+            <element signature="e#4703#4704#0" expanded="true" />
+            <element signature="e#4735#4736#0" expanded="true" />
+            <element signature="e#4881#4882#0" expanded="true" />
+            <element signature="e#4913#4914#0" expanded="true" />
+            <element signature="e#5065#5066#0" expanded="true" />
+            <element signature="e#5097#5098#0" expanded="true" />
+            <element signature="e#5257#5258#0" expanded="true" />
+            <element signature="e#5289#5290#0" expanded="true" />
+            <element signature="e#5444#5445#0" expanded="true" />
+            <element signature="e#5476#5477#0" expanded="true" />
+            <element signature="e#5639#5640#0" expanded="true" />
+            <element signature="e#5680#5681#0" expanded="true" />
+            <element signature="e#5743#5744#0" expanded="true" />
+            <element signature="e#5775#5776#0" expanded="true" />
+            <element signature="e#5837#5838#0" expanded="true" />
+            <element signature="e#5884#5885#0" expanded="true" />
+            <element signature="e#5939#5940#0" expanded="true" />
+            <element signature="e#5978#5979#0" expanded="true" />
+            <element signature="e#6045#6046#0" expanded="true" />
+            <element signature="e#6086#6087#0" expanded="true" />
+            <element signature="e#6552#6553#0" expanded="true" />
+            <element signature="e#6609#6610#0" expanded="true" />
+            <element signature="e#6684#6685#0" expanded="true" />
+            <element signature="e#6764#6765#0" expanded="true" />
+            <element signature="e#7247#7248#0" expanded="true" />
+            <element signature="e#7309#7310#0" expanded="true" />
+            <element signature="e#7381#7382#0" expanded="true" />
+            <element signature="e#7413#7414#0" expanded="true" />
+            <element signature="e#7559#7560#0" expanded="true" />
+            <element signature="e#7594#7595#0" expanded="true" />
+            <element signature="e#7746#7747#0" expanded="true" />
+            <element signature="e#7781#7782#0" expanded="true" />
+            <element signature="e#7941#7942#0" expanded="true" />
+            <element signature="e#7976#7977#0" expanded="true" />
+            <element signature="e#8113#8114#0" expanded="true" />
+            <element signature="e#8148#8149#0" expanded="true" />
+            <element signature="e#8311#8312#0" expanded="true" />
+            <element signature="e#8367#8368#0" expanded="true" />
+            <element signature="e#8430#8431#0" expanded="true" />
+            <element signature="e#8487#8488#0" expanded="true" />
+            <element signature="e#8549#8550#0" expanded="true" />
+            <element signature="e#8596#8597#0" expanded="true" />
+            <element signature="e#8651#8652#0" expanded="true" />
+            <element signature="e#8690#8691#0" expanded="true" />
+            <element signature="e#8757#8758#0" expanded="true" />
+            <element signature="e#8798#8799#0" expanded="true" />
+            <element signature="e#8975#8976#0" expanded="true" />
+            <element signature="e#9016#9017#0" expanded="true" />
+            <element signature="e#9075#9076#0" expanded="true" />
+            <element signature="e#9107#9108#0" expanded="true" />
+            <element signature="e#9256#9257#0" expanded="true" />
+            <element signature="e#9288#9289#0" expanded="true" />
+            <element signature="e#9378#9379#0" expanded="true" />
+            <element signature="e#9419#9420#0" expanded="true" />
+            <element signature="e#9487#9488#0" expanded="true" />
+            <element signature="e#9549#9550#0" expanded="true" />
+            <element signature="e#9621#9622#0" expanded="true" />
+            <element signature="e#9653#9654#0" expanded="true" />
+            <element signature="e#9799#9800#0" expanded="true" />
+            <element signature="e#9831#9832#0" expanded="true" />
+            <element signature="e#9983#9984#0" expanded="true" />
+            <element signature="e#10015#10016#0" expanded="true" />
+            <element signature="e#10175#10176#0" expanded="true" />
+            <element signature="e#10207#10208#0" expanded="true" />
+            <element signature="e#10362#10363#0" expanded="true" />
+            <element signature="e#10394#10395#0" expanded="true" />
+            <element signature="e#10557#10558#0" expanded="true" />
+            <element signature="e#10598#10599#0" expanded="true" />
+            <element signature="e#10661#10662#0" expanded="true" />
+            <element signature="e#10693#10694#0" expanded="true" />
+            <element signature="e#10755#10756#0" expanded="true" />
+            <element signature="e#10787#10788#0" expanded="true" />
+            <element signature="e#10842#10843#0" expanded="true" />
+            <element signature="e#10878#10879#0" expanded="true" />
+            <marker date="1491999466891" expanded="false" signature="1146:1155" ph="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/SteeringAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="54" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+          <folding>
+            <element signature="e#1840#1841#0" expanded="true" />
+            <element signature="e#1879#1880#0" expanded="true" />
+            <element signature="e#2131#2132#0" expanded="true" />
+            <element signature="e#2186#2187#0" expanded="true" />
+            <element signature="e#2241#2242#0" expanded="true" />
+            <element signature="e#2297#2298#0" expanded="true" />
+            <element signature="e#2344#2345#0" expanded="true" />
+            <element signature="e#2373#2374#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="true" />
+            <element signature="e#2468#2469#0" expanded="true" />
+            <element signature="e#2518#2519#0" expanded="true" />
+            <element signature="e#2567#2568#0" expanded="true" />
+            <element signature="e#2618#2619#0" expanded="true" />
+            <element signature="e#2664#2665#0" expanded="true" />
+            <element signature="e#2731#2732#0" expanded="true" />
+            <element signature="e#2800#2801#0" expanded="true" />
+            <element signature="e#2864#2865#0" expanded="true" />
+            <element signature="e#2927#2928#0" expanded="true" />
+            <element signature="e#3142#3143#0" expanded="true" />
+            <element signature="e#3184#3185#0" expanded="true" />
+            <element signature="e#3248#3249#0" expanded="true" />
+            <element signature="e#3295#3296#0" expanded="true" />
+            <element signature="e#3369#3370#0" expanded="true" />
+            <element signature="e#3422#3423#0" expanded="true" />
+            <element signature="e#3476#3477#0" expanded="true" />
+            <element signature="e#3513#3514#0" expanded="true" />
+            <element signature="e#3586#3587#0" expanded="true" />
+            <element signature="e#3638#3639#0" expanded="true" />
+            <element signature="e#3699#3700#0" expanded="true" />
+            <element signature="e#3743#3744#0" expanded="true" />
+            <element signature="e#3951#3952#0" expanded="true" />
+            <element signature="e#3989#3990#0" expanded="true" />
+            <element signature="e#4064#4065#0" expanded="true" />
+            <element signature="e#4118#4119#0" expanded="true" />
+            <element signature="e#4180#4181#0" expanded="true" />
+            <element signature="e#4225#4226#0" expanded="true" />
+            <element signature="e#4436#4437#0" expanded="true" />
+            <element signature="e#4473#4474#0" expanded="true" />
+            <marker date="1491999474172" expanded="false" signature="886:895" ph="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="668" column="18" lean-forward="false" selection-start-line="668" selection-start-column="18" selection-end-line="668" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14719#14729#0" expanded="true" />
+            <element signature="e#15400#15409#0" expanded="true" />
+            <element signature="e#16253#16263#0" expanded="true" />
+            <element signature="e#16378#16388#0" expanded="true" />
+            <element signature="e#16509#16519#0" expanded="true" />
+            <element signature="e#20065#20082#0" expanded="true" />
+            <marker date="1491999494896" expanded="false" signature="48511:48522" ph=" { " />
+            <marker date="1491999494896" expanded="false" signature="48547:48553" ph=" }" />
           </folding>
         </state>
       </provider>

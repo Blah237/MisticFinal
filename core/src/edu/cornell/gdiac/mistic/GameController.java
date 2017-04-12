@@ -341,7 +341,7 @@ public class GameController extends WorldController implements ContactListener {
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
-//    private AIControllerS ai;
+    private AIControllerS ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
 
@@ -527,7 +527,7 @@ public class GameController extends WorldController implements ContactListener {
         }
 
         //this.ai = new AIController(monster, tileBoard, gorf, scale);
-//        this.ai = new AIControllerS(monster, gorf, tileBoard);
+        this.ai = new AIControllerS(monster, gorf, tileBoard);
 
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
     }
@@ -655,7 +655,7 @@ public class GameController extends WorldController implements ContactListener {
         gorf.applyForce();
         wrapInBounds(gorf);
 
-//        ai.update(dt, world);
+        ai.update(dt, world);
 
         //ai.setInput();
         //float forceXMonster = ai.getHorizontal();
@@ -790,7 +790,6 @@ public class GameController extends WorldController implements ContactListener {
 //        fbo2.end();
 
         // Everything over the fog
-//        canvas.resetCameraDefault();
         canvas.getSpriteBatch().setShader(null);
         canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
 
@@ -843,7 +842,6 @@ public class GameController extends WorldController implements ContactListener {
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);}}
             canvas.end();
         }
-
 
         // main canvas
         canvas.begin(gorf.getPosition());
