@@ -97,5 +97,9 @@ public class Familiar {
     public int getNumFam() { return NUM_FAM;
     }
 
+    public Vector2[] getPosList() {
+        return posList;
+    }
+
     public TextureRegion getTexture(){return this.texList[NUM_FAM];}
 }

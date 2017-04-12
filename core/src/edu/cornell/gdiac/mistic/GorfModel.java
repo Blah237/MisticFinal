@@ -17,7 +17,9 @@ import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.physics.box2d.*;
 
+import com.badlogic.gdx.utils.Array;
 import edu.cornell.gdiac.GameCanvas;
+import edu.cornell.gdiac.WorldController;
 import edu.cornell.gdiac.obstacle.BoxObstacle;
 import edu.cornell.gdiac.util.*;
 
@@ -47,6 +49,9 @@ public class GorfModel extends BoxObstacle {
 	public Vector2 leftOrigin = new Vector2();
 	/** Cache object for right afterburner origin */
 	public Vector2 rghtOrigin = new Vector2();
+
+	/** Boolean if Gorf is currently colliding **/
+	boolean isColliding;
 
 	/**
 	 * Returns the force applied to this rocket.
@@ -203,6 +208,14 @@ public class GorfModel extends BoxObstacle {
 		// and stopping is instantaneous
 		body.setLinearVelocity(force);
 		//#endregionx
+	}
+
+	public void setColliding(boolean bool) {
+		isColliding = bool;
+	}
+
+	public boolean isColliding() {
+		return isColliding;
 	}
 
 
