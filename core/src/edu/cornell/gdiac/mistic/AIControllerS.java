@@ -12,6 +12,9 @@ import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import org.lwjgl.Sys;
+
+import java.util.ArrayList;
 
 /**
  * Created by Nathaniel on 4/12/17.
@@ -27,7 +30,7 @@ public class AIControllerS {
 
     EnemyProximity enemyProximity;
 
-    MonsterModel monster;
+    ArrayList<MonsterModel> monster;
     GorfModel gorf;
     BoardModel board;
 
@@ -36,7 +39,7 @@ public class AIControllerS {
     private SteeringAcceleration<Vector2> steering = new SteeringAcceleration<Vector2>(new Vector2(0, 0));
     private boolean initialized = false;
 
-    public AIControllerS(MonsterModel monster, GorfModel gorf, BoardModel board) {
+    public AIControllerS(ArrayList<MonsterModel> monster, GorfModel gorf, BoardModel board) {
         timePiece = new DefaultTimepiece();
         seekTarget = new Seek<Vector2>(emptyWrapper);
         this.monster = monster;
@@ -47,32 +50,39 @@ public class AIControllerS {
     }
 
     public void update(float dt, World world) {
-        monster.setFY(0.0f);
-        monster.setFX(0.0f);
-        monster.applyForce();
+
+        for (MonsterModel m : monster) {
+            m.setFY(0.0f);
+            m.setFX(0.0f);
+            m.applyForce();
+        }
         timePiece.update(dt);
 
         initializeSteering();
 
-        enemyWrapper.model = monster;
-        targetWrapper.model = gorf;
+        for (MonsterModel m : monster) {
+            enemyWrapper.model = m;
+            targetWrapper.model = gorf;
+            seekTarget.setTarget(targetWrapper);
+            seekTarget.setEnabled(true);
 
-        seekTarget.setTarget(targetWrapper);
-        seekTarget.setEnabled(true);
-
-        monsterBehavior.calculateSteering(steering);
-        applySteering(steering);
+            monsterBehavior.calculateSteering(steering);
+            applySteering(steering, m);
+        }
 
     }
 
-    private void applySteering(SteeringAcceleration<Vector2> steering) {
-        Vector2 monsterPos = monster.getPosition();
+    private void applySteering(SteeringAcceleration<Vector2> steering, MonsterModel m) {
+        Vector2 monsterPos = gorf.getPosition();
         int tileX = board.screenToBoardX(monsterPos.x * 8.0f);
         int tileY = board.screenToBoardY(monsterPos.y * 8.0f);
-        if (board.isFog(tileX, tileY) || board.isFogSpawn(tileX, tileY)) {
-            monster.setFX(steering.linear.x * 6.0f);
-            monster.setFY(steering.linear.y * 6.0f);
-            monster.applyForce();
+        BoardModel.Tile gorftile= board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f)];        // NOTE: got an ArrayIndexOutOfBoundsException at some obscure tile?
+        boolean inFog=gorftile.isFog;
+        boolean inFogSpawn = gorftile.isFogSpawn;
+        if (inFog || inFogSpawn) {
+            m.setFX(steering.linear.x * 6.0f);
+            m.setFY(steering.linear.y * 6.0f);
+            m.applyForce();
         }
 
         //enemyWrapper.model.setAngularVelocity(steering.angular);
