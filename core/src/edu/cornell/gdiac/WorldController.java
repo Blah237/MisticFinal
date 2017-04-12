@@ -154,7 +154,7 @@ public abstract class WorldController implements Screen {
 		// initialize BoardModel
 		// get every texture's group id in the json and map it to it's actual object's name
 		jsonReader = new JsonReader();
-		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/Tiled_Demo_4.json"));
+		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/alpha_finalized.json"));
 
 		HashMap<Integer,Character> textureIDs = new HashMap<Integer,Character>();
 		JsonValue tilesets = levelFormat.get("tilesets").child();
@@ -170,7 +170,7 @@ public abstract class WorldController implements Screen {
 		int[] maze = levelFormat.get("layers").get(1).get("data").asIntArray();
 
 		// for loop for adding info from json data array to the board model
-		int i = 0; int j = 0;
+		int i = 0; int j = 99;
 		for (int t : maze) {
 			if (t!=0&&textureIDs.containsKey(t)) {
 				Character c = textureIDs.get(t);
@@ -197,7 +197,7 @@ public abstract class WorldController implements Screen {
 
 			// increment the counters
 			if (i<99) {i++;} else {i=0;}
-			if (i==0) {j++;}
+			if (i==99) {j--;}
 		}
 	}
 	

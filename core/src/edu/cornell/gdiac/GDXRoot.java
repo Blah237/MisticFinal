@@ -21,6 +21,7 @@ import com.badlogic.gdx.assets.loaders.*;
 import com.badlogic.gdx.assets.loaders.resolvers.*;
 
 import edu.cornell.gdiac.mistic.GameController;
+import edu.cornell.gdiac.mistic.MenuController;
 import edu.cornell.gdiac.util.*;
 
 /**
@@ -39,6 +40,8 @@ public class GDXRoot extends Game implements ScreenListener {
 	private GameCanvas canvas; 
 	/** Player mode for the asset loading screen (CONTROLLER CLASS) */
 	private LoadingMode loading;
+
+	private MenuController menu;
 	/** Player mode for the the game proper (CONTROLLER CLASS) */
 	private int current;
 	/** List of all WorldControllers */
@@ -69,11 +72,14 @@ public class GDXRoot extends Game implements ScreenListener {
 	public void create() {
 		canvas  = new GameCanvas();
 		loading = new LoadingMode(canvas,manager,1);
+		menu = new MenuController();
 		
 		// Initialize game world
 		controllers = new WorldController[1];
 		controllers[0] = new GameController();
 		controllers[0].preLoadContent(manager);
+		menu.preLoadContent(manager);
+		menu.setScreenListener(this);
 		loading.setScreenListener(this);
 		setScreen(loading);
 	}
@@ -113,6 +119,7 @@ public class GDXRoot extends Game implements ScreenListener {
 		canvas.resize();
 		super.resize(width,height);
 	}
+
 	
 	/**
 	 * The given screen has made a request to exit its player mode.
@@ -124,13 +131,13 @@ public class GDXRoot extends Game implements ScreenListener {
 	 */
 	public void exitScreen(Screen screen, int exitCode) {
 		if (screen == loading) {
-			controllers[0].loadContent(manager,canvas);
-			controllers[0].setScreenListener(this);
-			controllers[0].setCanvas(canvas);
-			controllers[current].reset();
-			setScreen(controllers[current]);
-			loading.dispose();
-			loading = null;
+			menu.loadContent(manager,canvas);
+			menu.setScreenListener(this);
+			menu.setCanvas(canvas);
+			menu.reset();
+			setScreen(menu);
+			//loading.dispose();
+			//loading = null;
 		} else if (exitCode == WorldController.EXIT_NEXT) {
 			current = (current+1) % controllers.length;
 			controllers[current].reset();
@@ -142,6 +149,13 @@ public class GDXRoot extends Game implements ScreenListener {
 		} else if (exitCode == WorldController.EXIT_QUIT) {
 			// We quit the main application
 			Gdx.app.exit();
+		} else if (exitCode == MenuController.EXIT_TO_PLAY) {
+			controllers[0].loadContent(manager, canvas);
+			controllers[0].setScreenListener(this);
+			controllers[0].setCanvas(canvas);
+			controllers[0].reset();
+			setScreen(controllers[0]);
+			menu.dispose();
 		}
 	}
 

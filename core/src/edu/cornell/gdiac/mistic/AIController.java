@@ -44,6 +44,8 @@ public class AIController extends InputController {
     /** How much did we move vertically? */
     private float vertical;
 
+    public Vector2 next_move = new Vector2(0, 0);
+
     private Vector2 scale;
 
     private LinkedList<Pair> finalpath;
@@ -267,11 +269,11 @@ public class AIController extends InputController {
     private direction getMoveAlongPathToGoalTile() {
         //#region PUT YOUR CODE HERE
         Vector2 monsterPos = monster.getPosition();
-        monsterPos.x = (monsterPos.x * 50.0f)/scale.x;
-        monsterPos.y = (monsterPos.y * 50.0f)/scale.y;
+        float new_monster_posx = (monsterPos.x * 50.0f)/scale.x;
+        float new_monster_posy= (monsterPos.y * 50.0f)/scale.y;
         Queue q = new LinkedList();
-        int start_x = board.screenToBoardX(monsterPos.x);
-        int start_y = board.screenToBoardY(monsterPos.y);
+        int start_x = board.screenToBoardX(new_monster_posx);
+        int start_y = board.screenToBoardY(new_monster_posy);
         board.setVisited(start_x, start_y);
         LinkedList<Pair> vlist;
         vlist = new LinkedList<Pair>();
@@ -300,6 +302,7 @@ public class AIController extends InputController {
             return direction.STOP;
         }
         Pair wanted = finalpath.get(1);
+        next_move = new Vector2(finalpath.get(1).x, finalpath.get(1).y);
         direction the_move = findMove(new Pair(start_x, start_y), wanted);
         return the_move;
         //#endregion

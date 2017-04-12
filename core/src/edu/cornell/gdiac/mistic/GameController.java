@@ -31,8 +31,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
+//import org.lwjgl.Sys;
+
 /**
- * Gameplay specific controller for the rocket lander game.
+ * Gameplay specific controller for the Mistic game.
  *
  * You will notice that asset loading is not done with static methods this time.
  * Instance asset loading makes it easier to process our game modes in a loop, which
@@ -339,7 +341,7 @@ public class GameController extends WorldController implements ContactListener {
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
-    private AIController ai;
+    private AIControllerS ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
 
@@ -352,7 +354,7 @@ public class GameController extends WorldController implements ContactListener {
     /** Reference to the rocket/player avatar */
     public GorfModel gorf;
     /** Reference to the monster */
-    private MonsterModel monster;
+    public MonsterModel monster;
     /** Arraylist of Lantern objects */
     public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
     private Familiar familiars;
@@ -464,9 +466,15 @@ public class GameController extends WorldController implements ContactListener {
          * And adds lanterns to the GameController object pool.
          */
 
-        float w = 9;
-        float h = 12;
-        //createMonster(w, h);
+        for (int x = 0; x < tileBoard.getWidth(); x++) {
+            for (int y = 0; y < tileBoard.getWidth(); y++) {
+                if (tileBoard.isFogSpawn(x, y)) {
+                    BoardModel.Tile the_tile = tileBoard.getTile(x + 2,y);
+                    createMonster(tileBoard.getTileCenterX(the_tile) / scale.x, tileBoard.getTileCenterY(the_tile) / scale.y);
+                    break;
+                }
+            }
+        }
 
 
 
@@ -518,7 +526,8 @@ public class GameController extends WorldController implements ContactListener {
             underFog.add(familiars.object);
         }
 
-        this.ai = new AIController(monster, tileBoard, gorf, scale);
+        //this.ai = new AIController(monster, tileBoard, gorf, scale);
+        this.ai = new AIControllerS(monster, gorf, tileBoard);
 
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
     }
@@ -571,7 +580,7 @@ public class GameController extends WorldController implements ContactListener {
         l.setTexture(unlitTexture);
         Lanterns.add(l);
         addObject(l.object);
-        underFog.add(l.object);
+        overFog.add(l.object);
     }
 
 
@@ -646,13 +655,15 @@ public class GameController extends WorldController implements ContactListener {
         gorf.applyForce();
         wrapInBounds(gorf);
 
-//        ai.setInput();
-//        float forceXMonster = ai.getHorizontal();
-//        float forceYMonster = ai.getVertical();
-//        float monsterthrust = monster.getThrust();
-//        this.monster.setFX(forceXMonster * monsterthrust);
-//        this.monster.setFY(forceYMonster * monsterthrust);
-//        monster.applyForce();
+        ai.update(dt, world);
+
+        //ai.setInput();
+        //float forceXMonster = ai.getHorizontal();
+        //float forceYMonster = ai.getVertical();
+        //float monsterthrust = monster.getThrust();
+        //this.monster.setFX(forceXMonster * monsterthrust);
+        //this.monster.setFY(forceYMonster * monsterthrust);
+        //monster.applyForce();
 
         firefly_counter++;
         if (firefly_counter==150) {
@@ -871,13 +882,14 @@ public class GameController extends WorldController implements ContactListener {
 
         // UI
         canvas.begin(gorf.getPosition());
+
         displayFont.setColor(Color.WHITE);
         canvas.draw(HUDWindow, gorf.getPosition().x * scale.x + 85.0f, gorf.getPosition().y * scale.y + 105.0f);
         canvas.draw(HUDWhiteFirefly, gorf.getPosition().x * scale.x + 117.0f, gorf.getPosition().y * scale.y + 122.0f);
         canvas.draw(HUDWhiteNumber_x, gorf.getPosition().x * scale.x + 150.0f, gorf.getPosition().y * scale.y + 129.0f);
         canvas.draw(pawAnimation, gorf.getPosition().x * scale.x + 200.0f, gorf.getPosition().y * scale.y + 125.0f);
-        canvas.draw(HUDWhiteNumber_x, gorf.getPosition().x * scale.x + 233.0f, gorf.getPosition().y * scale.y + 129.0f);
-
+        //canvas.draw(HUDWhiteNumber_x, ai.next_move.x * scale.x, ai.next_move.y * scale.y);
+        canvas.draw(HUDWhiteNumber_slash, gorf.getPosition().x * scale.x + 254.0f, gorf.getPosition().y * scale.y + 127.0f);
 
         if (firefly_count / 10.0 < 1) {
 
@@ -951,48 +963,73 @@ public class GameController extends WorldController implements ContactListener {
         if (familiars.getNumFam() / 10.0 < 1) {
 
             switch (familiars.getNumFam()) {
-                case 0: canvas.draw(HUDWhiteNumber_0, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 0: canvas.draw(HUDWhiteNumber_0, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
-                case 1: canvas.draw(HUDWhiteNumber_1, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 1: canvas.draw(HUDWhiteNumber_1, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
-                case 2: canvas.draw(HUDWhiteNumber_2, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 2: canvas.draw(HUDWhiteNumber_2, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
-                case 3: canvas.draw(HUDWhiteNumber_3, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 3: canvas.draw(HUDWhiteNumber_3, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
-                case 4: canvas.draw(HUDWhiteNumber_4, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 4: canvas.draw(HUDWhiteNumber_4, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
-                case 5: canvas.draw(HUDWhiteNumber_5, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 5: canvas.draw(HUDWhiteNumber_5, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
-                case 6: canvas.draw(HUDWhiteNumber_6, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 6: canvas.draw(HUDWhiteNumber_6, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
-                case 7: canvas.draw(HUDWhiteNumber_7, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 7: canvas.draw(HUDWhiteNumber_7, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
-                case 8: canvas.draw(HUDWhiteNumber_8, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 8: canvas.draw(HUDWhiteNumber_8, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
-                case 9: canvas.draw(HUDWhiteNumber_9, gorf.getPosition().x * scale.x + 245.0f, gorf.getPosition().y * scale.y + 127.0f);
+                case 9: canvas.draw(HUDWhiteNumber_9, gorf.getPosition().x * scale.x + 240.0f, gorf.getPosition().y * scale.y + 127.0f);
                     break;
             }
+        }
+
+        switch(familiars.getPosList().length) {
+            case 0: canvas.draw(HUDWhiteNumber_0, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
+            case 1: canvas.draw(HUDWhiteNumber_1, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
+            case 2: canvas.draw(HUDWhiteNumber_2, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
+            case 3: canvas.draw(HUDWhiteNumber_3, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
+            case 4: canvas.draw(HUDWhiteNumber_4, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
+            case 5: canvas.draw(HUDWhiteNumber_5, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
+            case 6: canvas.draw(HUDWhiteNumber_6, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
+            case 7: canvas.draw(HUDWhiteNumber_7, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
+            case 8: canvas.draw(HUDWhiteNumber_8, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
+            case 9: canvas.draw(HUDWhiteNumber_9, gorf.getPosition().x * scale.x + 267.0f, gorf.getPosition().y * scale.y + 127.0f);
+                break;
         }
         canvas.end();
 
 
         canvas.begin();
+        // PLACEHOLDER--will be replaced by Victory screen
         if (familiars.collectAll) {
             if (countdown > 0) {
                 String vic = "Victory!";
                 displayFont.setColor(Color.PURPLE);
-                canvas.drawText(vic, displayFont, gorf.getPosition().x, gorf.getPosition().y);
+                canvas.drawText(vic, displayFont, gorf.getPosition().x * scale.x - 200.0f, gorf.getPosition().y * scale.y);
                 countdown --;
             } else if (countdown==0) {
                 this.setComplete(true);
             }
         }
 
+        //PLACEHOLDER--will be replaced by game over screen
         if (DEAD) {
             if (countdown > 0) {
                 String vic = "Game Over!";
                 displayFont.setColor(Color.PURPLE);
-                canvas.drawText(vic, displayFont, gorf.getPosition().x, gorf.getPosition().y);
+                canvas.drawText(vic, displayFont, gorf.getPosition().x * scale.x - 200.0f, gorf.getPosition().y * scale.y);
                 countdown --;
             } else if (countdown==0) {
                 DEAD = false;

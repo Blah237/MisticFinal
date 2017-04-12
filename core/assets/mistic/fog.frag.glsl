@@ -5,20 +5,20 @@ uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
 uniform sampler2D u_texture_perlin;
 
-uniform sampler2D u_texture_sew;
-uniform sampler2D u_texture_new;
-uniform sampler2D u_texture_nsw;
-uniform sampler2D u_texture_nse;
-uniform sampler2D u_texture_ew;
-uniform sampler2D u_texture_ns;
-uniform sampler2D u_texture_nw;
-uniform sampler2D u_texture_sw;
-uniform sampler2D u_texture_se;
-uniform sampler2D u_texture_ne;
-uniform sampler2D u_texture_w;
-uniform sampler2D u_texture_s;
-uniform sampler2D u_texture_e;
-uniform sampler2D u_texture_n;
+//uniform sampler2D u_texture_sew;
+//uniform sampler2D u_texture_new;
+//uniform sampler2D u_texture_nsw;
+//uniform sampler2D u_texture_nse;
+//uniform sampler2D u_texture_ew;
+//uniform sampler2D u_texture_ns;
+//uniform sampler2D u_texture_nw;
+//uniform sampler2D u_texture_sw;
+//uniform sampler2D u_texture_se;
+//uniform sampler2D u_texture_ne;
+//uniform sampler2D u_texture_w;
+//uniform sampler2D u_texture_s;
+//uniform sampler2D u_texture_e;
+//uniform sampler2D u_texture_n;
 
 uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
@@ -60,85 +60,85 @@ void main() {
 
     vec4 texColor = texture2D(u_texture, vTexCoord);
 
+    vec3 fog = vec3(.5,0.0,.65);
+
+
+//    fogThickness *= fogBoard[cellY*NX + cellX];
+//      float fogThickness = fogBoard[cellY*NX + cellX];
+    float fogThickness = 0.0;
+
     if (fogBoard[cellY*NX + cellX] == 1.0) {
-
-        vec3 fog = vec3(.5,0.0,.65);
-
-
-    //    fogThickness *= fogBoard[cellY*NX + cellX];
-    //      float fogThickness = fogBoard[cellY*NX + cellX];
-        float fogThickness = 0.0;
-
         fogThickness = fogBoard[cellY*NX + cellX];
-
-        for (int i=0; i<10; i++) {
-            if (i>=numLanterns) {
-                break;
-            }
-
-            vec2 lantern = lanterns[i];
-            float dx2 = abs(coord.x-lantern.x) * (res.x/res.y);
-            float dy2 = abs(coord.y-.06-lantern.y);
-
-            float dist2 = length(vec2(dx2,dy2));
-            float fogThickness2 = smoothstep(.25, .5, dist2);
-            fogThickness *= fogThickness2;
-        }
-
-        float dx3 = abs(coord.x-.5) * (res.x/res.y);
-        float dy3 = abs(coord.y-.5);
-
-        float dist3 = length(vec2(dx3, dy3));
-        fogThickness *= smoothstep(min(.17 + float(numFireflies)*.04, .4)-.15, min(.12 + float(numFireflies)*.04, .4), dist3);
-
-        fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
-        fog *= min(1.0,fogThickness);
-        fog *= max(.7, texture2D(u_texture_perlin, vTexCoord).a);
-
-        gl_FragColor = texColor;
-    //    gl_FragColor = vec4(fog, fogThickness);
-        gl_FragColor.rgb *= max(0.0,1.0-fogThickness);
-        gl_FragColor.rgb += fog;
-    //    if (fogThickness > 0) {
-    //        gl_FragColor.a *= texture2D(u_texture_perlin, vTexCoord).a;
-    //    }
-
-    //    gl_FragColor.a = 0;
-
-    //    gl_FragColor = texColor;
-    } else if (fogBoard[cellY*NX + cellX] != 0.0 && fogBoard[cellY*NX + cellX] == 0.9) {
-        if (fogBoard[cellY*NX + cellX] == .1) {
-            texColor = texture2D(u_texture_n, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .2) {
-            texColor = texture2D(u_texture_e, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .3) {
-            texColor = texture2D(u_texture_s, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .4) {
-            texColor = texture2D(u_texture_w, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .5) {
-            texColor = texture2D(u_texture_ne, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .6) {
-            texColor = texture2D(u_texture_se, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .7) {
-            texColor = texture2D(u_texture_sw, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .8) {
-            texColor = texture2D(u_texture_nw, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .9) {
-            texColor = texture2D(u_texture_ns, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .10) {
-            texColor = texture2D(u_texture_ew, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .11) {
-            texColor = texture2D(u_texture_new, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .12) {
-            texColor = texture2D(u_texture_nse, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .13) {
-            texColor = texture2D(u_texture_nsw, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        } else if (fogBoard[cellY*NX + cellX] == .14) {
-            texColor = texture2D(u_texture_sew, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
-        }
-
-        gl_FragColor = texColor;
-    } else {
-        gl_FragColor = texColor;
     }
+
+    for (int i=0; i<10; i++) {
+        if (i>=numLanterns) {
+            break;
+        }
+
+        vec2 lantern = lanterns[i];
+        float dx2 = abs(coord.x+.02-lantern.x) * (res.x/res.y);
+        float dy2 = abs(coord.y-.06-lantern.y);
+
+        float dist2 = length(vec2(dx2,dy2));
+        float fogThickness2 = smoothstep(.3, .5, dist2);
+        fogThickness *= fogThickness2;
+    }
+
+    float dx3 = abs(coord.x-.5) * (res.x/res.y);
+    float dy3 = abs(coord.y-.5);
+
+    float dist3 = length(vec2(dx3, dy3));
+    fogThickness *= smoothstep(min(.17 + float(numFireflies)*.04, .4)-.15, min(.12 + float(numFireflies)*.04, .4), dist3);
+
+    fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
+    fog *= min(1.0,fogThickness);
+    fog *= max(.7, texture2D(u_texture_perlin, vTexCoord).a);
+
+    gl_FragColor = texColor;
+//    gl_FragColor = vec4(fog, fogThickness);
+    gl_FragColor.rgb *= max(0.0,1.0-fogThickness);
+    gl_FragColor.rgb += fog;
+//    if (fogThickness > 0) {
+//        gl_FragColor.a *= texture2D(u_texture_perlin, vTexCoord).a;
+//    }
+
+//    gl_FragColor.a = 0;
+
+//    gl_FragColor = texColor;
+//    } else if (fogBoard[cellY*NX + cellX] != 0.0 && fogBoard[cellY*NX + cellX] == 0.9) {
+//        if (fogBoard[cellY*NX + cellX] == .1) {
+//            texColor = texture2D(u_texture_n, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .2) {
+//            texColor = texture2D(u_texture_e, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .3) {
+//            texColor = texture2D(u_texture_s, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .4) {
+//            texColor = texture2D(u_texture_w, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .5) {
+//            texColor = texture2D(u_texture_ne, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .6) {
+//            texColor = texture2D(u_texture_se, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .7) {
+//            texColor = texture2D(u_texture_sw, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .8) {
+//            texColor = texture2D(u_texture_nw, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .9) {
+//            texColor = texture2D(u_texture_ns, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .10) {
+//            texColor = texture2D(u_texture_ew, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .11) {
+//            texColor = texture2D(u_texture_new, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .12) {
+//            texColor = texture2D(u_texture_nse, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .13) {
+//            texColor = texture2D(u_texture_nsw, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        } else if (fogBoard[cellY*NX + cellX] == .14) {
+//            texColor = texture2D(u_texture_sew, vec2(mod(gl_FragCoord.x, tileW) / tileW, mod(gl_FragCoord.y, tileH) / tileH));
+//        }
+//
+//        gl_FragColor = texColor;
+//    } else {
+//        gl_FragColor = texColor;
+//    }
  }

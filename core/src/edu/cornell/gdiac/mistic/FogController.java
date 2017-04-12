@@ -242,47 +242,47 @@ public class FogController {
 	public void prepShader(int numFireflies) {
 		shader.begin();
 
-		sewTex.bind(15);
-		shader.setUniformi("u_texture_sew", 15);
-
-		newTex.bind(14);
-		shader.setUniformi("u_texture_new", 14);
-
-		nswTex.bind(13);
-		shader.setUniformi("u_texture_nsw", 13);
-
-		nseTex.bind(12);
-		shader.setUniformi("u_texture_nse", 12);
-
-		ewTex.bind(11);
-		shader.setUniformi("u_texture_ew", 11);
-
-		nsTex.bind(10);
-		shader.setUniformi("u_texture_ns", 10);
-
-		nwTex.bind(9);
-		shader.setUniformi("u_texture_nw", 9);
-
-		swTex.bind(8);
-		shader.setUniformi("u_texture_sw", 8);
-
-		seTex.bind(7);
-		shader.setUniformi("u_texture_se", 7);
-
-		neTex.bind(6);
-		shader.setUniformi("u_texture_ne", 6);
-
-		wTex.bind(5);
-		shader.setUniformi("u_texture_w", 5);
-
-		sTex.bind(4);
-		shader.setUniformi("u_texture_s", 4);
-
-		eTex.bind(3);
-		shader.setUniformi("u_texture_e", 3);
-
-		nTex.bind(2);
-		shader.setUniformi("u_texture_n", 2);
+//		sewTex.bind(15);
+//		shader.setUniformi("u_texture_sew", 15);
+//
+//		newTex.bind(14);
+//		shader.setUniformi("u_texture_new", 14);
+//
+//		nswTex.bind(13);
+//		shader.setUniformi("u_texture_nsw", 13);
+//
+//		nseTex.bind(12);
+//		shader.setUniformi("u_texture_nse", 12);
+//
+//		ewTex.bind(11);
+//		shader.setUniformi("u_texture_ew", 11);
+//
+//		nsTex.bind(10);
+//		shader.setUniformi("u_texture_ns", 10);
+//
+//		nwTex.bind(9);
+//		shader.setUniformi("u_texture_nw", 9);
+//
+//		swTex.bind(8);
+//		shader.setUniformi("u_texture_sw", 8);
+//
+//		seTex.bind(7);
+//		shader.setUniformi("u_texture_se", 7);
+//
+//		neTex.bind(6);
+//		shader.setUniformi("u_texture_ne", 6);
+//
+//		wTex.bind(5);
+//		shader.setUniformi("u_texture_w", 5);
+//
+//		sTex.bind(4);
+//		shader.setUniformi("u_texture_s", 4);
+//
+//		eTex.bind(3);
+//		shader.setUniformi("u_texture_e", 3);
+//
+//		nTex.bind(2);
+//		shader.setUniformi("u_texture_n", 2);
 
 		perlinTex.bind(1);
 		shader.setUniformi("u_texture_perlin", 1);
@@ -298,7 +298,7 @@ public class FogController {
 		shader.setUniformf("fogOrigin", fogOriginCamX, fogOriginCamY);
 		shader.setUniformf("leftOffset", boardLeftOffset);
 		shader.setUniformf("botOffset", boardBotOffset);
-		shader.setUniform1fv("boundaryTiles", boundaryTilesCamA, 0, boundaryTilesCamA.length);
+//		shader.setUniform1fv("boundaryTiles", boundaryTilesCamA, 0, boundaryTilesCamA.length);
 		shader.setUniformf("tileW", tileW);
 		shader.setUniformf("tileH", tileH);
 		shader.end();
@@ -397,10 +397,10 @@ public class FogController {
 //		fogReachX+=(1f/FOG_DELAY * spreadCountX/spreadCount);
 //		fogReachY+=(1f/FOG_DELAY * spreadCountY/spreadCount);
 
-		boundaryFogBoard = new float[WX][WY];
-		for (int q=0; q<WX; q++) {
-			boundaryFogBoard[q] = fogBoard[q].clone();
-		}
+//		boundaryFogBoard = new float[WX][WY];
+//		for (int q=0; q<WX; q++) {
+//			boundaryFogBoard[q] = fogBoard[q].clone();
+//		}
 //		updateBoundary();
 
 
@@ -432,9 +432,9 @@ public class FogController {
 				int tileY = (startTileY+j + WY) % WY;
 //				if (startTileX+i > 0 && startTileY+j > 0 && startTileX+i < WX && startTileY+j < WY) {
 				if (fogBoardCam[camTileY * NX + camTileX] != 0) {
-					fogBoardCam[camTileY * NX + camTileX] = Math.min(fogBoardCam[camTileY * NX + camTileX], boundaryFogBoard[tileX][tileY]);
+					fogBoardCam[camTileY * NX + camTileX] = Math.min(fogBoardCam[camTileY * NX + camTileX], fogBoard[tileX][tileY]);
 				} else {
-					fogBoardCam[camTileY * NX + camTileX] = boundaryFogBoard[tileX][tileY];
+					fogBoardCam[camTileY * NX + camTileX] = fogBoard[tileX][tileY];
 				}
 
 //				for (int a=0; a<boundaryPos.size; a++) {
@@ -450,10 +450,10 @@ public class FogController {
 			camTileX++;
 		}
 
-		boundaryTilesCamA = new float[boundaryTiles.size];
-		for (int k=0; k<boundaryTilesCam.size; k++) {
-			boundaryTilesCamA[k] = (float)boundaryTilesCam.get(k);
-		}
+//		boundaryTilesCamA = new float[boundaryTiles.size];
+//		for (int k=0; k<boundaryTilesCam.size; k++) {
+//			boundaryTilesCamA[k] = (float)boundaryTilesCam.get(k);
+//		}
 
 		if (gorf.isColliding()) {
 			boardLeftOffset = ((((gorfPos.x - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;

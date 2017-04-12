@@ -108,7 +108,7 @@ public class BoardModel {
      *
      * @return the tile state for the given position
      */
-    private Tile getTile(int x, int y) {
+    public Tile getTile(int x, int y) {
         if (!inBounds(x, y)) {
             return null;
         }
@@ -195,6 +195,13 @@ public class BoardModel {
         return intX;
     }
 
+    public float boardtoScreenX(float x) {
+        float intX = (x*tileWidth);
+        if(intX==width){return intX-1;}
+
+        return intX;
+    }
+
     /**
      * Returns the board tile index for a screen position.
      *
@@ -208,6 +215,11 @@ public class BoardModel {
         return intY;
     }
 
+    public float boardToScreenY(float y) {
+        float intY = (int)(y*tileHeight);
+        if(intY==height){return intY-1;}
+        return intY;
+    }
     /**
      * Returns true if the tile is a goal.
      *
