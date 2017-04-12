@@ -596,7 +596,6 @@ public class GameController extends WorldController implements ContactListener {
                     toggle(l);
             }
         }
-
         int f = familiars.getNumFam();
         familiars.update(gorf);
         int f2 = familiars.getNumFam();
