@@ -444,6 +444,12 @@ public class GameCanvas {
 		camera.update();
 	}
 
+	public void resetCameraDefault() {
+		camera.position.set(getWidth(),getHeight(),0);
+		camera.zoom = 1f;
+		camera.update();
+	}
+
 	/**
 	 * Draws the tinted texture at the given position.
 	 *
