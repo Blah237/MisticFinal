@@ -119,6 +119,7 @@ public class GDXRoot extends Game implements ScreenListener {
 		canvas.resize();
 		super.resize(width,height);
 	}
+
 	
 	/**
 	 * The given screen has made a request to exit its player mode.
@@ -135,8 +136,8 @@ public class GDXRoot extends Game implements ScreenListener {
 			menu.setCanvas(canvas);
 			menu.reset();
 			setScreen(menu);
-			loading.dispose();
-			loading = null;
+			//loading.dispose();
+			//loading = null;
 		} else if (exitCode == WorldController.EXIT_NEXT) {
 			current = (current+1) % controllers.length;
 			controllers[current].reset();

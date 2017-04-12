@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
+import org.lwjgl.Sys;
+
 /**
  * Gameplay specific controller for the Mistic game.
  *
@@ -339,7 +341,7 @@ public class GameController extends WorldController implements ContactListener {
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
-    private AIController ai;
+    private AIControllerS ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
 
@@ -352,7 +354,7 @@ public class GameController extends WorldController implements ContactListener {
     /** Reference to the rocket/player avatar */
     public GorfModel gorf;
     /** Reference to the monster */
-    private MonsterModel monster;
+    public MonsterModel monster;
     /** Arraylist of Lantern objects */
     public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
     private Familiar familiars;
@@ -462,9 +464,15 @@ public class GameController extends WorldController implements ContactListener {
          * And adds lanterns to the GameController object pool.
          */
 
-        float w = 3;
-        float h = 12;
-        //createMonster(w, h);
+        for (int x = 0; x < tileBoard.getWidth(); x++) {
+            for (int y = 0; y < tileBoard.getWidth(); y++) {
+                if (tileBoard.isFogSpawn(x, y)) {
+                    System.out.print("yay");
+                    BoardModel.Tile the_tile = tileBoard.getTile(x + 2,y);
+                    createMonster(tileBoard.getTileCenterX(the_tile) / scale.x, tileBoard.getTileCenterY(the_tile) / scale.y);
+                }
+            }
+        }
 
 
 
@@ -514,7 +522,8 @@ public class GameController extends WorldController implements ContactListener {
             addObject(familiars.object);
         }
 
-        this.ai = new AIController(monster, tileBoard, gorf, scale);
+        //this.ai = new AIController(monster, tileBoard, gorf, scale);
+        this.ai = new AIControllerS(monster, gorf, tileBoard);
 
          fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
     }
@@ -640,6 +649,8 @@ public class GameController extends WorldController implements ContactListener {
         gorf.applyForce();
         wrapInBounds(gorf);
 
+        ai.update(dt, world);
+
         //ai.setInput();
         //float forceXMonster = ai.getHorizontal();
         //float forceYMonster = ai.getVertical();
@@ -705,7 +716,9 @@ public class GameController extends WorldController implements ContactListener {
 
         // main canvas
         fbo.begin();
-
+        canvas.clear();
+        canvas.begin();
+        canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
         for(Obstacle obj : objects) {if(obj.isActive()){obj.draw(canvas);}}
         for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
         //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
@@ -756,7 +769,7 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(HUDWhiteFirefly, gorf.getPosition().x * scale.x + 117.0f, gorf.getPosition().y * scale.y + 122.0f);
         canvas.draw(HUDWhiteNumber_x, gorf.getPosition().x * scale.x + 150.0f, gorf.getPosition().y * scale.y + 129.0f);
         canvas.draw(pawAnimation, gorf.getPosition().x * scale.x + 200.0f, gorf.getPosition().y * scale.y + 125.0f);
-        //canvas.draw(HUDWhiteNumber_x, gorf.getPosition().x * scale.x + 233.0f, gorf.getPosition().y * scale.y + 129.0f);
+        //canvas.draw(HUDWhiteNumber_x, ai.next_move.x * scale.x, ai.next_move.y * scale.y);
         canvas.draw(HUDWhiteNumber_slash, gorf.getPosition().x * scale.x + 254.0f, gorf.getPosition().y * scale.y + 127.0f);
 
         if (firefly_count / 10.0 < 1) {

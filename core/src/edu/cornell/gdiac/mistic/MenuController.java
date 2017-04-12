@@ -1,5 +1,6 @@
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,7 +16,7 @@ import edu.cornell.gdiac.util.ScreenListener;
 /**
  * Created by Nathaniel on 4/11/17.
  */
-public class MenuController extends WorldController {
+public class MenuController extends WorldController implements Screen {
     private static final String BACKGROUND = "mistic/spritesheet_menu.png";
     private FilmStrip menu;
 
@@ -70,12 +71,6 @@ public class MenuController extends WorldController {
     }
 
     public void update(float dt) {
-        boolean pressing = InputController.getInstance().didSecondary();
-        if (pressing) {
-            switch (menu.getFrame()) {
-                case 0: listener.exitScreen(this, EXIT_TO_PLAY);
-            }
-        }
         if (timerGo) {
             inputTimer--;
             if (inputTimer == 0) {
@@ -102,14 +97,27 @@ public class MenuController extends WorldController {
         }
 
     }
+@Override
+public void render(float dt) {
+        super.render(dt);
+        update(dt);
+        draw(dt);
+    boolean pressing = InputController.getInstance().didSecondary();
+    if (pressing) {
+        switch (menu.getFrame()) {
+            case 0: listener.exitScreen(this, EXIT_TO_PLAY);
+        }
+    }
+}
 
 
     public void draw(float dt) {
-        canvas.clear();
-        canvas.resetCamera();
-        canvas.begin();
-        canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-        canvas.end();
+            canvas.clear();
+            canvas.resetCamera();
+            canvas.begin();
+            canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
+            canvas.end();
+
     }
 
     public void setScreenListener(ScreenListener listener) {
