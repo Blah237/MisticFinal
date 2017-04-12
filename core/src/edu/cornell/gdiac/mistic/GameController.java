@@ -790,7 +790,7 @@ public class GameController extends WorldController implements ContactListener {
 //        fbo2.end();
 
         // Everything over the fog
-        canvas.resetCameraDefault();
+//        canvas.resetCameraDefault();
         canvas.getSpriteBatch().setShader(null);
         canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
 
