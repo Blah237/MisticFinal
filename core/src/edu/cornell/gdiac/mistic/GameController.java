@@ -300,7 +300,6 @@ public class GameController extends WorldController implements ContactListener {
 
 
         fireflyAnimation=createFilmStrip(manager, FIREFLY_ANIMATE, 1, Firefly.FRAMES,Firefly.FRAMES);
-
         for(int i=0;i<MIST_WALLS.length;i++){
             mistwalls[i]= createTexture(manager, MIST_WALLS[i], false);
         }
