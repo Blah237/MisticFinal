@@ -195,7 +195,7 @@ public class AIController extends InputController {
         int theX = board.screenToBoardX(monster.getPosition().x);
         int theY = board.screenToBoardY(monster.getPosition().y);
         //#region PUT YOUR CODE HERE
-        Vector2 gorfPos = new Vector2((gorf.getPosition().x *50.0f)/scale.x, (gorf.getPosition().y * 50.0f)/scale.y);
+        Vector2 gorfPos = new Vector2((gorf.getPosition().x *scale.x), (gorf.getPosition().y * scale.y));
         int gorfTileX = board.screenToBoardX(gorfPos.x);
         int gorfTileY = board.screenToBoardY(gorfPos.y);
         //#endregion
@@ -269,8 +269,8 @@ public class AIController extends InputController {
     private direction getMoveAlongPathToGoalTile() {
         //#region PUT YOUR CODE HERE
         Vector2 monsterPos = monster.getPosition();
-        float new_monster_posx = (monsterPos.x * 50.0f)/scale.x;
-        float new_monster_posy= (monsterPos.y * 50.0f)/scale.y;
+        float new_monster_posx = (monsterPos.x * scale.x);
+        float new_monster_posy= (monsterPos.y * scale.y);
         Queue q = new LinkedList();
         int start_x = board.screenToBoardX(new_monster_posx);
         int start_y = board.screenToBoardY(new_monster_posy);

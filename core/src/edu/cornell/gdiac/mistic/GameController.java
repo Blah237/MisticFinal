@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
+import org.lwjgl.Sys;
 //import org.lwjgl.Sys;
 
 /**
@@ -49,7 +50,7 @@ public class GameController extends WorldController implements ContactListener {
     private static final String FIRE_FLY= "mistic/firefly.png";
     private static final String FOG_TEXTURE = "mistic/fog.png";
     private static final String FIRE_TRACK="mistic/fireflyicon.png";
-    private static final String MONSTER_TEXTURE = "mistic/monster01.png";
+    private static final String MONSTER_TEXTURE = "mistic/enemyplaceholder.png";
     private static final String[] MIST_WALLS= {"mistic/mistblock/mistblock1.png",
             "mistic/mistblock/mistblock2.png", "mistic/mistblock/mistblock3.png", "mistic/mistblock/mistblock4.png",
             "mistic/mistblock/mistblock5.png", "mistic/mistblock/mistblock6.png", "mistic/mistblock/mistblock7.png",
@@ -341,7 +342,7 @@ public class GameController extends WorldController implements ContactListener {
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
-    //private AIControllerS ai;
+    private AIControllerS ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
 
@@ -354,7 +355,7 @@ public class GameController extends WorldController implements ContactListener {
     /** Reference to the rocket/player avatar */
     public GorfModel gorf;
     /** Reference to the monster */
-    public MonsterModel monster;
+    public ArrayList<MonsterModel> monster;
     /** Arraylist of Lantern objects */
     public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
     private Familiar familiars;
@@ -403,6 +404,7 @@ public class GameController extends WorldController implements ContactListener {
         this.firefly_count = 0;
         this.DEAD = false;
         this.fireflyDeathTimer=0;
+        this.monster = new ArrayList<MonsterModel>();
     }
 
     /**
@@ -427,6 +429,7 @@ public class GameController extends WorldController implements ContactListener {
         setComplete(false);
         setFailure(false);
         populateLevel();
+        ai = new AIControllerS(monster, gorf, tileBoard);
         countdown=120;
 
         fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2, false);
@@ -469,9 +472,8 @@ public class GameController extends WorldController implements ContactListener {
         for (int x = 0; x < tileBoard.getWidth(); x++) {
             for (int y = 0; y < tileBoard.getWidth(); y++) {
                 if (tileBoard.isFogSpawn(x, y)) {
-                    BoardModel.Tile the_tile = tileBoard.getTile(x + 2,y);
-                    //createMonster(tileBoard.getTileCenterX(the_tile) / scale.x, tileBoard.getTileCenterY(the_tile) / scale.y);
-                    break;
+                    BoardModel.Tile the_tile = tileBoard.getTile(x,y);
+                    createMonster(tileBoard.getTileCenterX(the_tile) / scale.x, tileBoard.getTileCenterY(the_tile) / scale.y);
                 }
             }
         }
@@ -527,7 +529,7 @@ public class GameController extends WorldController implements ContactListener {
         }
 
         //this.ai = new AIController(monster, tileBoard, gorf, scale);
-        //this.ai = new AIControllerS(monster, gorf, tileBoard);
+        this.ai = new AIControllerS(monster, gorf, tileBoard);
 
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
     }
@@ -537,13 +539,13 @@ public class GameController extends WorldController implements ContactListener {
         float dwidth  = texture.getRegionWidth()/scale.x;
         float dheight = texture.getRegionHeight()/scale.y;
         MonsterModel monster = new MonsterModel(x, y, dwidth, dheight);
-        this.monster = monster;
         monster.setDensity(CRATE_DENSITY);
         monster.setFriction(CRATE_FRICTION);
         monster.setRestitution(BASIC_RESTITUTION);
         monster.setDrawScale(scale);
         monster.setName("monster");
         monster.setTexture(texture);
+        this.monster.add(monster);
         addObject(monster);
         underFog.add(monster);
         monster.getBody().setUserData("monster");
@@ -605,12 +607,12 @@ public class GameController extends WorldController implements ContactListener {
         // Then apply the force using the method you modified in RocketObject
         boolean pressing = InputController.getInstance().didSecondary();
         if(pressing){
+
                 Lantern l = getLantern(gorf.getX(), gorf.getY());
                 if (l!=null){
                     toggle(l);
             }
         }
-
         int f = familiars.getNumFam();
         familiars.update(gorf);
         int f2 = familiars.getNumFam();
@@ -648,21 +650,13 @@ public class GameController extends WorldController implements ContactListener {
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
-        float cmpntX = forcex*(gorf.getThrust());
-        float cmpntY = forcey*(gorf.getThrust());
-
-        // If force vector length is greater than getThrust(), make its
-        // components shorter such that its length IS getThrust()
-        Vector2 temp = new Vector2(cmpntX,cmpntY);
-        if (temp.len()>gorf.getThrust()) {
-            temp = temp.setLength(gorf.getThrust());
-        }
-
-        this.gorf.setForce(temp);
+        float moveacc = gorf.getThrust();
+        this.gorf.setFX(forcex*moveacc);
+        this.gorf.setFY(forcey*moveacc);
         gorf.applyForce();
         wrapInBounds(gorf);
 
-        //ai.update(dt, world);
+        ai.update(dt, world);
 
         //ai.setInput();
         //float forceXMonster = ai.getHorizontal();
