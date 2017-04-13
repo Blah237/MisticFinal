@@ -67,6 +67,15 @@ public class GorfModel extends BoxObstacle {
 	}
 
 	/**
+	 * Why the hell hasn't this been implemented yet
+	 *
+	 * @param value the new Gorf force vector
+	 */
+	public void setForce(Vector2 value) {
+		force = value;
+	}
+
+	/**
 	 * Returns the x-component of the force applied to this rocket.
 	 *
 	 * Remember to modify the input values by the thrust amount before assigning

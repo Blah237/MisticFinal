@@ -46,7 +46,7 @@ public class FogController {
 	Array<Vector2> fogOrigins;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 10;
+	private final int FOG_DELAY = 5;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -471,6 +471,8 @@ public class FogController {
 		}
 //		System.out.println(boardLeftOffset);
 //		System.out.println(gorf.getX());
+
+//		System.out.println(tileBoard.isFog((int)(gorfPos.x/tileW), (int)(gorfPos.y/tileH)));
 	}
 
 	private void updateFog(BoardModel tileBoard) {
