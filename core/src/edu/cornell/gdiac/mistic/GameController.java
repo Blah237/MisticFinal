@@ -443,6 +443,12 @@ public class GameController extends WorldController implements ContactListener {
         fboRegion3 = new TextureRegion(fbo3.getColorBufferTexture(), Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
         fboRegion3.flip(false, true);
 
+        for (BoardModel.Tile[] ta: tileBoard.tiles) {
+            for (BoardModel.Tile t : ta) {
+                t.isFog = false;
+            }
+        }
+
         // Stop all existing instances, and then re-play
         //if (sounds.isActive("A")) {sounds.stop("A");}
         sounds.stop("B");
@@ -650,8 +656,15 @@ public class GameController extends WorldController implements ContactListener {
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
         float moveacc = gorf.getThrust();
-        this.gorf.setFX(forcex*moveacc);
-        this.gorf.setFY(forcey*moveacc);
+
+        // make all movement equispeed
+        Vector2 temp = new Vector2(forcex*moveacc,forcey*moveacc);
+        if (temp.len()>gorf.getThrust()) {
+            temp = temp.setLength(gorf.getThrust());
+        }
+
+        this.gorf.setFX(temp.x);
+        this.gorf.setFY(temp.y);
         gorf.applyForce();
         wrapInBounds(gorf);
 

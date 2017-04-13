@@ -25,7 +25,7 @@ public class MenuController extends WorldController implements Screen {
     private int inputTimer = 10;
     private boolean timerGo = false;
 
-    private int firflyAnimateTimer = 10;
+    private int firflyAnimateTimer = 15;
 
     private AssetState menuAssetState = AssetState.EMPTY;
     private ScreenListener listener;
@@ -104,7 +104,7 @@ public class MenuController extends WorldController implements Screen {
         }
         firflyAnimateTimer--;
         if (firflyAnimateTimer == 0) {
-            firflyAnimateTimer = 10;
+            firflyAnimateTimer = 15;
         }
 
     }
