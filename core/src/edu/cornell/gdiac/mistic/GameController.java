@@ -444,6 +444,12 @@ public class GameController extends WorldController implements ContactListener {
         fboRegion3 = new TextureRegion(fbo3.getColorBufferTexture(), Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
         fboRegion3.flip(false, true);
 
+        for (BoardModel.Tile[] ta: tileBoard.tiles) {
+            for (BoardModel.Tile t : ta) {
+                t.isFog = false;
+            }
+        }
+
         // Stop all existing instances, and then re-play
         //if (sounds.isActive("A")) {sounds.stop("A");}
         sounds.stop("B");
