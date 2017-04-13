@@ -341,7 +341,7 @@ public class GameController extends WorldController implements ContactListener {
 
     // the number of fireflies Gorf is holding
     private static int firefly_count;
-    private AIControllerS ai;
+    //private AIControllerS ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
 
@@ -470,7 +470,7 @@ public class GameController extends WorldController implements ContactListener {
             for (int y = 0; y < tileBoard.getWidth(); y++) {
                 if (tileBoard.isFogSpawn(x, y)) {
                     BoardModel.Tile the_tile = tileBoard.getTile(x + 2,y);
-                    createMonster(tileBoard.getTileCenterX(the_tile) / scale.x, tileBoard.getTileCenterY(the_tile) / scale.y);
+                    //createMonster(tileBoard.getTileCenterX(the_tile) / scale.x, tileBoard.getTileCenterY(the_tile) / scale.y);
                     break;
                 }
             }
@@ -527,7 +527,7 @@ public class GameController extends WorldController implements ContactListener {
         }
 
         //this.ai = new AIController(monster, tileBoard, gorf, scale);
-        this.ai = new AIControllerS(monster, gorf, tileBoard);
+        //this.ai = new AIControllerS(monster, gorf, tileBoard);
 
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
     }
@@ -605,7 +605,6 @@ public class GameController extends WorldController implements ContactListener {
         // Then apply the force using the method you modified in RocketObject
         boolean pressing = InputController.getInstance().didSecondary();
         if(pressing){
-
                 Lantern l = getLantern(gorf.getX(), gorf.getY());
                 if (l!=null){
                     toggle(l);
@@ -649,13 +648,21 @@ public class GameController extends WorldController implements ContactListener {
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
-        float moveacc = gorf.getThrust();
-        this.gorf.setFX(forcex*moveacc);
-        this.gorf.setFY(forcey*moveacc);
+        float cmpntX = forcex*(gorf.getThrust());
+        float cmpntY = forcey*(gorf.getThrust());
+
+        // If force vector length is greater than getThrust(), make its
+        // components shorter such that its length IS getThrust()
+        Vector2 temp = new Vector2(cmpntX,cmpntY);
+        if (temp.len()>gorf.getThrust()) {
+            temp = temp.setLength(gorf.getThrust());
+        }
+
+        this.gorf.setForce(temp);
         gorf.applyForce();
         wrapInBounds(gorf);
 
-        ai.update(dt, world);
+        //ai.update(dt, world);
 
         //ai.setInput();
         //float forceXMonster = ai.getHorizontal();
