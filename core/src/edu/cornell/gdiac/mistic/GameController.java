@@ -461,7 +461,7 @@ public class GameController extends WorldController implements ContactListener {
          * Create Gorf
          */
         float dwidth  = gorfTexture.getRegionWidth()/scale.x;
-        float dheight = gorfTexture.getRegionHeight()/scale.y;
+        float dheight = gorfTexture.getRegionHeight()/(scale.y*2);
         gorf = new GorfModel(GORF_POS.x, GORF_POS.y, dwidth*0.75f, dheight*0.75f);
         gorf.setDrawScale(scale);
         gorf.setTexture(gorfTexture);
@@ -541,8 +541,8 @@ public class GameController extends WorldController implements ContactListener {
 
     private void createMonster(float x, float y) {
         TextureRegion texture = monsterTexture;
-        float dwidth  = texture.getRegionWidth()/scale.x;
-        float dheight = texture.getRegionHeight()/scale.y;
+        float dwidth  = texture.getRegionWidth()/(scale.x*2);
+        float dheight = texture.getRegionHeight()/(scale.y*2);
         MonsterModel monster = new MonsterModel(x, y, dwidth, dheight);
         monster.setDensity(CRATE_DENSITY);
         monster.setFriction(CRATE_FRICTION);
