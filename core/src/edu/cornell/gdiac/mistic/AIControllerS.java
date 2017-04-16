@@ -73,15 +73,39 @@ public class AIControllerS {
     }
 
     private void applySteering(SteeringAcceleration<Vector2> steering, MonsterModel m) {
-        Vector2 monsterPos = gorf.getPosition();
+        Vector2 monsterPos = m.getPosition();
         int tileX = board.screenToBoardX(monsterPos.x * 8.0f);
         int tileY = board.screenToBoardY(monsterPos.y * 8.0f);
         BoardModel.Tile gorftile= board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f)];        // NOTE: got an ArrayIndexOutOfBoundsException at some obscure tile?
+        BoardModel.Tile gorftile2 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
+        BoardModel.Tile gorftile3 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f)];
+        BoardModel.Tile gorftile4 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
+        BoardModel.Tile gorftile5 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f) - 1];
+        BoardModel.Tile gorftile6 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) - 1][board.screenToBoardY(monsterPos.y * 8.0f) - 1];
+        BoardModel.Tile gorftile7 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) - 1][board.screenToBoardY(monsterPos.y * 8.0f)];
+        BoardModel.Tile gorftile8 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f) - 1];
+        BoardModel.Tile gorftile9 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) - 1][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
         boolean inFog=gorftile.isFog;
         boolean inFogSpawn = gorftile.isFogSpawn;
-        if (inFog || inFogSpawn) {
-            m.setFX(steering.linear.x * 6.0f);
-            m.setFY(steering.linear.y * 6.0f);
+        boolean inFog2=gorftile2.isFog;
+        boolean inFogSpawn2 = gorftile2.isFogSpawn;
+        boolean inFog3=gorftile3.isFog;
+        boolean inFogSpawn3 = gorftile3.isFogSpawn;
+        boolean inFog4=gorftile4.isFog;
+        boolean inFogSpawn4 = gorftile4.isFogSpawn;
+        boolean inFog5=gorftile5.isFog;
+        boolean inFogSpawn5 = gorftile5.isFogSpawn;
+        boolean inFog6=gorftile6.isFog;
+        boolean inFogSpawn6 = gorftile6.isFogSpawn;
+        boolean inFog7=gorftile7.isFog;
+        boolean inFogSpawn7 = gorftile7.isFogSpawn;
+        boolean inFog8=gorftile8.isFog;
+        boolean inFogSpawn8 = gorftile8.isFogSpawn;
+        boolean inFog9=gorftile9.isFog;
+        boolean inFogSpawn9 = gorftile9.isFogSpawn;
+        if (inFog || inFogSpawn || inFog2 || inFog3 || inFog4 || inFog5 || inFog6 || inFog7 || inFog8 || inFog9 || inFogSpawn2 || inFogSpawn3 || inFogSpawn4 || inFogSpawn5 || inFogSpawn6 || inFogSpawn7 || inFogSpawn8 || inFogSpawn9) {
+            m.setFX(steering.linear.x * 9.0f);
+            m.setFY(steering.linear.y * 9.0f);
             m.applyForce();
         }
 
