@@ -5,25 +5,25 @@ uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
 uniform sampler2D u_texture_perlin;
 
-uniform sampler2D u_texture_sew;
+//uniform sampler2D u_texture_sew;
 uniform sampler2D u_texture_new;
-uniform sampler2D u_texture_nsw;
-uniform sampler2D u_texture_nse;
-uniform sampler2D u_texture_ew;
+//uniform sampler2D u_texture_nsw;
+//uniform sampler2D u_texture_nse;
+//uniform sampler2D u_texture_ew;
 uniform sampler2D u_texture_ns;
-uniform sampler2D u_texture_nw;
-uniform sampler2D u_texture_sw;
-uniform sampler2D u_texture_se;
+//uniform sampler2D u_texture_nw;
+//uniform sampler2D u_texture_sw;
+//uniform sampler2D u_texture_se;
 uniform sampler2D u_texture_ne;
-uniform sampler2D u_texture_w;
-uniform sampler2D u_texture_s;
-uniform sampler2D u_texture_e;
+//uniform sampler2D u_texture_w;
+//uniform sampler2D u_texture_s;
+//uniform sampler2D u_texture_e;
 uniform sampler2D u_texture_n;
 
 uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
 uniform float fogBoard[NX*NY];
-uniform vec2 lanterns[10];
+uniform vec2 lanterns[20];
 //uniform vec2 fogReachVec;
 //uniform float fogReach;
 uniform int numLanterns;
@@ -68,40 +68,50 @@ void main() {
 //      float fogThickness = fogBoard[cellY*NX + cellX];
 
     float fogThickness = 0.0;
-    vec2 boundaryTexCoord = vec2(mod(gl_FragCoord.x + leftOffset*dim.x, tileW) / tileW, 1.0 - mod(gl_FragCoord.y+botOffset*dim.y, tileH) / tileH);
+    vec2 boundaryTexCoord1 = vec2(mod(gl_FragCoord.x + leftOffset*dim.x, tileW) / tileW, 1.0 - mod(gl_FragCoord.y+botOffset*dim.y, tileH) / tileH);
+    vec2 boundaryTexCoord2 = vec2(mod(gl_FragCoord.y + botOffset*dim.y, tileH) / tileH, 1.0 - mod(gl_FragCoord.x+leftOffset*dim.x, tileW) / tileW);
+    vec2 boundaryTexCoord3 = vec2(1.0 - mod(gl_FragCoord.x + leftOffset*dim.x, tileW) / tileW, mod(gl_FragCoord.y+botOffset*dim.y, tileH) / tileH);
+    vec2 boundaryTexCoord4 = vec2(1.0 - mod(gl_FragCoord.y + botOffset*dim.y, tileH) / tileH, mod(gl_FragCoord.x+leftOffset*dim.x, tileW) / tileW);
+    vec2 boundaryTexCoord5 = vec2(mod(gl_FragCoord.x + leftOffset*dim.x, tileW) / tileW, mod(gl_FragCoord.y+botOffset*dim.y, tileH) / tileH);
+    vec2 boundaryTexCoord6 = vec2(1.0 - mod(gl_FragCoord.x + leftOffset*dim.x, tileW) / tileW, 1.0 - mod(gl_FragCoord.y+botOffset*dim.y, tileH) / tileH);
+
+//    vec2 boundaryTexCoord2 = vec2(mod(gl_FragCoord.y + botOffset*dim.y, tileH) / tileH, 1.0 - mod(gl_FragCoord.x+leftOffset*dim.x, tileW) / tileW);
+//    vec2 boundaryTexCoord3 = vec2(1.0 - mod(gl_FragCoord.x + leftOffset*dim.x, tileW) / tileW, mod(gl_FragCoord.y+botOffset*dim.y, tileH) / tileH);
+//    vec2 boundaryTexCoord4 = vec2(1.0 - mod(gl_FragCoord.y + botOffset*dim.y, tileH) / tileH, mod(gl_FragCoord.x+leftOffset*dim.x, tileW) / tileW);
+
     if (fogBoard[cellY*NX + cellX] == 1.0) {
         fogThickness = fogBoard[cellY*NX + cellX];
     } else if (fogBoard[cellY*NX + cellX] == .1) {
-        fogThickness = texture2D(u_texture_n, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_n, boundaryTexCoord1).a;
     } else if (fogBoard[cellY*NX + cellX] == .2) {
-        fogThickness = texture2D(u_texture_e, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_n, boundaryTexCoord2).a;
     } else if (fogBoard[cellY*NX + cellX] == .3) {
-        fogThickness = texture2D(u_texture_s, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_n, boundaryTexCoord3).a;
     } else if (fogBoard[cellY*NX + cellX] == .4) {
-        fogThickness = texture2D(u_texture_w, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_n, boundaryTexCoord4).a;
     } else if (fogBoard[cellY*NX + cellX] == .5) {
-        fogThickness = texture2D(u_texture_ne, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_ne, boundaryTexCoord1).a;
     } else if (fogBoard[cellY*NX + cellX] == .6) {
-        fogThickness = texture2D(u_texture_se, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_ne, boundaryTexCoord5).a;
     } else if (fogBoard[cellY*NX + cellX] == .7) {
-        fogThickness = texture2D(u_texture_sw, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_ne, boundaryTexCoord3).a;
     } else if (fogBoard[cellY*NX + cellX] == .8) {
-        fogThickness = texture2D(u_texture_nw, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_ne, boundaryTexCoord6).a;
     } else if (fogBoard[cellY*NX + cellX] == .9) {
-        fogThickness = texture2D(u_texture_ns, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_ns, boundaryTexCoord1).a;
     } else if (fogBoard[cellY*NX + cellX] == .10) {
-        fogThickness = texture2D(u_texture_ew, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_ns, boundaryTexCoord3).a;
     } else if (fogBoard[cellY*NX + cellX] == .11) {
-        fogThickness = texture2D(u_texture_new, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_new, boundaryTexCoord1).a;
     } else if (fogBoard[cellY*NX + cellX] == .12) {
-        fogThickness = texture2D(u_texture_nse, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_new, boundaryTexCoord2).a;
     } else if (fogBoard[cellY*NX + cellX] == .13) {
-        fogThickness = texture2D(u_texture_nsw, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_new, boundaryTexCoord4).a;
     } else if (fogBoard[cellY*NX + cellX] == .14) {
-        fogThickness = texture2D(u_texture_sew, boundaryTexCoord).a;
+        fogThickness = texture2D(u_texture_new, boundaryTexCoord3).a;
     }
 
-    for (int i=0; i<10; i++) {
+    for (int i=0; i<20; i++) {
         if (i>=numLanterns) {
             break;
         }
@@ -119,7 +129,7 @@ void main() {
     float dy3 = abs(coord.y-.5);
 
     float dist3 = length(vec2(dx3, dy3));
-    fogThickness *= smoothstep(min(.17 + float(numFireflies)*.04, .4)-.15, min(.12 + float(numFireflies)*.04, .4), dist3);
+    fogThickness *= smoothstep(min(.2 + float(numFireflies)*.05, .5)-.18, min(.12 + float(numFireflies)*.05, .5), dist3);
 
     fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
     fog *= min(1.0,fogThickness);
