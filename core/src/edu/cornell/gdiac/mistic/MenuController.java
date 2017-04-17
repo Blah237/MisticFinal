@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import edu.cornell.gdiac.GDXRoot;
 import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.InputController;
 import edu.cornell.gdiac.WorldController;
@@ -22,7 +21,7 @@ public class MenuController extends WorldController implements Screen {
     private static final String FIREFLY = "mistic/spritesheet_firefly_menu.png";
     private FilmStrip firefly;
 
-    private int inputTimer = 10;
+    private int inputTimer = 20;
     private boolean timerGo = false;
 
     private int firflyAnimateTimer = 15;
@@ -82,7 +81,7 @@ public class MenuController extends WorldController implements Screen {
             inputTimer--;
             if (inputTimer == 0) {
                 timerGo = false;
-                inputTimer = 10;
+                inputTimer = 20;
             }
         }
         float forcey= InputController.getInstance().getVertical();
@@ -104,7 +103,7 @@ public class MenuController extends WorldController implements Screen {
         }
         firflyAnimateTimer--;
         if (firflyAnimateTimer == 0) {
-            firflyAnimateTimer = 15;
+            firflyAnimateTimer = 20;
         }
 
     }

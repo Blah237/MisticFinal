@@ -664,8 +664,8 @@ public class GameController extends WorldController implements ContactListener {
             temp = temp.setLength(gorf.getThrust());
         }
 
-        this.gorf.setFX(temp.x);
-        this.gorf.setFY(temp.y);
+        this.gorf.setFX(temp.x * 2.0f);
+        this.gorf.setFY(temp.y *2.0f);
         gorf.applyForce();
         wrapInBounds(gorf);
 
