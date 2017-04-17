@@ -46,7 +46,7 @@ public class FogController {
 	Array<Vector2> fogOrigins;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 5;
+	private final int FOG_DELAY = 8;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -133,19 +133,19 @@ public class FogController {
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
 		nTex = new Texture("mistic/n_boundary.png");
-		eTex = new Texture("mistic/e_boundary.png");
-		sTex = new Texture("mistic/s_boundary.png");
-		wTex = new Texture("mistic/w_boundary.png");
+//		eTex = new Texture("mistic/e_boundary.png");
+//		sTex = new Texture("mistic/s_boundary.png");
+//		wTex = new Texture("mistic/w_boundary.png");
 		neTex = new Texture("mistic/ne_boundary.png");
-		seTex = new Texture("mistic/se_boundary.png");
-		swTex = new Texture("mistic/sw_boundary.png");
-		nwTex = new Texture("mistic/nw_boundary.png");
+//		seTex = new Texture("mistic/se_boundary.png");
+//		swTex = new Texture("mistic/sw_boundary.png");
+//		nwTex = new Texture("mistic/nw_boundary.png");
 		nsTex = new Texture("mistic/ns_boundary.png");
-		ewTex = new Texture("mistic/ew_boundary.png");
+//		ewTex = new Texture("mistic/ew_boundary.png");
 		newTex = new Texture("mistic/new_boundary.png");
-		nseTex = new Texture("mistic/nse_boundary.png");
-		nswTex = new Texture("mistic/nsw_boundary.png");
-		sewTex = new Texture("mistic/sew_boundary.png");
+//		nseTex = new Texture("mistic/nse_boundary.png");
+//		nswTex = new Texture("mistic/nsw_boundary.png");
+//		sewTex = new Texture("mistic/sew_boundary.png");
 
 		screenDim = new Vector2(screensize.getWidth(), screensize.getHeight());
 		res = new Vector2(canvas.getWidth(), canvas.getHeight());
@@ -248,44 +248,44 @@ public class FogController {
 	public void prepShader(int numFireflies) {
 		shader.begin();
 
-		sewTex.bind(15);
-		shader.setUniformi("u_texture_sew", 15);
+//		sewTex.bind(15);
+//		shader.setUniformi("u_texture_sew", 15);
+//
+//		newTex.bind(14);
+//		shader.setUniformi("u_texture_new", 14);
+//
+//		nswTex.bind(13);
+//		shader.setUniformi("u_texture_nsw", 13);
+//
+//		nseTex.bind(12);
+//		shader.setUniformi("u_texture_nse", 12);
+//
+//		ewTex.bind(11);
+//		shader.setUniformi("u_texture_ew", 11);
+//
+//		nsTex.bind(10);
+//		shader.setUniformi("u_texture_ns", 10);
+//
+//		nwTex.bind(9);
+//		shader.setUniformi("u_texture_nw", 9);
+//
+//		swTex.bind(8);
+//		shader.setUniformi("u_texture_sw", 8);
+//
+//		seTex.bind(7);
+//		shader.setUniformi("u_texture_se", 7);
+//
+//		neTex.bind(6);
+//		shader.setUniformi("u_texture_ne", 6);
 
-		newTex.bind(14);
-		shader.setUniformi("u_texture_new", 14);
+		newTex.bind(5);
+		shader.setUniformi("u_texture_new", 5);
 
-		nswTex.bind(13);
-		shader.setUniformi("u_texture_nsw", 13);
+		nsTex.bind(4);
+		shader.setUniformi("u_texture_ns", 4);
 
-		nseTex.bind(12);
-		shader.setUniformi("u_texture_nse", 12);
-
-		ewTex.bind(11);
-		shader.setUniformi("u_texture_ew", 11);
-
-		nsTex.bind(10);
-		shader.setUniformi("u_texture_ns", 10);
-
-		nwTex.bind(9);
-		shader.setUniformi("u_texture_nw", 9);
-
-		swTex.bind(8);
-		shader.setUniformi("u_texture_sw", 8);
-
-		seTex.bind(7);
-		shader.setUniformi("u_texture_se", 7);
-
-		neTex.bind(6);
-		shader.setUniformi("u_texture_ne", 6);
-
-		wTex.bind(5);
-		shader.setUniformi("u_texture_w", 5);
-
-		sTex.bind(4);
-		shader.setUniformi("u_texture_s", 4);
-
-		eTex.bind(3);
-		shader.setUniformi("u_texture_e", 3);
+		neTex.bind(3);
+		shader.setUniformi("u_texture_ne", 3);
 
 		nTex.bind(2);
 		shader.setUniformi("u_texture_n", 2);
