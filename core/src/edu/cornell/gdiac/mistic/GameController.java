@@ -272,8 +272,8 @@ public class GameController extends WorldController implements ContactListener {
 
         litTexture=createTexture(manager,LIT_LANTERN,false);
         unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
-        litTexture.setRegion( litTexture.getRegionX()-3, litTexture.getRegionY()+20, litTexture.getRegionWidth(), litTexture.getRegionHeight()+22);
-        unlitTexture.setRegion(unlitTexture.getRegionX()-3,unlitTexture.getRegionY()+20,unlitTexture.getRegionWidth(),unlitTexture.getRegionHeight()+22);
+
+
         gorfTexture = createTexture(manager,GORF_TEXTURE,false);
         fogTexture = createTexture(manager,FOG_TEXTURE,true);
         backgroundTexture = createTexture(manager,BACKGROUND,false);
