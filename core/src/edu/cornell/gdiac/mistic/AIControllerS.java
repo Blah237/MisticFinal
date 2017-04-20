@@ -103,7 +103,7 @@ public class AIControllerS {
         boolean inFogSpawn8 = gorftile8.isFogSpawn;
         boolean inFog9=gorftile9.isFog;
         boolean inFogSpawn9 = gorftile9.isFogSpawn;
-        if (inFog || inFogSpawn || inFog2 || inFog3 || inFog4 || inFog5 || inFog6 || inFog7 || inFog8 || inFog9 || inFogSpawn2 || inFogSpawn3 || inFogSpawn4 || inFogSpawn5 || inFogSpawn6 || inFogSpawn7 || inFogSpawn8 || inFogSpawn9) {
+        if (inFog || inFogSpawn || inFog3 || inFog4 || inFog5) {
             m.setFX(steering.linear.x * 9.0f);
             m.setFY(steering.linear.y * 9.0f);
             m.applyForce();
