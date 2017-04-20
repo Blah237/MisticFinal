@@ -48,7 +48,6 @@ public class GameController extends WorldController implements ContactListener {
     private static final String GORF_TEXTURE = "mistic/gorf.png";
     private static final String BACKGROUND = "mistic/backgroundresize.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
-    private static final String FOG_TEXTURE = "mistic/fog.png";
     private static final String FIRE_TRACK="mistic/fireflyicon.png";
     private static final String MONSTER_TEXTURE = "mistic/enemyplaceholder.png";
     private static final String[] MIST_WALLS= {"mistic/mistblock/mistblock1.png",
@@ -160,9 +159,6 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(UNLIT_LANTERN,Texture.class);
         assets.add(LIT_LANTERN);
         assets.add(UNLIT_LANTERN);
-        //Fog
-        manager.load(FOG_TEXTURE, Texture.class);
-        assets.add(FOG_TEXTURE);
         // Ship textures
         manager.load(GORF_TEXTURE, Texture.class);
         assets.add(GORF_TEXTURE);
@@ -274,7 +270,6 @@ public class GameController extends WorldController implements ContactListener {
 
 
         gorfTexture = createTexture(manager,GORF_TEXTURE,false);
-        fogTexture = createTexture(manager,FOG_TEXTURE,true);
         backgroundTexture = createTexture(manager,BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
@@ -515,7 +510,7 @@ public class GameController extends WorldController implements ContactListener {
         gorf.setDrawScale(scale);
         gorf.setTexture(gorfTexture);
         addObject(gorf);
-        overFog.add(gorf);
+        overFog.add(0, gorf);
 
         fireflyController=new FireflyController(fireflyAnimation,scale,tileBoard);
 
