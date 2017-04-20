@@ -182,7 +182,7 @@ public abstract class WorldController implements Screen {
 						tileBoard.tiles[i][j].isLantern=true;
 						break;
 					case 'g':
-						// SPAWN GORF HERE LATER!!!
+						tileBoard.tiles[i][j].isGorfStart=true;
 						break;
 					case 'f':
 						tileBoard.tiles[i][j].isFogSpawn=true;

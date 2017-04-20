@@ -21,6 +21,7 @@ import edu.cornell.gdiac.WorldController;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -382,7 +383,6 @@ public class FogController {
 	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, BoardModel tileBoard) {
 //		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 //		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
-
 		gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
 
 		updateLanterns(lanterns, tileBoard);
@@ -674,13 +674,13 @@ public class FogController {
 
 			for (int g=-2; g<=2; g++) {
 				lx = (int)((lanternPos.x + g + WX) % WX);
-				ly = (int)((lanternPos.y - 8 + WY) % WY) + 2;
+				ly = (int)((lanternPos.y - 8 + WY + 2) % WY);
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 			}
 
 			for (int j=-7; j<=7; j++) {
-				ly = (int) ((lanternPos.y + j + WY) % WY) + 2;
+				ly = (int) ((lanternPos.y + j + WY + 2) % WY);
 				int bound;
 				if (j == -7 || j == 7) {
 					bound = 2;
@@ -709,7 +709,7 @@ public class FogController {
 					tileBoard.setFog(lx, ly, false);
 				}
 
-				ly = (int) ((lanternPos.y + bound + 1) % WY) + 2;
+				ly = (int) ((lanternPos.y + bound + 1 + 2) % WY);
 
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
@@ -717,7 +717,7 @@ public class FogController {
 
 			for (int h=-2; h<=2; h++) {
 				lx = (int)((lanternPos.x + h + WX) % WX);
-				ly = (int)((lanternPos.y + 8) % WY) + 2;
+				ly = (int)((lanternPos.y + 8 + 2) % WY);
 				fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
 				tileBoard.setFog(lx, ly, false);
 			}
@@ -731,20 +731,20 @@ public class FogController {
 	public void generatePerlin() {
 		final int WIDTH = 1080, HEIGHT = 576;
 
-		double[] data = new double[WIDTH * HEIGHT];
+		float[] data = new float[WIDTH * HEIGHT];
 		int count = 0;
 
 		Perlin perlin = new Perlin(25);
 		for (int y = 0; y < HEIGHT; y++) {
 			for (int x = 0; x < WIDTH; x++) {
-				data[count++] = Math.sqrt((perlin.noise(50.0 * (double)x / WIDTH, 25.0 * (double)y / HEIGHT)) * 10);
+				data[count++] = (float)Math.sqrt((perlin.noise(50.0 * (float)x / WIDTH, 25.0 * (float)y / HEIGHT)) * 10);
 			}
 		}
 
-		double minValue = data[0], maxValue = data[0];
+		float minValue = data[0], maxValue = data[0];
 		for (int i = 0; i < data.length; i++) {
-			minValue = Math.min(data[i], minValue);
-			maxValue = Math.max(data[i], maxValue);
+			minValue = (float)Math.min(data[i], minValue);
+			maxValue = (float)Math.max(data[i], maxValue);
 		}
 
 		int[] pixelData = new int[WIDTH * HEIGHT];
@@ -755,12 +755,23 @@ public class FogController {
         BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
         img.getRaster().setPixels(0, 0, WIDTH, HEIGHT, pixelData);
 
-        File output = new File("image.png");
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		byte[] pixelBytes = new byte[0];
         try {
-            ImageIO.write(img, "jpg", output);
+			ImageIO.write(img, "jpg", outputStream);
+			outputStream.flush();
+			pixelBytes = outputStream.toByteArray();
+			outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+//        File output = new File("image.png");
+//        try {
+//            ImageIO.write(img, "jpg", output);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 //		ByteBuffer byteBuffer = ByteBuffer.allocate(4*pixelData.length);
 //		for (int j=0; j<pixelData.length; j++) {
@@ -771,9 +782,10 @@ public class FogController {
 //		System.out.println((byte)pixelData[1]);
 //		System.out.println(byteBuffer.get(7));
 //		Pixmap perlinPix = new Pixmap(pixelBytes, 0, WIDTH*HEIGHT);
-		Pixmap perlinPix = new Pixmap(new FileHandle("image.png"));
+//		Pixmap perlinPix = new Pixmap(new FileHandle("image.png"));
+		Pixmap perlinPix = new Pixmap(pixelBytes, 0, pixelBytes.length);
 		perlinTex = new Texture(perlinPix);
-		PixmapIO.writePNG(new FileHandle("image2.png"), perlinPix);
+//		PixmapIO.writePNG(new FileHandle("image2.png"), perlinPix);
 	}
 
 	public Array<Vector2> getNewFog() {

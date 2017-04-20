@@ -347,9 +347,7 @@ public class GameController extends WorldController implements ContactListener {
 
 
     // Other game objects
-    /** The initial rocket position */
-    private static Vector2 GORF_POS = new Vector2(14, 8);
-
+    public Vector2 gorfStart = new Vector2();
     // Physics objects for the game
     /** Reference to the rocket/player avatar */
     public GorfModel gorf;
@@ -458,17 +456,6 @@ public class GameController extends WorldController implements ContactListener {
 
     private void populateLevel() {
         /**
-         * Create Gorf
-         */
-        float dwidth  = gorfTexture.getRegionWidth()/scale.x;
-        float dheight = gorfTexture.getRegionHeight()/(scale.y*2);
-        gorf = new GorfModel(GORF_POS.x, GORF_POS.y, dwidth*0.75f, dheight*0.75f);
-        gorf.setDrawScale(scale);
-        gorf.setTexture(gorfTexture);
-        addObject(gorf);
-        overFog.add(gorf);
-
-        /**
          * The GameController functions for Gorf-Lantern interactions
          * This includes code for incrementing and decrementing Gorf's firefly counter
          * And adds lanterns to the GameController object pool.
@@ -518,10 +505,25 @@ public class GameController extends WorldController implements ContactListener {
                 if (t.hasFamiliar) {
                     familiarPositions.add(t);
                 }
+                if (t.isGorfStart) {
+                    gorfStart = new Vector2(tileBoard.getTileCenterX(t)/scale.x, tileBoard.getTileCenterY(t)/scale.y);
+                }
             }
-
         }
+
+        /**
+         * Create Gorf
+         */
+        float dwidth  = gorfTexture.getRegionWidth()/scale.x;
+        float dheight = gorfTexture.getRegionHeight()/(scale.y*2);
+        gorf = new GorfModel(gorfStart.x, gorfStart.y, dwidth*0.75f, dheight*0.75f);
+        gorf.setDrawScale(scale);
+        gorf.setTexture(gorfTexture);
+        addObject(gorf);
+        overFog.add(gorf);
+
         fireflyController=new FireflyController(fireflyAnimation,scale,tileBoard);
+
         Vector2[] familiarVectors= new Vector2[familiarPositions.size()];
         for(int k=0;k<familiarPositions.size();k++){
             familiarVectors[k]= new Vector2(familiarPositions.get(k).fx/scale.x,familiarPositions.get(k).fy/scale.y);
