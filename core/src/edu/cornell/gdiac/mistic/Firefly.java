@@ -26,13 +26,15 @@ public class Firefly {
     private static final float FIREFLY_DENSITY = 1.0f;
     private static final float FIREFLY_FRICTION  = 0.3f;
     private static final float FIREFLY_RESTITUTION = 0.1f;
+    private int fireflyAnimateTimer = 15;
     private Vector2 scale = new Vector2(1f,1f);
     public static final int FRAMES = 15;
 
-    public Firefly(float x, float y, TextureRegion texture, FilmStrip animation) {
+    public Firefly(float x, float y, TextureRegion texture) {
+        this.fireflyAnimation  = new FilmStrip(texture.getTexture(),1,FRAMES,FRAMES);
+        this.fireflyAnimation.setFrame(0);
         position = new Vector2(x,y);
         destroyed= false;
-        this.fireflyAnimation=animation;
         object = new BoxObstacle(x,y,texture.getRegionWidth()/scale.x,texture.getRegionHeight()/scale.y);
         object.setDensity(FIREFLY_DENSITY);
         object.setFriction(FIREFLY_FRICTION);
@@ -45,7 +47,21 @@ public class Firefly {
     public FilmStrip getFireflyAnimation() {
         return fireflyAnimation;
     }
-    public void fireflyAnimate(boolean on){
+
+    public void fireflyAnimate(){
+        this.fireflyAnimateTimer--;
+        if ( this.fireflyAnimateTimer == 0) {
+            this.fireflyAnimateTimer  = 15;
+        }
+        if (this.fireflyAnimateTimer == 1) {
+            if (this.fireflyAnimation.getFrame() != this.fireflyAnimation.getSize() - 1) {
+                this.fireflyAnimation.setFrame(this.fireflyAnimation.getFrame() + 1);
+            } else {
+                this.fireflyAnimation.setFrame(0);
+            }
+        }
+
+        /**
         if (on) {
             boolean cycle;
             // Turn on the flames and go back and forth
@@ -63,7 +79,7 @@ public class Firefly {
             }
         } else {
             fireflyAnimation.setFrame(0);
-        }
+        }**/
 
     }
 
@@ -93,7 +109,6 @@ public class Firefly {
     public void draw(GameCanvas canvas){
         this.object.draw(canvas);
         canvas.draw(fireflyAnimation,this.getX(),this.getY());
-
     }
 
 }
