@@ -197,6 +197,7 @@ public abstract class WorldController implements Screen {
 					case 'g':
 						// SPAWN GORF HERE LATER!!!
 						minimap.killMe[i][j] = 3;
+						tileBoard.tiles[i][j].isGorfStart=true;
 						break;
 					case 'f':
 						tileBoard.tiles[i][j].isFogSpawn=true;

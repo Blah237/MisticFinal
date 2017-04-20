@@ -25,6 +25,8 @@ public class BoardModel {
         public boolean isFog;
         /** Is there a familiar here */
         public boolean hasFamiliar;
+        /** Is this tile Gorf's starting position? */
+        public boolean isGorfStart;
         /** Has this tile been visited (Only including for possible AI purposes) */
         public boolean visited;
         /** Has this tile been set as a goal*/
@@ -42,6 +44,7 @@ public class BoardModel {
             this.isFogSpawn=false;
             this.isFog=false;
             this.hasFamiliar=false;
+            this.isGorfStart=false;
         }
     }
 
@@ -97,6 +100,7 @@ public class BoardModel {
                 tile.isFogSpawn=false;
                 tile.isFog=false;
                 tile.hasFamiliar=false;
+                tile.isGorfStart=false;
             }
         }
     }

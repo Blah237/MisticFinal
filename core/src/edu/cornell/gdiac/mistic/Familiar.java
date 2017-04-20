@@ -64,6 +64,7 @@ public class Familiar {
                 this.collected = false;
             }else{
                 this.collectAll=true;
+
             }
         }
     }
@@ -76,6 +77,10 @@ public class Familiar {
         }else{
             setCollected(false);
         }
+    }
+
+    public void reset(){
+        NUM_FAM=0;
     }
 
     public void setTexture(TextureRegion tex){
