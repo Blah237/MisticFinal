@@ -28,6 +28,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.*;
 import edu.cornell.gdiac.mistic.BoardModel;
+import edu.cornell.gdiac.mistic.Minimap;
 import edu.cornell.gdiac.obstacle.Obstacle;
 import edu.cornell.gdiac.obstacle.*;
 import edu.cornell.gdiac.util.*;
@@ -84,11 +85,19 @@ public abstract class WorldController implements Screen {
 	private JsonReader jsonReader;
 	/** The JSON defining the level model */
 	private JsonValue levelFormat;
+	/** The BoardModel */
 	private BoardModel tileBoard;
+	/** Had screen size information */
 	public Rectangle screenSize;
+	/** The minimap object*/
+	private Minimap minimap;
 
-	public BoardModel gettileBoard(){
+	public BoardModel getTileBoard() {
 		return tileBoard;
+	}
+
+	public Minimap getMinimap() {
+		return minimap;
 	}
 
 	/**
@@ -165,11 +174,13 @@ public abstract class WorldController implements Screen {
 
 		screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
 		tileBoard = new BoardModel(levelFormat.get("width").asInt(), levelFormat.get("height").asInt(), screenSize);
+		minimap = new Minimap((float)canvas.getWidth()/6,(float)canvas.getHeight()/6,
+				levelFormat.get("width").asInt(),levelFormat.get("height").asInt());
 
 		// get json data as array
 		int[] maze = levelFormat.get("layers").get(1).get("data").asIntArray();
 
-		// for loop for adding info from json data array to the board model
+		// for loop for adding info from json data array to the board model and minimap data
 		int i = 0; int j = 99;
 		for (int t : maze) {
 			if (t!=0&&textureIDs.containsKey(t)) {
@@ -177,12 +188,15 @@ public abstract class WorldController implements Screen {
 				switch (c) {
 					case 'w':
 						tileBoard.tiles[i][j].isWall=true;
+						minimap.killMe[i][j] = 1;
 						break;
 					case 'l':
 						tileBoard.tiles[i][j].isLantern=true;
+						minimap.killMe[i][j] = 2;
 						break;
 					case 'g':
 						// SPAWN GORF HERE LATER!!!
+						minimap.killMe[i][j] = 3;
 						break;
 					case 'f':
 						tileBoard.tiles[i][j].isFogSpawn=true;

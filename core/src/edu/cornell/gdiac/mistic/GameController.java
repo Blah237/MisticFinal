@@ -73,7 +73,7 @@ public class GameController extends WorldController implements ContactListener {
     private static final String UNLIT_LANTERN = "mistic/unlit.png";
     private static final String FIREFLY_ANIMATE="mistic/firefly-sprite.png";
 
-    /** Texture refrences for the HUD**/
+    /** Texture references for the HUD */
     private static final String HUD_WINDOW_TEXTURE = "mistic/hud_window.png";
     private static final String HUD_WHITE_FIREFLY_TEXTURE = "mistic/white_firefly.png";
     private static final String HUD_WHITE_NUMBER_X = "mistic/numbers_white/numbers_x.png";
@@ -90,11 +90,12 @@ public class GameController extends WorldController implements ContactListener {
     private static final String HUD_WHITE_NUMBER_SLASH = "mistic/numbers_white/numbers_slash.png";
     private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
 
-    // The SoundController, Music and sfx
+    /** The SoundController, Music and sfx */
     SoundController sounds = SoundController.getInstance();
     private static final String A_PEACE_SONG = "sounds/A_Peace_DEMO2.mp3";
     private static final String B_MARSH_SONG = "sounds/B_Marsh_DEMO2.mp3";
 
+    /** Filmstrips */
     private FilmStrip fireflyAnimation;
     private FilmStrip pawAnimation;
 
@@ -131,7 +132,6 @@ public class GameController extends WorldController implements ContactListener {
     private AssetState rocketAssetState = AssetState.EMPTY;
 
     Rectangle screenSize;
-
 
     /**
      * Preloads the assets for this controller.
@@ -312,7 +312,7 @@ public class GameController extends WorldController implements ContactListener {
         sounds.allocate(manager,B_MARSH_SONG);
 
         super.loadContent(manager, canvas);
-        tileBoard=super.gettileBoard();
+        tileBoard=super.getTileBoard();
         rocketAssetState = AssetState.COMPLETE;
     }
 
@@ -337,14 +337,11 @@ public class GameController extends WorldController implements ContactListener {
     int pawTimer = 60;
     boolean pawTimerStart = false;
 
-
-
     // the number of fireflies Gorf is holding
     private static int firefly_count;
     private AIControllerS ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
-
 
     // Other game objects
     /** The initial rocket position */
@@ -380,14 +377,12 @@ public class GameController extends WorldController implements ContactListener {
     private FrameBuffer fbo3;
     private TextureRegion fboRegion3;
 
-    /** All the wall objects in the world. */
+    /** All the wall, gorf and lantern objects in the world. */
     protected PooledList<Obstacle> overFog  = new PooledList<Obstacle>();
-    /** All the non-wall objects in the world. */
+    /** All the non-wall objects in the world (monster, familiars). */
     protected PooledList<Obstacle> underFog  = new PooledList<Obstacle>();
     /** All the lantern objects in the world. */
     protected PooledList<Obstacle> lanternsUnderFog = new PooledList<Obstacle>();
-
-
 
     /**
      * Creates and initialize a new instance of the rocket lander game
@@ -606,7 +601,6 @@ public class GameController extends WorldController implements ContactListener {
      */
 
     public void update(float dt) {
-
         //#region INSERT CODE HERE
         // Read from the input and add the force to the rocket model
         // Then apply the force using the method you modified in RocketObject
@@ -740,9 +734,7 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
         for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
         for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
-        //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
         }}
-//        fog.drawBoundaries(canvas);
         canvas.end();
         fbo.end();
 
@@ -859,7 +851,6 @@ public class GameController extends WorldController implements ContactListener {
         // main canvas
         canvas.begin(gorf.getPosition());
         for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
-
         for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.getObject().draw(canvas);
             //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
         }}
@@ -1036,6 +1027,12 @@ public class GameController extends WorldController implements ContactListener {
         }
         canvas.end();
 
+        // minimap
+        canvas.begin(gorf.getPosition());
+        super.getMinimap().draw(canvas,backgroundTexture,
+                gorf.getPosition().x * scale.x + 115.0f,
+                gorf.getPosition().y * scale.y - 155.0f);
+        canvas.end();
 
         canvas.begin();
         // PLACEHOLDER--will be replaced by Victory screen
