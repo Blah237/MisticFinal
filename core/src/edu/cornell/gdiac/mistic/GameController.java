@@ -400,7 +400,7 @@ public class GameController extends WorldController implements ContactListener {
         setFailure(false);
         world.setContactListener(this);
         this.fireflyController=new FireflyController(fireflyAnimation, scale,tileBoard);
-        this.firefly_count = 0;
+        this.firefly_count = 2;
         this.DEAD = false;
         this.fireflyDeathTimer=0;
         this.monster = new ArrayList<MonsterModel>();
@@ -428,6 +428,7 @@ public class GameController extends WorldController implements ContactListener {
         setComplete(false);
         setFailure(false);
         populateLevel();
+        familiars.reset();
         ai = new AIControllerS(monster, gorf, tileBoard);
         countdown=120;
 
