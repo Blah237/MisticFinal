@@ -29,7 +29,7 @@ public class FireflyController {
     private Vector2 scale;
     /**The time between firefly spawns*/
     private float SPAWN_TIME;
-    private int MAX_FIREFLIES=5;
+    private int MAX_FIREFLIES=6;
     private int maxfireflies = MAX_FIREFLIES;
     public Firefly[] fireflies;
     private FilmStrip animate;
@@ -44,6 +44,7 @@ public class FireflyController {
     public boolean update(GorfModel gorf){
         fogDeath();
         Firefly f=getFirefly(gorf);
+        updateFireflyAnimation();
         if(f!=null){
             f.setDestroyed(true);
             return true;
@@ -103,21 +104,15 @@ public class FireflyController {
     }
 
     public void create(float x, float y){
-        Firefly f= new Firefly(x,y,tex,animate);
+        Firefly f= new Firefly(x,y,tex);
         this.add(f);
     }
 
-    public void setFireflyAnimation(FilmStrip animation){
-        this.animate= animation;
-    }
 
-    public void updateFireflyAnimation(boolean on){
-        if(on){
+
+    public void updateFireflyAnimation(){
             for(Firefly f:fireflies){
-                if(f!=null){
-                    f.fireflyAnimate(on);
-                }
+                if(f!=null){f.fireflyAnimate();}
             }
-        }
     }
 }
