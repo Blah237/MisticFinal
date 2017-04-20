@@ -383,7 +383,6 @@ public class FogController {
 	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, BoardModel tileBoard) {
 //		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 //		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
-		System.out.println(gorf.getX());
 		gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
 
 		updateLanterns(lanterns, tileBoard);
