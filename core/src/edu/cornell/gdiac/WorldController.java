@@ -164,13 +164,15 @@ public abstract class WorldController implements Screen {
 		}
 
 		screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
-		tileBoard = new BoardModel(levelFormat.get("width").asInt(), levelFormat.get("height").asInt(), screenSize);
+		int w = levelFormat.get("width").asInt(); int h = levelFormat.get("height").asInt();
+		tileBoard = new BoardModel(w, h, screenSize);
 
 		// get json data as array
 		int[] maze = levelFormat.get("layers").get(1).get("data").asIntArray();
 
 		// for loop for adding info from json data array to the board model
-		int i = 0; int j = 99;
+		int i = 0; int j = h-1;
+		int rockCount = 0; int treeCount = 0;
 		for (int t : maze) {
 			if (t!=0&&textureIDs.containsKey(t)) {
 				Character c = textureIDs.get(t);
@@ -190,14 +192,25 @@ public abstract class WorldController implements Screen {
 					case 'x':
 						tileBoard.tiles[i][j].hasFamiliar=true;
 						break;
+					// cases for rocks and trees
+					// every time there's a rock or a tree, it adds an incrementing
+					// number to the tiles hasRock/hasTree value
+					case 'r':
+						rockCount++;
+						tileBoard.tiles[i][j].hasRock=rockCount;
+						break;
+					case 't':
+						treeCount++;
+						tileBoard.tiles[i][j].hasTree=treeCount;
+						break;
 					default:
 						break;
 				}
 			}
 
 			// increment the counters
-			if (i<99) {i++;} else {i=0;}
-			if (i==99) {j--;}
+			if (i<w-1) {i++;} else {i=0;}
+			if (i==w-1) {j--;}
 		}
 	}
 	
