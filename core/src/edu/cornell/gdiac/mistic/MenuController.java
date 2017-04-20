@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import edu.cornell.gdiac.GDXRoot;
 import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.InputController;
 import edu.cornell.gdiac.WorldController;
