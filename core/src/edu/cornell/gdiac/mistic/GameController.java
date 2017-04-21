@@ -374,6 +374,7 @@ public class GameController extends WorldController implements ContactListener {
     /** Arraylist of Lantern objects */
     public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
     private Familiar familiars;
+    private ArrayList<Obstacle> enviornmentobj = new ArrayList<Obstacle>();
 
     private FogController fog;
     private float BW = DEFAULT_WIDTH;
@@ -522,28 +523,36 @@ public class GameController extends WorldController implements ContactListener {
                     gorfStart = new Vector2(tileBoard.getTileCenterX(t)/scale.x, tileBoard.getTileCenterY(t)/scale.y);
                 }
                 if(t.hasRock !=0){
+                    System.out.println("Height: "+ rocks[t.hasRock-1].getRegionHeight());
+                    System.out.println("Width: "+ rocks[t.hasRock-1].getRegionWidth());
+                    TextureRegion tex = rocks[t.hasRock-1];
                     BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y, tileBoard.getTileWidth() / scale.x,
-                            tileBoard.getTileHeight() / scale.y);
+                            tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
+                            tex.getRegionHeight() / (2*scale.y));
                     po.setBodyType(BodyDef.BodyType.StaticBody);
                     po.setDensity(BASIC_DENSITY);
                     po.setFriction(BASIC_FRICTION);
                     po.setRestitution(BASIC_RESTITUTION);
                     po.setDrawScale(scale);
                     po.setTexture(rocks[t.hasRock-1]);
+                    enviornmentobj.add(po);
                     addObject(po);
 
                 }
                 if(t.hasTree!=0){
+                    System.out.println("Height: "+ trees[t.hasTree-1].getRegionHeight());
+                    System.out.println("Width: "+ trees[t.hasTree-1].getRegionWidth());
+                    TextureRegion tex = trees[t.hasTree-1];
                     BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y, tileBoard.getTileWidth() / scale.x,
-                            tileBoard.getTileHeight() / scale.y);
+                            tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(4*scale.x) ,
+                            tex.getRegionHeight() / scale.y);
                     po.setBodyType(BodyDef.BodyType.StaticBody);
                     po.setDensity(BASIC_DENSITY);
                     po.setFriction(BASIC_FRICTION);
                     po.setRestitution(BASIC_RESTITUTION);
                     po.setDrawScale(scale);
                     po.setTexture(trees[t.hasTree-1]);
+                    enviornmentobj.add(po);
                     addObject(po);
 
                 }
@@ -777,10 +786,13 @@ public class GameController extends WorldController implements ContactListener {
         canvas.clear();
         canvas.begin();
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle e : enviornmentobj) {e.draw(canvas);}
         for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
+
+
         //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
-        }}
+
 //        fog.drawBoundaries(canvas);
         canvas.end();
         fbo.end();
