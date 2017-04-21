@@ -27,6 +27,10 @@ public class BoardModel {
         public boolean hasFamiliar;
         /** Is this tile Gorf's starting position? */
         public boolean isGorfStart;
+        /** Does this tile have a rock? (Can be 0, 1, 2, or 3) */
+        public int hasRock;
+        /** Does this tile have a tree? (Can be 0, 1, 2, 3 or 4) */
+        public int hasTree;
         /** Has this tile been visited (Only including for possible AI purposes) */
         public boolean visited;
         /** Has this tile been set as a goal*/
@@ -45,6 +49,8 @@ public class BoardModel {
             this.isFog=false;
             this.hasFamiliar=false;
             this.isGorfStart=false;
+            this.hasRock=0;
+            this.hasTree=0;
         }
     }
 
@@ -101,6 +107,8 @@ public class BoardModel {
                 tile.isFog=false;
                 tile.hasFamiliar=false;
                 tile.isGorfStart=false;
+                tile.hasRock=0;
+                tile.hasTree=0;
             }
         }
     }

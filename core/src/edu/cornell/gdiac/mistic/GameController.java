@@ -48,7 +48,6 @@ public class GameController extends WorldController implements ContactListener {
     private static final String GORF_TEXTURE = "mistic/gorf.png";
     private static final String BACKGROUND = "mistic/backgroundresize.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
-    private static final String FOG_TEXTURE = "mistic/fog.png";
     private static final String FIRE_TRACK="mistic/fireflyicon.png";
     private static final String MONSTER_TEXTURE = "mistic/enemyplaceholder.png";
     private static final String[] MIST_WALLS= {"mistic/mistblock/mistblock1.png",
@@ -63,6 +62,12 @@ public class GameController extends WorldController implements ContactListener {
             "mistic/mistblock/mistblock26.png","mistic/mistblock/mistblock27.png", "mistic/mistblock/mistblock28.png",
             "mistic/mistblock/mistblock29.png","mistic/mistblock/mistblock30.png"};
 
+    private static final String[] TREES = { "mistic/environment/tree1.png","mistic/environment/tree2.png",
+            "mistic/environment/tree3.png","mistic/environment/tree4.png"
+    };
+    private static final String[] ROCKS = { "mistic/environment/rock1.png","mistic/environment/rock2.png",
+            "mistic/environment/rock3.png"
+    };
     private static final String[] FAMILIARS={
             "mistic/familiars/cat.png","mistic/familiars/chicken.png","mistic/familiars/hedgehog.png",
             "mistic/familiars/tortoise.png",
@@ -107,6 +112,8 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion monsterTexture;
     private TextureRegion[] mistwalls = new TextureRegion[MIST_WALLS.length];
     private TextureRegion[] familiarTex = new TextureRegion[FAMILIARS.length];
+    private TextureRegion[] trees = new TextureRegion[TREES.length];
+    private TextureRegion[] rocks = new TextureRegion[ROCKS.length];
     /** Texture assets for the crates */
     private TextureRegion litTexture;
     private TextureRegion unlitTexture;
@@ -161,9 +168,6 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(UNLIT_LANTERN,Texture.class);
         assets.add(LIT_LANTERN);
         assets.add(UNLIT_LANTERN);
-        //Fog
-        manager.load(FOG_TEXTURE, Texture.class);
-        assets.add(FOG_TEXTURE);
         // Ship textures
         manager.load(GORF_TEXTURE, Texture.class);
         assets.add(GORF_TEXTURE);
@@ -234,6 +238,15 @@ public class GameController extends WorldController implements ContactListener {
             assets.add(f);
         }
 
+        for(String f : ROCKS){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
+        for(String f : TREES){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
+
         //music files
         manager.load(A_PEACE_SONG, Sound.class);
         assets.add(A_PEACE_SONG);
@@ -275,7 +288,6 @@ public class GameController extends WorldController implements ContactListener {
 
 
         gorfTexture = createTexture(manager,GORF_TEXTURE,false);
-        fogTexture = createTexture(manager,FOG_TEXTURE,true);
         backgroundTexture = createTexture(manager,BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
@@ -305,6 +317,12 @@ public class GameController extends WorldController implements ContactListener {
         }
         for(int i=0;i<FAMILIARS.length;i++){
             familiarTex[i]= createTexture(manager,FAMILIARS[i], false);
+        }
+        for(int i=0;i<ROCKS.length;i++){
+            rocks[i]= createTexture(manager,ROCKS[i], false);
+        }
+        for(int i=0;i<TREES.length;i++){
+            trees[i]= createTexture(manager,TREES[i], false);
         }
 
         // allocate sounds
@@ -462,23 +480,17 @@ public class GameController extends WorldController implements ContactListener {
          * And adds lanterns to the GameController object pool.
          */
 
-        for (int x = 0; x < tileBoard.getWidth(); x++) {
-            for (int y = 0; y < tileBoard.getWidth(); y++) {
-                if (tileBoard.isFogSpawn(x, y)) {
-                    BoardModel.Tile the_tile = tileBoard.getTile(x,y);
-                    createMonster(tileBoard.getTileCenterX(the_tile) / scale.x, tileBoard.getTileCenterY(the_tile) / scale.y);
-                }
-            }
-        }
-
-
 
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
 
-
+        tileBoard.tiles[5][5].hasTree=3;
+        tileBoard.tiles[10][10].hasRock=2;
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
+                if (t.isFogSpawn) {
+                    createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
+                }
                 if (t.isLantern) {
                     createLantern(tileBoard.getTileCenterX(t) / scale.x,
                             tileBoard.getTileCenterY(t) / scale.y);
@@ -509,6 +521,32 @@ public class GameController extends WorldController implements ContactListener {
                 if (t.isGorfStart) {
                     gorfStart = new Vector2(tileBoard.getTileCenterX(t)/scale.x, tileBoard.getTileCenterY(t)/scale.y);
                 }
+                if(t.hasRock !=0){
+                    BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                            tileBoard.getTileCenterY(t) / scale.y, tileBoard.getTileWidth() / scale.x,
+                            tileBoard.getTileHeight() / scale.y);
+                    po.setBodyType(BodyDef.BodyType.StaticBody);
+                    po.setDensity(BASIC_DENSITY);
+                    po.setFriction(BASIC_FRICTION);
+                    po.setRestitution(BASIC_RESTITUTION);
+                    po.setDrawScale(scale);
+                    po.setTexture(rocks[t.hasRock-1]);
+                    addObject(po);
+
+                }
+                if(t.hasTree!=0){
+                    BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                            tileBoard.getTileCenterY(t) / scale.y, tileBoard.getTileWidth() / scale.x,
+                            tileBoard.getTileHeight() / scale.y);
+                    po.setBodyType(BodyDef.BodyType.StaticBody);
+                    po.setDensity(BASIC_DENSITY);
+                    po.setFriction(BASIC_FRICTION);
+                    po.setRestitution(BASIC_RESTITUTION);
+                    po.setDrawScale(scale);
+                    po.setTexture(trees[t.hasTree-1]);
+                    addObject(po);
+
+                }
             }
         }
 
@@ -521,7 +559,7 @@ public class GameController extends WorldController implements ContactListener {
         gorf.setDrawScale(scale);
         gorf.setTexture(gorfTexture);
         addObject(gorf);
-        overFog.add(gorf);
+        overFog.add(0, gorf);
 
         fireflyController=new FireflyController(fireflyAnimation,scale,tileBoard);
 

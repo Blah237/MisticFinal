@@ -133,20 +133,20 @@ public class FogController {
 
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
-		nTex = new Texture("mistic/n_boundary.png");
-//		eTex = new Texture("mistic/e_boundary.png");
-//		sTex = new Texture("mistic/s_boundary.png");
-//		wTex = new Texture("mistic/w_boundary.png");
-		neTex = new Texture("mistic/ne_boundary.png");
-//		seTex = new Texture("mistic/se_boundary.png");
-//		swTex = new Texture("mistic/sw_boundary.png");
-//		nwTex = new Texture("mistic/nw_boundary.png");
-		nsTex = new Texture("mistic/ns_boundary.png");
-//		ewTex = new Texture("mistic/ew_boundary.png");
-		newTex = new Texture("mistic/new_boundary.png");
-//		nseTex = new Texture("mistic/nse_boundary.png");
-//		nswTex = new Texture("mistic/nsw_boundary.png");
-//		sewTex = new Texture("mistic/sew_boundary.png");
+		nTex = new Texture("mistic/fog/n_boundary.png");
+//		eTex = new Texture("mistic/fog/e_boundary.png");
+//		sTex = new Texture("mistic/fog/s_boundary.png");
+//		wTex = new Texture("mistic/fog/w_boundary.png");
+		neTex = new Texture("mistic/fog/ne_boundary.png");
+//		seTex = new Texture("mistic/fog/se_boundary.png");
+//		swTex = new Texture("mistic/fog/sw_boundary.png");
+//		nwTex = new Texture("mistic/fog/nw_boundary.png");
+		nsTex = new Texture("mistic/fog/ns_boundary.png");
+//		ewTex = new Texture("mistic/fog/ew_boundary.png");
+		newTex = new Texture("mistic/fog/new_boundary.png");
+//		nseTex = new Texture("mistic/fog/nse_boundary.png");
+//		nswTex = new Texture("mistic/fog/nsw_boundary.png");
+//		sewTex = new Texture("mistic/fog/sew_boundary.png");
 
 		screenDim = new Vector2(screensize.getWidth(), screensize.getHeight());
 		res = new Vector2(canvas.getWidth(), canvas.getHeight());
@@ -208,8 +208,8 @@ public class FogController {
 		spreadType = -1;
 		thickness = 1;
 
-		vertexShader = Gdx.files.internal("mistic/fog.vert.glsl").readString();
-		fragmentShader = Gdx.files.internal("mistic/fog.frag.glsl").readString();
+		vertexShader = Gdx.files.internal("mistic/shaders/fog.vert.glsl").readString();
+		fragmentShader = Gdx.files.internal("mistic/shaders/fog.frag.glsl").readString();
 		shader = new ShaderProgram(vertexShader, fragmentShader);
 
 		if (!shader.isCompiled()) {

@@ -26,7 +26,7 @@ public class Firefly {
     private static final float FIREFLY_DENSITY = 1.0f;
     private static final float FIREFLY_FRICTION  = 0.3f;
     private static final float FIREFLY_RESTITUTION = 0.1f;
-    private int fireflyAnimateTimer = 15;
+    private int fireflyAnimateTimer = 7;
     private Vector2 scale = new Vector2(1f,1f);
     public static final int FRAMES = 15;
 
