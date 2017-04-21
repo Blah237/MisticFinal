@@ -845,7 +845,11 @@ public class GameController extends WorldController implements ContactListener {
 
         // main canvas
         canvas.begin(gorf.getPosition());
-        for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+        for (Obstacle obj : overFog) {
+            if (obj.isActive()) {
+                obj.draw(canvas);
+            }
+        }
 
         for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
             //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
@@ -1062,7 +1066,7 @@ public class GameController extends WorldController implements ContactListener {
                 obj.drawDebug(canvas);
             }
             canvas.endDebug();
-            canvas.endDebug();
+            //canvas.endDebug();
         }
         canvas.end();
 

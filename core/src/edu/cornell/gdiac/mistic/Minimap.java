@@ -20,6 +20,14 @@ public class Minimap {
     /** data for drawing, wall=1, lantern=2, gorf=3 */
     public int[][] killMe;
 
+    public float getTileWidth() {
+        return tileWidth;
+    }
+
+    public float getTileHeight() {
+        return tileHeight;
+    }
+
     /** constructor */
     public Minimap(float w, float h, int i, int j) {
         this.width = w;
@@ -33,20 +41,21 @@ public class Minimap {
     /** draw this minimap object */
     public void draw(GameCanvas canvas, TextureRegion background, float oX, float oY) {
         canvas.draw(background,Color.WHITE,oX,oY,width,height);
-        for(int i=0; i<killMe.length; i++) {
-            for(int j=killMe[i].length-1; j>=0; j--) {
-                // draw rectangle of tileWidth and tileHeight at point
-                // (oX + (tileWidth * i), oY + (tileHeight * j)), of varying
-                // color depending on the int value at killMe[i][j]
-                if (killMe[i][j]==1) {
-                    Rectangle r = new Rectangle(oX+(tileWidth*i),oY+(tileHeight*j),tileWidth,tileHeight);
-                    canvas.draw();
-                } else if (killMe[i][j]==2) {
 
-                } else if (killMe[i][j]==3) {
-
-                }
-            }
-        }
+//        for(int i=0; i<killMe.length; i++) {
+//            for(int j=killMe[i].length-1; j>=0; j--) {
+//                // draw rectangle of tileWidth and tileHeight at point
+//                // (oX + (tileWidth * i), oY + (tileHeight * j)), of varying
+//                // color depending on the int value at killMe[i][j]
+//                if (killMe[i][j]==1) {
+//                    //Rectangle r = new Rectangle(oX+(tileWidth*i),oY+(tileHeight*j),tileWidth,tileHeight);
+//                    canvas.beginMinimapDraw(Color.WHITE,oX+(tileWidth*i),oY+(tileHeight*j),tileWidth,tileHeight);
+//                } else if (killMe[i][j]==2) {
+//
+//                } else if (killMe[i][j]==3) {
+//
+//                }
+//            }
+//        }
     }
 }

@@ -28,6 +28,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.*;
 import edu.cornell.gdiac.mistic.BoardModel;
+import edu.cornell.gdiac.mistic.Minimap;
 import edu.cornell.gdiac.obstacle.Obstacle;
 import edu.cornell.gdiac.obstacle.*;
 import edu.cornell.gdiac.util.*;
@@ -85,10 +86,15 @@ public abstract class WorldController implements Screen {
 	/** The JSON defining the level model */
 	private JsonValue levelFormat;
 	private BoardModel tileBoard;
+	private Minimap minimap;
 	public Rectangle screenSize;
 
-	public BoardModel gettileBoard(){
+	public BoardModel getTileBoard() {
 		return tileBoard;
+	}
+
+	public Minimap getMinimap() {
+		return minimap;
 	}
 
 	/**
@@ -166,6 +172,7 @@ public abstract class WorldController implements Screen {
 		screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
 		int w = levelFormat.get("width").asInt(); int h = levelFormat.get("height").asInt();
 		tileBoard = new BoardModel(w, h, screenSize);
+		minimap = new Minimap(canvas.getWidth()/6,canvas.getHeight()/6, w, h);
 
 		// get json data as array
 		int[] maze = levelFormat.get("layers").get(1).get("data").asIntArray();
@@ -179,12 +186,15 @@ public abstract class WorldController implements Screen {
 				switch (c) {
 					case 'w':
 						tileBoard.tiles[i][j].isWall=true;
+						minimap.killMe[i][j]=1;
 						break;
 					case 'l':
 						tileBoard.tiles[i][j].isLantern=true;
+						minimap.killMe[i][j]=2;
 						break;
 					case 'g':
 						tileBoard.tiles[i][j].isGorfStart=true;
+						minimap.killMe[i][j]=3;
 						break;
 					case 'f':
 						tileBoard.tiles[i][j].isFogSpawn=true;
