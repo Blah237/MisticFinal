@@ -283,9 +283,9 @@ public class GameController extends WorldController implements ContactListener {
         }
 
 
+
         litTexture=createTexture(manager,LIT_LANTERN,false);
         unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
-
 
         gorfTexture = createTexture(manager,GORF_TEXTURE,false);
         backgroundTexture = createTexture(manager,BACKGROUND,false);
@@ -372,9 +372,8 @@ public class GameController extends WorldController implements ContactListener {
     /** Reference to the monster */
     public ArrayList<MonsterModel> monster;
     /** Arraylist of Lantern objects */
-    public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
+
     private Familiar familiars;
-    private ArrayList<Obstacle> enviornmentobj = new ArrayList<Obstacle>();
 
     private FogController fog;
     private float BW = DEFAULT_WIDTH;
@@ -403,7 +402,8 @@ public class GameController extends WorldController implements ContactListener {
     protected PooledList<Obstacle> underFog  = new PooledList<Obstacle>();
     /** All the lantern objects in the world. */
     protected PooledList<Obstacle> lanternsUnderFog = new PooledList<Obstacle>();
-
+    ArrayList<Obstacle> enviornmentobj=new ArrayList<Obstacle>();
+    ArrayList<Lantern> Lanterns=new ArrayList<Lantern>();
 
 
     /**
@@ -421,6 +421,7 @@ public class GameController extends WorldController implements ContactListener {
         this.DEAD = false;
         this.fireflyDeathTimer=0;
         this.monster = new ArrayList<MonsterModel>();
+
     }
 
     /**
@@ -433,10 +434,11 @@ public class GameController extends WorldController implements ContactListener {
         for(Obstacle obj : objects) {
             obj.deactivatePhysics(world);
         }
+        enviornmentobj.clear();
         objects.clear();
         addQueue.clear();
         world.dispose();
-        Lanterns = new ArrayList<Lantern>();
+        //
         fireflyController = new FireflyController(fireflyAnimation, scale,tileBoard);
         this.firefly_count = 2;
         this.fireflyDeathTimer=0;
@@ -481,12 +483,14 @@ public class GameController extends WorldController implements ContactListener {
          * And adds lanterns to the GameController object pool.
          */
 
-
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
-
-        tileBoard.tiles[5][5].hasTree=3;
+        tileBoard.tiles[40][20].hasTree=3;
+        tileBoard.tiles[20][10].hasTree=4;
+        tileBoard.tiles[20][40].hasTree=1;
+        tileBoard.tiles[45][45].hasTree=2;
         tileBoard.tiles[10][10].hasRock=2;
+        enviornmentobj=new ArrayList<Obstacle>();
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
                 if (t.isFogSpawn) {
@@ -523,8 +527,6 @@ public class GameController extends WorldController implements ContactListener {
                     gorfStart = new Vector2(tileBoard.getTileCenterX(t)/scale.x, tileBoard.getTileCenterY(t)/scale.y);
                 }
                 if(t.hasRock !=0){
-                    System.out.println("Height: "+ rocks[t.hasRock-1].getRegionHeight());
-                    System.out.println("Width: "+ rocks[t.hasRock-1].getRegionWidth());
                     TextureRegion tex = rocks[t.hasRock-1];
                     BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
                             tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
@@ -540,18 +542,36 @@ public class GameController extends WorldController implements ContactListener {
 
                 }
                 if(t.hasTree!=0){
-                    System.out.println("Height: "+ trees[t.hasTree-1].getRegionHeight());
-                    System.out.println("Width: "+ trees[t.hasTree-1].getRegionWidth());
                     TextureRegion tex = trees[t.hasTree-1];
-                    BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(4*scale.x) ,
-                            tex.getRegionHeight() / scale.y);
+                    BoxObstacle po;
+                    if(t.hasTree==1){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(2*scale.x) ,
+                                tex.getRegionHeight() / (8*scale.y));
+                    }
+                    else if(t.hasTree==2){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(3*scale.x) ,
+                                tex.getRegionHeight() / (6*scale.y));
+                    }
+                    else if(t.hasTree==3){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t)/ scale.y,tex.getRegionWidth()/(3*scale.x) ,
+                                tex.getRegionHeight() / (10*scale.y));
+
+                    }else{
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(4*scale.x) ,
+                                tex.getRegionHeight() / (6*scale.y));
+                        //tex.setRegion(tex.getRegionX()+10,tex.getRegionY()+134,tex.getRegionWidth(), tex.getRegionHeight());
+                    }
+                    po.setTexture(tex);
                     po.setBodyType(BodyDef.BodyType.StaticBody);
                     po.setDensity(BASIC_DENSITY);
                     po.setFriction(BASIC_FRICTION);
                     po.setRestitution(BASIC_RESTITUTION);
                     po.setDrawScale(scale);
-                    po.setTexture(trees[t.hasTree-1]);
+
                     enviornmentobj.add(po);
                     addObject(po);
 
@@ -562,8 +582,8 @@ public class GameController extends WorldController implements ContactListener {
         /**
          * Create Gorf
          */
-        float dwidth  = gorfTexture.getRegionWidth()/scale.x;
-        float dheight = gorfTexture.getRegionHeight()/(scale.y*2);
+        float dwidth  = gorfTexture.getRegionWidth()/(scale.x);
+        float dheight = gorfTexture.getRegionHeight()/(scale.y*3);
         gorf = new GorfModel(gorfStart.x, gorfStart.y, dwidth*0.75f, dheight*0.75f);
         gorf.setDrawScale(scale);
         gorf.setTexture(gorfTexture);
