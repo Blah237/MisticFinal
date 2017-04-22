@@ -34,8 +34,6 @@ public class Lantern {
         this.lit=false;
         this.unlitTex=unlitTexture;
         this.litTex=litTexture;
-
-
         this.object = new BoxObstacle(x,y,unlitTexture.getRegionWidth()/(scale.x*8),
                 unlitTexture.getRegionHeight()/(scale.y*8));
         //litTexture.setRegion( litTexture.getRegionX()-1, litTexture.getRegionY()+13, litTexture.getRegionWidth(), litTexture.getRegionHeight());
@@ -55,8 +53,10 @@ public class Lantern {
     public void toggleLantern() {
         if (lit) {
             lit = false;
-        } else {
+            this.setTexture(unlitTex);
+        } else if (!lit){
             lit = true;
+            this.setTexture(litTex);
         }
     }
 
