@@ -423,7 +423,7 @@ public class GameCanvas {
 	 */
 	public void begin(Vector2 position) {
 		camera.position.set(position.x*8f,position.y*8f,0);
-		camera.zoom = 2.59f;
+		camera.zoom = 0.59f;
 		camera.viewportHeight = getHeight();
 		camera.viewportWidth = getWidth();
 		camera.update();
@@ -999,7 +999,7 @@ public class GameCanvas {
 			return;
 		}
 
-		//minimapRender.setProjectionMatrix(camera.combined);
+		minimapRender.setProjectionMatrix(camera.combined);
 		minimapRender.begin(ShapeRenderer.ShapeType.Filled);
 		minimapRender.setColor(color);
 		minimapRender.rect(oX,oY,width,height);

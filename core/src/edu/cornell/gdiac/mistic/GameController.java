@@ -252,17 +252,6 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(B_MARSH_SONG, Sound.class);
         assets.add(B_MARSH_SONG);
 
-        /**
-         // An Example of loading sounds
-         manager.load(MAIN_FIRE_SOUND, Sound.class);
-         assets.add(MAIN_FIRE_SOUND);
-         manager.load(LEFT_FIRE_SOUND, Sound.class);
-         assets.add(LEFT_FIRE_SOUND);
-         manager.load(RGHT_FIRE_SOUND, Sound.class);
-         assets.add(RGHT_FIRE_SOUND);
-         manager.load(COLLISION_SOUND, Sound.class);
-         assets.add(COLLISION_SOUND);
-         **/
         super.preLoadContent(manager);
     }
 
@@ -280,8 +269,6 @@ public class GameController extends WorldController implements ContactListener {
         if (rocketAssetState != AssetState.LOADING) {
             return;
         }
-
-
 
         litTexture=createTexture(manager,LIT_LANTERN,false);
         unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
@@ -488,11 +475,12 @@ public class GameController extends WorldController implements ContactListener {
 
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
-        tileBoard.tiles[40][20].hasTree=3;
-        tileBoard.tiles[20][10].hasTree=4;
-        tileBoard.tiles[20][40].hasTree=1;
-        tileBoard.tiles[45][45].hasTree=2;
-        tileBoard.tiles[10][10].hasRock=2;
+        // Stop hardcoding trees and rocks, you're scaring our designer lol
+//        tileBoard.tiles[40][20].hasTree=3;
+//        tileBoard.tiles[20][10].hasTree=4;
+//        tileBoard.tiles[20][40].hasTree=1;
+//        tileBoard.tiles[45][45].hasTree=2;
+//        tileBoard.tiles[10][10].hasRock=2;
         enviornmentobj=new ArrayList<Obstacle>();
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
@@ -585,9 +573,6 @@ public class GameController extends WorldController implements ContactListener {
                 }
             }
         }
-
-        // populate minimap data linkedlists
-        super.getMinimap().makeWallData();
 
         /**
          * Create Gorf
@@ -1072,14 +1057,16 @@ public class GameController extends WorldController implements ContactListener {
 
         // minimap
         canvas.begin(gorf.getPosition());
-        canvas.draw(backgroundTexture,Color.WHITE,
+        canvas.draw(super.getMinimap().getTexture(),Color.WHITE,
                 gorf.getPosition().x * scale.x + 115.0f,
                 gorf.getPosition().y * scale.y - 155.0f,
                 super.getMinimap().getWidth(),
                 super.getMinimap().getHeight());
-        super.getMinimap().draw(canvas,backgroundTexture,
-                tileBoard.screenToBoardX(gorf.getPosition().x),
-                tileBoard.screenToBoardY(gorf.getPosition().y),
+        canvas.end();
+        canvas.begin(gorf.getPosition());
+        super.getMinimap().draw(canvas,
+                gorf.getPosition().x,
+                gorf.getPosition().y,
                 gorf.getPosition().x * scale.x + 115.0f,
                 gorf.getPosition().y * scale.y - 155.0f);
         canvas.end();
