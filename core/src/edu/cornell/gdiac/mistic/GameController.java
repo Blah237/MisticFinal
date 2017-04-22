@@ -496,6 +496,8 @@ public class GameController extends WorldController implements ContactListener {
         tileBoard.tiles[20][40].hasTree=1;
         tileBoard.tiles[45][45].hasTree=2;
         tileBoard.tiles[10][10].hasRock=2;
+        tileBoard.tiles[5][5].hasRock=1;
+        tileBoard.tiles[5][10].hasRock=3;
         enviornmentobj=new ArrayList<Obstacle>();
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
@@ -538,9 +540,22 @@ public class GameController extends WorldController implements ContactListener {
                 }
                 if(t.hasRock !=0){
                     TextureRegion tex = rocks[t.hasRock-1];
-                    BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
-                            tex.getRegionHeight() / (2*scale.y));
+                    BoxObstacle po;
+                    if(t.hasRock==1){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
+                                tex.getRegionHeight() / (5*scale.y));
+                    }else if(t.hasRock==2){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
+                                tex.getRegionHeight() / (5*scale.y));
+
+                    }else{
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
+                                tex.getRegionHeight() / (5*scale.y));
+
+                    }
                     po.setBodyType(BodyDef.BodyType.StaticBody);
                     po.setDensity(BASIC_DENSITY);
                     po.setFriction(BASIC_FRICTION);
