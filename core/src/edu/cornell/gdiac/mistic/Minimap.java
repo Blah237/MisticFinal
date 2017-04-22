@@ -1,10 +1,14 @@
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import edu.cornell.gdiac.GameCanvas;
 import com.badlogic.gdx.graphics.*;
+
+import java.awt.*;
+import java.util.LinkedList;
 
 /**
  * Created by tkepler on 4/19/17.
@@ -19,6 +23,19 @@ public class Minimap {
 
     /** data for drawing, wall=1, lantern=2, gorf=3 */
     public int[][] killMe;
+    /** point data for walls */
+    private LinkedList<Point> walls = new LinkedList<Point>();
+    /** point data for lanterns */
+    private LinkedList<Point> lanterns = new LinkedList<Point>();
+    /** */
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
 
     public float getTileWidth() {
         return tileWidth;
@@ -38,24 +55,28 @@ public class Minimap {
         this.killMe = new int[i][j];
     }
 
-    /** draw this minimap object */
-    public void draw(GameCanvas canvas, TextureRegion background, float oX, float oY) {
-        canvas.draw(background,Color.WHITE,oX,oY,width,height);
+    public void makeWallData() {
+        for(int i=0; i<killMe.length; i++) {
+            for(int j=killMe[i].length-1; j>=0; j--) {
+                // add rectangle of tileWidth and tileHeight at point
+                // (oX + (tileWidth * i), oY + (tileHeight * j)), of varying
+                // color depending on the int value at killMe[i][j]
+                if (killMe[i][j]==1) {
+                    walls.add(new Point(i,j));
+                } else if (killMe[i][j]==2) {
+                    lanterns.add(new Point(i,j));
+                } else if (killMe[i][j]==3) {
+                    // do some shit here
+                }
+            }
+        }
+    }
 
-//        for(int i=0; i<killMe.length; i++) {
-//            for(int j=killMe[i].length-1; j>=0; j--) {
-//                // draw rectangle of tileWidth and tileHeight at point
-//                // (oX + (tileWidth * i), oY + (tileHeight * j)), of varying
-//                // color depending on the int value at killMe[i][j]
-//                if (killMe[i][j]==1) {
-//                    //Rectangle r = new Rectangle(oX+(tileWidth*i),oY+(tileHeight*j),tileWidth,tileHeight);
-//                    canvas.beginMinimapDraw(Color.WHITE,oX+(tileWidth*i),oY+(tileHeight*j),tileWidth,tileHeight);
-//                } else if (killMe[i][j]==2) {
-//
-//                } else if (killMe[i][j]==3) {
-//
-//                }
-//            }
-//        }
+    /** draw this minimap object */
+    public void draw(GameCanvas canvas, TextureRegion background, float x, float y, float oX, float oY) {
+            // draw rectangle of tileWidth and tileHeight at point
+            // (oX + (tileWidth * p.x), oY + (tileHeight * p.y)), of varying
+            // color depending on the int value at killMe[i][j]
+            canvas.beginMinimapDraw(Color.WHITE,oX+(tileWidth*x),oY+(tileHeight*y),tileWidth*4,tileHeight*4);
     }
 }

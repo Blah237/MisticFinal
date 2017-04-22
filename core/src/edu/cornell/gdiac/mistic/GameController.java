@@ -450,7 +450,6 @@ public class GameController extends WorldController implements ContactListener {
          * This includes code for incrementing and decrementing Gorf's firefly counter
          * And adds lanterns to the GameController object pool.
          */
-
         for (int x = 0; x < tileBoard.getWidth(); x++) {
             for (int y = 0; y < tileBoard.getWidth(); y++) {
                 if (tileBoard.isFogSpawn(x, y)) {
@@ -460,11 +459,8 @@ public class GameController extends WorldController implements ContactListener {
             }
         }
 
-
-
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
-
 
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
@@ -488,7 +484,7 @@ public class GameController extends WorldController implements ContactListener {
                     po.setTexture(mistwall);
                     addObject(po);
                     overFog.add(po);
-                    if(t.x==0 || t.y==0){
+                    if (t.x==0 || t.y==0) {
                         edgewalls.add(po);
                     }
                 }
@@ -500,6 +496,9 @@ public class GameController extends WorldController implements ContactListener {
                 }
             }
         }
+
+        // populate minimap data linkedlists
+        super.getMinimap().makeWallData();
 
         /**
          * Create Gorf
@@ -526,8 +525,9 @@ public class GameController extends WorldController implements ContactListener {
 
         //this.ai = new AIController(monster, tileBoard, gorf, scale);
         this.ai = new AIControllerS(monster, gorf, tileBoard);
-
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
+
+
     }
 
     private void createMonster(float x, float y) {
@@ -728,21 +728,9 @@ public class GameController extends WorldController implements ContactListener {
         canvas.begin();
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
         for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
-        }}
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
         canvas.end();
         fbo.end();
-
-//        fbo2.begin();
-//        canvas.clear();
-//        canvas.begin();
-//        canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
-//        canvas.draw(fboRegion, 0, 0);
-//        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
-//        for(Obstacle obj : lanternsUnderFog) {if(obj.isActive()){obj.draw(canvas);}}
-//        canvas.end();
-//        fbo2.end();
-
         canvas.setShader(fog.getShader());
         fog.prepShader(firefly_count);
 
@@ -782,12 +770,6 @@ public class GameController extends WorldController implements ContactListener {
         canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
         fog.draw(canvas, fboRegion, new Vector2(0, 0));
         canvas.end();
-
-//        fbo2.begin();
-//        canvas.begin(gorf.getPosition());
-//        fog.draw(canvas, fboRegion);
-//        canvas.end();
-//        fbo2.end();
 
         // Everything over the fog
         canvas.getSpriteBatch().setShader(null);
@@ -855,47 +837,6 @@ public class GameController extends WorldController implements ContactListener {
             //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
         }}
         canvas.end();
-
-//        fbo3.begin();
-//        canvas.clear();
-//        canvas.begin();
-//        canvas.draw(fboRegion2, 0, 0);
-//        for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
-//        canvas.end();
-//        fbo3.end();
-//
-//        // main canvas
-//        canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
-//        canvas.begin(gorf.getPosition());
-////
-//        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, 0, canvas.getHeight() * 2);
-//        }
-//        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, canvas.getWidth() * 2, canvas.getHeight() * 2);
-//        }
-//        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, 0, -canvas.getHeight() * 2);
-//        }
-//        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, canvas.getWidth() * 2, -canvas.getHeight() * 2);
-//        }
-//        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-//            canvas.draw(fboRegion3, canvas.getWidth() * 2, 0);
-//        }
-//        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, -canvas.getWidth() * 2, -canvas.getHeight() * 2);
-//        }
-//        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-//            canvas.draw(fboRegion3, -canvas.getWidth() * 2, 0);
-//        }
-//        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, -canvas.getWidth() * 2, canvas.getHeight() * 2);
-//        }
-//
-//        canvas.draw(fboRegion3, 0, 0);
-//
-//        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
 
         // UI
         canvas.begin(gorf.getPosition());
@@ -1029,7 +970,14 @@ public class GameController extends WorldController implements ContactListener {
 
         // minimap
         canvas.begin(gorf.getPosition());
+        canvas.draw(backgroundTexture,Color.WHITE,
+                gorf.getPosition().x * scale.x + 115.0f,
+                gorf.getPosition().y * scale.y - 155.0f,
+                super.getMinimap().getWidth(),
+                super.getMinimap().getHeight());
         super.getMinimap().draw(canvas,backgroundTexture,
+                tileBoard.screenToBoardX(gorf.getPosition().x),
+                tileBoard.screenToBoardY(gorf.getPosition().y),
                 gorf.getPosition().x * scale.x + 115.0f,
                 gorf.getPosition().y * scale.y - 155.0f);
         canvas.end();
