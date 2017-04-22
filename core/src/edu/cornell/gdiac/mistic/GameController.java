@@ -62,6 +62,12 @@ public class GameController extends WorldController implements ContactListener {
             "mistic/mistblock/mistblock26.png","mistic/mistblock/mistblock27.png", "mistic/mistblock/mistblock28.png",
             "mistic/mistblock/mistblock29.png","mistic/mistblock/mistblock30.png"};
 
+    private static final String[] TREES = { "mistic/environment/tree1.png","mistic/environment/tree2.png",
+            "mistic/environment/tree3.png","mistic/environment/tree4.png"
+    };
+    private static final String[] ROCKS = { "mistic/environment/rock1.png","mistic/environment/rock2.png",
+            "mistic/environment/rock3.png"
+    };
     private static final String[] FAMILIARS={
             "mistic/familiars/cat.png","mistic/familiars/chicken.png","mistic/familiars/hedgehog.png",
             "mistic/familiars/tortoise.png",
@@ -106,6 +112,8 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion monsterTexture;
     private TextureRegion[] mistwalls = new TextureRegion[MIST_WALLS.length];
     private TextureRegion[] familiarTex = new TextureRegion[FAMILIARS.length];
+    private TextureRegion[] trees = new TextureRegion[TREES.length];
+    private TextureRegion[] rocks = new TextureRegion[ROCKS.length];
     /** Texture assets for the crates */
     private TextureRegion litTexture;
     private TextureRegion unlitTexture;
@@ -229,6 +237,15 @@ public class GameController extends WorldController implements ContactListener {
             assets.add(f);
         }
 
+        for(String f : ROCKS){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
+        for(String f : TREES){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
+
         //music files
         manager.load(A_PEACE_SONG, Sound.class);
         assets.add(A_PEACE_SONG);
@@ -299,6 +316,12 @@ public class GameController extends WorldController implements ContactListener {
         }
         for(int i=0;i<FAMILIARS.length;i++){
             familiarTex[i]= createTexture(manager,FAMILIARS[i], false);
+        }
+        for(int i=0;i<ROCKS.length;i++){
+            rocks[i]= createTexture(manager,ROCKS[i], false);
+        }
+        for(int i=0;i<TREES.length;i++){
+            trees[i]= createTexture(manager,TREES[i], false);
         }
 
         // allocate sounds
@@ -473,6 +496,9 @@ public class GameController extends WorldController implements ContactListener {
         enviornmentobj=new ArrayList<Obstacle>();
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
+                if (t.isFogSpawn) {
+                    createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
+                }
                 if (t.isLantern) {
                     Lantern l = new Lantern(tileBoard.getTileCenterX(t) / scale.x,
                             tileBoard.getTileCenterY(t) / scale.y,unlitTexture,litTexture,scale);
