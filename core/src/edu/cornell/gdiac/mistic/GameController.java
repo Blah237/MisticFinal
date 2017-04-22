@@ -371,7 +371,7 @@ public class GameController extends WorldController implements ContactListener {
     public GorfModel gorf;
     /** Reference to the monster */
     public ArrayList<MonsterModel> monster;
-    /** Arraylist of Lantern objects */
+
 
     private Familiar familiars;
 
@@ -398,11 +398,15 @@ public class GameController extends WorldController implements ContactListener {
 
     /** All the wall objects in the world. */
     protected PooledList<Obstacle> overFog  = new PooledList<Obstacle>();
+
     /** All the non-wall objects in the world. */
     protected PooledList<Obstacle> underFog  = new PooledList<Obstacle>();
-    /** All the lantern objects in the world. */
     protected PooledList<Obstacle> lanternsUnderFog = new PooledList<Obstacle>();
+
+    /** ArrayList of Enviornment Objects. */
     ArrayList<Obstacle> enviornmentobj=new ArrayList<Obstacle>();
+
+    /** Arraylist of Lantern objects */
     ArrayList<Lantern> Lanterns=new ArrayList<Lantern>();
 
 
