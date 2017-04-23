@@ -1057,6 +1057,13 @@ public class GameController extends WorldController implements ContactListener {
 
         // minimap
         canvas.begin(gorf.getPosition());
+        // draw background texture
+        canvas.draw(backgroundTexture,Color.WHITE,
+                gorf.getPosition().x * scale.x + 115.0f,
+                gorf.getPosition().y * scale.y - 155.0f,
+                super.getMinimap().getWidth(),
+                super.getMinimap().getHeight());
+        // draw custom level's minimap
         canvas.draw(super.getMinimap().getTexture(),Color.WHITE,
                 gorf.getPosition().x * scale.x + 115.0f,
                 gorf.getPosition().y * scale.y - 155.0f,
@@ -1064,6 +1071,7 @@ public class GameController extends WorldController implements ContactListener {
                 super.getMinimap().getHeight());
         canvas.end();
         canvas.begin(gorf.getPosition());
+        // draw gorf moving representation
         super.getMinimap().draw(canvas,
                 gorf.getPosition().x,
                 gorf.getPosition().y,

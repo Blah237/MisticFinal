@@ -52,8 +52,8 @@ public class Minimap {
     public Minimap(float w, float h, int i, int j, TextureRegion t) {
         this.width = w;
         this.height = h;
-        this.tileWidth = w/i*3;
-        this.tileHeight = h/j*4;
+        this.tileWidth = w/i*3f;
+        this.tileHeight = h/j*4f;
         this.minimapTexture = t;
     }
 
@@ -62,6 +62,7 @@ public class Minimap {
             // draw rectangle of tileWidth and tileHeight at point
             // (oX + (tileWidth * p.x), oY + (tileHeight * p.y)), of varying
             // color depending on the int value at killMe[i][j]
+
             canvas.beginMinimapDraw(new Color(0x66e7d2ff),
                     oX+(tileWidth*(x/7.92f)),oY+(tileHeight*(y/5.94f)),
                     tileWidth,tileHeight);
