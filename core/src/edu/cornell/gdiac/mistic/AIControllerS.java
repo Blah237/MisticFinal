@@ -8,6 +8,7 @@ import com.badlogic.gdx.ai.steer.SteeringAcceleration;
 import com.badlogic.gdx.ai.steer.behaviors.BlendedSteering;
 import com.badlogic.gdx.ai.steer.behaviors.PrioritySteering;
 import com.badlogic.gdx.ai.steer.behaviors.Seek;
+import com.badlogic.gdx.ai.steer.behaviors.Wander;
 import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -23,6 +24,7 @@ public class AIControllerS {
     DefaultTimepiece timePiece;
 
     private Seek<Vector2> seekTarget;
+    private Wander<Vector2> wandering;
 
     EnemyWrapper enemyWrapper = new EnemyWrapper();
     TargetWrapper targetWrapper = new TargetWrapper();
@@ -42,6 +44,7 @@ public class AIControllerS {
     public AIControllerS(ArrayList<MonsterModel> monster, GorfModel gorf, BoardModel board) {
         timePiece = new DefaultTimepiece();
         seekTarget = new Seek<Vector2>(emptyWrapper);
+        wandering = new Wander<Vector2>(emptyWrapper);
         this.monster = monster;
         this.gorf = gorf;
         this.monsterBehavior = new PrioritySteering<Vector2>(emptyWrapper);
@@ -65,7 +68,11 @@ public class AIControllerS {
             targetWrapper.model = gorf;
             seekTarget.setTarget(targetWrapper);
             seekTarget.setEnabled(true);
-
+            //wandering.setOwner(enemyWrapper);
+            //wandering.setWanderOffset(.5f);
+            //wandering.setWanderRate(1);
+            //wandering.setWanderRadius(40);
+            //wandering.setEnabled(true);
             monsterBehavior.calculateSteering(steering);
             applySteering(steering, m);
         }
