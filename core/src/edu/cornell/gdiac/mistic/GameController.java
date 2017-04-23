@@ -62,6 +62,12 @@ public class GameController extends WorldController implements ContactListener {
             "mistic/mistblock/mistblock26.png","mistic/mistblock/mistblock27.png", "mistic/mistblock/mistblock28.png",
             "mistic/mistblock/mistblock29.png","mistic/mistblock/mistblock30.png"};
 
+    private static final String[] TREES = { "mistic/environment/tree1.png","mistic/environment/tree2.png",
+            "mistic/environment/tree3.png","mistic/environment/tree4.png"
+    };
+    private static final String[] ROCKS = { "mistic/environment/rock1.png","mistic/environment/rock2.png",
+            "mistic/environment/rock3.png"
+    };
     private static final String[] FAMILIARS={
             "mistic/familiars/cat.png","mistic/familiars/chicken.png","mistic/familiars/hedgehog.png",
             "mistic/familiars/tortoise.png",
@@ -106,6 +112,8 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion monsterTexture;
     private TextureRegion[] mistwalls = new TextureRegion[MIST_WALLS.length];
     private TextureRegion[] familiarTex = new TextureRegion[FAMILIARS.length];
+    private TextureRegion[] trees = new TextureRegion[TREES.length];
+    private TextureRegion[] rocks = new TextureRegion[ROCKS.length];
     /** Texture assets for the crates */
     private TextureRegion litTexture;
     private TextureRegion unlitTexture;
@@ -230,6 +238,15 @@ public class GameController extends WorldController implements ContactListener {
             assets.add(f);
         }
 
+        for(String f : ROCKS){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
+        for(String f : TREES){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
+
         //music files
         manager.load(A_PEACE_SONG, Sound.class);
         assets.add(A_PEACE_SONG);
@@ -266,9 +283,9 @@ public class GameController extends WorldController implements ContactListener {
         }
 
 
+
         litTexture=createTexture(manager,LIT_LANTERN,false);
         unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
-
 
         gorfTexture = createTexture(manager,GORF_TEXTURE,false);
         backgroundTexture = createTexture(manager,BACKGROUND,false);
@@ -300,6 +317,12 @@ public class GameController extends WorldController implements ContactListener {
         }
         for(int i=0;i<FAMILIARS.length;i++){
             familiarTex[i]= createTexture(manager,FAMILIARS[i], false);
+        }
+        for(int i=0;i<ROCKS.length;i++){
+            rocks[i]= createTexture(manager,ROCKS[i], false);
+        }
+        for(int i=0;i<TREES.length;i++){
+            trees[i]= createTexture(manager,TREES[i], false);
         }
 
         // allocate sounds
@@ -348,8 +371,8 @@ public class GameController extends WorldController implements ContactListener {
     public GorfModel gorf;
     /** Reference to the monster */
     public ArrayList<MonsterModel> monster;
-    /** Arraylist of Lantern objects */
-    public ArrayList<Lantern> Lanterns = new ArrayList<Lantern>();
+
+
     private Familiar familiars;
 
     private FogController fog;
@@ -374,12 +397,18 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion fboRegion3;
 
     /** All the wall objects in the world. */
-    protected PooledList<Obstacle> overFog  = new PooledList<Obstacle>();
+
+    protected PooledList<Obstacle> walls  = new PooledList<Obstacle>();
+    protected PooledList<Obstacle> lanterns  = new PooledList<Obstacle>();
+    protected PooledList<Obstacle> landmarks  = new PooledList<Obstacle>();
     /** All the non-wall objects in the world. */
     protected PooledList<Obstacle> underFog  = new PooledList<Obstacle>();
-    /** All the lantern objects in the world. */
-    protected PooledList<Obstacle> lanternsUnderFog = new PooledList<Obstacle>();
 
+    /** ArrayList of Enviornment Objects. */
+    ArrayList<Obstacle> enviornmentobj=new ArrayList<Obstacle>();
+
+    /** Arraylist of Lantern objects */
+    ArrayList<Lantern> Lanterns=new ArrayList<Lantern>();
 
 
     /**
@@ -397,6 +426,7 @@ public class GameController extends WorldController implements ContactListener {
         this.DEAD = false;
         this.fireflyDeathTimer=0;
         this.monster = new ArrayList<MonsterModel>();
+
     }
 
     /**
@@ -409,15 +439,17 @@ public class GameController extends WorldController implements ContactListener {
         for(Obstacle obj : objects) {
             obj.deactivatePhysics(world);
         }
+        enviornmentobj.clear();
         objects.clear();
         addQueue.clear();
         world.dispose();
-        Lanterns = new ArrayList<Lantern>();
+        //
         fireflyController = new FireflyController(fireflyAnimation, scale,tileBoard);
         this.firefly_count = 2;
         this.fireflyDeathTimer=0;
         world = new World(gravity,false);
         world.setContactListener(this);
+        Lanterns=new ArrayList<Lantern>();
         setComplete(false);
         setFailure(false);
         populateLevel();
@@ -457,26 +489,28 @@ public class GameController extends WorldController implements ContactListener {
          * And adds lanterns to the GameController object pool.
          */
 
-        for (int x = 0; x < tileBoard.getWidth(); x++) {
-            for (int y = 0; y < tileBoard.getWidth(); y++) {
-                if (tileBoard.isFogSpawn(x, y)) {
-                    BoardModel.Tile the_tile = tileBoard.getTile(x,y);
-                    createMonster(tileBoard.getTileCenterX(the_tile) / scale.x, tileBoard.getTileCenterY(the_tile) / scale.y);
-                }
-            }
-        }
-
-
-
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
-
-
+        tileBoard.tiles[40][20].hasTree=3;
+        tileBoard.tiles[20][10].hasTree=4;
+        tileBoard.tiles[20][40].hasTree=1;
+        tileBoard.tiles[45][45].hasTree=2;
+        tileBoard.tiles[10][10].hasRock=2;
+        tileBoard.tiles[5][5].hasRock=1;
+        tileBoard.tiles[5][10].hasRock=3;
+        enviornmentobj=new ArrayList<Obstacle>();
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
+                if (t.isFogSpawn) {
+                    createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
+                }
                 if (t.isLantern) {
-                    createLantern(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y);
+                    Lantern l = new Lantern(tileBoard.getTileCenterX(t) / scale.x,
+                            tileBoard.getTileCenterY(t) / scale.y,unlitTexture,litTexture,scale);
+                    l.setTexture(unlitTexture);
+                    Lanterns.add(l);
+                    addObject(l.object);
+                    lanterns.add(l.object);
                 }
                 if (t.isWall) {
 
@@ -493,7 +527,7 @@ public class GameController extends WorldController implements ContactListener {
                     po.setDrawScale(scale);
                     po.setTexture(mistwall);
                     addObject(po);
-                    overFog.add(po);
+                    walls.add(po);
                     if(t.x==0 || t.y==0){
                         edgewalls.add(po);
                     }
@@ -504,19 +538,82 @@ public class GameController extends WorldController implements ContactListener {
                 if (t.isGorfStart) {
                     gorfStart = new Vector2(tileBoard.getTileCenterX(t)/scale.x, tileBoard.getTileCenterY(t)/scale.y);
                 }
+                if(t.hasRock !=0){
+                    TextureRegion tex = rocks[t.hasRock-1];
+                    BoxObstacle po;
+                    if(t.hasRock==1){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
+                                tex.getRegionHeight() / (5*scale.y));
+                    }else if(t.hasRock==2){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
+                                tex.getRegionHeight() / (5*scale.y));
+
+                    }else{
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
+                                tex.getRegionHeight() / (5*scale.y));
+
+                    }
+                    po.setBodyType(BodyDef.BodyType.StaticBody);
+                    po.setDensity(BASIC_DENSITY);
+                    po.setFriction(BASIC_FRICTION);
+                    po.setRestitution(BASIC_RESTITUTION);
+                    po.setDrawScale(scale);
+                    po.setTexture(rocks[t.hasRock-1]);
+                    enviornmentobj.add(po);
+                    addObject(po);
+                    landmarks.add(po);
+                }
+                if(t.hasTree!=0){
+                    TextureRegion tex = trees[t.hasTree-1];
+                    BoxObstacle po;
+                    if(t.hasTree==1){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(2*scale.x) ,
+                                tex.getRegionHeight() / (8*scale.y));
+                    }
+                    else if(t.hasTree==2){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(3*scale.x) ,
+                                tex.getRegionHeight() / (6*scale.y));
+                    }
+                    else if(t.hasTree==3){
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t)/ scale.y,tex.getRegionWidth()/(3*scale.x) ,
+                                tex.getRegionHeight() / (10*scale.y));
+
+                    }else{
+                        po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(4*scale.x) ,
+                                tex.getRegionHeight() / (6*scale.y));
+                        //tex.setRegion(tex.getRegionX()+10,tex.getRegionY()+134,tex.getRegionWidth(), tex.getRegionHeight());
+                    }
+                    po.setTexture(tex);
+                    po.setBodyType(BodyDef.BodyType.StaticBody);
+                    po.setDensity(BASIC_DENSITY);
+                    po.setFriction(BASIC_FRICTION);
+                    po.setRestitution(BASIC_RESTITUTION);
+                    po.setDrawScale(scale);
+
+                    enviornmentobj.add(po);
+                    addObject(po);
+                    landmarks.add(po);
+                }
             }
         }
 
         /**
          * Create Gorf
          */
-        float dwidth  = gorfTexture.getRegionWidth()/scale.x;
-        float dheight = gorfTexture.getRegionHeight()/(scale.y*2);
+        float dwidth  = gorfTexture.getRegionWidth()/(scale.x);
+        float dheight = gorfTexture.getRegionHeight()/(scale.y*3);
         gorf = new GorfModel(gorfStart.x, gorfStart.y, dwidth*0.75f, dheight*0.75f);
         gorf.setDrawScale(scale);
         gorf.setTexture(gorfTexture);
         addObject(gorf);
-        overFog.add(0, gorf);
+//        overFog.add(0, gorf);
 
         fireflyController=new FireflyController(fireflyAnimation,scale,tileBoard);
 
@@ -567,25 +664,15 @@ public class GameController extends WorldController implements ContactListener {
     void toggle(Lantern l) {
         if (l.lit) {
             firefly_count+=2;
-            l.setTexture(unlitTexture);
-            l.toggleLantern();
         } else {
             if (firefly_count >= 2) {
                 firefly_count = firefly_count - 2;
-                l.setTexture(litTexture);
-                l.toggleLantern();
             }
         }
-
+        l.toggleLantern();
     }
 
-    private void createLantern(float x, float y){
-        Lantern l = new Lantern(x,y,unlitTexture,litTexture,scale);
-        l.setTexture(unlitTexture);
-        Lanterns.add(l);
-        addObject(l.object);
-        overFog.add(l.object);
-    }
+
 
 
 
@@ -734,10 +821,13 @@ public class GameController extends WorldController implements ContactListener {
         canvas.clear();
         canvas.begin();
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
+        for(Obstacle e : enviornmentobj) {e.draw(canvas);}
         for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
+        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
+
+
         //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
-        }}
+
 //        fog.drawBoundaries(canvas);
         canvas.end();
         fbo.end();
@@ -745,12 +835,20 @@ public class GameController extends WorldController implements ContactListener {
 //        fbo2.begin();
 //        canvas.clear();
 //        canvas.begin();
-//        canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
+//        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
 //        canvas.draw(fboRegion, 0, 0);
 //        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
 //        for(Obstacle obj : lanternsUnderFog) {if(obj.isActive()){obj.draw(canvas);}}
 //        canvas.end();
 //        fbo2.end();
+//
+//        fbo3.begin();
+//        canvas.clear();
+//        canvas.begin();
+//        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
+//        canvas.draw(fboRegion2, 0, 0);
+//        canvas.end();
+//        fbo3.end();
 
         canvas.setShader(fog.getShader());
         fog.prepShader(firefly_count);
@@ -805,56 +903,83 @@ public class GameController extends WorldController implements ContactListener {
         // now redraw objects on surrounding canvases
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
-            for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+            gorf.draw(canvas);
+            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null && !f.isDestroyed()){f.draw(canvas);}}
             canvas.end();
         }
         if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
-            for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+            gorf.draw(canvas);
+            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
             canvas.end();
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
-            for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+            gorf.draw(canvas);
+            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
             canvas.end();
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
-            for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+            gorf.draw(canvas);
+            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
             canvas.end();
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT/2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
-            for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+            gorf.draw(canvas);
+            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
             canvas.end();
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
-            for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+            gorf.draw(canvas);
+            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
             canvas.end();
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT/2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
-            for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+            gorf.draw(canvas);
+            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
             canvas.end();
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
-            for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+            gorf.draw(canvas);
+            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
+            for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}}
             canvas.end();
         }
 
         // main canvas
         canvas.begin(gorf.getPosition());
-        for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
+        gorf.draw(canvas);
+        for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
+        for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
 
         for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
             //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());

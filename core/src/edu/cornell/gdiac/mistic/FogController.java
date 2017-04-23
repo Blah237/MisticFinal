@@ -510,21 +510,39 @@ public class FogController {
 		spreadType = MathUtils.random(0,20);
 
 		if (spreadType == 0) {
-			newFogBoard[x][y] = 1 - elementBoard[x][y];
-			if (newFogBoard[x][y] == 1) {
-				tileBoard.setFog(x, y, true);
-				newFog.add(new Vector2(x,y));
-			}
+			newFogBoard[x][y] = FOG;
+			tileBoard.setFog(x, y, true);
+			newFog.add(new Vector2(x,y));
 
 			int x1 = (x - 1 + WX) % WX;
 			int x2 = (x + 1     ) % WX;
 			int y1 = (y - 1 + WY) % WY;
 			int y2 = (y + 1     ) % WY;
 
-			newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], BOUNDARY * (1 - elementBoard[x][y1]));
-			newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], BOUNDARY * (1 - elementBoard[x][y2]));
-			newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], BOUNDARY * (1 - elementBoard[x1][y]));
-			newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], BOUNDARY * (1 - elementBoard[x2][y]));
+			if (elementBoard[x][y1] == WALL) {
+				newFogBoard[x][y1] = FOG;
+				tileBoard.setFog(x, y1, true);
+			} else {
+				newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], BOUNDARY * (1 - elementBoard[x][y1]));
+			}
+			if (elementBoard[x][y2] == WALL) {
+				newFogBoard[x][y2] = FOG;
+				tileBoard.setFog(x, y2, true);
+			} else {
+				newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], BOUNDARY * (1 - elementBoard[x][y2]));
+			}
+			if (elementBoard[x1][y] == WALL) {
+				newFogBoard[x1][y] = FOG;
+				tileBoard.setFog(x1, y, true);
+			} else {
+				newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], BOUNDARY * (1 - elementBoard[x1][y]));
+			}
+			if (elementBoard[x2][y] == WALL) {
+				newFogBoard[x2][y] = FOG;
+				tileBoard.setFog(x2, y, true);
+			} else {
+				newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], BOUNDARY * (1 - elementBoard[x2][y]));
+			}
 		}
 		// This causes fog leakage across walls at diagonals...
 //		else if (spreadType == 1){
