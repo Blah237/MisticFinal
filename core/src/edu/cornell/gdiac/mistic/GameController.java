@@ -553,7 +553,7 @@ public class GameController extends WorldController implements ContactListener {
                     }else{
                         po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
                                 tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/scale.x ,
-                                tex.getRegionHeight() / (5*scale.y));
+                                tex.getRegionHeight() / (6*scale.y));
 
                     }
                     po.setBodyType(BodyDef.BodyType.StaticBody);
@@ -586,8 +586,8 @@ public class GameController extends WorldController implements ContactListener {
 
                     }else{
                         po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
-                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(4*scale.x) ,
-                                tex.getRegionHeight() / (6*scale.y));
+                                tileBoard.getTileCenterY(t) / scale.y,tex.getRegionWidth()/(5*scale.x) ,
+                                tex.getRegionHeight() / (10*scale.y));
                         //tex.setRegion(tex.getRegionX()+10,tex.getRegionY()+134,tex.getRegionWidth(), tex.getRegionHeight());
                     }
                     po.setTexture(tex);
