@@ -13,6 +13,7 @@
  */
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.physics.box2d.*;
@@ -226,6 +227,14 @@ public class GorfModel extends BoxObstacle {
 	public boolean isColliding() {
 		return isColliding;
 	}
+
+	public void drawHat(GameCanvas canvas, TextureRegion tex, Vector2 scale){
+		BoxObstacle hat = new BoxObstacle(this.getWidth(),this.getHeight());
+		hat.setX(this.getX()*scale.x);
+		hat.setY(this.getY()*scale.y);
+		this.draw(canvas);
+	}
+
 
 
 }
