@@ -513,9 +513,10 @@ public class GameController extends WorldController implements ContactListener {
                     po.setDrawScale(scale);
                     po.setTexture(mistwall);
                     addObject(po);
-                    walls.add(po);
-                    if(t.x==0 || t.y==0){
+                    if(t.x<3 || t.y<3 || t.x>tileBoard.getWidth()-4 || t.y>tileBoard.getHeight()-4 ){
                         edgewalls.add(po);
+                    } else {
+                        walls.add(po);
                     }
                 }
                 if (t.hasFamiliar) {
@@ -828,8 +829,9 @@ public class GameController extends WorldController implements ContactListener {
 
         canvas.clear();
         canvas.begin(gorf.getPosition());
+        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
+
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
             canvas.setShader(null);
             canvas.setShader(null);
             canvas.draw(backgroundTexture, Color.WHITE, 0, canvas.getHeight()*2, canvas.getWidth()*2,canvas.getHeight()*2);
@@ -839,7 +841,6 @@ public class GameController extends WorldController implements ContactListener {
             fog.draw(canvas, backgroundTexture, new Vector2(0, canvas.getHeight() * 2));
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
             canvas.setShader(null);
             canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth()*2, canvas.getHeight()*2, canvas.getWidth()*2,canvas.getHeight()*2);
             for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
@@ -849,7 +850,6 @@ public class GameController extends WorldController implements ContactListener {
 
         }
         if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
             canvas.setShader(null);
             canvas.draw(backgroundTexture, Color.WHITE, 0, -canvas.getHeight()*2, canvas.getWidth()*2,canvas.getHeight()*2);
             for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
@@ -859,7 +859,6 @@ public class GameController extends WorldController implements ContactListener {
 
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
             canvas.setShader(null);
             canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth()*2, -canvas.getHeight()*2, canvas.getWidth()*2,canvas.getHeight()*2);
             for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
@@ -870,7 +869,6 @@ public class GameController extends WorldController implements ContactListener {
 
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-            canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
             canvas.setShader(null);
             canvas.draw(backgroundTexture, Color.WHITE, canvas.getWidth()*2, 0, canvas.getWidth()*2,canvas.getHeight()*2);
             for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
@@ -881,7 +879,6 @@ public class GameController extends WorldController implements ContactListener {
 
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
             canvas.setShader(null);
             canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, -canvas.getHeight()*2, canvas.getWidth()*2,canvas.getHeight()*2);
             for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
@@ -892,7 +889,6 @@ public class GameController extends WorldController implements ContactListener {
 
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-            canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
             canvas.setShader(null);
             canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, 0, canvas.getWidth()*2,canvas.getHeight()*2);
             for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
@@ -903,7 +899,6 @@ public class GameController extends WorldController implements ContactListener {
 
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
             canvas.setShader(null);
             canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, canvas.getHeight()*2, canvas.getWidth()*2,canvas.getHeight()*2);
             for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
@@ -913,7 +908,6 @@ public class GameController extends WorldController implements ContactListener {
 //            canvas.draw(fboRegion, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
 
         }
-        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
         canvas.setShader(null);
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
         for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
@@ -924,6 +918,7 @@ public class GameController extends WorldController implements ContactListener {
 
         canvas.end();
 
+        // Everything over the fog
         canvas.resetCamera();
 
         canvas.setShader(null);
@@ -931,23 +926,28 @@ public class GameController extends WorldController implements ContactListener {
         canvas.clear();
         canvas.begin();
         canvas.setBlendState(GameCanvas.BlendState.ALPHA_BLEND);
-//        for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
         for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
-        for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null && !f.isDestroyed()){f.draw(canvas);}}
-//        gorf.draw(canvas);
         canvas.end();
         fbo2.end();
 
-        // Everything over the fog
-        canvas.getSpriteBatch().setShader(null);
         canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
+
+        // main canvas
+        canvas.begin(gorf.getPosition());
+        for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}gorf.draw(canvas);
+
+        canvas.draw(fboRegion2, 0, 0);for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+        for (Obstacle obj : landmarks) { if (obj.isActive()) { obj.draw(canvas); }}
+        canvas.end();
 
         // now redraw objects on surrounding canvases
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion2, 0, 0);
+            for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+            for (Obstacle obj : landmarks) { if (obj.isActive()) { obj.draw(canvas); }}
+
 //            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
 //            gorf.draw(canvas);
 
@@ -955,7 +955,11 @@ public class GameController extends WorldController implements ContactListener {
         }
         if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion2, 0, 0);
+            for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+            for (Obstacle obj : landmarks) { if (obj.isActive()) { obj.draw(canvas); }}
+
 //            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
 //            gorf.draw(canvas);
 //            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
@@ -966,7 +970,11 @@ public class GameController extends WorldController implements ContactListener {
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion2, 0, 0);
+            for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+            for (Obstacle obj : landmarks) { if (obj.isActive()) { obj.draw(canvas); }}
+
 //            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
 //            gorf.draw(canvas);
 //            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
@@ -977,7 +985,11 @@ public class GameController extends WorldController implements ContactListener {
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion2, 0, 0);
+            for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+            for (Obstacle obj : landmarks) { if (obj.isActive()) { obj.draw(canvas); }}
+
 //            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
 //            gorf.draw(canvas);
 //            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
@@ -988,7 +1000,11 @@ public class GameController extends WorldController implements ContactListener {
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT/2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion2, 0, 0);
+            for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+            for (Obstacle obj : landmarks) { if (obj.isActive()) { obj.draw(canvas); }}
+
 //            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
 //            gorf.draw(canvas);
 //            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
@@ -999,7 +1015,11 @@ public class GameController extends WorldController implements ContactListener {
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion2, 0, 0);
+            for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+            for (Obstacle obj : landmarks) { if (obj.isActive()) { obj.draw(canvas); }}
+
 //            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
 //            gorf.draw(canvas);
 //            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
@@ -1010,7 +1030,11 @@ public class GameController extends WorldController implements ContactListener {
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT/2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion2, 0, 0);
+            for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+            for (Obstacle obj : landmarks) { if (obj.isActive()) { obj.draw(canvas); }}
+
 //            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
 //            gorf.draw(canvas);
 //            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
@@ -1021,7 +1045,11 @@ public class GameController extends WorldController implements ContactListener {
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion2, 0, 0);
+            for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+            for (Obstacle obj : landmarks) { if (obj.isActive()) { obj.draw(canvas); }}
+
 //            for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
 //            gorf.draw(canvas);
 //            for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
@@ -1031,11 +1059,8 @@ public class GameController extends WorldController implements ContactListener {
             canvas.end();
         }
 
-        // main canvas
-        canvas.begin(gorf.getPosition());
-        gorf.draw(canvas);
-
-        canvas.draw(fboRegion2, 0, 0);
+//        canvas.draw(fboRegion2, 0, 0);
+//        for (Obstacle w : edgewalls) { w.draw(canvas); };
 //        for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
 
 //        gorf.draw(canvas);
@@ -1046,7 +1071,52 @@ public class GameController extends WorldController implements ContactListener {
 //        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
             //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
 //        }}
-        canvas.end();
+//        canvas.end();
+
+//        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
+//            canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
+//            for (Obstacle w : edgewalls) { w.draw(canvas); };
+//            canvas.end();
+//        }
+//        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
+//            canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
+//            for (Obstacle w : edgewalls) { w.draw(canvas); };
+//            canvas.end();
+//        }
+//        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
+//            canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
+//            for (Obstacle w : edgewalls) { w.draw(canvas); };
+//            canvas.end();
+//        }
+//        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
+//            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
+//            for (Obstacle w : edgewalls) { w.draw(canvas); };
+//            canvas.end();
+//        }
+//        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT/2f) {
+//            canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
+//            for (Obstacle w : edgewalls) { w.draw(canvas); };
+//            canvas.end();
+//        }
+//        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+//            canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
+//            for (Obstacle w : edgewalls) { w.draw(canvas); };
+//            canvas.end();
+//        }
+//        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT/2f) {
+//            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
+//            for (Obstacle w : edgewalls) { w.draw(canvas); };
+//            canvas.end();
+//        }
+//        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+//            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
+//            for (Obstacle w : edgewalls) { w.draw(canvas); };
+//            canvas.end();
+//        }
+//
+//        canvas.begin(gorf.getPosition());
+//
+//        canvas.end();
 
 //        fbo3.begin();
 //        canvas.clear();
