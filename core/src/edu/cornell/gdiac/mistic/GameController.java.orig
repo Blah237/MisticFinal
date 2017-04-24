@@ -240,7 +240,14 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(HUD_PAW_ANIMATE, Texture.class);
         assets.add(HUD_PAW_ANIMATE);
 
+<<<<<<< HEAD
+        manager.load(HUD_PURPLE_FIREFLY, Texture.class);
+        assets.add(HUD_PURPLE_FIREFLY);
 
+        //mist wall textures
+=======
+
+>>>>>>> 7904edfc6a5578bf1e6b03b67a49affcab76234c
         for(String m : MIST_WALLS){
             manager.load(m, Texture.class);
             assets.add(m);
@@ -371,12 +378,15 @@ public class GameController extends WorldController implements ContactListener {
     int pawTimer = 60;
     boolean pawTimerStart = false;
 
+<<<<<<< HEAD
     //monster stuff
     int monsterSpawnTimer = 1200;
     boolean monsterSpawn = false;
 
 
 
+=======
+>>>>>>> 7904edfc6a5578bf1e6b03b67a49affcab76234c
     // the number of fireflies Gorf is holding
     private static int firefly_count;
     private AIControllerS ai;

@@ -47,7 +47,7 @@ public class FogController {
 	Array<Vector2> fogOrigins;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 8;
+	private final int FOG_DELAY = 4;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -129,6 +129,12 @@ public class FogController {
 	Texture nseTex;
 	Texture nswTex;
 	Texture sewTex;
+
+	Vector2 texOffset;
+	Vector2 coeff;
+
+	private final int[] INERTIAL_POWER = {-1, 1, 1, 1, 1};
+	private final int[] NEG_POS = {-1, 0, 1};
 
 
 
@@ -230,6 +236,9 @@ public class FogController {
 		shader.setUniformf("res", canvas.getWidth(), canvas.getHeight());
 		shader.end();
 
+		texOffset = new Vector2();
+		coeff = new Vector2();
+
 		generatePerlin();
 	}
 
@@ -308,6 +317,7 @@ public class FogController {
 		shader.setUniform1fv("boundaryTiles", boundaryTilesCamA, 0, boundaryTilesCamA.length);
 		shader.setUniformf("tileW", tileW/zoom);
 		shader.setUniformf("tileH", tileH/zoom);
+		shader.setUniformf("texOffset", texOffset.x, texOffset.y);
 		shader.end();
 	}
 
@@ -407,7 +417,7 @@ public class FogController {
 		for (int q=0; q<WX; q++) {
 			boundaryFogBoard[q] = fogBoard[q].clone();
 		}
-		updateBoundary();
+		updateBoundary(tileBoard);
 
 
 //		System.out.println(gorfPos.x - boardTilesPerCamViewX * tileW / 2f);
@@ -517,6 +527,7 @@ public class FogController {
 //		System.out.println(gorf.getX());
 
 //		System.out.println(tileBoard.isFog((int)(gorfPos.x/tileW), (int)(gorfPos.y/tileH)));
+
 	}
 
 	private void updateFog(BoardModel tileBoard) {
@@ -547,6 +558,16 @@ public class FogController {
 			}
 		}
 		fogBoard = newFogBoard;
+
+		int inertia = INERTIAL_POWER[MathUtils.random(0,4)];
+		if (inertia == -1) {
+			coeff.x = NEG_POS[MathUtils.random(0, 2)];
+			do {
+				coeff.y = NEG_POS[MathUtils.random(0, 2)];
+			} while (coeff.x == 0 && coeff.y == 0);
+		}
+		texOffset.x += coeff.x;
+		texOffset.y += coeff.y;
 	}
 
 	private void spreadFog(int x, int y, BoardModel tileBoard) {
@@ -633,7 +654,7 @@ public class FogController {
 //		}
 	}
 
-	private void updateBoundary() {
+	private void updateBoundary(BoardModel tileBoard) {
 		boundaryTiles.clear();
 		boundaryPos.clear();
 
@@ -645,6 +666,7 @@ public class FogController {
 					  && fogBoard[i][(j-1+WY) % WY] == (int)FOG
 					  && fogBoard[(i-1+WX) % WX][j] == (int)FOG ) {
 						fogBoard[i][j] = FOG;
+						tileBoard.setFog(i,j,true);
 					} else if (fogBoard[i][(j+1) % WY] == (int)FOG) {
 						if (fogBoard[i][(j-1+WY) % WY] == (int)FOG) {
 							if (fogBoard[(i+1) % NX][j] == (int)FOG) {				// NSE
