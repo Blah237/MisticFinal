@@ -513,13 +513,13 @@ public class GameController extends WorldController implements ContactListener {
 
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
-        tileBoard.tiles[40][20].hasTree=3;
-        tileBoard.tiles[20][10].hasTree=4;
-        tileBoard.tiles[20][40].hasTree=1;
-        tileBoard.tiles[45][45].hasTree=2;
-        tileBoard.tiles[10][10].hasRock=2;
-        tileBoard.tiles[5][5].hasRock=1;
-        tileBoard.tiles[5][10].hasRock=3;
+//        tileBoard.tiles[40][20].hasTree=3;
+//        tileBoard.tiles[20][10].hasTree=4;
+//        tileBoard.tiles[20][40].hasTree=1;
+//        tileBoard.tiles[45][45].hasTree=2;
+//        tileBoard.tiles[10][10].hasRock=2;
+//        tileBoard.tiles[5][5].hasRock=1;
+//        tileBoard.tiles[5][10].hasRock=3;
 
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
