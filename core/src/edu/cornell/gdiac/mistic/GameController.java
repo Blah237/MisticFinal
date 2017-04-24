@@ -237,6 +237,9 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(HUD_WHITE_NUMBER_SLASH, Texture.class);
         assets.add(HUD_WHITE_NUMBER_SLASH);
 
+        manager.load(HUD_PURPLE_FIREFLY, Texture.class);
+        assets.add(HUD_PURPLE_FIREFLY);
+
         manager.load(HUD_PAW_ANIMATE, Texture.class);
         assets.add(HUD_PAW_ANIMATE);
 
