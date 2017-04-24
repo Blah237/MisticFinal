@@ -109,13 +109,14 @@ public class MenuController extends WorldController implements Screen {
     }
 @Override
 public void render(float dt) {
-        super.render(dt);
-        update(dt);
-        draw(dt);
+    super.render(dt);
+    update(dt);
+    draw(dt);
     boolean pressing = InputController.getInstance().didSecondary();
     if (pressing) {
         switch (menu.getFrame()) {
-            case 0: listener.exitScreen(this, EXIT_TO_PLAY);
+            case 0: listener.exitScreen(this, EXIT_TO_PLAY); break;
+            case 1: listener.exitScreen(this, EXIT_TO_LEVEL_SELECT); break;
         }
     }
 }

@@ -21,8 +21,10 @@ import com.badlogic.gdx.assets.loaders.*;
 import com.badlogic.gdx.assets.loaders.resolvers.*;
 
 import edu.cornell.gdiac.mistic.GameController;
+import edu.cornell.gdiac.mistic.LevelSelectController;
 import edu.cornell.gdiac.mistic.MenuController;
 import edu.cornell.gdiac.util.*;
+import org.lwjgl.Sys;
 
 /**
  * Root class for a LibGDX.  
@@ -42,6 +44,7 @@ public class GDXRoot extends Game implements ScreenListener {
 	private LoadingMode loading;
 
 	private MenuController menu;
+	private LevelSelectController levelSelect;
 	/** Player mode for the the game proper (CONTROLLER CLASS) */
 	private int current;
 	/** List of all WorldControllers */
@@ -73,6 +76,7 @@ public class GDXRoot extends Game implements ScreenListener {
 		canvas  = new GameCanvas();
 		loading = new LoadingMode(canvas,manager,1);
 		menu = new MenuController();
+		levelSelect = new LevelSelectController();
 		
 		// Initialize game world
 		controllers = new WorldController[1];
@@ -80,6 +84,8 @@ public class GDXRoot extends Game implements ScreenListener {
 		controllers[0].preLoadContent(manager);
 		menu.preLoadContent(manager);
 		menu.setScreenListener(this);
+		levelSelect.preLoadContent(manager);
+		levelSelect.setScreenListener(this);
 		loading.setScreenListener(this);
 		setScreen(loading);
 	}
@@ -150,12 +156,20 @@ public class GDXRoot extends Game implements ScreenListener {
 			// We quit the main application
 			Gdx.app.exit();
 		} else if (exitCode == MenuController.EXIT_TO_PLAY) {
+			System.out.print("play");
 			controllers[0].loadContent(manager, canvas);
 			controllers[0].setScreenListener(this);
 			controllers[0].setCanvas(canvas);
 			controllers[0].reset();
 			setScreen(controllers[0]);
-			menu.dispose();
+			//menu.dispose();
+		} else if (exitCode == MenuController.EXIT_TO_LEVEL_SELECT) {
+			System.out.print("yay");
+			levelSelect.loadContent(manager, canvas);
+			levelSelect.setScreenListener(this);
+			levelSelect.setCanvas(canvas);
+			levelSelect.reset();
+			setScreen(levelSelect);
 		}
 	}
 
