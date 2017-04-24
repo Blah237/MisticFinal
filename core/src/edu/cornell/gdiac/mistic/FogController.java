@@ -130,6 +130,12 @@ public class FogController {
 	Texture nswTex;
 	Texture sewTex;
 
+	Vector2 texOffset;
+	Vector2 coeff;
+
+	private final int[] INERTIAL_POWER = {-1, 1, 1, 1, 1};
+	private final int[] NEG_POS = {-1, 0, 1};
+
 
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
@@ -230,6 +236,9 @@ public class FogController {
 		shader.setUniformf("res", canvas.getWidth(), canvas.getHeight());
 		shader.end();
 
+		texOffset = new Vector2();
+		coeff = new Vector2();
+
 		generatePerlin();
 	}
 
@@ -308,6 +317,7 @@ public class FogController {
 		shader.setUniform1fv("boundaryTiles", boundaryTilesCamA, 0, boundaryTilesCamA.length);
 		shader.setUniformf("tileW", tileW/zoom);
 		shader.setUniformf("tileH", tileH/zoom);
+		shader.setUniformf("texOffset", texOffset.x, texOffset.y);
 		shader.end();
 	}
 
@@ -517,6 +527,9 @@ public class FogController {
 //		System.out.println(gorf.getX());
 
 //		System.out.println(tileBoard.isFog((int)(gorfPos.x/tileW), (int)(gorfPos.y/tileH)));
+
+
+
 	}
 
 	private void updateFog(BoardModel tileBoard) {
@@ -547,6 +560,16 @@ public class FogController {
 			}
 		}
 		fogBoard = newFogBoard;
+
+		int inertia = INERTIAL_POWER[MathUtils.random(0,4)];
+		if (inertia == -1) {
+			coeff.x = NEG_POS[MathUtils.random(0, 2)];
+			do {
+				coeff.y = NEG_POS[MathUtils.random(0, 2)];
+			} while (coeff.x == 0 && coeff.y == 0);
+		}
+		texOffset.x += coeff.x;
+		texOffset.y += coeff.y;
 	}
 
 	private void spreadFog(int x, int y, BoardModel tileBoard) {
