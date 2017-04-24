@@ -45,8 +45,10 @@ import org.lwjgl.Sys;
  */
 public class GameController extends WorldController implements ContactListener {
     /** Reference to the rocket texture */
-    private static final String GORF_TEXTURE = "mistic/gorf.png";
-    private static final String HAT_TEXTURE = "mistic/gorftop.png";
+    private static final String[] GORF_TEXTURES = {"mistic/gorfs/gorfD.png","mistic/gorfs/gorfDL.png","mistic/gorfs/gorfDR.png",
+            "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfB.png","mistic/gorfs/gorfBL.png",
+            "mistic/gorfs/gorfBR.png"};
+    private static final String HAT_TEXTURE = "mistic/gorfs/gorftop.png";
     private static final String BACKGROUND = "mistic/backgroundresize.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
     private static final String FIRE_TRACK="mistic/fireflyicon.png";
@@ -112,12 +114,12 @@ public class GameController extends WorldController implements ContactListener {
     private FilmStrip pawAnimation;
 
     /** Texture assets for the rocket */
-    private TextureRegion gorfTexture;
     private TextureRegion gorfHat;
     private TextureRegion backgroundTexture;
     private TextureRegion fogTexture;
     private TextureRegion fireflyTrack;
     private TextureRegion monsterTexture;
+    private TextureRegion[] gorfTextures = new TextureRegion[GORF_TEXTURES.length];
     private TextureRegion[] mistwalls = new TextureRegion[MIST_WALLS.length];
     private TextureRegion[] familiarTex = new TextureRegion[FAMILIARS.length];
     private TextureRegion[] trees = new TextureRegion[TREES.length];
@@ -179,8 +181,7 @@ public class GameController extends WorldController implements ContactListener {
         assets.add(LIT_LANTERN);
         assets.add(UNLIT_LANTERN);
         // Ship textures
-        manager.load(GORF_TEXTURE, Texture.class);
-        assets.add(GORF_TEXTURE);
+
         manager.load(HAT_TEXTURE, Texture.class);
         assets.add(HAT_TEXTURE);
         manager.load(FIRE_TRACK,Texture.class);
@@ -266,6 +267,10 @@ public class GameController extends WorldController implements ContactListener {
             manager.load(f, Texture.class);
             assets.add(f);
         }
+        for(String f : GORF_TEXTURES){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
 
         //music files
         manager.load(A_PEACE_SONG, Sound.class);
@@ -307,8 +312,8 @@ public class GameController extends WorldController implements ContactListener {
         litTexture=createTexture(manager,LIT_LANTERN,false);
         unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
 
-        gorfTexture = createTexture(manager,GORF_TEXTURE,false);
-        gorfHat = createTexture(manager,HAT_TEXTURE,false);
+
+        //gorfHat = createTexture(manager,HAT_TEXTURE,false);
         backgroundTexture = createTexture(manager,BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
@@ -351,6 +356,10 @@ public class GameController extends WorldController implements ContactListener {
         for(int i=0;i<ROCKTOPS.length;i++){
             rocktops[i]= createTexture(manager,ROCKTOPS[i], false);
         }
+        for(int i=0; i<GORF_TEXTURES.length;i++){
+            gorfTextures[i] = createTexture(manager,GORF_TEXTURES[i],false);
+        }
+
 
         // allocate sounds
         sounds.allocate(manager,A_PEACE_SONG);
@@ -593,11 +602,11 @@ public class GameController extends WorldController implements ContactListener {
         /**
          * Create Gorf
          */
-        float dwidth  = gorfTexture.getRegionWidth()/(scale.x);
-        float dheight = gorfTexture.getRegionHeight()/(scale.y*3);
-        gorf = new GorfModel(gorfStart.x, gorfStart.y, dwidth*0.75f, dheight*0.75f);
+        float dwidth  = gorfTextures[0].getRegionWidth()/(scale.x);
+        float dheight = gorfTextures[0].getRegionHeight()/(scale.y*3);
+        gorf = new GorfModel(gorfStart.x, gorfStart.y, dwidth*0.75f, dheight*0.75f,gorfTextures);
         gorf.setDrawScale(scale);
-        gorf.setTexture(gorfTexture);
+        //gorf.setTexture(gorfTexture);
         addObject(gorf);
 //        overFog.add(0, gorf);
 
@@ -641,8 +650,8 @@ public class GameController extends WorldController implements ContactListener {
         int xi= (int)x;
         int yi=(int)y;
         for(Lantern l : Lanterns){
-            if ((Math.abs((int)l.getX() - xi ) < gorfTexture.getRegionWidth()/scale.x)
-                    && (Math.abs((int)l.getY() - yi ) < gorfTexture.getRegionHeight()/scale.y))return l;
+            if ((Math.abs((int)l.getX() - xi ) < gorfTextures[0].getRegionWidth()/scale.x)
+                    && (Math.abs((int)l.getY() - yi ) < gorfTextures[0].getRegionHeight()/scale.y))return l;
         }
         return null;
     }
@@ -739,6 +748,7 @@ public class GameController extends WorldController implements ContactListener {
         this.gorf.setFX(temp.x);
         this.gorf.setFY(temp.y);
         gorf.applyForce();
+        gorf.updateTexture();
         wrapInBounds(gorf);
 
         gorf.setCollidingX(false);
