@@ -75,6 +75,9 @@ public class GameCanvas {
 	/** Rendering context for the debug outlines */
 	private ShapeRenderer debugRender;
 
+	/** Rendering context for minimap rectangles */
+	private ShapeRenderer minimapRender;
+
 	/** Track whether or not we are active (for error checking) */
 	private DrawPass active;
 
@@ -129,6 +132,7 @@ public class GameCanvas {
 		active = DrawPass.INACTIVE;
 		spriteBatch = new PolygonSpriteBatch();
 		debugRender = new ShapeRenderer();
+		minimapRender = new ShapeRenderer();
 
 		// Set the projection matrix (for proper scaling)
 		camera = new OrthographicCamera(getWidth()/2,getHeight()/2);
@@ -988,6 +992,19 @@ public class GameCanvas {
 		float y = (getHeight() + layout.height) / 2.0f;
 		font.draw(spriteBatch, layout, x, y+offset);
     }
+
+    public void beginMinimapDraw(Color color, float oX, float oY, float width, float height) {
+		if (active != DrawPass.STANDARD) {
+			Gdx.app.error("GameCanvas", "Cannot draw without active begin()", new IllegalStateException());
+			return;
+		}
+
+		minimapRender.setProjectionMatrix(camera.combined);
+		minimapRender.begin(ShapeRenderer.ShapeType.Filled);
+		minimapRender.setColor(color);
+		minimapRender.rect(oX,oY,width,height);
+		minimapRender.end();
+	}
 
 	/**
 	 * Start the debug drawing sequence.

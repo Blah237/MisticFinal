@@ -88,7 +88,7 @@ public class GameController extends WorldController implements ContactListener {
     private static final String FIREFLY_ANIMATE="mistic/spritesheet_firefly.png";
     //private static final String FIREFLY_ANIMATE = "mistic/spritesheet_firefly_menu.png";
 
-    /** Texture refrences for the HUD**/
+    /** Texture references for the HUD */
     private static final String HUD_WINDOW_TEXTURE = "mistic/hud_window.png";
     private static final String HUD_WHITE_FIREFLY_TEXTURE = "mistic/white_firefly.png";
     private static final String HUD_WHITE_NUMBER_X = "mistic/numbers_white/numbers_x.png";
@@ -105,7 +105,7 @@ public class GameController extends WorldController implements ContactListener {
     private static final String HUD_WHITE_NUMBER_SLASH = "mistic/numbers_white/numbers_slash.png";
     private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
 
-    // The SoundController, Music and sfx
+    /** The SoundController, Music and sfx */
     SoundController sounds = SoundController.getInstance();
     private static final String A_PEACE_SONG = "sounds/A_Peace_DEMO2.mp3";
     private static final String B_MARSH_SONG = "sounds/B_Marsh_DEMO2.mp3";
@@ -150,7 +150,6 @@ public class GameController extends WorldController implements ContactListener {
     private AssetState rocketAssetState = AssetState.EMPTY;
 
     Rectangle screenSize;
-
 
     /**
      * Preloads the assets for this controller.
@@ -278,17 +277,6 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(B_MARSH_SONG, Sound.class);
         assets.add(B_MARSH_SONG);
 
-        /**
-         // An Example of loading sounds
-         manager.load(MAIN_FIRE_SOUND, Sound.class);
-         assets.add(MAIN_FIRE_SOUND);
-         manager.load(LEFT_FIRE_SOUND, Sound.class);
-         assets.add(LEFT_FIRE_SOUND);
-         manager.load(RGHT_FIRE_SOUND, Sound.class);
-         assets.add(RGHT_FIRE_SOUND);
-         manager.load(COLLISION_SOUND, Sound.class);
-         assets.add(COLLISION_SOUND);
-         **/
         super.preLoadContent(manager);
     }
 
@@ -306,8 +294,6 @@ public class GameController extends WorldController implements ContactListener {
         if (rocketAssetState != AssetState.LOADING) {
             return;
         }
-
-
 
         litTexture=createTexture(manager,LIT_LANTERN,false);
         unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
@@ -366,7 +352,7 @@ public class GameController extends WorldController implements ContactListener {
         sounds.allocate(manager,B_MARSH_SONG);
 
         super.loadContent(manager, canvas);
-        tileBoard=super.gettileBoard();
+        tileBoard=super.getTileBoard();
         rocketAssetState = AssetState.COMPLETE;
     }
 
@@ -391,14 +377,11 @@ public class GameController extends WorldController implements ContactListener {
     int pawTimer = 60;
     boolean pawTimerStart = false;
 
-
-
     // the number of fireflies Gorf is holding
     private static int firefly_count;
     private AIControllerS ai;
     private static BoardModel tileBoard;
     private static boolean DEAD;
-
 
     // Other game objects
     public Vector2 gorfStart = new Vector2();
@@ -432,6 +415,7 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion fboRegion2;
     private FrameBuffer fbo3;
     private TextureRegion fboRegion3;
+
 
     /** All the wall objects in the world. */
 
@@ -624,8 +608,9 @@ public class GameController extends WorldController implements ContactListener {
 
         //this.ai = new AIController(monster, tileBoard, gorf, scale);
         this.ai = new AIControllerS(monster, gorf, tileBoard);
-
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
+
+
     }
 
     private void createMonster(float x, float y) {
@@ -685,7 +670,6 @@ public class GameController extends WorldController implements ContactListener {
      */
 
     public void update(float dt) {
-
         //#region INSERT CODE HERE
         // Read from the input and add the force to the rocket model
         // Then apply the force using the method you modified in RocketObject
@@ -938,7 +922,6 @@ public class GameController extends WorldController implements ContactListener {
         }
 
 
-
         // Draw over fog
         canvas.setShader(null);
 
@@ -1159,6 +1142,29 @@ public class GameController extends WorldController implements ContactListener {
         }
         canvas.end();
 
+        // minimap
+        canvas.begin(gorf.getPosition());
+        // draw background texture
+        canvas.draw(backgroundTexture,Color.WHITE,
+                gorf.getPosition().x * scale.x + 115.0f,
+                gorf.getPosition().y * scale.y - 155.0f,
+                super.getMinimap().getWidth(),
+                super.getMinimap().getHeight());
+        // draw custom level's minimap
+        canvas.draw(super.getMinimap().getTexture(),Color.WHITE,
+                gorf.getPosition().x * scale.x + 115.0f,
+                gorf.getPosition().y * scale.y - 155.0f,
+                super.getMinimap().getWidth(),
+                super.getMinimap().getHeight());
+        canvas.end();
+        canvas.begin(gorf.getPosition());
+        // draw gorf moving representation
+        super.getMinimap().draw(canvas,
+                gorf.getPosition().x,
+                gorf.getPosition().y,
+                gorf.getPosition().x * scale.x + 115.0f,
+                gorf.getPosition().y * scale.y - 155.0f);
+        canvas.end();
 
         canvas.begin();
         // PLACEHOLDER--will be replaced by Victory screen
@@ -1192,7 +1198,7 @@ public class GameController extends WorldController implements ContactListener {
                 obj.drawDebug(canvas);
             }
             canvas.endDebug();
-            canvas.endDebug();
+            //canvas.endDebug();
         }
         canvas.end();
 
