@@ -95,6 +95,7 @@ public class GameController extends WorldController implements ContactListener {
     private static final String HUD_WHITE_NUMBER_9 = "mistic/numbers_white/numbers_9.png";
     private static final String HUD_WHITE_NUMBER_SLASH = "mistic/numbers_white/numbers_slash.png";
     private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
+    private static final String HUD_PURPLE_FIREFLY = "mistic/purple_firefly.png";
 
     // The SoundController, Music and sfx
     SoundController sounds = SoundController.getInstance();
@@ -133,6 +134,7 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion HUDWhiteNumber_8;
     private TextureRegion HUDWhiteNumber_9;
     private TextureRegion HUDWhiteNumber_slash;
+    private TextureRegion HUDPurpleFirefly;
 
     /** Track asset loading from all instances and subclasses */
     private AssetState rocketAssetState = AssetState.EMPTY;
@@ -227,6 +229,9 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(HUD_PAW_ANIMATE, Texture.class);
         assets.add(HUD_PAW_ANIMATE);
 
+        manager.load(HUD_PURPLE_FIREFLY, Texture.class);
+        assets.add(HUD_PURPLE_FIREFLY);
+
         //mist wall textures
         for(String m : MIST_WALLS){
             manager.load(m, Texture.class);
@@ -306,6 +311,7 @@ public class GameController extends WorldController implements ContactListener {
         HUDWhiteNumber_9 = createTexture(manager, HUD_WHITE_NUMBER_9, false);
         HUDWhiteNumber_x = createTexture(manager, HUD_WHITE_NUMBER_X, false);
         HUDWhiteNumber_slash = createTexture(manager, HUD_WHITE_NUMBER_SLASH, false);
+        HUDPurpleFirefly = createTexture(manager, HUD_PURPLE_FIREFLY, false);
         pawAnimation = createFilmStrip(manager, HUD_PAW_ANIMATE, 1, 2, 2);
 
 
@@ -354,6 +360,10 @@ public class GameController extends WorldController implements ContactListener {
     //HUD Stuff
     int pawTimer = 60;
     boolean pawTimerStart = false;
+
+    //monster stuff
+    int monsterSpawnTimer = 1200;
+    boolean monsterSpawn = false;
 
 
 
@@ -455,6 +465,8 @@ public class GameController extends WorldController implements ContactListener {
         populateLevel();
         familiars.reset();
         ai = new AIControllerS(monster, gorf, tileBoard);
+        monsterSpawn = false;
+        monsterSpawnTimer = 1200;
         countdown=120;
 
         fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2, false);
@@ -501,9 +513,9 @@ public class GameController extends WorldController implements ContactListener {
         enviornmentobj=new ArrayList<Obstacle>();
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
-                if (t.isFogSpawn) {
-                    createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
-                }
+                //if (t.isFogSpawn) {
+                   // createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
+                //}
                 if (t.isLantern) {
                     Lantern l = new Lantern(tileBoard.getTileCenterX(t) / scale.x,
                             tileBoard.getTileCenterY(t) / scale.y,unlitTexture,litTexture,scale);
@@ -711,6 +723,8 @@ public class GameController extends WorldController implements ContactListener {
             pawTimerStart = true;
         }
 
+
+
         if (pawTimerStart == true) {
             pawTimer = pawTimer - 1;
             if (pawTimer == 0) {
@@ -738,11 +752,25 @@ public class GameController extends WorldController implements ContactListener {
             fireflyDeathTimer=0;
         }
 
+        if (!monsterSpawn) {
+            if (monsterSpawnTimer != 0) {
+                monsterSpawnTimer--;
+            } else {
+                if (!inFog);
+                monsterSpawn = true;
+            for (BoardModel.Tile[] ta: tileBoard.tiles) {
+                for (BoardModel.Tile t : ta) {
+                    if (t.isFogSpawn) {
+                        createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
+                    }
+                }
+            }}}
+
         fog.update(gorf,Lanterns,tileBoard, dt);
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
-        float moveacc = gorf.getThrust();
+        float moveacc = gorf.getThrust() * 0.3f;
 
         // make all movement equispeed
         Vector2 temp = new Vector2(forcex*moveacc,forcey*moveacc);
@@ -1166,11 +1194,20 @@ public class GameController extends WorldController implements ContactListener {
 //        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
 
         // UI
+        float Gorfx= gorf.getPosition().x * scale.x;
+        float Gorfy= gorf.getPosition().y * scale.y;
+        BoardModel.Tile gorftile= tileBoard.tiles[tileBoard.screenToBoardX(Gorfx)][tileBoard.screenToBoardY(Gorfy)];
+        boolean inFog=gorftile.isFog;
+
         canvas.begin(gorf.getPosition());
 
         displayFont.setColor(Color.WHITE);
         canvas.draw(HUDWindow, gorf.getPosition().x * scale.x + 85.0f, gorf.getPosition().y * scale.y + 105.0f);
-        canvas.draw(HUDWhiteFirefly, gorf.getPosition().x * scale.x + 117.0f, gorf.getPosition().y * scale.y + 122.0f);
+        if (!inFog) {
+            canvas.draw(HUDWhiteFirefly, gorf.getPosition().x * scale.x + 117.0f, gorf.getPosition().y * scale.y + 122.0f);
+        } else {
+            canvas.draw(HUDPurpleFirefly, gorf.getPosition().x * scale.x + 117.0f, gorf.getPosition().y * scale.y + 122.0f);
+        }
         canvas.draw(HUDWhiteNumber_x, gorf.getPosition().x * scale.x + 150.0f, gorf.getPosition().y * scale.y + 129.0f);
         canvas.draw(pawAnimation, gorf.getPosition().x * scale.x + 200.0f, gorf.getPosition().y * scale.y + 125.0f);
         //canvas.draw(HUDWhiteNumber_x, ai.next_move.x * scale.x, ai.next_move.y * scale.y);

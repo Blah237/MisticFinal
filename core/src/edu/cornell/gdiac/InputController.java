@@ -70,6 +70,8 @@ public class InputController {
 	/** Whether the exit button was pressed. */
 	private boolean exitPressed;
 	private boolean exitPrevious;
+	/** Whether the enter button was pressed*/
+	private boolean enterPressed;
 	
 	/** How much did we move horizontally? */
 	private float horizontal;
@@ -202,6 +204,13 @@ public class InputController {
 	public boolean didExit() {
 		return exitPressed && !exitPrevious;
 	}
+
+	/**
+	 * Returns true if the enter button was pressed.
+	 *
+	 * @return true if the enter button was pressed.
+	 */
+	public boolean didEnter() { return enterPressed;}
 	
 	/**
 	 * Creates a new input controller
@@ -299,6 +308,7 @@ public class InputController {
 		debugPressed = (secondary && debugPressed) || (Gdx.input.isKeyPressed(Input.Keys.D));
 		primePressed = (secondary && primePressed) || (Gdx.input.isKeyPressed(Input.Keys.UP));
 		secondPressed = (secondary && secondPressed) || (Gdx.input.isKeyPressed(Input.Keys.SPACE));
+		enterPressed = (secondary && enterPressed) || (Gdx.input.isKeyPressed(Input.Keys.ENTER));
 		prevPressed = (secondary && prevPressed) || (Gdx.input.isKeyPressed(Input.Keys.P));
 		nextPressed = (secondary && nextPressed) || (Gdx.input.isKeyPressed(Input.Keys.N));
 		exitPressed  = (secondary && exitPressed) || (Gdx.input.isKeyPressed(Input.Keys.ESCAPE));

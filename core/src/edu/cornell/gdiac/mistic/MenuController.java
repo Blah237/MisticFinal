@@ -112,7 +112,7 @@ public void render(float dt) {
     super.render(dt);
     update(dt);
     draw(dt);
-    boolean pressing = InputController.getInstance().didSecondary();
+    boolean pressing = InputController.getInstance().didEnter();
     if (pressing) {
         switch (menu.getFrame()) {
             case 0: listener.exitScreen(this, EXIT_TO_PLAY); break;

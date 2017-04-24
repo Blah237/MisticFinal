@@ -156,7 +156,6 @@ public class GDXRoot extends Game implements ScreenListener {
 			// We quit the main application
 			Gdx.app.exit();
 		} else if (exitCode == MenuController.EXIT_TO_PLAY) {
-			System.out.print("play");
 			controllers[0].loadContent(manager, canvas);
 			controllers[0].setScreenListener(this);
 			controllers[0].setCanvas(canvas);
@@ -164,12 +163,14 @@ public class GDXRoot extends Game implements ScreenListener {
 			setScreen(controllers[0]);
 			//menu.dispose();
 		} else if (exitCode == MenuController.EXIT_TO_LEVEL_SELECT) {
-			System.out.print("yay");
 			levelSelect.loadContent(manager, canvas);
 			levelSelect.setScreenListener(this);
 			levelSelect.setCanvas(canvas);
 			levelSelect.reset();
 			setScreen(levelSelect);
+		} else if (exitCode == LevelSelectController.EXIT_TO_MENU) {
+			menu.reset();
+			setScreen(menu);
 		}
 	}
 

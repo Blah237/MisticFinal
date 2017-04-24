@@ -19,7 +19,9 @@ import edu.cornell.gdiac.util.ScreenListener;
 public class LevelSelectController extends WorldController implements Screen {
     private static final String GORF_TEXTURE = "mistic/gorf.png";
     private static final String BACKGROUND = "mistic/levelmockup.png";
+    private static final String BACKGROUND_OVERLAY = "mistic/levelmockup_wood.png";
     private TextureRegion menu;
+    private TextureRegion background;
 
 
     private int inputTimer = 20;
@@ -33,6 +35,7 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final int EXIT_TO_PLAY = 100;
     public static final int EXIT_TO_LEVEL_SELECT = 101;
     public static final int EXIT_TO_OPTIONS = 102;
+    public static final int EXIT_TO_MENU = 103;
 
     public void preLoadContent(AssetManager manager) {
         if (menuAssetState != AssetState.EMPTY) {
@@ -45,6 +48,9 @@ public class LevelSelectController extends WorldController implements Screen {
         manager.load(BACKGROUND, Texture.class);
         assets.add(BACKGROUND);
 
+        manager.load(BACKGROUND_OVERLAY, Texture.class);
+        assets.add(BACKGROUND_OVERLAY);
+
 
         super.preLoadContent(manager);
     }
@@ -55,6 +61,7 @@ public class LevelSelectController extends WorldController implements Screen {
         }
 
         menu = createTexture(manager, BACKGROUND, false);
+        background = createTexture(manager, BACKGROUND_OVERLAY, false);
 
     }
 
@@ -76,6 +83,11 @@ public class LevelSelectController extends WorldController implements Screen {
 
     public void update(float dt) {
         float forcex= InputController.getInstance().getHorizontal();
+        boolean pressing = InputController.getInstance().didEnter();
+        boolean back = InputController.getInstance().didExit();
+        if (back) {
+            listener.exitScreen(this, EXIT_TO_MENU);
+        }
         firflyAnimateTimer--;
         if (firflyAnimateTimer == 0) {
             firflyAnimateTimer = 20;
@@ -95,8 +107,8 @@ public class LevelSelectController extends WorldController implements Screen {
         canvas.clear();
         canvas.resetCamera();
         canvas.begin();
+        canvas.draw(background, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
         canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-
         canvas.end();
 
     }
