@@ -74,7 +74,7 @@ public abstract class WorldController implements Screen {
 	/** Retro font for displaying messages */
 	private static String FONT_FILE = "shared/RetroGame.ttf";
 	/** Minimap asset */
-	private static String MINIMAP_FILE = "minimaps/rooms.png"; // MINIMAP ASSET PATH PUT HERE!!!
+	private static String MINIMAP_FILE = "minimaps/BETA_easy_containfog_1fam.png"; // MINIMAP ASSET PATH PUT HERE!!!
 	private static int FONT_SIZE = 64;
 
 	/** The texture for walls and platforms */
@@ -166,7 +166,7 @@ public abstract class WorldController implements Screen {
 		// initialize BoardModel
 		// get every texture's group id in the json and map it to it's actual object's name
 		jsonReader = new JsonReader();
-		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/rooms.json")); // JSON ASSET PUT PATH HERE !!!
+		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/BETA_easy_containfog_1fam.json")); // JSON ASSET PUT PATH HERE !!!
 
 		HashMap<Integer,Character> textureIDs = new HashMap<Integer,Character>();
 		JsonValue tilesets = levelFormat.get("tilesets").child();
