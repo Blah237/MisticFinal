@@ -70,14 +70,14 @@ public class EnvAsset {
         }else{
             if(number==0){
                 po = new BoxObstacle(x,y,tex.getRegionWidth()/scale.x ,
-                        tex.getRegionHeight() / (5*scale.y));
+                        tex.getRegionHeight() / (3*scale.y));
             }else if(number==1){
                 po = new BoxObstacle(x,y,tex.getRegionWidth()/scale.x ,
-                        tex.getRegionHeight() / (5*scale.y));
+                        tex.getRegionHeight() / (3*scale.y));
 
             }else{
                 po = new BoxObstacle(x,y,tex.getRegionWidth()/scale.x ,
-                        tex.getRegionHeight() / (6*scale.y));
+                        tex.getRegionHeight() / (4*scale.y));
 
             }
             po.setBodyType(BodyDef.BodyType.StaticBody);
