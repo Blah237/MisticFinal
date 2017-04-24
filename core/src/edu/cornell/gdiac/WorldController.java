@@ -154,7 +154,7 @@ public abstract class WorldController implements Screen {
 		// initialize BoardModel
 		// get every texture's group id in the json and map it to it's actual object's name
 		jsonReader = new JsonReader();
-		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/alpha_finalized.json"));
+		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/rooms.json"));
 
 		HashMap<Integer,Character> textureIDs = new HashMap<Integer,Character>();
 		JsonValue tilesets = levelFormat.get("tilesets").child();
