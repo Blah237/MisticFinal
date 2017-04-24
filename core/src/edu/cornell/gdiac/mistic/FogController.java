@@ -47,7 +47,7 @@ public class FogController {
 	Array<Vector2> fogOrigins;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 8;
+	private final int FOG_DELAY = 4;
 	int spreadType;
 	float thickness;
 	float spreadCount;
@@ -130,10 +130,16 @@ public class FogController {
 	Texture nswTex;
 	Texture sewTex;
 
+	Vector2 texOffset;
+	Vector2 coeff;
+
+	private final int[] INERTIAL_POWER = {-1, 1, 1, 1, 1};
+	private final int[] NEG_POS = {-1, 0, 1};
+
 
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
-		nTex = new Texture("mistic/fog/n_boundary.png");
+		nTex = new Texture("mistic/fog/n_boundary_2.png");
 //		eTex = new Texture("mistic/fog/e_boundary.png");
 //		sTex = new Texture("mistic/fog/s_boundary.png");
 //		wTex = new Texture("mistic/fog/w_boundary.png");
@@ -230,6 +236,9 @@ public class FogController {
 		shader.setUniformf("res", canvas.getWidth(), canvas.getHeight());
 		shader.end();
 
+		texOffset = new Vector2();
+		coeff = new Vector2();
+
 		generatePerlin();
 	}
 
@@ -308,6 +317,7 @@ public class FogController {
 		shader.setUniform1fv("boundaryTiles", boundaryTilesCamA, 0, boundaryTilesCamA.length);
 		shader.setUniformf("tileW", tileW/zoom);
 		shader.setUniformf("tileH", tileH/zoom);
+		shader.setUniformf("texOffset", texOffset.x, texOffset.y);
 		shader.end();
 	}
 
@@ -320,8 +330,8 @@ public class FogController {
 //		Gdx.gl.glClearColor(0, 0, 0, 0);
 //		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 //
-//		batch.enableBlending();
-//		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		batch.enableBlending();
+		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
 		batch.draw(fboRegion, pos.x, pos.y, screenDim.x, screenDim.y);
 
@@ -380,7 +390,7 @@ public class FogController {
 //		batch.end();
 	}
 
-	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, BoardModel tileBoard) {
+	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, BoardModel tileBoard, float dt) {
 //		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 //		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 		gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
@@ -407,19 +417,25 @@ public class FogController {
 		for (int q=0; q<WX; q++) {
 			boundaryFogBoard[q] = fogBoard[q].clone();
 		}
-		updateBoundary();
+		updateBoundary(tileBoard);
 
 
 //		System.out.println(gorfPos.x - boardTilesPerCamViewX * tileW / 2f);
 		int startTileX;
 		int startTileY;
-		if (gorf.isColliding()) {
+		if (gorf.isCollidingX()) {
 			startTileX = (int) Math.floor((gorfPos.x - res.x * zoom / 2f) / screenDim.x * WX);
+		} else {
+			startTileX = (int) Math.floor((gorfPos.x + (gorf.getFX() * dt * scale.x) - res.x * zoom / 2f) / screenDim.x * WX);
+		}
+		if (gorf.isCollidingY()) {
 			startTileY = (int) Math.floor((gorfPos.y - res.y * zoom / 2f) / screenDim.y * WY);
 		} else {
-			startTileX = (int) Math.floor((gorfPos.x + (gorf.getFX() / 61f * scale.x) - res.x * zoom / 2f) / screenDim.x * WX);
-			startTileY = (int) Math.floor((gorfPos.y + (gorf.getFY() / 61f * scale.y) - res.y * zoom / 2f) / screenDim.y * WY);
+			startTileY = (int) Math.floor((gorfPos.y + (gorf.getFY() * dt * scale.y) - res.y * zoom / 2f) / screenDim.y * WY);
+
 		}
+//		} else {
+//		}
 
 //		if (startTileX % 2 == 1) {
 //			startTileX--;
@@ -462,17 +478,56 @@ public class FogController {
 //			System.out.println(boundaryTilesCamA);
 		}
 
-		if (gorf.isColliding()) {
+//		if (gorf.isColliding()) {
+//			System.out.println("COlliding is " + gorf.isColliding());
+//		}
+//		System.out.println(gorf.getFX());
+//		System.out.println("Gorf fatness is " + gorf.getWidth());
+//		System.out.println(elementBoard[tileBoard.screenToBoardX(gorfPos.x + gorf.getWidth()/2*scale.x)][tileBoard.screenToBoardY(gorfPos.y)]);
+//		System.out.println("This thing is " + (gorf.getFX() > 0 && elementBoard[tileBoard.screenToBoardX(gorfPos.x) + 1][tileBoard.screenToBoardY(gorfPos.y)] == WALL ||
+//				gorf.getFX() < 0 && elementBoard[tileBoard.screenToBoardX(gorfPos.x) - 1][tileBoard.screenToBoardY(gorfPos.y)] == WALL ||
+//				gorf.getFY() > 0 && elementBoard[tileBoard.screenToBoardX(gorfPos.x)    ][tileBoard.screenToBoardY(gorfPos.y + 1)] == WALL ||
+//				gorf.getFY() < 0 && elementBoard[tileBoard.screenToBoardX(gorfPos.x)    ][tileBoard.screenToBoardY(gorfPos.y - 1)] == WALL));
+
+//		if(gorf.getFX() > 0 && elementBoard[tileBoard.screenToBoardX(gorfPos.x) + (int)(gorf.getWidth() / tileW)][tileBoard.screenToBoardY(gorfPos.y)] == WALL ||
+//		   gorf.getFX() < 0 && elementBoard[tileBoard.screenToBoardX(gorfPos.x) - (int)(gorf.getWidth() / tileW)][tileBoard.screenToBoardY(gorfPos.y)] == WALL ||
+//		   gorf.getFY() > 0 && elementBoard[tileBoard.screenToBoardX(gorfPos.x)    ][tileBoard.screenToBoardY(gorfPos.y + (int)(gorf.getHeight() / tileH))] == WALL ||
+//		   gorf.getFY() < 0 && elementBoard[tileBoard.screenToBoardX(gorfPos.x)    ][tileBoard.screenToBoardY(gorfPos.y - (int)(gorf.getHeight() / tileH))] == WALL) {
+//			boardLeftOffset = ((((gorfPos.x - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
+//			boardBotOffset = ((((gorfPos.y - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
+//		} else {
+//			boardLeftOffset = ((((gorfPos.x + (gorf.getFX() / 61f * scale.x) - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
+//			boardBotOffset = ((((gorfPos.y + (gorf.getFY() / 61f * scale.y) - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
+//		}
+//		System.out.println(gorf.getFX());
+//		System.out.println(1/dt);
+
+		if (gorf.isCollidingX()) {
+//			System.out.println("X IS COLLIDING, YES");
 			boardLeftOffset = ((((gorfPos.x - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
+		} else {
+//			System.out.println("X IT IS NOT");
+			boardLeftOffset = ((((gorfPos.x + (gorf.getFX() * dt * scale.x) - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
+		}
+		if (gorf.isCollidingY()) {
+//			System.out.println("Colliding Y");
 			boardBotOffset = ((((gorfPos.y - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
 		} else {
-			boardLeftOffset = ((((gorfPos.x + (gorf.getFX() / 61f * scale.x) - zoom * res.x / 2.0f) + screenDim.x) % screenDim.x) % cellW) / dim.x;
-			boardBotOffset = ((((gorfPos.y + (gorf.getFY() / 61f * scale.y) - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
+//			System.out.println("NOT Y");
+			boardBotOffset = ((((gorfPos.y + (gorf.getFY() * dt * scale.y) - zoom * res.y / 2.0f) + screenDim.y) % screenDim.y) % cellH) / dim.y;
 		}
+//		if (gorf.getX() != gorf.getLastX() || gorf.getY() != gorf.getLastY()) {
+////		if ((gorf.getLastFX() != 0 || gorf.getLastFY() != 0) && !gorf.isColliding()) {
+//			System.out.println("TRUSDG");
+////			System.out.println(gorf.getLastFX());
+//		} else {
+//
+//		}
 //		System.out.println(boardLeftOffset);
 //		System.out.println(gorf.getX());
 
 //		System.out.println(tileBoard.isFog((int)(gorfPos.x/tileW), (int)(gorfPos.y/tileH)));
+
 	}
 
 	private void updateFog(BoardModel tileBoard) {
@@ -503,6 +558,16 @@ public class FogController {
 			}
 		}
 		fogBoard = newFogBoard;
+
+		int inertia = INERTIAL_POWER[MathUtils.random(0,4)];
+		if (inertia == -1) {
+			coeff.x = NEG_POS[MathUtils.random(0, 2)];
+			do {
+				coeff.y = NEG_POS[MathUtils.random(0, 2)];
+			} while (coeff.x == 0 && coeff.y == 0);
+		}
+		texOffset.x += coeff.x;
+		texOffset.y += coeff.y;
 	}
 
 	private void spreadFog(int x, int y, BoardModel tileBoard) {
@@ -589,7 +654,7 @@ public class FogController {
 //		}
 	}
 
-	private void updateBoundary() {
+	private void updateBoundary(BoardModel tileBoard) {
 		boundaryTiles.clear();
 		boundaryPos.clear();
 
@@ -601,6 +666,7 @@ public class FogController {
 					  && fogBoard[i][(j-1+WY) % WY] == (int)FOG
 					  && fogBoard[(i-1+WX) % WX][j] == (int)FOG ) {
 						fogBoard[i][j] = FOG;
+						tileBoard.setFog(i,j,true);
 					} else if (fogBoard[i][(j+1) % WY] == (int)FOG) {
 						if (fogBoard[i][(j-1+WY) % WY] == (int)FOG) {
 							if (fogBoard[(i+1) % NX][j] == (int)FOG) {				// NSE

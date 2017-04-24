@@ -13,6 +13,7 @@
  */
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.physics.box2d.*;
@@ -51,7 +52,13 @@ public class GorfModel extends BoxObstacle {
 	public Vector2 rghtOrigin = new Vector2();
 
 	/** Boolean if Gorf is currently colliding **/
-	boolean isColliding;
+	boolean isCollidingX;
+	boolean isCollidingY;
+	boolean isCollidingTwice;
+	float lastFX;
+	float lastFY;
+	float currFX = 0;
+	float currFY = 0;
 
 	/**
 	 * Returns the force applied to this rocket.
@@ -219,13 +226,42 @@ public class GorfModel extends BoxObstacle {
 		//#endregionx
 	}
 
-	public void setColliding(boolean bool) {
-		isColliding = bool;
+	public void update(float delta) {
+		super.update(delta);
+		lastFX = currFX;
+		lastFY = currFY;
+		currFX = getFX();
+		currFY = getFY();
 	}
 
-	public boolean isColliding() {
-		return isColliding;
+	public void setCollidingX(boolean bool) {
+		isCollidingX = bool;
+	}
+	public void setCollidingY(boolean bool) { isCollidingY = bool; }
+
+	public void drawHat(GameCanvas canvas, TextureRegion tex, Vector2 scale){
+		BoxObstacle hat = new BoxObstacle(this.getWidth(),this.getHeight());
+		hat.setX(this.getX()*scale.x);
+		hat.setY(this.getY()*scale.y);
+		this.draw(canvas);
 	}
 
 
+
+//	public void setCollidingTwice(boolean bool) { isCollidingTwice = bool; }
+
+	public boolean isCollidingX() {
+		return isCollidingX;
+	}
+	public boolean isCollidingY() { return isCollidingY; }
+
+//	public boolean isCollidingTwice() { return isCollidingTwice; }
+
+	public float getLastFX() {
+		return lastFX;
+	}
+
+	public float getLastFY() {
+		return lastFY;
+	}
 }

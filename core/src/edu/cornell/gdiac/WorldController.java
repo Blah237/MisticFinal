@@ -632,7 +632,6 @@ public abstract class WorldController implements Screen {
 			addObject(addQueue.poll());
 		}
 
-
 		if(complete){
 			displayFont.setColor(Color.PURPLE);
 			canvas.begin(); // DO NOT SCALE
