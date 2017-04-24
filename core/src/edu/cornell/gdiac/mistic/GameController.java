@@ -727,16 +727,17 @@ public class GameController extends WorldController implements ContactListener {
         if (!monsterSpawn) {
             if (monsterSpawnTimer != 0) {
                 monsterSpawnTimer--;
-            } else {
-                if (!inFog);
+            } else if (!inFog) {
                 monsterSpawn = true;
-            for (BoardModel.Tile[] ta: tileBoard.tiles) {
-                for (BoardModel.Tile t : ta) {
-                    if (t.isFogSpawn) {
-                        createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
+                for (BoardModel.Tile[] ta: tileBoard.tiles) {
+                    for (BoardModel.Tile t : ta) {
+                        if (t.isFogSpawn) {
+                            createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
                     }
                 }
-            }}}
+                    }
+                }
+        }
 
         fog.update(gorf,Lanterns,tileBoard, dt);
 
@@ -759,6 +760,9 @@ public class GameController extends WorldController implements ContactListener {
         gorf.setCollidingY(false);
 
         ai.update(dt, world);
+        for (MonsterModel m : (ai.monster)) {
+            wrapInBounds(m);
+        }
 
         //ai.setInput();
         //float forceXMonster = ai.getHorizontal();
@@ -810,6 +814,22 @@ public class GameController extends WorldController implements ContactListener {
                 rocket.setPosition(currentPos.x,bounds.getY()+(bounds.getHeight()*2)-0.1f);
             } else if (currentPos.y>=bounds.getY()+(bounds.getHeight()*2)) {
                 rocket.setPosition(currentPos.x,bounds.getY()+0.1f);
+            }
+        }
+    }
+
+    public void wrapInBounds(MonsterModel m) {
+        if (!inBounds(m)) {
+            Vector2 currentPos = m.getPosition();
+            if (currentPos.x<=bounds.getX()) {
+                m.setPosition(bounds.getX()+(bounds.getWidth()*2)-0.1f,currentPos.y);
+            } else if (currentPos.x>=bounds.getX()+(bounds.getWidth()*2)) {
+                m.setPosition(bounds.getX()+0.1f,currentPos.y);
+            }
+            if (currentPos.y<=bounds.getY()) {
+                m.setPosition(currentPos.x,bounds.getY()+(bounds.getHeight()*2)-0.1f);
+            } else if (currentPos.y>=bounds.getY()+(bounds.getHeight()*2)) {
+                m.setPosition(currentPos.x,bounds.getY()+0.1f);
             }
         }
     }
