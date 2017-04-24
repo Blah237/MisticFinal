@@ -788,6 +788,8 @@ public class GameController extends WorldController implements ContactListener {
          }
          }
          }*/
+
+//        System.out.println(tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX()*scale.x), tileBoard.screenToBoardY(gorf.getY()*scale.y)));
     }
 
     /**

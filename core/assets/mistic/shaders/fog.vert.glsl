@@ -11,7 +11,8 @@ varying vec2 vTexCoord;
 
 void main() {
 //	vColor = a_color;
-	vTexCoord.x = a_texCoord0.x + texOffset.x/res.x;
-	vTexCoord.y = a_texCoord0.y + texOffset.y/res.y;
+    vTexCoord = a_texCoord0.xy;
+//	vTexCoord.x = a_texCoord0.x + texOffset.x/res.x;
+//	vTexCoord.y = a_texCoord0.y + texOffset.y/res.y;
     gl_Position = u_projTrans * a_position;
 }
