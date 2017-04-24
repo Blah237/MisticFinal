@@ -132,13 +132,15 @@ void main() {
     fogThickness *= smoothstep(min(.2 + float(numFireflies)*.055, .55)-.18, min(.12 + float(numFireflies)*.055, .55), dist3);
 
     fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
-    fog *= min(1.0,fogThickness);
-    fog *= max(.7, texture2D(u_texture_perlin, vTexCoord).a);
+//    fog *= min(1.0,fogThickness);
+//    fog *= max(.7, texture2D(u_texture_perlin, vTexCoord).a);
 
-    gl_FragColor = texColor;
+    gl_FragColor.rgb = fog * max(.7, texture2D(u_texture_perlin, vTexCoord).a);;
+    gl_FragColor.a = fogThickness;
+//    gl_FragColor.a = 0;
 //    gl_FragColor = vec4(fog, fogThickness);
-    gl_FragColor.rgb *= max(0.0,1.0-fogThickness);
-    gl_FragColor.rgb += fog;
+//    gl_FragColor.rgb *= max(0.0,1.0-fogThickness);
+//    gl_FragColor.rgb += fog;
 
 //    if (fogThickness > 0) {
 //        gl_FragColor.a *= texture2D(u_texture_perlin, vTexCoord).a;
