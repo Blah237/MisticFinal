@@ -28,6 +28,7 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.graphics.g2d.freetype.*;
 import edu.cornell.gdiac.mistic.BoardModel;
+import edu.cornell.gdiac.mistic.Minimap;
 import edu.cornell.gdiac.obstacle.Obstacle;
 import edu.cornell.gdiac.obstacle.*;
 import edu.cornell.gdiac.util.*;
@@ -72,6 +73,8 @@ public abstract class WorldController implements Screen {
 	private static String GOAL_FILE = "shared/goaldoor.png";
 	/** Retro font for displaying messages */
 	private static String FONT_FILE = "shared/RetroGame.ttf";
+	/** Minimap asset */
+	private static String MINIMAP_FILE = "minimaps/rooms.png"; // MINIMAP ASSET PATH PUT HERE!!!
 	private static int FONT_SIZE = 64;
 
 	/** The texture for walls and platforms */
@@ -85,10 +88,15 @@ public abstract class WorldController implements Screen {
 	/** The JSON defining the level model */
 	private JsonValue levelFormat;
 	private BoardModel tileBoard;
+	private Minimap minimap;
 	public Rectangle screenSize;
 
-	public BoardModel gettileBoard(){
+	public BoardModel getTileBoard() {
 		return tileBoard;
+	}
+
+	public Minimap getMinimap() {
+		return minimap;
 	}
 
 	/**
@@ -105,13 +113,17 @@ public abstract class WorldController implements Screen {
 		if (worldAssetState != AssetState.EMPTY) {
 			return;
 		}
-		
+
 		worldAssetState = AssetState.LOADING;
 		// Load the shared tiles.
 		manager.load(EARTH_FILE,Texture.class);
 		assets.add(EARTH_FILE);
 		manager.load(GOAL_FILE,Texture.class);
 		assets.add(GOAL_FILE);
+
+		// Minimap
+		manager.load(MINIMAP_FILE,Texture.class);
+		assets.add(MINIMAP_FILE);
 		
 		// Load the font
 		FreetypeFontLoader.FreeTypeFontLoaderParameter size2Params = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
@@ -154,7 +166,7 @@ public abstract class WorldController implements Screen {
 		// initialize BoardModel
 		// get every texture's group id in the json and map it to it's actual object's name
 		jsonReader = new JsonReader();
-		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/rooms.json"));
+		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/rooms.json")); // JSON ASSET PUT PATH HERE !!!
 
 		HashMap<Integer,Character> textureIDs = new HashMap<Integer,Character>();
 		JsonValue tilesets = levelFormat.get("tilesets").child();
@@ -166,6 +178,8 @@ public abstract class WorldController implements Screen {
 		screenSize = new Rectangle(0, 0, canvas.getWidth()*2, canvas.getHeight()*2);
 		int w = levelFormat.get("width").asInt(); int h = levelFormat.get("height").asInt();
 		tileBoard = new BoardModel(w, h, screenSize);
+		minimap = new Minimap(canvas.getWidth()/6,canvas.getHeight()/6, w, h,
+				createTexture(manager,MINIMAP_FILE,false));
 
 		// get json data as array
 		int[] maze = levelFormat.get("layers").get(1).get("data").asIntArray();
