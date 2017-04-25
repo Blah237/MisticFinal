@@ -26,6 +26,7 @@ public class LevelSelectController extends WorldController implements Screen {
 
     private int inputTimer = 20;
     private boolean timerGo = false;
+    private int level;
 
     private int firflyAnimateTimer = 15;
 
@@ -36,6 +37,22 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final int EXIT_TO_LEVEL_SELECT = 101;
     public static final int EXIT_TO_OPTIONS = 102;
     public static final int EXIT_TO_MENU = 103;
+
+    public String jsonFileName;
+
+    public final String level1 = "jsons/BETA_basic_blockfog.json";
+    public final String level2 = "jsons/BETA_easy_containfog_1fam.json";
+    public final String level3 = "jsons/BETA_two_sides.json";
+    public final String level4 = "jsons/BETA_two_sides_3fam.json";
+    public final String level5 = "jsons/BETA_rooms.json";
+
+    public final String level1minimap = "minimaps/BETA_basic_blockfog.png";
+    public final String level2minimap = "minimaps/BETA_easy_containfog_1fam.png";
+    public final String level3minimap = "minimaps/BETA_two_sides.png";
+    public final String level4minimap = "minimaps/BETA_two_sides_3fam.png";
+    public final String level5minimap = "minimaps/BETA_rooms.png";
+
+
 
     public void preLoadContent(AssetManager manager) {
         if (menuAssetState != AssetState.EMPTY) {
@@ -69,6 +86,8 @@ public class LevelSelectController extends WorldController implements Screen {
         setDebug(false);
         setComplete(false);
         setFailure(false);
+        this.level = 1;
+        this.jsonFileName = level1;
     }
 
     public void reset() {

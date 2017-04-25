@@ -128,8 +128,8 @@ public class AIControllerS {
         //boolean inFog9=gorftile9.isFog;
         //boolean inFogSpawn9 = gorftile9.isFogSpawn;
         if (inFog || inFogSpawn) {
-            m.setFX(steering.linear.x * 10.0f);
-            m.setFY(steering.linear.y * 10.0f);
+            m.setFX(steering.linear.x * 7.0f);
+            m.setFY(steering.linear.y * 7.0f);
             m.applyForce();
 
         }
