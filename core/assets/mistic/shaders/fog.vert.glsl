@@ -3,10 +3,10 @@ attribute vec4 a_position;
 attribute vec2 a_texCoord0;
 
 uniform mat4 u_projTrans;
-uniform vec2 texOffset;
-uniform vec2 res;
+//uniform vec2 texOffset;
+//uniform vec2 res;
 
-varying vec4 vColor;
+//varying vec4 vColor;
 varying vec2 vTexCoord;
 
 void main() {
