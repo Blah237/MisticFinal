@@ -46,8 +46,8 @@ import org.lwjgl.Sys;
 public class GameController extends WorldController implements ContactListener {
     /** Reference to the rocket texture */
     private static final String[] GORF_TEXTURES = {"mistic/gorfs/gorfD.png","mistic/gorfs/gorfDL.png","mistic/gorfs/gorfDR.png",
-            "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfB.png","mistic/gorfs/gorfBL.png",
-            "mistic/gorfs/gorfBR.png"};
+            "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfBL.png", "mistic/gorfs/gorfBR.png",
+            "mistic/gorfs/gorfB.png"};
     private static final String HAT_TEXTURE = "mistic/gorfs/gorftop.png";
     private static final String BACKGROUND = "mistic/backgroundresize.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
@@ -772,6 +772,7 @@ public class GameController extends WorldController implements ContactListener {
         this.gorf.setFY(temp.y);
         gorf.applyForce();
         gorf.updateTexture();
+        gorf.gorfAnimate();
         wrapInBounds(gorf);
 
         gorf.setCollidingX(false);
