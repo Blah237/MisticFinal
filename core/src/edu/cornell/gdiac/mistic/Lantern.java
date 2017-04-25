@@ -3,6 +3,7 @@ package edu.cornell.gdiac.mistic;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.obstacle.BoxObstacle;
 
 import java.util.ArrayList;
@@ -19,8 +20,11 @@ public class Lantern {
     Vector2 position;
     boolean lit;
     BoxObstacle object;
+    BoxObstacle top;
     TextureRegion litTex;
     TextureRegion unlitTex;
+    TextureRegion littop;
+    TextureRegion unlittop;
 
 
 
@@ -28,8 +32,11 @@ public class Lantern {
     private static final float LAMP_FRICTION  = 0.3f;
     private static final float LAMP_RESTITUTION = 0.1f;
 
-    public Lantern(float x, float y, TextureRegion unlitTexture, TextureRegion litTexture, Vector2 scale){
+    public Lantern(float x, float y, TextureRegion unlitTexture, TextureRegion litTexture,
+                   TextureRegion unlittop, TextureRegion littop, Vector2 scale){
         this.scale=scale;
+        this.unlittop=unlittop;
+        this.littop=littop;
         this.position=new Vector2(x,y);
         this.lit=false;
         this.unlitTex=unlitTexture;
@@ -44,19 +51,24 @@ public class Lantern {
         object.setBodyType(BodyDef.BodyType.StaticBody);
         object.setName("lantern");
         object.setDrawScale(scale);
+        this.top=new BoxObstacle(object.getWidth(),object.getHeight(),object.getX()*scale.x,object.getY()*scale.y);
+        this.top.setTexture(unlittop);
     }
 
     public void setTexture(TextureRegion tex){
         this.object.setTexture(tex);
     }
 
+
     public void toggleLantern() {
         if (lit) {
             lit = false;
             this.setTexture(unlitTex);
+            top.setTexture(unlittop);
         } else if (!lit){
             lit = true;
             this.setTexture(litTex);
+            top.setTexture(littop);
         }
     }
 
@@ -66,5 +78,17 @@ public class Lantern {
 
     public float getY(){
         return this.position.y;
+    }
+
+   public void drawtop(GameCanvas canvas){
+        top.setX(this.object.getX()*scale.x);
+        top.setY(this.object.getY()*scale.y);
+        top.draw(canvas);
+        /**if(this.lit){
+            canvas.draw(this.littop,object.getX()*scale.x, object.getY()*scale.y);
+        }else if (!this.lit){
+            canvas.draw(this.unlittop,object.getX()*scale.x, object.getY()*scale.y);
+        }*/
+
     }
 }

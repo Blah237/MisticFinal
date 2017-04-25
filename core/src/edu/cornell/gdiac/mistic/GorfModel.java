@@ -55,6 +55,7 @@ public class GorfModel extends BoxObstacle {
 	boolean isCollidingX;
 	boolean isCollidingY;
 	boolean isCollidingTwice;
+	TextureRegion[] texs;
 	float lastFX;
 	float lastFY;
 	float currFX = 0;
@@ -152,9 +153,10 @@ public class GorfModel extends BoxObstacle {
 	 * @param width		The object width in physics units
 	 * @param height	The object width in physics units
 	 */
+	/**
 	public GorfModel(float width, float height) {
 		this(0,0,width,height);
-	}
+	}*/
 
 	/**
 	 * Creates a new rocket at the given position.
@@ -168,11 +170,12 @@ public class GorfModel extends BoxObstacle {
 	 * @param width		The object width in physics units
 	 * @param height	The object width in physics units
 	 */
-	public GorfModel(float x, float y, float width, float height) {
+	public GorfModel(float x, float y, float width, float height,TextureRegion[] texs) {
 		super(x,y,width,height);
 		//getTexture().setRegion(getTexture().getRegionX(),getTexture().getRegionY(),getTexture().getRegionWidth(),getTexture().getRegionHeight());
-
+		this.texs=texs;
 		force = new Vector2();
+		setTexture(texs[0]);
 		setDensity(DEFAULT_DENSITY);
 		setDensity(DEFAULT_DENSITY);
 		setFriction(DEFAULT_FRICTION);
@@ -201,6 +204,27 @@ public class GorfModel extends BoxObstacle {
 		//#endregion
 
 		return true;
+	}
+
+	public void updateTexture(){
+		if(getFX()<0 && getFY()<0){
+			setTexture(texs[1]);
+		}else if(getFX()<0 && getFY()>0){
+			setTexture(texs[6]);
+		}else if(getFX()>0 && getFY()>0){
+			setTexture(texs[7]);
+		}else if(getFX()>0 && getFY()<0){
+			setTexture(texs[2]);
+		}
+		else if(getFX()<0){
+			setTexture(texs[3]);
+		}else if(getFX()>0){
+			setTexture(texs[4]);
+		}else if(getFY()<0) {
+			setTexture(texs[0]);
+		}else if(getFY()>0) {
+			setTexture(texs[5]);
+		}
 	}
 
 

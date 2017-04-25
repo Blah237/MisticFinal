@@ -2,29 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/minimaps/BETA_easy_containfog_1fam.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/minimaps/BETA_two_sides.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/minimaps/BETA_two_sides_3fam.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/jsons/BETA_easy_containfog_1fam.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/jsons/BETA_two_sides.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/jsons/BETA_two_sides_3fam.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/jsons/basic_blockfog.json" afterPath="$PROJECT_DIR$/core/assets/jsons/BETA_basic_blockfog.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/jsons/rooms.json" afterPath="$PROJECT_DIR$/core/assets/jsons/BETA_rooms.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/minimaps/basic_blockfog.png" afterPath="$PROJECT_DIR$/core/assets/minimaps/BETA_basic_blockfog.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/minimaps/rooms.png" afterPath="$PROJECT_DIR$/core/assets/minimaps/BETA_rooms.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.vert.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.vert.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfB.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfBL.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfBR.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfD.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfDL.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfDR.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfL.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfR.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/hat.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/littop.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/unlittop.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/mistic/gorf.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/OGgorf.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/mistic/gorftop.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorftop.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/lit.png" afterPath="$PROJECT_DIR$/core/assets/mistic/lit.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/EnvAsset.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/EnvAsset.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Lantern.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Lantern.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/EnvAsset.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/EnvAsset.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Firefly.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Firefly.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java.orig" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java.orig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/LevelSelectController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/LevelSelectController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -74,9 +77,19 @@
       <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="780" column="31" lean-forward="false" selection-start-line="780" selection-start-column="31" selection-end-line="780" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="354">
+              <caret line="793" column="31" lean-forward="false" selection-start-line="793" selection-start-column="31" selection-end-line="793" selection-end-column="31" />
+              <folding>
+                <marker date="1493086005000" expanded="true" signature="64464:64819" ph="/**...*/" />
+                <marker date="1493086005000" expanded="true" signature="64866:65817" ph="{...}" />
+                <marker date="1493086005000" expanded="true" signature="65562:65811" ph="//..." />
+                <marker date="1493086005000" expanded="true" signature="65824:65956" ph="/**...*/" />
+                <marker date="1493086005000" expanded="true" signature="66001:66542" ph="{...}" />
+                <marker date="1493086005000" expanded="true" signature="66003:66536" ph="//..." />
+                <marker date="1493086005000" expanded="true" signature="66592:66628" ph="/**...*/" />
+                <marker date="1493086005000" expanded="true" signature="66704:67554" ph="/**...*/" />
+                <marker date="1493086005000" expanded="true" signature="67620:68122" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1393,7 +1406,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16840">
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
-          <folding />
+          <folding>
+            <marker date="1493086005000" expanded="true" signature="64464:64819" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="64866:65817" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="65562:65811" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="65824:65956" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66001:66542" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="66003:66536" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="66592:66628" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66704:67554" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="67620:68122" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1410,7 +1433,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16540">
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
-          <folding />
+          <folding>
+            <marker date="1493086005000" expanded="true" signature="64464:64819" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="64866:65817" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="65562:65811" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="65824:65956" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66001:66542" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="66003:66536" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="66592:66628" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66704:67554" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="67620:68122" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1427,7 +1460,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16540">
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
-          <folding />
+          <folding>
+            <marker date="1493086005000" expanded="true" signature="64464:64819" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="64866:65817" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="65562:65811" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="65824:65956" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66001:66542" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="66003:66536" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="66592:66628" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66704:67554" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="67620:68122" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1444,7 +1487,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1493086005000" expanded="true" signature="64464:64819" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="64866:65817" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="65562:65811" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="65824:65956" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66001:66542" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="66003:66536" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="66592:66628" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66704:67554" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="67620:68122" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1460,7 +1513,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1493086005000" expanded="true" signature="64464:64819" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="64866:65817" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="65562:65811" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="65824:65956" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66001:66542" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="66003:66536" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="66592:66628" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66704:67554" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="67620:68122" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1593,26 +1656,24 @@
         <state relative-caret-position="1755">
           <caret line="153" column="6" lean-forward="false" selection-start-line="152" selection-start-column="41" selection-end-line="152" selection-end-column="49" />
           <folding>
-            <element signature="e#0#7280#0" expanded="false" />
-            <element signature="e#2312#2313#0" expanded="false" />
-            <element signature="e#2331#2332#0" expanded="false" />
-            <element signature="e#2478#2479#0" expanded="false" />
-            <element signature="e#2498#2499#0" expanded="false" />
-            <element signature="e#2773#2774#0" expanded="false" />
-            <element signature="e#2794#2795#0" expanded="false" />
-            <element signature="e#3081#3082#0" expanded="false" />
-            <element signature="e#3103#3104#0" expanded="false" />
-            <element signature="e#3378#3379#0" expanded="false" />
-            <element signature="e#3399#3400#0" expanded="false" />
-            <element signature="e#3686#3687#0" expanded="false" />
-            <element signature="e#3708#3709#0" expanded="false" />
-            <element signature="e#3976#3977#0" expanded="false" />
-            <element signature="e#4004#4005#0" expanded="false" />
-            <element signature="e#4397#4398#0" expanded="false" />
-            <element signature="e#4426#4427#0" expanded="false" />
-            <element signature="e#6544#6545#0" expanded="false" />
-            <element signature="e#6614#6615#0" expanded="false" />
-            <marker date="1493059379000" expanded="true" signature="2164:2579" ph="/**...*/" />
+            <element signature="e#0#7836#0" expanded="false" />
+            <element signature="e#2335#2336#0" expanded="false" />
+            <element signature="e#2354#2355#0" expanded="false" />
+            <element signature="e#2501#2502#0" expanded="false" />
+            <element signature="e#2521#2522#0" expanded="false" />
+            <element signature="e#2796#2797#0" expanded="false" />
+            <element signature="e#2817#2818#0" expanded="false" />
+            <element signature="e#3104#3105#0" expanded="false" />
+            <element signature="e#3126#3127#0" expanded="false" />
+            <element signature="e#3401#3402#0" expanded="false" />
+            <element signature="e#3422#3423#0" expanded="false" />
+            <element signature="e#3709#3710#0" expanded="false" />
+            <element signature="e#3731#3732#0" expanded="false" />
+            <element signature="e#3999#4000#0" expanded="false" />
+            <element signature="e#4027#4028#0" expanded="false" />
+            <element signature="e#7100#7101#0" expanded="false" />
+            <element signature="e#7170#7171#0" expanded="false" />
+            <marker date="1493085960000" expanded="true" signature="2164:2579" ph="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -1722,9 +1783,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="780" column="31" lean-forward="false" selection-start-line="780" selection-start-column="31" selection-end-line="780" selection-end-column="31" />
-          <folding />
+        <state relative-caret-position="354">
+          <caret line="793" column="31" lean-forward="false" selection-start-line="793" selection-start-column="31" selection-end-line="793" selection-end-column="31" />
+          <folding>
+            <marker date="1493086005000" expanded="true" signature="64464:64819" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="64866:65817" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="65562:65811" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="65824:65956" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66001:66542" ph="{...}" />
+            <marker date="1493086005000" expanded="true" signature="66003:66536" ph="//..." />
+            <marker date="1493086005000" expanded="true" signature="66592:66628" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="66704:67554" ph="/**...*/" />
+            <marker date="1493086005000" expanded="true" signature="67620:68122" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
