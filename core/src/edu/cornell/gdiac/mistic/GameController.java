@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
+import javafx.scene.PointLight;
 import org.lwjgl.Sys;
 //import org.lwjgl.Sys;
 
@@ -384,7 +385,7 @@ public class GameController extends WorldController implements ContactListener {
     public ArrayList<MonsterModel> monster;
 
 
-    private Familiar familiars;
+    protected Familiar familiars;
 
     private FogController fog;
     private float BW = DEFAULT_WIDTH;
@@ -416,9 +417,6 @@ public class GameController extends WorldController implements ContactListener {
     private PooledList<EnvAsset> landmarks = new PooledList<EnvAsset>();
     /** All the non-wall objects in the world. */
     protected PooledList<Obstacle> underFog  = new PooledList<Obstacle>();
-
-
-
 
 
     /** Arraylist of Lantern objects */
@@ -713,7 +711,7 @@ public class GameController extends WorldController implements ContactListener {
             fireflyDeathTimer=0;
         }
 
-        fog.update(gorf,Lanterns,tileBoard, dt);
+        fog.update(gorf,Lanterns, familiars, tileBoard, dt);
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
