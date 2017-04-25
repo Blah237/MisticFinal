@@ -60,27 +60,6 @@ public class Firefly {
                 this.fireflyAnimation.setFrame(0);
             }
         }
-
-        /**
-        if (on) {
-            boolean cycle;
-            // Turn on the flames and go back and forth
-            if (fireflyAnimation.getFrame() == fireflyAnimation.getSize()-1) {
-                cycle = false;
-            } else {
-                cycle = true;
-            }
-           // System.out.println(fireflyAnimation.getFrame());
-            // Increment
-            if (cycle) {
-                fireflyAnimation.setFrame(fireflyAnimation.getFrame()+1);
-            } else {
-                fireflyAnimation.setFrame(fireflyAnimation.getFrame()-1);
-            }
-        } else {
-            fireflyAnimation.setFrame(0);
-        }**/
-
     }
 
     public void setPosition(float x, float y){

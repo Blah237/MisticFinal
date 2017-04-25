@@ -85,6 +85,8 @@ public class GameController extends WorldController implements ContactListener {
     /** Reference to the crate image assets */
     private static final String LIT_LANTERN = "mistic/lit.png";
     private static final String UNLIT_LANTERN = "mistic/unlit.png";
+    private static final String LITTOP_LANTERN = "mistic/littop.png";
+    private static final String UNLITTOP_LANTERN = "mistic/unlittop.png";
     private static final String FIREFLY_ANIMATE="mistic/spritesheet_firefly.png";
     //private static final String FIREFLY_ANIMATE = "mistic/spritesheet_firefly_menu.png";
 
@@ -129,6 +131,8 @@ public class GameController extends WorldController implements ContactListener {
     /** Texture assets for the crates */
     private TextureRegion litTexture;
     private TextureRegion unlitTexture;
+    private TextureRegion litTextureTop;
+    private TextureRegion unlitTextureTop;
 
     /** Texture assets for HUD **/
     private TextureRegion HUDWindow;
@@ -177,8 +181,12 @@ public class GameController extends WorldController implements ContactListener {
         //Lantern
         manager.load(LIT_LANTERN,Texture.class);
         manager.load(UNLIT_LANTERN,Texture.class);
+        manager.load(LITTOP_LANTERN,Texture.class);
+        manager.load(UNLITTOP_LANTERN, Texture.class);
         assets.add(LIT_LANTERN);
         assets.add(UNLIT_LANTERN);
+        assets.add(LITTOP_LANTERN);
+        assets.add(UNLITTOP_LANTERN);
         // Ship textures
 
         manager.load(HAT_TEXTURE, Texture.class);
@@ -297,6 +305,8 @@ public class GameController extends WorldController implements ContactListener {
 
         litTexture=createTexture(manager,LIT_LANTERN,false);
         unlitTexture=createTexture(manager,UNLIT_LANTERN,false);
+        litTextureTop=createTexture(manager,LITTOP_LANTERN,false);
+        unlitTextureTop=createTexture(manager,UNLITTOP_LANTERN,false);
 
 
         //gorfHat = createTexture(manager,HAT_TEXTURE,false);
@@ -517,13 +527,6 @@ public class GameController extends WorldController implements ContactListener {
 
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
-        tileBoard.tiles[40][20].hasTree=3;
-        tileBoard.tiles[20][10].hasTree=4;
-        tileBoard.tiles[20][40].hasTree=1;
-        tileBoard.tiles[45][45].hasTree=2;
-        tileBoard.tiles[10][10].hasRock=2;
-        tileBoard.tiles[5][5].hasRock=1;
-        tileBoard.tiles[5][10].hasRock=3;
 
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
@@ -532,7 +535,8 @@ public class GameController extends WorldController implements ContactListener {
                 }
                 if (t.isLantern) {
                     Lantern l = new Lantern(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y,unlitTexture,litTexture,scale);
+                            tileBoard.getTileCenterY(t) / scale.y,unlitTexture,litTexture, unlitTextureTop,
+                            unlitTextureTop,scale);
                     l.setTexture(unlitTexture);
                     Lanterns.add(l);
                     addObject(l.object);
@@ -749,7 +753,7 @@ public class GameController extends WorldController implements ContactListener {
         //monster.applyForce();
 
         firefly_counter++;
-        if (firefly_counter==150) {
+        if (firefly_counter==75) {
             firefly_counter=0;
             fireflyController.spawn();
         }
@@ -1002,12 +1006,14 @@ public class GameController extends WorldController implements ContactListener {
         canvas.setShader(fog.getShader());
         fog.draw(canvas, backgroundTexture, new Vector2(0,0));
         canvas.setShader(null);
+        for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
         gorf.draw(canvas);
 
-        for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+
         canvas.draw(fboRegion, 0, 0);
         for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
-            for(EnvAsset env : landmarks){env.drawtop(canvas);}
+        for (Lantern l : Lanterns){l.drawtop(canvas);}
+        for(EnvAsset env : landmarks){env.drawtop(canvas);}
         canvas.end();
 
         // UI
