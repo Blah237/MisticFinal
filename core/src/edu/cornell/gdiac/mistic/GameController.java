@@ -113,6 +113,7 @@ public class GameController extends WorldController implements ContactListener {
     SoundController sounds = SoundController.getInstance();
     private static final String A_PEACE_SONG = "sounds/A_Peace_DEMO2.mp3";
     private static final String B_MARSH_SONG = "sounds/B_Marsh_DEMO2.mp3";
+    private static final String D_PEACE_SONG = "sounds/D_Peace_DEMO2.mp3";
 
     private TextureRegion fireflyAnimation;
     private FilmStrip pawAnimation;
@@ -290,6 +291,8 @@ public class GameController extends WorldController implements ContactListener {
         assets.add(A_PEACE_SONG);
         manager.load(B_MARSH_SONG, Sound.class);
         assets.add(B_MARSH_SONG);
+        manager.load(D_PEACE_SONG, Sound.class);
+        assets.add(D_PEACE_SONG);
 
         super.preLoadContent(manager);
     }
@@ -367,6 +370,7 @@ public class GameController extends WorldController implements ContactListener {
         // allocate sounds
         sounds.allocate(manager,A_PEACE_SONG);
         sounds.allocate(manager,B_MARSH_SONG);
+        sounds.allocate(manager,D_PEACE_SONG );
 
         super.loadContent(manager, canvas);
         tileBoard=super.getTileBoard();
@@ -531,7 +535,7 @@ public class GameController extends WorldController implements ContactListener {
         // Stop all existing instances, and then re-play
         //if (sounds.isActive("A")) {sounds.stop("A");}
         sounds.stop("B");
-        sounds.play("A",A_PEACE_SONG,false);
+        sounds.play("D",D_PEACE_SONG,false);
         sounds.play("B",B_MARSH_SONG,true);
     }
 
@@ -695,7 +699,6 @@ public class GameController extends WorldController implements ContactListener {
         // Then apply the force using the method you modified in RocketObject
         boolean pressing = InputController.getInstance().didSecondary();
         if(pressing){
-
             Lantern l = getLantern(gorf.getX(), gorf.getY());
             if (l!=null){
                 toggle(l);
