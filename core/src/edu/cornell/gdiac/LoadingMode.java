@@ -254,6 +254,7 @@ public class LoadingMode implements Screen, InputProcessor, ControllerListener {
 			manager.update(budget);
 			this.progress = manager.getProgress();
 			if (progress >= 1.0f) {
+				this.listener.exitScreen(this, 0);
 				this.progress = 1.0f;
 				playButton = new Texture(PLAY_BTN_FILE);
 				playButton.setFilter(TextureFilter.Linear, TextureFilter.Linear);

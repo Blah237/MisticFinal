@@ -5,9 +5,7 @@ import com.badlogic.gdx.ai.steer.Proximity;
 import com.badlogic.gdx.ai.steer.Steerable;
 import com.badlogic.gdx.ai.steer.SteerableAdapter;
 import com.badlogic.gdx.ai.steer.SteeringAcceleration;
-import com.badlogic.gdx.ai.steer.behaviors.BlendedSteering;
-import com.badlogic.gdx.ai.steer.behaviors.PrioritySteering;
-import com.badlogic.gdx.ai.steer.behaviors.Seek;
+import com.badlogic.gdx.ai.steer.behaviors.*;
 import com.badlogic.gdx.ai.utils.Location;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -23,6 +21,8 @@ public class AIControllerS {
     DefaultTimepiece timePiece;
 
     private Seek<Vector2> seekTarget;
+    private Wander<Vector2> wandering;
+    private Flee<Vector2> flee;
 
     EnemyWrapper enemyWrapper = new EnemyWrapper();
     TargetWrapper targetWrapper = new TargetWrapper();
@@ -42,14 +42,19 @@ public class AIControllerS {
     public AIControllerS(ArrayList<MonsterModel> monster, GorfModel gorf, BoardModel board) {
         timePiece = new DefaultTimepiece();
         seekTarget = new Seek<Vector2>(emptyWrapper);
+        wandering = new Wander<Vector2>(emptyWrapper);
+        flee = new Flee<Vector2>(emptyWrapper);
         this.monster = monster;
         this.gorf = gorf;
         this.monsterBehavior = new PrioritySteering<Vector2>(emptyWrapper);
         monsterBehavior.add(seekTarget);
+        monsterBehavior.add(flee);
         this.board = board;
     }
 
     public void update(float dt, World world) {
+        seekTarget.setEnabled(false);
+        flee.setEnabled(false);
 
         for (MonsterModel m : monster) {
             m.setFY(0.0f);
@@ -60,12 +65,31 @@ public class AIControllerS {
 
         initializeSteering();
 
+        Vector2 gorfPos = gorf.getPosition();
+        int tileX = board.screenToBoardX(gorfPos.x * 8.0f);
+        int tileY = board.screenToBoardY(gorfPos.y * 8.0f);
+        BoardModel.Tile gorftile= board.tiles[tileX][tileY];
+        boolean inFog=gorftile.isFog;
+        boolean unsafe = false;
+        if (tileX == 99 || tileY == 99 || tileX == 0 || tileY ==0) {
+            unsafe = true;
+        }
+
         for (MonsterModel m : monster) {
             enemyWrapper.model = m;
             targetWrapper.model = gorf;
             seekTarget.setTarget(targetWrapper);
-            seekTarget.setEnabled(true);
-
+            flee.setTarget(targetWrapper);
+            if (inFog) {
+                seekTarget.setEnabled(true);
+            } else if (!unsafe) {
+                flee.setEnabled(true);
+            }
+            //wandering.setOwner(enemyWrapper);
+            //wandering.setWanderOffset(.5f);
+            //wandering.setWanderRate(1);
+            //wandering.setWanderRadius(40);
+            //wandering.setEnabled(true);
             monsterBehavior.calculateSteering(steering);
             applySteering(steering, m);
         }
@@ -77,36 +101,37 @@ public class AIControllerS {
         int tileX = board.screenToBoardX(monsterPos.x * 8.0f);
         int tileY = board.screenToBoardY(monsterPos.y * 8.0f);
         BoardModel.Tile gorftile= board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f)];        // NOTE: got an ArrayIndexOutOfBoundsException at some obscure tile?
-        BoardModel.Tile gorftile2 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
-        BoardModel.Tile gorftile3 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f)];
-        BoardModel.Tile gorftile4 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
-        BoardModel.Tile gorftile5 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f) - 1];
-        BoardModel.Tile gorftile6 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) - 1][board.screenToBoardY(monsterPos.y * 8.0f) - 1];
-        BoardModel.Tile gorftile7 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) - 1][board.screenToBoardY(monsterPos.y * 8.0f)];
-        BoardModel.Tile gorftile8 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f) - 1];
-        BoardModel.Tile gorftile9 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) - 1][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
+        //BoardModel.Tile gorftile2 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
+        //BoardModel.Tile gorftile3 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f)];
+        //BoardModel.Tile gorftile4 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
+        //BoardModel.Tile gorftile5 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f) - 1];
+        //BoardModel.Tile gorftile6 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) - 1][board.screenToBoardY(monsterPos.y * 8.0f) - 1];
+        //BoardModel.Tile gorftile7 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) - 1][board.screenToBoardY(monsterPos.y * 8.0f)];
+        //BoardModel.Tile gorftile8 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f) - 1];
+        //BoardModel.Tile gorftile9 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) - 1][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
         boolean inFog=gorftile.isFog;
         boolean inFogSpawn = gorftile.isFogSpawn;
-        boolean inFog2=gorftile2.isFog;
-        boolean inFogSpawn2 = gorftile2.isFogSpawn;
-        boolean inFog3=gorftile3.isFog;
-        boolean inFogSpawn3 = gorftile3.isFogSpawn;
-        boolean inFog4=gorftile4.isFog;
-        boolean inFogSpawn4 = gorftile4.isFogSpawn;
-        boolean inFog5=gorftile5.isFog;
-        boolean inFogSpawn5 = gorftile5.isFogSpawn;
-        boolean inFog6=gorftile6.isFog;
-        boolean inFogSpawn6 = gorftile6.isFogSpawn;
-        boolean inFog7=gorftile7.isFog;
-        boolean inFogSpawn7 = gorftile7.isFogSpawn;
-        boolean inFog8=gorftile8.isFog;
-        boolean inFogSpawn8 = gorftile8.isFogSpawn;
-        boolean inFog9=gorftile9.isFog;
-        boolean inFogSpawn9 = gorftile9.isFogSpawn;
-        if (inFog || inFogSpawn || inFog3 || inFog4 || inFog5) {
-            m.setFX(steering.linear.x * 9.0f);
-            m.setFY(steering.linear.y * 9.0f);
+        //boolean inFog2=gorftile2.isFog;
+        //boolean inFogSpawn2 = gorftile2.isFogSpawn;
+        //boolean inFog3=gorftile3.isFog;
+        //boolean inFogSpawn3 = gorftile3.isFogSpawn;
+        //boolean inFog4=gorftile4.isFog;
+        //boolean inFogSpawn4 = gorftile4.isFogSpawn;
+        //boolean inFog5=gorftile5.isFog;
+        //boolean inFogSpawn5 = gorftile5.isFogSpawn;
+        //boolean inFog6=gorftile6.isFog;
+        //boolean inFogSpawn6 = gorftile6.isFogSpawn;
+        //boolean inFog7=gorftile7.isFog;
+        //boolean inFogSpawn7 = gorftile7.isFogSpawn;
+        //boolean inFog8=gorftile8.isFog;
+        //boolean inFogSpawn8 = gorftile8.isFogSpawn;
+        //boolean inFog9=gorftile9.isFog;
+        //boolean inFogSpawn9 = gorftile9.isFogSpawn;
+        if (inFog || inFogSpawn) {
+            m.setFX(steering.linear.x * 7.0f);
+            m.setFY(steering.linear.y * 7.0f);
             m.applyForce();
+
         }
 
         //enemyWrapper.model.setAngularVelocity(steering.angular);
@@ -116,6 +141,7 @@ public class AIControllerS {
         if (!initialized) {
 
             seekTarget.setOwner(enemyWrapper);
+            flee.setOwner(enemyWrapper);
         }
 
         initialized = true;
@@ -465,5 +491,7 @@ public class AIControllerS {
         public void setTagged(boolean tagged) { }
 
     }
+
+
 
 }
