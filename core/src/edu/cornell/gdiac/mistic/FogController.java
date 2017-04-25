@@ -136,6 +136,8 @@ public class FogController {
 	private final int[] INERTIAL_POWER = {-1, 1, 1, 1, 1};
 	private final int[] NEG_POS = {-1, 0, 1};
 
+	Vector2 familiarPos;
+
 
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale) {
@@ -239,6 +241,8 @@ public class FogController {
 		texOffset = new Vector2();
 		coeff = new Vector2();
 
+		familiarPos = new Vector2();
+
 		generatePerlin();
 	}
 
@@ -314,6 +318,7 @@ public class FogController {
 		shader.setUniform1fv("boundaryTiles", boundaryTilesCamA, 0, boundaryTilesCamA.length);
 		shader.setUniformf("tileDim", tileW/zoom, tileH/zoom);
 		shader.setUniformf("texOffset", texOffset.x, texOffset.y);
+		shader.setUniformf("familiarPos", familiarPos);
 		shader.end();
 	}
 
@@ -386,7 +391,7 @@ public class FogController {
 //		batch.end();
 	}
 
-	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, BoardModel tileBoard, float dt) {
+	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, Familiar familiar, BoardModel tileBoard, float dt) {
 //		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 //		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 		gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
@@ -523,6 +528,8 @@ public class FogController {
 //		System.out.println(gorf.getX());
 
 //		System.out.println(tileBoard.isFog((int)(gorfPos.x/tileW), (int)(gorfPos.y/tileH)));
+
+		familiarPos = new Vector2((familiar.getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x), (familiar.getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y));
 
 	}
 

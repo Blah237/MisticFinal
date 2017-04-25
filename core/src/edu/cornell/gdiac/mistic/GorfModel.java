@@ -13,6 +13,7 @@
  */
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.graphics.*;
@@ -23,6 +24,8 @@ import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.WorldController;
 import edu.cornell.gdiac.obstacle.BoxObstacle;
 import edu.cornell.gdiac.util.*;
+
+import javax.xml.soap.Text;
 
 /**
  * Player avatar for the rocket lander game.
@@ -40,7 +43,7 @@ public class GorfModel extends BoxObstacle {
 	private static final float DEFAULT_RESTITUTION = 0.4f;
 	/** The thrust factor to convert player input into thrust */
 	private static final float DEFAULT_THRUST = 25.0f;
-
+	public int animateSize=1;
 	/** The force to apply to this rocket */
 	private Vector2 force;
 
@@ -56,10 +59,22 @@ public class GorfModel extends BoxObstacle {
 	boolean isCollidingY;
 	boolean isCollidingTwice;
 	TextureRegion[] texs;
+	FilmStrip Down;
+	FilmStrip DownLeft;
+	FilmStrip DownRight;
+	FilmStrip Left;
+	FilmStrip Right;
+	FilmStrip UpRight;
+	FilmStrip UpLeft;
+	FilmStrip Up;
+	FilmStrip current;
+
 	float lastFX;
 	float lastFY;
 	float currFX = 0;
 	float currFY = 0;
+
+	int animateTimer=15;
 
 	/**
 	 * Returns the force applied to this rocket.
@@ -172,15 +187,43 @@ public class GorfModel extends BoxObstacle {
 	 */
 	public GorfModel(float x, float y, float width, float height,TextureRegion[] texs) {
 		super(x,y,width,height);
-		//getTexture().setRegion(getTexture().getRegionX(),getTexture().getRegionY(),getTexture().getRegionWidth(),getTexture().getRegionHeight());
-		this.texs=texs;
+
+		Down= new FilmStrip(texs[0].getTexture(),1,animateSize,animateSize);
+		DownLeft= new FilmStrip(texs[1].getTexture(),1,animateSize,animateSize);
+		DownRight= new FilmStrip(texs[2].getTexture(),1,animateSize,animateSize);
+		Left= new FilmStrip(texs[3].getTexture(),1,animateSize,animateSize);
+		Right= new FilmStrip(texs[4].getTexture(),1, animateSize,animateSize);
+		UpLeft= new FilmStrip(texs[5].getTexture(),1,animateSize,animateSize);
+		UpRight= new FilmStrip(texs[6].getTexture(),1,animateSize,animateSize);
+		Up= new FilmStrip(texs[7].getTexture(),1, animateSize,animateSize);
+
+		current=Down;
+		current.setFrame(0);
+		this.setTexture(current);
 		force = new Vector2();
-		setTexture(texs[0]);
 		setDensity(DEFAULT_DENSITY);
 		setDensity(DEFAULT_DENSITY);
 		setFriction(DEFAULT_FRICTION);
 		setRestitution(DEFAULT_RESTITUTION);
 		setName("gorf");
+	}
+
+	public void gorfAnimate(){
+		setTexture(current);
+		/**
+		System.out.println(current.getFrame());
+		this.animateTimer--;
+		if ( this.animateTimer == 0) {
+			this.animateTimer  = 15;
+		}
+		if (this.animateTimer == 1) {
+			if (this.current.getFrame() != this.current.getSize() - 1) {
+				this.current.setFrame(this.current.getFrame() + 1);
+			} else {
+				this.current.setFrame(0);
+			}
+		}
+		 */
 	}
 
 	/**
@@ -208,22 +251,22 @@ public class GorfModel extends BoxObstacle {
 
 	public void updateTexture(){
 		if(getFX()<0 && getFY()<0){
-			setTexture(texs[1]);
+			current=DownLeft;
 		}else if(getFX()<0 && getFY()>0){
-			setTexture(texs[6]);
+			current=UpLeft;
 		}else if(getFX()>0 && getFY()>0){
-			setTexture(texs[7]);
+			current=UpRight;
 		}else if(getFX()>0 && getFY()<0){
-			setTexture(texs[2]);
+			current=DownRight;
 		}
 		else if(getFX()<0){
-			setTexture(texs[3]);
+			current=Left;
 		}else if(getFX()>0){
-			setTexture(texs[4]);
+			current=Right;
 		}else if(getFY()<0) {
-			setTexture(texs[0]);
+			current=Down;
 		}else if(getFY()>0) {
-			setTexture(texs[5]);
+			current=Up;
 		}
 	}
 
@@ -269,6 +312,12 @@ public class GorfModel extends BoxObstacle {
 		hat.setY(this.getY()*scale.y);
 		this.draw(canvas);
 	}
+	/**
+
+	public void draw(GameCanvas canvas, Vector2 scale){
+
+		canvas.draw(current,this.getX()*scale.x,this.getY()*scale.y);
+	}*/
 
 
 

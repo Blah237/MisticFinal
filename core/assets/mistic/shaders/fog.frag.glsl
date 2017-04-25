@@ -32,8 +32,10 @@ uniform int numFireflies;
 uniform vec2 offset;
 
 uniform vec2 tileDim;
+uniform vec2 familiarPos;
 
 varying vec2 vTexCoord;
+
 
 void main() {
     vec2 coord = (gl_FragCoord.xy / res.xy);      // FUTURE NOTE: should get coord in terms of world/map -- convert gl_FragCoord to world space by adding dim/2 and subtracting cameraPos, then divide by world width
@@ -108,6 +110,9 @@ void main() {
         fogThickness = texture2D(u_texture_new, boundaryTexCoord3).a;
     }
 
+//    float attenuationLantern = 0.0f;
+//    vec3 lanternColor = vec3(1.0, 1.0, 0.2);
+
     for (int i=0; i<20; i++) {
         if (i>=numLanterns) {
             break;
@@ -119,21 +124,48 @@ void main() {
 
         float dist2 = length(vec2(dx2,dy2));
         float fogThickness2 = smoothstep(.3, .5, dist2);
+
+//        vec3 falloff2 = vec3(0.8, 2.0, 20.0);
+//        float D2 = length(vec2(dx2, dy2-.06));
+//        float attenuation2 = 1.0 / ( falloff2.x + (falloff2.y*D2) + (falloff2.z*D2*D2) );
+
         fogThickness *= fogThickness2;
+//        attenuationLantern = max(attenuation2, attenuationLantern);
     }
 
     float dx3 = abs(coord.x-.5) * (res.x/res.y);
     float dy3 = abs(coord.y-.5);
 
     float dist3 = length(vec2(dx3, dy3));
-    fogThickness *= smoothstep(min(.2 + float(numFireflies)*.055, .55)-.18, min(.12 + float(numFireflies)*.055, .55), dist3);
+    fogThickness *= smoothstep(min(.25 + float(numFireflies)*.055, .55)-.25, min(.25 + float(numFireflies)*.055, .55), dist3);
 
     fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
 //    fog *= min(1.0,fogThickness);
 //    fog *= max(.7, texture2D(u_texture_perlin, vTexCoord).a);
 
-    gl_FragColor.rgb = fog * max(.7, texture2D(u_texture_perlin, vTexCoord).a);;
-    gl_FragColor.a = fogThickness;
+    vec3 glowColor = vec3(0.7, 1.0, 1.0);
+
+    vec2 lightDir = familiarPos - (gl_FragCoord.xy / res.xy);
+//    // Correct for aspect ratio
+    lightDir.x *= res.x / res.y;
+//
+    float D = length(lightDir);
+//
+//    vec3 N = vec3(0.0, 0.0, 1.0);
+//    vec3 L = normalize(lightDir);
+//
+//    vec3 diffuse = (glowColor.rgb * glowColor.a) * max(dot(N, L), 0.0);
+//
+    vec3 falloff = vec3(1.0, 2.0, 60.0);
+    float attenuation = 1.0 / ( falloff.x + (falloff.y*D) + (falloff.z*D*D) );
+
+//    vec3 intensity = diffuse * attenuation;
+
+
+    gl_FragColor.rgb = fogThickness * fog * max(.7, texture2D(u_texture_perlin, vTexCoord).a);
+    gl_FragColor.rgb += (1.0 - fogThickness)*glowColor*attenuation;
+//    gl_FragColor.rgb += (1.0 - fogThickness)*lanternColor*attenuationLantern;
+    gl_FragColor.a = max(fogThickness, attenuation);
 //    gl_FragColor.a = 0;
 //    gl_FragColor = vec4(fog, fogThickness);
 //    gl_FragColor.rgb *= max(0.0,1.0-fogThickness);

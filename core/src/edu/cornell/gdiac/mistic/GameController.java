@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
+import javafx.scene.PointLight;
 import org.lwjgl.Sys;
 //import org.lwjgl.Sys;
 
@@ -46,8 +47,8 @@ import org.lwjgl.Sys;
 public class GameController extends WorldController implements ContactListener {
     /** Reference to the rocket texture */
     private static final String[] GORF_TEXTURES = {"mistic/gorfs/gorfD.png","mistic/gorfs/gorfDL.png","mistic/gorfs/gorfDR.png",
-            "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfB.png","mistic/gorfs/gorfBL.png",
-            "mistic/gorfs/gorfBR.png"};
+            "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfBL.png", "mistic/gorfs/gorfBR.png",
+            "mistic/gorfs/gorfB.png"};
     private static final String HAT_TEXTURE = "mistic/gorfs/gorftop.png";
     private static final String BACKGROUND = "mistic/backgroundresize.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
@@ -415,7 +416,7 @@ public class GameController extends WorldController implements ContactListener {
     public ArrayList<MonsterModel> monster;
 
 
-    private Familiar familiars;
+    protected Familiar familiars;
 
     private FogController fog;
     private float BW = DEFAULT_WIDTH;
@@ -447,9 +448,6 @@ public class GameController extends WorldController implements ContactListener {
     private PooledList<EnvAsset> landmarks = new PooledList<EnvAsset>();
     /** All the non-wall objects in the world. */
     protected PooledList<Obstacle> underFog  = new PooledList<Obstacle>();
-
-
-
 
 
     /** Arraylist of Lantern objects */
@@ -756,7 +754,7 @@ public class GameController extends WorldController implements ContactListener {
                 }
         }
 
-        fog.update(gorf,Lanterns,tileBoard, dt);
+        fog.update(gorf,Lanterns,familiars,tileBoard, dt);
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
@@ -772,6 +770,7 @@ public class GameController extends WorldController implements ContactListener {
         this.gorf.setFY(temp.y);
         gorf.applyForce();
         gorf.updateTexture();
+        gorf.gorfAnimate();
         wrapInBounds(gorf);
 
         gorf.setCollidingX(false);
@@ -822,6 +821,7 @@ public class GameController extends WorldController implements ContactListener {
      *
      * @param rocket   Gorf character
      */
+    
     private void wrapInBounds(GorfModel rocket) {
         if (!inBounds(rocket)) {
             Vector2 currentPos = rocket.getPosition();
