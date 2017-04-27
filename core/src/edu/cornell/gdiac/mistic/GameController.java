@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
+import javafx.scene.PointLight;
 import org.lwjgl.Sys;
 //import org.lwjgl.Sys;
 
@@ -46,8 +47,8 @@ import org.lwjgl.Sys;
 public class GameController extends WorldController implements ContactListener {
     /** Reference to the rocket texture */
     private static final String[] GORF_TEXTURES = {"mistic/gorfs/gorfD.png","mistic/gorfs/gorfDL.png","mistic/gorfs/gorfDR.png",
-            "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfB.png","mistic/gorfs/gorfBL.png",
-            "mistic/gorfs/gorfBR.png"};
+            "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfBL.png", "mistic/gorfs/gorfBR.png",
+            "mistic/gorfs/gorfB.png"};
     private static final String HAT_TEXTURE = "mistic/gorfs/gorftop.png";
     private static final String BACKGROUND = "mistic/backgroundresize.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
@@ -112,6 +113,7 @@ public class GameController extends WorldController implements ContactListener {
     SoundController sounds = SoundController.getInstance();
     private static final String A_PEACE_SONG = "sounds/A_Peace_DEMO2.mp3";
     private static final String B_MARSH_SONG = "sounds/B_Marsh_DEMO2.mp3";
+    private static final String D_PEACE_SONG = "sounds/D_Peace_DEMO2.mp3";
 
     private TextureRegion fireflyAnimation;
     private FilmStrip pawAnimation;
@@ -289,6 +291,8 @@ public class GameController extends WorldController implements ContactListener {
         assets.add(A_PEACE_SONG);
         manager.load(B_MARSH_SONG, Sound.class);
         assets.add(B_MARSH_SONG);
+        manager.load(D_PEACE_SONG, Sound.class);
+        assets.add(D_PEACE_SONG);
 
         super.preLoadContent(manager);
     }
@@ -366,6 +370,7 @@ public class GameController extends WorldController implements ContactListener {
         // allocate sounds
         sounds.allocate(manager,A_PEACE_SONG);
         sounds.allocate(manager,B_MARSH_SONG);
+        sounds.allocate(manager,D_PEACE_SONG );
 
         super.loadContent(manager, canvas);
         tileBoard=super.getTileBoard();
@@ -415,7 +420,7 @@ public class GameController extends WorldController implements ContactListener {
     public ArrayList<MonsterModel> monster;
 
 
-    private Familiar familiars;
+    protected Familiar familiars;
 
     private FogController fog;
     private float BW = DEFAULT_WIDTH;
@@ -447,9 +452,6 @@ public class GameController extends WorldController implements ContactListener {
     private PooledList<EnvAsset> landmarks = new PooledList<EnvAsset>();
     /** All the non-wall objects in the world. */
     protected PooledList<Obstacle> underFog  = new PooledList<Obstacle>();
-
-
-
 
 
     /** Arraylist of Lantern objects */
@@ -533,7 +535,7 @@ public class GameController extends WorldController implements ContactListener {
         // Stop all existing instances, and then re-play
         //if (sounds.isActive("A")) {sounds.stop("A");}
         sounds.stop("B");
-        sounds.play("A",A_PEACE_SONG,false);
+        sounds.play("D",D_PEACE_SONG,false);
         sounds.play("B",B_MARSH_SONG,true);
     }
 
@@ -697,7 +699,6 @@ public class GameController extends WorldController implements ContactListener {
         // Then apply the force using the method you modified in RocketObject
         boolean pressing = InputController.getInstance().didSecondary();
         if(pressing){
-
             Lantern l = getLantern(gorf.getX(), gorf.getY());
             if (l!=null){
                 toggle(l);
@@ -756,7 +757,7 @@ public class GameController extends WorldController implements ContactListener {
                 }
         }
 
-        fog.update(gorf,Lanterns,tileBoard, dt);
+        fog.update(gorf,Lanterns,familiars,tileBoard, dt);
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
@@ -772,6 +773,7 @@ public class GameController extends WorldController implements ContactListener {
         this.gorf.setFY(temp.y);
         gorf.applyForce();
         gorf.updateTexture();
+        gorf.gorfAnimate();
         wrapInBounds(gorf);
 
         gorf.setCollidingX(false);
@@ -822,6 +824,7 @@ public class GameController extends WorldController implements ContactListener {
      *
      * @param rocket   Gorf character
      */
+    
     private void wrapInBounds(GorfModel rocket) {
         if (!inBounds(rocket)) {
             Vector2 currentPos = rocket.getPosition();
