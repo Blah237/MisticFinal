@@ -77,13 +77,8 @@ public class MenuController extends WorldController implements Screen {
     }
 
     public void update(float dt) {
-        if (timerGo) {
-            inputTimer--;
-            if (inputTimer == 0) {
-                timerGo = false;
-                inputTimer = 20;
-            }
-        }
+
+
         float forcey= InputController.getInstance().getVertical();
         if (forcey < 0 && !timerGo) {
             timerGo = true;

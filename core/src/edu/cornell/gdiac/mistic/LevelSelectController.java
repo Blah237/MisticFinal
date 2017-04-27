@@ -25,8 +25,8 @@ public class LevelSelectController extends WorldController implements Screen {
 
 
     private int inputTimer = 20;
-    private boolean timerGo = false;
-    private int level;
+    private boolean timerGo = true;
+    private static int level;
 
     private int firflyAnimateTimer = 15;
 
@@ -86,7 +86,7 @@ public class LevelSelectController extends WorldController implements Screen {
         setDebug(false);
         setComplete(false);
         setFailure(false);
-        this.level = 1;
+        this.level = 3;
         this.jsonFileName = level1;
     }
 
@@ -101,11 +101,34 @@ public class LevelSelectController extends WorldController implements Screen {
     }
 
     public void update(float dt) {
+        if (timerGo) {
+            inputTimer--;
+            if (inputTimer == 0) {
+                timerGo = false;
+                inputTimer = 20;
+            }
+        }
         float forcex= InputController.getInstance().getHorizontal();
         boolean pressing = InputController.getInstance().didEnter();
         boolean back = InputController.getInstance().didExit();
+        boolean enter = InputController.getInstance().didEnter();
         if (back) {
             listener.exitScreen(this, EXIT_TO_MENU);
+        } else if (enter && !timerGo) {
+            timerGo = true;
+            switch (level) {
+                case 1: WorldController.MINIMAP_FILE = level1minimap;
+                        WorldController.JSON_FILE = level1; break;
+                case 2: WorldController.MINIMAP_FILE = level2minimap;
+                        WorldController.JSON_FILE = level2; break;
+                case 3: WorldController.MINIMAP_FILE = level3minimap;
+                        WorldController.JSON_FILE = level3; break;
+                case 4: WorldController.MINIMAP_FILE = level4minimap;
+                        WorldController.JSON_FILE = level4; break;
+                case 5: WorldController.MINIMAP_FILE = level5minimap;
+                        WorldController.JSON_FILE = level5; break;
+            }
+            listener.exitScreen(this, this.EXIT_TO_PLAY);
         }
         firflyAnimateTimer--;
         if (firflyAnimateTimer == 0) {
@@ -130,6 +153,10 @@ public class LevelSelectController extends WorldController implements Screen {
         canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
         canvas.end();
 
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     public void setScreenListener(ScreenListener listener) {

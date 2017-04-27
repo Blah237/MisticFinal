@@ -777,7 +777,7 @@ public class GameController extends WorldController implements ContactListener {
         gorf.setCollidingX(false);
         gorf.setCollidingY(false);
 
-        ai.update(dt, world);
+        ai.update(dt, world, firefly_count);
         for (MonsterModel m : (ai.monster)) {
             wrapInBounds(m);
         }
@@ -791,7 +791,7 @@ public class GameController extends WorldController implements ContactListener {
         //monster.applyForce();
 
         firefly_counter++;
-        if (firefly_counter==10) {
+        if (firefly_counter==15) {
             firefly_counter=0;
             fireflyController.spawn();
         }

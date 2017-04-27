@@ -31,7 +31,7 @@
         {
          "columns":1,
          "firstgid":1,
-         "image":"..\/..\/Mistic\/core\/assets\/mistic\/mistblock\/mistblock1.png",
+         "image":"..\/mistic\/mistblock\/mistblock1.png",
          "imageheight":50,
          "imagewidth":50,
          "margin":0,
@@ -77,7 +77,7 @@
         {
          "columns":1,
          "firstgid":4,
-         "image":"..\/..\/Mistic\/core\/assets\/mistic\/backgroundresize.png",
+         "image":"..\/mistic\/backgroundresize.png",
          "imageheight":576,
          "imagewidth":1024,
          "margin":0,
@@ -90,7 +90,7 @@
         {
          "columns":1,
          "firstgid":5,
-         "image":"..\/..\/Mistic\/core\/assets\/mistic\/gorf.png",
+         "image":"..\/mistic\/gorfs\/OGgorf.png",
          "imageheight":110,
          "imagewidth":48,
          "margin":0,
@@ -109,7 +109,7 @@
         {
          "columns":2,
          "firstgid":8,
-         "image":"..\/..\/Mistic\/core\/assets\/mistic\/fog\/new_boundary.png",
+         "image":"..\/mistic\/fog\/new_boundary.png",
          "imageheight":64,
          "imagewidth":64,
          "margin":0,
@@ -123,7 +123,7 @@
         {
          "columns":1,
          "firstgid":14,
-         "image":"..\/..\/Mistic\/core\/assets\/mistic\/lit.png",
+         "image":"..\/mistic\/lit.png",
          "imageheight":300,
          "imagewidth":219,
          "margin":0,
@@ -142,7 +142,7 @@
         {
          "columns":1,
          "firstgid":15,
-         "image":"..\/..\/Mistic\/core\/assets\/mistic\/familiars\/cat.png",
+         "image":"..\/mistic\/familiars\/cat.png",
          "imageheight":50,
          "imagewidth":50,
          "margin":0,
@@ -161,7 +161,7 @@
         {
          "columns":1,
          "firstgid":16,
-         "image":"..\/..\/Mistic\/core\/assets\/mistic\/environment\/rock2.png",
+         "image":"..\/mistic\/environment\/rock2.png",
          "imageheight":80,
          "imagewidth":57,
          "margin":0,
@@ -179,7 +179,7 @@
         {
          "columns":1,
          "firstgid":17,
-         "image":"..\/..\/Mistic\/core\/assets\/mistic\/environment\/tree4.png",
+         "image":"..\/mistic\/environment\/tree4.png",
          "imageheight":270,
          "imagewidth":118,
          "margin":0,

@@ -52,7 +52,7 @@ public class AIControllerS {
         this.board = board;
     }
 
-    public void update(float dt, World world) {
+    public void update(float dt, World world, int firefly_count) {
         seekTarget.setEnabled(false);
         flee.setEnabled(false);
 
@@ -80,9 +80,11 @@ public class AIControllerS {
             targetWrapper.model = gorf;
             seekTarget.setTarget(targetWrapper);
             flee.setTarget(targetWrapper);
-            if (inFog) {
+            if (!inFog && !unsafe) {
+                flee.setEnabled(true);
+            } else if (firefly_count < 4) {
                 seekTarget.setEnabled(true);
-            } else if (!unsafe) {
+            } else {
                 flee.setEnabled(true);
             }
             //wandering.setOwner(enemyWrapper);
