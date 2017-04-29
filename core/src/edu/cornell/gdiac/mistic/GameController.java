@@ -662,14 +662,14 @@ public class GameController extends WorldController implements ContactListener {
     }
 
     void toggle(Lantern l) {
-        if (l.lit) {
-            firefly_count+=2;
-        } else {
-            if (firefly_count >= 2) {
-                firefly_count = firefly_count - 2;
-            }
+        if (l.lit){
+            firefly_count+=1;
+            l.toggleLantern();
         }
-        l.toggleLantern();
+        else if(!l.lit && firefly_count >= 1){
+            firefly_count = firefly_count - 1;
+            l.toggleLantern();
+        }
     }
 
 
@@ -821,7 +821,7 @@ public class GameController extends WorldController implements ContactListener {
      *
      * @param rocket   Gorf character
      */
-    
+
     private void wrapInBounds(GorfModel rocket) {
         if (!inBounds(rocket)) {
             Vector2 currentPos = rocket.getPosition();
