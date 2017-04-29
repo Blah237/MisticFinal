@@ -29,7 +29,7 @@ public class FireflyController {
     private Vector2 scale;
     /**The time between firefly spawns*/
     private float SPAWN_TIME;
-    private int MAX_FIREFLIES=12;
+    private int MAX_FIREFLIES=10;
     private int maxfireflies = MAX_FIREFLIES;
     public Firefly[] fireflies;
     private FilmStrip animate;
