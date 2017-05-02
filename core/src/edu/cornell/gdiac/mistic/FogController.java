@@ -797,7 +797,7 @@ public class FogController {
 			for (int j=-tr; j<=tr; j++) {
 				for (int i = -tr; i <= tr; i++) {
 					if (gorfPos.dst(tileBoard.boardtoScreenX(i), tileBoard.boardToScreenY(j)) < radius) {
-						tileBoard.setGorfGlow((tx+i)%WX, (ty+j)%WY, true);
+						tileBoard.setGorfGlow((tx+i+WX)%WX, (ty+j+WY)%WY, true);
 					}
 				}
 			}

@@ -26,9 +26,12 @@ public class Firefly {
     private static final float FIREFLY_DENSITY = 1.0f;
     private static final float FIREFLY_FRICTION  = 0.3f;
     private static final float FIREFLY_RESTITUTION = 0.1f;
-    private int fireflyAnimateTimer = 7;
+    private int fireflyAnimateTimer = 4;
     private Vector2 scale = new Vector2(1f,1f);
     public static final int FRAMES = 15;
+    public static final int RESPAWN=700;
+    public int respawnTimer;
+
 
     public Firefly(float x, float y, TextureRegion texture) {
         this.fireflyAnimation  = new FilmStrip(texture.getTexture(),1,FRAMES,FRAMES);
