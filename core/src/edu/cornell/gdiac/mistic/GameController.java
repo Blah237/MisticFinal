@@ -468,7 +468,6 @@ public class GameController extends WorldController implements ContactListener {
         setComplete(false);
         setFailure(false);
         world.setContactListener(this);
-        this.fireflyController=new FireflyController(fireflyAnimation, scale,tileBoard);
         this.firefly_count = 2;
         this.DEAD = false;
         this.fireflyDeathTimer=0;
@@ -494,8 +493,6 @@ public class GameController extends WorldController implements ContactListener {
         landmarks.clear();
         addQueue.clear();
         world.dispose();
-
-        fireflyController = new FireflyController(fireflyAnimation, scale,tileBoard);
         this.firefly_count = 2;
         this.fireflyDeathTimer=0;
         world = new World(gravity,false);
@@ -548,6 +545,12 @@ public class GameController extends WorldController implements ContactListener {
 
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
+        ArrayList<BoardModel.Tile> fireflyPositions = new ArrayList<BoardModel.Tile>();
+        tileBoard.tiles[50][50].spawnPoint=true;
+        tileBoard.tiles[50][25].spawnPoint=true;
+        tileBoard.tiles[25][25].spawnPoint=true;
+        tileBoard.tiles[75][75].spawnPoint=true;
+        //tileBoard.tiles[75][75].hasTree=3;
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
                 //if (t.isFogSpawn) {
@@ -589,6 +592,9 @@ public class GameController extends WorldController implements ContactListener {
                 if (t.isGorfStart) {
                     gorfStart = new Vector2(tileBoard.getTileCenterX(t)/scale.x, tileBoard.getTileCenterY(t)/scale.y);
                 }
+                if (t.spawnPoint){
+                    fireflyPositions.add(t);
+                }
                 if(t.hasRock !=0){
                     int num = t.hasRock-1;
                     EnvAsset rock = new EnvAsset(tileBoard.getTileCenterX(t) / scale.x,
@@ -618,8 +624,8 @@ public class GameController extends WorldController implements ContactListener {
         addObject(gorf);
 //        overFog.add(0, gorf);
 
-        fireflyController=new FireflyController(fireflyAnimation,scale,tileBoard);
-
+        fireflyController=new FireflyController(fireflyAnimation,fireflyPositions, scale,tileBoard);
+        fireflyController.populate();
         Vector2[] familiarVectors= new Vector2[familiarPositions.size()];
         for(int k=0;k<familiarPositions.size();k++){
             familiarVectors[k]= new Vector2(familiarPositions.get(k).fx/scale.x,familiarPositions.get(k).fy/scale.y);
@@ -666,14 +672,14 @@ public class GameController extends WorldController implements ContactListener {
     }
 
     void toggle(Lantern l) {
-        if (l.lit) {
-            firefly_count+=2;
-        } else {
-            if (firefly_count >= 2) {
-                firefly_count = firefly_count - 2;
-            }
+        if (l.lit){
+            firefly_count+=1;
+            l.toggleLantern();
         }
-        l.toggleLantern();
+        else if(!l.lit && firefly_count >= 1){
+            firefly_count = firefly_count - 1;
+            l.toggleLantern();
+        }
     }
 
 
@@ -757,7 +763,7 @@ public class GameController extends WorldController implements ContactListener {
                 }
         }
 
-        fog.update(gorf,Lanterns,familiars,tileBoard, dt);
+        fog.update(gorf,Lanterns,familiars, firefly_count,tileBoard,canvas,dt);
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
@@ -792,11 +798,6 @@ public class GameController extends WorldController implements ContactListener {
         //this.monster.setFY(forceYMonster * monsterthrust);
         //monster.applyForce();
 
-        firefly_counter++;
-        if (firefly_counter==10) {
-            firefly_counter=0;
-            fireflyController.spawn();
-        }
 
         SoundController.getInstance().update();
         if(fireflyController.update(gorf)){
@@ -824,7 +825,7 @@ public class GameController extends WorldController implements ContactListener {
      *
      * @param rocket   Gorf character
      */
-    
+
     private void wrapInBounds(GorfModel rocket) {
         if (!inBounds(rocket)) {
             Vector2 currentPos = rocket.getPosition();
@@ -1416,12 +1417,12 @@ public class GameController extends WorldController implements ContactListener {
         Body body2 = contact.getFixtureB().getBody();
         WorldManifold worldManifold = contact.getWorldManifold();
 
-        if (body1.getUserData() == "monster" && body2 == gorf.getBody()) {
-            this.DEAD = true;
-        }
-        if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
-            this.DEAD = true;
-        }
+//        if (body1.getUserData() == "monster" && body2 == gorf.getBody()) {
+//            this.DEAD = true;
+//        }
+//        if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
+//            this.DEAD = true;
+//        }
 
         if (body1 == gorf.getBody() || body2 == gorf.getBody()) {
             if (worldManifold.getNormal().y == 0f) {

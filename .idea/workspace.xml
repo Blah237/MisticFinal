@@ -1,60 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Mistic:jar" />
+      <artifact name="desktop_main:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfB.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfBL.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfBR.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfD.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfDL.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfDR.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfL.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfR.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/hat.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/levelmockup.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/levelmockup_wood.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/litsmall.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/littop.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/unlittop.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/LevelSelectController.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/jsons/no_wrap.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java.orig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/LevelSelectController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/mistic/gorf.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/OGgorf.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/mistic/gorftop.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorftop.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/lit.png" afterPath="$PROJECT_DIR$/core/assets/mistic/lit.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/purple_firefly.png" afterPath="$PROJECT_DIR$/core/assets/mistic/purple_firefly.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GDXRoot.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/GDXRoot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/InputController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/InputController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/LoadingMode.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/LoadingMode.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS$EmptyWrapper.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS$EmptyWrapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS$EnemyProximity.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS$EnemyProximity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS$EnemyWrapper.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS$EnemyWrapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS$TargetWrapper.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS$TargetWrapper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/AIControllerS.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/EnvAsset.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/EnvAsset.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Lantern.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Lantern.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/MenuController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/MenuController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GDXRoot.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/GDXRoot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/LoadingMode.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/LoadingMode.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/AIControllerS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/EnvAsset.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/EnvAsset.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Firefly.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Firefly.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MenuController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MenuController.java" />
     </list>
+    <ignored path="$PROJECT_DIR$/classes/" />
+    <ignored path="$PROJECT_DIR$/.gradle/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <ignored path="$PROJECT_DIR$/core/.gradle/" />
+    <ignored path="$PROJECT_DIR$/core/build/" />
+    <ignored path="$PROJECT_DIR$/desktop/.gradle/" />
+    <ignored path="$PROJECT_DIR$/desktop/build/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,11 +56,179 @@
       <file leaf-file-name="WorldController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="164" column="26" lean-forward="false" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
+            <state relative-caret-position="20">
+              <caret line="462" column="29" lean-forward="false" selection-start-line="462" selection-start-column="29" selection-end-line="462" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5890#5909#0" expanded="true" />
+                <marker date="1493719918625" expanded="true" signature="5892:5911" ph="&lt;~&gt;" />
+                <marker date="1493719918625" expanded="true" signature="7181:7328" ph="//..." />
+                <marker date="1493719918625" expanded="true" signature="7650:8088" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="8179:8536" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="8540:9073" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="9176:9426" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="9430:9707" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="9757:9865" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="9869:9907" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="9949:9993" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10035:10086" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10131:10190" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10236:10288" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10339:10401" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10445:10507" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10553:10598" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10655:10701" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10759:10794" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10826:10862" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="10920:10930" ph="&lt;~&gt;" />
+                <marker date="1493719918625" expanded="true" signature="10935:10966" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11024:11034" ph="&lt;~&gt;" />
+                <marker date="1493719918625" expanded="true" signature="11039:11104" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11141:11163" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11189:11221" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11252:11274" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11304:11354" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11381:11424" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11453:11515" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11542:11584" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11610:11655" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="11682:11842" ph="/**...*/" />
+                <marker date="1493719918625" expanded="false" signature="11869:11874" ph=" { " />
+                <marker date="1493719918625" expanded="false" signature="11887:11890" ph=" }" />
+                <marker date="1493719918625" expanded="true" signature="11893:12055" ph="/**...*/" />
+                <marker date="1493719918625" expanded="false" signature="12092:12097" ph=" { " />
+                <marker date="1493719918625" expanded="false" signature="12111:12114" ph=" }" />
+                <marker date="1493719918625" expanded="true" signature="12117:12275" ph="/**...*/" />
+                <marker date="1493719918625" expanded="false" signature="12305:12310" ph=" { " />
+                <marker date="1493719918625" expanded="false" signature="12326:12329" ph=" }" />
+                <marker date="1493719918625" expanded="true" signature="12332:12492" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="12533:12603" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="12606:12756" ph="/**...*/" />
+                <marker date="1493719918625" expanded="false" signature="12785:12790" ph=" { " />
+                <marker date="1493719918625" expanded="false" signature="12804:12807" ph=" }" />
+                <marker date="1493719918625" expanded="true" signature="12810:12962" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="13002:13070" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="13074:13178" ph="/**...*/" />
+                <marker date="1493719918625" expanded="false" signature="13206:13211" ph=" { " />
+                <marker date="1493719918625" expanded="false" signature="13225:13228" ph=" }" />
+                <marker date="1493719918625" expanded="true" signature="13231:13346" ph="/**...*/" />
+                <marker date="1493719918625" expanded="false" signature="13377:13382" ph=" { " />
+                <marker date="1493719918625" expanded="false" signature="13396:13399" ph=" }" />
+                <marker date="1493719918625" expanded="true" signature="13403:13593" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="13636:13774" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="13778:14014" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="14044:14150" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="14153:14508" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="14578:14647" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="14650:14983" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="15046:15306" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="15310:15384" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="15408:15644" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="15647:15866" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="15910:15987" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="15990:16087" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="16128:16234" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="16237:16439" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="16479:16682" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="16686:16820" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="16855:17107" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="17144:17965" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="17879:17938" ph="//..." />
+                <marker date="1493719918625" expanded="true" signature="17969:18355" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="18399:18670" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="18705:19595" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="19092:19234" ph="//..." />
+                <marker date="1493719918625" expanded="true" signature="19599:19866" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="19898:20586" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="20590:20842" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="20886:20910" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="20913:21162" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="21196:21351" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="21354:21527" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="21549:21590" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="21593:21707" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="21730:21771" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="21775:21850" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="21871:21941" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="21944:22024" ph="/**...*/" />
+                <marker date="1493719918625" expanded="true" signature="22045:22116" ph="{...}" />
+                <marker date="1493719918625" expanded="true" signature="22119:22230" ph="/**...*/" />
+                <marker date="1493719918625" expanded="false" signature="22286:22291" ph=" { " />
+                <marker date="1493719918625" expanded="false" signature="22316:22319" ph=" }" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoardModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="221" column="39" lean-forward="true" selection-start-line="221" selection-start-column="39" selection-end-line="221" selection-end-column="39" />
+              <folding>
+                <marker date="1493719918677" expanded="true" signature="716:825" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="870:915" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="1140:1197" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="1234:1293" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="1330:1405" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="1446:1484" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="1522:1600" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="1653:1721" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="1794:2136" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="2175:2218" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="2246:2290" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="2319:2363" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="2395:2467" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="2532:2775" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="2849:3602" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="3608:3696" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="3726:4316" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="4322:4528" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="4567:4668" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="4674:4907" ph="/**...*/" />
+                <marker date="1493719918677" expanded="false" signature="4949:4960" ph=" { " />
+                <marker date="1493719918677" expanded="false" signature="5011:5017" ph=" }" />
+                <marker date="1493719918677" expanded="true" signature="5023:5173" ph="/**...*/" />
+                <marker date="1493719918677" expanded="false" signature="5199:5210" ph=" { " />
+                <marker date="1493719918677" expanded="false" signature="5223:5229" ph=" }" />
+                <marker date="1493719918677" expanded="true" signature="5235:5381" ph="/**...*/" />
+                <marker date="1493719918677" expanded="false" signature="5408:5419" ph=" { " />
+                <marker date="1493719918677" expanded="false" signature="5433:5439" ph=" }" />
+                <marker date="1493719918677" expanded="true" signature="5445:5550" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="5584:5606" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="5612:5715" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="5748:5769" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="5775:5956" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="6000:6046" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="6052:6233" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="6277:6324" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="6330:6507" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="6547:6655" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="6698:6818" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="6824:7001" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="7041:7150" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="7193:7320" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="7325:7614" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="7655:7765" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="7771:8059" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="8099:8210" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="8252:8364" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="8370:8665" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="8709:8824" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="8830:9118" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="9169:9365" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="9372:9602" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="9641:9837" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="9843:10077" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="10119:10318" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="10324:10627" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="10671:10784" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="10790:11032" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="11075:11219" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="11265:11381" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="11600:11803" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="11852:11971" ph="{...}" />
+                <marker date="1493719918677" expanded="true" signature="12244:12377" ph="/**...*/" />
+                <marker date="1493719918677" expanded="true" signature="12407:12646" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -93,17 +237,26 @@
       <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="801" column="27" lean-forward="false" selection-start-line="801" selection-start-column="27" selection-end-line="801" selection-end-column="27" />
+            <state relative-caret-position="306">
+              <caret line="765" column="75" lean-forward="false" selection-start-line="765" selection-start-column="75" selection-end-line="765" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#17169#17179#0" expanded="true" />
-                <element signature="e#18675#18685#0" expanded="true" />
-                <element signature="e#18750#18760#0" expanded="true" />
-                <element signature="e#18867#18877#0" expanded="true" />
-                <element signature="e#18992#19002#0" expanded="true" />
-                <element signature="e#19093#19102#0" expanded="true" />
-                <element signature="e#22418#22435#0" expanded="true" />
+                <marker date="1493719918661" expanded="true" signature="32547:32835" ph="//..." />
+                <marker date="1493719918661" expanded="true" signature="32847:33017" ph="/**...*/" />
+                <marker date="1493719918661" expanded="true" signature="33067:33768" ph="{...}" />
+                <marker date="1493719918661" expanded="true" signature="33815:34486" ph="{...}" />
+                <marker date="1493719918661" expanded="true" signature="34519:64904" ph="{...}" />
+                <marker date="1493719918661" expanded="true" signature="48200:52869" ph="//..." />
+                <marker date="1493719918661" expanded="true" signature="64943:65298" ph="/**...*/" />
+                <marker date="1493719918661" expanded="true" signature="65345:66308" ph="{...}" />
+                <marker date="1493719918661" expanded="true" signature="65522:65763" ph="//..." />
+                <marker date="1493719918661" expanded="true" signature="66053:66302" ph="//..." />
+                <marker date="1493719918661" expanded="true" signature="66315:66447" ph="/**...*/" />
+                <marker date="1493719918661" expanded="true" signature="66492:67033" ph="{...}" />
+                <marker date="1493719918661" expanded="true" signature="66494:67027" ph="//..." />
+                <marker date="1493719918661" expanded="true" signature="67083:67119" ph="/**...*/" />
+                <marker date="1493719918661" expanded="true" signature="67195:68045" ph="/**...*/" />
+                <marker date="1493719918661" expanded="true" signature="68111:68613" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -112,9 +265,16 @@
       <file leaf-file-name="Lantern.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="557">
+            <state relative-caret-position="1000">
               <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2099#2100#0" expanded="false" />
+                <element signature="e#2142#2143#0" expanded="false" />
+                <element signature="e#2464#2465#0" expanded="false" />
+                <element signature="e#2502#2503#0" expanded="false" />
+                <element signature="e#2528#2529#0" expanded="false" />
+                <element signature="e#2566#2567#0" expanded="false" />
                 <marker date="1493106844234" expanded="false" signature="2965:2971" ph=" }" />
               </folding>
             </state>
@@ -124,9 +284,23 @@
       <file leaf-file-name="Familiar.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Familiar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-921">
+            <state relative-caret-position="420">
               <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2403#2404#0" expanded="false" />
+                <element signature="e#2428#2429#0" expanded="false" />
+                <element signature="e#2476#2477#0" expanded="false" />
+                <element signature="e#2519#2520#0" expanded="false" />
+                <element signature="e#2565#2566#0" expanded="false" />
+                <element signature="e#2600#2601#0" expanded="false" />
+                <element signature="e#2626#2627#0" expanded="false" />
+                <element signature="e#2664#2665#0" expanded="false" />
+                <element signature="e#2690#2691#0" expanded="false" />
+                <element signature="e#2728#2729#0" expanded="false" />
+                <element signature="e#2817#2818#0" expanded="false" />
+                <element signature="e#2847#2848#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -134,28 +308,23 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="60" lean-forward="false" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
-              <folding />
+            <state relative-caret-position="540">
+              <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+              <folding>
+                <marker date="1493720034569" expanded="true" signature="154398:154415" ph="..." />
+                <marker date="1493720034569" expanded="true" signature="154398:154433" ph="..." />
+                <marker date="1493720034569" expanded="true" signature="154398:154446" ph="..." />
+                <marker date="1493720034569" expanded="true" signature="154398:154461" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EnvAsset.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/EnvAsset.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="135" column="0" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fog.frag.glsl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fog.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="139" column="84" lean-forward="false" selection-start-line="139" selection-start-column="84" selection-end-line="139" selection-end-column="84" />
+            <state relative-caret-position="314">
+              <caret line="142" column="41" lean-forward="false" selection-start-line="142" selection-start-column="41" selection-end-line="142" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -174,32 +343,19 @@
       <file leaf-file-name="GameCanvas.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6092">
+            <state relative-caret-position="539">
               <caret line="414" column="28" lean-forward="false" selection-start-line="414" selection-start-column="28" selection-end-line="414" selection-end-column="28" />
-              <folding>
-                <element signature="e#5668#5669#0" expanded="true" />
-                <element signature="e#5705#5706#0" expanded="true" />
-                <element signature="e#6415#6416#0" expanded="true" />
-                <element signature="e#6453#6454#0" expanded="true" />
-                <element signature="e#7112#7113#0" expanded="true" />
-                <element signature="e#7187#7188#0" expanded="true" />
-                <element signature="e#7952#7953#0" expanded="true" />
-                <element signature="e#7993#7994#0" expanded="true" />
-                <element signature="e#9569#9570#0" expanded="true" />
-                <element signature="e#9588#9589#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="532" column="0" lean-forward="false" selection-start-line="532" selection-start-column="0" selection-end-line="532" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="791" column="53" lean-forward="true" selection-start-line="791" selection-start-column="53" selection-end-line="791" selection-end-column="53" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -208,9 +364,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>UnderFog</find>
-      <find>fog.dr</find>
-      <find>draw</find>
       <find>edgewalls</find>
       <find>gorf.draw</find>
       <find>edgewall</find>
@@ -238,6 +391,9 @@
       <find>res</find>
       <find>prep</find>
       <find>head</find>
+      <find>updateG</find>
+      <find>fog.u</find>
+      <find>body</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -984,9 +1140,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       </list>
     </option>
   </component>
@@ -1010,8 +1169,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1074,109 +1231,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gdiac" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shaders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jsons" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="RunManager" selected="Application.Unnamed">
@@ -1406,7 +1469,17 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="" />
+      <created>1493487683964</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1493487683964</updated>
+    </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1422,20 +1495,20 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.50427353" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.4937107" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30415756" sideWeight="0.4957265" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26976496" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27510685" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39824945" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1463,9 +1536,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1475,13 +1546,22 @@
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#17169#17179#0" expanded="true" />
-            <element signature="e#18675#18685#0" expanded="true" />
-            <element signature="e#18750#18760#0" expanded="true" />
-            <element signature="e#18867#18877#0" expanded="true" />
-            <element signature="e#18992#19002#0" expanded="true" />
-            <element signature="e#19093#19102#0" expanded="true" />
-            <element signature="e#22418#22435#0" expanded="true" />
+            <marker date="1493719918661" expanded="true" signature="32547:32835" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="32847:33017" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="33067:33768" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="33815:34486" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="34519:64904" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="48200:52869" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="64943:65298" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="65345:66308" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="65522:65763" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66053:66302" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66315:66447" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="66492:67033" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="66494:67027" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="67083:67119" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="67195:68045" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="68111:68613" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1491,9 +1571,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1503,13 +1581,22 @@
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#17169#17179#0" expanded="true" />
-            <element signature="e#18675#18685#0" expanded="true" />
-            <element signature="e#18750#18760#0" expanded="true" />
-            <element signature="e#18867#18877#0" expanded="true" />
-            <element signature="e#18992#19002#0" expanded="true" />
-            <element signature="e#19093#19102#0" expanded="true" />
-            <element signature="e#22418#22435#0" expanded="true" />
+            <marker date="1493719918661" expanded="true" signature="32547:32835" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="32847:33017" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="33067:33768" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="33815:34486" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="34519:64904" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="48200:52869" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="64943:65298" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="65345:66308" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="65522:65763" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66053:66302" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66315:66447" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="66492:67033" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="66494:67027" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="67083:67119" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="67195:68045" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="68111:68613" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1519,9 +1606,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3760">
           <caret line="204" column="36" lean-forward="true" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1531,13 +1616,22 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#17169#17179#0" expanded="true" />
-            <element signature="e#18675#18685#0" expanded="true" />
-            <element signature="e#18750#18760#0" expanded="true" />
-            <element signature="e#18867#18877#0" expanded="true" />
-            <element signature="e#18992#19002#0" expanded="true" />
-            <element signature="e#19093#19102#0" expanded="true" />
-            <element signature="e#22418#22435#0" expanded="true" />
+            <marker date="1493719918661" expanded="true" signature="32547:32835" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="32847:33017" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="33067:33768" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="33815:34486" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="34519:64904" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="48200:52869" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="64943:65298" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="65345:66308" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="65522:65763" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66053:66302" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66315:66447" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="66492:67033" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="66494:67027" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="67083:67119" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="67195:68045" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="68111:68613" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1546,9 +1640,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1558,13 +1650,22 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#17169#17179#0" expanded="true" />
-            <element signature="e#18675#18685#0" expanded="true" />
-            <element signature="e#18750#18760#0" expanded="true" />
-            <element signature="e#18867#18877#0" expanded="true" />
-            <element signature="e#18992#19002#0" expanded="true" />
-            <element signature="e#19093#19102#0" expanded="true" />
-            <element signature="e#22418#22435#0" expanded="true" />
+            <marker date="1493719918661" expanded="true" signature="32547:32835" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="32847:33017" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="33067:33768" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="33815:34486" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="34519:64904" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="48200:52869" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="64943:65298" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="65345:66308" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="65522:65763" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66053:66302" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66315:66447" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="66492:67033" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="66494:67027" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="67083:67119" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="67195:68045" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="68111:68613" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1573,9 +1674,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1608,7 +1707,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="58" column="24" lean-forward="true" selection-start-line="58" selection-start-column="24" selection-end-line="58" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1774,14 +1872,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1980">
-          <caret line="102" column="27" lean-forward="false" selection-start-line="102" selection-start-column="27" selection-end-line="102" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GDXRoot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1140">
@@ -1818,46 +1908,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/EnvAsset.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
+        <state relative-caret-position="2300">
           <caret line="135" column="0" lean-forward="false" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6092">
-          <caret line="414" column="28" lean-forward="false" selection-start-line="414" selection-start-column="28" selection-end-line="414" selection-end-column="28" />
-          <folding>
-            <element signature="e#5668#5669#0" expanded="true" />
-            <element signature="e#5705#5706#0" expanded="true" />
-            <element signature="e#6415#6416#0" expanded="true" />
-            <element signature="e#6453#6454#0" expanded="true" />
-            <element signature="e#7112#7113#0" expanded="true" />
-            <element signature="e#7187#7188#0" expanded="true" />
-            <element signature="e#7952#7953#0" expanded="true" />
-            <element signature="e#7993#7994#0" expanded="true" />
-            <element signature="e#9569#9570#0" expanded="true" />
-            <element signature="e#9588#9589#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Familiar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-921">
+        <state relative-caret-position="420">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="164" column="26" lean-forward="false" selection-start-line="164" selection-start-column="26" selection-end-line="164" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5890#5909#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2403#2404#0" expanded="false" />
+            <element signature="e#2428#2429#0" expanded="false" />
+            <element signature="e#2476#2477#0" expanded="false" />
+            <element signature="e#2519#2520#0" expanded="false" />
+            <element signature="e#2565#2566#0" expanded="false" />
+            <element signature="e#2600#2601#0" expanded="false" />
+            <element signature="e#2626#2627#0" expanded="false" />
+            <element signature="e#2664#2665#0" expanded="false" />
+            <element signature="e#2690#2691#0" expanded="false" />
+            <element signature="e#2728#2729#0" expanded="false" />
+            <element signature="e#2817#2818#0" expanded="false" />
+            <element signature="e#2847#2848#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1872,53 +1946,257 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
+        <state relative-caret-position="1000">
           <caret line="60" column="0" lean-forward="false" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2099#2100#0" expanded="false" />
+            <element signature="e#2142#2143#0" expanded="false" />
+            <element signature="e#2464#2465#0" expanded="false" />
+            <element signature="e#2502#2503#0" expanded="false" />
+            <element signature="e#2528#2529#0" expanded="false" />
+            <element signature="e#2566#2567#0" expanded="false" />
             <marker date="1493106844234" expanded="false" signature="2965:2971" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="532" column="0" lean-forward="false" selection-start-line="532" selection-start-column="0" selection-end-line="532" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="801" column="27" lean-forward="false" selection-start-line="801" selection-start-column="27" selection-end-line="801" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#17169#17179#0" expanded="true" />
-            <element signature="e#18675#18685#0" expanded="true" />
-            <element signature="e#18750#18760#0" expanded="true" />
-            <element signature="e#18867#18877#0" expanded="true" />
-            <element signature="e#18992#19002#0" expanded="true" />
-            <element signature="e#19093#19102#0" expanded="true" />
-            <element signature="e#22418#22435#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="60" lean-forward="false" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
+        <state relative-caret-position="540">
+          <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+          <folding>
+            <marker date="1493720034569" expanded="true" signature="154398:154415" ph="..." />
+            <marker date="1493720034569" expanded="true" signature="154398:154433" ph="..." />
+            <marker date="1493720034569" expanded="true" signature="154398:154446" ph="..." />
+            <marker date="1493720034569" expanded="true" signature="154398:154461" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="462" column="29" lean-forward="false" selection-start-line="462" selection-start-column="29" selection-end-line="462" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1493719918625" expanded="true" signature="5892:5911" ph="&lt;~&gt;" />
+            <marker date="1493719918625" expanded="true" signature="7181:7328" ph="//..." />
+            <marker date="1493719918625" expanded="true" signature="7650:8088" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="8179:8536" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="8540:9073" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="9176:9426" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="9430:9707" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="9757:9865" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="9869:9907" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="9949:9993" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10035:10086" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10131:10190" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10236:10288" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10339:10401" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10445:10507" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10553:10598" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10655:10701" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10759:10794" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10826:10862" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="10920:10930" ph="&lt;~&gt;" />
+            <marker date="1493719918625" expanded="true" signature="10935:10966" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11024:11034" ph="&lt;~&gt;" />
+            <marker date="1493719918625" expanded="true" signature="11039:11104" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11141:11163" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11189:11221" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11252:11274" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11304:11354" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11381:11424" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11453:11515" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11542:11584" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11610:11655" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="11682:11842" ph="/**...*/" />
+            <marker date="1493719918625" expanded="false" signature="11869:11874" ph=" { " />
+            <marker date="1493719918625" expanded="false" signature="11887:11890" ph=" }" />
+            <marker date="1493719918625" expanded="true" signature="11893:12055" ph="/**...*/" />
+            <marker date="1493719918625" expanded="false" signature="12092:12097" ph=" { " />
+            <marker date="1493719918625" expanded="false" signature="12111:12114" ph=" }" />
+            <marker date="1493719918625" expanded="true" signature="12117:12275" ph="/**...*/" />
+            <marker date="1493719918625" expanded="false" signature="12305:12310" ph=" { " />
+            <marker date="1493719918625" expanded="false" signature="12326:12329" ph=" }" />
+            <marker date="1493719918625" expanded="true" signature="12332:12492" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="12533:12603" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="12606:12756" ph="/**...*/" />
+            <marker date="1493719918625" expanded="false" signature="12785:12790" ph=" { " />
+            <marker date="1493719918625" expanded="false" signature="12804:12807" ph=" }" />
+            <marker date="1493719918625" expanded="true" signature="12810:12962" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="13002:13070" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="13074:13178" ph="/**...*/" />
+            <marker date="1493719918625" expanded="false" signature="13206:13211" ph=" { " />
+            <marker date="1493719918625" expanded="false" signature="13225:13228" ph=" }" />
+            <marker date="1493719918625" expanded="true" signature="13231:13346" ph="/**...*/" />
+            <marker date="1493719918625" expanded="false" signature="13377:13382" ph=" { " />
+            <marker date="1493719918625" expanded="false" signature="13396:13399" ph=" }" />
+            <marker date="1493719918625" expanded="true" signature="13403:13593" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="13636:13774" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="13778:14014" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="14044:14150" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="14153:14508" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="14578:14647" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="14650:14983" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="15046:15306" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="15310:15384" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="15408:15644" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="15647:15866" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="15910:15987" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="15990:16087" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="16128:16234" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="16237:16439" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="16479:16682" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="16686:16820" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="16855:17107" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="17144:17965" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="17879:17938" ph="//..." />
+            <marker date="1493719918625" expanded="true" signature="17969:18355" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="18399:18670" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="18705:19595" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="19092:19234" ph="//..." />
+            <marker date="1493719918625" expanded="true" signature="19599:19866" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="19898:20586" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="20590:20842" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="20886:20910" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="20913:21162" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="21196:21351" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="21354:21527" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="21549:21590" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="21593:21707" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="21730:21771" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="21775:21850" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="21871:21941" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="21944:22024" ph="/**...*/" />
+            <marker date="1493719918625" expanded="true" signature="22045:22116" ph="{...}" />
+            <marker date="1493719918625" expanded="true" signature="22119:22230" ph="/**...*/" />
+            <marker date="1493719918625" expanded="false" signature="22286:22291" ph=" { " />
+            <marker date="1493719918625" expanded="false" signature="22316:22319" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="414" column="28" lean-forward="false" selection-start-line="414" selection-start-column="28" selection-end-line="414" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="765" column="75" lean-forward="false" selection-start-line="765" selection-start-column="75" selection-end-line="765" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1493719918661" expanded="true" signature="32547:32835" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="32847:33017" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="33067:33768" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="33815:34486" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="34519:64904" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="48200:52869" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="64943:65298" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="65345:66308" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="65522:65763" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66053:66302" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="66315:66447" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="66492:67033" ph="{...}" />
+            <marker date="1493719918661" expanded="true" signature="66494:67027" ph="//..." />
+            <marker date="1493719918661" expanded="true" signature="67083:67119" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="67195:68045" ph="/**...*/" />
+            <marker date="1493719918661" expanded="true" signature="68111:68613" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="221" column="39" lean-forward="true" selection-start-line="221" selection-start-column="39" selection-end-line="221" selection-end-column="39" />
+          <folding>
+            <marker date="1493719918677" expanded="true" signature="716:825" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="870:915" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="1140:1197" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="1234:1293" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="1330:1405" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="1446:1484" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="1522:1600" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="1653:1721" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="1794:2136" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="2175:2218" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="2246:2290" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="2319:2363" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="2395:2467" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="2532:2775" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="2849:3602" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="3608:3696" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="3726:4316" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="4322:4528" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="4567:4668" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="4674:4907" ph="/**...*/" />
+            <marker date="1493719918677" expanded="false" signature="4949:4960" ph=" { " />
+            <marker date="1493719918677" expanded="false" signature="5011:5017" ph=" }" />
+            <marker date="1493719918677" expanded="true" signature="5023:5173" ph="/**...*/" />
+            <marker date="1493719918677" expanded="false" signature="5199:5210" ph=" { " />
+            <marker date="1493719918677" expanded="false" signature="5223:5229" ph=" }" />
+            <marker date="1493719918677" expanded="true" signature="5235:5381" ph="/**...*/" />
+            <marker date="1493719918677" expanded="false" signature="5408:5419" ph=" { " />
+            <marker date="1493719918677" expanded="false" signature="5433:5439" ph=" }" />
+            <marker date="1493719918677" expanded="true" signature="5445:5550" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="5584:5606" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="5612:5715" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="5748:5769" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="5775:5956" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="6000:6046" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="6052:6233" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="6277:6324" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="6330:6507" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="6547:6655" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="6698:6818" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="6824:7001" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="7041:7150" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="7193:7320" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="7325:7614" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="7655:7765" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="7771:8059" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="8099:8210" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="8252:8364" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="8370:8665" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="8709:8824" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="8830:9118" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="9169:9365" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="9372:9602" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="9641:9837" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="9843:10077" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="10119:10318" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="10324:10627" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="10671:10784" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="10790:11032" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="11075:11219" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="11265:11381" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="11600:11803" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="11852:11971" ph="{...}" />
+            <marker date="1493719918677" expanded="true" signature="12244:12377" ph="/**...*/" />
+            <marker date="1493719918677" expanded="true" signature="12407:12646" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="139" column="84" lean-forward="false" selection-start-line="139" selection-start-column="84" selection-end-line="139" selection-end-column="84" />
+        <state relative-caret-position="314">
+          <caret line="142" column="41" lean-forward="false" selection-start-line="142" selection-start-column="41" selection-end-line="142" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="791" column="53" lean-forward="true" selection-start-line="791" selection-start-column="53" selection-end-line="791" selection-end-column="53" />
           <folding />
         </state>
       </provider>
