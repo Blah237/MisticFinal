@@ -74,7 +74,8 @@ public abstract class WorldController implements Screen {
 	/** Retro font for displaying messages */
 	private static String FONT_FILE = "shared/RetroGame.ttf";
 	/** Minimap asset */
-	private static String MINIMAP_FILE = "minimaps/BETA_basic_blockfog.png"; // MINIMAP ASSET PATH PUT HERE!!!
+	public static String JSON_FILE;
+	public static String MINIMAP_FILE = "minimaps/BETA_basic_blockfog.png"; // MINIMAP ASSET PATH PUT HERE!!!
 	private static int FONT_SIZE = 64;
 
 	/** The texture for walls and platforms */
