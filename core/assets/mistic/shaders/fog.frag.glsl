@@ -137,7 +137,10 @@ void main() {
     float dy3 = abs(coord.y-.5);
 
     float dist3 = length(vec2(dx3, dy3));
-    fogThickness *= smoothstep(min(.25 + float(numFireflies)*.055, .55)-.25, min(.25 + float(numFireflies)*.055, .55), dist3);
+
+    float radius = .4*(1-exp(-numFireflies/2.0));
+
+    fogThickness *= smoothstep(radius, .4+radius, dist3);
 
     fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
 //    fog *= min(1.0,fogThickness);
