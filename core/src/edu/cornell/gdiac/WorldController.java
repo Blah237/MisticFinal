@@ -219,6 +219,10 @@ public abstract class WorldController implements Screen {
 						treeCount++;
 						tileBoard.tiles[i][j].hasTree=treeCount;
 						break;
+					// will un-comment once Sarah gets back to me
+//					case '<some letter>':
+//						tileBoard.tiles[i][j].spawnPoint=true;
+//						break;
 					default:
 						break;
 				}
