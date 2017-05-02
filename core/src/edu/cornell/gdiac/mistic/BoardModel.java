@@ -23,6 +23,8 @@ public class BoardModel {
         public boolean isFogSpawn;
         /** Is this tile a fog spawn point */
         public boolean isFog;
+        /** Is there a spawn point here */
+        public boolean spawnPoint;
         /** Is there a familiar here */
         public boolean hasFamiliar;
         /** Is this tile Gorf's starting position? */

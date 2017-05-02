@@ -29,90 +29,66 @@ public class FireflyController {
     private Vector2 scale;
     /**The time between firefly spawns*/
     private float SPAWN_TIME;
-    private int MAX_FIREFLIES=10;
-    private int maxfireflies = MAX_FIREFLIES;
+    private BoardModel.Tile[] fireflyLocations;
     public Firefly[] fireflies;
     private FilmStrip animate;
 
-    public FireflyController(TextureRegion texture, Vector2 scale, BoardModel board){
-        fireflies=new Firefly[maxfireflies];
+    public FireflyController(TextureRegion texture, ArrayList<BoardModel.Tile> locations, Vector2 scale, BoardModel board){
+        fireflies=new Firefly[locations.size()];
         tex=texture;
         this.board=board;
+        this.fireflyLocations=locations.toArray(new BoardModel.Tile[locations.size()]);
         this.scale=scale;
     }
 
-    public boolean update(GorfModel gorf){
-        fogDeath();
-        Firefly f=getFirefly(gorf);
-        updateFireflyAnimation();
-        if(f!=null){
-            f.setDestroyed(true);
-            return true;
+    public void populate(){
+        for(int i=0;i<fireflyLocations.length;i++){
+            float fx = board.boardtoScreenX(fireflyLocations[i].x);
+            float fy = board.boardToScreenY(fireflyLocations[i].y);
+            Firefly f= new Firefly(fx,fy,tex);
+            fireflies[i]=f;
         }
-        return false;
     }
+
+    public boolean update(GorfModel gorf){
+        boolean collected=false;
+        for(Firefly F : fireflies) {
+            F.fireflyAnimate();
+            fogDeath(F);
+            if (!F.isDestroyed()) {
+                float dx = Math.abs((F.getX() / scale.x) - gorf.getX());
+                float dy = Math.abs((F.getY() / scale.y) - gorf.getY());
+                if (dx < gorf.getWidth()/1.5 && dy < gorf.getHeight()/1.5) {
+                    F.setDestroyed(true);
+                    collected=true;
+                }
+            }else{
+                F.respawnTimer++;
+                if(F.respawnTimer==F.RESPAWN){
+                    F.setDestroyed(false);
+                    F.respawnTimer=0;
+                }
+            }
+        }
+
+        return collected;
+    }
+
+    public void fogDeath(Firefly f){
+        if (board.tiles[board.screenToBoardX(f.getX())][board.screenToBoardY(f.getY())].isFog){
+            f.setDestroyed(true);
+        }
+    }
+
+    public void reset(){
+        //TODO
+    }
+
 
     public Firefly[] getFireflies(){
         return fireflies;
     }
 
-    public void spawn(){
-        int x= random(99);
-        int y=random(99);
-        //System.out.println("Firefly at: "+ x + ", "+y);
-        BoardModel.Tile t= board.tiles[x][y];
-        if(!(t.isWall || t.isFog)){
-           create(t.fx,t.fy);
-        }
-    }
-
-    public void fogDeath(){
-        for(Firefly f : fireflies){
-            if(f!=null){
-                if (board.tiles[board.screenToBoardX(f.getX())][board.screenToBoardY(f.getY())].isFog){
-                    f.setDestroyed(true);
-                }
-            }
-        }
-    }
 
 
-    public Firefly getFirefly(GorfModel gorf){
-        for(Firefly F : fireflies) {
-            if (F!=null && !F.isDestroyed()) {
-                float dx = Math.abs((F.getX() / scale.x) - gorf.getX());
-                float dy = Math.abs((F.getY() / scale.y) - gorf.getY());
-                if (dx < gorf.getWidth()/1.5 && dy < gorf.getHeight()/1.5) {
-                    return F;
-                }
-            }
-        }
-            return null;
-    }
-
-
-    public void add(Firefly f){
-        for(int i=0; i<fireflies.length; i++){
-            if(fireflies[i]==null){
-                fireflies[i]=f;
-                return;
-            }else if (fireflies[i].isDestroyed()){
-                fireflies[i]=f;
-                return;
-            }
-        }
-    }
-
-    public void create(float x, float y){
-        Firefly f= new Firefly(x,y,tex);
-        this.add(f);
-    }
-
-
-
-    public void updateFireflyAnimation(){
-            for(Firefly f:fireflies){
-                if(f!=null){f.fireflyAnimate();}
-            }
-    }
 }
