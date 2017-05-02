@@ -138,7 +138,7 @@ void main() {
 
     float dist3 = length(vec2(dx3, dy3));
 
-    float radius = .4*(1-exp(-numFireflies/2.0));
+    float radius = .4*(1.0-exp(float(-numFireflies)/2.0));
 
     fogThickness *= smoothstep(radius, .4+radius, dist3);
 
