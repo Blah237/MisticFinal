@@ -763,7 +763,7 @@ public class GameController extends WorldController implements ContactListener {
                 }
         }
 
-        fog.update(gorf,Lanterns,familiars,tileBoard, dt);
+        fog.update(gorf,Lanterns,familiars, firefly_count,tileBoard,canvas,dt);
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
@@ -1340,29 +1340,32 @@ public class GameController extends WorldController implements ContactListener {
         }
         canvas.end();
 
-        // minimap
-        canvas.begin(gorf.getPosition());
-        // draw background texture
-        canvas.draw(backgroundTexture,Color.WHITE,
-                gorf.getPosition().x * scale.x + 115.0f,
-                gorf.getPosition().y * scale.y - 155.0f,
-                super.getMinimap().getWidth(),
-                super.getMinimap().getHeight());
-        // draw custom level's minimap
-        canvas.draw(super.getMinimap().getTexture(),Color.WHITE,
-                gorf.getPosition().x * scale.x + 115.0f,
-                gorf.getPosition().y * scale.y - 155.0f,
-                super.getMinimap().getWidth(),
-                super.getMinimap().getHeight());
-        canvas.end();
-        canvas.begin(gorf.getPosition());
-        // draw gorf moving representation
-        super.getMinimap().draw(canvas,
-                gorf.getPosition().x,
-                gorf.getPosition().y,
-                gorf.getPosition().x * scale.x + 115.0f,
-                gorf.getPosition().y * scale.y - 155.0f);
-        canvas.end();
+        // toggle minimap with 'm'
+        if (InputController.getInstance().didM()) {
+            // minimap
+            canvas.begin(gorf.getPosition());
+            // draw background texture
+            canvas.draw(backgroundTexture, Color.WHITE,
+                    gorf.getPosition().x * scale.x + 115.0f,
+                    gorf.getPosition().y * scale.y - 155.0f,
+                    super.getMinimap().getWidth(),
+                    super.getMinimap().getHeight());
+            // draw custom level's minimap
+            canvas.draw(super.getMinimap().getTexture(), Color.WHITE,
+                    gorf.getPosition().x * scale.x + 115.0f,
+                    gorf.getPosition().y * scale.y - 155.0f,
+                    super.getMinimap().getWidth(),
+                    super.getMinimap().getHeight());
+            canvas.end();
+            canvas.begin(gorf.getPosition());
+            // draw gorf moving representation
+            super.getMinimap().draw(canvas,
+                    gorf.getPosition().x,
+                    gorf.getPosition().y,
+                    gorf.getPosition().x * scale.x + 115.0f,
+                    gorf.getPosition().y * scale.y - 155.0f);
+            canvas.end();
+        }
 
         canvas.begin();
         // PLACEHOLDER--will be replaced by Victory screen
@@ -1417,12 +1420,12 @@ public class GameController extends WorldController implements ContactListener {
         Body body2 = contact.getFixtureB().getBody();
         WorldManifold worldManifold = contact.getWorldManifold();
 
-        if (body1.getUserData() == "monster" && body2 == gorf.getBody()) {
-            this.DEAD = true;
-        }
-        if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
-            this.DEAD = true;
-        }
+//        if (body1.getUserData() == "monster" && body2 == gorf.getBody()) {
+//            this.DEAD = true;
+//        }
+//        if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
+//            this.DEAD = true;
+//        }
 
         if (body1 == gorf.getBody() || body2 == gorf.getBody()) {
             if (worldManifold.getNormal().y == 0f) {
