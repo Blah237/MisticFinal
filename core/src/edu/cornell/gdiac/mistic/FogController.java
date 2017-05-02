@@ -47,7 +47,7 @@ public class FogController {
 	Array<Vector2> fogOrigins;
 	Vector2 gorfPos;
 
-	private final int FOG_DELAY = 3;
+	private final int FOG_DELAY = 4;
 	int spreadType;
 	float thickness;
 	float spreadCount;

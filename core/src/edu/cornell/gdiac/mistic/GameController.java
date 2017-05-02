@@ -399,7 +399,7 @@ public class GameController extends WorldController implements ContactListener {
     boolean pawTimerStart = false;
 
     //monster stuff
-    int monsterSpawnTimer = 1200;
+    int monsterSpawnTimer = 1000;
     boolean monsterSpawn = false;
 
 
@@ -511,7 +511,7 @@ public class GameController extends WorldController implements ContactListener {
         familiars.reset();
         ai = new AIControllerS(monster, gorf, tileBoard);
         monsterSpawn = false;
-        monsterSpawnTimer = 1200;
+        monsterSpawnTimer = 1000;
         countdown=120;
 
         fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2, false);
