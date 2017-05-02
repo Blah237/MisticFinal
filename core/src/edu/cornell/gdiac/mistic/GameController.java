@@ -547,7 +547,6 @@ public class GameController extends WorldController implements ContactListener {
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
         ArrayList<BoardModel.Tile> fireflyPositions = new ArrayList<BoardModel.Tile>();
         tileBoard.tiles[50][50].spawnPoint=true;
-        tileBoard.tiles[25][50].spawnPoint=true;
         tileBoard.tiles[50][25].spawnPoint=true;
         tileBoard.tiles[25][25].spawnPoint=true;
         tileBoard.tiles[75][75].spawnPoint=true;

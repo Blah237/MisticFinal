@@ -169,6 +169,7 @@ public abstract class WorldController implements Screen {
 		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/BETA_basic_blockfog.json")); // JSON ASSET PUT PATH HERE !!!
 
 
+
 		HashMap<Integer,Character> textureIDs = new HashMap<Integer,Character>();
 		JsonValue tilesets = levelFormat.get("tilesets").child();
 		while (tilesets!=null) {
