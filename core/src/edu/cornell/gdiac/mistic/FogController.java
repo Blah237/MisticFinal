@@ -336,62 +336,10 @@ public class FogController {
 
 		batch.draw(fboRegion, pos.x, pos.y, screenDim.x, screenDim.y);
 
-//		batch.setShader(null);
-//
-//		for (int i=0; i<WX; i++) {
-//			for (int j = 0; j < WY; j++) {
-//				if (fogBoard[i][j] == BOUNDARY) {
-//					canvas.draw(boundaryFog, Color.WHITE, i * tileW, j * tileH, tileW, tileH);
-//				}
-//			}
-//		}
-
 		logger.log();
 	}
 
-	public void drawBoundaries(GameCanvas canvas) {
-//		Texture t;
-//		for (int i=0; i<boundaryTiles.size; i++) {
-//			switch(boundaryTiles.get(i)) {
-//				case 1:  t = nTex;
-//						 break;
-//				case 2:  t = eTex;
-//						 break;
-//				case 3:  t = sTex;
-//						 break;
-//				case 4:  t = wTex;
-//						 break;
-//				case 5:  t = neTex;
-//						 break;
-//				case 6:  t = seTex;
-//						 break;
-//				case 7:  t = swTex;
-//						 break;
-//				case 8:  t = nwTex;
-//						 break;
-//				case 9:  t = nsTex;
-//						 break;
-//				case 10: t = ewTex;
-//						 break;
-//				case 11: t = newTex;
-//						 break;
-//				case 12: t = nseTex;
-//						 break;
-//				case 13: t = nswTex;
-//						 break;
-//				case 14: t = sewTex;
-//						 break;
-//				default: t = nTex;
-//						 break;
-//			}
-//			canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
-//			canvas.draw(t, Color.WHITE, boundaryPos.get(i).x*tileW, boundaryPos.get(i).y*tileH, tileW, tileH);
-//		}
-
-//		batch.end();
-	}
-
-	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, Familiar familiar, BoardModel tileBoard, float dt) {
+	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, Familiar familiar, int nFireflies, BoardModel tileBoard, GameCanvas canvas, float dt) {
 //		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 //		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 		gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
@@ -435,8 +383,8 @@ public class FogController {
 			startTileY = (int) Math.floor((gorfPos.y + (gorf.getFY() * dt * scale.y) - res.y * zoom / 2f) / screenDim.y * WY);
 
 		}
-//		} else {
-//		}
+
+		updateGorfGlow(nFireflies, gorfPos, tileBoard, canvas);
 
 //		if (startTileX % 2 == 1) {
 //			startTileX--;
@@ -768,6 +716,7 @@ public class FogController {
 					fogBoard[lx][ly] = 0f;
 				}
 				tileBoard.setFog(lx, ly, false);
+				tileBoard.setLanternGlow(lx, ly, true);
 			}
 
 			for (int j=-7; j<=7; j++) {
@@ -797,11 +746,13 @@ public class FogController {
 					fogBoard[lx][ly] = 0f;
 				}
 				tileBoard.setFog(lx, ly, false);
+				tileBoard.setLanternGlow(lx, ly, true);
 
 				for (int k = -bound; k <= bound; k++) {
 					lx = (int) ((lanternPos.x + k + WX) % WX);
 					fogBoard[lx][ly] = 0f;
 					tileBoard.setFog(lx, ly, false);
+					tileBoard.setLanternGlow(lx, ly, true);
 				}
 
 				ly = (int) ((lanternPos.y + bound + 1 + 2) % WY);
@@ -812,6 +763,7 @@ public class FogController {
 					fogBoard[lx][ly] = 0f;
 				}
 				tileBoard.setFog(lx, ly, false);
+				tileBoard.setLanternGlow(lx, ly, true);
 			}
 
 			for (int h=-2; h<=2; h++) {
@@ -823,10 +775,41 @@ public class FogController {
 					fogBoard[lx][ly] = 0f;
 				}
 				tileBoard.setFog(lx, ly, false);
+				tileBoard.setLanternGlow(lx, ly, true);
 			}
 
 			litLanternsA[i*2] = (litLanterns.get(i).getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 			litLanternsA[i*2+1] = (litLanterns.get(i).getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+		}
+	}
+
+	public void updateGorfGlow(int nFireflies, Vector2 gorfPos, BoardModel tileBoard, GameCanvas canvas) {
+//		float rCap = .45f*canvas.getWidth()*(canvas.getWidth()/canvas.getHeight());
+		float rCap = .4f*res.x*zoom/2.0f;
+		float radius = .4f*res.x*zoom/2.0f + rCap*(1f-(float)Math.exp(-nFireflies/2.0f));
+
+		int tx = tileBoard.screenToBoardX(gorfPos.x);
+		int ty = tileBoard.screenToBoardY(gorfPos.y);
+
+		tileBoard.setGorfGlow(tx, ty, true);
+		int tr = 1;
+		while (tr*tileW-tileW/2f < radius) {
+			for (int j=-tr; j<=tr; j++) {
+				for (int i = -tr; i <= tr; i++) {
+					if (gorfPos.dst(tileBoard.boardtoScreenX(i), tileBoard.boardToScreenY(j)) < radius) {
+						tileBoard.setGorfGlow((tx+i)%WX, (ty+j)%WY, true);
+					}
+				}
+			}
+			tr++;
+//			tileBoard.setGorfGlow(tx, ty+tr);
+//			tileBoard.setGorfGlow(tx+tr, ty+tr);
+//			tileBoard.setGorfGlow(tx+tr, ty);
+//			tileBoard.setGorfGlow(tx+tr, ty-tr);
+//			tileBoard.setGorfGlow(tx, ty-tr);
+//			tileBoard.setGorfGlow(tx-tr, ty-tr);
+//			tileBoard.setGorfGlow(tx-tr, ty);
+//			tileBoard.setGorfGlow(tx-tr, ty+tr);
 		}
 	}
 

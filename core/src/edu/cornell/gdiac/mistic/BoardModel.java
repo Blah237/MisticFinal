@@ -27,6 +27,10 @@ public class BoardModel {
         public boolean hasFamiliar;
         /** Is this tile Gorf's starting position? */
         public boolean isGorfStart;
+        /** Is this tile under Gorf's firefly glow? */
+        public boolean isGorfGlow;
+        /** Is this tile under a lantern's glow? */
+        public boolean isLanternGlow;
         /** Does this tile have a rock? (Can be 0, 1, 2, or 3) */
         public int hasRock;
         /** Does this tile have a tree? (Can be 0, 1, 2, 3 or 4) */
@@ -49,6 +53,8 @@ public class BoardModel {
             this.isFog=false;
             this.hasFamiliar=false;
             this.isGorfStart=false;
+            this.isGorfGlow=false;
+            this.isLanternGlow=false;
             this.hasRock=0;
             this.hasTree=0;
         }
@@ -107,6 +113,8 @@ public class BoardModel {
                 tile.isFog=false;
                 tile.hasFamiliar=false;
                 tile.isGorfStart=false;
+                tile.isGorfGlow=false;
+                tile.isLanternGlow=false;
                 tile.hasRock=0;
                 tile.hasTree=0;
             }
@@ -208,7 +216,7 @@ public class BoardModel {
     }
 
     public float boardtoScreenX(float x) {
-        float intX = (x*tileWidth);
+        float intX = (x*tileWidth + tileWidth/2f);
         if(intX==width){return intX-1;}
 
         return intX;
@@ -228,7 +236,7 @@ public class BoardModel {
     }
 
     public float boardToScreenY(float y) {
-        float intY = (int)(y*tileHeight);
+        float intY = (int)(y*tileHeight + tileHeight/2f);
         if(intY==height){return intY-1;}
         return intY;
     }
@@ -383,6 +391,40 @@ public class BoardModel {
         }
 
         return getTile(x, y).isFogSpawn;
+    }
+
+    public boolean isGorfGlow(int x, int y) {
+        if (!inBounds(x, y)) {
+            return false;
+        }
+
+        return getTile(x, y).isGorfGlow;
+    }
+
+    public void setGorfGlow(int x, int y, boolean val) {
+        if (!inBounds(x, y)) {
+            Gdx.app.error("Board", "Illegal tile "+x+","+y, new IndexOutOfBoundsException());
+            return;
+        }
+
+        getTile(x, y).isGorfGlow = val;
+    }
+
+    public boolean isLanternGlow(int x, int y) {
+        if (!inBounds(x, y)) {
+            return false;
+        }
+
+        return getTile(x, y).isLanternGlow;
+    }
+
+    public void setLanternGlow(int x, int y, boolean val) {
+        if (!inBounds(x, y)) {
+            Gdx.app.error("Board", "Illegal tile "+x+","+y, new IndexOutOfBoundsException());
+            return;
+        }
+
+        getTile(x, y).isLanternGlow = val;
     }
 
 
