@@ -72,6 +72,8 @@ public class InputController {
 	private boolean exitPrevious;
 	/** Whether the enter button was pressed*/
 	private boolean enterPressed;
+	/** Whether the 'm' button to toggle minimap was pressed */
+	private boolean mPressed;
 	
 	/** How much did we move horizontally? */
 	private float horizontal;
@@ -211,6 +213,13 @@ public class InputController {
 	 * @return true if the enter button was pressed.
 	 */
 	public boolean didEnter() { return enterPressed;}
+
+	/**
+	 * Returns true if the 'm' button was pressed.
+	 *
+	 * @return true if the 'm' button was pressed.
+	 */
+	public boolean didM() { return mPressed; }
 	
 	/**
 	 * Creates a new input controller
@@ -312,6 +321,8 @@ public class InputController {
 		prevPressed = (secondary && prevPressed) || (Gdx.input.isKeyPressed(Input.Keys.P));
 		nextPressed = (secondary && nextPressed) || (Gdx.input.isKeyPressed(Input.Keys.N));
 		exitPressed  = (secondary && exitPressed) || (Gdx.input.isKeyPressed(Input.Keys.ESCAPE));
+		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+			if (mPressed==true) {mPressed = false;} else {mPressed = true;}}
 		
 		// Directional controls
 		horizontal = (secondary ? horizontal : 0.0f);

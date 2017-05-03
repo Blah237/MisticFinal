@@ -169,6 +169,7 @@ public abstract class WorldController implements Screen {
 		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/BETA_basic_blockfog.json")); // JSON ASSET PUT PATH HERE !!!
 
 
+
 		HashMap<Integer,Character> textureIDs = new HashMap<Integer,Character>();
 		JsonValue tilesets = levelFormat.get("tilesets").child();
 		while (tilesets!=null) {
@@ -218,6 +219,10 @@ public abstract class WorldController implements Screen {
 						treeCount++;
 						tileBoard.tiles[i][j].hasTree=treeCount;
 						break;
+					// will un-comment once Sarah gets back to me
+//					case '<some letter>':
+//						tileBoard.tiles[i][j].spawnPoint=true;
+//						break;
 					default:
 						break;
 				}

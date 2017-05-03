@@ -113,6 +113,7 @@ public class GameController extends WorldController implements ContactListener {
     SoundController sounds = SoundController.getInstance();
     private static final String A_PEACE_SONG = "sounds/A_Peace_DEMO2.mp3";
     private static final String B_MARSH_SONG = "sounds/B_Marsh_DEMO2.mp3";
+    private static final String D_PEACE_SONG = "sounds/D_Peace_DEMO2.mp3";
 
     private TextureRegion fireflyAnimation;
     private FilmStrip pawAnimation;
@@ -290,6 +291,8 @@ public class GameController extends WorldController implements ContactListener {
         assets.add(A_PEACE_SONG);
         manager.load(B_MARSH_SONG, Sound.class);
         assets.add(B_MARSH_SONG);
+        manager.load(D_PEACE_SONG, Sound.class);
+        assets.add(D_PEACE_SONG);
 
         super.preLoadContent(manager);
     }
@@ -367,6 +370,7 @@ public class GameController extends WorldController implements ContactListener {
         // allocate sounds
         sounds.allocate(manager,A_PEACE_SONG);
         sounds.allocate(manager,B_MARSH_SONG);
+        sounds.allocate(manager,D_PEACE_SONG );
 
         super.loadContent(manager, canvas);
         tileBoard=super.getTileBoard();
@@ -464,7 +468,6 @@ public class GameController extends WorldController implements ContactListener {
         setComplete(false);
         setFailure(false);
         world.setContactListener(this);
-        this.fireflyController=new FireflyController(fireflyAnimation, scale,tileBoard);
         this.firefly_count = 2;
         this.DEAD = false;
         this.fireflyDeathTimer=0;
@@ -490,8 +493,6 @@ public class GameController extends WorldController implements ContactListener {
         landmarks.clear();
         addQueue.clear();
         world.dispose();
-
-        fireflyController = new FireflyController(fireflyAnimation, scale,tileBoard);
         this.firefly_count = 2;
         this.fireflyDeathTimer=0;
         world = new World(gravity,false);
@@ -531,7 +532,7 @@ public class GameController extends WorldController implements ContactListener {
         // Stop all existing instances, and then re-play
         //if (sounds.isActive("A")) {sounds.stop("A");}
         sounds.stop("B");
-        sounds.play("A",A_PEACE_SONG,false);
+        sounds.play("D",D_PEACE_SONG,false);
         sounds.play("B",B_MARSH_SONG,true);
     }
 
@@ -544,6 +545,12 @@ public class GameController extends WorldController implements ContactListener {
 
         // Initializer
         ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
+        ArrayList<BoardModel.Tile> fireflyPositions = new ArrayList<BoardModel.Tile>();
+        tileBoard.tiles[50][50].spawnPoint=true;
+        tileBoard.tiles[50][25].spawnPoint=true;
+        tileBoard.tiles[25][25].spawnPoint=true;
+        tileBoard.tiles[75][75].spawnPoint=true;
+        //tileBoard.tiles[75][75].hasTree=3;
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
                 //if (t.isFogSpawn) {
@@ -585,6 +592,9 @@ public class GameController extends WorldController implements ContactListener {
                 if (t.isGorfStart) {
                     gorfStart = new Vector2(tileBoard.getTileCenterX(t)/scale.x, tileBoard.getTileCenterY(t)/scale.y);
                 }
+                if (t.spawnPoint){
+                    fireflyPositions.add(t);
+                }
                 if(t.hasRock !=0){
                     int num = t.hasRock-1;
                     EnvAsset rock = new EnvAsset(tileBoard.getTileCenterX(t) / scale.x,
@@ -614,8 +624,8 @@ public class GameController extends WorldController implements ContactListener {
         addObject(gorf);
 //        overFog.add(0, gorf);
 
-        fireflyController=new FireflyController(fireflyAnimation,scale,tileBoard);
-
+        fireflyController=new FireflyController(fireflyAnimation,fireflyPositions, scale,tileBoard);
+        fireflyController.populate();
         Vector2[] familiarVectors= new Vector2[familiarPositions.size()];
         for(int k=0;k<familiarPositions.size();k++){
             familiarVectors[k]= new Vector2(familiarPositions.get(k).fx/scale.x,familiarPositions.get(k).fy/scale.y);
@@ -662,14 +672,14 @@ public class GameController extends WorldController implements ContactListener {
     }
 
     void toggle(Lantern l) {
-        if (l.lit) {
-            firefly_count+=2;
-        } else {
-            if (firefly_count >= 2) {
-                firefly_count = firefly_count - 2;
-            }
+        if (l.lit){
+            firefly_count+=1;
+            l.toggleLantern();
         }
-        l.toggleLantern();
+        else if(!l.lit && firefly_count >= 1){
+            firefly_count = firefly_count - 1;
+            l.toggleLantern();
+        }
     }
 
 
@@ -695,7 +705,6 @@ public class GameController extends WorldController implements ContactListener {
         // Then apply the force using the method you modified in RocketObject
         boolean pressing = InputController.getInstance().didSecondary();
         if(pressing){
-
             Lantern l = getLantern(gorf.getX(), gorf.getY());
             if (l!=null){
                 toggle(l);
@@ -754,7 +763,7 @@ public class GameController extends WorldController implements ContactListener {
                 }
         }
 
-        fog.update(gorf,Lanterns,familiars,tileBoard, dt);
+        fog.update(gorf,Lanterns,familiars, firefly_count,tileBoard,canvas,dt);
 
         float forcex = InputController.getInstance().getHorizontal();
         float forcey= InputController.getInstance().getVertical();
@@ -789,11 +798,6 @@ public class GameController extends WorldController implements ContactListener {
         //this.monster.setFY(forceYMonster * monsterthrust);
         //monster.applyForce();
 
-        firefly_counter++;
-        if (firefly_counter==10) {
-            firefly_counter=0;
-            fireflyController.spawn();
-        }
 
         SoundController.getInstance().update();
         if(fireflyController.update(gorf)){
@@ -821,7 +825,7 @@ public class GameController extends WorldController implements ContactListener {
      *
      * @param rocket   Gorf character
      */
-    
+
     private void wrapInBounds(GorfModel rocket) {
         if (!inBounds(rocket)) {
             Vector2 currentPos = rocket.getPosition();
@@ -1336,29 +1340,32 @@ public class GameController extends WorldController implements ContactListener {
         }
         canvas.end();
 
-        // minimap
-        canvas.begin(gorf.getPosition());
-        // draw background texture
-        canvas.draw(backgroundTexture,Color.WHITE,
-                gorf.getPosition().x * scale.x + 115.0f,
-                gorf.getPosition().y * scale.y - 155.0f,
-                super.getMinimap().getWidth(),
-                super.getMinimap().getHeight());
-        // draw custom level's minimap
-        canvas.draw(super.getMinimap().getTexture(),Color.WHITE,
-                gorf.getPosition().x * scale.x + 115.0f,
-                gorf.getPosition().y * scale.y - 155.0f,
-                super.getMinimap().getWidth(),
-                super.getMinimap().getHeight());
-        canvas.end();
-        canvas.begin(gorf.getPosition());
-        // draw gorf moving representation
-        super.getMinimap().draw(canvas,
-                gorf.getPosition().x,
-                gorf.getPosition().y,
-                gorf.getPosition().x * scale.x + 115.0f,
-                gorf.getPosition().y * scale.y - 155.0f);
-        canvas.end();
+        // toggle minimap with 'm'
+        if (InputController.getInstance().didM()) {
+            // minimap
+            canvas.begin(gorf.getPosition());
+            // draw background texture
+            canvas.draw(backgroundTexture, Color.WHITE,
+                    gorf.getPosition().x * scale.x + 115.0f,
+                    gorf.getPosition().y * scale.y - 155.0f,
+                    super.getMinimap().getWidth(),
+                    super.getMinimap().getHeight());
+            // draw custom level's minimap
+            canvas.draw(super.getMinimap().getTexture(), Color.WHITE,
+                    gorf.getPosition().x * scale.x + 115.0f,
+                    gorf.getPosition().y * scale.y - 155.0f,
+                    super.getMinimap().getWidth(),
+                    super.getMinimap().getHeight());
+            canvas.end();
+            canvas.begin(gorf.getPosition());
+            // draw gorf moving representation
+            super.getMinimap().draw(canvas,
+                    gorf.getPosition().x,
+                    gorf.getPosition().y,
+                    gorf.getPosition().x * scale.x + 115.0f,
+                    gorf.getPosition().y * scale.y - 155.0f);
+            canvas.end();
+        }
 
         canvas.begin();
         // PLACEHOLDER--will be replaced by Victory screen
