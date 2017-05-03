@@ -220,8 +220,19 @@ public abstract class WorldController implements Screen {
 					case 'f':
 						tileBoard.tiles[i][j].isFogSpawn=true;
 						break;
+					// cases for sequential familiars
 					case 'x':
 						tileBoard.tiles[i][j].hasFamiliar=true;
+						tileBoard.tiles[i][j].hasFamiliarOne=true;
+						break;
+					case 'y':
+						tileBoard.tiles[i][j].hasFamiliarTwo=true;
+						break;
+					case 'z':
+						tileBoard.tiles[i][j].hasFamiliarThree=true;
+						break;
+					case 'a':
+						tileBoard.tiles[i][j].hasFamiliarFour=true;
 						break;
 					// cases for rocks and trees
 					// every time there's a rock or a tree, it adds an incrementing
@@ -234,10 +245,9 @@ public abstract class WorldController implements Screen {
 						treeCount++;
 						tileBoard.tiles[i][j].hasTree=treeCount;
 						break;
-					// will un-comment once Sarah gets back to me
-//					case '<some letter>':
-//						tileBoard.tiles[i][j].spawnPoint=true;
-//						break;
+					case 'i':
+						tileBoard.tiles[i][j].spawnPoint=true;
+						break;
 					default:
 						break;
 				}
