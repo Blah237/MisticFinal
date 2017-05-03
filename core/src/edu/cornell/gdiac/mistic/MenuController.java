@@ -77,7 +77,13 @@ public class MenuController extends WorldController implements Screen {
     }
 
     public void update(float dt) {
-
+        if (timerGo) { //code to slow down multiple inputs and not register all of them
+            inputTimer--;
+            if (inputTimer == 0) {
+                timerGo = false;
+                inputTimer = 20;
+            }
+        }
 
         float forcey= InputController.getInstance().getVertical();
         if (forcey < 0 && !timerGo) {
