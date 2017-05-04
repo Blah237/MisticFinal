@@ -1,6 +1,8 @@
 #define NX 31
 #define NY 31
 
+#define MAX_LANTERNS 30
+
 uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
 uniform sampler2D u_texture_perlin;
@@ -23,16 +25,18 @@ uniform sampler2D u_texture_n;
 uniform vec2 res;//The width and height of our screen
 uniform vec2 dim;
 uniform float fogBoard[NX*NY];
-uniform vec2 lanterns[20];
+uniform vec2 lanterns[MAX_LANTERNS];
 //uniform vec2 fogReachVec;
 //uniform float fogReach;
 uniform int numLanterns;
-uniform int numFireflies;
+//uniform int numFireflies;
 //uniform float thickness;
 uniform vec2 offset;
 
 uniform vec2 tileDim;
 uniform vec2 familiarPos;
+
+uniform float gorfRadius;
 
 varying vec2 vTexCoord;
 
@@ -113,7 +117,10 @@ void main() {
 //    float attenuationLantern = 0.0f;
 //    vec3 lanternColor = vec3(1.0, 1.0, 0.2);
 
-    for (int i=0; i<20; i++) {
+//    vec3 lanternColor = vec3(1.0, 1.0, .2);
+//    float lanternAttenuations[MAX_LANTERNS];
+
+    for (int i=0; i<MAX_LANTERNS; i++) {
         if (i>=numLanterns) {
             break;
         }
@@ -131,6 +138,17 @@ void main() {
 
         fogThickness *= fogThickness2;
 //        attenuationLantern = max(attenuation2, attenuationLantern);
+
+
+
+//        vec2 lightDirLantern = vec2(lantern.x-.01, lantern.y+.17) - (gl_FragCoord.xy / res.xy);
+//    //    // Correct for aspect ratio
+//        lightDirLantern.x *= res.x / res.y;
+//    //
+//        float D = length(lightDirLantern);
+//    //
+//        vec3 falloffLantern = vec3(.5, 6.0, 10.0);
+//        lanternAttenuations[i] = 1.0 / ( falloffLantern.x + (falloffLantern.y*D) + (falloffLantern.z*D*D) );
     }
 
     float dx3 = abs(coord.x-.5) * (res.x/res.y);
@@ -138,37 +156,41 @@ void main() {
 
     float dist3 = length(vec2(dx3, dy3));
 
-    float radius = .4*(1.0-exp(float(-numFireflies)/2.0));
+    fogThickness *= smoothstep(gorfRadius, .4+gorfRadius, dist3);
 
-    fogThickness *= smoothstep(radius, .4+radius, dist3);
-
-    fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
+//    fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
 //    fog *= min(1.0,fogThickness);
 //    fog *= max(.7, texture2D(u_texture_perlin, vTexCoord).a);
 
-    vec3 glowColor = vec3(0.7, 1.0, 1.0);
-
-    vec2 lightDir = familiarPos - (gl_FragCoord.xy / res.xy);
-//    // Correct for aspect ratio
-    lightDir.x *= res.x / res.y;
+//    vec3 glowColor = vec3(0.7, 1.0, 1.0);
 //
-    float D = length(lightDir);
+//    vec2 lightDir = familiarPos - (gl_FragCoord.xy / res.xy);
+////    // Correct for aspect ratio
+//    lightDir.x *= res.x / res.y;
+////
+//    float D = length(lightDir);
+////
+////    vec3 N = vec3(0.0, 0.0, 1.0);
+////    vec3 L = normalize(lightDir);
+////
+////    vec3 diffuse = (glowColor.rgb * glowColor.a) * max(dot(N, L), 0.0);
+////
+//    vec3 falloff = vec3(1.0, 2.0, 60.0);
+//    float attenuation = 1.0 / ( falloff.x + (falloff.y*D) + (falloff.z*D*D) );
 //
-//    vec3 N = vec3(0.0, 0.0, 1.0);
-//    vec3 L = normalize(lightDir);
-//
-//    vec3 diffuse = (glowColor.rgb * glowColor.a) * max(dot(N, L), 0.0);
-//
-    vec3 falloff = vec3(1.0, 2.0, 60.0);
-    float attenuation = 1.0 / ( falloff.x + (falloff.y*D) + (falloff.z*D*D) );
-
-//    vec3 intensity = diffuse * attenuation;
+////    vec3 intensity = diffuse * attenuation;
 
 
-    gl_FragColor.rgb = fogThickness * fog * max(.7, texture2D(u_texture_perlin, vTexCoord).a);
-    gl_FragColor.rgb += (1.0 - fogThickness)*glowColor*attenuation;
-//    gl_FragColor.rgb += (1.0 - fogThickness)*lanternColor*attenuationLantern;
-    gl_FragColor.a = max(fogThickness, attenuation);
+    gl_FragColor.rgb = fogThickness * fog * texture2D(u_texture_perlin, vTexCoord).a;
+//    gl_FragColor.rgb += (1.0 - fogThickness)*glowColor*attenuation;
+//    for (int i=0; i<MAX_LANTERNS; i++) {
+//        if (i>=numLanterns) {
+//            break;
+//        }
+//        gl_FragColor.rgb += (1.0 - fogThickness)*lanternColor*lanternAttenuations[i];
+//        gl_FragColor.a = max(fogThickness, lanternAttenuations[i]);
+//    }
+    gl_FragColor.a = fogThickness;
 //    gl_FragColor.a = 0;
 //    gl_FragColor = vec4(fog, fogThickness);
 //    gl_FragColor.rgb *= max(0.0,1.0-fogThickness);

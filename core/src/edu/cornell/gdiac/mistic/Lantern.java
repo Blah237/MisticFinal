@@ -67,8 +67,8 @@ public class Lantern {
             top.setTexture(unlittop);
         } else if (!lit){
             lit = true;
-            this.setTexture(litTex);
-            top.setTexture(littop);
+//            this.setTexture(litTex);
+//            top.setTexture(littop);
         }
     }
 
