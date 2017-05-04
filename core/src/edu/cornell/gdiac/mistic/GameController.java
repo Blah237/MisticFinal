@@ -115,6 +115,9 @@ public class GameController extends WorldController implements ContactListener {
     private static final String B_MARSH_SONG = "sounds/B_Marsh_DEMO2.mp3";
     private static final String D_PEACE_SONG = "sounds/D_Peace_DEMO2.mp3";
 
+    /** Noise textures */
+    private static final String PERLIN_NOISE = "mistic/noise/noise";
+
     private TextureRegion fireflyAnimation;
     private FilmStrip pawAnimation;
 
@@ -154,10 +157,15 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion HUDWhiteNumber_slash;
     private TextureRegion HUDPurpleFirefly;
 
+
     /** Track asset loading from all instances and subclasses */
     private AssetState rocketAssetState = AssetState.EMPTY;
 
     Rectangle screenSize;
+
+    /** animation span for fog **/
+    public final int FOG_ANIM_SPAN = 216;
+    public Texture[] perlinTex = new Texture[FOG_ANIM_SPAN];
 
     /**
      * Preloads the assets for this controller.
@@ -286,6 +294,12 @@ public class GameController extends WorldController implements ContactListener {
             assets.add(f);
         }
 
+        //noise textures
+        for (int i=0; i<FOG_ANIM_SPAN; i++) {
+            manager.load(PERLIN_NOISE + i + ".png", Texture.class);
+            assets.add(PERLIN_NOISE + i + ".png");
+        }
+
         //music files
         manager.load(A_PEACE_SONG, Sound.class);
         assets.add(A_PEACE_SONG);
@@ -293,6 +307,7 @@ public class GameController extends WorldController implements ContactListener {
         assets.add(B_MARSH_SONG);
         manager.load(D_PEACE_SONG, Sound.class);
         assets.add(D_PEACE_SONG);
+
 
         super.preLoadContent(manager);
     }
@@ -341,7 +356,6 @@ public class GameController extends WorldController implements ContactListener {
         pawAnimation = createFilmStrip(manager, HUD_PAW_ANIMATE, 1, 2, 2);
 
 
-
         fireflyAnimation=createTexture(manager, FIREFLY_ANIMATE, false);
 
         for(int i=0;i<MIST_WALLS.length;i++){
@@ -366,6 +380,9 @@ public class GameController extends WorldController implements ContactListener {
             gorfTextures[i] = createTexture(manager,GORF_TEXTURES[i],false);
         }
 
+        for (int i=0; i<FOG_ANIM_SPAN; i++) {
+            perlinTex[i] = createTexture(manager, PERLIN_NOISE + i + ".png", false).getTexture();
+        }
 
         // allocate sounds
         sounds.allocate(manager,A_PEACE_SONG);
@@ -423,6 +440,7 @@ public class GameController extends WorldController implements ContactListener {
     protected Familiar familiars;
 
     private FogController fog;
+    private Glow glow;
     private float BW = DEFAULT_WIDTH;
     private float BH = DEFAULT_HEIGHT;
     private int UNITS_W = (int)(BW*3);
@@ -638,7 +656,8 @@ public class GameController extends WorldController implements ContactListener {
 
         //this.ai = new AIController(monster, tileBoard, gorf, scale);
         this.ai = new AIControllerS(monster, gorf, tileBoard);
-        fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale);
+        fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale, perlinTex);
+        glow = new Glow(canvas, super.screenSize, scale);
 
 
     }
@@ -878,6 +897,7 @@ public class GameController extends WorldController implements ContactListener {
 
         canvas.setShader(null);
         fog.prepShader(firefly_count);
+        glow.prepShader(gorf, familiars, Lanterns, fireflyController.getFireflies(), firefly_count);
 
         canvas.clear();
         canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
@@ -893,6 +913,37 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(backgroundTexture, Color.WHITE, -canvas.getWidth()*2, canvas.getHeight()*2, canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.end();
+
+        canvas.setShader(glow.getFamiliarShader());
+        canvas.begin(gorf.getPosition());
+        // Draw familiar glow
+        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(0,canvas.getHeight()*2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,canvas.getHeight()*2));
+        }
+        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(0,-canvas.getHeight()*2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,-canvas.getHeight()*2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,-canvas.getHeight()*2));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,canvas.getHeight()*2));
+        }
+        canvas.end();
+
+        canvas.setShader(null);
 
         // Draw under fog
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
@@ -1075,8 +1126,41 @@ public class GameController extends WorldController implements ContactListener {
             canvas.end();
         }
 
+        canvas.setShader(glow.getLanternsShader());
+        canvas.begin(gorf.getPosition());
+        // Draw lantern glows
+        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(0,canvas.getHeight()*2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,canvas.getHeight()*2));
+        }
+        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(0,-canvas.getHeight()*2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,-canvas.getHeight()*2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,-canvas.getHeight()*2));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,canvas.getHeight()*2));
+        }
+        canvas.end();
+
         // Main canvas
         canvas.begin(gorf.getPosition());
+        canvas.setShader(glow.getFamiliarShader());
+        glow.draw(canvas, backgroundTexture, new Vector2(0,0));
+        canvas.setShader(glow.getLanternsShader());
+        glow.draw(canvas, backgroundTexture, new Vector2(0,0));
         canvas.setShader(null);
         for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
         for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
