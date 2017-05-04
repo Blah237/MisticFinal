@@ -74,7 +74,7 @@ public abstract class WorldController implements Screen {
 	/** Retro font for displaying messages */
 	private static String FONT_FILE = "shared/RetroGame.ttf";
 	/** Minimap asset */
-	private static String MINIMAP_FILE = "minimaps/BETA_basic_blockfog.png"; // MINIMAP ASSET PATH PUT HERE!!!
+	private static String MINIMAP_FILE = "minimaps/BETA_5rooms.png"; // MINIMAP ASSET PATH PUT HERE!!!
 	private static int FONT_SIZE = 64;
 
 	/** The texture for walls and platforms */
@@ -166,7 +166,7 @@ public abstract class WorldController implements Screen {
 		// initialize BoardModel
 		// get every texture's group id in the json and map it to it's actual object's name
 		jsonReader = new JsonReader();
-		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/BETA_basic_blockfog.json")); // JSON ASSET PUT PATH HERE !!!
+		levelFormat = jsonReader.parse(Gdx.files.internal("FINAL/FINAL_5rooms.json")); // JSON ASSET PUT PATH HERE !!!
 
 
 
@@ -205,10 +205,18 @@ public abstract class WorldController implements Screen {
 					case 'f':
 						tileBoard.tiles[i][j].isFogSpawn=true;
 						break;
+					// cases for sequential familiars
 					case 'x':
-						/**
-						familiarCount++
-						tileBoard.tiles[i][j].hasFamiliar=familiarCount;*/
+						tileBoard.tiles[i][j].hasFamiliarOne=true;
+						break;
+					case 'y':
+						tileBoard.tiles[i][j].hasFamiliarTwo=true;
+						break;
+					case 'z':
+						tileBoard.tiles[i][j].hasFamiliarThree=true;
+						break;
+					case 'a':
+						tileBoard.tiles[i][j].hasFamiliarFour=true;
 						break;
 					// cases for rocks and trees
 					// every time there's a rock or a tree, it adds an incrementing
@@ -221,10 +229,9 @@ public abstract class WorldController implements Screen {
 						treeCount++;
 						tileBoard.tiles[i][j].hasTree=treeCount;
 						break;
-					// will un-comment once Sarah gets back to me
-//					case '<some letter>':
-//						tileBoard.tiles[i][j].spawnPoint=true;
-//						break;
+					case 'i':
+						tileBoard.tiles[i][j].spawnPoint=true;
+						break;
 					default:
 						break;
 				}
