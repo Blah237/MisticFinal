@@ -64,7 +64,8 @@ public class Familiar {
                 this.collected = false;
             }else{
                 this.collectAll=true;
-
+                this.position = new Vector2(1000,1000);
+                this.object.setPosition(this.position);
             }
         }
     }
