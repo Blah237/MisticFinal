@@ -544,12 +544,14 @@ public class GameController extends WorldController implements ContactListener {
          */
 
         // Initializer
-        ArrayList<BoardModel.Tile> familiarPositions=new ArrayList<BoardModel.Tile>();
+        BoardModel.Tile[] familiarPositions=new BoardModel.Tile[4];
         ArrayList<BoardModel.Tile> fireflyPositions = new ArrayList<BoardModel.Tile>();
         tileBoard.tiles[50][50].spawnPoint=true;
         tileBoard.tiles[50][25].spawnPoint=true;
         tileBoard.tiles[25][25].spawnPoint=true;
         tileBoard.tiles[75][75].spawnPoint=true;
+        tileBoard.tiles[30][60].hasFamiliar=1;
+        tileBoard.tiles[10][10].hasFamiliar=2;
         //tileBoard.tiles[75][75].hasTree=3;
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
@@ -586,8 +588,8 @@ public class GameController extends WorldController implements ContactListener {
                         walls.add(po);
                     }
                 }
-                if (t.hasFamiliar) {
-                    familiarPositions.add(t);
+                if (t.hasFamiliar!=0) {
+                    familiarPositions[t.hasFamiliar-1]=t;
                 }
                 if (t.isGorfStart) {
                     gorfStart = new Vector2(tileBoard.getTileCenterX(t)/scale.x, tileBoard.getTileCenterY(t)/scale.y);
@@ -626,10 +628,18 @@ public class GameController extends WorldController implements ContactListener {
 
         fireflyController=new FireflyController(fireflyAnimation,fireflyPositions, scale,tileBoard);
         fireflyController.populate();
-        Vector2[] familiarVectors= new Vector2[familiarPositions.size()];
-        for(int k=0;k<familiarPositions.size();k++){
-            familiarVectors[k]= new Vector2(familiarPositions.get(k).fx/scale.x,familiarPositions.get(k).fy/scale.y);
+        int size =0;
+
+        for(BoardModel.Tile  t : familiarPositions){
+            if(t!=null){
+                size++;
+            }
         }
+        Vector2[] familiarVectors= new Vector2[size];
+        for(int k=0;k<size;k++){
+            familiarVectors[k]= new Vector2(familiarPositions[k].fx/scale.x,familiarPositions[k].fy/scale.y);
+        }
+
         if(familiarVectors.length!=0) {
             familiars = new Familiar(familiarTex, familiarVectors, scale);
             addObject(familiars.object);
@@ -1076,6 +1086,7 @@ public class GameController extends WorldController implements ContactListener {
         }
 
         // Main canvas
+
         canvas.begin(gorf.getPosition());
         canvas.setShader(null);
         for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}

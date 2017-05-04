@@ -26,7 +26,7 @@ public class BoardModel {
         /** Is there a spawn point here */
         public boolean spawnPoint;
         /** Is there a familiar here */
-        public boolean hasFamiliar;
+        public int hasFamiliar;
         /** Is this tile Gorf's starting position? */
         public boolean isGorfStart;
         /** Is this tile under Gorf's firefly glow? */
@@ -53,7 +53,7 @@ public class BoardModel {
             this.isLantern=false;
             this.isFogSpawn=false;
             this.isFog=false;
-            this.hasFamiliar=false;
+            this.hasFamiliar=0;
             this.isGorfStart=false;
             this.isGorfGlow=false;
             this.isLanternGlow=false;
@@ -113,7 +113,7 @@ public class BoardModel {
                 tile.isLantern=false;
                 tile.isFogSpawn=false;
                 tile.isFog=false;
-                tile.hasFamiliar=false;
+                tile.hasFamiliar=0;
                 tile.isGorfStart=false;
                 tile.isGorfGlow=false;
                 tile.isLanternGlow=false;

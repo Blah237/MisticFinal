@@ -188,7 +188,7 @@ public abstract class WorldController implements Screen {
 
 		// for loop for adding info from json data array to the board model
 		int i = 0; int j = h-1;
-		int rockCount = 0; int treeCount = 0;
+		int rockCount = 0; int treeCount = 0;int familiarCount=0;
 		for (int t : maze) {
 			if (t!=0&&textureIDs.containsKey(t)) {
 				Character c = textureIDs.get(t);
@@ -206,7 +206,9 @@ public abstract class WorldController implements Screen {
 						tileBoard.tiles[i][j].isFogSpawn=true;
 						break;
 					case 'x':
-						tileBoard.tiles[i][j].hasFamiliar=true;
+						/**
+						familiarCount++
+						tileBoard.tiles[i][j].hasFamiliar=familiarCount;*/
 						break;
 					// cases for rocks and trees
 					// every time there's a rock or a tree, it adds an incrementing
