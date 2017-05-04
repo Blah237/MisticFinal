@@ -7,19 +7,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/lanterns.frag.glsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
-    </list>
+    <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -130,8 +118,8 @@
       <file leaf-file-name="FogController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="772" column="40" lean-forward="false" selection-start-line="772" selection-start-column="40" selection-end-line="772" selection-end-column="40" />
+            <state relative-caret-position="226">
+              <caret line="777" column="17" lean-forward="true" selection-start-line="777" selection-start-column="17" selection-end-line="777" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -1382,7 +1370,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.50427353" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.4937107" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30415756" sideWeight="0.4957265" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30415756" sideWeight="0.4957265" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1719,9 +1707,9 @@
           <caret line="482" column="29" lean-forward="true" selection-start-line="482" selection-start-column="29" selection-end-line="482" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1493758046106" expanded="true" signature="5892:5911" ph="&lt;~&gt;" />
-            <marker date="1493758046106" expanded="true" signature="11062:11072" ph="&lt;~&gt;" />
-            <marker date="1493758046106" expanded="true" signature="11166:11176" ph="&lt;~&gt;" />
+            <marker date="1493884458999" expanded="true" signature="5892:5911" ph="&lt;~&gt;" />
+            <marker date="1493884458999" expanded="true" signature="11315:11325" ph="&lt;~&gt;" />
+            <marker date="1493884458999" expanded="true" signature="11419:11429" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>
@@ -1739,7 +1727,7 @@
         <state relative-caret-position="240">
           <caret line="221" column="39" lean-forward="false" selection-start-line="221" selection-start-column="39" selection-end-line="221" selection-end-column="39" />
           <folding>
-            <marker date="1493719918677" expanded="true" signature="716:825" ph="/**...*/" />
+            <marker date="1493884459010" expanded="true" signature="716:825" ph="/**...*/" />
           </folding>
         </state>
       </provider>
@@ -1749,9 +1737,9 @@
         <state relative-caret-position="360">
           <caret line="23" column="43" lean-forward="false" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
           <folding>
-            <marker date="1493884410782" expanded="true" signature="121832:121849" ph="..." />
-            <marker date="1493884410782" expanded="true" signature="121832:121867" ph="..." />
-            <marker date="1493884410782" expanded="true" signature="121832:121880" ph="..." />
+            <marker date="1493884463420" expanded="true" signature="120135:120152" ph="..." />
+            <marker date="1493884463420" expanded="true" signature="120135:120170" ph="..." />
+            <marker date="1493884463420" expanded="true" signature="120135:120183" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1857,8 +1845,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="772" column="40" lean-forward="false" selection-start-line="772" selection-start-column="40" selection-end-line="772" selection-end-column="40" />
+        <state relative-caret-position="226">
+          <caret line="777" column="17" lean-forward="true" selection-start-line="777" selection-start-column="17" selection-end-line="777" selection-end-column="17" />
           <folding />
         </state>
       </provider>
