@@ -15,9 +15,13 @@ import java.util.ArrayList;
 public class Glow {
     String vertexShader;
     String familiarFragmentShader;
-    String lanternsFragmentShader;
+    String lanternBackFragmentShader;
+    String lanternFrontFragmentShader;
+    String gorfFragmentShader;
     ShaderProgram familiarShader;
-    ShaderProgram lanternsShader;
+    ShaderProgram lanternBackShader;
+    ShaderProgram lanternFrontShader;
+    ShaderProgram gorfShader;
 
     Vector2 res;
     Vector2 screenDim;
@@ -27,15 +31,21 @@ public class Glow {
     public Glow(GameCanvas canvas, Rectangle screensize, Vector2 scale){
         vertexShader = Gdx.files.internal("mistic/shaders/fog.vert.glsl").readString();
         familiarFragmentShader = Gdx.files.internal("mistic/shaders/familiar.frag.glsl").readString();
-        lanternsFragmentShader = Gdx.files.internal("mistic/shaders/lanterns.frag.glsl").readString();
+        lanternBackFragmentShader = Gdx.files.internal("mistic/shaders/lantern_back.frag.glsl").readString();
+        lanternFrontFragmentShader = Gdx.files.internal("mistic/shaders/lantern_front.frag.glsl").readString();
+        gorfFragmentShader = Gdx.files.internal("mistic/shaders/gorfglow.frag.glsl").readString();
 
         familiarShader = new ShaderProgram(vertexShader, familiarFragmentShader);
-        lanternsShader = new ShaderProgram(vertexShader, lanternsFragmentShader);
+        lanternBackShader = new ShaderProgram(vertexShader, lanternBackFragmentShader);
+        lanternFrontShader = new ShaderProgram(vertexShader, lanternFrontFragmentShader);
+        gorfShader = new ShaderProgram(vertexShader, gorfFragmentShader);
 
         res = new Vector2(canvas.getWidth(), canvas.getHeight());
 
         initShader(familiarShader);
-        initShader(lanternsShader);
+        initShader(lanternBackShader);
+        initShader(lanternFrontShader);
+        initShader(gorfShader);
 
         this.scale = scale;
         screenDim = new Vector2(screensize.getWidth(), screensize.getHeight());
@@ -74,18 +84,28 @@ public class Glow {
 
         Vector2 familiarPos = new Vector2((familiar.getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x), (familiar.getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y));
 
-        float gorfRadius = .4f*(1f-(float)Math.exp(-nFireflies/2f));
+        float gorfRadius = 0;
+        if (nFireflies > 0) {
+            gorfRadius = .4f * (1f - (float) Math.exp(-nFireflies / 2f));
+        }
 
         familiarShader.begin();
         familiarShader.setUniformf("familiarPos", familiarPos.x, familiarPos.y);
         familiarShader.end();
 
-        lanternsShader.begin();
-        lanternsShader.setUniform2fv("lanternsPos", lanternsPos, 0, lanternsPos.length);
-        lanternsShader.setUniformi("numLanterns", litLanterns.size());
-        lanternsShader.end();
+        lanternBackShader.begin();
+        lanternBackShader.setUniform2fv("lanternsPos", lanternsPos, 0, lanternsPos.length);
+        lanternBackShader.setUniformi("numLanterns", litLanterns.size());
+        lanternBackShader.end();
 
-        //        shader.setUniformf("gorfRadius", gorfRadius);
+        lanternFrontShader.begin();
+        lanternFrontShader.setUniform2fv("lanternsPos", lanternsPos, 0, lanternsPos.length);
+        lanternFrontShader.setUniformi("numLanterns", litLanterns.size());
+        lanternFrontShader.end();
+
+        gorfShader.begin();
+        gorfShader.setUniformf("radius", gorfRadius+.3f);
+        gorfShader.end();
     }
 
     public void draw(GameCanvas canvas, TextureRegion texRegion, Vector2 pos) {
@@ -106,5 +126,7 @@ public class Glow {
     public ShaderProgram getFamiliarShader() {
         return familiarShader;
     }
-    public ShaderProgram getLanternsShader() { return  lanternsShader; }
+    public ShaderProgram getLanternBackShader() { return  lanternBackShader; }
+    public ShaderProgram getLanternFrontShader() { return  lanternFrontShader; }
+    public ShaderProgram getGorfShader() { return gorfShader; }
 }
