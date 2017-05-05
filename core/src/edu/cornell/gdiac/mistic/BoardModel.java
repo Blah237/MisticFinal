@@ -33,7 +33,6 @@ public class BoardModel {
         public boolean hasFamiliarTwo;
         public boolean hasFamiliarThree;
         public boolean hasFamiliarFour;
-
         /** Is this tile Gorf's starting position? */
         public boolean isGorfStart;
         /** Is this tile under Gorf's firefly glow? */
@@ -67,7 +66,6 @@ public class BoardModel {
             this.hasFamiliarTwo=false;
             this.hasFamiliarThree=false;
             this.hasFamiliarFour=false;
-
             this.isGorfStart=false;
             this.isGorfGlow=false;
             this.isLanternGlow=false;
