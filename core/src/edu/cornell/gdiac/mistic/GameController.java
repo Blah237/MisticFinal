@@ -1129,12 +1129,6 @@ public class GameController extends WorldController implements ContactListener {
             canvas.end();
         }
 
-        canvas.begin(gorf.getPosition());
-        for (Lantern l : Lanterns){l.drawtop(canvas);}
-        canvas.draw(fboRegion, 0, 0);
-        for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
-        for(EnvAsset env : landmarks){env.drawtop(canvas);}
-        canvas.end();
 
         canvas.setShader(glow.getLanternFrontShader());
         canvas.begin(gorf.getPosition());
@@ -1173,6 +1167,10 @@ public class GameController extends WorldController implements ContactListener {
         canvas.setShader(null);
         gorf.draw(canvas);
         canvas.setShader(null);
+        for (Lantern l : Lanterns){l.drawtop(canvas);}
+        canvas.draw(fboRegion, 0, 0);
+        for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+        for(EnvAsset env : landmarks){env.drawtop(canvas);}
         canvas.end();
 
 
