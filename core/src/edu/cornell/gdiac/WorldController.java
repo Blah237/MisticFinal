@@ -74,7 +74,7 @@ public abstract class WorldController implements Screen {
 	/** Retro font for displaying messages */
 	private static String FONT_FILE = "shared/RetroGame.ttf";
 	/** Minimap asset */
-	private static String MINIMAP_FILE = "minimaps/BETA_basic_blockfog.png"; // MINIMAP ASSET PATH PUT HERE!!!
+	private static String MINIMAP_FILE = "minimaps/BETA_5rooms.png"; // MINIMAP ASSET PATH PUT HERE!!!
 	private static int FONT_SIZE = 64;
 
 	/** The texture for walls and platforms */
@@ -166,7 +166,7 @@ public abstract class WorldController implements Screen {
 		// initialize BoardModel
 		// get every texture's group id in the json and map it to it's actual object's name
 		jsonReader = new JsonReader();
-		levelFormat = jsonReader.parse(Gdx.files.internal("jsons/BETA_basic_blockfog.json")); // JSON ASSET PUT PATH HERE !!!
+		levelFormat = jsonReader.parse(Gdx.files.internal("FINAL/FINAL_5rooms.json")); // JSON ASSET PUT PATH HERE !!!
 
 
 
@@ -188,7 +188,7 @@ public abstract class WorldController implements Screen {
 
 		// for loop for adding info from json data array to the board model
 		int i = 0; int j = h-1;
-		int rockCount = 0; int treeCount = 0;
+		int rockCount = 0; int treeCount = 0;int familiarCount=0;
 		for (int t : maze) {
 			if (t!=0&&textureIDs.containsKey(t)) {
 				Character c = textureIDs.get(t);
@@ -207,7 +207,6 @@ public abstract class WorldController implements Screen {
 						break;
 					// cases for sequential familiars
 					case 'x':
-						tileBoard.tiles[i][j].hasFamiliar=true;
 						tileBoard.tiles[i][j].hasFamiliarOne=true;
 						break;
 					case 'y':
