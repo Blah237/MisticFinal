@@ -2,34 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/5levels.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/basic_blockfog.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/easy_containfog_1fam.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/rooms.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/two_sides.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/two_sides_3fam.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/final_jsons/Archive.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/final_jsons/rooms.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/final_jsons/rooms.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/FINAL/FINAL_5rooms.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/basic_blockfog.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/easy_containfog_1fam.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/labryinth.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/rooms.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/two_sides.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/beta_jsons/two_sides_3fam.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/final_jsons/labryinth.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/jsons/BETA_5rooms.json" afterPath="$PROJECT_DIR$/core/assets/final_jsons/rooms.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fireflysprite.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fireflysprite.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/WorldController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel$Tile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/BoardModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -74,19 +49,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Glow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="846">
-              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2817#2826#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Perlin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -113,8 +75,8 @@
       <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" column="68" lean-forward="false" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
+            <state relative-caret-position="160">
+              <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -123,7 +85,7 @@
       <file leaf-file-name="fog.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-426">
+            <state relative-caret-position="-192">
               <caret line="161" column="35" lean-forward="false" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
               <folding />
             </state>
@@ -133,8 +95,18 @@
       <file leaf-file-name="lantern_back.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gorfglow.frag.glsl" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="80">
-              <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+              <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -143,24 +115,24 @@
       <file leaf-file-name="lantern_front.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+            <state relative-caret-position="460">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gorfglow.frag.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
+      <file leaf-file-name="familiar.frag.glsl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+            <state relative-caret-position="0">
+              <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
@@ -969,13 +941,13 @@
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lanterns.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" />
-        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl" />
-        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
-        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl" />
+        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
+        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" />
       </list>
     </option>
   </component>
@@ -1804,30 +1776,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="846">
@@ -1858,26 +1806,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-426">
-          <caret line="161" column="35" lean-forward="false" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="17" column="68" lean-forward="false" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
+        <state relative-caret-position="160">
+          <caret line="8" column="45" lean-forward="false" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
           <folding />
         </state>
       </provider>
@@ -1897,6 +1829,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="49" column="36" lean-forward="false" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-192">
+          <caret line="161" column="35" lean-forward="false" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
           <folding />
         </state>
       </provider>

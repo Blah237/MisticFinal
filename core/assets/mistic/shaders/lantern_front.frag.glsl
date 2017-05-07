@@ -18,7 +18,7 @@ void main() {
         lanternDir.x *= res.x / res.y;
 
         float D = length(lanternDir);
-        vec3 lanternFalloff = vec3(.6, 4, 40);
+        vec3 lanternFalloff = vec3(.6, 4.0, 40.0);
         lanternAttenuations[i] = 1.0 / (lanternFalloff.x + lanternFalloff.y*D + lanternFalloff.z*D*D) * .6;
     }
 

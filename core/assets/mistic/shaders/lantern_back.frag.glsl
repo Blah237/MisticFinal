@@ -19,7 +19,7 @@ void main() {
 
         float D = length(lanternDir);
         float radius = .6;
-        lanternAttenuations[i] = pow(clamp(1.0 - D*D/(radius*radius), 0.0, 1.0), 2) * .8;
+        lanternAttenuations[i] = pow(clamp(1.0 - D*D/(radius*radius), 0.0, 1.0), 2.0) * .8;
     }
 
     gl_FragColor = vec4(lanternGlowColor, 0.0);

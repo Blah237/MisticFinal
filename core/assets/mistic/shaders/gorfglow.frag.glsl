@@ -11,7 +11,7 @@ void main() {
 
     float D = length(vec2(dx, dy));
 
-    float attenuation = pow(clamp(1.0 - D*D/(radius*radius), 0.0, 1.0), 2) * .7;
+    float attenuation = pow(clamp(1.0 - D*D/(radius*radius), 0.0, 1.0), 2.0) * .7;
 
     gl_FragColor.rgb = glowColor;
     gl_FragColor.a = attenuation;
