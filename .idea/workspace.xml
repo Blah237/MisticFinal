@@ -8,225 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise0.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise10.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise100.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise101.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise102.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise103.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise104.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise105.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise106.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise107.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise108.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise109.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise11.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise110.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise111.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise112.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise113.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise114.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise115.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise116.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise117.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise118.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise119.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise120.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise121.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise122.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise123.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise124.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise125.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise126.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise127.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise128.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise129.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise13.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise130.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise131.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise132.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise133.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise134.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise135.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise136.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise137.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise138.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise139.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise14.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise140.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise141.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise142.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise143.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise144.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise145.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise146.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise147.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise148.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise149.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise15.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise150.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise151.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise152.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise153.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise154.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise155.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise156.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise157.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise158.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise159.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise160.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise161.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise162.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise163.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise164.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise165.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise166.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise167.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise168.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise169.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise17.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise170.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise171.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise172.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise173.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise174.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise175.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise176.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise177.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise178.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise179.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise18.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise180.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise181.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise182.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise183.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise184.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise185.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise186.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise187.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise188.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise189.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise19.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise190.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise191.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise192.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise193.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise194.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise195.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise196.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise197.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise198.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise199.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise20.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise200.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise201.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise202.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise203.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise204.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise205.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise206.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise207.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise208.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise209.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise21.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise210.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise211.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise212.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise213.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise214.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise215.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise22.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise23.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise24.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise25.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise26.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise27.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise28.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise29.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise30.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise31.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise32.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise33.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise34.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise35.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise36.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise37.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise38.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise39.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise4.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise40.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise41.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise42.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise43.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise44.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise45.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise46.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise47.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise48.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise49.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise5.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise50.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise51.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise52.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise53.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise54.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise55.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise56.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise57.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise58.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise59.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise6.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise60.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise61.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise62.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise63.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise64.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise65.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise66.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise67.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise68.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise69.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise7.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise70.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise71.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise72.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise73.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise74.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise75.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise76.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise77.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise78.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise79.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise80.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise81.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise82.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise83.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise84.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise85.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise86.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise87.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise88.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise89.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise9.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise90.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise91.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise92.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise93.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise94.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise95.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise96.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise97.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise98.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/noise99.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/lanterns.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise0.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise0.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise1.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise1.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise10.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise10.png" />
@@ -443,13 +224,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise97.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise97.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise98.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise98.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise99.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise99.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Glow.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Glow.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -481,40 +259,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="WorldController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2480">
-              <caret line="168" column="46" lean-forward="false" selection-start-line="168" selection-start-column="46" selection-end-line="168" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5892#5911#0" expanded="true" />
-                <element signature="e#11315#11325#0" expanded="true" />
-                <element signature="e#11419#11429#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="1227" column="62" lean-forward="false" selection-start-line="1227" selection-start-column="62" selection-end-line="1227" selection-end-column="62" />
+            <state relative-caret-position="3032">
+              <caret line="1490" column="9" lean-forward="true" selection-start-line="1490" selection-start-column="9" selection-end-line="1490" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Lantern.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="26" column="27" lean-forward="false" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-              <folding>
-                <marker date="1493867386812" expanded="false" signature="2969:2975" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -523,8 +274,8 @@
       <file leaf-file-name="Glow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="106" column="54" lean-forward="false" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="54" />
+            <state relative-caret-position="846">
+              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2817#2826#0" expanded="true" />
@@ -533,11 +284,44 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Perlin.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+              <folding>
+                <element signature="e#551#552#0" expanded="true" />
+                <element signature="e#587#588#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageIO.java" pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/imageio/ImageIO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="1529" column="0" lean-forward="false" selection-start-line="1529" selection-start-column="0" selection-end-line="1529" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="familiar.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="280">
-              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fog.frag.glsl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-426">
+              <caret line="161" column="35" lean-forward="true" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -563,11 +347,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gorfglow.frag.glsl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="gorfglow.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="4" column="33" lean-forward="false" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+            <state relative-caret-position="320">
+              <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -576,8 +360,8 @@
       <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3208">
-              <caret line="314" column="50" lean-forward="true" selection-start-line="314" selection-start-column="50" selection-end-line="314" selection-end-column="50" />
+            <state relative-caret-position="60">
+              <caret line="39" column="24" lean-forward="true" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -595,15 +379,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>updateG</find>
-      <find>fog.u</find>
-      <find>body</find>
-      <find>colli</find>
-      <find>newfog</find>
-      <find>prepsh</find>
-      <find>fireflies</find>
-      <find>canvasS</find>
-      <find>fogCon</find>
       <find>canvassc</find>
       <find>fogcon</find>
       <find>fog</find>
@@ -625,6 +400,15 @@
       <find>gorfrad</find>
       <find>gorf.draw</find>
       <find>gorfsh</find>
+      <find>anim_s</find>
+      <find>mp3</find>
+      <find>song</find>
+      <find>sounds</find>
+      <find>collision</find>
+      <find>glow.dr</find>
+      <find>fog.draw</find>
+      <find>monsters</find>
+      <find>monster</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1378,17 +1162,17 @@
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern.frag.glsl" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/glow.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lanterns.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
       </list>
     </option>
   </component>
@@ -1788,8 +1572,24 @@
       <envs />
       <method />
     </configuration>
-    <list size="1">
+    <configuration default="false" name="Perline Generator" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="edu.cornell.gdiac.mistic.Perlin" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/core/assets" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="desktop_main" />
+      <envs />
+      <method />
+    </configuration>
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.Unnamed" />
+      <item index="1" class="java.lang.String" itemvalue="Application.Perline Generator" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -1890,14 +1690,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Graphics Prac/cs4621/lecture06/exhibit00.html" />
     <entry file="file://$PROJECT_DIR$/../../core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/df0e6a52ed42009b20ab64cc81e57c3ae24d9109/gdx-1.9.5-sources.jar!/com/badlogic/gdx/graphics/Pixmap.java">
@@ -2147,9 +1939,9 @@
         <state relative-caret-position="360">
           <caret line="23" column="43" lean-forward="false" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
           <folding>
-            <marker date="1493976807363" expanded="true" signature="179310:179327" ph="..." />
-            <marker date="1493976807363" expanded="true" signature="178743:178761" ph="..." />
-            <marker date="1493976807363" expanded="true" signature="178743:178774" ph="..." />
+            <marker date="1494186758960" expanded="true" signature="179310:179327" ph="..." />
+            <marker date="1494186758960" expanded="true" signature="158245:158263" ph="..." />
+            <marker date="1494186758960" expanded="true" signature="158245:158276" ph="..." />
           </folding>
         </state>
       </provider>
@@ -2177,34 +1969,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="65" column="30" lean-forward="false" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="774" column="61" lean-forward="false" selection-start-line="774" selection-start-column="60" selection-end-line="774" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3208">
-          <caret line="314" column="50" lean-forward="true" selection-start-line="314" selection-start-column="50" selection-end-line="314" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2854">
-          <caret line="158" column="60" lean-forward="false" selection-start-line="158" selection-start-column="60" selection-end-line="158" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -2222,10 +1990,10 @@
         <state relative-caret-position="2480">
           <caret line="168" column="46" lean-forward="false" selection-start-line="168" selection-start-column="46" selection-end-line="168" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5892#5911#0" expanded="true" />
-            <element signature="e#11315#11325#0" expanded="true" />
-            <element signature="e#11419#11429#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#5892#5911#0" expanded="false" />
+            <element signature="e#11315#11325#0" expanded="false" />
+            <element signature="e#11419#11429#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2240,36 +2008,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="106" column="54" lean-forward="false" selection-start-line="106" selection-start-column="54" selection-end-line="106" selection-end-column="54" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2817#2826#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/mistic/litbig.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="1227" column="62" lean-forward="false" selection-start-line="1227" selection-start-column="62" selection-end-line="1227" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2282,6 +2029,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="846">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2817#2826#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/imageio/ImageIO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="1529" column="0" lean-forward="false" selection-start-line="1529" selection-start-column="0" selection-end-line="1529" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="39" column="28" lean-forward="true" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+          <folding>
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#587#588#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="39" column="24" lean-forward="true" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -2290,11 +2083,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="33" lean-forward="false" selection-start-line="4" selection-start-column="33" selection-end-line="4" selection-end-column="33" />
+        <state relative-caret-position="-426">
+          <caret line="161" column="35" lean-forward="true" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3032">
+          <caret line="1490" column="9" lean-forward="true" selection-start-line="1490" selection-start-column="9" selection-end-line="1490" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

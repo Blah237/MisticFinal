@@ -164,7 +164,7 @@ public class GameController extends WorldController implements ContactListener {
     Rectangle screenSize;
 
     /** animation span for fog **/
-    public final int FOG_ANIM_SPAN = 216;
+    public final int FOG_ANIM_SPAN = 360;
     public Texture[] perlinTex = new Texture[FOG_ANIM_SPAN];
 
     /**
@@ -914,62 +914,16 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.end();
 
+        // Draw familiar glow
         canvas.setShader(glow.getFamiliarShader());
         canvas.begin(gorf.getPosition());
-        // Draw familiar glow
-        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(0,canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,canvas.getHeight()*2));
-        }
-        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(0,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,0));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,0));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,canvas.getHeight()*2));
-        }
+        drawGlow();
         canvas.end();
 
+        // Draw gorf glow
         canvas.setShader(glow.getGorfShader());
         canvas.begin(gorf.getPosition());
-        // Draw gorf glows
-        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(0,canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,canvas.getHeight()*2));
-        }
-        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(0,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,0));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,0));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,canvas.getHeight()*2));
-        }
+        drawGlow();
         canvas.end();
 
         canvas.setShader(null);
@@ -1084,35 +1038,13 @@ public class GameController extends WorldController implements ContactListener {
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
             fog.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,canvas.getHeight()*2));
         }
+//        fog.draw(canvas, backgroundTexture, new Vector2(0,0));
         canvas.end();
 
+        // Draw lantern glows
         canvas.setShader(glow.getLanternBackShader());
         canvas.begin(gorf.getPosition());
-        // Draw lantern glows
-        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(0,canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,canvas.getHeight()*2));
-        }
-        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(0,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,0));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,0));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,canvas.getHeight()*2));
-        }
+        drawGlow();
         canvas.end();
 
         // Draw over fog
@@ -1184,6 +1116,13 @@ public class GameController extends WorldController implements ContactListener {
             canvas.end();
         }
 
+        canvas.begin(gorf.getPosition());
+        for (Lantern l : Lanterns){l.drawtop(canvas);}
+        canvas.draw(fboRegion, 0, 0);
+        for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+        for(EnvAsset env : landmarks){env.drawtop(canvas);}
+        canvas.end();
+
         canvas.setShader(glow.getLanternFrontShader());
         canvas.begin(gorf.getPosition());
         // Draw lantern glows
@@ -1215,29 +1154,10 @@ public class GameController extends WorldController implements ContactListener {
 
         // Main canvas
         canvas.begin(gorf.getPosition());
-        canvas.setShader(glow.getFamiliarShader());
-        glow.draw(canvas, backgroundTexture, new Vector2(0,0));
-        canvas.setShader(glow.getGorfShader());
-        glow.draw(canvas, backgroundTexture, new Vector2(0,0));
-        canvas.setShader(null);
-        for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
-        for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
-        for(EnvAsset env : landmarks){env.drawfull(canvas);}
-        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
-        canvas.setShader(fog.getShader());
-        fog.draw(canvas, backgroundTexture, new Vector2(0,0));
-        canvas.setShader(glow.getLanternBackShader());
-        glow.draw(canvas, backgroundTexture, new Vector2(0,0));
         canvas.setShader(null);
         for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
         canvas.setShader(null);
         gorf.draw(canvas);
-        canvas.draw(fboRegion, 0, 0);
-        for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
-        for(EnvAsset env : landmarks){env.drawtop(canvas);}
-        for (Lantern l : Lanterns){l.drawtop(canvas);}
-        canvas.setShader(glow.getLanternFrontShader());
-        glow.draw(canvas, backgroundTexture, new Vector2(0,0));
         canvas.setShader(null);
         canvas.end();
 
@@ -1553,6 +1473,34 @@ public class GameController extends WorldController implements ContactListener {
 
     }
 
+    public void drawGlow() {
+        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(0,canvas.getHeight()*2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,canvas.getHeight()*2));
+        }
+        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(0,-canvas.getHeight()*2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,-canvas.getHeight()*2));
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,-canvas.getHeight()*2));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,0));
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,canvas.getHeight()*2));
+        }
+        glow.draw(canvas, backgroundTexture, new Vector2(0,0));
+    }
+
     /// CONTACT LISTENER METHODS
     /**
      * Callback method for the start of a collision
@@ -1568,12 +1516,12 @@ public class GameController extends WorldController implements ContactListener {
         Body body2 = contact.getFixtureB().getBody();
         WorldManifold worldManifold = contact.getWorldManifold();
 
-        if (body1.getUserData() == "monster" && body2 == gorf.getBody()) {
-            this.DEAD = true;
-        }
-        if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
-            this.DEAD = true;
-        }
+//        if (body1.getUserData() == "monster" && body2 == gorf.getBody()) {
+//            this.DEAD = true;
+//        }
+//        if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
+//            this.DEAD = true;
+//        }
 
         if (body1 == gorf.getBody() || body2 == gorf.getBody()) {
             if (worldManifold.getNormal().y == 0f) {
