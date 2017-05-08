@@ -1541,12 +1541,12 @@ public class GameController extends WorldController implements ContactListener {
         Body body2 = contact.getFixtureB().getBody();
         WorldManifold worldManifold = contact.getWorldManifold();
 
-        if (body1.getUserData() == "monster" && body2 == gorf.getBody()) {
-            this.DEAD = true;
-        }
-        if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
-            this.DEAD = true;
-        }
+//        if (body1.getUserData() == "monster" && body2 == gorf.getBody()) {
+//            this.DEAD = true;
+//        }
+//        if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
+//            this.DEAD = true;
+//        }
 
         if (body1 == gorf.getBody() || body2 == gorf.getBody()) {
             if (worldManifold.getNormal().y == 0f) {

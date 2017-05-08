@@ -3,6 +3,7 @@
 
 #define MAX_LANTERNS 30
 
+#define BOUNDARY .8
 uniform vec2 fogOrigin;
 uniform sampler2D u_texture;
 uniform sampler2D u_texture_perlin;
@@ -71,12 +72,12 @@ void main() {
 //      float fogThickness = fogBoard[cellY*NX + cellX];
 
     float fogThickness = 0.0;
-    vec2 boundaryTexCoord1 = vec2(mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x, 1.0 - mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
-    vec2 boundaryTexCoord2 = vec2(mod(gl_FragCoord.y + offset.y*dim.y, tileDim.y) / tileDim.y, 1.0 - mod(gl_FragCoord.x+offset.x*dim.x, tileDim.x) / tileDim.x);
-    vec2 boundaryTexCoord3 = vec2(1.0 - mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x, mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
-    vec2 boundaryTexCoord4 = vec2(1.0 - mod(gl_FragCoord.y + offset.y*dim.y, tileDim.y) / tileDim.y, mod(gl_FragCoord.x+offset.x*dim.x, tileDim.x) / tileDim.x);
-    vec2 boundaryTexCoord5 = vec2(mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x, mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
-    vec2 boundaryTexCoord6 = vec2(1.0 - mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x, 1.0 - mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
+    vec2 boundaryTexCoord1 = vec2(mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x / 21.0, 1.0 - mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
+    vec2 boundaryTexCoord2 = vec2(mod(gl_FragCoord.y + offset.y*dim.y, tileDim.y) / tileDim.y / 21.0, 1.0 - mod(gl_FragCoord.x+offset.x*dim.x, tileDim.x) / tileDim.x);
+    vec2 boundaryTexCoord3 = vec2(1.0 - mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x / 21.0, mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
+    vec2 boundaryTexCoord4 = vec2(1.0 - mod(gl_FragCoord.y + offset.y*dim.y, tileDim.y) / tileDim.y / 21.0, mod(gl_FragCoord.x+offset.x*dim.x, tileDim.x) / tileDim.x);
+    vec2 boundaryTexCoord5 = vec2(mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x / 21.0, mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
+    vec2 boundaryTexCoord6 = vec2(1.0 - mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x / 21.0, 1.0 - mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
 
 //    vec2 boundaryTexCoord2 = vec2(mod(gl_FragCoord.y + offset.y*dim.y, tileDim.y) / tileDim.y, 1.0 - mod(gl_FragCoord.x+offset.x*dim.x, tileDim.x) / tileDim.x);
 //    vec2 boundaryTexCoord3 = vec2(1.0 - mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x, mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
@@ -84,34 +85,23 @@ void main() {
 
     if (fogBoard[cellY*NX + cellX] == 1.0) {
         fogThickness = fogBoard[cellY*NX + cellX];
-    } else if (fogBoard[cellY*NX + cellX] == .1) {
-        fogThickness = texture2D(u_texture_n, boundaryTexCoord1).a;
-    } else if (fogBoard[cellY*NX + cellX] == .2) {
-        fogThickness = texture2D(u_texture_n, boundaryTexCoord2).a;
-    } else if (fogBoard[cellY*NX + cellX] == .3) {
-        fogThickness = texture2D(u_texture_n, boundaryTexCoord3).a;
-    } else if (fogBoard[cellY*NX + cellX] == .4) {
-        fogThickness = texture2D(u_texture_n, boundaryTexCoord4).a;
-    } else if (fogBoard[cellY*NX + cellX] == .5) {
-        fogThickness = texture2D(u_texture_ne, boundaryTexCoord1).a;
-    } else if (fogBoard[cellY*NX + cellX] == .6) {
-        fogThickness = texture2D(u_texture_ne, boundaryTexCoord5).a;
-    } else if (fogBoard[cellY*NX + cellX] == .7) {
-        fogThickness = texture2D(u_texture_ne, boundaryTexCoord3).a;
-    } else if (fogBoard[cellY*NX + cellX] == .8) {
-        fogThickness = texture2D(u_texture_ne, boundaryTexCoord6).a;
-    } else if (fogBoard[cellY*NX + cellX] == .9) {
-        fogThickness = texture2D(u_texture_ns, boundaryTexCoord1).a;
-    } else if (fogBoard[cellY*NX + cellX] == .10) {
-        fogThickness = texture2D(u_texture_ns, boundaryTexCoord3).a;
-    } else if (fogBoard[cellY*NX + cellX] == .11) {
-        fogThickness = texture2D(u_texture_new, boundaryTexCoord1).a;
-    } else if (fogBoard[cellY*NX + cellX] == .12) {
-        fogThickness = texture2D(u_texture_new, boundaryTexCoord2).a;
-    } else if (fogBoard[cellY*NX + cellX] == .13) {
-        fogThickness = texture2D(u_texture_new, boundaryTexCoord4).a;
-    } else if (fogBoard[cellY*NX + cellX] == .14) {
-        fogThickness = texture2D(u_texture_new, boundaryTexCoord3).a;
+    } else if (fogBoard[cellY*NX + cellX] > 1.0) {
+//        int idx = 2;
+        float idx = floor(fogBoard[cellY*NX + cellX] / 4.0) - 1.0;
+        int orientation = int(mod(fogBoard[cellY*NX + cellX], 4.0));
+
+        vec2 boundaryTexCoord;
+        if (orientation == 0) {
+            boundaryTexCoord = vec2(mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x / 23.0 + idx/23.0, 1.0 - mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
+        } else if (orientation == 1) {
+            boundaryTexCoord = vec2((1.0 - mod(gl_FragCoord.y + offset.y*dim.y, tileDim.y) / tileDim.y) / 23.0 + idx/23.0, 1.0 - mod(gl_FragCoord.x+offset.x*dim.x, tileDim.x) / tileDim.x);
+        } else if (orientation == 2) {
+            boundaryTexCoord = vec2((1.0 - mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x) / 23.0 + idx/23.0, mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
+        } else {
+            boundaryTexCoord = vec2(mod(gl_FragCoord.y + offset.y*dim.y, tileDim.y) / tileDim.y / 23.0 + idx/23.0, mod(gl_FragCoord.x+offset.x*dim.x, tileDim.x) / tileDim.x);
+        }
+
+        fogThickness = texture2D(u_texture, boundaryTexCoord).a;
     }
 
 //    float attenuationLantern = 0.0f;
