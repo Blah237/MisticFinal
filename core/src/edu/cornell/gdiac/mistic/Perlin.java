@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -16,6 +17,7 @@ import java.nio.ByteBuffer;
  */
 public class Perlin {
     public int repeat;
+    private static final int ANIM_SPAN = 360;
 
     public Perlin(int repeat) {
         this.repeat = repeat;
@@ -53,6 +55,24 @@ public class Perlin {
             49, 192, 214, 31, 181, 199, 106, 157, 184, 84, 204, 176, 115, 121, 50, 45, 127, 4, 150, 254,
             138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78, 66, 215, 61, 156, 180
     };
+
+    public double octaveNoise(double x, double y, double z, int octaves, double persistence) {
+        double total = 0;
+        double frequency = 1;
+        double amplitude = 1;
+        double maxVal = 0;
+
+        for(int i=0;i<octaves;i++) {
+            total += noise(x * frequency, y * frequency, z * frequency) * amplitude;
+
+            maxVal += amplitude;
+
+            amplitude *= persistence;
+            frequency *= 2;
+        }
+
+        return total/maxVal;
+    }
 
     public double noise(double x, double y, double z) {
         if (repeat > 0) {
@@ -95,14 +115,14 @@ public class Perlin {
         return (lerp(y1, y2, w) + 1) / 2;
     }
 
-    public int inc(int num) {
+    private int inc(int num) {
         num++;
         if (repeat > 0) num %= repeat;
 
         return num;
     }
 
-    public static double grad(int hash, double x, double y, double z) {
+    private static double grad(int hash, double x, double y, double z) {
         switch(hash & 0xF)
         {
             case 0x0: return  x + y;
@@ -125,14 +145,89 @@ public class Perlin {
         }
     }
 
-    public static double fade(double t) {
+    private static double fade(double t) {
         // Fade function as defined by Ken Perlin.  This eases coordinate values
         // so that they will "ease" towards integral values.  This ends up smoothing
         // the final output.
         return t * t * t * (t * (t * 6 - 15) + 10);            // 6t^5 - 15t^4 + 10t^3
     }
 
-    public static double lerp(double a, double b, double x) {
+    private static double lerp(double a, double b, double x) {
         return a + x * (b - a);
+    }
+
+    // Adapted from code provided at http://flafla2.github.io/2014/08/09/perlinnoise.html
+    public static void main(String[] args) {
+        final int WIDTH = 1080, HEIGHT = 576;
+
+        float[][] data = new float[ANIM_SPAN][WIDTH * HEIGHT];
+
+        Perlin perlin = new Perlin(36);
+        for (int t = 0; t < ANIM_SPAN; t++){
+            int count = 0;
+            for (int y = 0; y < HEIGHT; y++) {
+                for (int x = 0; x < WIDTH; x++) {
+                    data[t][count++] = (float)Math.sqrt(perlin.noise(36.0 * (float) x / WIDTH, 36.0 * (float) y / HEIGHT, 2.0 * (float) t / ANIM_SPAN) * 10);
+                }
+            }
+        }
+
+        float minValue, maxValue;
+        int[] pixelData = new int[WIDTH * HEIGHT];
+
+        for (int t=0; t<ANIM_SPAN; t++) {
+            minValue = data[t][0];
+            maxValue = data[t][0];
+            for (int i = 0; i < data[t].length; i++) {
+                minValue = Math.min(data[t][i], minValue);
+                maxValue = Math.max(data[t][i], maxValue);
+            }
+
+            for (int i = 0; i < data[t].length; i++) {
+                pixelData[i] = (int) (255 * (data[t][i] - minValue) / (maxValue - minValue));
+            }
+
+            BufferedImage img = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
+            img.getRaster().setPixels(0, 0, WIDTH, HEIGHT, pixelData);
+
+//            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//            byte[] pixelBytes = new byte[0];
+//            try {
+//                ImageIO.write(img, "jpg", outputStream);
+//                outputStream.flush();
+//                pixelBytes = outputStream.toByteArray();
+//                outputStream.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            Pixmap perlinPix = new Pixmap(pixelBytes, 0, pixelBytes.length);
+//            perlinTex[t] = new Texture(perlinPix);
+
+            File fileImage = new File("mistic/noise/noise" + t + ".png");
+            try {
+                ImageIO.write(img, "png", fileImage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+//        File output = new File("image.png");
+//        try {
+//            ImageIO.write(img, "jpg", output);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+//		ByteBuffer byteBuffer = ByteBuffer.allocate(4*pixelData.length);
+//		for (int j=0; j<pixelData.length; j++) {
+//			byteBuffer.putInt(pixelData[j]);
+//		}
+//		byte[] pixelBytes = byteBuffer.array();
+//		System.out.println(pixelData[1]);
+//		System.out.println((byte)pixelData[1]);
+//		System.out.println(byteBuffer.get(7));
+//		Pixmap perlinPix = new Pixmap(pixelBytes, 0, WIDTH*HEIGHT);
+//		Pixmap perlinPix = new Pixmap(new FileHandle("image.png"));
+//		PixmapIO.writePNG(new FileHandle("image2.png"), perlinPix);
     }
 }
