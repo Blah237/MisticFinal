@@ -939,6 +939,12 @@ public class GameController extends WorldController implements ContactListener {
         drawGlow();
         canvas.end();
 
+        // Draw lantern back glows
+        canvas.setShader(glow.getLanternBackShader());
+        canvas.begin(gorf.getPosition());
+        drawGlow();
+        canvas.end();
+
         canvas.setShader(null);
 
         // Draw under fog
@@ -1054,124 +1060,131 @@ public class GameController extends WorldController implements ContactListener {
 //        fog.draw(canvas, backgroundTexture, new Vector2(0,0));
         canvas.end();
 
-        // Draw lantern glows
-        canvas.setShader(glow.getLanternBackShader());
-        canvas.begin(gorf.getPosition());
-        drawGlow();
-        canvas.end();
-
         // Draw over fog
         canvas.setShader(null);
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
             for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+            canvas.end();
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+            canvas.end();
+        }
+        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+            canvas.end();
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+            canvas.end();
+        }
+        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
+            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+            canvas.end();
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
+            canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+            canvas.end();
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
+            canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+            canvas.end();
+        }
+        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
+            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+            canvas.end();
+        }
+
+        // Main canvas
+        canvas.begin(gorf.getPosition());
+        canvas.setShader(null);
+        for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
+        gorf.draw(canvas);
+        canvas.draw(fboRegion, 0, 0);
+        for (Lantern l : Lanterns){l.drawtop(canvas);}
+        for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
+        for(EnvAsset env : landmarks){env.drawtop(canvas);}
+        canvas.end();
+
+        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
+            canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
             canvas.draw(fboRegion, 0, 0);
+            for (Lantern l : Lanterns){l.drawtop(canvas);}
             for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
             for(EnvAsset env : landmarks){env.drawtop(canvas);}
             canvas.end();
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
-            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion, 0, 0);
+            for (Lantern l : Lanterns){l.drawtop(canvas);}
             for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
             for(EnvAsset env : landmarks){env.drawtop(canvas);}
-
             canvas.end();
         }
         if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
-            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion, 0, 0);
+            for (Lantern l : Lanterns){l.drawtop(canvas);}
             for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
             for(EnvAsset env : landmarks){env.drawtop(canvas);}
             canvas.end();
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
-            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion, 0, 0);
+            for (Lantern l : Lanterns){l.drawtop(canvas);}
             for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
             for(EnvAsset env : landmarks){env.drawtop(canvas);}
             canvas.end();
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
-            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion, 0, 0);
+            for (Lantern l : Lanterns){l.drawtop(canvas);}
             for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
             for(EnvAsset env : landmarks){env.drawtop(canvas);}
             canvas.end();
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
-
-            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion, 0, 0);
+            for (Lantern l : Lanterns){l.drawtop(canvas);}
             for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
             for(EnvAsset env : landmarks){env.drawtop(canvas);}
             canvas.end();
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
-            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion, 0, 0);
+            for (Lantern l : Lanterns){l.drawtop(canvas);}
             for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
             for(EnvAsset env : landmarks){env.drawtop(canvas);}
             canvas.end();
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
-            for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
             canvas.draw(fboRegion, 0, 0);
+            for (Lantern l : Lanterns){l.drawtop(canvas);}
             for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
             for(EnvAsset env : landmarks){env.drawtop(canvas);}
             canvas.end();
         }
 
-
         canvas.setShader(glow.getLanternFrontShader());
         canvas.begin(gorf.getPosition());
-        // Draw lantern glows
-        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(0,canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,canvas.getHeight()*2));
-        }
-        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(0,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(canvas.getWidth()*2,0));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,-canvas.getHeight()*2));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,0));
-        }
-        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-            glow.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,canvas.getHeight()*2));
-        }
+        drawGlow();
         canvas.end();
 
-        // Main canvas
-
-        canvas.begin(gorf.getPosition());
         canvas.setShader(null);
-        for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
-        canvas.setShader(null);
-        gorf.draw(canvas);
-        canvas.setShader(null);
-        for (Lantern l : Lanterns){l.drawtop(canvas);}
-        canvas.draw(fboRegion, 0, 0);
-        for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
-        for(EnvAsset env : landmarks){env.drawtop(canvas);}
-        canvas.end();
 
 
 //        canvas.draw(fboRegion, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
