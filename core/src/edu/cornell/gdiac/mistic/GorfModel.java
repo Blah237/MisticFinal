@@ -254,21 +254,29 @@ public class GorfModel extends BoxObstacle {
 	public void updateTexture(){
 		if(getFX()<0 && getFY()<0){
 			current=DownLeft;
+			this.setWidth(5);
 		}else if(getFX()<0 && getFY()>0){
 			current=UpLeft;
+			this.setWidth(4);
 		}else if(getFX()>0 && getFY()>0){
 			current=UpRight;
+			this.setWidth(4);
 		}else if(getFX()>0 && getFY()<0){
 			current=DownRight;
+			this.setWidth(5);
 		}
 		else if(getFX()<0){
 			current=Left;
+			this.setWidth(4);
 		}else if(getFX()>0){
 			current=Right;
+			this.setWidth(4);
 		}else if(getFY()<0) {
 			current=Down;
+			this.setWidth(5);
 		}else if(getFY()>0) {
 			current=Up;
+			this.setWidth(5);
 		}
 	}
 

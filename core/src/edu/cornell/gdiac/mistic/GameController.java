@@ -673,6 +673,7 @@ public class GameController extends WorldController implements ContactListener {
         glow = new Glow(canvas, super.screenSize, scale);
 
 
+
     }
 
     private void createMonster(float x, float y) {
