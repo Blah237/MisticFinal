@@ -639,8 +639,8 @@ public class GameController extends WorldController implements ContactListener {
         /**
          * Create Gorf
          */
-        float dwidth  = gorfTextures[0].getRegionWidth()/(scale.x);
-        float dheight = gorfTextures[0].getRegionHeight()/(scale.y*3);
+        float dwidth  = gorfTextures[0].getRegionWidth()/(scale.x * 10);
+        float dheight = gorfTextures[0].getRegionHeight()/(scale.y*2);
         gorf = new GorfModel(gorfStart.x, gorfStart.y, dwidth*0.75f, dheight*0.75f,gorfTextures);
         gorf.setDrawScale(scale);
         //gorf.setTexture(gorfTexture);
