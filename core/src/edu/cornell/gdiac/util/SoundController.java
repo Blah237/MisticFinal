@@ -22,6 +22,8 @@ import com.badlogic.gdx.assets.*;
 import com.badlogic.gdx.audio.*;
 import com.badlogic.gdx.utils.*;
 
+import java.util.Iterator;
+
 /**
  * A singleton class for controlling sound effects in LibGDX
  * 
@@ -69,6 +71,8 @@ public class SoundController {
 		public boolean loop;
 		/** How long this sound has been running */
 		public long lifespan;
+		/** This sound's referenced filename */
+		public String filename;
 		
 		/**
 		 * Creates a new active sound with the given values
@@ -77,11 +81,12 @@ public class SoundController {
 		 * @param n The id number representing the sound instance
 		 * @param b Is the sound looping (so no garbage collection)
 		 */
-		public ActiveSound(Sound s, long n, boolean b) {
+		public ActiveSound(Sound s, long n, boolean b, String st) {
 			sound = s;
 			id = n;
 			loop = b;
 			lifespan = 0;
+			filename = st;
 		}
 	}
 
@@ -95,9 +100,9 @@ public class SoundController {
 	/** The singleton Sound controller instance */
 	private static SoundController controller;
 	
-	/** Keeps track of all of the allocated sound resources */
+	/** Keeps track of all of the allocated sound resources; filename to sound */
 	private IdentityMap<String,Sound> soundbank;
-	/** Keeps track of all of the "active" sounds */
+	/** Keeps track of all of the "active" sounds; id to activeSound */
 	private IdentityMap<String,ActiveSound> actives;
 	/** Support class for garbage collection */
 	private Array<String> collection;
@@ -269,6 +274,15 @@ public class SoundController {
 	}
 
 	/**
+	 * Play all sounds in the active map
+	 */
+	public void playAllActive() {
+		for (IdentityMap.Entry<String,ActiveSound> k : actives) {
+			play(k.key,k.value.filename,true);
+		}
+	}
+
+	/**
 	 * Plays the an instance of the given sound
 	 * 
 	 * A sound is identified by its filename.  You can have multiple instances of the
@@ -315,7 +329,7 @@ public class SoundController {
 			sound.setLooping(id, true);
 		}
 		
-		actives.put(key,new ActiveSound(sound,id,loop));
+		actives.put(key,new ActiveSound(sound,id,loop,filename));
 		current++;
 		return true;
 	}

@@ -538,6 +538,9 @@ public class GameController extends WorldController implements ContactListener{
         for(Obstacle obj : objects) {
             obj.deactivatePhysics(world);
         }
+        // keep playing currently playing sounds
+        sounds.playAllActive();
+
         objects.clear();
         walls.clear();
         lanterns.clear();
@@ -582,11 +585,7 @@ public class GameController extends WorldController implements ContactListener{
             }
         }
 
-        // Stop all existing instances, and then re-play
-        //if (sounds.isActive("A")) {sounds.stop("A");}
-        sounds.stop("B");
-        sounds.play("D",D_PEACE_SONG,false);
-        sounds.play("B",B_MARSH_SONG,true);
+
         state = PLAY;
     }
 
@@ -708,8 +707,9 @@ public class GameController extends WorldController implements ContactListener{
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale, perlinTex);
         glow = new Glow(canvas, super.screenSize, scale);
 
-
-
+        // play sounds for the level
+        sounds.play("D",D_PEACE_SONG,true);
+        sounds.play("B",B_MARSH_SONG,true);
     }
 
     private void createMonster(float x, float y) {
