@@ -639,8 +639,8 @@ public class GameController extends WorldController implements ContactListener {
         /**
          * Create Gorf
          */
-        float dwidth  = gorfTextures[0].getRegionWidth()/(scale.x);
-        float dheight = gorfTextures[0].getRegionHeight()/(scale.y*3);
+        float dwidth  = gorfTextures[0].getRegionWidth()/(scale.x * 10);
+        float dheight = gorfTextures[0].getRegionHeight()/(scale.y*2);
         gorf = new GorfModel(gorfStart.x, gorfStart.y, dwidth*0.75f, dheight*0.75f,gorfTextures);
         gorf.setDrawScale(scale);
         //gorf.setTexture(gorfTexture);
@@ -927,12 +927,6 @@ public class GameController extends WorldController implements ContactListener {
         canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
         canvas.end();
 
-        // Draw familiar glow
-        canvas.setShader(glow.getFamiliarShader());
-        canvas.begin(gorf.getPosition());
-        drawGlow();
-        canvas.end();
-
         // Draw gorf glow
         canvas.setShader(glow.getGorfShader());
         canvas.begin(gorf.getPosition());
@@ -941,6 +935,12 @@ public class GameController extends WorldController implements ContactListener {
 
         // Draw lantern back glows
         canvas.setShader(glow.getLanternBackShader());
+        canvas.begin(gorf.getPosition());
+        drawGlow();
+        canvas.end();
+
+        // Draw familiar glow
+        canvas.setShader(glow.getFamiliarShader());
         canvas.begin(gorf.getPosition());
         drawGlow();
         canvas.end();

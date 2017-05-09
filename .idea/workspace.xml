@@ -2,16 +2,430 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/n_boundary_.png.sai" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/n_boundary_2.sai" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/firefly_figure8.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/cycle1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/cycle2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/cycle3.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/cycle4.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/cycle5.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/cycle6.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/cycle7.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/cycle8.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/n_boundary.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/n_boundary_2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/ne_boundary.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/new_boundary.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/ns_boundary.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/core/assets/mistic/hat.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundaries.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundaries.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundaries.sai" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundaries.sai" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary1_corners.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary1_corners.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary1_sidecorner_left.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary1_sidecorner_left.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary1_sidecorner_right.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary1_sidecorner_right.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_corners.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_corners.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_left.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_left.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_leftleft.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_leftleft.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_leftright.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_leftright.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_right.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_right.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_rightleft.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidecorner_rightleft.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidescorner_left.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidescorner_left.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidescorner_right.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary2_sidescorner_right.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_2corners_adjacent.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_2corners_adjacent.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_2corners_left.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_2corners_left.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_2corners_right.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_2corners_right.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_4corners.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_4corners.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_corners.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_corners.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_cornerside_bottom.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_cornerside_bottom.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_cornerside_top.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_cornerside_top.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_sides_left.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary3_sides_left.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/fog/boundary4_sides.png" afterPath="$PROJECT_DIR$/core/assets/mistic/fog/boundary4_sides.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfB.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfB.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfBL.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfBL.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfBR.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfBR.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfD.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfD.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfDL.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfDL.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfDR.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfDR.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfL.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfL.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfR.png" afterPath="$PROJECT_DIR$/core/assets/mistic/gorfs/gorfR.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise1.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise1.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise10.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise10.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise100.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise100.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise101.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise101.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise102.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise102.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise103.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise103.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise104.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise104.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise105.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise105.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise106.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise106.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise107.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise107.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise108.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise108.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise109.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise109.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise11.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise11.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise110.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise110.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise111.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise111.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise112.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise112.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise113.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise113.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise114.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise114.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise115.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise115.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise116.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise116.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise117.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise117.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise118.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise118.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise119.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise119.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise12.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise12.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise120.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise120.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise121.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise121.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise122.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise122.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise123.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise123.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise124.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise124.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise125.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise125.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise126.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise126.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise127.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise127.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise128.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise128.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise129.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise129.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise13.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise13.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise130.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise130.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise131.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise131.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise132.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise132.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise133.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise133.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise134.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise134.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise135.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise135.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise136.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise136.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise137.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise137.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise138.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise138.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise139.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise139.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise14.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise14.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise140.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise140.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise141.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise141.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise142.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise142.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise143.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise143.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise144.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise144.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise145.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise145.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise146.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise146.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise147.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise147.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise148.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise148.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise149.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise149.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise15.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise15.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise150.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise150.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise151.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise151.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise152.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise152.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise153.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise153.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise154.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise154.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise155.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise155.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise156.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise156.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise157.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise157.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise158.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise158.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise159.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise159.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise16.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise16.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise160.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise160.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise161.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise161.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise162.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise162.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise163.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise163.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise164.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise164.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise165.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise165.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise166.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise166.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise167.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise167.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise168.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise168.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise169.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise169.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise17.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise17.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise170.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise170.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise171.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise171.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise172.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise172.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise173.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise173.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise174.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise174.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise175.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise175.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise176.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise176.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise177.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise177.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise178.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise178.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise179.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise179.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise18.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise18.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise180.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise180.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise181.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise181.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise182.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise182.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise183.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise183.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise184.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise184.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise185.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise185.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise186.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise186.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise187.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise187.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise188.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise188.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise189.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise189.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise19.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise19.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise190.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise190.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise191.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise191.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise192.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise192.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise193.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise193.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise194.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise194.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise195.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise195.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise196.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise196.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise197.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise197.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise198.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise198.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise199.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise199.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise2.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise20.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise20.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise200.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise200.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise201.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise201.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise202.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise202.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise203.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise203.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise204.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise204.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise205.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise205.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise206.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise206.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise207.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise207.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise208.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise208.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise209.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise209.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise21.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise21.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise210.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise210.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise211.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise211.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise212.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise212.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise213.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise213.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise214.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise214.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise215.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise215.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise216.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise216.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise217.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise217.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise218.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise218.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise219.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise219.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise22.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise22.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise220.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise220.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise221.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise221.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise222.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise222.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise223.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise223.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise224.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise224.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise225.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise225.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise226.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise226.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise227.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise227.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise228.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise228.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise229.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise229.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise23.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise23.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise230.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise230.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise231.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise231.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise232.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise232.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise233.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise233.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise234.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise234.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise235.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise235.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise236.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise236.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise237.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise237.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise238.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise238.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise239.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise239.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise24.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise24.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise240.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise240.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise241.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise241.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise242.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise242.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise243.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise243.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise244.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise244.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise245.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise245.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise246.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise246.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise247.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise247.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise248.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise248.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise249.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise249.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise25.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise25.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise250.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise250.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise251.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise251.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise252.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise252.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise253.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise253.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise254.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise254.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise255.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise255.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise256.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise256.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise257.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise257.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise258.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise258.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise259.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise259.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise26.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise26.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise260.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise260.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise261.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise261.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise262.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise262.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise263.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise263.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise264.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise264.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise265.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise265.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise266.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise266.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise267.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise267.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise268.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise268.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise269.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise269.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise27.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise27.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise270.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise270.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise271.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise271.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise272.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise272.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise273.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise273.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise274.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise274.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise275.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise275.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise276.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise276.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise277.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise277.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise278.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise278.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise279.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise279.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise28.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise28.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise280.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise280.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise281.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise281.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise282.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise282.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise283.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise283.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise284.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise284.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise285.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise285.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise286.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise286.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise287.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise287.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise288.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise288.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise289.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise289.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise29.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise29.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise290.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise290.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise291.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise291.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise292.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise292.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise293.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise293.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise294.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise294.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise295.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise295.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise296.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise296.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise297.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise297.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise298.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise298.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise299.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise299.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise3.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise30.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise30.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise300.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise300.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise301.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise301.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise302.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise302.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise303.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise303.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise304.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise304.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise305.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise305.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise306.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise306.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise307.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise307.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise308.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise308.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise309.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise309.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise31.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise31.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise310.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise310.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise311.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise311.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise312.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise312.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise313.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise313.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise314.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise314.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise315.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise315.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise316.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise316.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise317.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise317.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise318.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise318.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise319.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise319.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise32.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise32.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise320.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise320.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise321.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise321.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise322.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise322.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise323.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise323.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise324.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise324.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise325.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise325.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise326.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise326.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise327.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise327.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise328.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise328.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise329.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise329.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise33.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise33.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise330.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise330.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise331.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise331.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise332.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise332.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise333.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise333.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise334.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise334.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise335.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise335.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise336.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise336.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise337.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise337.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise338.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise338.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise339.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise339.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise34.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise34.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise340.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise340.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise341.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise341.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise342.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise342.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise343.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise343.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise344.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise344.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise345.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise345.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise346.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise346.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise347.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise347.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise348.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise348.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise349.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise349.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise35.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise35.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise350.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise350.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise351.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise351.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise352.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise352.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise353.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise353.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise354.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise354.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise355.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise355.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise356.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise356.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise357.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise357.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise358.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise358.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise359.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise359.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise36.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise36.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise37.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise37.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise38.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise38.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise39.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise39.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise4.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise40.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise40.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise41.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise41.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise42.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise42.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise43.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise43.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise44.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise44.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise45.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise45.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise46.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise46.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise47.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise47.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise48.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise48.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise49.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise49.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise5.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise5.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise50.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise50.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise51.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise51.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise52.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise52.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise53.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise53.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise54.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise54.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise55.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise55.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise56.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise56.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise57.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise57.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise58.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise58.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise59.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise59.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise6.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise6.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise60.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise60.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise61.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise61.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise62.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise62.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise63.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise63.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise64.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise64.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise65.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise65.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise66.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise66.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise67.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise67.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise68.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise68.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise69.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise69.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise7.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise7.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise70.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise70.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise71.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise71.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise72.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise72.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise73.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise73.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise74.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise74.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise75.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise75.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise76.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise76.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise77.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise77.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise78.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise78.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise79.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise79.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise8.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise8.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise80.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise80.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise81.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise81.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise82.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise82.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise83.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise83.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise84.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise84.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise85.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise85.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise86.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise86.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise87.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise87.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise88.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise88.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise89.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise89.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise9.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise9.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise90.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise90.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise91.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise91.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise92.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise92.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise93.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise93.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise94.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise94.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise95.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise95.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise96.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise96.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise97.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise97.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise98.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise98.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/noise/noise99.png" afterPath="$PROJECT_DIR$/core/assets/mistic/noise/noise99.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/spritesheet_firefly.png" afterPath="$PROJECT_DIR$/core/assets/mistic/spritesheet_firefly.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Firefly.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FireflyController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Glow.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Glow.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GorfModel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Perlin.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Perlin.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Firefly.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Firefly.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GorfModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -47,7 +461,7 @@
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
-              <caret line="148" column="19" lean-forward="true" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
+              <caret line="148" column="19" lean-forward="false" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -56,8 +470,8 @@
       <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="1521" column="9" lean-forward="false" selection-start-line="1521" selection-start-column="9" selection-end-line="1521" selection-end-column="9" />
+            <state relative-caret-position="518">
+              <caret line="1217" column="33" lean-forward="false" selection-start-line="1217" selection-start-column="33" selection-end-line="1217" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#23132#23149#0" expanded="true" />
@@ -69,12 +483,9 @@
       <file leaf-file-name="Perlin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
-              <folding>
-                <element signature="e#551#552#0" expanded="true" />
-                <element signature="e#587#588#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="200">
+              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -82,22 +493,18 @@
       <file leaf-file-name="fog.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-              <folding>
-                <marker date="1494258253197" expanded="true" signature="1043:8405" ph="{...}" />
-                <marker date="1494258253197" expanded="true" signature="4275:5404" ph="{...}" />
-                <marker date="1494258253197" expanded="true" signature="4718:4918" ph="{...}" />
-              </folding>
+            <state relative-caret-position="445">
+              <caret line="148" column="60" lean-forward="false" selection-start-line="148" selection-start-column="60" selection-end-line="148" selection-end-column="60" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lantern_back.frag.glsl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="lantern_back.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="25" column="47" lean-forward="true" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+            <state relative-caret-position="80">
+              <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -106,8 +513,8 @@
       <file leaf-file-name="gorfglow.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="260">
+              <caret line="13" column="81" lean-forward="false" selection-start-line="13" selection-start-column="81" selection-end-line="13" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -116,8 +523,8 @@
       <file leaf-file-name="lantern_front.frag.glsl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="200">
+              <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -127,17 +534,17 @@
         <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
-              <caret line="12" column="38" lean-forward="true" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+              <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-660">
-              <caret line="389" column="2" lean-forward="true" selection-start-line="389" selection-start-column="2" selection-end-line="389" selection-end-column="2" />
+            <state relative-caret-position="2378">
+              <caret line="743" column="53" lean-forward="true" selection-start-line="743" selection-start-column="53" selection-end-line="743" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -148,8 +555,8 @@
       <file leaf-file-name="Glow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="84" column="8" lean-forward="false" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
+            <state relative-caret-position="218">
+              <caret line="96" column="83" lean-forward="false" selection-start-line="96" selection-start-column="83" selection-end-line="96" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -951,16 +1358,16 @@
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lanterns.frag.glsl" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" />
-        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
-        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl" />
+        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java" />
+        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" />
+        <option value="$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       </list>
     </option>
   </component>
@@ -1777,25 +2184,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="39" column="28" lean-forward="false" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
-          <folding>
-            <element signature="e#551#552#0" expanded="true" />
-            <element signature="e#587#588#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="13" column="45" lean-forward="false" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
           <folding>
-            <marker date="1494276405052" expanded="true" signature="123840:123857" ph="..." />
-            <marker date="1494276405052" expanded="true" signature="123840:123875" ph="..." />
-            <marker date="1494276405052" expanded="true" signature="123840:123888" ph="..." />
+            <marker date="1494315808864" expanded="true" signature="191579:191596" ph="..." />
+            <marker date="1494315808864" expanded="true" signature="191579:191614" ph="..." />
+            <marker date="1494315808864" expanded="true" signature="191579:191627" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1808,48 +2204,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="39" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fog.frag.glsl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="100" column="0" lean-forward="false" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding>
-            <marker date="1494258253197" expanded="true" signature="1043:8405" ph="{...}" />
-            <marker date="1494258253197" expanded="true" signature="4275:5404" ph="{...}" />
-            <marker date="1494258253197" expanded="true" signature="4718:4918" ph="{...}" />
-          </folding>
+        <state relative-caret-position="445">
+          <caret line="148" column="60" lean-forward="false" selection-start-line="148" selection-start-column="60" selection-end-line="148" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="96" column="83" lean-forward="false" selection-start-line="96" selection-start-column="83" selection-end-line="96" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="81" lean-forward="false" selection-start-line="13" selection-start-column="81" selection-end-line="13" selection-end-column="81" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
-          <caret line="148" column="19" lean-forward="true" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-660">
-          <caret line="389" column="2" lean-forward="true" selection-start-line="389" selection-start-column="2" selection-end-line="389" selection-end-column="2" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="84" column="8" lean-forward="false" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
+          <caret line="148" column="19" lean-forward="false" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="1521" column="9" lean-forward="false" selection-start-line="1521" selection-start-column="9" selection-end-line="1521" selection-end-column="9" />
+        <state relative-caret-position="518">
+          <caret line="1217" column="33" lean-forward="false" selection-start-line="1217" selection-start-column="33" selection-end-line="1217" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#23132#23149#0" expanded="true" />
@@ -1857,35 +2279,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/familiar.frag.glsl">
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="12" column="38" lean-forward="true" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_back.frag.glsl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="25" column="47" lean-forward="true" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
-          <folding />
+        <state relative-caret-position="2378">
+          <caret line="743" column="53" lean-forward="true" selection-start-line="743" selection-start-column="53" selection-end-line="743" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

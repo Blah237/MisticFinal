@@ -120,15 +120,15 @@ public class FogController {
     private final float N_CORNER_L = 18f;
     private final float E_CORNER_U = 19f;
 
-    private final float NW_CORNER_LR = 20f;
-    private final float NE_CORNER_LR = 21f;
-    private final float SE_CORNER_LR = 22f;
-    private final float SW_CORNER_LR = 23f;
+    private final float SW_CORNER_LR = 20f;
+    private final float NW_CORNER_LR = 21f;
+    private final float NE_CORNER_LR = 22f;
+    private final float SE_CORNER_LR = 23f;
 
-    private final float NE_CORNER_L = 24f;
-	private final float SE_CORNER_L = 25f;
-    private final float SW_CORNER_L = 26f;
-    private final float NW_CORNER_L = 27f;
+    private final float SW_CORNER_L = 24f;
+    private final float NW_CORNER_L = 25f;
+    private final float NE_CORNER_L = 26f;
+	private final float SE_CORNER_L = 27f;
 
     private final float NS_CORNER_LL = 28f;
     private final float EW_CORNER_DD = 29f;
@@ -138,10 +138,10 @@ public class FogController {
     private final float NS_CORNER_LR = 32f;
     private final float EW_CORNER_DU = 33f;
 
-    private final float NW_CORNER_R = 36f;
-    private final float NE_CORNER_R = 37f;
-    private final float SE_CORNER_R = 38f;
-    private final float SW_CORNER_R = 39f;
+    private final float SW_CORNER_R = 36f;
+    private final float NW_CORNER_R = 37f;
+    private final float NE_CORNER_R = 38f;
+    private final float SE_CORNER_R = 39f;
 
     private final float NS_CORNER_RL = 40f;
     private final float EW_CORNER_UD = 41f;
@@ -229,7 +229,7 @@ public class FogController {
 
 	Vector2 familiarPos;
 
-	private final int ANIM_SPAN = 216;
+	private final int ANIM_SPAN = 360;
 	int animFrame;
 	boolean dec;
 
@@ -580,19 +580,19 @@ public class FogController {
 
 		familiarPos = new Vector2((familiar.getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x), (familiar.getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y));
 
-		if (dec) {
-		    animFrame--;
-		    if (animFrame == 0) {
-		        dec = false;
-            }
-        } else {
-		    animFrame++;
-		    if (animFrame == ANIM_SPAN-1) {
-		        dec = true;
-            }
-        }
+//		if (dec) {
+//		    animFrame--;
+//		    if (animFrame == 0) {
+//		        dec = false;
+//            }
+//        } else {
+//		    animFrame++;
+//		    if (animFrame == ANIM_SPAN-1) {
+//		        dec = true;
+//            }
+//        }
 
-//        animFrame = (animFrame + 1) % ANIM_SPAN;
+        animFrame = (animFrame + 1) % ANIM_SPAN;
 	}
 
 	private void updateFog(BoardModel tileBoard) {
@@ -740,6 +740,8 @@ public class FogController {
 				if (fogBoard[i][j] == BOUNDARY) {
 					if (fogAbove && fogRight && fogBelow && fogLeft) {
                         addBoundary(NSEW, i, j);
+                        tileBoard.setFog(i, j, true);
+                        newFog.add(new Vector2(i,j));
 					}
 
 					else if (fogAbove) {
@@ -766,11 +768,11 @@ public class FogController {
                                         addBoundary(NSE, i, j);
                                     }
                                     else {
-                                        addBoundary(NSE_CORNER_R, i, j);
+                                        addBoundary(NSE_CORNER_L, i, j);
                                     }
                                 }
                                 else if (fogLowerLeft) {
-                                    addBoundary(NSE_CORNER_L, i, j);
+                                    addBoundary(NSE_CORNER_R, i, j);
                                 }
                                 else {
                                     addBoundary(NSE_CORNER_LR, i, j);
@@ -837,11 +839,11 @@ public class FogController {
                                         addBoundary(NEW, i, j);
                                     }
                                     else {
-                                        addBoundary(NEW_CORNER_R, i, j);
+                                        addBoundary(NEW_CORNER_L, i, j);
                                     }
                                 }
                                 else if (fogLowerRight) {
-                                    addBoundary(NEW_CORNER_L, i, j);
+                                    addBoundary(NEW_CORNER_R, i, j);
                                 }
                                 else {
                                     addBoundary(NEW_CORNER_LR, i, j);
@@ -870,11 +872,11 @@ public class FogController {
                                     addBoundary(NE, i, j);
                                 }
                                 else {
-                                    addBoundary(NE_CORNER_R, i, j);
+                                    addBoundary(NE_CORNER_L, i, j);
                                 }
                             }
                             else if (fogLowerRight) {
-						        addBoundary(NE_CORNER_L, i, j);
+						        addBoundary(NE_CORNER_R, i, j);
                             }
                             addBoundary(NE_CORNER_LR, i, j);
                         }
@@ -937,11 +939,11 @@ public class FogController {
                                     addBoundary(SE, i, j);
                                 }
                                 else {
-                                    addBoundary(SE_CORNER_R, i, j);
+                                    addBoundary(SE_CORNER_L, i, j);
                                 }
                             }
                             else if (fogLowerLeft) {
-                                addBoundary(SE_CORNER_L, i, j);
+                                addBoundary(SE_CORNER_R, i, j);
                             }
                             else {
                                 addBoundary(SE_CORNER_LR, i, j);

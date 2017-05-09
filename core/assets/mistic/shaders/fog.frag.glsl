@@ -146,7 +146,7 @@ void main() {
 
     float dist3 = length(vec2(dx3, dy3));
 
-    fogThickness *= min(1.0, .05 + smoothstep(gorfRadius, .4+gorfRadius, dist3));
+    fogThickness *= min(1.0, .05 + smoothstep(gorfRadius, .3+gorfRadius, dist3));
 
 //    fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
 //    fog *= min(1.0,fogThickness);

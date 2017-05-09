@@ -58,7 +58,7 @@ public class FireflyController {
             if (!F.isDestroyed()) {
                 float dx = Math.abs((F.getX() / scale.x) - gorf.getX());
                 float dy = Math.abs((F.getY() / scale.y) - gorf.getY());
-                if (dx < gorf.getWidth()/1.5 && dy < gorf.getHeight()/1.5) {
+                if (dx < gorf.getWidth() && dy < gorf.getHeight()) {
                     F.setDestroyed(true);
                     collected=true;
                 }
