@@ -8,7 +8,6 @@ uniform int numLanterns;
 uniform float gorfRadius;
 
 void main() {
-    // Familiar Glow
     vec3 familiarGlowColor = vec3(0.7, 1.0, 1.0);
 
     vec2 familiarDir = familiarPos - (gl_FragCoord.xy / res.xy);

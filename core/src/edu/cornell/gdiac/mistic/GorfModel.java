@@ -43,7 +43,7 @@ public class GorfModel extends BoxObstacle {
 	private static final float DEFAULT_RESTITUTION = 0.4f;
 	/** The thrust factor to convert player input into thrust */
 	private static final float DEFAULT_THRUST = 25.0f;
-	public int animateSize=1;
+	public int animateSize=8;
 	/** The force to apply to this rocket */
 	private Vector2 force;
 
@@ -74,7 +74,7 @@ public class GorfModel extends BoxObstacle {
 	float currFX = 0;
 	float currFY = 0;
 
-	int animateTimer=15;
+	int animateTimer=5;
 
 	/**
 	 * Returns the force applied to this rocket.
@@ -209,21 +209,23 @@ public class GorfModel extends BoxObstacle {
 	}
 
 	public void gorfAnimate(){
-		setTexture(current);
-		/**
-		System.out.println(current.getFrame());
-		this.animateTimer--;
-		if ( this.animateTimer == 0) {
-			this.animateTimer  = 15;
-		}
-		if (this.animateTimer == 1) {
-			if (this.current.getFrame() != this.current.getSize() - 1) {
-				this.current.setFrame(this.current.getFrame() + 1);
-			} else {
-				this.current.setFrame(0);
+		if(getForce().isZero()){
+			this.current.setFrame(this.current.getFrame());
+		}else{
+			setTexture(current);
+			//System.out.println(current.getFrame());
+			this.animateTimer--;
+			if ( this.animateTimer == 0) {
+				this.animateTimer  = 8;
+			}
+			if (this.animateTimer == 1) {
+				if (this.current.getFrame() != this.current.getSize() - 1) {
+					this.current.setFrame(this.current.getFrame() + 1);
+				} else {
+					this.current.setFrame(0);
+				}
 			}
 		}
-		 */
 	}
 
 	/**
@@ -252,21 +254,29 @@ public class GorfModel extends BoxObstacle {
 	public void updateTexture(){
 		if(getFX()<0 && getFY()<0){
 			current=DownLeft;
+			this.setWidth(5);
 		}else if(getFX()<0 && getFY()>0){
 			current=UpLeft;
+			this.setWidth(4);
 		}else if(getFX()>0 && getFY()>0){
 			current=UpRight;
+			this.setWidth(4);
 		}else if(getFX()>0 && getFY()<0){
 			current=DownRight;
+			this.setWidth(5);
 		}
 		else if(getFX()<0){
 			current=Left;
+			this.setWidth(4);
 		}else if(getFX()>0){
 			current=Right;
+			this.setWidth(4);
 		}else if(getFY()<0) {
 			current=Down;
+			this.setWidth(5);
 		}else if(getFY()>0) {
 			current=Up;
+			this.setWidth(5);
 		}
 	}
 

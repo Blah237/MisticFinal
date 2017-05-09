@@ -26,11 +26,13 @@ public class Firefly {
     private static final float FIREFLY_DENSITY = 1.0f;
     private static final float FIREFLY_FRICTION  = 0.3f;
     private static final float FIREFLY_RESTITUTION = 0.1f;
-    private int fireflyAnimateTimer = 4;
+    private int fireflyAnimateTimer = random(TIMER);
+    int respawnTimer;
     private Vector2 scale = new Vector2(1f,1f);
-    public static final int FRAMES = 15;
+    public static final int FRAMES = 18;
     public static final int RESPAWN=700;
-    public int respawnTimer;
+    public static final int TIMER = 8;
+    private boolean decreasing = true;
 
 
     public Firefly(float x, float y, TextureRegion texture) {
@@ -52,17 +54,28 @@ public class Firefly {
     }
 
     public void fireflyAnimate(){
-        this.fireflyAnimateTimer--;
-        if ( this.fireflyAnimateTimer == 0) {
-            this.fireflyAnimateTimer  = 15;
-        }
-        if (this.fireflyAnimateTimer == 1) {
-            if (this.fireflyAnimation.getFrame() != this.fireflyAnimation.getSize() - 1) {
-                this.fireflyAnimation.setFrame(this.fireflyAnimation.getFrame() + 1);
-            } else {
-                this.fireflyAnimation.setFrame(0);
+        //timer goes from 6-0 again and again
+        //every time we hit 0 if !decreasing we increment frame
+        //if decreasing we go backwards through frames
+        fireflyAnimateTimer--;
+        if(this.fireflyAnimateTimer==0) {
+            this.fireflyAnimateTimer = TIMER;
+            if(!decreasing){
+                if(this.fireflyAnimation.getFrame() == this.fireflyAnimation.getSize()-1){
+                    this.decreasing=true;
+                }else{
+                    this.fireflyAnimation.setFrame(this.fireflyAnimation.getFrame()+1);
+                }
+            }else if(decreasing) {
+                if (this.fireflyAnimation.getFrame() == 0) {
+                    this.decreasing = false;
+                } else {
+                    this.fireflyAnimation.setFrame(this.fireflyAnimation.getFrame() - 1);
+
+                }
             }
         }
+
     }
 
     public void setPosition(float x, float y){
