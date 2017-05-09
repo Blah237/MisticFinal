@@ -44,7 +44,7 @@ public class LevelSelectController extends WorldController implements Screen {
 
     public final String level1 = "jsons/BETA_basic_blockfog.json";
     public final String level2 = "jsons/BETA_easy_containfog_1fam.json";
-    public final String level3 = "jsons/BETA_two_sides.json";
+    public final String level3 = "jsons/level3line.json";
     public final String level4 = "jsons/BETA_two_sides_3fam.json";
     public final String level5 = "jsons/BETA_rooms2.json";
 

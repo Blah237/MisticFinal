@@ -214,6 +214,8 @@ public class InputController {
 	 */
 	public boolean didEnter() { return enterPressed;}
 
+	public boolean didPause() { return prevPressed;}
+
 	/**
 	 * Returns true if the 'm' button was pressed.
 	 *

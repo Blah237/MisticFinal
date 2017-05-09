@@ -45,6 +45,9 @@ import org.lwjgl.Sys;
  * place nicely with the static assets.
  */
 public class GameController extends WorldController implements ContactListener {
+    private int inputTimer = 20;
+    private boolean timerGo = true;
+
     /** Reference to the rocket texture */
     private static final String[] GORF_TEXTURES = {"mistic/gorfs/gorfD.png","mistic/gorfs/gorfDL.png","mistic/gorfs/gorfDR.png",
             "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfBL.png", "mistic/gorfs/gorfBR.png",
@@ -109,6 +112,10 @@ public class GameController extends WorldController implements ContactListener {
     private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
     private static final String HUD_PURPLE_FIREFLY = "mistic/purple_firefly.png";
 
+    /** Menu Screen Texture References*/
+    private static final String PAUSE_SCREEN = "mistic/spritesheet_pause.png";
+    private static final String WIN_SCREEN = "mistic/spritesheet_win.png";
+
     /** The SoundController, Music and sfx */
     SoundController sounds = SoundController.getInstance();
     private static final String A_PEACE_SONG = "sounds/A_Peace_DEMO2.mp3";
@@ -156,6 +163,15 @@ public class GameController extends WorldController implements ContactListener {
     private TextureRegion HUDWhiteNumber_9;
     private TextureRegion HUDWhiteNumber_slash;
     private TextureRegion HUDPurpleFirefly;
+
+    private FilmStrip pause;
+    private FilmStrip win;
+
+    private int state;
+    private static final int PLAY = 1;
+    private static final int PAUSE = 2;
+    private static final int WIN = 3;
+    private static final int LOSE = 4;
 
 
     /** Track asset loading from all instances and subclasses */
@@ -262,6 +278,13 @@ public class GameController extends WorldController implements ContactListener {
         manager.load(HUD_PAW_ANIMATE, Texture.class);
         assets.add(HUD_PAW_ANIMATE);
 
+        manager.load(PAUSE_SCREEN, Texture.class);
+        assets.add(PAUSE_SCREEN);
+
+        manager.load(WIN_SCREEN, Texture.class);
+        assets.add(WIN_SCREEN);
+
+
 
         for(String m : MIST_WALLS){
             manager.load(m, Texture.class);
@@ -354,6 +377,8 @@ public class GameController extends WorldController implements ContactListener {
         HUDWhiteNumber_slash = createTexture(manager, HUD_WHITE_NUMBER_SLASH, false);
         HUDPurpleFirefly = createTexture(manager, HUD_PURPLE_FIREFLY, false);
         pawAnimation = createFilmStrip(manager, HUD_PAW_ANIMATE, 1, 2, 2);
+
+        pause = createFilmStrip(manager, PAUSE_SCREEN, 1, 3, 3);
 
 
         fireflyAnimation=createTexture(manager, FIREFLY_ANIMATE, false);
@@ -490,6 +515,7 @@ public class GameController extends WorldController implements ContactListener {
         this.DEAD = false;
         this.fireflyDeathTimer=0;
         this.monster = new ArrayList<MonsterModel>();
+        state = PLAY;
 
     }
 
@@ -552,6 +578,7 @@ public class GameController extends WorldController implements ContactListener {
         sounds.stop("B");
         sounds.play("D",D_PEACE_SONG,false);
         sounds.play("B",B_MARSH_SONG,true);
+        state = PLAY;
     }
 
     private void populateLevel() {
@@ -732,123 +759,160 @@ public class GameController extends WorldController implements ContactListener {
      */
 
     public void update(float dt) {
-        //#region INSERT CODE HERE
-        // Read from the input and add the force to the rocket model
-        // Then apply the force using the method you modified in RocketObject
-        boolean pressing = InputController.getInstance().didSecondary();
-        if(pressing){
-            Lantern l = getLantern(gorf.getX(), gorf.getY());
-            if (l!=null){
-                toggle(l);
-            }
-        }
-        int f = familiars.getNumFam();
-        familiars.update(gorf);
-        int f2 = familiars.getNumFam();
-        if (f2 > f) {
-            pawAnimation.setFrame(1);
-            pawTimerStart = true;
-        }
 
-
-
-        if (pawTimerStart == true) {
-            pawTimer = pawTimer - 1;
-            if (pawTimer == 0) {
-                pawAnimation.setFrame(0);
-                pawTimer = 60;
-                pawTimerStart = false;
-            }
-        }
-
-        float Gorfx= gorf.getPosition().x * scale.x;
-        float Gorfy= gorf.getPosition().y * scale.y;
-
-        BoardModel.Tile gorftile= tileBoard.tiles[tileBoard.screenToBoardX(Gorfx)][tileBoard.screenToBoardY(Gorfy)];        // NOTE: got an ArrayIndexOutOfBoundsException at some obscure tile?
-        boolean inFog=gorftile.isFog;
-
-        if (inFog){
-            fireflyDeathTimer+=1;
-            if(fireflyDeathTimer>fireflyDelay){
-                if(firefly_count!=0) {
-                    firefly_count -= 1;
+        if (state == PLAY) {
+            boolean pressing = InputController.getInstance().didSecondary();
+            if (pressing) {
+                Lantern l = getLantern(gorf.getX(), gorf.getY());
+                if (l != null) {
+                    toggle(l);
                 }
-                fireflyDeathTimer=0;
             }
-        }
-        if(!inFog){
-            fireflyDeathTimer=0;
-        }
+            int f = familiars.getNumFam();
+            familiars.update(gorf);
+            int f2 = familiars.getNumFam();
+            if (f2 > f) {
+                pawAnimation.setFrame(1);
+                pawTimerStart = true;
+            }
 
-        if (!monsterSpawn) {
-            if (monsterSpawnTimer != 0) {
-                monsterSpawnTimer--;
-            } else if (!inFog) {
-                monsterSpawn = true;
-                for (BoardModel.Tile[] ta: tileBoard.tiles) {
-                    for (BoardModel.Tile t : ta) {
-                        if (t.isFogSpawn) {
-                            createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
+            boolean isPaused = InputController.getInstance().didPause();
+            if (isPaused) {
+                state = PAUSE;
+            }
+
+
+            if (pawTimerStart == true) {
+                pawTimer = pawTimer - 1;
+                if (pawTimer == 0) {
+                    pawAnimation.setFrame(0);
+                    pawTimer = 60;
+                    pawTimerStart = false;
+                }
+            }
+
+            float Gorfx = gorf.getPosition().x * scale.x;
+            float Gorfy = gorf.getPosition().y * scale.y;
+
+            BoardModel.Tile gorftile = tileBoard.tiles[tileBoard.screenToBoardX(Gorfx)][tileBoard.screenToBoardY(Gorfy)];        // NOTE: got an ArrayIndexOutOfBoundsException at some obscure tile?
+            boolean inFog = gorftile.isFog;
+
+            if (inFog) {
+                fireflyDeathTimer += 1;
+                if (fireflyDeathTimer > fireflyDelay) {
+                    if (firefly_count != 0) {
+                        firefly_count -= 1;
+                    }
+                    fireflyDeathTimer = 0;
+                }
+            }
+            if (!inFog) {
+                fireflyDeathTimer = 0;
+            }
+
+            if (!monsterSpawn) {
+                if (monsterSpawnTimer != 0) {
+                    monsterSpawnTimer--;
+                } else if (!inFog) {
+                    monsterSpawn = true;
+                    for (BoardModel.Tile[] ta : tileBoard.tiles) {
+                        for (BoardModel.Tile t : ta) {
+                            if (t.isFogSpawn) {
+                                createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
+                            }
+                        }
                     }
                 }
-                    }
-                }
-        }
+            }
 
-        fog.update(gorf,Lanterns,familiars, firefly_count,tileBoard,canvas,dt);
+            fog.update(gorf, Lanterns, familiars, firefly_count, tileBoard, canvas, dt);
 
-        float forcex = InputController.getInstance().getHorizontal();
-        float forcey= InputController.getInstance().getVertical();
-        float moveacc = gorf.getThrust() * 0.3f;
+            float forcex = InputController.getInstance().getHorizontal();
+            float forcey = InputController.getInstance().getVertical();
+            float moveacc = gorf.getThrust() * 0.3f;
 
-        // make all movement equispeed
-        Vector2 temp = new Vector2(forcex*moveacc,forcey*moveacc);
-        if (temp.len()>gorf.getThrust()) {
-            temp = temp.setLength(gorf.getThrust());
-        }
+            // make all movement equispeed
+            Vector2 temp = new Vector2(forcex * moveacc, forcey * moveacc);
+            if (temp.len() > gorf.getThrust()) {
+                temp = temp.setLength(gorf.getThrust());
+            }
 
-        this.gorf.setFX(temp.x);
-        this.gorf.setFY(temp.y);
-        gorf.applyForce();
-        gorf.updateTexture();
-        gorf.gorfAnimate();
-        wrapInBounds(gorf);
+            this.gorf.setFX(temp.x);
+            this.gorf.setFY(temp.y);
+            gorf.applyForce();
+            gorf.updateTexture();
+            gorf.gorfAnimate();
+            wrapInBounds(gorf);
 
-        gorf.setCollidingX(false);
-        gorf.setCollidingY(false);
+            gorf.setCollidingX(false);
+            gorf.setCollidingY(false);
 
-        ai.update(dt, world, firefly_count);
-        for (MonsterModel m : (ai.monster)) {
-            wrapInBounds(m);
-        }
+            ai.update(dt, world, firefly_count);
+            for (MonsterModel m : (ai.monster)) {
+                wrapInBounds(m);
+            }
 
-        //ai.setInput();
-        //float forceXMonster = ai.getHorizontal();
-        //float forceYMonster = ai.getVertical();
-        //float monsterthrust = monster.getThrust();
-        //this.monster.setFX(forceXMonster * monsterthrust);
-        //this.monster.setFY(forceYMonster * monsterthrust);
-        //monster.applyForce();
+            //ai.setInput();
+            //float forceXMonster = ai.getHorizontal();
+            //float forceYMonster = ai.getVertical();
+            //float monsterthrust = monster.getThrust();
+            //this.monster.setFX(forceXMonster * monsterthrust);
+            //this.monster.setFY(forceYMonster * monsterthrust);
+            //monster.applyForce();
 
 
-        SoundController.getInstance().update();
-        if(fireflyController.update(gorf)){
-            firefly_count++;
-        }
-        /**
-         for (Body b : scheduledForRemoval) {
-         b.getWorld().destroyBody(b);
-         fireflyObjects.remove(b);
-         for (BoxObstacle o : fireflyObjectsO) {
-         if (b == o.getBody()) {
-         objects.remove(o);
-         }
-         }
-         }*/
+            SoundController.getInstance().update();
+            if (fireflyController.update(gorf)) {
+                firefly_count++;
+            }
+            /**
+             for (Body b : scheduledForRemoval) {
+             b.getWorld().destroyBody(b);
+             fireflyObjects.remove(b);
+             for (BoxObstacle o : fireflyObjectsO) {
+             if (b == o.getBody()) {
+             objects.remove(o);
+             }
+             }
+             }*/
 
 //        if (!tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX()*scale.x), tileBoard.screenToBoardY(gorf.getY()*scale.y))) {
 //            System.out.println(tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX() * scale.x), tileBoard.screenToBoardY(gorf.getY() * scale.y)));
 //        }
+        } else if (state == PAUSE) {
+            if (timerGo) { //code to slow down multiple inputs and not register all of them
+                inputTimer--;
+                if (inputTimer == 0) {
+                    timerGo = false;
+                    inputTimer = 20;
+                }
+            }
+            float forcex= InputController.getInstance().getHorizontal();
+            if (forcex > 0 && !timerGo) {
+                timerGo = true;
+                if (pause.getFrame() == (pause.getSize() - 1)) {
+                    pause.setFrame(0);
+                } else {
+                    pause.setFrame(pause.getFrame() + 1);
+                }
+            } else if (forcex < 0 && !timerGo) { //decrease level when player presses left arrow key
+                timerGo = true;
+                if (pause.getFrame() == (0)) {
+                    pause.setFrame(pause.getSize() - 1);
+                } else {
+                    pause.setFrame(pause.getFrame() - 1);
+                }
+            }
+            boolean enter = InputController.getInstance().didEnter();
+            if (enter && !timerGo) {
+                timerGo = true;
+                switch (pause.getFrame()) {
+                    case 0: state = PLAY; break;
+                    case 1: break;
+                    case 2: reset();
+                }
+            }
+        }
     }
 
     /**
@@ -1500,6 +1564,11 @@ public class GameController extends WorldController implements ContactListener {
             //canvas.endDebug();
         }
         canvas.end();
+        if (state == PAUSE) {
+            canvas.begin();
+            canvas.draw(pause, (gorf.getPosition().x * scale.x - (canvas.getWidth() / 2.0f) + 190.0f), gorf.getPosition().y * scale.y - (canvas.getHeight() / 2.0f) + 116.0f);
+            canvas.end();
+        }
 
     }
 
