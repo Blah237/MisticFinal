@@ -103,6 +103,7 @@ public class LevelSelectController extends WorldController implements Screen {
         world.dispose();
         setComplete(false);
         setFailure(false);
+        timerGo = true;
         world = new World(gravity,false);
     }
 
@@ -175,18 +176,18 @@ public class LevelSelectController extends WorldController implements Screen {
         canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
 
         switch (level) {
-            case 1: canvas.draw(gorf, 391, 710); break;
-            case 2: canvas.draw(gorf, 660, 690); break;
-            case 3: canvas.draw(gorf, 330, 375); break;
-            case 4: canvas.draw(gorf, 590, 200); break;
-            case 5: canvas.draw(gorf, 882, 315); break;
-            case 6: canvas.draw(gorf, 825, 583); break;
-            case 7: canvas.draw(gorf, 1094, 668); break;
-            case 8: canvas.draw(gorf, 1305, 817); break;
-            case 9: canvas.draw(gorf, 1132, 455); break;
-            case 10: canvas.draw(gorf, 1420, 274); break;
-            case 11: canvas.draw(gorf, 1661, 411); break;
-            case 12: canvas.draw(gorf, 1666, 741); break;
+            case 1: canvas.draw(gorf, 391, 720); break;
+            case 2: canvas.draw(gorf, 660, 700); break;
+            case 3: canvas.draw(gorf, 330, 385); break;
+            case 4: canvas.draw(gorf, 590, 210); break;
+            case 5: canvas.draw(gorf, 882, 325); break;
+            case 6: canvas.draw(gorf, 825, 593); break;
+            case 7: canvas.draw(gorf, 1094, 678); break;
+            case 8: canvas.draw(gorf, 1305, 827); break;
+            case 9: canvas.draw(gorf, 1132, 465); break;
+            case 10: canvas.draw(gorf, 1420, 284); break;
+            case 11: canvas.draw(gorf, 1661, 421); break;
+            case 12: canvas.draw(gorf, 1666, 751); break;
         }
 
         canvas.end();

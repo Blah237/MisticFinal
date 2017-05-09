@@ -44,9 +44,11 @@ import org.lwjgl.Sys;
  * This is the purpose of our AssetState variable; it ensures that multiple instances
  * place nicely with the static assets.
  */
-public class GameController extends WorldController implements ContactListener {
+public class GameController extends WorldController implements ContactListener{
     private int inputTimer = 20;
     private boolean timerGo = true;
+
+    private ScreenListener listener;
 
     /** Reference to the rocket texture */
     private static final String[] GORF_TEXTURES = {"mistic/gorfs/gorfD.png","mistic/gorfs/gorfDL.png","mistic/gorfs/gorfDR.png",
@@ -506,7 +508,7 @@ public class GameController extends WorldController implements ContactListener {
      *
      * The game has default gravity and other settings
      */
-    public GameController() {
+    public GameController(ScreenListener listener) {
         setDebug(false);
         setComplete(false);
         setFailure(false);
@@ -516,6 +518,7 @@ public class GameController extends WorldController implements ContactListener {
         this.fireflyDeathTimer=0;
         this.monster = new ArrayList<MonsterModel>();
         state = PLAY;
+        setScreenListener(listener);
 
     }
 
@@ -909,10 +912,12 @@ public class GameController extends WorldController implements ContactListener {
                 timerGo = true;
                 switch (pause.getFrame()) {
                     case 0: state = PLAY; break;
-                    case 1: break;
+                    case 1: listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU); break;
                     case 2: reset();
                 }
             }
+        } else if (state == WIN){
+
         }
     }
 
@@ -1689,5 +1694,9 @@ public class GameController extends WorldController implements ContactListener {
         cache.set(body1.getLinearVelocityFromWorldPoint(wp));
         cache.sub(body2.getLinearVelocityFromWorldPoint(wp));
         speed = cache.dot(worldManifold.getNormal());
+    }
+
+    public void setScreenListener(ScreenListener listener) {
+        this.listener = listener;
     }
 }

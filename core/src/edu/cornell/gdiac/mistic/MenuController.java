@@ -18,11 +18,13 @@ import edu.cornell.gdiac.util.ScreenListener;
 public class MenuController extends WorldController implements Screen {
     private static final String BACKGROUND = "mistic/spritesheet_menu.png";
     private FilmStrip menu;
-    private static final String FIREFLY = "mistic/spritesheet_firefly_menu.png";
+    private static final String FIREFLY = "mistic/firefly_static.png";
     private FilmStrip firefly;
 
     private int inputTimer = 20;
-    private boolean timerGo = false;
+    private boolean timerGo = true;
+
+    private int START_DELAY = 40;
 
     private int firflyAnimateTimer = 15;
 
@@ -55,8 +57,8 @@ public class MenuController extends WorldController implements Screen {
             return;
         }
 
-        menu = createFilmStrip(manager, BACKGROUND, 2, 2, 3);
-        firefly = createFilmStrip(manager, FIREFLY, 1, 15, 15);
+        menu = createFilmStrip(manager, BACKGROUND, 2, 2, 4);
+        firefly = createFilmStrip(manager, FIREFLY, 1, 18, 18);
 
     }
 
@@ -73,6 +75,9 @@ public class MenuController extends WorldController implements Screen {
         world.dispose();
         setComplete(false);
         setFailure(false);
+        timerGo = true;
+        inputTimer = 20;
+        START_DELAY = 40;
         world = new World(gravity,false);
     }
 
@@ -88,7 +93,7 @@ public class MenuController extends WorldController implements Screen {
         float forcey= InputController.getInstance().getVertical();
         if (forcey < 0 && !timerGo) {
             timerGo = true;
-            if (menu.getFrame() != 2) {
+            if (menu.getFrame() != 3) {
                 inputTimer = inputTimer - 1;
                 menu.setFrame(menu.getFrame() + 1);
             } else {
@@ -99,7 +104,7 @@ public class MenuController extends WorldController implements Screen {
             if (menu.getFrame() != 0) {
                 menu.setFrame(menu.getFrame() - 1);
             } else {
-                menu.setFrame(2);
+                menu.setFrame(3);
             }
         }
         firflyAnimateTimer--;
@@ -110,14 +115,24 @@ public class MenuController extends WorldController implements Screen {
     }
 @Override
 public void render(float dt) {
-    super.render(dt);
-    update(dt);
-    draw(dt);
-    boolean pressing = InputController.getInstance().didEnter();
-    if (pressing) {
-        switch (menu.getFrame()) {
-            case 0: listener.exitScreen(this, EXIT_TO_PLAY); break;
-            case 1: listener.exitScreen(this, EXIT_TO_LEVEL_SELECT); break;
+    if (START_DELAY > 0) {
+        START_DELAY--;
+    }
+
+    if (START_DELAY == 0) {
+        super.render(dt);
+        update(dt);
+        draw(dt);
+        boolean pressing = InputController.getInstance().didEnter();
+        if (pressing) {
+            switch (menu.getFrame()) {
+                case 0:
+                    listener.exitScreen(this, EXIT_TO_PLAY);
+                    break;
+                case 1:
+                    listener.exitScreen(this, EXIT_TO_LEVEL_SELECT);
+                    break;
+            }
         }
     }
 }
@@ -129,11 +144,13 @@ public void render(float dt) {
         canvas.begin();
         canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
             switch (menu.getFrame()) {
-                case 0: canvas.draw(firefly, canvas.getWidth() / 2.0f - 270.0f, canvas.getHeight() / 2.0f + 140.0f);
+                case 0: canvas.draw(firefly, canvas.getWidth() / 2.0f - 290.0f, canvas.getHeight() / 2.0f + 152.0f);
                     break;
-                case 1: canvas.draw(firefly, canvas.getWidth() / 2.0f - 270.0f, canvas.getHeight() / 2.0f + 15.0f);
+                case 1: canvas.draw(firefly, canvas.getWidth() / 2.0f - 290.0f, canvas.getHeight() / 2.0f + 35.0f);
                     break;
-                case 2: canvas.draw(firefly, canvas.getWidth() / 2.0f - 270.0f, canvas.getHeight() / 2.0f - 110.0f);
+                case 2: canvas.draw(firefly, canvas.getWidth() / 2.0f - 290.0f, canvas.getHeight() / 2.0f - 82.0f);
+                    break;
+                case 3: canvas.draw(firefly, canvas.getWidth() / 2.0f - 290.0f, canvas.getHeight() / 2.0f - 199.0f);
                     break;
             }
             if (firflyAnimateTimer == 1) {
