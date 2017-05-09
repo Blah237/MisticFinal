@@ -698,8 +698,8 @@ public class GameController extends WorldController implements ContactListener {
         int xi= (int)x;
         int yi=(int)y;
         for(Lantern l : Lanterns){
-            if ((Math.abs((int)l.getX() - xi ) < gorfTextures[0].getRegionWidth()/scale.x)
-                    && (Math.abs((int)l.getY() - yi ) < gorfTextures[0].getRegionHeight()/scale.y))return l;
+            if ((Math.abs((int)l.getX() - xi ) < 6)
+                    && (Math.abs((int)l.getY() - yi ) < 6))return l;
         }
         return null;
     }
