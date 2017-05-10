@@ -82,7 +82,7 @@ public class AIControllerS {
             flee.setTarget(targetWrapper);
             if (!inFog && !unsafe) {
                 flee.setEnabled(true);
-            } else if (firefly_count < 4) {
+            } else if (firefly_count < 7) {
                 seekTarget.setEnabled(true);
             } else {
                 flee.setEnabled(true);

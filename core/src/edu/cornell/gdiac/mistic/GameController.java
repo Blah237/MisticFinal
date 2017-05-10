@@ -778,7 +778,6 @@ public class GameController extends WorldController implements ContactListener{
      */
 
     public void update(float dt) {
-
         if (state == PLAY) {
             boolean pressing = InputController.getInstance().didSecondary();
             if (pressing) {
@@ -1654,6 +1653,9 @@ public class GameController extends WorldController implements ContactListener{
         }
         canvas.end();
         if (state == PAUSE) {
+            gorf.setFX(0);
+            gorf.setFY(0);
+            gorf.applyForce();
             canvas.begin();
             canvas.draw(pause, (gorf.getPosition().x * scale.x - (canvas.getWidth() / 2.0f) + 190.0f), gorf.getPosition().y * scale.y - (canvas.getHeight() / 2.0f) + 116.0f);
             canvas.end();
