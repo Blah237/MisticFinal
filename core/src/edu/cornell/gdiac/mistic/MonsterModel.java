@@ -1,10 +1,12 @@
 package edu.cornell.gdiac.mistic;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.obstacle.BoxObstacle;
+import edu.cornell.gdiac.obstacle.Obstacle;
 
 /**
  * Created by beau on 3/18/17.
@@ -26,7 +28,14 @@ public class MonsterModel extends BoxObstacle {
     /** The restitution of this rocket */
     private static final float DEFAULT_RESTITUTION = 0.4f;
     /** The thrust factor to convert player input into thrust */
-
+    private static final int MONSTER_DEATH_TIMER = 50;
+    private int monsterDeathTimer= MONSTER_DEATH_TIMER;
+    private TextureRegion monsterDeadTex;
+    public TextureRegion monsterTex;
+    public boolean dead;
+    public BoxObstacle deadmonster;
+    public float deadx;
+    public float deady;
     /**
      * Creates a new monster at the given position.
      *
@@ -39,13 +48,33 @@ public class MonsterModel extends BoxObstacle {
      * @param width		The object width in physics units
      * @param height	The object width in physics units
      */
-    public MonsterModel(float x, float y, float width, float height) {
+    public MonsterModel(float x, float y, float width, float height, TextureRegion tex, TextureRegion deadtex) {
         super(x, y, width, height);
         setName("monster");
         setDensity(DEFAULT_DENSITY);
         setFriction(DEFAULT_FRICTION);
         setRestitution(DEFAULT_RESTITUTION);
+        setTexture(tex);
+        this.dead=false;
         force = new Vector2();
+        deadmonster= new BoxObstacle(x,y,width,height);
+        this.deadmonster.setTexture(deadtex);
+
+    }
+
+    public void monsterDeathReset(){
+        monsterDeathTimer=MONSTER_DEATH_TIMER;
+    }
+    public int getMonsterDeathTimer(){
+        return monsterDeathTimer;
+    }
+
+    public void updateDeathTimer(){
+        monsterDeathTimer--;
+    }
+
+    public void setDeadTexture(TextureRegion tex){
+        this.monsterDeadTex=tex;
     }
 
 
@@ -84,7 +113,9 @@ public class MonsterModel extends BoxObstacle {
      * @param value the x-component of the force applied to this rocket.
      */
     public void setFX(float value) {
-        force.x = value;
+        if (!dead){
+            force.x = value;
+        }
     }
 
     /**
@@ -108,7 +139,10 @@ public class MonsterModel extends BoxObstacle {
      * @param value the x-component of the force applied to this rocket.
      */
     public void setFY(float value) {
-        force.y = value;
+
+        if(!dead){
+            force.y = value;
+        }
     }
 
     /**
@@ -129,8 +163,10 @@ public class MonsterModel extends BoxObstacle {
      * This method should be called after the force attribute is set.
      */
     public void applyForce() {
+        if(!dead){
         if (!isActive()) {
             return;
+        }
         }
 
         // Orient the force with rotation.
@@ -145,12 +181,19 @@ public class MonsterModel extends BoxObstacle {
         //#endregionx
     }
 
+
     /**
      * Draws the physics object.
      *
      * @param canvas Drawing context
      */
     public void draw(GameCanvas canvas) {
+
         super.draw(canvas);
+    }
+    public void drawDead(GameCanvas canvas){
+        System.out.println("Draw Dead x: "+ deadx);
+        System.out.println("Draw Dead y: "+ deady);
+        deadmonster.draw(canvas);
     }
 }
