@@ -120,6 +120,7 @@ public class GameController extends WorldController implements ContactListener{
     /** Menu Screen Texture References*/
     private static final String PAUSE_SCREEN = "mistic/spritesheet_pause.png";
     private static final String WIN_SCREEN = "mistic/spritesheet_win.png";
+    private static final String GAME_OVER_SCREEN = "mistic/lose_sprite.png";
 
     /** The SoundController, Music and sfx */
     SoundController sounds = SoundController.getInstance();
@@ -179,12 +180,14 @@ public class GameController extends WorldController implements ContactListener{
 
     private FilmStrip pause;
     private FilmStrip win;
+    private FilmStrip gameOver;
 
     private int state;
     private static final int PLAY = 1;
     private static final int PAUSE = 2;
     private static final int WIN = 3;
     private static final int LOSE = 4;
+    private static final int OFF = 5;
 
 
     /** Track asset loading from all instances and subclasses */
@@ -306,6 +309,9 @@ public class GameController extends WorldController implements ContactListener{
         manager.load(WIN_SCREEN, Texture.class);
         assets.add(WIN_SCREEN);
 
+        manager.load(GAME_OVER_SCREEN, Texture.class);
+        assets.add(GAME_OVER_SCREEN);
+
 
 
         for(String m : MIST_WALLS){
@@ -417,6 +423,8 @@ public class GameController extends WorldController implements ContactListener{
         pawAnimation = createFilmStrip(manager, HUD_PAW_ANIMATE, 1, 2, 2);
 
         pause = createFilmStrip(manager, PAUSE_SCREEN, 1, 3, 3);
+        win = createFilmStrip(manager, WIN_SCREEN, 1, 2, 2);
+        gameOver = createFilmStrip(manager, GAME_OVER_SCREEN, 1, 2, 2);
 
 
         fireflyAnimation=createTexture(manager, FIREFLY_ANIMATE, false);
@@ -600,6 +608,7 @@ public class GameController extends WorldController implements ContactListener{
         monsterSpawn = false;
         monsterSpawnTimer = 1200;
         countdown=120;
+        DEAD = false;
 
         fbo = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2, false);
         fboRegion = new TextureRegion(fbo.getColorBufferTexture(), Gdx.graphics.getWidth()*2, Gdx.graphics.getHeight()*2);
@@ -909,9 +918,16 @@ public class GameController extends WorldController implements ContactListener{
             gorf.setCollidingX(false);
             gorf.setCollidingY(false);
 
-            ai.update(dt, world, firefly_count);
             for (MonsterModel m : (ai.monster)) {
                 wrapInBounds(m);
+            }
+            ai.update(dt, world, firefly_count);
+
+
+            if (familiars.collectAll) {
+                state = WIN;
+            } else if (DEAD) {
+                state = LOSE;
             }
 
             //ai.setInput();
@@ -958,7 +974,7 @@ public class GameController extends WorldController implements ContactListener{
                 } else {
                     pause.setFrame(pause.getFrame() + 1);
                 }
-            } else if (forcex < 0 && !timerGo) { //decrease level when player presses left arrow key
+            } else if (forcex < 0 && !timerGo) {
                 timerGo = true;
                 if (pause.getFrame() == (0)) {
                     pause.setFrame(pause.getSize() - 1);
@@ -976,7 +992,73 @@ public class GameController extends WorldController implements ContactListener{
                 }
             }
         } else if (state == WIN){
+            if (timerGo) { //code to slow down multiple inputs and not register all of them
+                inputTimer--;
+                if (inputTimer == 0) {
+                    timerGo = false;
+                    inputTimer = 20;
+                }
+            }
 
+            float forcex= InputController.getInstance().getHorizontal();
+            if (forcex > 0 && !timerGo) {
+                timerGo = true;
+                if (win.getFrame() == (win.getSize() - 1)) {
+                    win.setFrame(0);
+                } else {
+                    win.setFrame(win.getFrame() + 1);
+                }
+            } else if (forcex < 0 && !timerGo) {
+                timerGo = true;
+                if (win.getFrame() == (0)) {
+                    win.setFrame(win.getSize() - 1);
+                } else {
+                    win.setFrame(win.getFrame() - 1);
+                }
+            }
+
+            boolean enter = InputController.getInstance().didEnter();
+            if (enter && !timerGo) {
+                timerGo = true;
+                switch (win.getFrame()) {
+                    case 0: break;
+                    case 1: listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU); break;
+                }
+            }
+        } else if (state == LOSE) {
+            if (timerGo) { //code to slow down multiple inputs and not register all of them
+                inputTimer--;
+                if (inputTimer == 0) {
+                    timerGo = false;
+                    inputTimer = 20;
+                }
+            }
+
+            float forcex= InputController.getInstance().getHorizontal();
+            if (forcex > 0 && !timerGo) {
+                timerGo = true;
+                if (gameOver.getFrame() == (gameOver.getSize() - 1)) {
+                    gameOver.setFrame(0);
+                } else {
+                    gameOver.setFrame(gameOver.getFrame() + 1);
+                }
+            } else if (forcex < 0 && !timerGo) {
+                timerGo = true;
+                if (gameOver.getFrame() == (0)) {
+                    gameOver.setFrame(gameOver.getSize() - 1);
+                } else {
+                    gameOver.setFrame(gameOver.getFrame() - 1);
+                }
+            }
+
+            boolean enter = InputController.getInstance().didEnter();
+            if (enter && !timerGo) {
+                timerGo = true;
+                switch (gameOver.getFrame()) {
+                    case 0: reset(); break;
+                    case 1: listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU); break;
+                }
+            }
         }
     }
 
@@ -1591,29 +1673,29 @@ public class GameController extends WorldController implements ContactListener{
 
         canvas.begin();
         // PLACEHOLDER--will be replaced by Victory screen
-        if (familiars.collectAll) {
-            if (countdown > 0) {
-                String vic = "Victory!";
-                displayFont.setColor(Color.PURPLE);
-                canvas.drawText(vic, displayFont, gorf.getPosition().x * scale.x - 200.0f, gorf.getPosition().y * scale.y);
-                countdown --;
-            } else if (countdown==0) {
-                this.setComplete(true);
-            }
-        }
+        //if (familiars.collectAll) {
+          //  if (countdown > 0) {
+            //    String vic = "Victory!";
+              //  displayFont.setColor(Color.PURPLE);
+               // canvas.drawText(vic, displayFont, gorf.getPosition().x * scale.x - 200.0f, gorf.getPosition().y * scale.y);
+                //countdown --;
+            //} else if (countdown==0) {
+              //  this.setComplete(true);
+            //}
+        //}
 
         //PLACEHOLDER--will be replaced by game over screen
-        if (DEAD) {
-            if (countdown > 0) {
-                String vic = "Game Over!";
-                displayFont.setColor(Color.PURPLE);
-                canvas.drawText(vic, displayFont, gorf.getPosition().x * scale.x - 200.0f, gorf.getPosition().y * scale.y);
-                countdown --;
-            } else if (countdown==0) {
-                DEAD = false;
-                this.setComplete(true);
-            }
-        }
+        //if (DEAD) {
+            //if (countdown > 0) {
+               // String vic = "Game Over!";
+               // displayFont.setColor(Color.PURPLE);
+                //canvas.drawText(vic, displayFont, gorf.getPosition().x * scale.x - 200.0f, gorf.getPosition().y * scale.y);
+               // countdown --;
+           // } else if (countdown==0) {
+               // DEAD = false;
+               // this.setComplete(true);
+           // }
+      //  }
 
         if (isDebug()) {
             canvas.beginDebug();
@@ -1627,6 +1709,22 @@ public class GameController extends WorldController implements ContactListener{
         if (state == PAUSE) {
             canvas.begin();
             canvas.draw(pause, (gorf.getPosition().x * scale.x - (canvas.getWidth() / 2.0f) + 190.0f), gorf.getPosition().y * scale.y - (canvas.getHeight() / 2.0f) + 116.0f);
+            canvas.end();
+        }
+        if (state == WIN) {
+            gorf.setFX(0);
+            gorf.setFY(0);
+            gorf.applyForce();
+            canvas.begin();
+            canvas.draw(win, (gorf.getPosition().x) * scale.x - (canvas.getWidth() / 2.0f) + 190.0f, gorf.getPosition().y * scale.y - (canvas.getHeight() / 2.0f) + 116.0f);
+            canvas.end();
+        }
+        if (state == LOSE) {
+            gorf.setFX(0);
+            gorf.setFY(0);
+            gorf.applyForce();
+            canvas.begin();
+            canvas.draw(gameOver, (gorf.getPosition().x) * scale.x - (canvas.getWidth() / 2.0f) + 190.0f, gorf.getPosition().y * scale.y - (canvas.getHeight() / 2.0f) + 116.0f);
             canvas.end();
         }
 
