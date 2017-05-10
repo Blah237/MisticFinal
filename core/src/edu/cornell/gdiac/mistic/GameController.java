@@ -62,6 +62,7 @@ public class GameController extends WorldController implements ContactListener{
     private static final String FIRE_FLY= "mistic/firefly.png";
     private static final String FIRE_TRACK="mistic/fireflyicon.png";
     private static final String MONSTER_TEXTURE = "mistic/enemyplaceholder.png";
+    private static final String MONSTER_TEXTURE_DEAD = "mistic/enemydead.png";
     private static final String[] MIST_WALLS= {"mistic/mistblock/mistblock1.png",
             "mistic/mistblock/mistblock2.png", "mistic/mistblock/mistblock3.png", "mistic/mistblock/mistblock4.png",
             "mistic/mistblock/mistblock5.png", "mistic/mistblock/mistblock6.png", "mistic/mistblock/mistblock7.png",
@@ -148,6 +149,7 @@ public class GameController extends WorldController implements ContactListener{
     private TextureRegion fogTexture;
     private TextureRegion fireflyTrack;
     private TextureRegion monsterTexture;
+    private TextureRegion monsterTextureDead;
     private TextureRegion[] gorfTextures = new TextureRegion[GORF_TEXTURES.length];
     private TextureRegion[] mistwalls = new TextureRegion[MIST_WALLS.length];
     private TextureRegion[] familiarTex = new TextureRegion[FAMILIARS.length];
@@ -250,6 +252,8 @@ public class GameController extends WorldController implements ContactListener{
         // Monster textures
         manager.load(MONSTER_TEXTURE, Texture.class);
         assets.add(MONSTER_TEXTURE);
+        manager.load(MONSTER_TEXTURE_DEAD, Texture.class);
+        assets.add(MONSTER_TEXTURE_DEAD);
 
         manager.load(FIREFLY_ANIMATE,Texture.class);
         assets.add(FIREFLY_ANIMATE);
@@ -404,6 +408,7 @@ public class GameController extends WorldController implements ContactListener{
         minimapBackgroundTexture = createTexture(manager,MINIMAP_BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
+        monsterTextureDead=createTexture(manager,MONSTER_TEXTURE_DEAD,false);
 
         HUDWindow = createTexture(manager, HUD_WINDOW_TEXTURE, false);
         HUDWhiteFirefly = createTexture(manager, HUD_WHITE_FIREFLY_TEXTURE, false);
@@ -491,9 +496,9 @@ public class GameController extends WorldController implements ContactListener{
     boolean pawTimerStart = false;
 
     //monster stuff
-    int monsterSpawnTimer = 1200;
-    boolean monsterSpawn = false;
-
+    final int MONSTERTIMER=1200;
+    int monsterSpawnTimer = MONSTERTIMER;
+    BoardModel.Tile fogSpawn;
 
 
     // the number of fireflies Gorf is holding
@@ -604,9 +609,9 @@ public class GameController extends WorldController implements ContactListener{
         setFailure(false);
         populateLevel();
         familiars.reset();
+        monster.clear();
         ai = new AIControllerS(monster, gorf, tileBoard);
-        monsterSpawn = false;
-        monsterSpawnTimer = 1200;
+        monsterSpawnTimer = MONSTERTIMER;
         countdown=120;
         DEAD = false;
 
@@ -639,15 +644,21 @@ public class GameController extends WorldController implements ContactListener{
          * And adds lanterns to the GameController object pool.
          */
 
+        //float[] points = {6f,6f,6f,6f};
+        //PolygonObstacle pol = new PolygonObstacle(points,gorfStart.x,gorfStart.y);
+        //addObject(pol);
+
         // Initializer
         BoardModel.Tile[] familiarPositions=new BoardModel.Tile[4];
         ArrayList<BoardModel.Tile> fireflyPositions = new ArrayList<BoardModel.Tile>();
+
+
         //tileBoard.tiles[75][75].hasTree=3;
         for (BoardModel.Tile[] ta: tileBoard.tiles) {
             for(BoardModel.Tile t :ta) {
-                //if (t.isFogSpawn) {
-                   // createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
-                //}
+                if (t.isFogSpawn){
+                    fogSpawn=t;
+                }
                 if (t.isLantern) {
                     Lantern l = new Lantern(tileBoard.getTileCenterX(t) / scale.x,
                             tileBoard.getTileCenterY(t) / scale.y,unlitTexture,litTexture, unlitTextureTop,
@@ -661,7 +672,6 @@ public class GameController extends WorldController implements ContactListener{
 
                     int wall_i = random(mistwalls.length - 1);
                     TextureRegion mistwall = mistwalls[wall_i];
-
                     BoxObstacle po = new BoxObstacle(tileBoard.getTileCenterX(t) / scale.x,
                             tileBoard.getTileCenterY(t) / scale.y, tileBoard.getTileWidth() / scale.x,
                             tileBoard.getTileHeight() / scale.y);
@@ -774,20 +784,40 @@ public class GameController extends WorldController implements ContactListener{
     }
 
     private void createMonster(float x, float y) {
+        //System.out.println("Create Monster: " + x +", "+y);
         TextureRegion texture = monsterTexture;
         float dwidth  = texture.getRegionWidth()/(scale.x*2);
         float dheight = texture.getRegionHeight()/(scale.y*2);
-        MonsterModel monster = new MonsterModel(x, y, dwidth, dheight);
-        monster.setDensity(CRATE_DENSITY);
-        monster.setFriction(CRATE_FRICTION);
-        monster.setRestitution(BASIC_RESTITUTION);
+        MonsterModel monster = new MonsterModel(x, y, dwidth, dheight,texture,monsterTextureDead);
         monster.setDrawScale(scale);
-        monster.setName("monster");
-        monster.setTexture(texture);
         this.monster.add(monster);
         addObject(monster);
-//        underFog.add(monster);
         monster.getBody().setUserData("monster");
+    }
+
+    private void despawnMonster(ArrayList<MonsterModel> monster){
+        for(MonsterModel m : monster){
+            float posx=m.getX()*scale.x;
+            float posy=m.getY()*scale.y;
+            int tx=tileBoard.screenToBoardX(posx);
+            int ty=tileBoard.screenToBoardY(posy);
+            if(tileBoard.isLanternGlow(tx,ty) || tileBoard.isGorfGlow(tx,ty) || !tileBoard.isFog(tx,ty)){
+                m.updateDeathTimer();
+                if(m.getMonsterDeathTimer()==0){
+                    //m.dead=true;
+                    m.deadmonster.setPosition(m.getX(),m.getY());
+                    //m.setTexture(monsterTextureDead);
+                    //System.out.println("MONSTER RESET"+ tileBoard.boardtoScreenX(fogSpawn.x)
+                    //        + ", "+tileBoard.boardToScreenY(fogSpawn.y));
+                    m.setPosition(tileBoard.boardtoScreenX(fogSpawn.x),
+                            tileBoard.boardToScreenY(fogSpawn.y));
+                    m.monsterDeathReset();
+                }
+            }else{
+                m.monsterDeathReset();
+            }
+            //System.out.println(m.getMonsterDeathTimer());
+        }
     }
 
     //Get the lantern at this position
@@ -880,20 +910,33 @@ public class GameController extends WorldController implements ContactListener{
                 fireflyDeathTimer = 0;
             }
 
-            if (!monsterSpawn) {
-                if (monsterSpawnTimer != 0) {
-                    monsterSpawnTimer--;
-                } else if (!inFog) {
-                    monsterSpawn = true;
-                    for (BoardModel.Tile[] ta : tileBoard.tiles) {
-                        for (BoardModel.Tile t : ta) {
-                            if (t.isFogSpawn) {
-                                createMonster(tileBoard.getTileCenterX(t) / scale.x, tileBoard.getTileCenterY(t) / scale.y);
-                            }
-                        }
-                    }
+
+        if (monsterSpawnTimer != 0) {
+            monsterSpawnTimer--;
+        } else if(inFog){
+
+            //System.out.println("Monster spaawning!! Gorf in fog");
+            /**
+            boolean fog=false;
+            while(!fog){
+                int gx= tileBoard.screenToBoardX(gorf.getX()*scale.x)+random(10,20);
+                int gy= tileBoard.screenToBoardY(gorf.getY()*scale.y)+random(10,20);
+                if(tileBoard.isFog(gx,gy)){
+                    fog=true;
+                    createMonster(tileBoard.getTile(gx,gy).fx / scale.x,
+                            tileBoard.getTile(gx,gy).fy / scale.y);
                 }
             }
+            monsterSpawnTimer=MONSTERTIMER;**/
+            createMonster(tileBoard.getTileCenterX(fogSpawn)/scale.x,tileBoard.getTileCenterY(fogSpawn)/scale.y);
+            monsterSpawnTimer=MONSTERTIMER;
+
+        }else{
+            createMonster(tileBoard.getTileCenterX(fogSpawn)/scale.x,tileBoard.getTileCenterY(fogSpawn)/scale.y);
+            monsterSpawnTimer=MONSTERTIMER;
+        }
+
+
 
             fog.update(gorf, Lanterns, familiars, firefly_count, tileBoard, canvas, dt);
 
@@ -921,7 +964,7 @@ public class GameController extends WorldController implements ContactListener{
                 wrapInBounds(m);
             }
             ai.update(dt, world, firefly_count);
-
+            despawnMonster(monster);
 
             if (familiars.collectAll) {
                 state = WIN;
@@ -957,6 +1000,7 @@ public class GameController extends WorldController implements ContactListener{
              }
              }
              }*/
+
 
 //        if (!tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX()*scale.x), tileBoard.screenToBoardY(gorf.getY()*scale.y))) {
 //            System.out.println(tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX() * scale.x), tileBoard.screenToBoardY(gorf.getY() * scale.y)));
@@ -1176,7 +1220,11 @@ public class GameController extends WorldController implements ContactListener{
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
 //            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-            for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
+            for(Obstacle mon : monster) {
+                //System.out.println("Draw monster at: "+ mon.getX()+", "+mon.getY());
+                if(mon.isActive()){mon.draw(canvas);
+                }}
+
             for(EnvAsset env : landmarks){env.drawfull(canvas);}
             for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1249,6 +1297,13 @@ public class GameController extends WorldController implements ContactListener{
         canvas.begin(gorf.getPosition());
 //        canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
         for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
+        for(MonsterModel m : monster){
+            if(m.dead){
+                //System.out.println("Draw dead at: "+ m.deadmonster.getX()+", "+m.deadmonster.getY());
+                m.deadmonster.setTexture(monsterTexture);
+                m.deadmonster.draw(canvas);
+            }
+        }
         for(EnvAsset env : landmarks){env.drawfull(canvas);}
         for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
         for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1337,6 +1392,13 @@ public class GameController extends WorldController implements ContactListener{
         for (Lantern l : Lanterns){l.drawtop(canvas);}
         for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
         for(EnvAsset env : landmarks){env.drawtop(canvas);}
+        for(MonsterModel m : monster){
+            if(m.dead){
+                //System.out.println("Draw dead at: "+ m.deadmonster.getX()+", "+m.deadmonster.getY());
+                m.deadmonster.setTexture(monsterTexture);
+                m.deadmonster.draw(canvas);
+            }
+        }
         canvas.end();
 
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
@@ -1411,111 +1473,15 @@ public class GameController extends WorldController implements ContactListener{
 
         canvas.setShader(null);
 
-
-//        canvas.draw(fboRegion, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-
-
-//        canvas.draw(fboRegion2, 0, 0);
-//        for (Obstacle w : edgewalls) { w.draw(canvas); };
-//        for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
-
-//        gorf.draw(canvas);
-//        for(Obstacle obj : lanterns) {if(obj.isActive()){obj.draw(canvas);}}
-////        for(Obstacle obj : walls) {if(obj.isActive()){obj.draw(canvas);}}
-//        for(Obstacle obj : landmarks) {if(obj.isActive()){obj.draw(canvas);}}
-//
-//        for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);
-        //    System.out.println("Firefly:"+ f.getObject().getX() + ", "+ f.getObject().getY());
-//        }}
-//        canvas.end();
-
-//        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-//            canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
-//            for (Obstacle w : edgewalls) { w.draw(canvas); };
-//            canvas.end();
-//        }
-//        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-//            canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
-//            for (Obstacle w : edgewalls) { w.draw(canvas); };
-//            canvas.end();
-//        }
-//        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-//            canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
-//            for (Obstacle w : edgewalls) { w.draw(canvas); };
-//            canvas.end();
-//        }
-//        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-//            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
-//            for (Obstacle w : edgewalls) { w.draw(canvas); };
-//            canvas.end();
-//        }
-//        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT/2f) {
-//            canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
-//            for (Obstacle w : edgewalls) { w.draw(canvas); };
-//            canvas.end();
-//        }
-//        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-//            canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
-//            for (Obstacle w : edgewalls) { w.draw(canvas); };
-//            canvas.end();
-//        }
-//        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT/2f) {
-//            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
-//            for (Obstacle w : edgewalls) { w.draw(canvas); };
-//            canvas.end();
-//        }
-//        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-//            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
-//            for (Obstacle w : edgewalls) { w.draw(canvas); };
-//            canvas.end();
-//        }
-//
-//        canvas.begin(gorf.getPosition());
-//
-//        canvas.end();
-
-//        fbo3.begin();
-//        canvas.clear();
-//        canvas.begin();
-//        canvas.draw(fboRegion2, 0, 0);
-//        for(Obstacle obj : overFog) {if(obj.isActive()){obj.draw(canvas);}}
-//        canvas.end();
-//        fbo3.end();
-//
-//        // main canvas
-//        canvas.setBlendState(GameCanvas.BlendState.OPAQUE);
-//        canvas.begin(gorf.getPosition());
-////
-//        if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, 0, canvas.getHeight() * 2);
-//        }
-//        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, canvas.getWidth() * 2, canvas.getHeight() * 2);
-//        }
-//        if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, 0, -canvas.getHeight() * 2);
-//        }
-//        if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, canvas.getWidth() * 2, -canvas.getHeight() * 2);
-//        }
-//        if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-//            canvas.draw(fboRegion3, canvas.getWidth() * 2, 0);
-//        }
-//        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, -canvas.getWidth() * 2, -canvas.getHeight() * 2);
-//        }
-//        if (gorf.getX() < DEFAULT_WIDTH / 2f) {
-//            canvas.draw(fboRegion3, -canvas.getWidth() * 2, 0);
-//        }
-//        if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
-//            canvas.draw(fboRegion3, -canvas.getWidth() * 2, canvas.getHeight() * 2);
-//        }
-//
-//        canvas.draw(fboRegion3, 0, 0);
-//
-//        canvas.setBlendState(GameCanvas.BlendState.NO_PREMULT);
         canvas.begin();
         for(EnvAsset env : landmarks){env.drawtop(canvas);}
+        for(MonsterModel m : monster){
+            if(m.dead){
+                //System.out.println("Draw dead at: "+ m.deadmonster.getX()+", "+m.deadmonster.getY());
+                m.deadmonster.setTexture(monsterTexture);
+                m.deadmonster.draw(canvas);
+            }
+        }
 
         // UI
         float Gorfx= gorf.getPosition().x * scale.x;
