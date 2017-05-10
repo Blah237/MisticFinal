@@ -73,7 +73,7 @@ public class InputController {
 	/** Whether the enter button was pressed*/
 	private boolean enterPressed;
 	/** Whether the 'm' button to toggle minimap was pressed */
-	private boolean mPressed;
+	private boolean mPressed = true;
 	
 	/** How much did we move horizontally? */
 	private float horizontal;

@@ -56,6 +56,7 @@ public class GameController extends WorldController implements ContactListener{
             "mistic/gorfs/gorfB.png"};
     private static final String HAT_TEXTURE = "mistic/gorfs/gorftop.png";
     private static final String BACKGROUND = "mistic/backgroundresize.png";
+    private static final String MINIMAP_BACKGROUND = "mistic/mini_map_background.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
     private static final String FIRE_TRACK="mistic/fireflyicon.png";
     private static final String MONSTER_TEXTURE = "mistic/enemyplaceholder.png";
@@ -133,6 +134,7 @@ public class GameController extends WorldController implements ContactListener{
     /** Texture assets for the rocket */
     private TextureRegion gorfHat;
     private TextureRegion backgroundTexture;
+    private TextureRegion minimapBackgroundTexture;
     private TextureRegion fogTexture;
     private TextureRegion fireflyTrack;
     private TextureRegion monsterTexture;
@@ -205,6 +207,9 @@ public class GameController extends WorldController implements ContactListener{
         //Background
         manager.load(BACKGROUND, Texture.class);
         assets.add(BACKGROUND);
+        //Minimap map backing
+        manager.load(MINIMAP_BACKGROUND, Texture.class);
+        assets.add(MINIMAP_BACKGROUND);
         //Firefly
         manager.load(FIRE_FLY, Texture.class);
         assets.add(FIRE_FLY);
@@ -360,6 +365,7 @@ public class GameController extends WorldController implements ContactListener{
 
         //gorfHat = createTexture(manager,HAT_TEXTURE,false);
         backgroundTexture = createTexture(manager,BACKGROUND,false);
+        minimapBackgroundTexture = createTexture(manager,MINIMAP_BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
 
@@ -1508,11 +1514,11 @@ public class GameController extends WorldController implements ContactListener{
             // minimap
             canvas.begin(gorf.getPosition());
             // draw background texture
-            canvas.draw(backgroundTexture, Color.WHITE,
-                    gorf.getPosition().x * scale.x + 115.0f,
-                    gorf.getPosition().y * scale.y - 155.0f,
-                    super.getMinimap().getWidth(),
-                    super.getMinimap().getHeight());
+            canvas.draw(minimapBackgroundTexture, Color.WHITE,
+                    gorf.getPosition().x * scale.x + 105.0f,
+                    gorf.getPosition().y * scale.y - 165.0f,
+                    super.getMinimap().getWidth()+20f,
+                    super.getMinimap().getHeight()+20f);
             // draw custom level's minimap
             canvas.draw(super.getMinimap().getTexture(), Color.WHITE,
                     gorf.getPosition().x * scale.x + 115.0f,
