@@ -358,6 +358,15 @@ public class SoundController {
 		snd.sound.setVolume(snd.id, 0.0f); 
 		actives.remove(key);
 	}
+
+	/**
+	 * Stop all active playing sounds
+	 */
+	public void stopAllActive() {
+		for (IdentityMap.Entry<String,ActiveSound> k : actives) {
+			stop(k.key);
+		}
+	}
 	
 	/**
 	 * Returns true if the sound instance is currently active

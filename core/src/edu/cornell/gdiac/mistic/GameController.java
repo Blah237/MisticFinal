@@ -987,7 +987,10 @@ public class GameController extends WorldController implements ContactListener{
                 timerGo = true;
                 switch (pause.getFrame()) {
                     case 0: state = PLAY; break;
-                    case 1: listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU); break;
+                    case 1:
+                        sounds.stopAllActive();
+                        listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
+                        break;
                     case 2: reset();
                 }
             }
@@ -1022,7 +1025,10 @@ public class GameController extends WorldController implements ContactListener{
                 timerGo = true;
                 switch (win.getFrame()) {
                     case 0: break;
-                    case 1: listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU); break;
+                    case 1:
+                        sounds.stopAllActive();
+                        listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
+                        break;
                 }
             }
         } else if (state == LOSE) {
@@ -1056,7 +1062,10 @@ public class GameController extends WorldController implements ContactListener{
                 timerGo = true;
                 switch (gameOver.getFrame()) {
                     case 0: reset(); break;
-                    case 1: listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU); break;
+                    case 1:
+                        sounds.stopAllActive();
+                        listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
+                        break;
                 }
             }
         }
