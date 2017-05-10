@@ -16,15 +16,17 @@ import java.nio.ByteBuffer;
  * Created by Altair on 4/6/2017.
  */
 public class Perlin {
-    public int repeat;
+    public int repeatXY, repeatZ;
     private static final int ANIM_SPAN = 360;
 
-    public Perlin(int repeat) {
-        this.repeat = repeat;
+    public Perlin(int repeatXY, int repeatZ) {
+        this.repeatXY = repeatXY;
+        this.repeatZ = repeatZ;
     }
 
     public Perlin() {
-        this.repeat = -1;
+        this.repeatXY = -1;
+        this.repeatZ = -1;
     }
 
     private static final int[] p = {
@@ -75,10 +77,10 @@ public class Perlin {
     }
 
     public double noise(double x, double y, double z) {
-        if (repeat > 0) {
-            x = x % repeat;
-            y = y % repeat;
-            z = z % repeat;
+        if (repeatXY > 0 && repeatZ > 0) {
+            x = x % repeatXY;
+            y = y % repeatXY;
+            z = z % repeatZ;
         }
 
         int xi = (int)x & 255;
@@ -94,14 +96,14 @@ public class Perlin {
         double w = fade(zf);
 
         int a, b, c, d, e, f, g, h;
-        a = p[p[p[    xi ]+    yi ]+    zi ];
-        b = p[p[p[    xi ]+inc(yi)]+    zi ];
-        c = p[p[p[    xi ]+    yi ]+inc(zi)];
-        d = p[p[p[    xi ]+inc(yi)]+inc(zi)];
-        e = p[p[p[inc(xi)]+    yi ]+    zi ];
-        f = p[p[p[inc(xi)]+inc(yi)]+    zi ];
-        g = p[p[p[inc(xi)]+    yi ]+inc(zi)];
-        h = p[p[p[inc(xi)]+inc(yi)]+inc(zi)];
+        a = p[p[p[      xi ]+      yi ]+     zi ];
+        b = p[p[p[      xi ]+incXY(yi)]+     zi ];
+        c = p[p[p[      xi ]+      yi ]+incZ(zi)];
+        d = p[p[p[      xi ]+incXY(yi)]+incZ(zi)];
+        e = p[p[p[incXY(xi)]+      yi ]+     zi ];
+        f = p[p[p[incXY(xi)]+incXY(yi)]+     zi ];
+        g = p[p[p[incXY(xi)]+      yi ]+incZ(zi)];
+        h = p[p[p[incXY(xi)]+incXY(yi)]+incZ(zi)];
 
         double x1, x2, y1, y2;
         x1 = lerp(grad (a, xf, yf  , zf), grad(e, xf-1, yf  , zf), u);										// surrounding points in its unit cube.
@@ -115,9 +117,16 @@ public class Perlin {
         return (lerp(y1, y2, w) + 1) / 2;
     }
 
-    private int inc(int num) {
+    private int incXY(int num) {
         num++;
-        if (repeat > 0) num %= repeat;
+        if (repeatXY > 0) num %= repeatXY;
+
+        return num;
+    }
+
+    private int incZ(int num) {
+        num++;
+        if (repeatZ > 0) num %= repeatZ;
 
         return num;
     }
@@ -162,12 +171,12 @@ public class Perlin {
 
         float[][] data = new float[ANIM_SPAN][WIDTH * HEIGHT];
 
-        Perlin perlin = new Perlin(36);
+        Perlin perlin = new Perlin(36, 3);
         for (int t = 0; t < ANIM_SPAN; t++){
             int count = 0;
             for (int y = 0; y < HEIGHT; y++) {
                 for (int x = 0; x < WIDTH; x++) {
-                    data[t][count++] = (float)Math.sqrt(perlin.noise(36.0 * (float) x / WIDTH, 36.0 * (float) y / HEIGHT, 2.0 * (float) t / ANIM_SPAN) * 10);
+                    data[t][count++] = (float)Math.sqrt(perlin.noise(36.0 * (float) x / WIDTH, 36.0 * (float) y / HEIGHT, 3.0 * (float) t / ANIM_SPAN) * 10);
                 }
             }
         }

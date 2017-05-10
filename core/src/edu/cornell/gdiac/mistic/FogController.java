@@ -100,20 +100,109 @@ public class FogController {
 	Array<Vector2> boundaryPos;
 	float[][] boundaryFogBoard;
 
-	private final float N = .1f;
-	private final float E = .2f;
-	private final float S = .3f;
-	private final float W = .4f;
-	private final float NE = .5f;
-	private final float SE = .6f;
-	private final float SW = .7f;
-	private final float NW = .8f;
-	private final float NS = .9f;
-	private final float EW = .10f;
-	private final float NEW = .11f;
-	private final float NSE = .12f;
-	private final float NSW = .13f;
-	private final float SEW = .14f;
+    private final float S_CORNER_LR = 4f;
+    private final float W_CORNER_UD = 5f;
+    private final float N_CORNER_LR = 6f;
+    private final float E_CORNER_UD = 7f;
+
+	private final float S = 8f;
+	private final float W = 9f;
+	private final float N = 10f;
+	private final float E = 11f;
+
+    private final float S_CORNER_L = 12f;
+    private final float W_CORNER_U = 13f;
+	private final float N_CORNER_R = 14f;
+    private final float E_CORNER_D = 15f;
+
+    private final float S_CORNER_R = 16f;
+    private final float W_CORNER_D = 17f;
+    private final float N_CORNER_L = 18f;
+    private final float E_CORNER_U = 19f;
+
+    private final float SW_CORNER_LR = 20f;
+    private final float NW_CORNER_LR = 21f;
+    private final float NE_CORNER_LR = 22f;
+    private final float SE_CORNER_LR = 23f;
+
+    private final float SW_CORNER_L = 24f;
+    private final float NW_CORNER_L = 25f;
+    private final float NE_CORNER_L = 26f;
+	private final float SE_CORNER_L = 27f;
+
+    private final float NS_CORNER_LL = 28f;
+    private final float EW_CORNER_DD = 29f;
+    private final float SN_CORNER_RR = 30f;
+    private final float WE_CORNER_UU = 31f;
+
+    private final float NS_CORNER_LR = 32f;
+    private final float EW_CORNER_DU = 33f;
+
+    private final float SW_CORNER_R = 36f;
+    private final float NW_CORNER_R = 37f;
+    private final float NE_CORNER_R = 38f;
+    private final float SE_CORNER_R = 39f;
+
+    private final float NS_CORNER_RL = 40f;
+    private final float EW_CORNER_UD = 41f;
+
+	private final float NW = 44f;
+    private final float NE = 45f;
+	private final float SE = 46f;
+	private final float SW = 47f;
+
+    private final float NS = 48f;
+	private final float EW = 49f;
+
+    private final float NS_CORNER_L = 52f;
+    private final float EW_CORNER_D = 53f;
+    private final float SN_CORNER_R = 54f;
+    private final float WE_CORNER_U = 55f;
+
+    private final float NS_CORNER_R = 56f;
+    private final float EW_CORNER_U = 57f;
+    private final float SN_CORNER_L = 58f;
+    private final float WE_CORNER_D = 59f;
+
+    private final float NS_CORNER_D = 60f;
+    private final float EW_CORNER_R = 61f;
+    private final float NS_CORNER_U = 62f;
+    private final float EW_CORNER_L = 63f;
+
+    private final float NS_CORNER_LRL = 64f;
+    private final float EW_CORNER_UDD = 65f;
+    private final float SN_CORNER_LRR = 66f;
+    private final float WE_CORNER_UDU = 67f;
+
+    private final float NS_CORNER_LRR = 68f;
+    private final float EW_CORNER_UDU = 69f;
+    private final float SN_CORNER_LRL = 70f;
+    private final float WE_CORNER_UDD = 71f;
+
+    private final float NS_CORNER_LRLR = 72f;
+    private final float EW_CORNER_UDUD = 73f;
+
+    private final float NSW_CORNER_LR = 76f;
+	private final float NEW_CORNER_LR = 77f;
+    private final float NSE_CORNER_LR = 78f;
+    private final float SEW_CORNER_LR = 79f;
+
+    private final float NSW_CORNER_R = 80f;
+	private final float NEW_CORNER_R = 81f;
+    private final float NSE_CORNER_R = 82f;
+    private final float SEW_CORNER_R = 83f;
+
+    private final float NSW_CORNER_L = 84f;
+	private final float NEW_CORNER_L = 85f;
+    private final float NSE_CORNER_L = 86f;
+    private final float SEW_CORNER_L = 87f;
+
+	private final float NSW = 88f;
+    private final float NEW = 89f;
+	private final float NSE = 90f;
+	private final float SEW = 91f;
+
+    private final float NSEW = 92f;
 
 	Texture nTex;
 	Texture eTex;
@@ -130,6 +219,8 @@ public class FogController {
 	Texture nswTex;
 	Texture sewTex;
 
+	Texture boundaryTextures;
+
 	Vector2 texOffset;
 	Vector2 coeff;
 
@@ -138,23 +229,24 @@ public class FogController {
 
 	Vector2 familiarPos;
 
-	private final int ANIM_SPAN = 216;
+	private final int ANIM_SPAN = 360;
 	int animFrame;
 	boolean dec;
 
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale, Texture[] perlinTex) {
-		nTex = new Texture("mistic/fog/n_boundary_2.png");
+	    boundaryTextures = new Texture("mistic/fog/boundaries.png");
+//		nTex = new Texture("mistic/fog/n_boundary_2.png");
 //		eTex = new Texture("mistic/fog/e_boundary.png");
 //		sTex = new Texture("mistic/fog/s_boundary.png");
 //		wTex = new Texture("mistic/fog/w_boundary.png");
-		neTex = new Texture("mistic/fog/ne_boundary.png");
+//		neTex = new Texture("mistic/fog/ne_boundary.png");
 //		seTex = new Texture("mistic/fog/se_boundary.png");
 //		swTex = new Texture("mistic/fog/sw_boundary.png");
 //		nwTex = new Texture("mistic/fog/nw_boundary.png");
-		nsTex = new Texture("mistic/fog/ns_boundary.png");
+//		nsTex = new Texture("mistic/fog/ns_boundary.png");
 //		ewTex = new Texture("mistic/fog/ew_boundary.png");
-		newTex = new Texture("mistic/fog/new_boundary.png");
+//		newTex = new Texture("mistic/fog/new_boundary.png");
 //		nseTex = new Texture("mistic/fog/nse_boundary.png");
 //		nswTex = new Texture("mistic/fog/nsw_boundary.png");
 //		sewTex = new Texture("mistic/fog/sew_boundary.png");
@@ -211,7 +303,17 @@ public class FogController {
 		}
 
 		for (Vector2 origin : fogOrigins) {
-			fogBoard[(int)origin.x][(int)origin.y] = BOUNDARY;
+            int x1 = (int)(origin.x - 1 + WX) % WX;
+            int x2 = (int)(origin.x + 1     ) % WX;
+            int y1 = (int)(origin.y - 1 + WY) % WY;
+            int y2 = (int)(origin.y + 1     ) % WY;
+
+            fogBoard[x1][(int)origin.y] = BOUNDARY;
+            fogBoard[x2][(int)origin.y] = BOUNDARY;
+            fogBoard[(int)origin.x][y1] = BOUNDARY;
+            fogBoard[(int)origin.x][y2] = BOUNDARY;
+
+			fogBoard[(int)origin.x][(int)origin.y] = FOG;
 		}
 
 		litLanternsA = new float[0];
@@ -298,23 +400,23 @@ public class FogController {
 //
 //		neTex.bind(6);
 //		shader.setUniformi("u_texture_ne", 6);
-
-		newTex.bind(5);
-		shader.setUniformi("u_texture_new", 5);
-
-		nsTex.bind(4);
-		shader.setUniformi("u_texture_ns", 4);
-
-		neTex.bind(3);
-		shader.setUniformi("u_texture_ne", 3);
-
-		nTex.bind(2);
-		shader.setUniformi("u_texture_n", 2);
+//
+//		newTex.bind(5);
+//		shader.setUniformi("u_texture_new", 5);
+//
+//		nsTex.bind(4);
+//		shader.setUniformi("u_texture_ns", 4);
+//
+//		neTex.bind(3);
+//		shader.setUniformi("u_texture_ne", 3);
+//
+//		nTex.bind(2);
+//		shader.setUniformi("u_texture_n", 2);
 
         perlinTex[animFrame].bind(1);
 		shader.setUniformi("u_texture_perlin", 1);
 
-		perlinTex[animFrame].bind(0);
+		boundaryTextures.bind(0);
 		shader.setUniformi("u_texture", 0);
 
 		float gorfRadius = .4f*(1f-(float)Math.exp(-nFireflies/2f));
@@ -343,7 +445,7 @@ public class FogController {
 		batch.enableBlending();
 		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 
-		batch.draw(fboRegion, pos.x, pos.y, screenDim.x, screenDim.y);
+		batch.draw(boundaryTextures, pos.x, pos.y, screenDim.x, screenDim.y);
 
 		logger.log();
 	}
@@ -488,19 +590,19 @@ public class FogController {
 
 		familiarPos = new Vector2((familiar.getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x), (familiar.getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y));
 
-		if (dec) {
-		    animFrame--;
-		    if (animFrame == 0) {
-		        dec = false;
-            }
-        } else {
-		    animFrame++;
-		    if (animFrame == ANIM_SPAN-1) {
-		        dec = true;
-            }
-        }
+//		if (dec) {
+//		    animFrame--;
+//		    if (animFrame == 0) {
+//		        dec = false;
+//            }
+//        } else {
+//		    animFrame++;
+//		    if (animFrame == ANIM_SPAN-1) {
+//		        dec = true;
+//            }
+//        }
 
-//        animFrame = (animFrame + 1) % ANIM_SPAN;
+        animFrame = (animFrame + 1) % ANIM_SPAN;
 	}
 
 	private void updateFog(BoardModel tileBoard) {
@@ -633,86 +735,357 @@ public class FogController {
 
 		for (int i=0; i<WX; i++) {
 			for (int j = 0; j < WY; j++) {
+			    boolean fogAbove = fogBoard[i][(j+1) % WY] == (int)FOG;
+			    boolean fogBelow = fogBoard[i][(j-1+WY) % WY] == (int)FOG;
+			    boolean fogLeft = fogBoard[(i-1+WX) % WX][j] == (int)FOG;
+			    boolean fogRight = fogBoard[(i+1) % WX][j] == (int)FOG;
+
+			    boolean fogUpperLeft = fogBoard[(i-1+WX) % WX][(j+1) % WY] == (int)FOG;
+			    boolean fogUpperRight = fogBoard[(i+1) % WX][(j+1) % WY] == (int)FOG;
+			    boolean fogLowerLeft = fogBoard[(i-1+WX) % WX][(j-1+WY) % WY] == (int)FOG;
+			    boolean fogLowerRight = fogBoard[(i+1) % WX][(j-1+WY) % WY] == (int)FOG;
+
+
+
 				if (fogBoard[i][j] == BOUNDARY) {
-					if ( fogBoard[i][(j+1) % WY]    == (int)FOG
-					  && fogBoard[(i+1) % WX][j]    == (int)FOG
-					  && fogBoard[i][(j-1+WY) % WY] == (int)FOG
-					  && fogBoard[(i-1+WX) % WX][j] == (int)FOG ) {
-						fogBoard[i][j] = FOG;
-						tileBoard.setFog(i,j,true);
-					} else if (fogBoard[i][(j+1) % WY] == (int)FOG) {
-						if (fogBoard[i][(j-1+WY) % WY] == (int)FOG) {
-							if (fogBoard[(i+1) % NX][j] == (int)FOG) {				// NSE
-								boundaryTiles.add(NSE);
-								boundaryFogBoard[i][j] = NSE;
-								boundaryPos.add(new Vector2(i,j));
-							} else if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {	// NSW
-								boundaryTiles.add(NSW);
-								boundaryFogBoard[i][j] = NSW;
-								boundaryPos.add(new Vector2(i,j));
-							} else {												// NS
-								boundaryTiles.add(NS);
-								boundaryFogBoard[i][j] = NS;
-								boundaryPos.add(new Vector2(i,j));
-							}
-						} else if (fogBoard[(i+1) % WX][j] == (int)FOG) {
-							if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {			// NEW
-								boundaryTiles.add(NEW);
-								boundaryFogBoard[i][j] = NEW;
-								boundaryPos.add(new Vector2(i,j));
-							} else {												// NE
-								boundaryTiles.add(NE);
-								boundaryFogBoard[i][j] = NE;
-								boundaryPos.add(new Vector2(i,j));
-							}
-						} else if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {		// NW
-							boundaryTiles.add(NW);
-							boundaryFogBoard[i][j] = NW;
-							boundaryPos.add(new Vector2(i,j));
-						} else {													// N
-							boundaryTiles.add(N);
-							boundaryFogBoard[i][j] = N;
-							boundaryPos.add(new Vector2(i,j));
-						}
-					} else if (fogBoard[i][(j-1+WY) % WY] == (int)FOG) {
-						if (fogBoard[(i+1) % WX][j] == (int)FOG) {
-							if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {			// SEW
-								boundaryTiles.add(SEW);
-								boundaryFogBoard[i][j] = SEW;
-								boundaryPos.add(new Vector2(i,j));
-							} else {												// SE
-								boundaryTiles.add(SE);
-								boundaryFogBoard[i][j] = SE;
-								boundaryPos.add(new Vector2(i,j));
-							}
-						} else if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {		// SW
-							boundaryTiles.add(SW);
-							boundaryFogBoard[i][j] = SW;
-							boundaryPos.add(new Vector2(i,j));
-						} else {													// S
-							boundaryTiles.add(S);
-							boundaryFogBoard[i][j] = S;
-							boundaryPos.add(new Vector2(i,j));
-						}
-					} else if (fogBoard[(i+1) % WX][j] == (int)FOG) {
-						if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {				// EW
-							boundaryTiles.add(EW);
-							boundaryFogBoard[i][j] = EW;
-							boundaryPos.add(new Vector2(i,j));
-						} else {													// E
-							boundaryTiles.add(E);
-							boundaryFogBoard[i][j] = E;
-							boundaryPos.add(new Vector2(i,j));
-						}
-					} else if (fogBoard[(i-1+WX) % WX][j] == (int)FOG) {			// W
-						boundaryTiles.add(W);
-						boundaryFogBoard[i][j] = W;
-						boundaryPos.add(new Vector2(i,j));
+					if (fogAbove && fogRight && fogBelow && fogLeft) {
+                        addBoundary(NSEW, i, j);
+                        tileBoard.setFog(i, j, true);
+                        newFog.add(new Vector2(i,j));
 					}
+
+					else if (fogAbove) {
+						if (fogBelow) {
+							if (fogLeft) {
+                                if (fogUpperRight) {
+                                    if (fogLowerRight) {
+                                        addBoundary(NSW, i, j);
+                                    }
+                                    else {
+                                        addBoundary(NSW_CORNER_R, i, j);
+                                    }
+                                }
+                                else if (fogLowerRight) {
+                                    addBoundary(NSW_CORNER_L, i, j);
+                                }
+                                else {
+                                    addBoundary(NSW_CORNER_LR, i, j);
+                                }
+							}
+							else if (fogRight) {
+                                if (fogUpperLeft) {
+                                    if (fogLowerLeft) {
+                                        addBoundary(NSE, i, j);
+                                    }
+                                    else {
+                                        addBoundary(NSE_CORNER_L, i, j);
+                                    }
+                                }
+                                else if (fogLowerLeft) {
+                                    addBoundary(NSE_CORNER_R, i, j);
+                                }
+                                else {
+                                    addBoundary(NSE_CORNER_LR, i, j);
+                                }
+							}
+							else {
+                                if (fogLowerLeft) {
+                                    if (fogLowerRight) {
+                                        if (fogUpperLeft) {
+                                            if (fogUpperRight) {
+                                                addBoundary(NS, i, j);
+                                            } else {
+                                                addBoundary(SN_CORNER_R, i, j);
+                                            }
+                                        } else if (fogUpperRight) {
+                                            addBoundary(SN_CORNER_L, i, j);
+                                        } else {
+                                            addBoundary(NS_CORNER_U, i, j);
+                                        }
+                                    } else if (fogUpperLeft) {
+                                        if (fogUpperRight) {
+                                            addBoundary(NS_CORNER_R, i, j);
+                                        } else {
+                                            addBoundary(SN_CORNER_RR, i, j);
+                                        }
+                                    } else if (fogUpperRight) {
+                                        addBoundary(NS_CORNER_RL, i, j);
+                                    } else {
+                                        addBoundary(SN_CORNER_LRR, i, j);
+                                    }
+                                }
+                                else if (fogLowerRight) {
+                                    if (fogUpperLeft) {
+                                        if (fogUpperRight) {
+                                            addBoundary(NS_CORNER_L, i, j);
+                                        } else {
+                                            addBoundary(NS_CORNER_LR, i, j);
+                                        }
+                                    } else if (fogUpperRight) {
+                                        addBoundary(NS_CORNER_LL, i, j);
+                                    } else {
+                                        addBoundary(SN_CORNER_LRL, i, j);
+                                    }
+                                }
+                                else if (fogUpperLeft) {
+                                    if (fogUpperRight) {
+                                        addBoundary(NS_CORNER_D, i, j);
+                                    } else {
+                                        addBoundary(NS_CORNER_LRR, i, j);
+                                    }
+                                }
+                                else if (fogUpperRight) {
+                                    addBoundary(NS_CORNER_LRL, i, j);
+                                }
+                                else {
+                                    addBoundary(NS_CORNER_LRLR, i, j);
+                                }
+							}
+						}
+						else if (fogLeft) {
+                            if (fogRight) {
+                                if (fogLowerLeft) {
+                                    if (fogLowerRight) {
+                                        addBoundary(NEW, i, j);
+                                    }
+                                    else {
+                                        addBoundary(NEW_CORNER_L, i, j);
+                                    }
+                                }
+                                else if (fogLowerRight) {
+                                    addBoundary(NEW_CORNER_R, i, j);
+                                }
+                                else {
+                                    addBoundary(NEW_CORNER_LR, i, j);
+                                }
+                            }
+                            else {
+                                if (fogUpperRight) {
+                                    if (fogLowerLeft) {
+                                        addBoundary(NW, i, j);
+                                    }
+                                    else {
+                                        addBoundary(NW_CORNER_R, i, j);
+                                    }
+                                }
+                                else if (fogLowerLeft) {
+                                    addBoundary(NW_CORNER_L, i, j);
+                                }
+                                else {
+                                    addBoundary(NW_CORNER_LR, i, j);
+                                }
+                            }
+                        }
+                        else if (fogRight) {
+						    if (fogUpperLeft) {
+                                if (fogLowerRight) {
+                                    addBoundary(NE, i, j);
+                                }
+                                else {
+                                    addBoundary(NE_CORNER_L, i, j);
+                                }
+                            }
+                            else if (fogLowerRight) {
+						        addBoundary(NE_CORNER_R, i, j);
+                            }
+                            addBoundary(NE_CORNER_LR, i, j);
+                        }
+                        else {
+						    if (fogUpperLeft) {
+						        if (fogUpperRight) {
+						            addBoundary(N, i, j);
+                                }
+                                else {
+						            addBoundary(N_CORNER_R, i, j);
+                                }
+                            }
+                            else if (fogUpperRight) {
+						        addBoundary(N_CORNER_L, i, j);
+                            }
+                            else {
+                                addBoundary(N_CORNER_LR, i, j);
+                            }
+                        }
+					}
+
+					else if (fogBelow) {
+                        if (fogLeft) {
+                            if (fogRight) {
+                                if (fogUpperLeft) {
+                                    if (fogUpperRight) {
+                                        addBoundary(SEW, i, j);
+                                    }
+                                    else {
+                                        addBoundary(SEW_CORNER_R, i, j);
+                                    }
+                                }
+                                else if (fogUpperRight) {
+                                    addBoundary(SEW_CORNER_L, i, j);
+                                }
+                                else {
+                                    addBoundary(SEW_CORNER_LR, i, j);
+                                }
+                            }
+                            else {
+                                if (fogUpperLeft) {
+                                    if (fogLowerRight) {
+                                        addBoundary(SW, i, j);
+                                    }
+                                    else {
+                                        addBoundary(SW_CORNER_R, i, j);
+                                    }
+                                }
+                                else if (fogLowerRight) {
+                                    addBoundary(SW_CORNER_L, i, j);
+                                }
+                                else {
+                                    addBoundary(SW_CORNER_LR, i, j);
+                                }
+                            }
+                        }
+                        else if (fogRight) {
+                            if (fogUpperRight) {
+                                if (fogLowerLeft) {
+                                    addBoundary(SE, i, j);
+                                }
+                                else {
+                                    addBoundary(SE_CORNER_L, i, j);
+                                }
+                            }
+                            else if (fogLowerLeft) {
+                                addBoundary(SE_CORNER_R, i, j);
+                            }
+                            else {
+                                addBoundary(SE_CORNER_LR, i, j);
+                            }
+                        }
+                        else {
+                            if (fogLowerLeft) {
+                                if (fogLowerRight) {
+                                    addBoundary(S, i, j);
+                                }
+                                else {
+                                    addBoundary(S_CORNER_R, i, j);
+                                }
+                            }
+                            else if (fogLowerRight) {
+                                addBoundary(S_CORNER_L, i, j);
+                            }
+                            else {
+                                addBoundary(S_CORNER_LR, i, j);
+                            }
+                        }
+                    }
+
+                    else if (fogLeft) {
+					    if (fogRight) {
+					        if (fogUpperLeft) {
+					            if (fogUpperRight) {
+					                if (fogLowerLeft) {
+					                    if (fogLowerRight) {
+					                        addBoundary(EW, i, j);
+                                        }
+                                        else {
+					                        addBoundary(EW_CORNER_D, i, j);
+                                        }
+                                    }
+                                    else if (fogLowerRight) {
+					                    addBoundary(WE_CORNER_D, i, j);
+                                    }
+                                    else {
+					                    addBoundary(EW_CORNER_DD, i, j);
+                                    }
+                                }
+                                else if (fogLowerLeft) {
+					                if (fogLowerRight) {
+					                    addBoundary(EW_CORNER_U, i, j);
+                                    }
+                                    else {
+					                    addBoundary(EW_CORNER_R, i, j);
+                                    }
+                                }
+                                else if (fogLowerRight) {
+                                    addBoundary(EW_CORNER_UD, i, j);
+                                }
+                                else {
+					                addBoundary(EW_CORNER_UDD, i, j);
+                                }
+                            }
+                            else if (fogUpperRight) {
+					            if (fogLowerLeft) {
+					                if (fogLowerRight) {
+					                    addBoundary(WE_CORNER_U, i, j);
+                                    }
+                                    else {
+					                    addBoundary(EW_CORNER_DU, i, j);
+                                    }
+                                }
+                                else if (fogLowerRight) {
+                                    addBoundary(EW_CORNER_L, i, j);
+                                }
+                                else {
+					                addBoundary(WE_CORNER_UDD, i, j);
+                                }
+                            }
+                            else if (fogLowerLeft) {
+					            if (fogLowerRight) {
+                                    addBoundary(WE_CORNER_UU, i, j);
+                                }
+                                else {
+                                    addBoundary(EW_CORNER_UDU, i, j);
+                                }
+                            }
+                            else if (fogLowerRight) {
+                                addBoundary(WE_CORNER_UDU, i, j);
+                            }
+                            else {
+					            addBoundary(EW_CORNER_UDUD, i, j);
+                            }
+                        }
+                        else {
+					        if (fogUpperLeft) {
+                                if (fogLowerLeft) {
+                                    addBoundary(W, i, j);
+                                }
+                                else {
+                                    addBoundary(W_CORNER_D, i, j);
+                                }
+                            }
+                            else if (fogLowerLeft) {
+                                addBoundary(W_CORNER_U, i, j);
+                            }
+                            else {
+                                addBoundary(W_CORNER_UD, i, j);
+                            }
+                        }
+                    }
+
+                    else if (fogRight) {
+                        if (fogUpperRight) {
+                            if (fogLowerRight) {
+                                addBoundary(E, i, j);
+                            }
+                            else {
+                                addBoundary(E_CORNER_D, i, j);
+                            }
+                        }
+                        else if (fogLowerRight) {
+                            addBoundary(E_CORNER_U, i, j);
+                        }
+                        else {
+                            addBoundary(E_CORNER_UD, i, j);
+                        }
+                    }
 				}
 			}
 		}
 	}
+
+	private void addBoundary(float boundary, int i, int j) {
+        boundaryTiles.add(boundary);
+        boundaryFogBoard[i][j] = boundary;
+        boundaryPos.add(new Vector2(i,j));
+    }
 
 	private void updateLanterns(ArrayList<Lantern> lanterns, BoardModel tileBoard) {
 		Array<Lantern> litLanterns = new Array<Lantern>();

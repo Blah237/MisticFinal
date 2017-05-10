@@ -57,9 +57,9 @@ public class AIControllerS {
         flee.setEnabled(false);
 
         for (MonsterModel m : monster) {
-            m.setFY(0.0f);
-            m.setFX(0.0f);
-            m.applyForce();
+                m.setFY(0.0f);
+                m.setFX(0.0f);
+                m.applyForce();
         }
         timePiece.update(dt);
 

@@ -14,6 +14,7 @@ void main() {
         if (i>=numLanterns) {
             break;
         }
+//        vec2 lanternDir = vec2(min(lanternsPos[i].x-.004, 1.0 - (lanternsPos[i].x-.004)) - gl_FragCoord.x / res.x, min(lanternsPos[i].y+.17, 1.0 - (lanternsPos[i].y+.17)) - gl_FragCoord.y / res.y);
         vec2 lanternDir = vec2(lanternsPos[i].x-.004, lanternsPos[i].y+.17) - (gl_FragCoord.xy / res.xy);
         lanternDir.x *= res.x / res.y;
 
