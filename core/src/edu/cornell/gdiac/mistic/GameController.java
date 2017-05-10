@@ -943,6 +943,10 @@ public class GameController extends WorldController implements ContactListener{
                 fireflyFX.play();
                 firefly_count++;
             }
+
+            if (InputController.getInstance().didDebug()) {
+                setDebug(!isDebug());
+            }
             /**
              for (Body b : scheduledForRemoval) {
              b.getWorld().destroyBody(b);
