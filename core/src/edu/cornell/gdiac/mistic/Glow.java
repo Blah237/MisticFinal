@@ -104,7 +104,7 @@ public class Glow {
         lanternFrontShader.end();
 
         gorfShader.begin();
-        gorfShader.setUniformf("radius", gorfRadius+.3f);
+        gorfShader.setUniformf("radius", gorfRadius+.2f);
         gorfShader.end();
     }
 
@@ -123,9 +123,7 @@ public class Glow {
         batch.draw(texRegion, pos.x, pos.y, screenDim.x, screenDim.y);
     }
 
-    public ShaderProgram getFamiliarShader() {
-        return familiarShader;
-    }
+    public ShaderProgram getFamiliarShader() { return familiarShader; }
     public ShaderProgram getLanternBackShader() { return  lanternBackShader; }
     public ShaderProgram getLanternFrontShader() { return  lanternFrontShader; }
     public ShaderProgram getGorfShader() { return gorfShader; }

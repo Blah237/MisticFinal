@@ -127,6 +127,8 @@ public void render(float dt) {
         if (pressing) {
             switch (menu.getFrame()) {
                 case 0:
+                    WorldController.MINIMAP_FILE = LevelSelectController.level1minimap;
+                    WorldController.JSON_FILE = LevelSelectController.level1;
                     listener.exitScreen(this, EXIT_TO_PLAY);
                     break;
                 case 1:
