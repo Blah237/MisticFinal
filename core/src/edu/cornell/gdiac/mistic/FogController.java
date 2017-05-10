@@ -303,7 +303,17 @@ public class FogController {
 		}
 
 		for (Vector2 origin : fogOrigins) {
-			fogBoard[(int)origin.x][(int)origin.y] = BOUNDARY;
+            int x1 = (int)(origin.x - 1 + WX) % WX;
+            int x2 = (int)(origin.x + 1     ) % WX;
+            int y1 = (int)(origin.y - 1 + WY) % WY;
+            int y2 = (int)(origin.y + 1     ) % WY;
+
+            fogBoard[x1][(int)origin.y] = BOUNDARY;
+            fogBoard[x2][(int)origin.y] = BOUNDARY;
+            fogBoard[(int)origin.x][y1] = BOUNDARY;
+            fogBoard[(int)origin.x][y2] = BOUNDARY;
+
+			fogBoard[(int)origin.x][(int)origin.y] = FOG;
 		}
 
 		litLanternsA = new float[0];
