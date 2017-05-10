@@ -995,6 +995,7 @@ public class GameController extends WorldController implements ContactListener{
                 }
             }
         } else if (state == WIN){
+            //victoryFX.play();
             if (timerGo) { //code to slow down multiple inputs and not register all of them
                 inputTimer--;
                 if (inputTimer == 0) {
@@ -1032,6 +1033,7 @@ public class GameController extends WorldController implements ContactListener{
                 }
             }
         } else if (state == LOSE) {
+            //deathFX.play();
             if (timerGo) { //code to slow down multiple inputs and not register all of them
                 inputTimer--;
                 if (inputTimer == 0) {
