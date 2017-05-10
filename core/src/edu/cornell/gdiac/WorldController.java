@@ -78,10 +78,10 @@ public abstract class WorldController implements Screen {
 	public static String MINIMAP_FILE = "minimaps/BETA_basic_blockfog.png"; // MINIMAP ASSET PATH PUT HERE!!!
 	private static int FONT_SIZE = 64;
 
-	public final String level1minimap = "minimaps/BETA_basic_blockfog.png";
-	public final String level2minimap = "minimaps/BETA_easy_containfog_1fam.png";
-	public final String level3minimap = "minimaps/BETA_two_sides.png";
-	public final String level4minimap = "minimaps/BETA_two_sides_3fam.png";
+	public  final String level1minimap = "minimaps/level1.png";
+	public  final String level2minimap = "minimaps/level2.png";
+	public  final String level3minimap = "minimaps/level3revised.png";
+	public  final String level4minimap = "minimaps/level4.png";
 	public final String level5minimap = "minimaps/BETA_rooms2.png";
 
 	/** The texture for walls and platforms */
