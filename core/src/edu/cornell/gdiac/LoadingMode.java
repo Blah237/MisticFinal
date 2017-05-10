@@ -46,7 +46,7 @@ import edu.cornell.gdiac.util.*;
  */
 public class LoadingMode implements Screen, InputProcessor, ControllerListener {
 	// Textures necessary to support the loading screen
-	private static final String BACKGROUND_FILE = "mistic/loadingscreen.gif";
+	private static final String BACKGROUND_FILE = "mistic/loadingscreen.png";
 	private static final String PROGRESS_FILE = "shared/progressbar.png";
 	private static final String PLAY_BTN_FILE = "mistic/play.png";
 	
@@ -256,8 +256,6 @@ public class LoadingMode implements Screen, InputProcessor, ControllerListener {
 			if (progress >= 1.0f) {
 				this.listener.exitScreen(this, 0);
 				this.progress = 1.0f;
-				playButton = new Texture(PLAY_BTN_FILE);
-				playButton.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 			}
 		}
 	}

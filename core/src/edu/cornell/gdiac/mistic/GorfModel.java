@@ -74,7 +74,7 @@ public class GorfModel extends BoxObstacle {
 	float currFX = 0;
 	float currFY = 0;
 
-	int animateTimer=10;
+	int animateTimer=5;
 
 	/**
 	 * Returns the force applied to this rocket.
@@ -216,7 +216,7 @@ public class GorfModel extends BoxObstacle {
 			//System.out.println(current.getFrame());
 			this.animateTimer--;
 			if ( this.animateTimer == 0) {
-				this.animateTimer  = 15;
+				this.animateTimer  = 8;
 			}
 			if (this.animateTimer == 1) {
 				if (this.current.getFrame() != this.current.getSize() - 1) {
@@ -254,21 +254,29 @@ public class GorfModel extends BoxObstacle {
 	public void updateTexture(){
 		if(getFX()<0 && getFY()<0){
 			current=DownLeft;
+			this.setWidth(5);
 		}else if(getFX()<0 && getFY()>0){
 			current=UpLeft;
+			this.setWidth(4);
 		}else if(getFX()>0 && getFY()>0){
 			current=UpRight;
+			this.setWidth(4);
 		}else if(getFX()>0 && getFY()<0){
 			current=DownRight;
+			this.setWidth(5);
 		}
 		else if(getFX()<0){
 			current=Left;
+			this.setWidth(4);
 		}else if(getFX()>0){
 			current=Right;
+			this.setWidth(4);
 		}else if(getFY()<0) {
 			current=Down;
+			this.setWidth(5);
 		}else if(getFY()>0) {
 			current=Up;
+			this.setWidth(5);
 		}
 	}
 
