@@ -801,7 +801,7 @@ public class GameController extends WorldController implements ContactListener{
             float posy=m.getY()*scale.y;
             int tx=tileBoard.screenToBoardX(posx);
             int ty=tileBoard.screenToBoardY(posy);
-            if(tileBoard.isLanternGlow(tx,ty) || tileBoard.isGorfGlow(tx,ty) || !tileBoard.isFog(tx,ty)){
+            if(tileBoard.isLanternGlow(tx,ty)){
                 m.updateDeathTimer();
                 if(m.getMonsterDeathTimer()==0){
                     //m.dead=true;

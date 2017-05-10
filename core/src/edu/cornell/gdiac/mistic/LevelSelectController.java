@@ -42,10 +42,10 @@ public class LevelSelectController extends WorldController implements Screen {
 
     public String jsonFileName;
 
-    public static final String level1 = "jsons/BETA_basic_blockfog.json";
-    public static final String level2 = "jsons/level2.json";
-    public static final String level3 = "jsons/level3line.json";
-    public static final String level4 = "jsons/BETA_two_sides_3fam.json";
+    public static final String level1 = "final_release/level1.json";
+    public static final String level2 = "final_release/level2.json";
+    public static final String level3 = "final_release/level3revised.json";
+    public static final String level4 = "final_release/level4.json";
     public static final String level5 = "FINAL/FINAL_5rooms.json";
 
     public static final String level1minimap = "minimaps/BETA_basic_blockfog.png";
