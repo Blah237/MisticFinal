@@ -424,6 +424,7 @@ public class GameCanvas {
 	public void begin(Vector2 position) {
 		camera.position.set(position.x*8f,position.y*8f,0);
 		camera.zoom = 0.59f;
+		//camera.zoom = 0.80f;
 		camera.viewportHeight = getHeight();
 		camera.viewportWidth = getWidth();
 		camera.update();
