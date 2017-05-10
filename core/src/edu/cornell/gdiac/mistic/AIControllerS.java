@@ -101,8 +101,10 @@ public class AIControllerS {
     private void applySteering(SteeringAcceleration<Vector2> steering, MonsterModel m) {
         Vector2 monsterPos = m.getPosition();
         int tileX = board.screenToBoardX(monsterPos.x * 8.0f);
+        if (tileX>99) {tileX = 99;} else if (tileX<0) {tileX = 0;}  // should fix bug?
         int tileY = board.screenToBoardY(monsterPos.y * 8.0f);
-        BoardModel.Tile gorftile= board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f)];        // NOTE: got an ArrayIndexOutOfBoundsException at some obscure tile?
+        if (tileY>99) {tileY = 99;} else if (tileY<0) {tileY = 0;}  // should fix bug?
+        BoardModel.Tile gorftile= board.tiles[tileX][tileY];        // NOTE: got an ArrayIndexOutOfBoundsException at some obscure tile?
         //BoardModel.Tile gorftile2 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f) + 1];
         //BoardModel.Tile gorftile3 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f) + 1][board.screenToBoardY(monsterPos.y * 8.0f)];
         //BoardModel.Tile gorftile4 = board.tiles[board.screenToBoardX(monsterPos.x * 8.0f)][board.screenToBoardY(monsterPos.y * 8.0f) + 1];

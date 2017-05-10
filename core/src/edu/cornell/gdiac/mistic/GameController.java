@@ -29,6 +29,8 @@ import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Random;
+
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
 import javafx.scene.PointLight;
@@ -124,7 +126,14 @@ public class GameController extends WorldController implements ContactListener{
     SoundController sounds = SoundController.getInstance();
     private static final String A_PEACE_SONG = "sounds/A_Peace_DEMO2.mp3";
     private static final String B_MARSH_SONG = "sounds/B_Marsh_DEMO2.mp3";
+    private static final String C_FOG_SONG = "sounds/C_Fog_DEMO2.mp3";
     private static final String D_PEACE_SONG = "sounds/D_Peace_DEMO2.mp3";
+    private static final String E_MARSH_SONG = "sounds/E_Marsh_DEMO2.mp3";
+    private static final String F_MARSH_SONG = "sounds/F_Marsh_DEMO2.mp3";
+    private static final String G_PEACE_SONG = "sounds/G_Wander_DEMO2.mp3";
+    private static final String FX_FIREFLY = "sounds/_FX_firefly_FX.mp3";
+    private static final String FX_VICTORY = "sounds/_FX_victory_FX.mp3";
+    private static final String FX_DEATH = "sounds/_FX_death_FX.mp3";
 
     /** Noise textures */
     private static final String PERLIN_NOISE = "mistic/noise/noise";
@@ -189,6 +198,12 @@ public class GameController extends WorldController implements ContactListener{
     /** animation span for fog **/
     public final int FOG_ANIM_SPAN = 360;
     public Texture[] perlinTex = new Texture[FOG_ANIM_SPAN];
+
+    // make sound objects for sfx
+    Sound fireflyFX = Gdx.audio.newSound(Gdx.files.internal(FX_FIREFLY));
+    Sound victoryFX = Gdx.audio.newSound(Gdx.files.internal(FX_VICTORY));
+    Sound deathFX = Gdx.audio.newSound(Gdx.files.internal(FX_DEATH));
+
 
     /**
      * Preloads the assets for this controller.
@@ -341,9 +356,24 @@ public class GameController extends WorldController implements ContactListener{
         assets.add(A_PEACE_SONG);
         manager.load(B_MARSH_SONG, Sound.class);
         assets.add(B_MARSH_SONG);
+        manager.load(C_FOG_SONG, Sound.class);
+        assets.add(C_FOG_SONG);
         manager.load(D_PEACE_SONG, Sound.class);
         assets.add(D_PEACE_SONG);
+        manager.load(E_MARSH_SONG, Sound.class);
+        assets.add(E_MARSH_SONG);
+        manager.load(F_MARSH_SONG, Sound.class);
+        assets.add(F_MARSH_SONG);
+        manager.load(G_PEACE_SONG, Sound.class);
+        assets.add(G_PEACE_SONG);
 
+        // sfx
+        manager.load(FX_FIREFLY, Sound.class);
+        assets.add(FX_FIREFLY);
+        manager.load(FX_VICTORY, Sound.class);
+        assets.add(FX_VICTORY);
+        manager.load(FX_DEATH, Sound.class);
+        assets.add(FX_DEATH);
 
         super.preLoadContent(manager);
     }
@@ -425,10 +455,14 @@ public class GameController extends WorldController implements ContactListener{
             perlinTex[i] = createTexture(manager, PERLIN_NOISE + i + ".png", false).getTexture();
         }
 
-        // allocate sounds
+        // allocate sounds (not sfx)
         sounds.allocate(manager,A_PEACE_SONG);
         sounds.allocate(manager,B_MARSH_SONG);
-        sounds.allocate(manager,D_PEACE_SONG );
+        sounds.allocate(manager,C_FOG_SONG);
+        sounds.allocate(manager,D_PEACE_SONG);
+        sounds.allocate(manager,E_MARSH_SONG);
+        sounds.allocate(manager,F_MARSH_SONG);
+        sounds.allocate(manager,G_PEACE_SONG);
 
         super.loadContent(manager, canvas);
         tileBoard=super.getTileBoard();
@@ -546,6 +580,9 @@ public class GameController extends WorldController implements ContactListener{
         for(Obstacle obj : objects) {
             obj.deactivatePhysics(world);
         }
+        // keep playing currently playing sounds
+        sounds.playAllActive();
+
         objects.clear();
         walls.clear();
         lanterns.clear();
@@ -591,11 +628,7 @@ public class GameController extends WorldController implements ContactListener{
             }
         }
 
-        // Stop all existing instances, and then re-play
-        //if (sounds.isActive("A")) {sounds.stop("A");}
-        sounds.stop("B");
-        sounds.play("D",D_PEACE_SONG,false);
-        sounds.play("B",B_MARSH_SONG,true);
+
         state = PLAY;
     }
 
@@ -717,8 +750,27 @@ public class GameController extends WorldController implements ContactListener{
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale, perlinTex);
         glow = new Glow(canvas, super.screenSize, scale);
 
+        // play a random peace marsh pair of songs for the level
+//        Random rand = new Random();
+//        int r1 = rand.nextInt(3) + 1;
+//        int r2 = rand.nextInt(3) + 1;
+//        if (r1==1) {
+//            sounds.play("A",A_PEACE_SONG,true);
+//        } else if (r1==2) {
+//            sounds.play("D",D_PEACE_SONG,true);
+//        } else if (r1==3) {
+//            sounds.play("G",G_PEACE_SONG,true);
+//        }
+//        if (r2==1) {
+//            sounds.play("B",B_MARSH_SONG,true);
+//        } else if (r2==2) {
+//            sounds.play("E",E_MARSH_SONG,true);
+//        } else if (r2==3) {
+//            sounds.play("F",F_MARSH_SONG,true);
+//        }
 
-
+        sounds.play("A",A_PEACE_SONG,true);
+        sounds.play("B",B_MARSH_SONG,true);
     }
 
     private void createMonster(float x, float y) {
@@ -888,6 +940,7 @@ public class GameController extends WorldController implements ContactListener{
 
             SoundController.getInstance().update();
             if (fireflyController.update(gorf)) {
+                fireflyFX.play();
                 firefly_count++;
             }
             /**
@@ -933,11 +986,15 @@ public class GameController extends WorldController implements ContactListener{
                 timerGo = true;
                 switch (pause.getFrame()) {
                     case 0: state = PLAY; break;
-                    case 1: listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU); break;
+                    case 1:
+                        sounds.stopAllActive();
+                        listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
+                        break;
                     case 2: reset();
                 }
             }
         } else if (state == WIN){
+            //victoryFX.play();
             if (timerGo) { //code to slow down multiple inputs and not register all of them
                 inputTimer--;
                 if (inputTimer == 0) {
@@ -968,10 +1025,14 @@ public class GameController extends WorldController implements ContactListener{
                 timerGo = true;
                 switch (win.getFrame()) {
                     case 0: break;
-                    case 1: listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU); break;
+                    case 1:
+                        sounds.stopAllActive();
+                        listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
+                        break;
                 }
             }
         } else if (state == LOSE) {
+            //deathFX.play();
             if (timerGo) { //code to slow down multiple inputs and not register all of them
                 inputTimer--;
                 if (inputTimer == 0) {
@@ -1002,7 +1063,10 @@ public class GameController extends WorldController implements ContactListener{
                 timerGo = true;
                 switch (gameOver.getFrame()) {
                     case 0: reset(); break;
-                    case 1: listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU); break;
+                    case 1:
+                        sounds.stopAllActive();
+                        listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
+                        break;
                 }
             }
         }
