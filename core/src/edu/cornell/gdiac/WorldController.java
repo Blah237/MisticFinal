@@ -98,10 +98,20 @@ public abstract class WorldController implements Screen {
 	private Minimap minimap;
 	public Rectangle screenSize;
 
+	/**
+	 * Getter for this world's Board Model object
+	 *
+	 * @return  This world's Board Model object
+	 */
 	public BoardModel getTileBoard() {
 		return tileBoard;
 	}
 
+	/**
+	 * Getter for this world's Minimap
+	 *
+	 * @return  This world's Minimap
+	 */
 	public Minimap getMinimap() {
 		return minimap;
 	}

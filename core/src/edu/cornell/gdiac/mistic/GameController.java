@@ -952,7 +952,7 @@ public class GameController extends WorldController implements ContactListener{
 
             float forcex = InputController.getInstance().getHorizontal();
             float forcey = InputController.getInstance().getVertical();
-            float moveacc = gorf.getThrust() * 0.3f;
+            float moveacc = gorf.getThrust();
 
             // make all movement equispeed
             Vector2 temp = new Vector2(forcex * moveacc, forcey * moveacc);
