@@ -87,6 +87,7 @@ public class FogController {
 	Vector2 scale;
 
 	Array<Vector2> newFog;
+	Array<Vector2> fogTiles;
 
 	Texture[] perlinTex;
 
@@ -233,6 +234,8 @@ public class FogController {
 	int animFrame;
 	boolean dec;
 
+	int fogCount;
+
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale, Texture[] perlinTex) {
 	    boundaryTextures = new Texture("mistic/fog/boundaries.png");
@@ -351,6 +354,9 @@ public class FogController {
 		coeff = new Vector2();
 
 		familiarPos = new Vector2();
+
+        fogCount = 0;
+        fogTiles = new Array<Vector2>();
 
 //		generatePerlin();
 	}
@@ -653,6 +659,8 @@ public class FogController {
 			newFogBoard[x][y] = FOG;
 			tileBoard.setFog(x, y, true);
 			newFog.add(new Vector2(x,y));
+            fogTiles.add(new Vector2(x,y));
+			fogCount++;
 
 			int x1 = (x - 1 + WX) % WX;
 			int x2 = (x + 1     ) % WX;
@@ -700,6 +708,7 @@ public class FogController {
 //						if (newFogBoard[i][j] == 1) {
 //							tileBoard.setFog(i,j,true);
 //							newFog.add(new Vector2(i,j));
+//                            fogTiles.add(new Vector2(i,j));
 //						}
 //					} else {
 //						newFogBoard[ii][jj] = Math.max(newFogBoard[ii][jj], BOUNDARY * (1 - elementBoard[ii][jj]));
@@ -752,6 +761,7 @@ public class FogController {
                         addBoundary(NSEW, i, j);
                         tileBoard.setFog(i, j, true);
                         newFog.add(new Vector2(i,j));
+                        fogTiles.add(new Vector2(i,j));
 					}
 
 					else if (fogAbove) {
@@ -1110,7 +1120,11 @@ public class FogController {
 				} else {
 					fogBoard[lx][ly] = 0f;
 				}
-				tileBoard.setFog(lx, ly, false);
+				if (tileBoard.isFog(lx, ly)) {
+                    tileBoard.setFog(lx, ly, false);
+                    fogTiles.removeValue(new Vector2(lx,ly), true);
+                    fogCount--;
+                }
 				tileBoard.setLanternGlow(lx, ly, true);
 			}
 
@@ -1140,13 +1154,21 @@ public class FogController {
 				} else {
 					fogBoard[lx][ly] = 0f;
 				}
-				tileBoard.setFog(lx, ly, false);
+                if (tileBoard.isFog(lx, ly)) {
+                    tileBoard.setFog(lx, ly, false);
+                    fogTiles.removeValue(new Vector2(lx,ly), true);
+                    fogCount--;
+                }
 				tileBoard.setLanternGlow(lx, ly, true);
 
 				for (int k = -bound; k < bound; k++) {
 					lx = (int) ((lanternPos.x + k + WX) % WX);
 					fogBoard[lx][ly] = 0f;
-					tileBoard.setFog(lx, ly, false);
+                    if (tileBoard.isFog(lx, ly)) {
+                        tileBoard.setFog(lx, ly, false);
+                        fogTiles.removeValue(new Vector2(lx,ly), true);
+                        fogCount--;
+                    }
 					tileBoard.setLanternGlow(lx, ly, true);
 				}
 
@@ -1157,7 +1179,11 @@ public class FogController {
 				} else {
 					fogBoard[lx][ly] = 0f;
 				}
-				tileBoard.setFog(lx, ly, false);
+                if (tileBoard.isFog(lx, ly)) {
+                    tileBoard.setFog(lx, ly, false);
+                    fogTiles.removeValue(new Vector2(lx,ly), true);
+                    fogCount--;
+                }
 				tileBoard.setLanternGlow(lx, ly, true);
 			}
 
@@ -1169,7 +1195,11 @@ public class FogController {
 				} else {
 					fogBoard[lx][ly] = 0f;
 				}
-				tileBoard.setFog(lx, ly, false);
+                if (tileBoard.isFog(lx, ly)) {
+                    tileBoard.setFog(lx, ly, false);
+                    fogTiles.removeValue(new Vector2(lx,ly), true);
+                    fogCount--;
+                }
 				tileBoard.setLanternGlow(lx, ly, true);
 			}
 
@@ -1211,4 +1241,8 @@ public class FogController {
 	public Array<Vector2> getNewFog() {
 		return newFog;
 	}
+    public Array<Vector2> getFogTiles() {
+        return fogTiles;
+    }
+    public int getFogCount() { return fogCount; }
 }

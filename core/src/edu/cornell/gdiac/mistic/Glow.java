@@ -14,11 +14,13 @@ import java.util.ArrayList;
 
 public class Glow {
     String vertexShader;
-    String familiarFragmentShader;
+    String familiarBackFragmentShader;
+    String familiarFrontFragmentShader;
     String lanternBackFragmentShader;
     String lanternFrontFragmentShader;
     String gorfFragmentShader;
-    ShaderProgram familiarShader;
+    ShaderProgram familiarBackShader;
+    ShaderProgram familiarFrontShader;
     ShaderProgram lanternBackShader;
     ShaderProgram lanternFrontShader;
     ShaderProgram gorfShader;
@@ -30,19 +32,22 @@ public class Glow {
 
     public Glow(GameCanvas canvas, Rectangle screensize, Vector2 scale){
         vertexShader = Gdx.files.internal("mistic/shaders/fog.vert.glsl").readString();
-        familiarFragmentShader = Gdx.files.internal("mistic/shaders/familiar.frag.glsl").readString();
+        familiarBackFragmentShader = Gdx.files.internal("mistic/shaders/familiar_back.frag.glsl").readString();
+        familiarFrontFragmentShader = Gdx.files.internal("mistic/shaders/familiar_front.frag.glsl").readString();
         lanternBackFragmentShader = Gdx.files.internal("mistic/shaders/lantern_back.frag.glsl").readString();
         lanternFrontFragmentShader = Gdx.files.internal("mistic/shaders/lantern_front.frag.glsl").readString();
         gorfFragmentShader = Gdx.files.internal("mistic/shaders/gorfglow.frag.glsl").readString();
 
-        familiarShader = new ShaderProgram(vertexShader, familiarFragmentShader);
+        familiarBackShader = new ShaderProgram(vertexShader, familiarBackFragmentShader);
+        familiarFrontShader = new ShaderProgram(vertexShader, familiarFrontFragmentShader);
         lanternBackShader = new ShaderProgram(vertexShader, lanternBackFragmentShader);
         lanternFrontShader = new ShaderProgram(vertexShader, lanternFrontFragmentShader);
         gorfShader = new ShaderProgram(vertexShader, gorfFragmentShader);
 
         res = new Vector2(canvas.getWidth(), canvas.getHeight());
 
-        initShader(familiarShader);
+        initShader(familiarBackShader);
+        initShader(familiarFrontShader);
         initShader(lanternBackShader);
         initShader(lanternFrontShader);
         initShader(gorfShader);
@@ -89,9 +94,13 @@ public class Glow {
             gorfRadius = .4f * (1f - (float) Math.exp(-nFireflies / 2f));
         }
 
-        familiarShader.begin();
-        familiarShader.setUniformf("familiarPos", familiarPos.x, familiarPos.y);
-        familiarShader.end();
+        familiarBackShader.begin();
+        familiarBackShader.setUniformf("familiarPos", familiarPos.x, familiarPos.y);
+        familiarBackShader.end();
+
+        familiarFrontShader.begin();
+        familiarFrontShader.setUniformf("familiarPos", familiarPos.x, familiarPos.y);
+        familiarFrontShader.end();
 
         lanternBackShader.begin();
         lanternBackShader.setUniform2fv("lanternsPos", lanternsPos, 0, lanternsPos.length);
@@ -123,7 +132,8 @@ public class Glow {
         batch.draw(texRegion, pos.x, pos.y, screenDim.x, screenDim.y);
     }
 
-    public ShaderProgram getFamiliarShader() { return familiarShader; }
+    public ShaderProgram getFamiliarBackShader() { return familiarBackShader; }
+    public ShaderProgram getFamiliarFrontShader() { return familiarFrontShader; }
     public ShaderProgram getLanternBackShader() { return  lanternBackShader; }
     public ShaderProgram getLanternFrontShader() { return  lanternFrontShader; }
     public ShaderProgram getGorfShader() { return gorfShader; }
