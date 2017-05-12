@@ -1,11 +1,6 @@
-#define MAX_LANTERNS 30
-
 uniform vec2 res;
 
 uniform vec2 familiarPos;
-uniform vec2 lanternsPos[MAX_LANTERNS];
-uniform int numLanterns;
-uniform float gorfRadius;
 
 void main() {
     vec3 familiarGlowColor = vec3(0.7, 1.0, 1.0);

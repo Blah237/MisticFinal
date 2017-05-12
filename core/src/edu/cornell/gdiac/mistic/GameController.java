@@ -555,6 +555,10 @@ public class GameController extends WorldController implements ContactListener{
     /** Arraylist of Lantern objects */
     ArrayList<Lantern> Lanterns=new ArrayList<Lantern>();
 
+    int wallCount;
+    int tileCount;
+    int fogCount;
+    int fogPercentage;
 
     /**
      * Creates and initialize a new instance of the rocket lander game
@@ -570,9 +574,9 @@ public class GameController extends WorldController implements ContactListener{
         this.DEAD = false;
         this.fireflyDeathTimer=0;
         this.monster = new ArrayList<MonsterModel>();
+        wallCount = 0;
         state = PLAY;
         setScreenListener(listener);
-
     }
 
     /**
@@ -607,6 +611,12 @@ public class GameController extends WorldController implements ContactListener{
         lanterns.clear();
         setComplete(false);
         setFailure(false);
+
+        wallCount = 0;
+        tileCount = tileBoard.getWidth()*tileBoard.getHeight();
+        fogCount = 0;
+        fogPercentage = 0;
+
         populateLevel();
         familiars.reset();
         monster.clear();
@@ -632,7 +642,6 @@ public class GameController extends WorldController implements ContactListener{
                 t.isFog = false;
             }
         }
-
 
         state = PLAY;
     }
@@ -687,6 +696,7 @@ public class GameController extends WorldController implements ContactListener{
                     } else {
                         walls.add(po);
                     }
+                    wallCount++;
                 }
                 if (t.hasFamiliarOne) {
                     familiarPositions[0]=t;
@@ -1001,6 +1011,10 @@ public class GameController extends WorldController implements ContactListener{
              }
              }*/
 
+            // fog percentage
+            fogCount = fog.getFogCount();
+            fogPercentage = Math.round((float)fogCount / (float)(tileCount - wallCount) * 100f);
+
 
 //        if (!tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX()*scale.x), tileBoard.screenToBoardY(gorf.getY()*scale.y))) {
 //            System.out.println(tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX() * scale.x), tileBoard.screenToBoardY(gorf.getY() * scale.y)));
@@ -1208,8 +1222,8 @@ public class GameController extends WorldController implements ContactListener{
         drawGlow();
         canvas.end();
 
-        // Draw familiar glow
-        canvas.setShader(glow.getFamiliarShader());
+        // Draw familiar back glow
+        canvas.setShader(glow.getFamiliarBackShader());
         canvas.begin(gorf.getPosition());
         drawGlow();
         canvas.end();
@@ -1338,6 +1352,12 @@ public class GameController extends WorldController implements ContactListener{
             fog.draw(canvas, backgroundTexture, new Vector2(-canvas.getWidth()*2,canvas.getHeight()*2));
         }
 //        fog.draw(canvas, backgroundTexture, new Vector2(0,0));
+        canvas.end();
+
+        // Draw familiar front glow
+        canvas.setShader(glow.getFamiliarFrontShader());
+        canvas.begin(gorf.getPosition());
+        drawGlow();
         canvas.end();
 
         // Draw over fog
@@ -1652,6 +1672,10 @@ public class GameController extends WorldController implements ContactListener{
         }
 
         canvas.begin();
+        displayFont.setColor(Color.PURPLE);
+        displayFont.getData().setScale(.5f,.5f);
+        canvas.drawText(Float.toString(fogPercentage)+"%", displayFont, gorf.getPosition().x * scale.x - canvas.getWidth()*.59f/2f + 10f, gorf.getPosition().y * scale.y + canvas.getHeight()*.59f/2f - 10f);
+
         // PLACEHOLDER--will be replaced by Victory screen
         //if (familiars.collectAll) {
           //  if (countdown > 0) {
