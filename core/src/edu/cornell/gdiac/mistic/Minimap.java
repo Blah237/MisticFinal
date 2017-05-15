@@ -21,11 +21,11 @@ public class Minimap {
     private float tileWidth;
     private float tileHeight;
 
-    /** magic scale numbers SHHH don't tell anyone */
+    /** private magic scale numbers SHHH don't tell anyone */
     private static float MAGIC_SCALE_X = 7.92f;
     private static float MAGIC_SCALE_Y = 5.94f;
 
-    /** Frame counters for "moving" assets so people can tell
+    /** frame counters for "moving" assets so people can tell
      * where the familiars are on the minimap because eyes track movement and
      * people are stupid */
     private int on = 30;
@@ -82,6 +82,7 @@ public class Minimap {
     public void drawFamiliar(GameCanvas canvas, float x, float y, float oX, float oY, float r) {
         // draw circle of tileWidth and tileHeight at point
         // (oX + (tileWidth * p.x), oY + (tileHeight * p.y)), of gorf color
+        // modulate the size every half second
         if (on>0) {
             canvas.beginMinimapDrawCir(new Color(0x51D7FFff),
                     oX + (tileWidth * (x / MAGIC_SCALE_X)), oY + (tileHeight * (y / MAGIC_SCALE_Y)), r*1.8f);
