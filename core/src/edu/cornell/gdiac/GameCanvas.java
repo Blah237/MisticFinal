@@ -994,7 +994,17 @@ public class GameCanvas {
 		font.draw(spriteBatch, layout, x, y+offset);
     }
 
-    public void beginMinimapDraw(Color color, float oX, float oY, float width, float height) {
+	/**
+	 * One of the Minimap draw functions. Draws specifically a rectangle shape of a set size
+	 * and set color at a set origin.
+	 *
+	 * @param color   The color to make the rectangle
+	 * @param oX      The X origin of the rectangle
+	 * @param oY      The Y origin of the rectangle
+	 * @param width   The width of the rectangle
+	 * @param height  The height of the rectangle
+	 */
+    public void beginMinimapDrawRect(Color color, float oX, float oY, float width, float height) {
 		if (active != DrawPass.STANDARD) {
 			Gdx.app.error("GameCanvas", "Cannot draw without active begin()", new IllegalStateException());
 			return;
@@ -1004,6 +1014,29 @@ public class GameCanvas {
 		minimapRender.begin(ShapeRenderer.ShapeType.Filled);
 		minimapRender.setColor(color);
 		minimapRender.rect(oX,oY,width,height);
+		minimapRender.end();
+	}
+
+	/**
+	 * One of the Minimap draw functions. Draws specifically a circle shape of a set size
+	 * and set color at a set origin.
+	 *
+	 * @param color   The color to make the circle
+	 * @param oX      The X origin of the circle
+	 * @param oY      The Y origin of the circle
+	 * @param width   The width of the circle
+	 * @param height  The height of the circle
+	 */
+	public void beginMinimapDrawCir(Color color, float oX, float oY, float radius) {
+		if (active != DrawPass.STANDARD) {
+			Gdx.app.error("GameCanvas", "Cannot draw without active begin()", new IllegalStateException());
+			return;
+		}
+
+		minimapRender.setProjectionMatrix(camera.combined);
+		minimapRender.begin(ShapeRenderer.ShapeType.Filled);
+		minimapRender.setColor(color);
+		minimapRender.circle(oX,oY,radius);
 		minimapRender.end();
 	}
 

@@ -21,9 +21,20 @@ public class Minimap {
     private float tileWidth;
     private float tileHeight;
 
+    /** magic scale numbers SHHH don't tell anyone */
+    private static float MAGIC_SCALE_X = 7.92f;
+    private static float MAGIC_SCALE_Y = 5.94f;
+
+    /** Frame counters for "moving" assets so people can tell
+     * where the familiars are on the minimap because eyes track movement and
+     * people are stupid */
+    private int on = 30;
+    private int off = 30;
+
     /** Texture for the minimap */
     private TextureRegion minimapTexture;
 
+    /** getters */
     public float getWidth() {
         return width;
     }
@@ -44,6 +55,7 @@ public class Minimap {
         return minimapTexture;
     }
 
+    /** setters */
     public void setTexture(TextureRegion t) {
         this.minimapTexture = t;
     }
@@ -57,14 +69,32 @@ public class Minimap {
         this.minimapTexture = t;
     }
 
-    /** draw this minimap object */
-    public void draw(GameCanvas canvas, float x, float y, float oX, float oY) {
-            // draw rectangle of tileWidth and tileHeight at point
-            // (oX + (tileWidth * p.x), oY + (tileHeight * p.y)), of varying
-            // color depending on the int value at killMe[i][j]
+    /** draw this minimaps gorf object */
+    public void drawGorf(GameCanvas canvas, float x, float y, float oX, float oY) {
+        // draw rectangle of tileWidth and tileHeight at point
+        // (oX + (tileWidth * p.x), oY + (tileHeight * p.y)), of gorf color
 
-            canvas.beginMinimapDraw(new Color(0x66e7d2ff),
-                    oX+(tileWidth*(x/7.92f)),oY+(tileHeight*(y/5.94f)),
-                    tileWidth,tileHeight);
+        canvas.beginMinimapDrawRect(new Color(0x37c48dff),
+                oX+(tileWidth*(x/MAGIC_SCALE_X)),oY+(tileHeight*(y/MAGIC_SCALE_Y)),
+                tileWidth,tileHeight);
+    }
+
+    public void drawFamiliar(GameCanvas canvas, float x, float y, float oX, float oY, float r) {
+        // draw circle of tileWidth and tileHeight at point
+        // (oX + (tileWidth * p.x), oY + (tileHeight * p.y)), of gorf color
+        if (on>0) {
+            canvas.beginMinimapDrawCir(new Color(0x51D7FFff),
+                    oX + (tileWidth * (x / MAGIC_SCALE_X)), oY + (tileHeight * (y / MAGIC_SCALE_Y)), r*1.8f);
+            on--;
+        } else {
+            if (off>0) {
+                canvas.beginMinimapDrawCir(new Color(0x51D7FFff),
+                        oX + (tileWidth * (x / MAGIC_SCALE_X)), oY + (tileHeight * (y / MAGIC_SCALE_Y)), r*1.3f);
+                off--;
+            } else {
+                on = 30;
+                off = 30;
+            }
+        }
     }
 }

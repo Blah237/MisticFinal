@@ -754,8 +754,9 @@ public class GameController extends WorldController implements ContactListener{
                 size++;
             }
         }
+
         Vector2[] familiarVectors= new Vector2[size];
-        for(int k=0;k<size;k++){
+        for(int k=0;k<size;k++) {
             familiarVectors[k]= new Vector2(familiarPositions[k].fx/scale.x,familiarPositions[k].fy/scale.y);
         }
 
@@ -1663,12 +1664,23 @@ public class GameController extends WorldController implements ContactListener{
             canvas.end();
             canvas.begin(gorf.getPosition());
             // draw gorf moving representation
-            super.getMinimap().draw(canvas,
+            super.getMinimap().drawGorf(canvas,
                     gorf.getPosition().x,
                     gorf.getPosition().y,
                     gorf.getPosition().x * scale.x + 115.0f,
                     gorf.getPosition().y * scale.y - 155.0f);
             canvas.end();
+            canvas.begin(gorf.getPosition());
+            // draw familiars
+            super.getMinimap().drawFamiliar(canvas,
+                    familiars.getX(),
+                    familiars.getY(),
+                    gorf.getPosition().x * scale.x + 115.0f,
+                    gorf.getPosition().y * scale.y - 155.0f,
+                    2f);
+            canvas.end();
+        } else {
+            // draw "press m for minimap" text
         }
 
         canvas.begin();
