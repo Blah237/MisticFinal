@@ -21,9 +21,11 @@ public class Minimap {
     private float tileWidth;
     private float tileHeight;
 
-    /** private magic scale numbers SHHH don't tell anyone */
+    /** private magic scale numbers and board to screen slash screen to
+     * board accidental rounding error make up numbers SHHH don't tell anyone */
     private static float MAGIC_SCALE_X = 7.92f;
     private static float MAGIC_SCALE_Y = 5.94f;
+    private static float MAGIC_ERROR_MAKEUP = 1.06f;
 
     /** frame counters for "moving" assets so people can tell
      * where the familiars are on the minimap because eyes track movement and
@@ -79,23 +81,31 @@ public class Minimap {
                 tileWidth,tileHeight);
     }
 
+    /** draw this minimaps familiars */
     public void drawFamiliar(GameCanvas canvas, float x, float y, float oX, float oY, float r) {
         // draw circle of tileWidth and tileHeight at point
         // (oX + (tileWidth * p.x), oY + (tileHeight * p.y)), of gorf color
         // modulate the size every half second
         if (on>0) {
             canvas.beginMinimapDrawCir(new Color(0x51D7FFff),
-                    oX + (tileWidth * (x / MAGIC_SCALE_X)), oY + (tileHeight * (y / MAGIC_SCALE_Y)), r*1.8f);
+                    oX+(tileWidth*(x/MAGIC_SCALE_X)),oY+(tileHeight*(y/MAGIC_SCALE_Y)),r*1.8f);
             on--;
         } else {
             if (off>0) {
                 canvas.beginMinimapDrawCir(new Color(0x51D7FFff),
-                        oX + (tileWidth * (x / MAGIC_SCALE_X)), oY + (tileHeight * (y / MAGIC_SCALE_Y)), r*1.3f);
+                        oX+(tileWidth*(x/MAGIC_SCALE_X)),oY+(tileHeight*(y/MAGIC_SCALE_Y)),r*1.3f);
                 off--;
             } else {
                 on = 30;
                 off = 30;
             }
         }
+    }
+
+    /** draw this minimaps firefly assets */
+    public void drawFirefly(GameCanvas canvas, float x, float y, float oX, float oY, float r) {
+        canvas.beginMinimapDrawCir(new Color(0xffdc00ff),
+                oX+(tileWidth*(x/MAGIC_SCALE_X)*MAGIC_ERROR_MAKEUP),
+                oY+(tileHeight*(y/MAGIC_SCALE_Y)*MAGIC_ERROR_MAKEUP),r);
     }
 }

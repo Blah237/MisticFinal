@@ -148,6 +148,7 @@ public class GameController extends WorldController implements ContactListener{
     private TextureRegion minimapBackgroundTexture;
     private TextureRegion fogTexture;
     private TextureRegion fireflyTrack;
+    private TextureRegion minimapFirefly;
     private TextureRegion monsterTexture;
     private TextureRegion monsterTextureDead;
     private TextureRegion[] gorfTextures = new TextureRegion[GORF_TEXTURES.length];
@@ -407,6 +408,7 @@ public class GameController extends WorldController implements ContactListener{
         backgroundTexture = createTexture(manager,BACKGROUND,false);
         minimapBackgroundTexture = createTexture(manager,MINIMAP_BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
+        minimapFirefly=createTexture(manager,FIRE_FLY,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
         monsterTextureDead=createTexture(manager,MONSTER_TEXTURE_DEAD,false);
 
@@ -745,7 +747,7 @@ public class GameController extends WorldController implements ContactListener{
         addObject(gorf);
 //        overFog.add(0, gorf);
 
-        fireflyController=new FireflyController(fireflyAnimation,fireflyPositions, scale,tileBoard);
+        fireflyController=new FireflyController(fireflyAnimation,fireflyPositions,scale,tileBoard);
         fireflyController.populate();
         int size =0;
 
@@ -1645,6 +1647,7 @@ public class GameController extends WorldController implements ContactListener{
         }
         canvas.end();
 
+        // the minimap
         // toggle minimap with 'm'
         if (InputController.getInstance().didM()) {
             // minimap
@@ -1669,8 +1672,6 @@ public class GameController extends WorldController implements ContactListener{
                     gorf.getPosition().y,
                     gorf.getPosition().x * scale.x + 115.0f,
                     gorf.getPosition().y * scale.y - 155.0f);
-            canvas.end();
-            canvas.begin(gorf.getPosition());
             // draw familiars
             super.getMinimap().drawFamiliar(canvas,
                     familiars.getX(),
@@ -1678,15 +1679,24 @@ public class GameController extends WorldController implements ContactListener{
                     gorf.getPosition().x * scale.x + 115.0f,
                     gorf.getPosition().y * scale.y - 155.0f,
                     2f);
+            // draw fireflies programatically
+            for(Firefly f : fireflyController.fireflies) {
+                if(f!=null&&!f.isDestroyed()) {
+                    super.getMinimap().drawFirefly(canvas,
+                            f.getX()/scale.x,
+                            f.getY()/scale.y,
+                            gorf.getPosition().x * scale.x + 115.0f,
+                            gorf.getPosition().y * scale.y - 155.0f,
+                            2f);
+                }
+            }
             canvas.end();
-        } else {
-            // draw "press m for minimap" text
         }
 
         canvas.begin();
         displayFont.setColor(Color.PURPLE);
         displayFont.getData().setScale(.5f,.5f);
-        canvas.drawText(Float.toString(fogPercentage)+"%", displayFont, gorf.getPosition().x * scale.x - canvas.getWidth()*.59f/2f + 10f, gorf.getPosition().y * scale.y + canvas.getHeight()*.59f/2f - 10f);
+        canvas.drawText(Float.toString(fogPercentage)+"%", displayFont, gorf.getPosition().x * scale.x - canvas.getWidth()*.59f/2f + 10f, gorf.getPosition().y * scale.y + canvas.getHeight()*.59f/2f - 10f); //OK guys this line is gonna be the longest line in our entire code and I will make it so with this comment, feel free to add more in your pushes
 
         // PLACEHOLDER--will be replaced by Victory screen
         //if (familiars.collectAll) {
