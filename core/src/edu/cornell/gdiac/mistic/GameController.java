@@ -814,14 +814,19 @@ public class GameController extends WorldController implements ContactListener{
 
     private void despawnMonster(ArrayList<MonsterModel> monster){
         for(MonsterModel m : monster){
+            //System.out.println(m.getHalved());
             float posx=m.getX()*scale.x;
             float posy=m.getY()*scale.y;
             int tx=tileBoard.screenToBoardX(posx);
             int ty=tileBoard.screenToBoardY(posy);
-            if(tileBoard.isLanternGlow(tx,ty)){
+            if(tileBoard.isLanternGlow(tx,ty) || tileBoard.isGorfGlow(tx,ty)){
                 m.updateDeathTimer();
+                m.setHalved(true);
+                //System.out.println("In light! Countdown:" + m.getMonsterDeathTimer());
                 if(m.getMonsterDeathTimer()==0){
+                    //System.out.println("Monster despawned at" + posx + ", " + posy + " , reset to origin");
                     //m.dead=true;
+                    m.setHalved(false);
                     m.deadmonster.setPosition(m.getX(),m.getY());
                     //m.setTexture(monsterTextureDead);
                     //System.out.println("MONSTER RESET"+ tileBoard.boardtoScreenX(fogSpawn.x)
@@ -831,7 +836,9 @@ public class GameController extends WorldController implements ContactListener{
                     m.monsterDeathReset();
                 }
             }else{
+                m.setHalved(false);
                 m.monsterDeathReset();
+                //System.out.println("Monster timer reset");
             }
             //System.out.println(m.getMonsterDeathTimer());
         }
