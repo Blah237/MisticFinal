@@ -193,6 +193,8 @@ public class GameController extends WorldController implements ContactListener{
     private static final int LOSE = 4;
     private static final int OFF = 5;
 
+    private static final int MAX_MONSTER=4;
+
 
     /** Track asset loading from all instances and subclasses */
     private AssetState rocketAssetState = AssetState.EMPTY;
@@ -503,7 +505,7 @@ public class GameController extends WorldController implements ContactListener{
 
     //monster stuff
     final int MONSTERTIMER=1200;
-    int monsterSpawnTimer = MONSTERTIMER;
+    int monsterSpawnTimer = 0;
     BoardModel.Tile fogSpawn;
 
 
@@ -827,12 +829,15 @@ public class GameController extends WorldController implements ContactListener{
                     //System.out.println("Monster despawned at" + posx + ", " + posy + " , reset to origin");
                     //m.dead=true;
                     m.setHalved(false);
-                    m.deadmonster.setPosition(m.getX(),m.getY());
+                    //m.deadmonster.setPosition(m.getX(),m.getY());
                     //m.setTexture(monsterTextureDead);
-                    //System.out.println("MONSTER RESET"+ tileBoard.boardtoScreenX(fogSpawn.x)
-                    //        + ", "+tileBoard.boardToScreenY(fogSpawn.y));
-                    m.setPosition(tileBoard.boardtoScreenX(fogSpawn.x),
-                            tileBoard.boardToScreenY(fogSpawn.y));
+                    //System.out.println("MONSTER RESET"+ tileBoard.bo
+                    // ardtoScreenX(fogSpawn.x)
+                    //         + ", "+tileBoard.boardToScreenY(fogSpawn.y));
+                    Array<Vector2> fogtiles = fog.getFogTiles();
+                    Vector2 v = fogtiles.get(random(fogtiles.size-1));
+                    BoardModel.Tile t = tileBoard.getTile((int)v.x,(int)v.y);
+                    m.setPosition(t.fx/scale.x,t.fy/scale.y);
                     m.monsterDeathReset();
                 }
             }else{
@@ -935,32 +940,16 @@ public class GameController extends WorldController implements ContactListener{
                 fireflyDeathTimer = 0;
             }
 
-
+        if(monster.size() < MAX_MONSTER);
         if (monsterSpawnTimer != 0) {
             monsterSpawnTimer--;
-        } else if(inFog){
-
-            //System.out.println("Monster spaawning!! Gorf in fog");
-            /**
-            boolean fog=false;
-            while(!fog){
-                int gx= tileBoard.screenToBoardX(gorf.getX()*scale.x)+random(10,20);
-                int gy= tileBoard.screenToBoardY(gorf.getY()*scale.y)+random(10,20);
-                if(tileBoard.isFog(gx,gy)){
-                    fog=true;
-                    createMonster(tileBoard.getTile(gx,gy).fx / scale.x,
-                            tileBoard.getTile(gx,gy).fy / scale.y);
-                }
-            }
-            monsterSpawnTimer=MONSTERTIMER;**/
-            createMonster(tileBoard.getTileCenterX(fogSpawn)/scale.x,tileBoard.getTileCenterY(fogSpawn)/scale.y);
-            monsterSpawnTimer=MONSTERTIMER;
-
-        }else{
-            createMonster(tileBoard.getTileCenterX(fogSpawn)/scale.x,tileBoard.getTileCenterY(fogSpawn)/scale.y);
-            monsterSpawnTimer=MONSTERTIMER;
+        } else {
+            monsterSpawnTimer = MONSTERTIMER;
+            Array<Vector2> fogtiles = fog.getFogTiles();
+            Vector2 v = fogtiles.get(random(fogtiles.size - 1));
+            BoardModel.Tile t = tileBoard.getTile((int) v.x, (int) v.y);
+            createMonster(t.fx/scale.x,t.fy/scale.y);
         }
-
 
 
             fog.update(gorf, Lanterns, familiars, firefly_count, tileBoard, canvas, dt);
