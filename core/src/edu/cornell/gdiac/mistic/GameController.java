@@ -133,6 +133,7 @@ public class GameController extends WorldController implements ContactListener{
     private static final String F_MARSH_SONG = "sounds/F_Marsh_DEMO2.mp3";
     private static final String G_PEACE_SONG = "sounds/G_Wander_DEMO2.mp3";
     private static final String FX_FIREFLY = "sounds/_FX_firefly_FX.mp3";
+    private static final String FX_FAMILIAR = "sounds/_FX_familiar_FX.mp3";
     private static final String FX_VICTORY = "sounds/_FX_victory_FX.mp3";
     private static final String FX_DEATH = "sounds/_FX_death_FX.mp3";
 
@@ -204,6 +205,7 @@ public class GameController extends WorldController implements ContactListener{
 
     // make sound objects for sfx
     Sound fireflyFX = Gdx.audio.newSound(Gdx.files.internal(FX_FIREFLY));
+    Sound familiarFX = Gdx.audio.newSound(Gdx.files.internal(FX_FAMILIAR));
     Sound victoryFX = Gdx.audio.newSound(Gdx.files.internal(FX_VICTORY));
     Sound deathFX = Gdx.audio.newSound(Gdx.files.internal(FX_DEATH));
 
@@ -375,6 +377,8 @@ public class GameController extends WorldController implements ContactListener{
         // sfx
         manager.load(FX_FIREFLY, Sound.class);
         assets.add(FX_FIREFLY);
+        manager.load(FX_FAMILIAR, Sound.class);
+        assets.add(FX_FAMILIAR);
         manager.load(FX_VICTORY, Sound.class);
         assets.add(FX_VICTORY);
         manager.load(FX_DEATH, Sound.class);
@@ -462,14 +466,14 @@ public class GameController extends WorldController implements ContactListener{
             perlinTex[i] = createTexture(manager, PERLIN_NOISE + i + ".png", false).getTexture();
         }
 
-        // allocate sounds (not sfx)
-        sounds.allocate(manager,A_PEACE_SONG);
-        sounds.allocate(manager,B_MARSH_SONG);
-        sounds.allocate(manager,C_FOG_SONG);
-        sounds.allocate(manager,D_PEACE_SONG);
-        sounds.allocate(manager,E_MARSH_SONG);
-        sounds.allocate(manager,F_MARSH_SONG);
-        sounds.allocate(manager,G_PEACE_SONG);
+        // allocate songs and marsh fx
+        sounds.allocate(manager,A_PEACE_SONG,true);
+        sounds.allocate(manager,B_MARSH_SONG,false);
+        sounds.allocate(manager,C_FOG_SONG,true);
+        sounds.allocate(manager,D_PEACE_SONG,true);
+        sounds.allocate(manager,E_MARSH_SONG,false);
+        sounds.allocate(manager,F_MARSH_SONG,false);
+        sounds.allocate(manager,G_PEACE_SONG,true);
 
         super.loadContent(manager, canvas);
         tileBoard=super.getTileBoard();
@@ -773,27 +777,27 @@ public class GameController extends WorldController implements ContactListener{
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale, perlinTex);
         glow = new Glow(canvas, super.screenSize, scale);
 
-        // play a random peace marsh pair of songs for the level
-//        Random rand = new Random();
-//        int r1 = rand.nextInt(3) + 1;
-//        int r2 = rand.nextInt(3) + 1;
-//        if (r1==1) {
-//            sounds.play("A",A_PEACE_SONG,true);
-//        } else if (r1==2) {
-//            sounds.play("D",D_PEACE_SONG,true);
-//        } else if (r1==3) {
-//            sounds.play("G",G_PEACE_SONG,true);
-//        }
-//        if (r2==1) {
-//            sounds.play("B",B_MARSH_SONG,true);
-//        } else if (r2==2) {
-//            sounds.play("E",E_MARSH_SONG,true);
-//        } else if (r2==3) {
-//            sounds.play("F",F_MARSH_SONG,true);
-//        }
-
-        sounds.play("A",A_PEACE_SONG,true);
-        sounds.play("B",B_MARSH_SONG,true);
+        // play a random peace marsh pair of songs for the level ONLY IF
+        // there are no active songs playing
+        if (sounds.activesIsEmpty()) {
+            Random rand = new Random();
+            int r1 = rand.nextInt(3) + 1;
+            int r2 = rand.nextInt(3) + 1;
+            if (r1 == 1) {
+                sounds.play("A", A_PEACE_SONG, true);
+            } else if (r1 == 2) {
+                sounds.play("D", D_PEACE_SONG, true);
+            } else if (r1 == 3) {
+                sounds.play("G", G_PEACE_SONG, true);
+            }
+            if (r2 == 1) {
+                sounds.play("B", B_MARSH_SONG, true);
+            } else if (r2 == 2) {
+                sounds.play("E", E_MARSH_SONG, true);
+            } else if (r2 == 3) {
+                sounds.play("F", F_MARSH_SONG, true);
+            }
+        }
     }
 
     private void createMonster(float x, float y) {
@@ -885,6 +889,7 @@ public class GameController extends WorldController implements ContactListener{
             familiars.update(gorf);
             int f2 = familiars.getNumFam();
             if (f2 > f) {
+                familiarFX.play();
                 pawAnimation.setFrame(1);
                 pawTimerStart = true;
             }
