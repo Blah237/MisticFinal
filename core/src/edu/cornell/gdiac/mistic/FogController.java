@@ -237,6 +237,7 @@ public class FogController {
 	int fogCount;
 
 
+
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale, Texture[] perlinTex) {
 	    boundaryTextures = new Texture("mistic/fog/boundaries.png");
 //		nTex = new Texture("mistic/fog/n_boundary_2.png");
