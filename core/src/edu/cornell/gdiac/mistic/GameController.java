@@ -1343,7 +1343,7 @@ public class GameController extends WorldController implements ContactListener{
         } else if (LevelSelectController.getLevel() == 2 && familiars.getNumFam() == 1) {
             drawTextbox(level2tutorial1,1610.0f, 530.0f);
         } else if (LevelSelectController.getLevel() == 3 && familiars.getNumFam() == 0) {
-            drawTextbox(level3tutorial1,800.0f, 880.0f);
+            drawTextbox(level3tutorial1,830.0f, 880.0f);
         }
         canvas.end();
 

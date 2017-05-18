@@ -20,10 +20,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.*;
 import com.badlogic.gdx.assets.loaders.*;
 import com.badlogic.gdx.assets.loaders.resolvers.*;
 
-import edu.cornell.gdiac.mistic.CreditsController;
-import edu.cornell.gdiac.mistic.GameController;
-import edu.cornell.gdiac.mistic.LevelSelectController;
-import edu.cornell.gdiac.mistic.MenuController;
+import edu.cornell.gdiac.mistic.*;
 import edu.cornell.gdiac.util.*;
 import org.lwjgl.Sys;
 
@@ -47,6 +44,7 @@ public class GDXRoot extends Game implements ScreenListener {
 	private MenuController menu;
 	private LevelSelectController levelSelect;
 	private CreditsController credits;
+	private OptionsController options;
 	/** Player mode for the the game proper (CONTROLLER CLASS) */
 	private int current;
 	/** List of all WorldControllers */
@@ -80,6 +78,7 @@ public class GDXRoot extends Game implements ScreenListener {
 		menu = new MenuController();
 		levelSelect = new LevelSelectController();
 		credits = new CreditsController();
+		options = new OptionsController();
 		
 		// Initialize game world
 		controllers = new WorldController[1];
@@ -91,6 +90,8 @@ public class GDXRoot extends Game implements ScreenListener {
 		levelSelect.setScreenListener(this);
 		credits.preLoadContent(manager);
 		credits.setScreenListener(this);
+		options.preLoadContent(manager);
+		options.setScreenListener(this);
 		loading.setScreenListener(this);
 		setScreen(loading);
 	}
@@ -184,6 +185,12 @@ public class GDXRoot extends Game implements ScreenListener {
 			credits.setCanvas(canvas);
 			credits.reset();
 			setScreen(credits);
+		} else if (exitCode == MenuController.EXIT_TO_OPTIONS) {
+			options.loadContent(manager, canvas);
+			options.setScreenListener(this);
+			options.setCanvas(canvas);
+			options.reset();
+			setScreen(options);
 		}
 	}
 

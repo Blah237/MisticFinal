@@ -135,6 +135,9 @@ public void render(float dt) {
                 case 1:
                     listener.exitScreen(this, EXIT_TO_LEVEL_SELECT);
                     break;
+                case 2:
+                    listener.exitScreen(this, EXIT_TO_OPTIONS);
+                    break;
                 case 3:
                     listener.exitScreen(this, EXIT_TO_CREDITS);
                     break;
