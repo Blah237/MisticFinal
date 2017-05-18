@@ -72,6 +72,8 @@ public class SoundController {
 		public long lifespan;
 		/** This sound's referenced filename */
 		public String filename;
+		/** This sound's current volume */
+		public float volume;
 		
 		/**
 		 * Creates a new active sound with the given values
@@ -80,19 +82,20 @@ public class SoundController {
 		 * @param n The id number representing the sound instance
 		 * @param b Is the sound looping (so no garbage collection)
 		 */
-		public ActiveSound(Sound s, long n, boolean b, String st) {
+		public ActiveSound(Sound s, long n, boolean b, String st, float v) {
 			sound = s;
 			id = n;
 			loop = b;
 			lifespan = 0;
 			filename = st;
+			volume = v;
 		}
 	}
 
 	/** The default sound cooldown */
 	private static final int DEFAULT_COOL = 20;
 	/** The default sound length limit */
-	private static final int DEFAULT_LIMIT = 10800;
+	private static final int DEFAULT_LIMIT = 15552000;
 	/** The default limit on sounds per frame */
 	private static final int DEFAULT_FRAME = 2;
 	
@@ -147,6 +150,28 @@ public class SoundController {
 	}
 	
 	/// Properties
+
+	/**
+	 * Return the IdentityMap of all the active sounds
+	 *
+	 * @return  actives
+	 */
+	public IdentityMap<String,ActiveSound> getActives() { return actives; }
+
+	/**
+	 * Get aan active sound's volume given its id
+	 *
+	 * @param id  This active sound's id string
+	 * @return    Volume of this active sound
+	 */
+	public float getVolume(String id) {
+		if (isActive(id)) {
+			return actives.get(id).volume;
+		} else {
+			return 0f;
+		}
+	}
+
 	/**
 	 * Returns the number of frames before a key can be reused
 	 * 
@@ -348,7 +373,7 @@ public class SoundController {
 			sound.setLooping(id, true);
 		}
 		
-		actives.put(key,new ActiveSound(sound,id,loop,filename));
+		actives.put(key,new ActiveSound(sound,id,loop,filename,volume));
 		current++;
 		return true;
 	}
@@ -386,13 +411,24 @@ public class SoundController {
 			stop(k.key);
 		}
 	}
-	
+
+	/**
+	 * sets the volume of all active sounds to the same input volume
+	 *
+	 * @param volume  Set all active sound volumes to this float value
+	 */
+	public void setAllActiveVolume(float volume) {
+		for (IdentityMap.Entry<String,ActiveSound> k : actives) {
+			k.value.sound.setVolume(k.value.id,volume);
+		}
+	}
+
 	/**
 	 * Returns true if the sound instance is currently active
-	 * 
+	 *
 	 * @param key	The sound instance identifier
-	 * 
-	 * @return true if the sound instance is currently active
+	 *
+			 * @return true if the sound instance is currently active
 	 */
 	public boolean isActive(String key) {
 		return actives.containsKey(key);

@@ -83,8 +83,8 @@ void main() {
 //    vec2 boundaryTexCoord3 = vec2(1.0 - mod(gl_FragCoord.x + offset.x*dim.x, tileDim.x) / tileDim.x, mod(gl_FragCoord.y+offset.y*dim.y, tileDim.y) / tileDim.y);
 //    vec2 boundaryTexCoord4 = vec2(1.0 - mod(gl_FragCoord.y + offset.y*dim.y, tileDim.y) / tileDim.y, mod(gl_FragCoord.x+offset.x*dim.x, tileDim.x) / tileDim.x);
 
-    if (fogBoard[cellY*NX + cellX] == 1.0) {
-        fogThickness = fogBoard[cellY*NX + cellX];
+    if (fogBoard[cellY*NX + cellX] == 1.0 || fogBoard[cellY*NX + cellX] == .7) {
+        fogThickness = 1.0;
     } else if (fogBoard[cellY*NX + cellX] > 1.0) {
 //        int idx = 2;
         float idx = floor(fogBoard[cellY*NX + cellX] / 4.0) - 1.0;
@@ -116,11 +116,11 @@ void main() {
         }
 
         vec2 lantern = lanterns[i];
-        float dx2 = abs(coord.x+.02-lantern.x) * (res.x/res.y);
-        float dy2 = abs(coord.y-.06-lantern.y);
+        float dx2 = abs(coord.x+.004-lantern.x) * (res.x/res.y);
+        float dy2 = abs(coord.y-.1-lantern.y);
 
         float dist2 = length(vec2(dx2,dy2));
-        float fogThickness2 = smoothstep(.3, .5, dist2);
+        float fogThickness2 = smoothstep(.25, .45, dist2);
 
 //        vec3 falloff2 = vec3(0.8, 2.0, 20.0);
 //        float D2 = length(vec2(dx2, dy2-.06));
@@ -146,7 +146,13 @@ void main() {
 
     float dist3 = length(vec2(dx3, dy3));
 
-    fogThickness *= min(1.0, .05 + smoothstep(gorfRadius, .3+gorfRadius, dist3));
+    fogThickness *= min(1.0, .05 + smoothstep(gorfRadius, .25+gorfRadius, dist3));
+
+
+    float dx4 = (familiarPos.x - gl_FragCoord.x / res.x) * (res.x/res.y);
+    float dy4 = familiarPos.y - gl_FragCoord.y / res.y;
+    float dist4 = length(vec2(dx4, dy4));
+    fogThickness *= min(1.0, smoothstep(0.0, .15, dist4));
 
 //    fogThickness *= min(1.0, texture2D(u_texture_perlin, vTexCoord).a+.4);
 //    fog *= min(1.0,fogThickness);

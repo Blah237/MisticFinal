@@ -58,11 +58,12 @@ public class Perlin {
             138, 236, 205, 93, 222, 114, 67, 29, 24, 72, 243, 141, 128, 195, 78, 66, 215, 61, 156, 180
     };
 
-    public double octaveNoise(double x, double y, double z, int octaves, double persistence) {
+    public double octaveNoise(double x, double y, double z, int octaves) {
         double total = 0;
         double frequency = 1;
         double amplitude = 1;
         double maxVal = 0;
+        double persistence = .4;
 
         for(int i=0;i<octaves;i++) {
             total += noise(x * frequency, y * frequency, z * frequency) * amplitude;
@@ -171,12 +172,12 @@ public class Perlin {
 
         float[][] data = new float[ANIM_SPAN][WIDTH * HEIGHT];
 
-        Perlin perlin = new Perlin(36, 3);
+        Perlin perlin = new Perlin(36, 2);
         for (int t = 0; t < ANIM_SPAN; t++){
             int count = 0;
             for (int y = 0; y < HEIGHT; y++) {
                 for (int x = 0; x < WIDTH; x++) {
-                    data[t][count++] = (float)Math.sqrt(perlin.noise(36.0 * (float) x / WIDTH, 36.0 * (float) y / HEIGHT, 3.0 * (float) t / ANIM_SPAN) * 10);
+                    data[t][count++] = (float)Math.pow(perlin.octaveNoise(36.0 * (float) x / WIDTH, 36.0 * (float) y / HEIGHT, 2.0 * (float) t / ANIM_SPAN, 4), .2);
                 }
             }
         }

@@ -74,7 +74,9 @@ public class FogController {
 	float fogOriginCamX;
 	float fogOriginCamY;
 
-	private final float BOUNDARY = 0.8f;
+	private final float BOUNDARY1 = 0.9f;
+	private final float BOUNDARY2 = 0.8f;
+	private final float BOUNDARY3 = 0.7f;
 	private final float FOG = 1.0f;
 	private final float WALL = 0.1f;
 	private final float LANTERN = 0.5f;
@@ -235,6 +237,7 @@ public class FogController {
 	boolean dec;
 
 	int fogCount;
+    float gorfRadius;
 
 
 	public FogController(BoardModel tileBoard, GameCanvas canvas, Rectangle screensize, float canvasScale, Vector2 scale, Texture[] perlinTex) {
@@ -311,10 +314,10 @@ public class FogController {
             int y1 = (int)(origin.y - 1 + WY) % WY;
             int y2 = (int)(origin.y + 1     ) % WY;
 
-            fogBoard[x1][(int)origin.y] = BOUNDARY;
-            fogBoard[x2][(int)origin.y] = BOUNDARY;
-            fogBoard[(int)origin.x][y1] = BOUNDARY;
-            fogBoard[(int)origin.x][y2] = BOUNDARY;
+            fogBoard[x1][(int)origin.y] = BOUNDARY1;
+            fogBoard[x2][(int)origin.y] = BOUNDARY1;
+            fogBoard[(int)origin.x][y1] = BOUNDARY1;
+            fogBoard[(int)origin.x][y2] = BOUNDARY1;
 
 			fogBoard[(int)origin.x][(int)origin.y] = FOG;
 		}
@@ -358,6 +361,7 @@ public class FogController {
         fogCount = 0;
         fogTiles = new Array<Vector2>();
 
+        gorfRadius = 0;
 //		generatePerlin();
 	}
 
@@ -425,7 +429,7 @@ public class FogController {
 		boundaryTextures.bind(0);
 		shader.setUniformi("u_texture", 0);
 
-		float gorfRadius = .4f*(1f-(float)Math.exp(-nFireflies/2f));
+		float gorfRadius = .4f*(1f-(float)Math.exp(-nFireflies/3f));
 
 		shader.setUniform1fv("fogBoard", fogBoardCam, 0, NX*NY);
 		shader.setUniform2fv("lanterns", litLanternsA, 0, litLanternsA.length);
@@ -457,11 +461,16 @@ public class FogController {
 	}
 
 	public void update(GorfModel gorf, ArrayList<Lantern> lanterns, Familiar familiar, int nFireflies, BoardModel tileBoard, GameCanvas canvas, float dt) {
+        for (BoardModel.Tile[] ta: tileBoard.tiles) {
+            for (BoardModel.Tile t : ta) {
+                t.isGorfGlow = false;
+                t.isLanternGlow = false;
+            }
+        }
 //		fogOriginCamX = (fogOrigin.x / WX * screenDim.x - (gorf.getX() * scale.x - zoom * res.x / 2.0f)) / (zoom * res.x);
 //		fogOriginCamY = (fogOrigin.y / WY * screenDim.y - (gorf.getY() * scale.y - zoom * res.y / 2.0f)) / (zoom * res.y);
 		gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
 
-		updateLanterns(lanterns, tileBoard);
 
 		newFog = new Array<Vector2>();
 		if (fogDelay <= 0) {
@@ -479,7 +488,9 @@ public class FogController {
 //		fogReachX+=(1f/FOG_DELAY * spreadCountX/spreadCount);
 //		fogReachY+=(1f/FOG_DELAY * spreadCountY/spreadCount);
 
-		boundaryFogBoard = new float[WX][WY];
+        updateLanterns(lanterns, tileBoard);
+
+        boundaryFogBoard = new float[WX][WY];
 		for (int q=0; q<WX; q++) {
 			boundaryFogBoard[q] = fogBoard[q].clone();
 		}
@@ -624,7 +635,7 @@ public class FogController {
 
 		for (int i = 0; i < WX; i++) {
 			for (int j = 0; j < WY; j++) {
-				if (fogBoard[i][j] == BOUNDARY) {
+				if (fogBoard[i][j] == BOUNDARY1 || fogBoard[i][j] == BOUNDARY3) {
 //					System.out.println(newFogBoard[i][j]);
 //					System.out.println(fogBoard[i][j]);
 					spreadFog(i,j,tileBoard);
@@ -671,25 +682,25 @@ public class FogController {
 				newFogBoard[x][y1] = FOG;
 				tileBoard.setFog(x, y1, true);
 			} else {
-				newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], BOUNDARY * (1 - elementBoard[x][y1]));
+				newFogBoard[x][y1] = Math.max(newFogBoard[x][y1], BOUNDARY1 * (1 - elementBoard[x][y1]));
 			}
 			if (elementBoard[x][y2] == WALL) {
 				newFogBoard[x][y2] = FOG;
 				tileBoard.setFog(x, y2, true);
 			} else {
-				newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], BOUNDARY * (1 - elementBoard[x][y2]));
+				newFogBoard[x][y2] = Math.max(newFogBoard[x][y2], BOUNDARY1 * (1 - elementBoard[x][y2]));
 			}
 			if (elementBoard[x1][y] == WALL) {
 				newFogBoard[x1][y] = FOG;
 				tileBoard.setFog(x1, y, true);
 			} else {
-				newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], BOUNDARY * (1 - elementBoard[x1][y]));
+				newFogBoard[x1][y] = Math.max(newFogBoard[x1][y], BOUNDARY1 * (1 - elementBoard[x1][y]));
 			}
 			if (elementBoard[x2][y] == WALL) {
 				newFogBoard[x2][y] = FOG;
 				tileBoard.setFog(x2, y, true);
 			} else {
-				newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], BOUNDARY * (1 - elementBoard[x2][y]));
+				newFogBoard[x2][y] = Math.max(newFogBoard[x2][y], BOUNDARY1 * (1 - elementBoard[x2][y]));
 			}
 		}
 		// This causes fog leakage across walls at diagonals...
@@ -744,20 +755,20 @@ public class FogController {
 
 		for (int i=0; i<WX; i++) {
 			for (int j = 0; j < WY; j++) {
-			    boolean fogAbove = fogBoard[i][(j+1) % WY] == (int)FOG;
-			    boolean fogBelow = fogBoard[i][(j-1+WY) % WY] == (int)FOG;
-			    boolean fogLeft = fogBoard[(i-1+WX) % WX][j] == (int)FOG;
-			    boolean fogRight = fogBoard[(i+1) % WX][j] == (int)FOG;
+			    boolean fogAbove = fogBoard[i][(j+1) % WY] == FOG || fogBoard[i][(j+1) % WY] == BOUNDARY3;
+			    boolean fogBelow = fogBoard[i][(j-1+WY) % WY] == FOG || fogBoard[i][(j-1+WY) % WY] == BOUNDARY3;
+			    boolean fogLeft = fogBoard[(i-1+WX) % WX][j] == FOG || fogBoard[(i-1+WX) % WX][j] == BOUNDARY3;
+			    boolean fogRight = fogBoard[(i+1) % WX][j] == FOG || fogBoard[(i+1) % WX][j] == BOUNDARY3;
 
-			    boolean fogUpperLeft = fogBoard[(i-1+WX) % WX][(j+1) % WY] == (int)FOG;
-			    boolean fogUpperRight = fogBoard[(i+1) % WX][(j+1) % WY] == (int)FOG;
-			    boolean fogLowerLeft = fogBoard[(i-1+WX) % WX][(j-1+WY) % WY] == (int)FOG;
-			    boolean fogLowerRight = fogBoard[(i+1) % WX][(j-1+WY) % WY] == (int)FOG;
+			    boolean fogUpperLeft = fogBoard[(i-1+WX) % WX][(j+1) % WY] == FOG || fogBoard[(i-1+WX) % WX][(j+1) % WY] == BOUNDARY3;
+			    boolean fogUpperRight = fogBoard[(i+1) % WX][(j+1) % WY] == FOG || fogBoard[(i+1) % WX][(j+1) % WY] == BOUNDARY3;
+			    boolean fogLowerLeft = fogBoard[(i-1+WX) % WX][(j-1+WY) % WY] == FOG || fogBoard[(i-1+WX) % WX][(j-1+WY) % WY] == BOUNDARY3;
+			    boolean fogLowerRight = fogBoard[(i+1) % WX][(j-1+WY) % WY] == FOG || fogBoard[(i+1) % WX][(j-1+WY) % WY] == BOUNDARY3;
 
 
 
-				if (fogBoard[i][j] == BOUNDARY) {
-					if (fogAbove && fogRight && fogBelow && fogLeft) {
+				if (fogBoard[i][j] == BOUNDARY1 || fogBoard[i][j] == BOUNDARY2) {
+                    if (fogAbove && fogRight && fogBelow && fogLeft) {
                         addBoundary(NSEW, i, j);
                         tileBoard.setFog(i, j, true);
                         newFog.add(new Vector2(i,j));
@@ -1107,31 +1118,75 @@ public class FogController {
 
 		litLanternsA = new float[litLanterns.size*2];
 		for (int i=0; i<litLanterns.size; i++) {
-			Vector2 lanternPos = new Vector2(tileBoard.screenToBoardX(litLanterns.get(i).getX() * scale.x), tileBoard.screenToBoardY(litLanterns.get(i).getY() * scale.y));
+			Vector2 lanternPos = new Vector2(tileBoard.screenToBoardX(litLanterns.get(i).getX() * scale.x), tileBoard.screenToBoardY((litLanterns.get(i).getY()+2) * scale.y));
 
-			int lx;
-			int ly;
+//			int radius = 10;
+//
+//            int tr = radius;
+            int lx, ly;
+//            for (int j=-tr; j<=tr; j++) {
+//                for (int k = -tr; k <= tr; k++) {
+//                    lx = (int)lanternPos.x+k;
+//                    ly = (int)lanternPos.y+j;
+//                    if (lanternPos.dst(lx, ly) < radius) {
+//                        if (radius - lanternPos.dst(lx, ly) < tileW) {
+//                            if (elementBoard[lx][ly] != WALL) {
+//                                fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
+////                                fogBoard[lx][ly] = 0f;
+//
+//                            } else {
+//                                fogBoard[lx][ly] = 0f;
+//                            }
+//                        } else {
+//                            fogBoard[lx][ly] = 0f;
+//                        }
+//                        if (tileBoard.isFog(lx, ly)) {
+//                            tileBoard.setFog(lx, ly, false);
+//                            fogCount--;
+//                        }
+//                        tileBoard.setLanternGlow(lx, ly, true);
+//                    }
+//                }
+//            }
 
 			for (int g=-2; g<=2; g++) {
 				lx = (int)((lanternPos.x + g + WX) % WX);
-				ly = (int)((lanternPos.y - 8 + WY + 2) % WY);
+				ly = (int)((lanternPos.y - 9 + WY) % WY);
 				if (elementBoard[lx][ly] != WALL) {
-					fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
+					fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY3);
 				} else {
 					fogBoard[lx][ly] = 0f;
 				}
 				if (tileBoard.isFog(lx, ly)) {
                     tileBoard.setFog(lx, ly, false);
-                    fogTiles.removeValue(new Vector2(lx,ly), true);
                     fogCount--;
                 }
 				tileBoard.setLanternGlow(lx, ly, true);
 			}
 
+			for (int a=-3; a<=3; a++) {
+                lx = (int)((lanternPos.x + a + WX) % WX);
+                ly = (int)((lanternPos.y - 8 + WY) % WY);
+			    if (a == -3 || a == 3) {
+                    if (elementBoard[lx][ly] != WALL) {
+                        fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY3);
+                    } else {
+                        fogBoard[lx][ly] = 0f;
+                    }
+                } else {
+                    fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY2);
+                }
+                if (tileBoard.isFog(lx, ly)) {
+                    tileBoard.setFog(lx, ly, false);
+                    fogCount--;
+                }
+                tileBoard.setLanternGlow(lx, ly, true);
+            }
+
 			for (int j=-7; j<=7; j++) {
-				ly = (int) ((lanternPos.y + j + WY + 2) % WY);
+				ly = (int) ((lanternPos.y + j + WY) % WY);
 				int bound;
-				if (j == -7 || j == 7) {
+                if (j == -7 || j == 7) {
 					bound = 2;
 				} else if (j == -6 || j == 6 || j == -5 || j == 5) {
 					bound = 3;
@@ -1147,57 +1202,94 @@ public class FogController {
 					bound = 4;
 				}
 
-				lx = (int) ((lanternPos.x - bound - 1 + WX) % WX);
-
+				lx = (int) ((lanternPos.x - bound - 2 + WX) % WX);
 				if (elementBoard[lx][ly] != WALL) {
-					fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
+					fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY3);
 				} else {
 					fogBoard[lx][ly] = 0f;
 				}
                 if (tileBoard.isFog(lx, ly)) {
                     tileBoard.setFog(lx, ly, false);
-                    fogTiles.removeValue(new Vector2(lx,ly), true);
                     fogCount--;
                 }
 				tileBoard.setLanternGlow(lx, ly, true);
+
+                lx = (int) ((lanternPos.x - bound - 1 + WX) % WX);
+                if (elementBoard[lx][ly] != WALL) {
+                    fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY2);
+                } else {
+                    fogBoard[lx][ly] = 0f;
+                }
+                if (tileBoard.isFog(lx, ly)) {
+                    tileBoard.setFog(lx, ly, false);
+                    fogCount--;
+                }
+                tileBoard.setLanternGlow(lx, ly, true);
 
 				for (int k = -bound; k < bound; k++) {
 					lx = (int) ((lanternPos.x + k + WX) % WX);
 					fogBoard[lx][ly] = 0f;
                     if (tileBoard.isFog(lx, ly)) {
                         tileBoard.setFog(lx, ly, false);
-                        fogTiles.removeValue(new Vector2(lx,ly), true);
                         fogCount--;
                     }
 					tileBoard.setLanternGlow(lx, ly, true);
 				}
 
 				lx = (int) ((lanternPos.x + bound) % WX);
-
 				if (elementBoard[lx][ly] != WALL) {
-					fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
+					fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY2);
 				} else {
 					fogBoard[lx][ly] = 0f;
 				}
                 if (tileBoard.isFog(lx, ly)) {
                     tileBoard.setFog(lx, ly, false);
-                    fogTiles.removeValue(new Vector2(lx,ly), true);
                     fogCount--;
                 }
 				tileBoard.setLanternGlow(lx, ly, true);
+
+                lx = (int) ((lanternPos.x + bound + 1) % WX);
+                if (elementBoard[lx][ly] != WALL) {
+                    fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY3);
+                } else {
+                    fogBoard[lx][ly] = 0f;
+                }
+                if (tileBoard.isFog(lx, ly)) {
+                    tileBoard.setFog(lx, ly, false);
+                    fogCount--;
+                }
+                tileBoard.setLanternGlow(lx, ly, true);
 			}
+
+            for (int b=-3; b<=3; b++) {
+                lx = (int)((lanternPos.x + b + WX) % WX);
+                ly = (int)((lanternPos.y + 8 + WY) % WY);
+                if (b == -3 || b == 3) {
+                    if (elementBoard[lx][ly] != WALL) {
+                        fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY3);
+                    } else {
+                        fogBoard[lx][ly] = 0f;
+                    }
+                } else {
+                    fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY2);
+                }
+                if (tileBoard.isFog(lx, ly)) {
+                    tileBoard.setFog(lx, ly, false);
+                    fogCount--;
+                }
+                tileBoard.setLanternGlow(lx, ly, true);
+            }
 
 			for (int h=-2; h<=2; h++) {
 				lx = (int)((lanternPos.x + h + WX) % WX);
-				ly = (int)((lanternPos.y + 8 + 2) % WY);
+				ly = (int)((lanternPos.y + 9) % WY);
 				if (elementBoard[lx][ly] != WALL) {
-					fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY);
+					fogBoard[lx][ly] = Math.min(fogBoard[lx][ly], BOUNDARY3);
 				} else {
 					fogBoard[lx][ly] = 0f;
 				}
                 if (tileBoard.isFog(lx, ly)) {
                     tileBoard.setFog(lx, ly, false);
-                    fogTiles.removeValue(new Vector2(lx,ly), true);
                     fogCount--;
                 }
 				tileBoard.setLanternGlow(lx, ly, true);
@@ -1211,31 +1303,25 @@ public class FogController {
 	public void updateGorfGlow(int nFireflies, Vector2 gorfPos, BoardModel tileBoard, GameCanvas canvas) {
 //		float rCap = .45f*canvas.getWidth()*(canvas.getWidth()/canvas.getHeight());
 		float rCap = .4f*res.x*zoom/2.0f;
-		float radius = .4f*res.x*zoom/2.0f + rCap*(1f-(float)Math.exp(-nFireflies/2.0f));
+		float radius;
+		if (nFireflies == 0) {
+		    radius = 0f;
+        } else {
+            radius = .4f * res.x * zoom / 2.0f + rCap * (1f - (float) Math.exp(-nFireflies / 3.0f));
+        }
 
 		int tx = tileBoard.screenToBoardX(gorfPos.x);
 		int ty = tileBoard.screenToBoardY(gorfPos.y);
 
 		tileBoard.setGorfGlow(tx, ty, true);
-		int tr = 1;
-		while (tr*tileW-tileW/2f < radius) {
-			for (int j=-tr; j<=tr; j++) {
-				for (int i = -tr; i <= tr; i++) {
-					if (gorfPos.dst(tileBoard.boardtoScreenX(i), tileBoard.boardToScreenY(j)) < radius) {
-						tileBoard.setGorfGlow((tx+i+WX)%WX, (ty+j+WY)%WY, true);
-					}
-				}
-			}
-			tr++;
-//			tileBoard.setGorfGlow(tx, ty+tr);
-//			tileBoard.setGorfGlow(tx+tr, ty+tr);
-//			tileBoard.setGorfGlow(tx+tr, ty);
-//			tileBoard.setGorfGlow(tx+tr, ty-tr);
-//			tileBoard.setGorfGlow(tx, ty-tr);
-//			tileBoard.setGorfGlow(tx-tr, ty-tr);
-//			tileBoard.setGorfGlow(tx-tr, ty);
-//			tileBoard.setGorfGlow(tx-tr, ty+tr);
-		}
+		int tr = (int)(radius/tileW) - 2;
+        for (int j=-tr; j<=tr; j++) {
+            for (int i = -tr; i <= tr; i++) {
+                if (gorfPos.dst(tileBoard.boardtoScreenX(tx+i), tileBoard.boardToScreenY(ty+j)) < radius) {
+                    tileBoard.setGorfGlow((tx+i+WX)%WX, (ty+j+WY)%WY, true);
+                }
+            }
+        }
 	}
 
 	public Array<Vector2> getNewFog() {

@@ -50,6 +50,9 @@ public class GameController extends WorldController implements ContactListener{
     private int inputTimer = 20;
     private boolean timerGo = true;
 
+    private int inputTimerText = 3;
+    private boolean timerGoText = true;
+
     private ScreenListener listener;
 
     /** Reference to the rocket texture */
@@ -57,7 +60,7 @@ public class GameController extends WorldController implements ContactListener{
             "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfBL.png", "mistic/gorfs/gorfBR.png",
             "mistic/gorfs/gorfB.png"};
     private static final String HAT_TEXTURE = "mistic/gorfs/gorftop.png";
-    private static final String BACKGROUND = "mistic/backgroundresize.png";
+    private static final String BACKGROUND = "mistic/backgroundvibrant.png";
     private static final String MINIMAP_BACKGROUND = "mistic/mini_map_background.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
     private static final String FIRE_TRACK="mistic/fireflyicon.png";
@@ -117,6 +120,18 @@ public class GameController extends WorldController implements ContactListener{
     private static final String HUD_WHITE_NUMBER_SLASH = "mistic/numbers_white/numbers_slash.png";
     private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
     private static final String HUD_PURPLE_FIREFLY = "mistic/purple_firefly.png";
+
+    private static final String PAUSE_INSTRUC = "mistic/tutorial/level1/map_pause.png";
+
+    private static final String LEVEL_1_TUTORIAL_1 = "mistic/tutorial/level1/firefly.png";
+    private static final String LEVEL_1_TUTORIAL_2 = "mistic/tutorial/level1/delve.png";
+    private static final String LEVEL_1_TUTORIAL_3 = "mistic/tutorial/level1/morefireflies.png";
+
+    private static final String LEVEL_2_TUTORIAL_1 = "mistic/tutorial/level2/seqfam.png";
+
+    private static final String LEVEL_3_TUTORIAL_1 = "mistic/tutorial/level3/lantern.png";
+
+
 
     /** Menu Screen Texture References*/
     private static final String PAUSE_SCREEN = "mistic/spritesheet_pause.png";
@@ -181,6 +196,18 @@ public class GameController extends WorldController implements ContactListener{
     private TextureRegion HUDWhiteNumber_9;
     private TextureRegion HUDWhiteNumber_slash;
     private TextureRegion HUDPurpleFirefly;
+
+    private TextureRegion pauseInstructions;
+
+    private TextureRegion level1tutorial1;
+    private TextureRegion level1tutorial2;
+    private TextureRegion level1tutorial3;
+    private TextureRegion level2tutorial1;
+    private TextureRegion level3tutorial1;
+
+    private boolean textboxAnimateTop;
+    private boolean textboxAnimateBottom;
+    private int textboxAnimateOffset;
 
     private FilmStrip pause;
     private FilmStrip win;
@@ -321,6 +348,27 @@ public class GameController extends WorldController implements ContactListener{
         manager.load(GAME_OVER_SCREEN, Texture.class);
         assets.add(GAME_OVER_SCREEN);
 
+        manager.load(PAUSE_INSTRUC, Texture.class);
+        assets.add(PAUSE_INSTRUC);
+
+        manager.load(LEVEL_1_TUTORIAL_1, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_1);
+
+        manager.load(LEVEL_1_TUTORIAL_2, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_2);
+
+        manager.load(LEVEL_1_TUTORIAL_3, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_3);
+
+        manager.load(LEVEL_2_TUTORIAL_1, Texture.class);
+        assets.add(LEVEL_2_TUTORIAL_1);
+
+        manager.load(LEVEL_3_TUTORIAL_1, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_1);
+
+        manager.load(LEVEL_3_TUTORIAL_1, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_1);
+
 
 
         for(String m : MIST_WALLS){
@@ -412,6 +460,7 @@ public class GameController extends WorldController implements ContactListener{
 
         //gorfHat = createTexture(manager,HAT_TEXTURE,false);
         backgroundTexture = createTexture(manager,BACKGROUND,false);
+        //backgroundTexture.setRegion(0,0,2560,1440);
         minimapBackgroundTexture = createTexture(manager,MINIMAP_BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         minimapFirefly=createTexture(manager,FIRE_FLY,false);
@@ -434,6 +483,14 @@ public class GameController extends WorldController implements ContactListener{
         HUDWhiteNumber_slash = createTexture(manager, HUD_WHITE_NUMBER_SLASH, false);
         HUDPurpleFirefly = createTexture(manager, HUD_PURPLE_FIREFLY, false);
         pawAnimation = createFilmStrip(manager, HUD_PAW_ANIMATE, 1, 2, 2);
+
+        pauseInstructions = createTexture(manager, PAUSE_INSTRUC, false);
+
+        level1tutorial1 = createTexture(manager, LEVEL_1_TUTORIAL_1, false);
+        level1tutorial2 = createTexture(manager, LEVEL_1_TUTORIAL_2, false);
+        level1tutorial3 = createTexture(manager, LEVEL_1_TUTORIAL_3, false);
+        level2tutorial1 = createTexture(manager, LEVEL_2_TUTORIAL_1, false);
+        level3tutorial1 = createTexture(manager, LEVEL_3_TUTORIAL_1, false);
 
         pause = createFilmStrip(manager, PAUSE_SCREEN, 1, 3, 3);
         win = createFilmStrip(manager, WIN_SCREEN, 1, 2, 2);
@@ -504,8 +561,8 @@ public class GameController extends WorldController implements ContactListener{
     boolean pawTimerStart = false;
 
     //monster stuff
-    final int MONSTERTIMER=1200;
-    int monsterSpawnTimer = 0;
+    final int MONSTERTIMER=1000;
+    int monsterSpawnTimer = 500;
     BoardModel.Tile fogSpawn;
 
 
@@ -584,6 +641,9 @@ public class GameController extends WorldController implements ContactListener{
         this.monster = new ArrayList<MonsterModel>();
         wallCount = 0;
         state = PLAY;
+        textboxAnimateBottom = true;
+        textboxAnimateTop = false;
+        textboxAnimateOffset = 0;
         setScreenListener(listener);
     }
 
@@ -619,6 +679,9 @@ public class GameController extends WorldController implements ContactListener{
         lanterns.clear();
         setComplete(false);
         setFailure(false);
+        textboxAnimateBottom = true;
+        textboxAnimateTop = false;
+        textboxAnimateOffset = 0;
 
         wallCount = 0;
         tileCount = tileBoard.getWidth()*tileBoard.getHeight();
@@ -629,7 +692,7 @@ public class GameController extends WorldController implements ContactListener{
         familiars.reset();
         monster.clear();
         ai = new AIControllerS(monster, gorf, tileBoard);
-        monsterSpawnTimer = MONSTERTIMER;
+        monsterSpawnTimer = 500;
         countdown=120;
         DEAD = false;
 
@@ -726,15 +789,17 @@ public class GameController extends WorldController implements ContactListener{
                 }
                 if(t.hasRock !=0){
                     int num = t.hasRock-1;
+                    int index = num % 4;
                     EnvAsset rock = new EnvAsset(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y, rocks[num], rocktops[num],false, num, scale);
+                            tileBoard.getTileCenterY(t) / scale.y, rocks[index], rocktops[index],false, index, scale);
                     landmarks.add(rock);
                     addObject(rock.getObject());
                 }
                 if(t.hasTree!=0){
                     int num = t.hasTree-1;
+                    int index = num % 4;
                     EnvAsset tree = new EnvAsset(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y, trees[num], treetops[num],true, num, scale);
+                            tileBoard.getTileCenterY(t) / scale.y, trees[index], treetops[index],true, index, scale);
                     landmarks.add(tree);
                     addObject(tree.getObject());
 
@@ -814,33 +879,54 @@ public class GameController extends WorldController implements ContactListener{
         monster.getBody().setUserData("monster");
     }
 
-    private void despawnMonster(ArrayList<MonsterModel> monster){
+    private BoardModel.Tile getSpawnPoint(int timer, int gx, int gy){
+        Array<Vector2> fogtiles = fog.getFogTiles();
+        Vector2 v = fogtiles.get(random(fogtiles.size-1));
+        BoardModel.Tile t = tileBoard.getTile((int)v.x,(int)v.y);
+        if (t.isGorfGlow || t.isLanternGlow || (t.x-gx < 5 && t.x-gx < 5)){
+            //System.out.println("WHOOPS! BAD SPAWN AREA, TRYING AGAIN");
+            //System.out.println("Gorf glow?: " + t.isGorfGlow);
+            //System.out.println("on top of Gorf?: " + (t.x-gx < 5 && t.x-gx < 5));
+            timer--;
+            if(timer==0){
+                return fogSpawn;
+            }else{
+                return getSpawnPoint(timer, gx,gy);
+            }
+        }else{
+            return t;
+        }
+    }
+
+    private void respawnMonster(int gx, int gy, MonsterModel m){
+        int timer=50;
+        BoardModel.Tile t = getSpawnPoint(timer,gx,gy);
+        m.setPosition(t.fx/scale.x,t.fy/scale.y);
+        m.monsterDeathReset();
+    }
+
+    private void despawnMonster(ArrayList<MonsterModel> monster, GorfModel gorf){
         for(MonsterModel m : monster){
-            //System.out.println(m.getHalved());
             float posx=m.getX()*scale.x;
             float posy=m.getY()*scale.y;
             int tx=tileBoard.screenToBoardX(posx);
             int ty=tileBoard.screenToBoardY(posy);
-            if(tileBoard.isLanternGlow(tx,ty) || tileBoard.isGorfGlow(tx,ty)){
+            int gx=tileBoard.screenToBoardX(gorf.getX()*scale.x);
+            int gy=tileBoard.screenToBoardY(gorf.getY()*scale.y);
+            if(tileBoard.isLanternGlow(tx,ty)){
                 m.updateDeathTimer();
-                m.setHalved(true);
-                //System.out.println("In light! Countdown:" + m.getMonsterDeathTimer());
                 if(m.getMonsterDeathTimer()==0){
-                    //System.out.println("Monster despawned at" + posx + ", " + posy + " , reset to origin");
-                    //m.dead=true;
                     m.setHalved(false);
-                    //m.deadmonster.setPosition(m.getX(),m.getY());
-                    //m.setTexture(monsterTextureDead);
-                    //System.out.println("MONSTER RESET"+ tileBoard.bo
-                    // ardtoScreenX(fogSpawn.x)
-                    //         + ", "+tileBoard.boardToScreenY(fogSpawn.y));
-                    Array<Vector2> fogtiles = fog.getFogTiles();
-                    Vector2 v = fogtiles.get(random(fogtiles.size-1));
-                    BoardModel.Tile t = tileBoard.getTile((int)v.x,(int)v.y);
-                    m.setPosition(t.fx/scale.x,t.fy/scale.y);
-                    m.monsterDeathReset();
+                    m.setDeadTexture(monsterTextureDead);
+                    m.deadmonster.setPosition(m.getX(),m.getY());
+                    m.deadx=posx;
+                    m.deady=posy-monsterTexture.getRegionHeight();
+                    m.dead=true;
+                    respawnMonster(gx,gy,m);
                 }
-            }else{
+            } else if (tileBoard.isGorfGlow(tx,ty)){
+                m.setHalved(true);
+            } else {
                 m.setHalved(false);
                 m.monsterDeathReset();
                 //System.out.println("Monster timer reset");
@@ -908,6 +994,7 @@ public class GameController extends WorldController implements ContactListener{
 
             boolean isPaused = InputController.getInstance().didPause();
             if (isPaused) {
+                sounds.setAllActiveVolume(0.5f);
                 state = PAUSE;
             }
 
@@ -978,11 +1065,15 @@ public class GameController extends WorldController implements ContactListener{
                 wrapInBounds(m);
             }
             ai.update(dt, world, firefly_count);
-            despawnMonster(monster);
+            despawnMonster(monster, gorf);
 
             if (familiars.collectAll) {
+                sounds.setAllActiveVolume(0.5f);
+                //victoryFX.play();
                 state = WIN;
             } else if (DEAD) {
+                sounds.setAllActiveVolume(0.5f);
+                //deathFX.play();
                 state = LOSE;
             }
 
@@ -1051,12 +1142,12 @@ public class GameController extends WorldController implements ContactListener{
             if (enter && !timerGo) {
                 timerGo = true;
                 switch (pause.getFrame()) {
-                    case 0: state = PLAY; break;
+                    case 0: sounds.setAllActiveVolume(1f); state = PLAY; break;
                     case 1:
                         sounds.stopAllActive();
                         listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
                         break;
-                    case 2: reset();
+                    case 2: sounds.setAllActiveVolume(1f); reset();
                 }
             }
         } else if (state == WIN){
@@ -1090,7 +1181,7 @@ public class GameController extends WorldController implements ContactListener{
             if (enter && !timerGo) {
                 timerGo = true;
                 switch (win.getFrame()) {
-                    case 0: break;
+                    case 0: sounds.setAllActiveVolume(1f); break;
                     case 1:
                         sounds.stopAllActive();
                         listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
@@ -1128,7 +1219,7 @@ public class GameController extends WorldController implements ContactListener{
             if (enter && !timerGo) {
                 timerGo = true;
                 switch (gameOver.getFrame()) {
-                    case 0: reset(); break;
+                    case 0: sounds.setAllActiveVolume(1f); reset(); break;
                     case 1:
                         sounds.stopAllActive();
                         listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
@@ -1232,17 +1323,40 @@ public class GameController extends WorldController implements ContactListener{
         drawGlow();
         canvas.end();
 
+        // Draw firefly glow
+//        canvas.setShader(glow.getFireflyShader());
+//        canvas.begin(gorf.getPosition());
+//        drawGlow();
+//        canvas.end();
+
         canvas.setShader(null);
+
+        canvas.begin();
+        if (LevelSelectController.getLevel() == 1) {
+            drawTextbox(pauseInstructions, 0.0f, 480.0f );
+            if (firefly_count > 5) {
+                drawTextbox(level1tutorial3,310.0f, 330.0f);
+            } else  {
+                drawTextbox(level1tutorial1, 310.0f, 330.0f);
+            }
+            drawTextbox(level1tutorial2, 700.0f, 480.0f);
+        } else if (LevelSelectController.getLevel() == 2 && familiars.getNumFam() == 1) {
+            drawTextbox(level2tutorial1,1610.0f, 530.0f);
+        } else if (LevelSelectController.getLevel() == 3 && familiars.getNumFam() == 0) {
+            drawTextbox(level3tutorial1,800.0f, 880.0f);
+        }
+        canvas.end();
 
         // Draw under fog
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
 //            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-            for(Obstacle mon : monster) {
-                //System.out.println("Draw monster at: "+ mon.getX()+", "+mon.getY());
-                if(mon.isActive()){mon.draw(canvas);
-                }}
-
+            for(MonsterModel m : monster) {
+                m.draw(canvas);
+                if(m.dead){
+                    m.drawDead(canvas);
+                }
+            }
             for(EnvAsset env : landmarks){env.drawfull(canvas);}
             for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1251,7 +1365,12 @@ public class GameController extends WorldController implements ContactListener{
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,-bounds.getHeight()*2));
 //            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-            for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
+            for(MonsterModel m : monster) {
+                m.draw(canvas);
+                if(m.dead){
+                    m.drawDead(canvas);
+                }
+            }
             for(EnvAsset env : landmarks){env.drawfull(canvas);}
             for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1260,7 +1379,12 @@ public class GameController extends WorldController implements ContactListener{
         if (gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,bounds.getHeight()*2));
 //            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-            for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
+            for(MonsterModel m : monster) {
+                m.draw(canvas);
+                if(m.dead){
+                    m.drawDead(canvas);
+                }
+            }
             for(EnvAsset env : landmarks){env.drawfull(canvas);}
             for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1269,7 +1393,12 @@ public class GameController extends WorldController implements ContactListener{
         if (gorf.getX() > DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,bounds.getHeight()*2));
 //            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-            for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
+            for(MonsterModel m : monster) {
+                m.draw(canvas);
+                if(m.dead){
+                    m.drawDead(canvas);
+                }
+            }
             for(EnvAsset env : landmarks){env.drawfull(canvas);}
             for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1278,7 +1407,12 @@ public class GameController extends WorldController implements ContactListener{
         if (gorf.getX() > DEFAULT_WIDTH / 2f) {
             canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
 //            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-            for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
+            for(MonsterModel m : monster) {
+                m.draw(canvas);
+                if(m.dead){
+                    m.drawDead(canvas);
+                }
+            }
             for(EnvAsset env : landmarks){env.drawfull(canvas);}
             for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1287,7 +1421,12 @@ public class GameController extends WorldController implements ContactListener{
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,bounds.getHeight()*2));
 //            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-            for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
+            for(MonsterModel m : monster) {
+                m.draw(canvas);
+                if(m.dead){
+                    m.drawDead(canvas);
+                }
+            }
             for(EnvAsset env : landmarks){env.drawfull(canvas);}
             for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1296,7 +1435,12 @@ public class GameController extends WorldController implements ContactListener{
         if (gorf.getX() < DEFAULT_WIDTH / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,0));
 //            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-            for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
+            for(MonsterModel m : monster) {
+                m.draw(canvas);
+                if(m.dead){
+                    m.drawDead(canvas);
+                }
+            }
             for(EnvAsset env : landmarks){env.drawfull(canvas);}
             for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1305,7 +1449,12 @@ public class GameController extends WorldController implements ContactListener{
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(bounds.getWidth()*2,-bounds.getHeight()*2));
 //            canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-            for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
+            for(MonsterModel m : monster) {
+                m.draw(canvas);
+                if(m.dead){
+                    m.drawDead(canvas);
+                }
+            }
             for(EnvAsset env : landmarks){env.drawfull(canvas);}
             for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
             for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
@@ -1314,16 +1463,14 @@ public class GameController extends WorldController implements ContactListener{
 
         canvas.begin(gorf.getPosition());
 //        canvas.draw(backgroundTexture, Color.WHITE, 0, 0, canvas.getWidth()*2,canvas.getHeight()*2);
-        for(Obstacle mon : monster) {if(mon.isActive()){mon.draw(canvas);}}
-        for(MonsterModel m : monster){
-            if(m.dead){
-                //System.out.println("Draw dead at: "+ m.deadmonster.getX()+", "+m.deadmonster.getY());
-                m.deadmonster.setTexture(monsterTexture);
-                m.deadmonster.draw(canvas);
-            }
-        }
         for(EnvAsset env : landmarks){env.drawfull(canvas);}
         for(Obstacle obj : underFog) {if(obj.isActive()){obj.draw(canvas);}}
+        for(MonsterModel m : monster) {
+            m.draw(canvas);
+            if(m.dead){
+                m.drawDead(canvas);
+            }
+        }
         for(Firefly f : fireflyController.fireflies) {if(f!=null &&!f.isDestroyed()){f.draw(canvas);}};
         canvas.setShader(fog.getShader());
         fog.draw(canvas, backgroundTexture, new Vector2(0,0));
@@ -1359,10 +1506,10 @@ public class GameController extends WorldController implements ContactListener{
         canvas.end();
 
         // Draw familiar front glow
-        canvas.setShader(glow.getFamiliarFrontShader());
-        canvas.begin(gorf.getPosition());
-        drawGlow();
-        canvas.end();
+//        canvas.setShader(glow.getFamiliarFrontShader());
+//        canvas.begin(gorf.getPosition());
+//        drawGlow();
+//        canvas.end();
 
         // Draw over fog
         canvas.setShader(null);
@@ -1416,13 +1563,7 @@ public class GameController extends WorldController implements ContactListener{
         for (Lantern l : Lanterns){l.drawtop(canvas);}
         for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
         for(EnvAsset env : landmarks){env.drawtop(canvas);}
-        for(MonsterModel m : monster){
-            if(m.dead){
-                //System.out.println("Draw dead at: "+ m.deadmonster.getX()+", "+m.deadmonster.getY());
-                m.deadmonster.setTexture(monsterTexture);
-                m.deadmonster.draw(canvas);
-            }
-        }
+
         canvas.end();
 
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
@@ -1458,11 +1599,19 @@ public class GameController extends WorldController implements ContactListener{
             canvas.end();
         }
         if (gorf.getX() > DEFAULT_WIDTH / 2f) {
-            canvas.begin(gorf.getPosition().add(-bounds.getWidth()*2,0));
+            canvas.begin(gorf.getPosition().add(-bounds.getWidth() * 2, 0));
             canvas.draw(fboRegion, 0, 0);
-            for (Lantern l : Lanterns){l.drawtop(canvas);}
-            for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
-            for(EnvAsset env : landmarks){env.drawtop(canvas);}
+            for (Lantern l : Lanterns) {
+                l.drawtop(canvas);
+            }
+            for (Obstacle obj : edgewalls) {
+                if (obj.isActive()) {
+                    obj.draw(canvas);
+                }
+            }
+            for (EnvAsset env : landmarks) {
+                env.drawtop(canvas);
+            }
             canvas.end();
         }
         if (gorf.getX() < DEFAULT_WIDTH / 2f && gorf.getY() < DEFAULT_HEIGHT / 2f) {
@@ -1499,13 +1648,6 @@ public class GameController extends WorldController implements ContactListener{
 
         canvas.begin();
         for(EnvAsset env : landmarks){env.drawtop(canvas);}
-        for(MonsterModel m : monster){
-            if(m.dead){
-                //System.out.println("Draw dead at: "+ m.deadmonster.getX()+", "+m.deadmonster.getY());
-                m.deadmonster.setTexture(monsterTexture);
-                m.deadmonster.draw(canvas);
-            }
-        }
 
         // UI
         float Gorfx= gorf.getPosition().x * scale.x;
@@ -1597,6 +1739,8 @@ public class GameController extends WorldController implements ContactListener{
                     break;
             }
         }
+
+        //canvas.draw(pauseInstructions, gorf.getPosition().x * scale.x, gorf.getPosition().y * scale.y);
 
         if (familiars.getNumFam() / 10.0 < 1) {
 
@@ -1698,7 +1842,6 @@ public class GameController extends WorldController implements ContactListener{
         displayFont.setColor(Color.PURPLE);
         displayFont.getData().setScale(.5f,.5f);
         canvas.drawText(Float.toString(fogPercentage)+"%", displayFont, gorf.getPosition().x * scale.x - canvas.getWidth()*.59f/2f + 10f, gorf.getPosition().y * scale.y + canvas.getHeight()*.59f/2f - 10f); //OK guys this line is gonna be the longest line in our entire code and I will make it so with this comment, feel free to add more in your pushes
-
         // PLACEHOLDER--will be replaced by Victory screen
         //if (familiars.collectAll) {
           //  if (countdown > 0) {
@@ -1733,6 +1876,7 @@ public class GameController extends WorldController implements ContactListener{
             //canvas.endDebug();
         }
         canvas.end();
+
         if (state == PAUSE) {
             gorf.setFX(0);
             gorf.setFY(0);
@@ -1885,5 +2029,37 @@ public class GameController extends WorldController implements ContactListener{
 
     public void setScreenListener(ScreenListener listener) {
         this.listener = listener;
+    }
+
+    private void drawTextbox(TextureRegion box, float x, float y) {
+        if (timerGoText) { //code to slow down multiple inputs and not register all of them
+            inputTimerText--;
+            if (inputTimerText == 0) {
+                timerGoText = false;
+                if (LevelSelectController.getLevel() == 1) {
+                    inputTimerText = 9;
+                } else if (LevelSelectController.getLevel() == 2) {
+                    inputTimerText = 3;
+                } else if (LevelSelectController.getLevel() == 3) {
+                    inputTimerText = 3;
+                }
+            }
+        }
+        if (textboxAnimateBottom && !timerGoText) {
+            textboxAnimateOffset++;
+            timerGoText = true;
+            if (textboxAnimateOffset == 3) {
+                textboxAnimateBottom = false;
+                textboxAnimateTop = true;
+            }
+        } else if (textboxAnimateTop && !timerGoText) {
+            textboxAnimateOffset--;
+            timerGoText = true;
+            if (textboxAnimateOffset == -3) {
+                textboxAnimateTop = false;
+                textboxAnimateBottom = true;
+            }
+        }
+        canvas.draw(box, x, y + textboxAnimateOffset);
     }
 }
