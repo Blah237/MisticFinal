@@ -820,7 +820,10 @@ public class GameController extends WorldController implements ContactListener{
             float posy=m.getY()*scale.y;
             int tx=tileBoard.screenToBoardX(posx);
             int ty=tileBoard.screenToBoardY(posy);
-            if(tileBoard.isLanternGlow(tx,ty) || tileBoard.isGorfGlow(tx,ty)){
+            if(tileBoard.isGorfGlow(tx,ty)){
+                m.setHalved(true);
+            }
+            if(tileBoard.isLanternGlow(tx,ty)){
                 m.updateDeathTimer();
                 m.setHalved(true);
                 if(m.getMonsterDeathTimer()==0){
@@ -830,10 +833,6 @@ public class GameController extends WorldController implements ContactListener{
                     m.deadx=posx;
                     m.deady=posy-15;
                     m.dead=true;
-
-                    //m.setTexture(monsterTextureDead);
-                    // ardtoScreenX(fogSpawn.x)
-                    //         + ", "+tileBoard.boardToScreenY(fogSpawn.y));
                     Array<Vector2> fogtiles = fog.getFogTiles();
                     Vector2 v = fogtiles.get(random(fogtiles.size-1));
                     BoardModel.Tile t = tileBoard.getTile((int)v.x,(int)v.y);
