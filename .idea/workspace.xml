@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Glow.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/Glow.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/util/SoundController$ActiveSound.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/util/SoundController$ActiveSound.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/util/SoundController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/util/SoundController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" afterPath="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,11 +35,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WorldController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="254" column="51" lean-forward="false" selection-start-line="254" selection-start-column="51" selection-end-line="254" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoardModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1211">
+              <caret line="44" column="27" lean-forward="true" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EnvAsset.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/EnvAsset.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="424">
+              <caret line="68" column="35" lean-forward="true" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="1206" column="36" lean-forward="false" selection-start-line="1206" selection-start-column="36" selection-end-line="1206" selection-end-column="36" />
+            <state relative-caret-position="161">
+              <caret line="129" column="64" lean-forward="true" selection-start-line="129" selection-start-column="64" selection-end-line="129" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#21813#21823#0" expanded="true" />
@@ -52,107 +79,28 @@
                 <element signature="e#23686#23696#0" expanded="true" />
                 <element signature="e#23787#23796#0" expanded="true" />
                 <element signature="e#27372#27389#0" expanded="true" />
-                <marker date="1495087783717" expanded="false" signature="84514:84525" ph=" { " />
-                <marker date="1495087783717" expanded="false" signature="84550:84556" ph=" }" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Perlin.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Perlin.java">
+      <file leaf-file-name="GameCanvas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="185" column="50" lean-forward="true" selection-start-line="185" selection-start-column="50" selection-end-line="185" selection-end-column="50" />
+            <state relative-caret-position="142">
+              <caret line="425" column="23" lean-forward="false" selection-start-line="425" selection-start-column="23" selection-end-line="425" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fireflies.frag.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/fireflies.frag.glsl">
+      <file leaf-file-name="SoundController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FireflyController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FireflyController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1091">
-              <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+            <state relative-caret-position="118">
+              <caret line="423" column="5" lean-forward="false" selection-start-line="423" selection-start-column="5" selection-end-line="423" selection-end-column="5" />
               <folding>
-                <element signature="e#2895#2896#0" expanded="true" />
-                <element signature="e#2927#2928#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Firefly.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Firefly.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1011">
-              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="38" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-              <folding>
-                <marker date="1495087789524" expanded="true" signature="125551:125568" ph="..." />
-                <marker date="1495087789524" expanded="true" signature="125551:125586" ph="..." />
-                <marker date="1495087789524" expanded="true" signature="125551:125599" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="465" column="9" lean-forward="false" selection-start-line="465" selection-start-column="9" selection-end-line="465" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gorfglow.frag.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/gorfglow.frag.glsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lantern_front.frag.glsl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="17" column="75" lean-forward="true" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Glow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="967">
-              <caret line="131" column="36" lean-forward="true" selection-start-line="131" selection-start-column="36" selection-end-line="131" selection-end-column="36" />
-              <folding>
-                <element signature="e#4744#4753#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -162,7 +110,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>WIN</find>
       <find>exitScreen</find>
       <find>conta</find>
       <find>debugPressed</find>
@@ -192,6 +139,7 @@
       <find>despawn</find>
       <find>Tile t :</find>
       <find>prep</find>
+      <find>[]</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -942,15 +890,15 @@
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Glow.java" />
         <option value="$PROJECT_DIR$/core/assets/mistic/shaders/lantern_front.frag.glsl" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -969,7 +917,6 @@
     <panes>
       <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -979,6 +926,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Mistic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mistic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mistic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="desktop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1087,26 +1048,8 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mistic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mistic" />
+              <option name="myItemId" value="sounds" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1127,17 +1070,32 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mistic" />
+              <option name="myItemId" value="Mistic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mistic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="shaders" />
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jsons" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="RunManager" selected="Application.Unnamed">
@@ -1261,26 +1219,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32866243" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2995896" sideWeight="0.5071531" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2979415" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29808918" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299363" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24458599" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20948827" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1516793" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26824033" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1294,6 +1251,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15184678" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1312,17 +1270,17 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39869988" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2979415" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29808918" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299363" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20948827" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1516793" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19942611" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15184678" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1340,37 +1298,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../../Graphics Prac/cs4621/lecture06/exhibit00.html" />
-    <entry file="file://$PROJECT_DIR$/../../core/src/edu/cornell/gdiac/mistic/BoardModel.java" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/df0e6a52ed42009b20ab64cc81e57c3ae24d9109/gdx-1.9.5-sources.jar!/com/badlogic/gdx/graphics/Pixmap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="128" column="31" lean-forward="false" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/df0e6a52ed42009b20ab64cc81e57c3ae24d9109/gdx-1.9.5-sources.jar!/com/badlogic/gdx/graphics/g2d/Gdx2DPixmap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="98" column="9" lean-forward="true" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/df0e6a52ed42009b20ab64cc81e57c3ae24d9109/gdx-1.9.5-sources.jar!/com/badlogic/gdx/assets/AssetManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="580" column="5" lean-forward="true" selection-start-line="580" selection-start-column="5" selection-end-line="580" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.vert.glsl" />
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Lantern.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="36" column="128" lean-forward="false" selection-start-line="36" selection-start-column="128" selection-end-line="36" selection-end-column="128" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/ai/gdx-ai/tests/com/badlogic/gdx/ai/pfa/indexed/IndexedAStarPathFinderTest.java" />
     <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-controllers/1.9.5/5f606cf2feda0e28ce19863246d6837d4df193c2/gdx-controllers-1.9.5-sources.jar!/com/badlogic/gdx/controllers/ControllerListener.java">
@@ -1442,14 +1369,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/jsons/rooms.json" />
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1950">
-          <caret line="133" column="34" lean-forward="false" selection-start-line="133" selection-start-column="34" selection-end-line="133" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/Familiar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1556,24 +1475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9030">
-          <caret line="633" column="0" lean-forward="false" selection-start-line="633" selection-start-column="0" selection-end-line="633" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6540">
-          <caret line="362" column="37" lean-forward="false" selection-start-line="362" selection-start-column="37" selection-end-line="362" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#14392#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
@@ -1589,124 +1490,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="112" column="67" lean-forward="false" selection-start-line="112" selection-start-column="67" selection-end-line="112" selection-end-column="67" />
-          <folding>
-            <marker date="1495082796187" expanded="false" signature="6734:6749" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="6762:6772" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="6846:6861" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="6896:6906" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="7621:7636" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="7660:7670" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="7743:7758" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="7815:7825" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="8306:8321" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="8360:8370" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="8440:8455" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="8464:8474" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="8618:8633" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="8642:8652" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="8802:8817" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="8826:8836" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="8994:9009" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="9018:9028" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="9181:9196" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="9205:9215" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="9376:9391" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="9409:9419" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="9480:9495" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="9504:9514" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="9574:9589" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="9613:9623" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="9676:9691" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="9707:9717" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="9782:9797" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="9815:9825" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="10289:10304" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="10338:10348" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="10421:10436" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="10493:10503" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="10984:10999" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="11038:11048" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="11118:11133" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="11142:11152" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="11296:11311" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="11323:11333" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="11483:11498" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="11510:11520" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="11678:11693" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="11705:11715" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="11850:11865" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="11877:11887" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="12048:12063" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="12096:12106" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="12167:12182" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="12216:12226" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="12286:12301" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="12325:12335" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="12388:12403" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="12419:12429" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="12494:12509" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="12527:12537" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="12712:12727" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="12745:12755" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="12812:12827" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="12836:12846" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="12993:13008" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="13017:13027" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="13115:13130" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="13148:13158" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="13224:13239" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="13278:13288" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="13358:13373" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="13382:13392" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="13536:13551" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="13560:13570" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="13720:13735" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="13744:13754" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="13912:13927" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="13936:13946" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="14099:14114" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="14123:14133" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="14294:14309" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="14327:14337" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="14398:14413" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="14422:14432" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="14492:14507" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="14516:14526" ph=" }" />
-            <marker date="1495082796187" expanded="false" signature="14579:14594" ph=" { " />
-            <marker date="1495082796187" expanded="false" signature="14607:14617" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/jre/lib/ext/nashorn.jar!/jdk/nashorn/internal/runtime/Context.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="206" column="0" lean-forward="false" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/Mug.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="41" column="60" lean-forward="false" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/jre/lib/ext/nashorn.jar!/jdk/nashorn/internal/runtime/Context.class" />
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/Mug.java" />
     <entry file="file://$PROJECT_DIR$/core/assets/mistic/shaders/feedback.frag.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1714,7 +1507,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
           <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1722,7 +1514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1730,7 +1521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1746,7 +1536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1762,11 +1551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="38" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-          <folding>
-            <marker date="1495087789524" expanded="true" signature="125551:125568" ph="..." />
-            <marker date="1495087789524" expanded="true" signature="125551:125586" ph="..." />
-            <marker date="1495087789524" expanded="true" signature="125551:125599" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1785,9 +1569,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="967">
           <caret line="131" column="36" lean-forward="true" selection-start-line="131" selection-start-column="36" selection-end-line="131" selection-end-column="36" />
-          <folding>
-            <element signature="e#4744#4753#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1795,7 +1577,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="17" column="75" lean-forward="true" selection-start-line="17" selection-start-column="75" selection-end-line="17" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1803,7 +1584,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1815,10 +1595,96 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/environment/originals/tree2big.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/environment/tree2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/backgroundvibrant.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/df0e6a52ed42009b20ab64cc81e57c3ae24d9109/gdx-1.9.5-sources.jar!/com/badlogic/gdx/graphics/g2d/TextureRegion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="80" column="16" lean-forward="false" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#2513#2514#0" expanded="false" />
+            <element signature="e#2537#2538#0" expanded="false" />
+            <element signature="e#4933#4934#0" expanded="false" />
+            <element signature="e#4954#4955#0" expanded="false" />
+            <element signature="e#4999#5000#0" expanded="false" />
+            <element signature="e#5028#5029#0" expanded="false" />
+            <element signature="e#5053#5054#0" expanded="false" />
+            <element signature="e#5068#5069#0" expanded="false" />
+            <element signature="e#5208#5209#0" expanded="false" />
+            <element signature="e#5223#5224#0" expanded="false" />
+            <element signature="e#5366#5367#0" expanded="false" />
+            <element signature="e#5382#5383#0" expanded="false" />
+            <element signature="e#5527#5528#0" expanded="false" />
+            <element signature="e#5543#5544#0" expanded="false" />
+            <element signature="e#5693#5694#0" expanded="false" />
+            <element signature="e#5741#5742#0" expanded="false" />
+            <element signature="e#5776#5777#0" expanded="false" />
+            <element signature="e#5818#5819#0" expanded="false" />
+            <element signature="e#5847#5848#0" expanded="false" />
+            <element signature="e#5896#5897#0" expanded="false" />
+            <element signature="e#5931#5932#0" expanded="false" />
+            <element signature="e#5974#5975#0" expanded="false" />
+            <element signature="e#6043#6044#0" expanded="false" />
+            <element signature="e#6068#6069#0" expanded="false" />
+            <element signature="e#6317#6318#0" expanded="false" />
+            <element signature="e#6343#6344#0" expanded="false" />
+            <element signature="e#6725#6726#0" expanded="false" />
+            <element signature="e#6745#6746#0" expanded="false" />
+            <element signature="e#6775#6776#0" expanded="false" />
+            <element signature="e#6795#6796#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/mistic/backgroundresize.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GameCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="425" column="23" lean-forward="false" selection-start-line="425" selection-start-column="23" selection-end-line="425" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/df0e6a52ed42009b20ab64cc81e57c3ae24d9109/gdx-1.9.5-sources.jar!/com/badlogic/gdx/utils/IdentityMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1049">
+          <caret line="663" column="15" lean-forward="false" selection-start-line="663" selection-start-column="13" selection-end-line="663" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="423" column="5" lean-forward="false" selection-start-line="423" selection-start-column="5" selection-end-line="423" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="1206" column="36" lean-forward="false" selection-start-line="1206" selection-start-column="36" selection-end-line="1206" selection-end-column="36" />
+        <state relative-caret-position="161">
+          <caret line="129" column="64" lean-forward="true" selection-start-line="129" selection-start-column="64" selection-end-line="129" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#21813#21823#0" expanded="true" />
@@ -1828,9 +1694,31 @@
             <element signature="e#23686#23696#0" expanded="true" />
             <element signature="e#23787#23796#0" expanded="true" />
             <element signature="e#27372#27389#0" expanded="true" />
-            <marker date="1495087783717" expanded="false" signature="84514:84525" ph=" { " />
-            <marker date="1495087783717" expanded="false" signature="84550:84556" ph=" }" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/WorldController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="254" column="51" lean-forward="false" selection-start-line="254" selection-start-column="51" selection-end-line="254" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/BoardModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1211">
+          <caret line="44" column="27" lean-forward="true" selection-start-line="44" selection-start-column="27" selection-end-line="44" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/EnvAsset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="68" column="35" lean-forward="true" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>
