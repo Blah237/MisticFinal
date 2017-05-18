@@ -30,7 +30,7 @@ public class LevelSelectController extends WorldController implements Screen {
     private TextureRegion whiteMist;
     private TextureRegion purpleMist;
 
-    private static final int LEVEL_CAP = 12;
+    public static final int LEVEL_CAP = 12;
 
     private int inputTimer = 20;
     private boolean timerGo = true;
@@ -48,17 +48,21 @@ public class LevelSelectController extends WorldController implements Screen {
 
     public String jsonFileName;
 
-    public static final String level1 = "final_release/level1.json";
-    public static final String level2 = "final_release/level2.json";
-    public static final String level3 = "final_release/level3revised.json";
-    public static final String level4 = "final_release/level4.json";
-    public static final String level5 = "FINAL/FINAL_5rooms.json";
+    public static final String level1 = "final_release/level1_unfamiliar.json";
+    public static final String level2 = "final_release/level2_thefish.json";
+    public static final String level3 = "final_release/level3_lumina.json";
+    public static final String level4 = "final_release/level4_hourglass.json";
+    public static final String level5 = "final_release/level5_cross.json";
+    public static final String level6 = "final_release/level6_rooms.json";
+    public static final String level7 = "final_release/level7_misty.json";
 
     public static final String level1minimap = "minimaps/level1.png";
     public static final String level2minimap = "minimaps/level2.png";
-    public static final String level3minimap = "minimaps/level3revised.png";
-    public static final String level4minimap = "minimaps/level4.png";
-    public static final String level5minimap = "minimaps/BETA_rooms2.png";
+    public static final String level3minimap = "minimaps/level3.png";
+    public static final String level4minimap = "minimaps/level4_cross.png";
+    public static final String level5minimap = "minimaps/level4_cross.png";
+    public static final String level6minimap = "minimaps/level5_rooms.png";
+    public static final String level7minimap = "minimaps/level6_misty.png";
 
     public static boolean level1complete = false;
     public static boolean level2complete = false;
@@ -178,6 +182,10 @@ public class LevelSelectController extends WorldController implements Screen {
                         WorldController.JSON_FILE = level4; break;
                 case 5: WorldController.MINIMAP_FILE = level5minimap;
                         WorldController.JSON_FILE = level5; break;
+                case 6: WorldController.MINIMAP_FILE = level6minimap;
+                    WorldController.JSON_FILE = level6; break;
+                case 7: WorldController.MINIMAP_FILE = level7minimap;
+                    WorldController.JSON_FILE = level7; break;
             }
             listener.exitScreen(this, this.EXIT_TO_PLAY);
         }
@@ -224,6 +232,24 @@ public class LevelSelectController extends WorldController implements Screen {
     public static int getLevel() {
         return level;
     }
+
+    public static void setLevel(int the_level) {level = the_level;
+        switch (level) {
+            case 1: WorldController.MINIMAP_FILE = level1minimap;
+                WorldController.JSON_FILE = level1; break;
+            case 2: WorldController.MINIMAP_FILE = level2minimap;
+                WorldController.JSON_FILE = level2; break;
+            case 3: WorldController.MINIMAP_FILE = level3minimap;
+                WorldController.JSON_FILE = level3; break;
+            case 4: WorldController.MINIMAP_FILE = level4minimap;
+                WorldController.JSON_FILE = level4; break;
+            case 5: WorldController.MINIMAP_FILE = level5minimap;
+                WorldController.JSON_FILE = level5; break;
+            case 6: WorldController.MINIMAP_FILE = level6minimap;
+                WorldController.JSON_FILE = level6; break;
+            case 7: WorldController.MINIMAP_FILE = level7minimap;
+                WorldController.JSON_FILE = level7; break;
+        }}
 
     public void setScreenListener(ScreenListener listener) {
         this.listener = listener;

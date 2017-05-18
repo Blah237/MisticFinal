@@ -1181,7 +1181,9 @@ public class GameController extends WorldController implements ContactListener{
             if (enter && !timerGo) {
                 timerGo = true;
                 switch (win.getFrame()) {
-                    case 0: sounds.setAllActiveVolume(1f); break;
+                    case 0: LevelSelectController.setLevel(LevelSelectController.getLevel() + 1);
+                        listener.exitScreen(this, LevelSelectController.EXIT_TO_PLAY);
+                        sounds.setAllActiveVolume(1f); break;
                     case 1:
                         sounds.stopAllActive();
                         listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
