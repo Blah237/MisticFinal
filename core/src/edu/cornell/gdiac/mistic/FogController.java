@@ -1129,7 +1129,7 @@ public class FogController {
 				}
 				if (tileBoard.isFog(lx, ly)) {
                     tileBoard.setFog(lx, ly, false);
-                    //fogTiles.removeValue(new Vector2(lx,ly), false);
+                    fogTiles.removeValue(new Vector2(lx,ly), false);
                     tileBoard.getTile(lx, ly).isLanternGlow = false;
                     fogCount--;
                 }

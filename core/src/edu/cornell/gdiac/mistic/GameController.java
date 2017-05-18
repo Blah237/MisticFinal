@@ -50,6 +50,9 @@ public class GameController extends WorldController implements ContactListener{
     private int inputTimer = 20;
     private boolean timerGo = true;
 
+    private int inputTimerText = 3;
+    private boolean timerGoText = true;
+
     private ScreenListener listener;
 
     /** Reference to the rocket texture */
@@ -638,8 +641,9 @@ public class GameController extends WorldController implements ContactListener{
         this.monster = new ArrayList<MonsterModel>();
         wallCount = 0;
         state = PLAY;
-        textboxAnimateBottom = false;
+        textboxAnimateBottom = true;
         textboxAnimateTop = false;
+        textboxAnimateOffset = 0;
         setScreenListener(listener);
     }
 
@@ -675,8 +679,9 @@ public class GameController extends WorldController implements ContactListener{
         lanterns.clear();
         setComplete(false);
         setFailure(false);
-        textboxAnimateBottom = false;
+        textboxAnimateBottom = true;
         textboxAnimateTop = false;
+        textboxAnimateOffset = 0;
 
         wallCount = 0;
         tileCount = tileBoard.getWidth()*tileBoard.getHeight();
@@ -1320,9 +1325,13 @@ public class GameController extends WorldController implements ContactListener{
 
         canvas.begin();
         if (LevelSelectController.getLevel() == 1) {
-            canvas.draw(pauseInstructions, 0.0f, 480.0f );
-            canvas.draw(level1tutorial1, 310.0f, 330.0f );
-
+            drawTextbox(pauseInstructions, 0.0f, 480.0f );
+            if (firefly_count > 5) {
+                drawTextbox(level1tutorial3,310.0f, 330.0f);
+            } else  {
+                drawTextbox(level1tutorial1, 310.0f, 330.0f);
+            }
+            drawTextbox(level1tutorial2, 590.0f, 480.0f);
         }
         canvas.end();
 
@@ -2011,6 +2020,30 @@ public class GameController extends WorldController implements ContactListener{
     }
 
     private void drawTextbox(TextureRegion box, float x, float y) {
-        canvas.draw(pauseInstructions, x, y);
+        if (timerGoText) { //code to slow down multiple inputs and not register all of them
+            inputTimerText--;
+            if (inputTimerText == 0) {
+                timerGoText = false;
+                if (LevelSelectController.getLevel() == 1) {
+                    inputTimerText = 9;
+                }
+            }
+        }
+        if (textboxAnimateBottom && !timerGoText) {
+            textboxAnimateOffset++;
+            timerGoText = true;
+            if (textboxAnimateOffset == 3) {
+                textboxAnimateBottom = false;
+                textboxAnimateTop = true;
+            }
+        } else if (textboxAnimateTop && !timerGoText) {
+            textboxAnimateOffset--;
+            timerGoText = true;
+            if (textboxAnimateOffset == -3) {
+                textboxAnimateTop = false;
+                textboxAnimateBottom = true;
+            }
+        }
+        canvas.draw(box, x, y + textboxAnimateOffset);
     }
 }

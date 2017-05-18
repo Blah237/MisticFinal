@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00a088b7-8800-4dd6-aad9-91a9048ec836" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/tutorial/level1/firefly.png" afterPath="$PROJECT_DIR$/core/assets/mistic/tutorial/level1/firefly.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/tutorial/level1/map_pause.png" afterPath="$PROJECT_DIR$/core/assets/mistic/tutorial/level1/map_pause.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/tutorial/level1/delve.png" afterPath="$PROJECT_DIR$/core/assets/mistic/tutorial/level1/delve.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/assets/mistic/tutorial/level1/morefireflies.png" afterPath="$PROJECT_DIR$/core/assets/mistic/tutorial/level1/morefireflies.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/FogController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" afterPath="$PROJECT_DIR$/core/build/classes/main/edu/cornell/gdiac/mistic/GameController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/LevelSelectController.java" afterPath="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/LevelSelectController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -46,49 +45,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="2000" column="45" lean-forward="true" selection-start-line="2000" selection-start-column="45" selection-end-line="2000" selection-end-column="45" />
+            <state relative-caret-position="204">
+              <caret line="885" column="64" lean-forward="true" selection-start-line="885" selection-start-column="64" selection-end-line="885" selection-end-column="64" />
               <folding>
-                <element signature="e#23884#23894#0" expanded="true" />
-                <element signature="e#25440#25450#0" expanded="true" />
-                <element signature="e#25515#25525#0" expanded="true" />
-                <element signature="e#25632#25642#0" expanded="true" />
-                <element signature="e#25757#25767#0" expanded="true" />
-                <element signature="e#25858#25867#0" expanded="true" />
-                <element signature="e#29589#29606#0" expanded="true" />
-                <element signature="e#87177#87178#0" expanded="true" />
-                <element signature="e#87229#87230#0" expanded="true" />
-                <marker date="1495124205000" expanded="false" signature="87067:87078" ph=" { " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MonsterModel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MonsterModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="20" column="77" lean-forward="false" selection-start-line="20" selection-start-column="77" selection-end-line="20" selection-end-column="77" />
-              <folding>
-                <element signature="e#2552#2553#0" expanded="true" />
-                <element signature="e#2605#2606#0" expanded="true" />
-                <element signature="e#2644#2645#0" expanded="true" />
-                <element signature="e#2684#2685#0" expanded="true" />
-                <element signature="e#2721#2722#0" expanded="true" />
-                <element signature="e#2756#2757#0" expanded="true" />
-                <element signature="e#2808#2809#0" expanded="true" />
-                <element signature="e#2847#2848#0" expanded="true" />
-                <element signature="e#2892#2893#0" expanded="true" />
-                <element signature="e#2928#2929#0" expanded="true" />
-                <element signature="e#3649#3650#0" expanded="true" />
-                <element signature="e#3679#3680#0" expanded="true" />
-                <element signature="e#4360#4361#0" expanded="true" />
-                <element signature="e#4390#4391#0" expanded="true" />
-                <element signature="e#5064#5065#0" expanded="true" />
-                <element signature="e#5101#5102#0" expanded="true" />
+                <element signature="e#23961#23971#0" expanded="true" />
+                <element signature="e#25517#25527#0" expanded="true" />
+                <element signature="e#25592#25602#0" expanded="true" />
+                <element signature="e#25709#25719#0" expanded="true" />
+                <element signature="e#25834#25844#0" expanded="true" />
+                <element signature="e#25935#25944#0" expanded="true" />
+                <element signature="e#29732#29749#0" expanded="true" />
+                <marker date="1495127264000" expanded="false" signature="87930:87941" ph=" { " />
               </folding>
             </state>
           </provider>
@@ -110,8 +80,8 @@
       <file leaf-file-name="LevelSelectController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/LevelSelectController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="73" column="49" lean-forward="false" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="49" />
+            <state relative-caret-position="150">
+              <caret line="144" column="9" lean-forward="true" selection-start-line="138" selection-start-column="8" selection-end-line="144" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -153,20 +123,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FogController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+            <state relative-caret-position="478">
+              <caret line="1239" column="30" lean-forward="false" selection-start-line="1239" selection-start-column="30" selection-end-line="1239" selection-end-column="30" />
               <folding>
                 <element signature="e#10547#10548#0" expanded="true" />
                 <element signature="e#10567#10568#0" expanded="true" />
                 <element signature="e#39609#39618#0" expanded="true" />
-                <marker date="1495094446000" expanded="false" signature="44605:44610" ph=" { " />
-                <marker date="1495094446000" expanded="false" signature="44624:44627" ph=" }" />
-                <marker date="1495094446000" expanded="false" signature="44667:44678" ph=" { " />
-                <marker date="1495094446000" expanded="false" signature="44694:44700" ph=" }" />
+                <marker date="1495124693000" expanded="false" signature="44603:44608" ph=" { " />
+                <marker date="1495124693000" expanded="false" signature="44622:44625" ph=" }" />
+                <marker date="1495124693000" expanded="false" signature="44665:44676" ph=" { " />
+                <marker date="1495124693000" expanded="false" signature="44692:44698" ph=" }" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Array.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/df0e6a52ed42009b20ab64cc81e57c3ae24d9109/gdx-1.9.5-sources.jar!/com/badlogic/gdx/utils/Array.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="210" column="19" lean-forward="false" selection-start-line="210" selection-start-column="19" selection-end-line="210" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -288,11 +268,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>debug</find>
-      <find>isactive()</find>
-      <find>m.dead</find>
-      <find>islanternglow</find>
-      <find>lanternglow</find>
       <find>firefly_count = 2</find>
       <find>30</find>
       <find>monster</find>
@@ -305,19 +280,24 @@
       <find>MONSTERTIMER</find>
       <find>monstertimer</find>
       <find>applyf</find>
-      <find>primepressed</find>
       <find>spawnmonster</find>
       <find>createmonster</find>
       <find>wrap</find>
       <find>levelse</find>
       <find>pauseinst</find>
       <find>fogtiles.re</find>
-      <find>levelselect</find>
-      <find>halved</find>
       <find>pauseinstr</find>
-      <find>fogt</find>
-      <find>levelsel</find>
       <find>levelselec</find>
+      <find>halved</find>
+      <find>fogt</find>
+      <find>fogtiles.</find>
+      <find>primepressed</find>
+      <find>textbox</find>
+      <find>update</find>
+      <find>bottom</find>
+      <find>inputtimer</find>
+      <find>levelsel</find>
+      <find>levelselect</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1083,9 +1063,9 @@
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/CreditsController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MenuController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/OptionsController.java" />
-        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/LevelSelectController.java" />
         <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java" />
+        <option value="$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java" />
       </list>
     </option>
   </component>
@@ -1393,7 +1373,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2995896" sideWeight="0.5071531" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29863015" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19589041" sideWeight="0.49284694" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22603719" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1462,25 +1442,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16540">
-          <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
-          <folding>
-            <element signature="e#23884#23894#0" expanded="true" />
-            <element signature="e#25440#25450#0" expanded="true" />
-            <element signature="e#25515#25525#0" expanded="true" />
-            <element signature="e#25632#25642#0" expanded="true" />
-            <element signature="e#25757#25767#0" expanded="true" />
-            <element signature="e#25858#25867#0" expanded="true" />
-            <element signature="e#29589#29606#0" expanded="true" />
-            <element signature="e#87177#87178#0" expanded="true" />
-            <element signature="e#87229#87230#0" expanded="true" />
-            <marker date="1495124205000" expanded="false" signature="87067:87078" ph=" { " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/assets/mistic/fog.frag.glsl" />
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1488,7 +1449,7 @@
           <caret line="204" column="36" lean-forward="true" selection-start-line="204" selection-start-column="36" selection-end-line="204" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#44749#44750#0" expanded="false" />
+            <element signature="e#44747#44748#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1498,16 +1459,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#23884#23894#0" expanded="true" />
-            <element signature="e#25440#25450#0" expanded="true" />
-            <element signature="e#25515#25525#0" expanded="true" />
-            <element signature="e#25632#25642#0" expanded="true" />
-            <element signature="e#25757#25767#0" expanded="true" />
-            <element signature="e#25858#25867#0" expanded="true" />
-            <element signature="e#29589#29606#0" expanded="true" />
-            <element signature="e#87177#87178#0" expanded="true" />
-            <element signature="e#87229#87230#0" expanded="true" />
-            <marker date="1495124205000" expanded="false" signature="87067:87078" ph=" { " />
+            <element signature="e#23961#23971#0" expanded="true" />
+            <element signature="e#25517#25527#0" expanded="true" />
+            <element signature="e#25592#25602#0" expanded="true" />
+            <element signature="e#25709#25719#0" expanded="true" />
+            <element signature="e#25834#25844#0" expanded="true" />
+            <element signature="e#25935#25944#0" expanded="true" />
+            <element signature="e#29732#29749#0" expanded="true" />
+            <marker date="1495127264000" expanded="false" signature="87930:87941" ph=" { " />
           </folding>
         </state>
       </provider>
@@ -1518,7 +1477,7 @@
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#44749#44750#0" expanded="false" />
+            <element signature="e#44747#44748#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1528,16 +1487,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#23884#23894#0" expanded="true" />
-            <element signature="e#25440#25450#0" expanded="true" />
-            <element signature="e#25515#25525#0" expanded="true" />
-            <element signature="e#25632#25642#0" expanded="true" />
-            <element signature="e#25757#25767#0" expanded="true" />
-            <element signature="e#25858#25867#0" expanded="true" />
-            <element signature="e#29589#29606#0" expanded="true" />
-            <element signature="e#87177#87178#0" expanded="true" />
-            <element signature="e#87229#87230#0" expanded="true" />
-            <marker date="1495124205000" expanded="false" signature="87067:87078" ph=" { " />
+            <element signature="e#23961#23971#0" expanded="true" />
+            <element signature="e#25517#25527#0" expanded="true" />
+            <element signature="e#25592#25602#0" expanded="true" />
+            <element signature="e#25709#25719#0" expanded="true" />
+            <element signature="e#25834#25844#0" expanded="true" />
+            <element signature="e#25935#25944#0" expanded="true" />
+            <element signature="e#29732#29749#0" expanded="true" />
+            <marker date="1495127264000" expanded="false" signature="87930:87941" ph=" { " />
           </folding>
         </state>
       </provider>
@@ -1548,7 +1505,7 @@
           <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#44749#44750#0" expanded="false" />
+            <element signature="e#44747#44748#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1965,29 +1922,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="260" column="33" lean-forward="false" selection-start-line="260" selection-start-column="33" selection-end-line="260" selection-end-column="33" />
-          <folding>
-            <element signature="e#5776#5777#0" expanded="true" />
-            <element signature="e#5820#5821#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/GDXRoot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
           <caret line="185" column="29" lean-forward="false" selection-start-line="185" selection-start-column="29" selection-end-line="185" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
-          <caret line="126" column="68" lean-forward="false" selection-start-line="126" selection-start-column="68" selection-end-line="126" selection-end-column="68" />
           <folding />
         </state>
       </provider>
@@ -2002,22 +1940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding>
-            <element signature="e#10547#10548#0" expanded="true" />
-            <element signature="e#10567#10568#0" expanded="true" />
-            <element signature="e#39609#39618#0" expanded="true" />
-            <marker date="1495094446000" expanded="false" signature="44605:44610" ph=" { " />
-            <marker date="1495094446000" expanded="false" signature="44624:44627" ph=" }" />
-            <marker date="1495094446000" expanded="false" signature="44667:44678" ph=" { " />
-            <marker date="1495094446000" expanded="false" signature="44694:44700" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/OptionsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
@@ -2028,10 +1950,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.9.5/df0e6a52ed42009b20ab64cc81e57c3ae24d9109/gdx-1.9.5-sources.jar!/com/badlogic/gdx/utils/Array.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="210" column="19" lean-forward="false" selection-start-line="210" selection-start-column="19" selection-end-line="210" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/InputController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="260" column="33" lean-forward="false" selection-start-line="260" selection-start-column="33" selection-end-line="260" selection-end-column="33" />
+          <folding>
+            <element signature="e#5776#5777#0" expanded="true" />
+            <element signature="e#5820#5821#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/MenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180">
+          <caret line="126" column="68" lean-forward="false" selection-start-line="126" selection-start-column="68" selection-end-line="126" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/LevelSelectController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="73" column="49" lean-forward="false" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="49" />
+        <state relative-caret-position="150">
+          <caret line="144" column="9" lean-forward="true" selection-start-line="138" selection-start-column="8" selection-end-line="144" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2040,19 +1989,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="2000" column="45" lean-forward="true" selection-start-line="2000" selection-start-column="45" selection-end-line="2000" selection-end-column="45" />
+        <state relative-caret-position="204">
+          <caret line="885" column="64" lean-forward="true" selection-start-line="885" selection-start-column="64" selection-end-line="885" selection-end-column="64" />
           <folding>
-            <element signature="e#23884#23894#0" expanded="true" />
-            <element signature="e#25440#25450#0" expanded="true" />
-            <element signature="e#25515#25525#0" expanded="true" />
-            <element signature="e#25632#25642#0" expanded="true" />
-            <element signature="e#25757#25767#0" expanded="true" />
-            <element signature="e#25858#25867#0" expanded="true" />
-            <element signature="e#29589#29606#0" expanded="true" />
-            <element signature="e#87177#87178#0" expanded="true" />
-            <element signature="e#87229#87230#0" expanded="true" />
-            <marker date="1495124205000" expanded="false" signature="87067:87078" ph=" { " />
+            <element signature="e#23961#23971#0" expanded="true" />
+            <element signature="e#25517#25527#0" expanded="true" />
+            <element signature="e#25592#25602#0" expanded="true" />
+            <element signature="e#25709#25719#0" expanded="true" />
+            <element signature="e#25834#25844#0" expanded="true" />
+            <element signature="e#25935#25944#0" expanded="true" />
+            <element signature="e#29732#29749#0" expanded="true" />
+            <marker date="1495127264000" expanded="false" signature="87930:87941" ph=" { " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/FogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="1239" column="30" lean-forward="false" selection-start-line="1239" selection-start-column="30" selection-end-line="1239" selection-end-column="30" />
+          <folding>
+            <element signature="e#10547#10548#0" expanded="true" />
+            <element signature="e#10567#10568#0" expanded="true" />
+            <element signature="e#39609#39618#0" expanded="true" />
+            <marker date="1495124693000" expanded="false" signature="44603:44608" ph=" { " />
+            <marker date="1495124693000" expanded="false" signature="44622:44625" ph=" }" />
+            <marker date="1495124693000" expanded="false" signature="44665:44676" ph=" { " />
+            <marker date="1495124693000" expanded="false" signature="44692:44698" ph=" }" />
           </folding>
         </state>
       </provider>
