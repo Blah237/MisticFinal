@@ -4,7 +4,7 @@ uniform vec2 res;
 
 uniform vec2 lanternsPos[MAX_LANTERNS];
 uniform int numLanterns;
-//uniform vec2 offset;
+uniform vec2 offset[MAX_LANTERNS];
 
 void main() {
     // Lantern Glows

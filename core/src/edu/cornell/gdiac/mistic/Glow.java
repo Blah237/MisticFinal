@@ -90,22 +90,43 @@ public class Glow {
             }
         }
         float[] lanternsPos = new float[litLanterns.size()*2];
-        float[] offsets = new float[litLanterns.size()*2];
+        float lanternX, lanternY;
         for (int i=0; i<litLanterns.size(); i++) {
-            lanternsPos[2*i] = (litLanterns.get(i).getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
-            lanternsPos[2*i + 1] = (litLanterns.get(i).getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+            lanternX = litLanterns.get(i).getX() * scale.x + scale.x/2f;
+            lanternY = litLanterns.get(i).getY() * scale.y + scale.y/2f;
 
-            offsets[2*i] = (litLanterns.get(i).getX() * scale.x + scale.x/2f) / (zoom * res.x);
-            offsets[2*i + 1] = (litLanterns.get(i).getY() * scale.y + scale.y/2f) / (zoom * res.y);
+//            if (lanternX > screenDim.x/2f && gorfPos.x < screenDim.x/2f) {
+                lanternsPos[2 * i] = (lanternX - ((gorfPos.x - zoom * res.x / 2.0f + screenDim.x) % screenDim.x)) / (zoom * res.x);
+//            } else {
+//                lanternsPos[2 * i] = (lanternX - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+//            }
+
+//            if (lanternY > screenDim.y/2f && gorfPos.y < screenDim.y/2f) {
+                lanternsPos[2 * i + 1] = (lanternY - ((gorfPos.y - zoom * res.y / 2.0f + screenDim.y) % screenDim.y)) / (zoom * res.y);
+//            } else {
+//                lanternsPos[2 * i + 1] = (lanternY - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+//            }
+
+//            if (lanternX < gorfPos.x) {
+//                lanternsPos[2 * i] = (lanternX - ((gorfPos.x - zoom * res.x / 2.0f + res.x) % res.x)) / (zoom * res.x);
+//            } else {
+//                lanternsPos[2 * i] = (lanternX - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+//            }
+//
+//            if (lanternY < gorfPos.y) {
+//                lanternsPos[2 * i + 1] = (lanternY - ((gorfPos.y - zoom * res.y / 2.0f + res.y) % res.y)) / (zoom * res.y);
+//            } else {
+//                lanternsPos[2 * i + 1] = (lanternY - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+//            }
         }
 
 
         float gorfRadius = 0;
         if (nFireflies > 0) {
-            gorfRadius = .4f * (1f - (float) Math.exp(-nFireflies / 2f));
+            gorfRadius = .8f* (1f - (float) Math.exp(-nFireflies / 2f));
         }
 
-        Vector2 familiarPos = new Vector2((familiar.getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x), (familiar.getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y));
+        Vector2 familiarPos = new Vector2((familiar.getX() * scale.x + scale.x/2f - ((gorfPos.x - zoom * res.x / 2.0f + screenDim.x) % screenDim.x)) / (zoom * res.x), (familiar.getY() * scale.y + scale.y/2f - ((gorfPos.y - zoom * res.y / 2.0f + screenDim.y) % screenDim.y)) / (zoom * res.y));
 
         ArrayList<Firefly> spawnedFireflies = new ArrayList<Firefly>();
         for (Firefly f : fireflies) {
@@ -136,17 +157,15 @@ public class Glow {
         lanternBackShader.begin();
         lanternBackShader.setUniform2fv("lanternsPos", lanternsPos, 0, lanternsPos.length);
         lanternBackShader.setUniformi("numLanterns", litLanterns.size());
-//        lanternBackShader.setUniformf("offset", leftOffset, botOffset);
         lanternBackShader.end();
 
         lanternFrontShader.begin();
         lanternFrontShader.setUniform2fv("lanternsPos", lanternsPos, 0, lanternsPos.length);
         lanternFrontShader.setUniformi("numLanterns", litLanterns.size());
-//        lanternFrontShader.setUniformf("offset", leftOffset, botOffset);
         lanternFrontShader.end();
 
         gorfShader.begin();
-        gorfShader.setUniformf("radius", gorfRadius+.2f);
+        gorfShader.setUniformf("radius", gorfRadius);
         gorfShader.end();
 
         fireflyShader.begin();
