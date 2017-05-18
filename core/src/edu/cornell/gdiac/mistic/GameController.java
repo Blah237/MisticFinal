@@ -118,6 +118,8 @@ public class GameController extends WorldController implements ContactListener{
     private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
     private static final String HUD_PURPLE_FIREFLY = "mistic/purple_firefly.png";
 
+    private static final String PAUSE_INSTRUC = "mistic/pause.png";
+
     /** Menu Screen Texture References*/
     private static final String PAUSE_SCREEN = "mistic/spritesheet_pause.png";
     private static final String WIN_SCREEN = "mistic/spritesheet_win.png";
@@ -181,6 +183,8 @@ public class GameController extends WorldController implements ContactListener{
     private TextureRegion HUDWhiteNumber_9;
     private TextureRegion HUDWhiteNumber_slash;
     private TextureRegion HUDPurpleFirefly;
+
+    private TextureRegion pauseInstructions;
 
     private FilmStrip pause;
     private FilmStrip win;
@@ -321,6 +325,9 @@ public class GameController extends WorldController implements ContactListener{
         manager.load(GAME_OVER_SCREEN, Texture.class);
         assets.add(GAME_OVER_SCREEN);
 
+        manager.load(PAUSE_INSTRUC, Texture.class);
+        assets.add(PAUSE_INSTRUC);
+
 
 
         for(String m : MIST_WALLS){
@@ -434,6 +441,8 @@ public class GameController extends WorldController implements ContactListener{
         HUDWhiteNumber_slash = createTexture(manager, HUD_WHITE_NUMBER_SLASH, false);
         HUDPurpleFirefly = createTexture(manager, HUD_PURPLE_FIREFLY, false);
         pawAnimation = createFilmStrip(manager, HUD_PAW_ANIMATE, 1, 2, 2);
+
+        pauseInstructions = createTexture(manager, PAUSE_INSTRUC, false);
 
         pause = createFilmStrip(manager, PAUSE_SCREEN, 1, 3, 3);
         win = createFilmStrip(manager, WIN_SCREEN, 1, 2, 2);
@@ -1626,6 +1635,8 @@ public class GameController extends WorldController implements ContactListener{
                     break;
             }
         }
+
+        canvas.draw(pauseInstructions, gorf.getPosition().x * scale.x, gorf.getPosition().y * scale.y);
 
         if (familiars.getNumFam() / 10.0 < 1) {
 
