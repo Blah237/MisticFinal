@@ -57,7 +57,7 @@ public class GameController extends WorldController implements ContactListener{
             "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfBL.png", "mistic/gorfs/gorfBR.png",
             "mistic/gorfs/gorfB.png"};
     private static final String HAT_TEXTURE = "mistic/gorfs/gorftop.png";
-    private static final String BACKGROUND = "mistic/backgroundresize.png";
+    private static final String BACKGROUND = "mistic/backgroundvibrant.png";
     private static final String MINIMAP_BACKGROUND = "mistic/mini_map_background.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
     private static final String FIRE_TRACK="mistic/fireflyicon.png";
@@ -410,6 +410,7 @@ public class GameController extends WorldController implements ContactListener{
 
         //gorfHat = createTexture(manager,HAT_TEXTURE,false);
         backgroundTexture = createTexture(manager,BACKGROUND,false);
+        //backgroundTexture.setRegion(0,0,2560,1440);
         minimapBackgroundTexture = createTexture(manager,MINIMAP_BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         minimapFirefly=createTexture(manager,FIRE_FLY,false);
@@ -896,6 +897,7 @@ public class GameController extends WorldController implements ContactListener{
 
             boolean isPaused = InputController.getInstance().didPause();
             if (isPaused) {
+                sounds.setAllActiveVolume(0.5f);
                 state = PAUSE;
             }
 
@@ -985,8 +987,12 @@ public class GameController extends WorldController implements ContactListener{
             despawnMonster(monster);
 
             if (familiars.collectAll) {
+                sounds.setAllActiveVolume(0.5f);
+                //victoryFX.play();
                 state = WIN;
             } else if (DEAD) {
+                sounds.setAllActiveVolume(0.5f);
+                //deathFX.play();
                 state = LOSE;
             }
 
@@ -1055,12 +1061,12 @@ public class GameController extends WorldController implements ContactListener{
             if (enter && !timerGo) {
                 timerGo = true;
                 switch (pause.getFrame()) {
-                    case 0: state = PLAY; break;
+                    case 0: sounds.setAllActiveVolume(1f); state = PLAY; break;
                     case 1:
                         sounds.stopAllActive();
                         listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
                         break;
-                    case 2: reset();
+                    case 2: sounds.setAllActiveVolume(1f); reset();
                 }
             }
         } else if (state == WIN){
@@ -1094,7 +1100,7 @@ public class GameController extends WorldController implements ContactListener{
             if (enter && !timerGo) {
                 timerGo = true;
                 switch (win.getFrame()) {
-                    case 0: break;
+                    case 0: sounds.setAllActiveVolume(1f); break;
                     case 1:
                         sounds.stopAllActive();
                         listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
@@ -1132,7 +1138,7 @@ public class GameController extends WorldController implements ContactListener{
             if (enter && !timerGo) {
                 timerGo = true;
                 switch (gameOver.getFrame()) {
-                    case 0: reset(); break;
+                    case 0: sounds.setAllActiveVolume(1f); reset(); break;
                     case 1:
                         sounds.stopAllActive();
                         listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
