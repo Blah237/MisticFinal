@@ -567,7 +567,7 @@ public class GameController extends WorldController implements ContactListener{
     boolean pawTimerStart = false;
 
     //monster stuff
-    final int MONSTERTIMER=2000;
+    final int MONSTERTIMER=1000;
     int monsterSpawnTimer = 500;
     BoardModel.Tile fogSpawn;
 
@@ -664,7 +664,9 @@ public class GameController extends WorldController implements ContactListener{
             obj.deactivatePhysics(world);
         }
         // keep playing currently playing sounds
-        sounds.playAllActive();
+        if (super.MUSIC_ON) {
+            sounds.playAllActive();
+        }
 
         objects.clear();
         walls.clear();
@@ -852,23 +854,25 @@ public class GameController extends WorldController implements ContactListener{
 
         // play a random peace marsh pair of songs for the level ONLY IF
         // there are no active songs playing
-        if (sounds.activesIsEmpty()) {
-            Random rand = new Random();
-            int r1 = rand.nextInt(3) + 1;
-            int r2 = rand.nextInt(3) + 1;
-            if (r1 == 1) {
-                sounds.play("A", A_PEACE_SONG, true);
-            } else if (r1 == 2) {
-                sounds.play("D", D_PEACE_SONG, true);
-            } else if (r1 == 3) {
-                sounds.play("G", G_PEACE_SONG, true);
-            }
-            if (r2 == 1) {
-                sounds.play("B", B_MARSH_SONG, true);
-            } else if (r2 == 2) {
-                sounds.play("E", E_MARSH_SONG, true);
-            } else if (r2 == 3) {
-                sounds.play("F", F_MARSH_SONG, true);
+        if (super.MUSIC_ON) {
+            if (sounds.activesIsEmpty()) {
+                Random rand = new Random();
+                int r1 = rand.nextInt(3) + 1;
+                int r2 = rand.nextInt(3) + 1;
+                if (r1 == 1) {
+                    sounds.play("A", A_PEACE_SONG, true);
+                } else if (r1 == 2) {
+                    sounds.play("D", D_PEACE_SONG, true);
+                } else if (r1 == 3) {
+                    sounds.play("G", G_PEACE_SONG, true);
+                }
+                if (r2 == 1) {
+                    sounds.play("B", B_MARSH_SONG, true);
+                } else if (r2 == 2) {
+                    sounds.play("E", E_MARSH_SONG, true);
+                } else if (r2 == 3) {
+                    sounds.play("F", F_MARSH_SONG, true);
+                }
             }
         }
     }
@@ -993,7 +997,9 @@ public class GameController extends WorldController implements ContactListener{
             familiars.update(gorf);
             int f2 = familiars.getNumFam();
             if (f2 > f) {
-                familiarFX.play();
+                if (SFX_ON) {
+                    familiarFX.play();
+                }
                 pawAnimation.setFrame(1);
                 pawTimerStart = true;
             }
@@ -1096,13 +1102,15 @@ public class GameController extends WorldController implements ContactListener{
 
             SoundController.getInstance().update();
             if (fireflyController.update(gorf)) {
-                fireflyFX.play();
+                if (SFX_ON) {
+                    fireflyFX.play();
+                }
                 firefly_count++;
             }
 
-            if (InputController.getInstance().didDebug()) {
-                setDebug(!isDebug());
-            }
+//            if (InputController.getInstance().didDebug()) {
+//                setDebug(!isDebug());
+//            }
             /**
              for (Body b : scheduledForRemoval) {
              b.getWorld().destroyBody(b);
@@ -1347,7 +1355,11 @@ public class GameController extends WorldController implements ContactListener{
             } else  {
                 drawTextbox(level1tutorial1, 310.0f, 330.0f);
             }
-            drawTextbox(level1tutorial2, 590.0f, 480.0f);
+            drawTextbox(level1tutorial2, 700.0f, 480.0f);
+        } else if (LevelSelectController.getLevel() == 2 && familiars.getNumFam() == 1) {
+            drawTextbox(level2tutorial1,1610.0f, 530.0f);
+        } else if (LevelSelectController.getLevel() == 3 && familiars.getNumFam() == 0) {
+            drawTextbox(level3tutorial1,800.0f, 880.0f);
         }
         canvas.end();
 
@@ -2042,6 +2054,10 @@ public class GameController extends WorldController implements ContactListener{
                 timerGoText = false;
                 if (LevelSelectController.getLevel() == 1) {
                     inputTimerText = 9;
+                } else if (LevelSelectController.getLevel() == 2) {
+                    inputTimerText = 3;
+                } else if (LevelSelectController.getLevel() == 3) {
+                    inputTimerText = 3;
                 }
             }
         }

@@ -80,9 +80,9 @@ public abstract class WorldController implements Screen {
 
 	public  final String level1minimap = "minimaps/level1.png";
 	public  final String level2minimap = "minimaps/level2.png";
-	public  final String level3minimap = "minimaps/level3revised.png";
-	public  final String level4minimap = "minimaps/level4.png";
-	public final String level5minimap = "minimaps/BETA_rooms2.png";
+	public  final String level3minimap = "minimaps/level3.png";
+	public  final String level4minimap = "minimaps/level4_cross.png";
+	public final String level5minimap = "minimaps/level5_rooms.png";
 
 	/** The texture for walls and platforms */
 	protected TextureRegion earthTile;
@@ -97,6 +97,10 @@ public abstract class WorldController implements Screen {
 	private BoardModel tileBoard;
 	private Minimap minimap;
 	public Rectangle screenSize;
+
+	/** Booleans for the options menu */
+	public boolean MUSIC_ON = true;
+	public boolean SFX_ON = true;
 
 	/**
 	 * Getter for this world's Board Model object
