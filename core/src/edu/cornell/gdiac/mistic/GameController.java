@@ -1160,6 +1160,15 @@ public class GameController extends WorldController implements ContactListener{
             }
         } else if (state == WIN){
             //victoryFX.play();
+            switch (LevelSelectController.getLevel()) {
+                case 1: LevelSelectController.level1complete = true; break;
+                case 2: LevelSelectController.level2complete = true; break;
+                case 3: LevelSelectController.level3complete = true; break;
+                case 4: LevelSelectController.level4complete = true; break;
+                case 5: LevelSelectController.level5complete = true; break;
+                case 6: LevelSelectController.level6complete = true; break;
+                case 7: LevelSelectController.level7complete = true; break;
+            }
             if (timerGo) { //code to slow down multiple inputs and not register all of them
                 inputTimer--;
                 if (inputTimer == 0) {

@@ -184,6 +184,8 @@ public class OptionsController extends WorldController implements Screen {
                 break;
         }
 
+        //if WorldController.MUSIC
+
             canvas.end();
     }
 
