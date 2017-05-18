@@ -45,7 +45,9 @@ public class InputController {
 		}
 		return theController;
 	}
-	
+	// WASD boolean (will be linked to WorldController boolean)
+	private boolean WASD_ON = true;
+
 	// Fields to manage buttons
 	/** Whether the reset button was pressed. */
 	private boolean resetPressed;
@@ -222,6 +224,10 @@ public class InputController {
 	 * @return true if the 'm' button was pressed.
 	 */
 	public boolean didM() { return mPressed; }
+
+	public void setWASD(boolean b) {
+		WASD_ON = b;
+	}
 	
 	/**
 	 * Creates a new input controller
@@ -322,33 +328,56 @@ public class InputController {
 		enterPressed = (secondary && enterPressed) || (Gdx.input.isKeyPressed(Input.Keys.ENTER));
 		prevPressed = (secondary && prevPressed) || (Gdx.input.isKeyPressed(Input.Keys.P));
 		nextPressed = (secondary && nextPressed) || (Gdx.input.isKeyPressed(Input.Keys.N));
-		exitPressed  = (secondary && exitPressed) || (Gdx.input.isKeyPressed(Input.Keys.ESCAPE));
+		exitPressed = (secondary && exitPressed) || (Gdx.input.isKeyPressed(Input.Keys.ESCAPE));
 		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
-			if (mPressed==true) {mPressed = false;} else {mPressed = true;}}
-		
+			if (mPressed == true) {
+				mPressed = false;
+			} else {
+				mPressed = true;
+			}
+		}
+
 		// Directional controls
 		horizontal = (secondary ? horizontal : 0.0f);
-		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			horizontal += 2.0f;
+		if (WASD_ON) {
+			if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+				horizontal += 2.0f;
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+				horizontal -= 2.0f;
+			}
+		} else {
+			if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+				horizontal += 2.0f;
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+				horizontal -= 2.0f;
+			}
 		}
-		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			horizontal -= 2.0f;
-		}
-		
+
 		vertical = (secondary ? vertical : 0.0f);
-		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			vertical += 2.0f;
+		if (WASD_ON) {
+			if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+				vertical += 2.0f;
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+				vertical -= 2.0f;
+			}
+		} else {
+			if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+				vertical += 2.0f;
+			}
+			if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+				vertical -= 2.0f;
+			}
+
+			// Mouse results
+			tertiaryPressed = Gdx.input.isButtonPressed(Input.Buttons.LEFT);
+			crosshair.set(Gdx.input.getX(), Gdx.input.getY());
+			crosshair.scl(1 / scale.x, -1 / scale.y);
+			crosshair.y += bounds.height;
+			clampPosition(bounds);
 		}
-		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			vertical -= 2.0f;
-		}
-		
-		// Mouse results
-        tertiaryPressed = Gdx.input.isButtonPressed(Input.Buttons.LEFT);
-		crosshair.set(Gdx.input.getX(), Gdx.input.getY());
-		crosshair.scl(1/scale.x,-1/scale.y);
-		crosshair.y += bounds.height;
-		clampPosition(bounds);
 	}
 	
 	/**
