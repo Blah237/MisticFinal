@@ -120,6 +120,16 @@ public class GameController extends WorldController implements ContactListener{
 
     private static final String PAUSE_INSTRUC = "mistic/tutorial/level1/map_pause.png";
 
+    private static final String LEVEL_1_TUTORIAL_1 = "mistic/tutorial/level1/firefly.png";
+    private static final String LEVEL_1_TUTORIAL_2 = "mistic/tutorial/level1/delve.png";
+    private static final String LEVEL_1_TUTORIAL_3 = "mistic/tutorial/level1/morefireflies.png";
+
+    private static final String LEVEL_2_TUTORIAL_1 = "mistic/tutorial/level2/seqfam.png";
+
+    private static final String LEVEL_3_TUTORIAL_1 = "mistic/tutorial/level3/lantern.png";
+
+
+
     /** Menu Screen Texture References*/
     private static final String PAUSE_SCREEN = "mistic/spritesheet_pause.png";
     private static final String WIN_SCREEN = "mistic/spritesheet_win.png";
@@ -185,6 +195,16 @@ public class GameController extends WorldController implements ContactListener{
     private TextureRegion HUDPurpleFirefly;
 
     private TextureRegion pauseInstructions;
+
+    private TextureRegion level1tutorial1;
+    private TextureRegion level1tutorial2;
+    private TextureRegion level1tutorial3;
+    private TextureRegion level2tutorial1;
+    private TextureRegion level3tutorial1;
+
+    private boolean textboxAnimateTop;
+    private boolean textboxAnimateBottom;
+    private int textboxAnimateOffset;
 
     private FilmStrip pause;
     private FilmStrip win;
@@ -328,6 +348,24 @@ public class GameController extends WorldController implements ContactListener{
         manager.load(PAUSE_INSTRUC, Texture.class);
         assets.add(PAUSE_INSTRUC);
 
+        manager.load(LEVEL_1_TUTORIAL_1, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_1);
+
+        manager.load(LEVEL_1_TUTORIAL_2, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_2);
+
+        manager.load(LEVEL_1_TUTORIAL_3, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_3);
+
+        manager.load(LEVEL_2_TUTORIAL_1, Texture.class);
+        assets.add(LEVEL_2_TUTORIAL_1);
+
+        manager.load(LEVEL_3_TUTORIAL_1, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_1);
+
+        manager.load(LEVEL_3_TUTORIAL_1, Texture.class);
+        assets.add(LEVEL_1_TUTORIAL_1);
+
 
 
         for(String m : MIST_WALLS){
@@ -444,6 +482,12 @@ public class GameController extends WorldController implements ContactListener{
         pawAnimation = createFilmStrip(manager, HUD_PAW_ANIMATE, 1, 2, 2);
 
         pauseInstructions = createTexture(manager, PAUSE_INSTRUC, false);
+
+        level1tutorial1 = createTexture(manager, LEVEL_1_TUTORIAL_1, false);
+        level1tutorial2 = createTexture(manager, LEVEL_1_TUTORIAL_2, false);
+        level1tutorial3 = createTexture(manager, LEVEL_1_TUTORIAL_3, false);
+        level2tutorial1 = createTexture(manager, LEVEL_2_TUTORIAL_1, false);
+        level3tutorial1 = createTexture(manager, LEVEL_3_TUTORIAL_1, false);
 
         pause = createFilmStrip(manager, PAUSE_SCREEN, 1, 3, 3);
         win = createFilmStrip(manager, WIN_SCREEN, 1, 2, 2);
@@ -594,6 +638,8 @@ public class GameController extends WorldController implements ContactListener{
         this.monster = new ArrayList<MonsterModel>();
         wallCount = 0;
         state = PLAY;
+        textboxAnimateBottom = false;
+        textboxAnimateTop = false;
         setScreenListener(listener);
     }
 
@@ -629,6 +675,8 @@ public class GameController extends WorldController implements ContactListener{
         lanterns.clear();
         setComplete(false);
         setFailure(false);
+        textboxAnimateBottom = false;
+        textboxAnimateTop = false;
 
         wallCount = 0;
         tileCount = tileBoard.getWidth()*tileBoard.getHeight();
@@ -1257,6 +1305,14 @@ public class GameController extends WorldController implements ContactListener{
 
         canvas.setShader(null);
 
+        canvas.begin();
+        if (LevelSelectController.getLevel() == 1) {
+            canvas.draw(pauseInstructions, 0.0f, 480.0f );
+            canvas.draw(level1tutorial1, 310.0f, 330.0f );
+
+        }
+        canvas.end();
+
         // Draw under fog
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
             canvas.begin(gorf.getPosition().add(0,-bounds.getHeight()*2));
@@ -1474,10 +1530,6 @@ public class GameController extends WorldController implements ContactListener{
         for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
         for(EnvAsset env : landmarks){env.drawtop(canvas);}
 
-
-        if (LevelSelectController.getLevel() == 1) {
-            canvas.draw(pauseInstructions, 300.0f, 380.0f );
-        }
         canvas.end();
 
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {
@@ -1756,7 +1808,6 @@ public class GameController extends WorldController implements ContactListener{
         displayFont.setColor(Color.PURPLE);
         displayFont.getData().setScale(.5f,.5f);
         canvas.drawText(Float.toString(fogPercentage)+"%", displayFont, gorf.getPosition().x * scale.x - canvas.getWidth()*.59f/2f + 10f, gorf.getPosition().y * scale.y + canvas.getHeight()*.59f/2f - 10f); //OK guys this line is gonna be the longest line in our entire code and I will make it so with this comment, feel free to add more in your pushes
-
         // PLACEHOLDER--will be replaced by Victory screen
         //if (familiars.collectAll) {
           //  if (countdown > 0) {
@@ -1791,6 +1842,7 @@ public class GameController extends WorldController implements ContactListener{
             //canvas.endDebug();
         }
         canvas.end();
+
         if (state == PAUSE) {
             gorf.setFX(0);
             gorf.setFY(0);
@@ -1943,5 +1995,9 @@ public class GameController extends WorldController implements ContactListener{
 
     public void setScreenListener(ScreenListener listener) {
         this.listener = listener;
+    }
+
+    private void drawTextbox(TextureRegion box, float x, float y) {
+        canvas.draw(pauseInstructions, x, y);
     }
 }

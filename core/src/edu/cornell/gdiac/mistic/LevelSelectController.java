@@ -20,9 +20,15 @@ public class LevelSelectController extends WorldController implements Screen {
     private static final String GORF_TEXTURE = "mistic/gorfright.png";
     private static final String BACKGROUND = "mistic/levelmockup.png";
     private static final String BACKGROUND_OVERLAY = "mistic/levelmockup_wood.png";
+    private static final String WHITE_MIST = "mistic/whitemist.png";
+    private static final String PURPLE_MIST = "mistic/purplemist.png";
+
+
     private TextureRegion menu;
     private TextureRegion background;
     private TextureRegion gorf;
+    private TextureRegion whiteMist;
+    private TextureRegion purpleMist;
 
     private static final int LEVEL_CAP = 12;
 
@@ -45,7 +51,7 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level1 = "final_release/level1.json";
     public static final String level2 = "final_release/level2.json";
     public static final String level3 = "final_release/level3revised.json";
-    public static final String level4 = "final_release/level4.json";
+    public static final String level4 = "final_release/levelcross.json";
     public static final String level5 = "FINAL/FINAL_5rooms.json";
 
     public static final String level1minimap = "minimaps/level1.png";
@@ -53,6 +59,20 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level3minimap = "minimaps/level3revised.png";
     public static final String level4minimap = "minimaps/level4.png";
     public static final String level5minimap = "minimaps/BETA_rooms2.png";
+
+    public static boolean level1complete = false;
+    public static boolean level2complete = false;
+    public static boolean level3complete = false;
+    public static boolean level4complete = false;
+    public static boolean level5complete = false;
+    public static boolean level6complete = false;
+    public static boolean level7complete = false;
+    public static boolean level8complete = false;
+    public static boolean level9complete = false;
+    public static boolean level10complete = false;
+    public static boolean level11complete = false;
+    public static boolean level12complete = false;
+
 
 
 
@@ -73,6 +93,12 @@ public class LevelSelectController extends WorldController implements Screen {
         manager.load(GORF_TEXTURE, Texture.class);
         assets.add(GORF_TEXTURE);
 
+        manager.load(WHITE_MIST, Texture.class);
+        assets.add(WHITE_MIST);
+
+        manager.load(PURPLE_MIST, Texture.class);
+        assets.add(PURPLE_MIST);
+
 
         super.preLoadContent(manager);
     }
@@ -85,6 +111,8 @@ public class LevelSelectController extends WorldController implements Screen {
         menu = createTexture(manager, BACKGROUND, false);
         background = createTexture(manager, BACKGROUND_OVERLAY, false);
         gorf = createTexture(manager, GORF_TEXTURE, false);
+        whiteMist = createTexture(manager, WHITE_MIST, false);
+        purpleMist = createTexture(manager, PURPLE_MIST, false);
 
     }
 
