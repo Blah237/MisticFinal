@@ -103,17 +103,17 @@
       <file leaf-file-name="GameController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="1638" column="101" lean-forward="false" selection-start-line="1638" selection-start-column="101" selection-end-line="1638" selection-end-column="101" />
+            <state relative-caret-position="403">
+              <caret line="1644" column="10" lean-forward="false" selection-start-line="1644" selection-start-column="10" selection-end-line="1644" selection-end-column="10" />
               <folding>
-                <element signature="e#22036#22046#0" expanded="true" />
-                <element signature="e#23592#23602#0" expanded="true" />
-                <element signature="e#23667#23677#0" expanded="true" />
-                <element signature="e#23784#23794#0" expanded="true" />
-                <element signature="e#23909#23919#0" expanded="true" />
-                <element signature="e#24010#24019#0" expanded="true" />
-                <element signature="e#27595#27612#0" expanded="true" />
-                <marker date="1495074116000" expanded="false" signature="84260:84271" ph=" { " />
+                <element signature="e#22091#22101#0" expanded="true" />
+                <element signature="e#23647#23657#0" expanded="true" />
+                <element signature="e#23722#23732#0" expanded="true" />
+                <element signature="e#23839#23849#0" expanded="true" />
+                <element signature="e#23964#23974#0" expanded="true" />
+                <element signature="e#24065#24074#0" expanded="true" />
+                <element signature="e#27650#27667#0" expanded="true" />
+                <marker date="1495080323000" expanded="false" signature="84658:84669" ph=" { " />
               </folding>
             </state>
           </provider>
@@ -150,9 +150,14 @@
         <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="364">
-              <caret line="410" column="27" lean-forward="false" selection-start-line="410" selection-start-column="27" selection-end-line="410" selection-end-column="27" />
+              <caret line="422" column="27" lean-forward="false" selection-start-line="422" selection-start-column="27" selection-end-line="422" selection-end-column="27" />
               <folding>
-                <marker date="1495068972000" expanded="false" signature="802:895" ph="..." />
+                <marker date="1495079005000" expanded="false" signature="802:895" ph="..." />
+                <marker date="1495079005000" expanded="true" signature="13594:13657" ph="/**...*/" />
+                <marker date="1495079005000" expanded="false" signature="13694:13699" ph=" { " />
+                <marker date="1495079005000" expanded="false" signature="13731:13734" ph=" }" />
+                <marker date="1495079005000" expanded="true" signature="13738:13984" ph="/**...*/" />
+                <marker date="1495079005000" expanded="true" signature="14007:14388" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -326,7 +331,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>reset()</find>
       <find>DEAD</find>
       <find>music</find>
       <find>sfx</find>
@@ -352,10 +356,11 @@
       <find>xbox</find>
       <find>spawn</find>
       <find>MONSTERTIMER</find>
-      <find>createmonster</find>
       <find>monstertimer</find>
       <find>applyf</find>
       <find>primepressed</find>
+      <find>spawnmonster</find>
+      <find>createmonster</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1483,14 +1488,14 @@
         <state relative-caret-position="16540">
           <caret line="842" column="41" lean-forward="false" selection-start-line="842" selection-start-column="41" selection-end-line="842" selection-end-column="41" />
           <folding>
-            <element signature="e#22036#22046#0" expanded="true" />
-            <element signature="e#23592#23602#0" expanded="true" />
-            <element signature="e#23667#23677#0" expanded="true" />
-            <element signature="e#23784#23794#0" expanded="true" />
-            <element signature="e#23909#23919#0" expanded="true" />
-            <element signature="e#24010#24019#0" expanded="true" />
-            <element signature="e#27595#27612#0" expanded="true" />
-            <marker date="1495074116000" expanded="false" signature="84260:84271" ph=" { " />
+            <element signature="e#22091#22101#0" expanded="true" />
+            <element signature="e#23647#23657#0" expanded="true" />
+            <element signature="e#23722#23732#0" expanded="true" />
+            <element signature="e#23839#23849#0" expanded="true" />
+            <element signature="e#23964#23974#0" expanded="true" />
+            <element signature="e#24065#24074#0" expanded="true" />
+            <element signature="e#27650#27667#0" expanded="true" />
+            <marker date="1495080323000" expanded="false" signature="84658:84669" ph=" { " />
           </folding>
         </state>
       </provider>
@@ -1512,14 +1517,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#22036#22046#0" expanded="true" />
-            <element signature="e#23592#23602#0" expanded="true" />
-            <element signature="e#23667#23677#0" expanded="true" />
-            <element signature="e#23784#23794#0" expanded="true" />
-            <element signature="e#23909#23919#0" expanded="true" />
-            <element signature="e#24010#24019#0" expanded="true" />
-            <element signature="e#27595#27612#0" expanded="true" />
-            <marker date="1495074116000" expanded="false" signature="84260:84271" ph=" { " />
+            <element signature="e#22091#22101#0" expanded="true" />
+            <element signature="e#23647#23657#0" expanded="true" />
+            <element signature="e#23722#23732#0" expanded="true" />
+            <element signature="e#23839#23849#0" expanded="true" />
+            <element signature="e#23964#23974#0" expanded="true" />
+            <element signature="e#24065#24074#0" expanded="true" />
+            <element signature="e#27650#27667#0" expanded="true" />
+            <marker date="1495080323000" expanded="false" signature="84658:84669" ph=" { " />
           </folding>
         </state>
       </provider>
@@ -1540,14 +1545,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#22036#22046#0" expanded="true" />
-            <element signature="e#23592#23602#0" expanded="true" />
-            <element signature="e#23667#23677#0" expanded="true" />
-            <element signature="e#23784#23794#0" expanded="true" />
-            <element signature="e#23909#23919#0" expanded="true" />
-            <element signature="e#24010#24019#0" expanded="true" />
-            <element signature="e#27595#27612#0" expanded="true" />
-            <marker date="1495074116000" expanded="false" signature="84260:84271" ph=" { " />
+            <element signature="e#22091#22101#0" expanded="true" />
+            <element signature="e#23647#23657#0" expanded="true" />
+            <element signature="e#23722#23732#0" expanded="true" />
+            <element signature="e#23839#23849#0" expanded="true" />
+            <element signature="e#23964#23974#0" expanded="true" />
+            <element signature="e#24065#24074#0" expanded="true" />
+            <element signature="e#27650#27667#0" expanded="true" />
+            <marker date="1495080323000" expanded="false" signature="84658:84669" ph=" { " />
           </folding>
         </state>
       </provider>
@@ -1866,9 +1871,14 @@
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/util/SoundController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
-          <caret line="410" column="27" lean-forward="false" selection-start-line="410" selection-start-column="27" selection-end-line="410" selection-end-column="27" />
+          <caret line="422" column="27" lean-forward="false" selection-start-line="422" selection-start-column="27" selection-end-line="422" selection-end-column="27" />
           <folding>
-            <marker date="1495068972000" expanded="false" signature="802:895" ph="..." />
+            <marker date="1495079005000" expanded="false" signature="802:895" ph="..." />
+            <marker date="1495079005000" expanded="true" signature="13594:13657" ph="/**...*/" />
+            <marker date="1495079005000" expanded="false" signature="13694:13699" ph=" { " />
+            <marker date="1495079005000" expanded="false" signature="13731:13734" ph=" }" />
+            <marker date="1495079005000" expanded="true" signature="13738:13984" ph="/**...*/" />
+            <marker date="1495079005000" expanded="true" signature="14007:14388" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2023,17 +2033,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/edu/cornell/gdiac/mistic/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="1638" column="101" lean-forward="false" selection-start-line="1638" selection-start-column="101" selection-end-line="1638" selection-end-column="101" />
+        <state relative-caret-position="403">
+          <caret line="1644" column="10" lean-forward="false" selection-start-line="1644" selection-start-column="10" selection-end-line="1644" selection-end-column="10" />
           <folding>
-            <element signature="e#22036#22046#0" expanded="true" />
-            <element signature="e#23592#23602#0" expanded="true" />
-            <element signature="e#23667#23677#0" expanded="true" />
-            <element signature="e#23784#23794#0" expanded="true" />
-            <element signature="e#23909#23919#0" expanded="true" />
-            <element signature="e#24010#24019#0" expanded="true" />
-            <element signature="e#27595#27612#0" expanded="true" />
-            <marker date="1495074116000" expanded="false" signature="84260:84271" ph=" { " />
+            <element signature="e#22091#22101#0" expanded="true" />
+            <element signature="e#23647#23657#0" expanded="true" />
+            <element signature="e#23722#23732#0" expanded="true" />
+            <element signature="e#23839#23849#0" expanded="true" />
+            <element signature="e#23964#23974#0" expanded="true" />
+            <element signature="e#24065#24074#0" expanded="true" />
+            <element signature="e#27650#27667#0" expanded="true" />
+            <marker date="1495080323000" expanded="false" signature="84658:84669" ph=" { " />
           </folding>
         </state>
       </provider>

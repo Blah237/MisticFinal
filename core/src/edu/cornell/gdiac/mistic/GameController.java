@@ -1642,7 +1642,7 @@ public class GameController extends WorldController implements ContactListener{
             }
         }
 
-        canvas.draw(pauseInstructions, gorf.getPosition().x * scale.x, gorf.getPosition().y * scale.y);
+        //canvas.draw(pauseInstructions, gorf.getPosition().x * scale.x, gorf.getPosition().y * scale.y);
 
         if (familiars.getNumFam() / 10.0 < 1) {
 
