@@ -64,7 +64,7 @@ public abstract class WorldController implements Screen {
 	/** Track asset loading from all instances and subclasses */
 	protected AssetState worldAssetState = AssetState.EMPTY;
 	/** Track all loaded assets (for unloading purposes) */
-	protected Array<String> assets;	
+	protected Array<String> assets;
 	
 	// Pathnames to shared assets
 	/** File to texture for walls and platforms */
@@ -98,10 +98,20 @@ public abstract class WorldController implements Screen {
 	private Minimap minimap;
 	public Rectangle screenSize;
 
+	/**
+	 * Getter for this world's Board Model object
+	 *
+	 * @return  This world's Board Model object
+	 */
 	public BoardModel getTileBoard() {
 		return tileBoard;
 	}
 
+	/**
+	 * Getter for this world's Minimap
+	 *
+	 * @return  This world's Minimap
+	 */
 	public Minimap getMinimap() {
 		return minimap;
 	}

@@ -176,12 +176,12 @@ public class LevelSelectController extends WorldController implements Screen {
         canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
 
         switch (level) {
-            case 1: canvas.draw(gorf, 420, 695); break;
-            case 2: canvas.draw(gorf, 670, 665); break;
-            case 3: canvas.draw(gorf, 380, 385); break;
-            case 4: canvas.draw(gorf, 650, 210); break;
-            case 5: canvas.draw(gorf, 900, 315); break;
-            case 6: canvas.draw(gorf, 850, 573); break;
+            case 1: canvas.draw(gorf, 450, 680); break;
+            case 2: canvas.draw(gorf, 720, 635); break;
+            case 3: canvas.draw(gorf, 400, 375); break;
+            case 4: canvas.draw(gorf, 670, 210); break;
+            case 5: canvas.draw(gorf, 920, 300); break;
+            case 6: canvas.draw(gorf, 870, 560); break;
             case 7: canvas.draw(gorf, 1120, 670); break;
             case 8: canvas.draw(gorf, 1312, 821); break;
             case 9: canvas.draw(gorf, 1155, 460); break;

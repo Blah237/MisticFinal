@@ -21,8 +21,7 @@ package edu.cornell.gdiac.util;
 import com.badlogic.gdx.assets.*;
 import com.badlogic.gdx.audio.*;
 import com.badlogic.gdx.utils.*;
-
-import java.util.Iterator;
+import java.util.Random;
 
 /**
  * A singleton class for controlling sound effects in LibGDX
@@ -100,8 +99,10 @@ public class SoundController {
 	/** The singleton Sound controller instance */
 	private static SoundController controller;
 	
-	/** Keeps track of all of the allocated sound resources; filename to sound */
+	/** Keeps track of all of the allocated song resources; filename to sound */
 	private IdentityMap<String,Sound> soundbank;
+	/** Keeps track of all of the allocated marsh FX resources; filename to sound */
+	private IdentityMap<String,Sound> marshbank;
 	/** Keeps track of all of the "active" sounds; id to activeSound */
 	private IdentityMap<String,ActiveSound> actives;
 	/** Support class for garbage collection */
@@ -122,6 +123,7 @@ public class SoundController {
 	 */
 	private SoundController() {
 		soundbank = new IdentityMap<String,Sound>();
+		marshbank = new IdentityMap<String,Sound>();
 		actives = new IdentityMap<String,ActiveSound>();
 		collection = new Array<String>();
 		cooldown = DEFAULT_COOL;
@@ -245,10 +247,22 @@ public class SoundController {
 	 * @param manager  A reference to the asset manager loading the sound
 	 * @param filename The filename for the sound asset
 	 */
-	public void allocate(AssetManager manager, String filename) {
+	public void allocate(AssetManager manager, String filename, boolean isSong) {
 		Sound sound = manager.get(filename,Sound.class);
-		soundbank.put(filename,sound);
+		if (isSong) {
+			soundbank.put(filename, sound);
+		} else {
+			marshbank.put(filename,sound);
+		}
 	}
+
+	/**
+	 * Returns true only if the actives IdentityMap is empty (there are no
+	 * active sounds playing)
+	 *
+	 * @return  if actives is empty
+	 */
+	public boolean activesIsEmpty() { return (actives.size==0); }
 
 	/**
 	 * Plays the an instance of the given sound
@@ -274,7 +288,7 @@ public class SoundController {
 	}
 
 	/**
-	 * Play all sounds in the active map
+	 * Play all sounds in the active map. If they were already playing, continue to play them.
 	 */
 	public void playAllActive() {
 		for (IdentityMap.Entry<String,ActiveSound> k : actives) {
@@ -304,12 +318,17 @@ public class SoundController {
 	 */
 	public boolean play(String key, String filename, boolean loop, float volume) {
 		// Get the sound for the file
-		if (!soundbank.containsKey(filename) || current >= frameLimit) {
+		if ((!soundbank.containsKey(filename) && !marshbank.containsKey(filename)) || current >= frameLimit) {
 			return false;
 		}
 
 		// If there is a sound for this key, stop it
-		Sound sound = soundbank.get(filename);
+		Sound sound;
+		if (soundbank.containsKey(filename)) {
+			sound = soundbank.get(filename);
+		} else {
+			sound = marshbank.get(filename);
+		}
 		if (actives.containsKey(key)) {
 			ActiveSound snd = actives.get(key);
 			if (!snd.loop && snd.lifespan > cooldown) {

@@ -133,6 +133,7 @@ public class GameController extends WorldController implements ContactListener{
     private static final String F_MARSH_SONG = "sounds/F_Marsh_DEMO2.mp3";
     private static final String G_PEACE_SONG = "sounds/G_Wander_DEMO2.mp3";
     private static final String FX_FIREFLY = "sounds/_FX_firefly_FX.mp3";
+    private static final String FX_FAMILIAR = "sounds/_FX_familiar_FX.mp3";
     private static final String FX_VICTORY = "sounds/_FX_victory_FX.mp3";
     private static final String FX_DEATH = "sounds/_FX_death_FX.mp3";
 
@@ -148,6 +149,7 @@ public class GameController extends WorldController implements ContactListener{
     private TextureRegion minimapBackgroundTexture;
     private TextureRegion fogTexture;
     private TextureRegion fireflyTrack;
+    private TextureRegion minimapFirefly;
     private TextureRegion monsterTexture;
     private TextureRegion monsterTextureDead;
     private TextureRegion[] gorfTextures = new TextureRegion[GORF_TEXTURES.length];
@@ -203,6 +205,7 @@ public class GameController extends WorldController implements ContactListener{
 
     // make sound objects for sfx
     Sound fireflyFX = Gdx.audio.newSound(Gdx.files.internal(FX_FIREFLY));
+    Sound familiarFX = Gdx.audio.newSound(Gdx.files.internal(FX_FAMILIAR));
     Sound victoryFX = Gdx.audio.newSound(Gdx.files.internal(FX_VICTORY));
     Sound deathFX = Gdx.audio.newSound(Gdx.files.internal(FX_DEATH));
 
@@ -374,6 +377,8 @@ public class GameController extends WorldController implements ContactListener{
         // sfx
         manager.load(FX_FIREFLY, Sound.class);
         assets.add(FX_FIREFLY);
+        manager.load(FX_FAMILIAR, Sound.class);
+        assets.add(FX_FAMILIAR);
         manager.load(FX_VICTORY, Sound.class);
         assets.add(FX_VICTORY);
         manager.load(FX_DEATH, Sound.class);
@@ -407,6 +412,7 @@ public class GameController extends WorldController implements ContactListener{
         backgroundTexture = createTexture(manager,BACKGROUND,false);
         minimapBackgroundTexture = createTexture(manager,MINIMAP_BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
+        minimapFirefly=createTexture(manager,FIRE_FLY,false);
         monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
         monsterTextureDead=createTexture(manager,MONSTER_TEXTURE_DEAD,false);
 
@@ -460,14 +466,14 @@ public class GameController extends WorldController implements ContactListener{
             perlinTex[i] = createTexture(manager, PERLIN_NOISE + i + ".png", false).getTexture();
         }
 
-        // allocate sounds (not sfx)
-        sounds.allocate(manager,A_PEACE_SONG);
-        sounds.allocate(manager,B_MARSH_SONG);
-        sounds.allocate(manager,C_FOG_SONG);
-        sounds.allocate(manager,D_PEACE_SONG);
-        sounds.allocate(manager,E_MARSH_SONG);
-        sounds.allocate(manager,F_MARSH_SONG);
-        sounds.allocate(manager,G_PEACE_SONG);
+        // allocate songs and marsh fx
+        sounds.allocate(manager,A_PEACE_SONG,true);
+        sounds.allocate(manager,B_MARSH_SONG,false);
+        sounds.allocate(manager,C_FOG_SONG,true);
+        sounds.allocate(manager,D_PEACE_SONG,true);
+        sounds.allocate(manager,E_MARSH_SONG,false);
+        sounds.allocate(manager,F_MARSH_SONG,false);
+        sounds.allocate(manager,G_PEACE_SONG,true);
 
         super.loadContent(manager, canvas);
         tileBoard=super.getTileBoard();
@@ -745,7 +751,7 @@ public class GameController extends WorldController implements ContactListener{
         addObject(gorf);
 //        overFog.add(0, gorf);
 
-        fireflyController=new FireflyController(fireflyAnimation,fireflyPositions, scale,tileBoard);
+        fireflyController=new FireflyController(fireflyAnimation,fireflyPositions,scale,tileBoard);
         fireflyController.populate();
         int size =0;
 
@@ -754,8 +760,9 @@ public class GameController extends WorldController implements ContactListener{
                 size++;
             }
         }
+
         Vector2[] familiarVectors= new Vector2[size];
-        for(int k=0;k<size;k++){
+        for(int k=0;k<size;k++) {
             familiarVectors[k]= new Vector2(familiarPositions[k].fx/scale.x,familiarPositions[k].fy/scale.y);
         }
 
@@ -770,27 +777,27 @@ public class GameController extends WorldController implements ContactListener{
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale, perlinTex);
         glow = new Glow(canvas, super.screenSize, scale);
 
-        // play a random peace marsh pair of songs for the level
-//        Random rand = new Random();
-//        int r1 = rand.nextInt(3) + 1;
-//        int r2 = rand.nextInt(3) + 1;
-//        if (r1==1) {
-//            sounds.play("A",A_PEACE_SONG,true);
-//        } else if (r1==2) {
-//            sounds.play("D",D_PEACE_SONG,true);
-//        } else if (r1==3) {
-//            sounds.play("G",G_PEACE_SONG,true);
-//        }
-//        if (r2==1) {
-//            sounds.play("B",B_MARSH_SONG,true);
-//        } else if (r2==2) {
-//            sounds.play("E",E_MARSH_SONG,true);
-//        } else if (r2==3) {
-//            sounds.play("F",F_MARSH_SONG,true);
-//        }
-
-        sounds.play("A",A_PEACE_SONG,true);
-        sounds.play("B",B_MARSH_SONG,true);
+        // play a random peace marsh pair of songs for the level ONLY IF
+        // there are no active songs playing
+        if (sounds.activesIsEmpty()) {
+            Random rand = new Random();
+            int r1 = rand.nextInt(3) + 1;
+            int r2 = rand.nextInt(3) + 1;
+            if (r1 == 1) {
+                sounds.play("A", A_PEACE_SONG, true);
+            } else if (r1 == 2) {
+                sounds.play("D", D_PEACE_SONG, true);
+            } else if (r1 == 3) {
+                sounds.play("G", G_PEACE_SONG, true);
+            }
+            if (r2 == 1) {
+                sounds.play("B", B_MARSH_SONG, true);
+            } else if (r2 == 2) {
+                sounds.play("E", E_MARSH_SONG, true);
+            } else if (r2 == 3) {
+                sounds.play("F", F_MARSH_SONG, true);
+            }
+        }
     }
 
     private void createMonster(float x, float y) {
@@ -882,6 +889,7 @@ public class GameController extends WorldController implements ContactListener{
             familiars.update(gorf);
             int f2 = familiars.getNumFam();
             if (f2 > f) {
+                familiarFX.play();
                 pawAnimation.setFrame(1);
                 pawTimerStart = true;
             }
@@ -952,7 +960,7 @@ public class GameController extends WorldController implements ContactListener{
 
             float forcex = InputController.getInstance().getHorizontal();
             float forcey = InputController.getInstance().getVertical();
-            float moveacc = gorf.getThrust() * 0.3f;
+            float moveacc = gorf.getThrust();
 
             // make all movement equispeed
             Vector2 temp = new Vector2(forcex * moveacc, forcey * moveacc);
@@ -1361,10 +1369,10 @@ public class GameController extends WorldController implements ContactListener{
         canvas.end();
 
         // Draw familiar front glow
-        canvas.setShader(glow.getFamiliarFrontShader());
-        canvas.begin(gorf.getPosition());
-        drawGlow();
-        canvas.end();
+//        canvas.setShader(glow.getFamiliarFrontShader());
+//        canvas.begin(gorf.getPosition());
+//        drawGlow();
+//        canvas.end();
 
         // Draw over fog
         canvas.setShader(null);
@@ -1650,6 +1658,7 @@ public class GameController extends WorldController implements ContactListener{
         }
         canvas.end();
 
+        // the minimap
         // toggle minimap with 'm'
         if (InputController.getInstance().didM()) {
             // minimap
@@ -1669,18 +1678,36 @@ public class GameController extends WorldController implements ContactListener{
             canvas.end();
             canvas.begin(gorf.getPosition());
             // draw gorf moving representation
-            super.getMinimap().draw(canvas,
+            super.getMinimap().drawGorf(canvas,
                     gorf.getPosition().x,
                     gorf.getPosition().y,
                     gorf.getPosition().x * scale.x + 115.0f,
                     gorf.getPosition().y * scale.y - 155.0f);
+            // draw familiars
+            super.getMinimap().drawFamiliar(canvas,
+                    familiars.getX(),
+                    familiars.getY(),
+                    gorf.getPosition().x * scale.x + 115.0f,
+                    gorf.getPosition().y * scale.y - 155.0f,
+                    2f);
+            // draw fireflies programatically
+            for(Firefly f : fireflyController.fireflies) {
+                if(f!=null&&!f.isDestroyed()) {
+                    super.getMinimap().drawFirefly(canvas,
+                            f.getX()/scale.x,
+                            f.getY()/scale.y,
+                            gorf.getPosition().x * scale.x + 115.0f,
+                            gorf.getPosition().y * scale.y - 155.0f,
+                            2f);
+                }
+            }
             canvas.end();
         }
 
         canvas.begin();
         displayFont.setColor(Color.PURPLE);
         displayFont.getData().setScale(.5f,.5f);
-        canvas.drawText(Float.toString(fogPercentage)+"%", displayFont, gorf.getPosition().x * scale.x - canvas.getWidth()*.59f/2f + 10f, gorf.getPosition().y * scale.y + canvas.getHeight()*.59f/2f - 10f);
+        canvas.drawText(Float.toString(fogPercentage)+"%", displayFont, gorf.getPosition().x * scale.x - canvas.getWidth()*.59f/2f + 10f, gorf.getPosition().y * scale.y + canvas.getHeight()*.59f/2f - 10f); //OK guys this line is gonna be the longest line in our entire code and I will make it so with this comment, feel free to add more in your pushes
 
         // PLACEHOLDER--will be replaced by Victory screen
         //if (familiars.collectAll) {
