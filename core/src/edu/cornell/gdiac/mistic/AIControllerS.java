@@ -19,9 +19,6 @@ import java.util.ArrayList;
  */
 public class AIControllerS {
     DefaultTimepiece timePiece;
-
-    private boolean halved;
-
     private Seek<Vector2> seekTarget;
     private Wander<Vector2> wandering;
     private Flee<Vector2> flee;
@@ -42,7 +39,6 @@ public class AIControllerS {
     private boolean initialized = false;
 
     public AIControllerS(ArrayList<MonsterModel> monster, GorfModel gorf, BoardModel board) {
-        halved = false;
         timePiece = new DefaultTimepiece();
         seekTarget = new Seek<Vector2>(emptyWrapper);
         wandering = new Wander<Vector2>(emptyWrapper);
@@ -137,7 +133,7 @@ public class AIControllerS {
         if (inFog || inFogSpawn) {
             m.setFX(steering.linear.x * 7.0f);
             m.setFY(steering.linear.y * 7.0f);
-            if (halved) {
+            if (m.halved) {
                 halfSpeed(m);
             }
             m.applyForce();
@@ -161,9 +157,7 @@ public class AIControllerS {
         m.setFY(m.getFY()/2.0f);
     }
 
-    public void toggleHalved() {
-        this.halved = !halved;
-    }
+
 
     private class EnemyProximity implements Proximity<Vector2> {
 

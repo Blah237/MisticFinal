@@ -386,13 +386,24 @@ public class SoundController {
 			stop(k.key);
 		}
 	}
+
+	/**
+	 * sets the volume of all active sounds to the same input volume
+	 *
+	 * @param volume  Set all active sound volumes to this float value
+	 */
+	public void setAllActiveVolume(float volume) {
+		for (IdentityMap.Entry<String,ActiveSound> k : actives) {
+			k.value.sound.setVolume(k.value.id,volume);
+		}
+	}
 	
 	/**
 	 * Returns true if the sound instance is currently active
-	 * 
+	 *
 	 * @param key	The sound instance identifier
-	 * 
-	 * @return true if the sound instance is currently active
+	 *
+			 * @return true if the sound instance is currently active
 	 */
 	public boolean isActive(String key) {
 		return actives.containsKey(key);

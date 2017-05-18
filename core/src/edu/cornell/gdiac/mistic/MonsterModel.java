@@ -36,6 +36,9 @@ public class MonsterModel extends BoxObstacle {
     public BoxObstacle deadmonster;
     public float deadx;
     public float deady;
+    public boolean halved;
+    private float CARCASS_TIMER=1000;
+    private float carcassTimer=CARCASS_TIMER;
     /**
      * Creates a new monster at the given position.
      *
@@ -59,6 +62,7 @@ public class MonsterModel extends BoxObstacle {
         force = new Vector2();
         deadmonster= new BoxObstacle(x,y,width,height);
         this.deadmonster.setTexture(deadtex);
+        halved=false;
 
     }
 
@@ -77,6 +81,10 @@ public class MonsterModel extends BoxObstacle {
         this.monsterDeadTex=tex;
     }
 
+    public void setHalved(boolean halved) {
+        this.halved = halved;
+    }
+    public boolean getHalved() {return this.halved;}
 
     public boolean activatePhysics(World world) {
         // Get the box body from our parent class
@@ -192,8 +200,11 @@ public class MonsterModel extends BoxObstacle {
         super.draw(canvas);
     }
     public void drawDead(GameCanvas canvas){
-        System.out.println("Draw Dead x: "+ deadx);
-        System.out.println("Draw Dead y: "+ deady);
-        deadmonster.draw(canvas);
+        carcassTimer--;
+        if(carcassTimer==1){
+            carcassTimer=CARCASS_TIMER;
+            dead=false;
+        }
+        canvas.draw(monsterDeadTex, deadx, deady);
     }
 }
