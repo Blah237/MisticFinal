@@ -26,10 +26,7 @@ import edu.cornell.gdiac.obstacle.PolygonObstacle;
 
 import javax.swing.*;
 import javax.xml.soap.Text;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
 
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
@@ -777,7 +774,7 @@ public class GameController extends WorldController implements ContactListener{
                     }
                     wallCount++;
                 }
-                if (t.hasFamiliarOne) {
+                if (t.hasFamiliarOne ) {
                     familiarPositions[0]=t;
                 }
                 if (t.hasFamiliarTwo) {
@@ -842,6 +839,7 @@ public class GameController extends WorldController implements ContactListener{
         }
 
         if(familiarVectors.length!=0) {
+            Collections.shuffle(Arrays.asList(familiarTex));
             familiars = new Familiar(familiarTex, familiarVectors, scale);
             addObject(familiars.object);
             underFog.add(familiars.object);
