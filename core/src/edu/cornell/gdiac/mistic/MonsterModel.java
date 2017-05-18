@@ -36,6 +36,7 @@ public class MonsterModel extends BoxObstacle {
     public BoxObstacle deadmonster;
     public float deadx;
     public float deady;
+    public boolean halved;
     /**
      * Creates a new monster at the given position.
      *
@@ -59,6 +60,7 @@ public class MonsterModel extends BoxObstacle {
         force = new Vector2();
         deadmonster= new BoxObstacle(x,y,width,height);
         this.deadmonster.setTexture(deadtex);
+        halved=false;
 
     }
 
@@ -77,6 +79,10 @@ public class MonsterModel extends BoxObstacle {
         this.monsterDeadTex=tex;
     }
 
+    public void setHalved(boolean halved) {
+        this.halved = halved;
+    }
+    public boolean getHalved() {return this.halved;}
 
     public boolean activatePhysics(World world) {
         // Get the box body from our parent class

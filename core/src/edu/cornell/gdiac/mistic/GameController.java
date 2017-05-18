@@ -133,6 +133,7 @@ public class GameController extends WorldController implements ContactListener{
     private static final String F_MARSH_SONG = "sounds/F_Marsh_DEMO2.mp3";
     private static final String G_PEACE_SONG = "sounds/G_Wander_DEMO2.mp3";
     private static final String FX_FIREFLY = "sounds/_FX_firefly_FX.mp3";
+    private static final String FX_FAMILIAR = "sounds/_FX_familiar_FX.mp3";
     private static final String FX_VICTORY = "sounds/_FX_victory_FX.mp3";
     private static final String FX_DEATH = "sounds/_FX_death_FX.mp3";
 
@@ -192,6 +193,8 @@ public class GameController extends WorldController implements ContactListener{
     private static final int LOSE = 4;
     private static final int OFF = 5;
 
+    private static final int MAX_MONSTER=4;
+
 
     /** Track asset loading from all instances and subclasses */
     private AssetState rocketAssetState = AssetState.EMPTY;
@@ -204,6 +207,7 @@ public class GameController extends WorldController implements ContactListener{
 
     // make sound objects for sfx
     Sound fireflyFX = Gdx.audio.newSound(Gdx.files.internal(FX_FIREFLY));
+    Sound familiarFX = Gdx.audio.newSound(Gdx.files.internal(FX_FAMILIAR));
     Sound victoryFX = Gdx.audio.newSound(Gdx.files.internal(FX_VICTORY));
     Sound deathFX = Gdx.audio.newSound(Gdx.files.internal(FX_DEATH));
 
@@ -375,6 +379,8 @@ public class GameController extends WorldController implements ContactListener{
         // sfx
         manager.load(FX_FIREFLY, Sound.class);
         assets.add(FX_FIREFLY);
+        manager.load(FX_FAMILIAR, Sound.class);
+        assets.add(FX_FAMILIAR);
         manager.load(FX_VICTORY, Sound.class);
         assets.add(FX_VICTORY);
         manager.load(FX_DEATH, Sound.class);
@@ -462,14 +468,14 @@ public class GameController extends WorldController implements ContactListener{
             perlinTex[i] = createTexture(manager, PERLIN_NOISE + i + ".png", false).getTexture();
         }
 
-        // allocate sounds (not sfx)
-        sounds.allocate(manager,A_PEACE_SONG);
-        sounds.allocate(manager,B_MARSH_SONG);
-        sounds.allocate(manager,C_FOG_SONG);
-        sounds.allocate(manager,D_PEACE_SONG);
-        sounds.allocate(manager,E_MARSH_SONG);
-        sounds.allocate(manager,F_MARSH_SONG);
-        sounds.allocate(manager,G_PEACE_SONG);
+        // allocate songs and marsh fx
+        sounds.allocate(manager,A_PEACE_SONG,true);
+        sounds.allocate(manager,B_MARSH_SONG,false);
+        sounds.allocate(manager,C_FOG_SONG,true);
+        sounds.allocate(manager,D_PEACE_SONG,true);
+        sounds.allocate(manager,E_MARSH_SONG,false);
+        sounds.allocate(manager,F_MARSH_SONG,false);
+        sounds.allocate(manager,G_PEACE_SONG,true);
 
         super.loadContent(manager, canvas);
         tileBoard=super.getTileBoard();
@@ -499,7 +505,7 @@ public class GameController extends WorldController implements ContactListener{
 
     //monster stuff
     final int MONSTERTIMER=1200;
-    int monsterSpawnTimer = MONSTERTIMER;
+    int monsterSpawnTimer = 0;
     BoardModel.Tile fogSpawn;
 
 
@@ -773,27 +779,27 @@ public class GameController extends WorldController implements ContactListener{
         fog = new FogController(tileBoard, canvas, super.screenSize, 2.0f, scale, perlinTex);
         glow = new Glow(canvas, super.screenSize, scale);
 
-        // play a random peace marsh pair of songs for the level
-//        Random rand = new Random();
-//        int r1 = rand.nextInt(3) + 1;
-//        int r2 = rand.nextInt(3) + 1;
-//        if (r1==1) {
-//            sounds.play("A",A_PEACE_SONG,true);
-//        } else if (r1==2) {
-//            sounds.play("D",D_PEACE_SONG,true);
-//        } else if (r1==3) {
-//            sounds.play("G",G_PEACE_SONG,true);
-//        }
-//        if (r2==1) {
-//            sounds.play("B",B_MARSH_SONG,true);
-//        } else if (r2==2) {
-//            sounds.play("E",E_MARSH_SONG,true);
-//        } else if (r2==3) {
-//            sounds.play("F",F_MARSH_SONG,true);
-//        }
-
-        sounds.play("A",A_PEACE_SONG,true);
-        sounds.play("B",B_MARSH_SONG,true);
+        // play a random peace marsh pair of songs for the level ONLY IF
+        // there are no active songs playing
+        if (sounds.activesIsEmpty()) {
+            Random rand = new Random();
+            int r1 = rand.nextInt(3) + 1;
+            int r2 = rand.nextInt(3) + 1;
+            if (r1 == 1) {
+                sounds.play("A", A_PEACE_SONG, true);
+            } else if (r1 == 2) {
+                sounds.play("D", D_PEACE_SONG, true);
+            } else if (r1 == 3) {
+                sounds.play("G", G_PEACE_SONG, true);
+            }
+            if (r2 == 1) {
+                sounds.play("B", B_MARSH_SONG, true);
+            } else if (r2 == 2) {
+                sounds.play("E", E_MARSH_SONG, true);
+            } else if (r2 == 3) {
+                sounds.play("F", F_MARSH_SONG, true);
+            }
+        }
     }
 
     private void createMonster(float x, float y) {
@@ -810,24 +816,34 @@ public class GameController extends WorldController implements ContactListener{
 
     private void despawnMonster(ArrayList<MonsterModel> monster){
         for(MonsterModel m : monster){
+            //System.out.println(m.getHalved());
             float posx=m.getX()*scale.x;
             float posy=m.getY()*scale.y;
             int tx=tileBoard.screenToBoardX(posx);
             int ty=tileBoard.screenToBoardY(posy);
-            if(tileBoard.isLanternGlow(tx,ty)){
+            if(tileBoard.isLanternGlow(tx,ty) || tileBoard.isGorfGlow(tx,ty)){
                 m.updateDeathTimer();
+                m.setHalved(true);
+                //System.out.println("In light! Countdown:" + m.getMonsterDeathTimer());
                 if(m.getMonsterDeathTimer()==0){
+                    //System.out.println("Monster despawned at" + posx + ", " + posy + " , reset to origin");
                     //m.dead=true;
-                    m.deadmonster.setPosition(m.getX(),m.getY());
+                    m.setHalved(false);
+                    //m.deadmonster.setPosition(m.getX(),m.getY());
                     //m.setTexture(monsterTextureDead);
-                    //System.out.println("MONSTER RESET"+ tileBoard.boardtoScreenX(fogSpawn.x)
-                    //        + ", "+tileBoard.boardToScreenY(fogSpawn.y));
-                    m.setPosition(tileBoard.boardtoScreenX(fogSpawn.x),
-                            tileBoard.boardToScreenY(fogSpawn.y));
+                    //System.out.println("MONSTER RESET"+ tileBoard.bo
+                    // ardtoScreenX(fogSpawn.x)
+                    //         + ", "+tileBoard.boardToScreenY(fogSpawn.y));
+                    Array<Vector2> fogtiles = fog.getFogTiles();
+                    Vector2 v = fogtiles.get(random(fogtiles.size-1));
+                    BoardModel.Tile t = tileBoard.getTile((int)v.x,(int)v.y);
+                    m.setPosition(t.fx/scale.x,t.fy/scale.y);
                     m.monsterDeathReset();
                 }
             }else{
+                m.setHalved(false);
                 m.monsterDeathReset();
+                //System.out.println("Monster timer reset");
             }
             //System.out.println(m.getMonsterDeathTimer());
         }
@@ -885,6 +901,7 @@ public class GameController extends WorldController implements ContactListener{
             familiars.update(gorf);
             int f2 = familiars.getNumFam();
             if (f2 > f) {
+                familiarFX.play();
                 pawAnimation.setFrame(1);
                 pawTimerStart = true;
             }
@@ -923,32 +940,16 @@ public class GameController extends WorldController implements ContactListener{
                 fireflyDeathTimer = 0;
             }
 
-
+        if(monster.size() < MAX_MONSTER);
         if (monsterSpawnTimer != 0) {
             monsterSpawnTimer--;
-        } else if(inFog){
-
-            //System.out.println("Monster spaawning!! Gorf in fog");
-            /**
-            boolean fog=false;
-            while(!fog){
-                int gx= tileBoard.screenToBoardX(gorf.getX()*scale.x)+random(10,20);
-                int gy= tileBoard.screenToBoardY(gorf.getY()*scale.y)+random(10,20);
-                if(tileBoard.isFog(gx,gy)){
-                    fog=true;
-                    createMonster(tileBoard.getTile(gx,gy).fx / scale.x,
-                            tileBoard.getTile(gx,gy).fy / scale.y);
-                }
-            }
-            monsterSpawnTimer=MONSTERTIMER;**/
-            createMonster(tileBoard.getTileCenterX(fogSpawn)/scale.x,tileBoard.getTileCenterY(fogSpawn)/scale.y);
-            monsterSpawnTimer=MONSTERTIMER;
-
-        }else{
-            createMonster(tileBoard.getTileCenterX(fogSpawn)/scale.x,tileBoard.getTileCenterY(fogSpawn)/scale.y);
-            monsterSpawnTimer=MONSTERTIMER;
+        } else {
+            monsterSpawnTimer = MONSTERTIMER;
+            Array<Vector2> fogtiles = fog.getFogTiles();
+            Vector2 v = fogtiles.get(random(fogtiles.size - 1));
+            BoardModel.Tile t = tileBoard.getTile((int) v.x, (int) v.y);
+            createMonster(t.fx/scale.x,t.fy/scale.y);
         }
-
 
 
             fog.update(gorf, Lanterns, familiars, firefly_count, tileBoard, canvas, dt);
