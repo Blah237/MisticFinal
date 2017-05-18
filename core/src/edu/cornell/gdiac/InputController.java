@@ -46,7 +46,7 @@ public class InputController {
 		return theController;
 	}
 	// WASD boolean (will be linked to WorldController boolean)
-	private boolean WASD_ON = true;
+	private boolean WASD_ON = false;
 
 	// Fields to manage buttons
 	/** Whether the reset button was pressed. */
