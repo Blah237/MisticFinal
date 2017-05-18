@@ -727,15 +727,17 @@ public class GameController extends WorldController implements ContactListener{
                 }
                 if(t.hasRock !=0){
                     int num = t.hasRock-1;
+                    int index = num % 4;
                     EnvAsset rock = new EnvAsset(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y, rocks[num], rocktops[num],false, num, scale);
+                            tileBoard.getTileCenterY(t) / scale.y, rocks[index], rocktops[index],false, index, scale);
                     landmarks.add(rock);
                     addObject(rock.getObject());
                 }
                 if(t.hasTree!=0){
                     int num = t.hasTree-1;
+                    int index = num % 4;
                     EnvAsset tree = new EnvAsset(tileBoard.getTileCenterX(t) / scale.x,
-                            tileBoard.getTileCenterY(t) / scale.y, trees[num], treetops[num],true, num, scale);
+                            tileBoard.getTileCenterY(t) / scale.y, trees[index], treetops[index],true, index, scale);
                     landmarks.add(tree);
                     addObject(tree.getObject());
 
@@ -815,31 +817,50 @@ public class GameController extends WorldController implements ContactListener{
         monster.getBody().setUserData("monster");
     }
 
-    private void despawnMonster(ArrayList<MonsterModel> monster){
+    private BoardModel.Tile getSpawnPoint(int timer, int gx, int gy){
+        Array<Vector2> fogtiles = fog.getFogTiles();
+        Vector2 v = fogtiles.get(random(fogtiles.size-1));
+        BoardModel.Tile t = tileBoard.getTile((int)v.x,(int)v.y);
+        if (t.isGorfGlow || t.isLanternGlow || (t.x-gx < 5 && t.x-gx < 5)){
+            //System.out.println("WHOOPS! BAD SPAWN AREA, TRYING AGAIN");
+            //System.out.println("Gorf glow?: " + t.isGorfGlow);
+            //System.out.println("on top of Gorf?: " + (t.x-gx < 5 && t.x-gx < 5));
+            timer--;
+            if(timer==0){
+                return fogSpawn;
+            }else{
+                return getSpawnPoint(timer, gx,gy);
+            }
+        }else{
+            return t;
+        }
+    }
+
+    private void respawnMonster(int gx, int gy, MonsterModel m){
+        int timer=50;
+        BoardModel.Tile t = getSpawnPoint(timer,gx,gy);
+        m.setPosition(t.fx/scale.x,t.fy/scale.y);
+        m.monsterDeathReset();
+    }
+
+    private void despawnMonster(ArrayList<MonsterModel> monster, GorfModel gorf){
         for(MonsterModel m : monster){
             float posx=m.getX()*scale.x;
             float posy=m.getY()*scale.y;
             int tx=tileBoard.screenToBoardX(posx);
             int ty=tileBoard.screenToBoardY(posy);
+            int gx=tileBoard.screenToBoardX(gorf.getX()*scale.x);
+            int gy=tileBoard.screenToBoardY(gorf.getY()*scale.y);
             if(tileBoard.isLanternGlow(tx,ty)){
                 m.updateDeathTimer();
-                m.setHalved(false);
                 if(m.getMonsterDeathTimer()==0){
                     m.setHalved(false);
                     m.setDeadTexture(monsterTextureDead);
                     m.deadmonster.setPosition(m.getX(),m.getY());
                     m.deadx=posx;
-                    m.deady=posy-15;
+                    m.deady=posy-monsterTexture.getRegionHeight();
                     m.dead=true;
-
-                    //m.setTexture(monsterTextureDead);
-                    // ardtoScreenX(fogSpawn.x)
-                    //         + ", "+tileBoard.boardToScreenY(fogSpawn.y));
-                    Array<Vector2> fogtiles = fog.getFogTiles();
-                    Vector2 v = fogtiles.get(random(fogtiles.size-1));
-                    BoardModel.Tile t = tileBoard.getTile((int)v.x,(int)v.y);
-                    m.setPosition(t.fx/scale.x,t.fy/scale.y);
-                    m.monsterDeathReset();
+                    respawnMonster(gx,gy,m);
                 }
             } else if (tileBoard.isGorfGlow(tx,ty)){
                 m.setHalved(true);
@@ -982,7 +1003,7 @@ public class GameController extends WorldController implements ContactListener{
                 wrapInBounds(m);
             }
             ai.update(dt, world, firefly_count);
-            despawnMonster(monster);
+            despawnMonster(monster, gorf);
 
             if (familiars.collectAll) {
                 sounds.setAllActiveVolume(0.5f);

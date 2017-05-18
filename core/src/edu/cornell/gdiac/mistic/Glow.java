@@ -95,17 +95,17 @@ public class Glow {
             lanternX = litLanterns.get(i).getX() * scale.x + scale.x/2f;
             lanternY = litLanterns.get(i).getY() * scale.y + scale.y/2f;
 
-//            if (lanternX > screenDim.x/2f && gorfPos.x < screenDim.x/2f) {
+            if (lanternX > screenDim.x/2f && gorfPos.x < screenDim.x/2f) {
                 lanternsPos[2 * i] = (lanternX - ((gorfPos.x - zoom * res.x / 2.0f + screenDim.x) % screenDim.x)) / (zoom * res.x);
-//            } else {
-//                lanternsPos[2 * i] = (lanternX - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
-//            }
+            } else {
+                lanternsPos[2 * i] = (lanternX - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+            }
 
-//            if (lanternY > screenDim.y/2f && gorfPos.y < screenDim.y/2f) {
+            if (lanternY > screenDim.y/2f && gorfPos.y < screenDim.y/2f) {
                 lanternsPos[2 * i + 1] = (lanternY - ((gorfPos.y - zoom * res.y / 2.0f + screenDim.y) % screenDim.y)) / (zoom * res.y);
-//            } else {
-//                lanternsPos[2 * i + 1] = (lanternY - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
-//            }
+            } else {
+                lanternsPos[2 * i + 1] = (lanternY - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+            }
 
 //            if (lanternX < gorfPos.x) {
 //                lanternsPos[2 * i] = (lanternX - ((gorfPos.x - zoom * res.x / 2.0f + res.x) % res.x)) / (zoom * res.x);
@@ -126,7 +126,20 @@ public class Glow {
             gorfRadius = .8f* (1f - (float) Math.exp(-nFireflies / 2f));
         }
 
-        Vector2 familiarPos = new Vector2((familiar.getX() * scale.x + scale.x/2f - ((gorfPos.x - zoom * res.x / 2.0f + screenDim.x) % screenDim.x)) / (zoom * res.x), (familiar.getY() * scale.y + scale.y/2f - ((gorfPos.y - zoom * res.y / 2.0f + screenDim.y) % screenDim.y)) / (zoom * res.y));
+        float familiarX = familiar.getX() * scale.x + scale.x/2f;
+        float familiarY = familiar.getY() * scale.y + scale.y/2f;
+        if (familiarX > screenDim.x/2f && gorfPos.x < screenDim.x/2f) {
+            familiarX = (familiarX - ((gorfPos.x - zoom * res.x / 2.0f + screenDim.x) % screenDim.x)) / (zoom * res.x);
+        } else {
+            familiarX = (familiarX - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+        }
+
+        if (familiarY > screenDim.y/2f && gorfPos.y < screenDim.y/2f) {
+            familiarY = (familiarY - ((gorfPos.y - zoom * res.y / 2.0f + screenDim.y) % screenDim.y)) / (zoom * res.y);
+        } else {
+            familiarY = (familiarY - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+        }
+        Vector2 familiarPos = new Vector2(familiarX, familiarY);
 
         ArrayList<Firefly> spawnedFireflies = new ArrayList<Firefly>();
         for (Firefly f : fireflies) {

@@ -1275,9 +1275,6 @@ public class FogController {
                 }
                 if (tileBoard.isFog(lx, ly)) {
                     tileBoard.setFog(lx, ly, false);
-                    System.out.println(fogTiles.size);
-                    System.out.println(fogTiles.size);
-                    System.out.println();
                     fogCount--;
                 }
                 tileBoard.setLanternGlow(lx, ly, true);
