@@ -658,7 +658,9 @@ public class GameController extends WorldController implements ContactListener{
             obj.deactivatePhysics(world);
         }
         // keep playing currently playing sounds
-        sounds.playAllActive();
+        if (super.MUSIC_ON) {
+            sounds.playAllActive();
+        }
 
         objects.clear();
         walls.clear();
@@ -846,23 +848,25 @@ public class GameController extends WorldController implements ContactListener{
 
         // play a random peace marsh pair of songs for the level ONLY IF
         // there are no active songs playing
-        if (sounds.activesIsEmpty()) {
-            Random rand = new Random();
-            int r1 = rand.nextInt(3) + 1;
-            int r2 = rand.nextInt(3) + 1;
-            if (r1 == 1) {
-                sounds.play("A", A_PEACE_SONG, true);
-            } else if (r1 == 2) {
-                sounds.play("D", D_PEACE_SONG, true);
-            } else if (r1 == 3) {
-                sounds.play("G", G_PEACE_SONG, true);
-            }
-            if (r2 == 1) {
-                sounds.play("B", B_MARSH_SONG, true);
-            } else if (r2 == 2) {
-                sounds.play("E", E_MARSH_SONG, true);
-            } else if (r2 == 3) {
-                sounds.play("F", F_MARSH_SONG, true);
+        if (super.MUSIC_ON) {
+            if (sounds.activesIsEmpty()) {
+                Random rand = new Random();
+                int r1 = rand.nextInt(3) + 1;
+                int r2 = rand.nextInt(3) + 1;
+                if (r1 == 1) {
+                    sounds.play("A", A_PEACE_SONG, true);
+                } else if (r1 == 2) {
+                    sounds.play("D", D_PEACE_SONG, true);
+                } else if (r1 == 3) {
+                    sounds.play("G", G_PEACE_SONG, true);
+                }
+                if (r2 == 1) {
+                    sounds.play("B", B_MARSH_SONG, true);
+                } else if (r2 == 2) {
+                    sounds.play("E", E_MARSH_SONG, true);
+                } else if (r2 == 3) {
+                    sounds.play("F", F_MARSH_SONG, true);
+                }
             }
         }
     }
@@ -987,7 +991,9 @@ public class GameController extends WorldController implements ContactListener{
             familiars.update(gorf);
             int f2 = familiars.getNumFam();
             if (f2 > f) {
-                familiarFX.play();
+                if (SFX_ON) {
+                    familiarFX.play();
+                }
                 pawAnimation.setFrame(1);
                 pawTimerStart = true;
             }
@@ -1088,13 +1094,15 @@ public class GameController extends WorldController implements ContactListener{
 
             SoundController.getInstance().update();
             if (fireflyController.update(gorf)) {
-                fireflyFX.play();
+                if (SFX_ON) {
+                    fireflyFX.play();
+                }
                 firefly_count++;
             }
 
-            if (InputController.getInstance().didDebug()) {
-                setDebug(!isDebug());
-            }
+//            if (InputController.getInstance().didDebug()) {
+//                setDebug(!isDebug());
+//            }
             /**
              for (Body b : scheduledForRemoval) {
              b.getWorld().destroyBody(b);
