@@ -504,7 +504,7 @@ public class GameController extends WorldController implements ContactListener{
     boolean pawTimerStart = false;
 
     //monster stuff
-    final int MONSTERTIMER=1200;
+    final int MONSTERTIMER=400;
     int monsterSpawnTimer = 0;
     BoardModel.Tile fogSpawn;
 
