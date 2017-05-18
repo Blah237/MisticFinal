@@ -22,6 +22,7 @@ public class AIControllerS {
     private Seek<Vector2> seekTarget;
     private Wander<Vector2> wandering;
     private Flee<Vector2> flee;
+    public int FRAMES=5;
 
     EnemyWrapper enemyWrapper = new EnemyWrapper();
     TargetWrapper targetWrapper = new TargetWrapper();
