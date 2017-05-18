@@ -19,16 +19,21 @@ public class Glow {
     String lanternBackFragmentShader;
     String lanternFrontFragmentShader;
     String gorfFragmentShader;
+    String fireflyFragmentShader;
     ShaderProgram familiarBackShader;
     ShaderProgram familiarFrontShader;
     ShaderProgram lanternBackShader;
     ShaderProgram lanternFrontShader;
     ShaderProgram gorfShader;
+    ShaderProgram fireflyShader;
 
     Vector2 res;
     Vector2 screenDim;
     private final float zoom = .59f;
     Vector2 scale;
+
+    Vector2 indicatorDir;
+    float indicatorStrength;
 
     public Glow(GameCanvas canvas, Rectangle screensize, Vector2 scale){
         vertexShader = Gdx.files.internal("mistic/shaders/fog.vert.glsl").readString();
@@ -37,12 +42,14 @@ public class Glow {
         lanternBackFragmentShader = Gdx.files.internal("mistic/shaders/lantern_back.frag.glsl").readString();
         lanternFrontFragmentShader = Gdx.files.internal("mistic/shaders/lantern_front.frag.glsl").readString();
         gorfFragmentShader = Gdx.files.internal("mistic/shaders/gorfglow.frag.glsl").readString();
+        fireflyFragmentShader = Gdx.files.internal("mistic/shaders/fireflies.frag.glsl").readString();
 
         familiarBackShader = new ShaderProgram(vertexShader, familiarBackFragmentShader);
         familiarFrontShader = new ShaderProgram(vertexShader, familiarFrontFragmentShader);
         lanternBackShader = new ShaderProgram(vertexShader, lanternBackFragmentShader);
         lanternFrontShader = new ShaderProgram(vertexShader, lanternFrontFragmentShader);
         gorfShader = new ShaderProgram(vertexShader, gorfFragmentShader);
+        fireflyShader = new ShaderProgram(vertexShader, fireflyFragmentShader);
 
         res = new Vector2(canvas.getWidth(), canvas.getHeight());
 
@@ -51,6 +58,7 @@ public class Glow {
         initShader(lanternBackShader);
         initShader(lanternFrontShader);
         initShader(gorfShader);
+        initShader(fireflyShader);
 
         this.scale = scale;
         screenDim = new Vector2(screensize.getWidth(), screensize.getHeight());
@@ -76,23 +84,42 @@ public class Glow {
         Vector2 gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
 
         ArrayList<Lantern> litLanterns = new ArrayList<Lantern>();
-        for (int i=0; i<lanterns.size(); i++) {
-            if (lanterns.get(i).lit) {
-                litLanterns.add(lanterns.get(i));
+        for (Lantern l : lanterns) {
+            if (l.lit) {
+                litLanterns.add(l);
             }
         }
         float[] lanternsPos = new float[litLanterns.size()*2];
-        for (int j=0; j<litLanterns.size(); j++) {
-            lanternsPos[2*j] = (litLanterns.get(j).getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
-            lanternsPos[2*j + 1] = (litLanterns.get(j).getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+        for (int i=0; i<litLanterns.size(); i++) {
+            lanternsPos[2*i] = (litLanterns.get(i).getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+            lanternsPos[2*i + 1] = (litLanterns.get(i).getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
         }
 
-        Vector2 familiarPos = new Vector2((familiar.getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x), (familiar.getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y));
 
         float gorfRadius = 0;
         if (nFireflies > 0) {
             gorfRadius = .4f * (1f - (float) Math.exp(-nFireflies / 2f));
         }
+
+        Vector2 familiarPos = new Vector2((familiar.getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x), (familiar.getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y));
+
+        ArrayList<Firefly> spawnedFireflies = new ArrayList<Firefly>();
+        for (Firefly f : fireflies) {
+            if (!f.isDestroyed()) {
+                spawnedFireflies.add(f);
+            }
+        }
+
+        float[] firefliesPos = new float[spawnedFireflies.size()*2];
+        for (int j=0; j<spawnedFireflies.size(); j++) {
+            firefliesPos[2*j] = (spawnedFireflies.get(j).getX() - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+            firefliesPos[2*j + 1] = (spawnedFireflies.get(j).getY() - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+        }
+
+//        float dirX = Math.min(familiarPos.x - gorfPos.x, gorfPos.x - (screenDim.x - familiarPos.x));
+//        float dirY = Math.min(familiarPos.y - gorfPos.y, gorfPos.y - (screenDim.y - familiarPos.y));
+//        indicatorDir = new Vector2(dirX, dirY);
+//        indicatorStrength = indicatorDir.len() / (new Vector2(screenDim.x/2f, screenDim.y/2f)).len();
 
         familiarBackShader.begin();
         familiarBackShader.setUniformf("familiarPos", familiarPos.x, familiarPos.y);
@@ -115,6 +142,11 @@ public class Glow {
         gorfShader.begin();
         gorfShader.setUniformf("radius", gorfRadius+.2f);
         gorfShader.end();
+
+        fireflyShader.begin();
+        fireflyShader.setUniform2fv("fireflies", firefliesPos, 0, firefliesPos.length);
+        fireflyShader.setUniformi("numFireflies", spawnedFireflies.size());
+        fireflyShader.end();
     }
 
     public void draw(GameCanvas canvas, TextureRegion texRegion, Vector2 pos) {
@@ -137,4 +169,5 @@ public class Glow {
     public ShaderProgram getLanternBackShader() { return  lanternBackShader; }
     public ShaderProgram getLanternFrontShader() { return  lanternFrontShader; }
     public ShaderProgram getGorfShader() { return gorfShader; }
+    public ShaderProgram getFireflyShader() { return fireflyShader; }
 }
