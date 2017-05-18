@@ -118,7 +118,7 @@ public class GameController extends WorldController implements ContactListener{
     private static final String HUD_PAW_ANIMATE = "mistic/spritesheet_paw.png";
     private static final String HUD_PURPLE_FIREFLY = "mistic/purple_firefly.png";
 
-    private static final String PAUSE_INSTRUC = "mistic/pause.png";
+    private static final String PAUSE_INSTRUC = "mistic/tutorial/level1/map_pause.png";
 
     /** Menu Screen Texture References*/
     private static final String PAUSE_SCREEN = "mistic/spritesheet_pause.png";
@@ -1472,6 +1472,10 @@ public class GameController extends WorldController implements ContactListener{
         for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
         for(EnvAsset env : landmarks){env.drawtop(canvas);}
 
+
+        if (LevelSelectController.getLevel() == 1) {
+            canvas.draw(pauseInstructions, 300.0f, 380.0f );
+        }
         canvas.end();
 
         if (gorf.getY() > DEFAULT_HEIGHT / 2f) {

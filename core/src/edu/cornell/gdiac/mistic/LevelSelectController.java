@@ -193,7 +193,7 @@ public class LevelSelectController extends WorldController implements Screen {
         canvas.end();
     }
 
-    public int getLevel() {
+    public static int getLevel() {
         return level;
     }
 
