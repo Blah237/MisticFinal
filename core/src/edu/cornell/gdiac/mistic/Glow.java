@@ -33,12 +33,13 @@ public class Glow {
     Vector2 scale;
 
     public static final int FIREFLY_TIMER = 8;
-    public static final Vector2[] FIREFLY_OFFSET = [
-            new Vector2(0f,5f), new Vector2(0f,5f), new Vector2(1f,4f), new Vector2(2f,5f),
-            new Vector2(1f,3f), new Vector2(2f,5f), new Vector2(1f,4f), new Vector2(0f,5f),
-            new Vector2(0f,5f), new Vector2(0f,5f), new Vector2(1f,4f), new Vector2(2f,5f),
-            new Vector2(1f,3f), new Vector2(2f,5f), new Vector2(1f,4f), new Vector2(0f,5f)
-    ];
+    public static final Vector2[] FIREFLY_OFFSET = {
+            new Vector2(0f, 5f), new Vector2(0f, 5f), new Vector2(1f, 4f), new Vector2(2f, 5f),
+            new Vector2(1f, 3f), new Vector2(2f, 5f), new Vector2(1f, 4f), new Vector2(0f, 5f),
+            new Vector2(0f, 5f), new Vector2(0f, 5f), new Vector2(1f, 4f), new Vector2(2f, 5f),
+            new Vector2(1f, 3f), new Vector2(2f, 5f), new Vector2(1f, 4f), new Vector2(0f, 5f),
+            new Vector2(1f, 4f), new Vector2(0f, 5f)
+    };
 
     Vector2 indicatorDir;
     float indicatorStrength;
