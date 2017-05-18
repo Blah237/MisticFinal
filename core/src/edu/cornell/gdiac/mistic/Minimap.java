@@ -25,7 +25,9 @@ public class Minimap {
      * board accidental rounding error make up numbers SHHH don't tell anyone */
     private static float MAGIC_SCALE_X = 7.92f;
     private static float MAGIC_SCALE_Y = 5.94f;
-    private static float MAGIC_ERROR_MAKEUP = 1.06f;
+    private static float MAGIC_ERROR_MAKEUP_X = 1.04f;
+    private static float MAGIC_ERROR_MAKEUP_Y = 1.06f;
+
 
     /** frame counters for "moving" assets so people can tell
      * where the familiars are on the minimap because eyes track movement and
@@ -105,7 +107,7 @@ public class Minimap {
     /** draw this minimaps firefly assets */
     public void drawFirefly(GameCanvas canvas, float x, float y, float oX, float oY, float r) {
         canvas.beginMinimapDrawCir(new Color(0xffdc00ff),
-                oX+(tileWidth*(x/MAGIC_SCALE_X)*MAGIC_ERROR_MAKEUP),
-                oY+(tileHeight*(y/MAGIC_SCALE_Y)*MAGIC_ERROR_MAKEUP),r);
+                oX+(tileWidth*(x/MAGIC_SCALE_X)*MAGIC_ERROR_MAKEUP_X),
+                oY+(tileHeight*(y/MAGIC_SCALE_Y)*MAGIC_ERROR_MAKEUP_Y),r);
     }
 }
