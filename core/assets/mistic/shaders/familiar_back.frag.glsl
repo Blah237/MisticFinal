@@ -13,6 +13,6 @@ void main() {
     vec3 familiarFalloff = vec3(1.0, 2.0, 60.0);
     float familiarAttenuation = 1.0 / ( familiarFalloff.x + (familiarFalloff.y*D) + (familiarFalloff.z*D*D) );
 
-    gl_FragColor.rgb = familiarGlowColor*familiarAttenuation;
+    gl_FragColor.rgb = familiarGlowColor;
     gl_FragColor.a = familiarAttenuation;
 }

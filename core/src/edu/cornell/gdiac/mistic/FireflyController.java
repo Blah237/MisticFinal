@@ -89,6 +89,4 @@ public class FireflyController {
         return fireflies;
     }
 
-
-
 }
