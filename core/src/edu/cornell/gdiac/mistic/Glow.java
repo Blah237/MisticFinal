@@ -90,9 +90,13 @@ public class Glow {
             }
         }
         float[] lanternsPos = new float[litLanterns.size()*2];
+        float[] offsets = new float[litLanterns.size()*2];
         for (int i=0; i<litLanterns.size(); i++) {
             lanternsPos[2*i] = (litLanterns.get(i).getX() * scale.x + scale.x/2f - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
             lanternsPos[2*i + 1] = (litLanterns.get(i).getY() * scale.y + scale.y/2f - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+
+            offsets[2*i] = (litLanterns.get(i).getX() * scale.x + scale.x/2f) / (zoom * res.x);
+            offsets[2*i + 1] = (litLanterns.get(i).getY() * scale.y + scale.y/2f) / (zoom * res.y);
         }
 
 
@@ -132,11 +136,13 @@ public class Glow {
         lanternBackShader.begin();
         lanternBackShader.setUniform2fv("lanternsPos", lanternsPos, 0, lanternsPos.length);
         lanternBackShader.setUniformi("numLanterns", litLanterns.size());
+//        lanternBackShader.setUniformf("offset", leftOffset, botOffset);
         lanternBackShader.end();
 
         lanternFrontShader.begin();
         lanternFrontShader.setUniform2fv("lanternsPos", lanternsPos, 0, lanternsPos.length);
         lanternFrontShader.setUniformi("numLanterns", litLanterns.size());
+//        lanternFrontShader.setUniformf("offset", leftOffset, botOffset);
         lanternFrontShader.end();
 
         gorfShader.begin();

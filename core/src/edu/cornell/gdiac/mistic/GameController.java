@@ -821,9 +821,9 @@ public class GameController extends WorldController implements ContactListener{
             float posy=m.getY()*scale.y;
             int tx=tileBoard.screenToBoardX(posx);
             int ty=tileBoard.screenToBoardY(posy);
-            if(tileBoard.isLanternGlow(tx,ty) || tileBoard.isGorfGlow(tx,ty)){
+            if(tileBoard.isLanternGlow(tx,ty)){
                 m.updateDeathTimer();
-                m.setHalved(true);
+                m.setHalved(false);
                 if(m.getMonsterDeathTimer()==0){
                     m.setHalved(false);
                     m.setDeadTexture(monsterTextureDead);
@@ -841,7 +841,9 @@ public class GameController extends WorldController implements ContactListener{
                     m.setPosition(t.fx/scale.x,t.fy/scale.y);
                     m.monsterDeathReset();
                 }
-            }else{
+            } else if (tileBoard.isGorfGlow(tx,ty)){
+                m.setHalved(true);
+            } else {
                 m.setHalved(false);
                 m.monsterDeathReset();
                 //System.out.println("Monster timer reset");
