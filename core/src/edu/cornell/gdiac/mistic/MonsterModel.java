@@ -37,6 +37,8 @@ public class MonsterModel extends BoxObstacle {
     public float deadx;
     public float deady;
     public boolean halved;
+    private float CARCASS_TIMER=1000;
+    private float carcassTimer=CARCASS_TIMER;
     /**
      * Creates a new monster at the given position.
      *
@@ -198,8 +200,11 @@ public class MonsterModel extends BoxObstacle {
         super.draw(canvas);
     }
     public void drawDead(GameCanvas canvas){
-        System.out.println("Draw Dead x: "+ deadx);
-        System.out.println("Draw Dead y: "+ deady);
-        deadmonster.draw(canvas);
+        carcassTimer--;
+        if(carcassTimer==1){
+            carcassTimer=CARCASS_TIMER;
+            dead=false;
+        }
+        canvas.draw(monsterDeadTex, deadx, deady);
     }
 }
