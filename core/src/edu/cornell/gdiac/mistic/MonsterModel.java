@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.obstacle.BoxObstacle;
 import edu.cornell.gdiac.obstacle.Obstacle;
+import edu.cornell.gdiac.util.FilmStrip;
 
 /**
  * Created by beau on 3/18/17.
@@ -31,7 +32,7 @@ public class MonsterModel extends BoxObstacle {
     private static final int MONSTER_DEATH_TIMER = 50;
     private int monsterDeathTimer= MONSTER_DEATH_TIMER;
     private TextureRegion monsterDeadTex;
-    public TextureRegion monsterTex;
+    public TextureRegion[] monsterTexs;
     public boolean dead;
     public BoxObstacle deadmonster;
     public float deadx;
@@ -39,6 +40,13 @@ public class MonsterModel extends BoxObstacle {
     public boolean halved;
     private float CARCASS_TIMER=1000;
     private float carcassTimer=CARCASS_TIMER;
+    FilmStrip Down;
+    FilmStrip Left;
+    FilmStrip Right;
+    FilmStrip Up;
+    FilmStrip current;
+    int animateTimer=5;
+    int frames;
     /**
      * Creates a new monster at the given position.
      *
@@ -51,20 +59,82 @@ public class MonsterModel extends BoxObstacle {
      * @param width		The object width in physics units
      * @param height	The object width in physics units
      */
-    public MonsterModel(float x, float y, float width, float height, TextureRegion tex, TextureRegion deadtex) {
+    public MonsterModel(float x, float y, float width, float height, TextureRegion[] tex, TextureRegion deadtex, int frames) {
         super(x, y, width, height);
+        System.out.println("Obj size"+ width + ", "+ height);
+        this.frames=frames;
         setName("monster");
         setDensity(DEFAULT_DENSITY);
         setFriction(DEFAULT_FRICTION);
         setRestitution(DEFAULT_RESTITUTION);
-        setTexture(tex);
+        this.monsterTexs=(tex);
         this.dead=false;
         force = new Vector2();
         deadmonster= new BoxObstacle(x,y,width,height);
         this.deadmonster.setTexture(deadtex);
         halved=false;
 
+        Down= new FilmStrip(tex[0].getTexture(),1,frames,frames);
+        Right= new FilmStrip(tex[1].getTexture(),1, frames,frames);
+        Up= new FilmStrip(tex[2].getTexture(),1, frames,frames);
+        Left= new FilmStrip(tex[3].getTexture(),1,frames,frames);
+
+
+        this.current=Down;
+        this.setTexture(current);
+
     }
+
+    public void gorfAnimate(){
+        if(getFX()==0 && getFY()==0){
+            this.current.setFrame(this.current.getFrame());
+        }else{
+            setTexture(current);
+            //System.out.println(current.getFrame());
+            this.animateTimer--;
+            if ( this.animateTimer == 0) {
+                this.animateTimer  = 8;
+            }
+            if (this.animateTimer == 1) {
+                if (this.current.getFrame() != this.current.getSize() - 1) {
+                    this.current.setFrame(this.current.getFrame() + 1);
+                } else {
+                    this.current.setFrame(0);
+                }
+            }
+        }
+    }
+
+    public void updateTexture(){
+        /**
+        if(getFX()<0 && getFY()<0){
+            current=DownLeft;
+            this.setWidth(5);
+        }else if(getFX()<0 && getFY()>0){
+            current=UpLeft;
+            this.setWidth(4);
+        }else if(getFX()>0 && getFY()>0){
+            current=UpRight;
+            this.setWidth(4);
+        }else if(getFX()>0 && getFY()<0){
+            current=DownRight;
+            this.setWidth(5);
+        }*/
+        if(getFX()<0 && Math.abs(getFX()) > Math.abs(getFY())){
+            current=Left;
+            this.setWidth(4);
+        }else if(getFX()>0&& Math.abs(getFX()) > Math.abs(getFY())){
+            current=Right;
+            this.setWidth(4);
+        }else if(getFY()<0) {
+            current=Down;
+            this.setWidth(5);
+        }else if(getFY()>0) {
+            current=Up;
+            this.setWidth(5);
+        }
+    }
+
 
     public void monsterDeathReset(){
         monsterDeathTimer=MONSTER_DEATH_TIMER;

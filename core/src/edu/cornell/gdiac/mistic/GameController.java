@@ -26,10 +26,7 @@ import edu.cornell.gdiac.obstacle.PolygonObstacle;
 
 import javax.swing.*;
 import javax.xml.soap.Text;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
 
 import static com.badlogic.gdx.math.MathUtils.random;
 import edu.cornell.gdiac.mistic.Lantern;
@@ -59,6 +56,8 @@ public class GameController extends WorldController implements ContactListener{
     private static final String[] GORF_TEXTURES = {"mistic/gorfs/gorfD.png","mistic/gorfs/gorfDL.png","mistic/gorfs/gorfDR.png",
             "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfBL.png", "mistic/gorfs/gorfBR.png",
             "mistic/gorfs/gorfB.png"};
+    private static final String[] ENEMY_TEXTURES = {"mistic/enemy/enemy1sheet.png","mistic/enemy/enemy2sheet.png",
+            "mistic/enemy/enemy3sheet.png","mistic/enemy/enemy4sheet.png"};
     private static final String HAT_TEXTURE = "mistic/gorfs/gorftop.png";
     private static final String BACKGROUND = "mistic/backgroundvibrant.png";
     private static final String MINIMAP_BACKGROUND = "mistic/mini_map_background.png";
@@ -165,8 +164,8 @@ public class GameController extends WorldController implements ContactListener{
     private TextureRegion fogTexture;
     private TextureRegion fireflyTrack;
     private TextureRegion minimapFirefly;
-    private TextureRegion monsterTexture;
     private TextureRegion monsterTextureDead;
+    private TextureRegion[] monsterTextures = new TextureRegion[ENEMY_TEXTURES.length];
     private TextureRegion[] gorfTextures = new TextureRegion[GORF_TEXTURES.length];
     private TextureRegion[] mistwalls = new TextureRegion[MIST_WALLS.length];
     private TextureRegion[] familiarTex = new TextureRegion[FAMILIARS.length];
@@ -282,8 +281,6 @@ public class GameController extends WorldController implements ContactListener{
         assets.add(FIRE_TRACK);
 
         // Monster textures
-        manager.load(MONSTER_TEXTURE, Texture.class);
-        assets.add(MONSTER_TEXTURE);
         manager.load(MONSTER_TEXTURE_DEAD, Texture.class);
         assets.add(MONSTER_TEXTURE_DEAD);
 
@@ -401,6 +398,10 @@ public class GameController extends WorldController implements ContactListener{
             manager.load(f, Texture.class);
             assets.add(f);
         }
+        for(String f : ENEMY_TEXTURES){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
 
         //noise textures
         for (int i=0; i<FOG_ANIM_SPAN; i++) {
@@ -464,7 +465,6 @@ public class GameController extends WorldController implements ContactListener{
         minimapBackgroundTexture = createTexture(manager,MINIMAP_BACKGROUND,false);
         fireflyTrack=createTexture(manager,FIRE_TRACK,false);
         minimapFirefly=createTexture(manager,FIRE_FLY,false);
-        monsterTexture = createTexture(manager, MONSTER_TEXTURE, false);
         monsterTextureDead=createTexture(manager,MONSTER_TEXTURE_DEAD,false);
 
         HUDWindow = createTexture(manager, HUD_WINDOW_TEXTURE, false);
@@ -519,6 +519,9 @@ public class GameController extends WorldController implements ContactListener{
         }
         for(int i=0; i<GORF_TEXTURES.length;i++){
             gorfTextures[i] = createTexture(manager,GORF_TEXTURES[i],false);
+        }
+        for(int i=0; i<ENEMY_TEXTURES.length;i++){
+            monsterTextures[i] = createTexture(manager, ENEMY_TEXTURES[i], false);
         }
 
         for (int i=0; i<FOG_ANIM_SPAN; i++) {
@@ -771,7 +774,7 @@ public class GameController extends WorldController implements ContactListener{
                     }
                     wallCount++;
                 }
-                if (t.hasFamiliarOne) {
+                if (t.hasFamiliarOne ) {
                     familiarPositions[0]=t;
                 }
                 if (t.hasFamiliarTwo) {
@@ -791,7 +794,7 @@ public class GameController extends WorldController implements ContactListener{
                 }
                 if(t.hasRock !=0){
                     int num = t.hasRock-1;
-                    int index = num % 4;
+                    int index = num % 3;
                     EnvAsset rock = new EnvAsset(tileBoard.getTileCenterX(t) / scale.x,
                             tileBoard.getTileCenterY(t) / scale.y, rocks[index], rocktops[index],false, index, scale);
                     landmarks.add(rock);
@@ -836,6 +839,7 @@ public class GameController extends WorldController implements ContactListener{
         }
 
         if(familiarVectors.length!=0) {
+            Collections.shuffle(Arrays.asList(familiarTex));
             familiars = new Familiar(familiarTex, familiarVectors, scale);
             addObject(familiars.object);
             underFog.add(familiars.object);
@@ -873,12 +877,13 @@ public class GameController extends WorldController implements ContactListener{
 
     private void createMonster(float x, float y) {
         //System.out.println("Create Monster: " + x +", "+y);
-        TextureRegion texture = monsterTexture;
-        float dwidth  = texture.getRegionWidth()/(scale.x*2);
-        float dheight = texture.getRegionHeight()/(scale.y*2);
-        MonsterModel monster = new MonsterModel(x, y, dwidth, dheight,texture,monsterTextureDead);
+        TextureRegion[] tex = monsterTextures;
+        float dwidth  = tex[0].getRegionWidth()/(ai.FRAMES* scale.x*2);
+        float dheight = tex[0].getRegionHeight()/(ai.FRAMES *scale.y*2);
+        MonsterModel monster = new MonsterModel(x, y, dwidth, dheight,tex,monsterTextureDead, ai.FRAMES);
         monster.setDrawScale(scale);
         this.monster.add(monster);
+        System.out.println("ADDING MOSNTER");
         addObject(monster);
         monster.getBody().setUserData("monster");
     }
@@ -924,7 +929,7 @@ public class GameController extends WorldController implements ContactListener{
                     m.setDeadTexture(monsterTextureDead);
                     m.deadmonster.setPosition(m.getX(),m.getY());
                     m.deadx=posx;
-                    m.deady=posy-monsterTexture.getRegionHeight();
+                    m.deady=posy-monsterTextures[0].getRegionHeight();
                     m.dead=true;
                     respawnMonster(gx,gy,m);
                 }
@@ -1069,6 +1074,8 @@ public class GameController extends WorldController implements ContactListener{
 
             for (MonsterModel m : (ai.monster)) {
                 wrapInBounds(m);
+                m.updateTexture();
+                m.gorfAnimate();
             }
             ai.update(dt, world, firefly_count);
             despawnMonster(monster, gorf);
@@ -1100,9 +1107,9 @@ public class GameController extends WorldController implements ContactListener{
                 firefly_count++;
             }
 
-//            if (InputController.getInstance().didDebug()) {
-//                setDebug(!isDebug());
-//            }
+            if (InputController.getInstance().didDebug()) {
+                setDebug(!isDebug());
+            }
             /**
              for (Body b : scheduledForRemoval) {
              b.getWorld().destroyBody(b);
