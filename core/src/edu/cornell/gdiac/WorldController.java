@@ -81,8 +81,10 @@ public abstract class WorldController implements Screen {
 	public  final String level1minimap = "minimaps/level1.png";
 	public  final String level2minimap = "minimaps/level2.png";
 	public  final String level3minimap = "minimaps/level3.png";
-	public  final String level4minimap = "minimaps/level4_cross.png";
-	public final String level5minimap = "minimaps/level5_rooms.png";
+	public  final String level4minimap = "minimaps/level4.png";
+	public final String level5minimap = "minimaps/level5.png";
+//	public final String level5minimap = "minimaps/level6.png";
+//	public final String level5minimap = "minimaps/level7.png";
 
 	/** The texture for walls and platforms */
 	protected TextureRegion earthTile;
