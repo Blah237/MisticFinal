@@ -48,18 +48,25 @@ public class LevelSelectController extends WorldController implements Screen {
 
     public String jsonFileName;
 
-    //public static final String level1 = "final_release/level1.json";
-    public static final String level1 = "final_release/level1.json";
-    public static final String level2 = "final_release/level2.json";
-    public static final String level3 = "final_release/level3revised.json";
-    public static final String level4 = "final_release/level4.json";
-    public static final String level5 = "FINAL/FINAL_5rooms.json";
+
+    public static final String level1 = "final_release/level1_unfamiliar.json";
+    public static final String level2 = "final_release/level2_thefish.json";
+    public static final String level3 = "final_release/level3_lumina.json";
+    public static final String level4 = "final_release/level4_hourglass.json"; //better name for this level please
+    public static final String level5 = "final_release/level5_cross.json";
+//    public static final String level6 = "final_release/level6_rooms.json";
+//    public static final String level7 = "final_release/level7_misty.json";
+
 
     public static final String level1minimap = "minimaps/level1.png";
     public static final String level2minimap = "minimaps/level2.png";
-    public static final String level3minimap = "minimaps/level3revised.png";
+    public static final String level3minimap = "minimaps/level3.png";
     public static final String level4minimap = "minimaps/level4.png";
-    public static final String level5minimap = "minimaps/BETA_rooms2.png";
+    public static final String level5minimap = "minimaps/level5.png";
+    //public static final String level6minimap = "minimaps/level6.png";
+//    public static final String level5minimap = "minimaps/level7.png";
+
+
 
     public static boolean level1complete = false;
     public static boolean level2complete = false;
@@ -229,8 +236,7 @@ public class LevelSelectController extends WorldController implements Screen {
         if (level12complete) { canvas.draw(whiteMist, 1716, 721); }
         else { canvas.draw(purpleMist, 1716, 721); }
 
-
-            switch (level) {
+        switch (level) {
             case 1: canvas.draw(gorf, 450, 680); break;
             case 2: canvas.draw(gorf, 720, 635); break;
             case 3: canvas.draw(gorf, 400, 375); break;
