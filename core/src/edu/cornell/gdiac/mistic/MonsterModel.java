@@ -61,6 +61,7 @@ public class MonsterModel extends BoxObstacle {
      */
     public MonsterModel(float x, float y, float width, float height, TextureRegion[] tex, TextureRegion deadtex, int frames) {
         super(x, y, width, height);
+        System.out.println("Obj size"+ width + ", "+ height);
         this.frames=frames;
         setName("monster");
         setDensity(DEFAULT_DENSITY);

@@ -880,11 +880,12 @@ public class GameController extends WorldController implements ContactListener{
     private void createMonster(float x, float y) {
         //System.out.println("Create Monster: " + x +", "+y);
         TextureRegion[] tex = monsterTextures;
-        float dwidth  = tex[0].getRegionWidth()/ai.FRAMES * (scale.x*2);
-        float dheight = tex[0].getRegionHeight()/(scale.y*2);
+        float dwidth  = tex[0].getRegionWidth()/(ai.FRAMES* scale.x*2);
+        float dheight = tex[0].getRegionHeight()/(ai.FRAMES *scale.y*2);
         MonsterModel monster = new MonsterModel(x, y, dwidth, dheight,tex,monsterTextureDead, ai.FRAMES);
         monster.setDrawScale(scale);
         this.monster.add(monster);
+        System.out.println("ADDING MOSNTER");
         addObject(monster);
         monster.getBody().setUserData("monster");
     }
@@ -1108,9 +1109,9 @@ public class GameController extends WorldController implements ContactListener{
                 firefly_count++;
             }
 
-//            if (InputController.getInstance().didDebug()) {
-//                setDebug(!isDebug());
-//            }
+            if (InputController.getInstance().didDebug()) {
+                setDebug(!isDebug());
+            }
             /**
              for (Body b : scheduledForRemoval) {
              b.getWorld().destroyBody(b);
