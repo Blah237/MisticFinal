@@ -561,7 +561,7 @@ public class GameController extends WorldController implements ContactListener{
     boolean pawTimerStart = false;
 
     //monster stuff
-    final int MONSTERTIMER=2000;
+    final int MONSTERTIMER=1000;
     int monsterSpawnTimer = 500;
     BoardModel.Tile fogSpawn;
 
@@ -1347,7 +1347,11 @@ public class GameController extends WorldController implements ContactListener{
             } else  {
                 drawTextbox(level1tutorial1, 310.0f, 330.0f);
             }
-            drawTextbox(level1tutorial2, 590.0f, 480.0f);
+            drawTextbox(level1tutorial2, 700.0f, 480.0f);
+        } else if (LevelSelectController.getLevel() == 2 && familiars.getNumFam() == 1) {
+            drawTextbox(level2tutorial1,1610.0f, 530.0f);
+        } else if (LevelSelectController.getLevel() == 3 && familiars.getNumFam() == 0) {
+            drawTextbox(level3tutorial1,800.0f, 880.0f);
         }
         canvas.end();
 
@@ -2042,6 +2046,10 @@ public class GameController extends WorldController implements ContactListener{
                 timerGoText = false;
                 if (LevelSelectController.getLevel() == 1) {
                     inputTimerText = 9;
+                } else if (LevelSelectController.getLevel() == 2) {
+                    inputTimerText = 3;
+                } else if (LevelSelectController.getLevel() == 3) {
+                    inputTimerText = 3;
                 }
             }
         }
