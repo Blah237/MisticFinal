@@ -32,6 +32,16 @@ public class Glow {
     private final float zoom = .59f;
     Vector2 scale;
 
+    public static final int FIREFLY_TIMER = 8;
+    public static final Vector2[] FIREFLY_OFFSET = {
+            new Vector2(-3f, 2f), new Vector2(-2f, 1f), new Vector2(-2f, 1f), new Vector2(-2f, 3f),
+            new Vector2(0f, 1f), new Vector2(-1f, 1f), new Vector2(0f, 1f), new Vector2(2f, 2f),
+            new Vector2(1f, 1f), new Vector2(3f, 2f), new Vector2(3f, 2f), new Vector2(4f, 3f),
+            new Vector2(5f, 2f), new Vector2(6f, 1f), new Vector2(7f, 2f), new Vector2(7f, 2f),
+            new Vector2(8f, 2f), new Vector2(8f, 1f)
+    };
+    public static final float[] ALPHAS = {.5f, .6f, .7f, .6f, .6f, .4f, .3f, .4f, .5f, .6f, .6f, .5f, .4f, .5f, .4f, .3f, .3f, .4f};
+
     Vector2 indicatorDir;
     float indicatorStrength;
 
@@ -83,12 +93,18 @@ public class Glow {
     public void prepShader(GorfModel gorf, Familiar familiar, ArrayList<Lantern> lanterns, Firefly[] fireflies, float nFireflies){
         Vector2 gorfPos = new Vector2(gorf.getX() * scale.x, gorf.getY() * scale.y);		// in pixels
 
+        float gorfRadius = 0;
+        if (nFireflies > 0) {
+            gorfRadius = .8f* (1f - (float) Math.exp(-nFireflies / 2f));
+        }
+
         ArrayList<Lantern> litLanterns = new ArrayList<Lantern>();
         for (Lantern l : lanterns) {
             if (l.lit) {
                 litLanterns.add(l);
             }
         }
+
         float[] lanternsPos = new float[litLanterns.size()*2];
         float lanternX, lanternY;
         for (int i=0; i<litLanterns.size(); i++) {
@@ -106,24 +122,6 @@ public class Glow {
             } else {
                 lanternsPos[2 * i + 1] = (lanternY - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
             }
-
-//            if (lanternX < gorfPos.x) {
-//                lanternsPos[2 * i] = (lanternX - ((gorfPos.x - zoom * res.x / 2.0f + res.x) % res.x)) / (zoom * res.x);
-//            } else {
-//                lanternsPos[2 * i] = (lanternX - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
-//            }
-//
-//            if (lanternY < gorfPos.y) {
-//                lanternsPos[2 * i + 1] = (lanternY - ((gorfPos.y - zoom * res.y / 2.0f + res.y) % res.y)) / (zoom * res.y);
-//            } else {
-//                lanternsPos[2 * i + 1] = (lanternY - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
-//            }
-        }
-
-
-        float gorfRadius = 0;
-        if (nFireflies > 0) {
-            gorfRadius = .8f* (1f - (float) Math.exp(-nFireflies / 2f));
         }
 
         float familiarX = familiar.getX() * scale.x + scale.x/2f;
@@ -149,9 +147,16 @@ public class Glow {
         }
 
         float[] firefliesPos = new float[spawnedFireflies.size()*2];
+        float[] ffAlphas = new float[spawnedFireflies.size()];
         for (int j=0; j<spawnedFireflies.size(); j++) {
-            firefliesPos[2*j] = (spawnedFireflies.get(j).getX() - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
-            firefliesPos[2*j + 1] = (spawnedFireflies.get(j).getY() - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+            Firefly f = spawnedFireflies.get(j);
+            int ffFrame = f.getFireflyAnimation().getFrame();
+            Vector2 ffOffset = FIREFLY_OFFSET[ffFrame];
+//            Vector2 ffOffset = FIREFLY_OFFSET[17];
+            firefliesPos[2*j] = (f.getX() + ffOffset.x - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
+            firefliesPos[2*j + 1] = (f.getY() + ffOffset.y - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+
+            ffAlphas[j] = ALPHAS[ffFrame];
         }
 
 //        float dirX = Math.min(familiarPos.x - gorfPos.x, gorfPos.x - (screenDim.x - familiarPos.x));
@@ -184,11 +189,11 @@ public class Glow {
         fireflyShader.begin();
         fireflyShader.setUniform2fv("fireflies", firefliesPos, 0, firefliesPos.length);
         fireflyShader.setUniformi("numFireflies", spawnedFireflies.size());
+        fireflyShader.setUniform1fv("alphas", ffAlphas, 0, ffAlphas.length);
         fireflyShader.end();
     }
 
     public void draw(GameCanvas canvas, TextureRegion texRegion, Vector2 pos) {
-        //System.out.println(canvas.getHeight());
         PolygonSpriteBatch batch = canvas.getSpriteBatch();
 //		batch.setShader(shader);
 
