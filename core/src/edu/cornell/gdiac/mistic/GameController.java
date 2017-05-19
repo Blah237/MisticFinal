@@ -130,7 +130,9 @@ public class GameController extends WorldController implements ContactListener{
 
     private static final String LEVEL_2_TUTORIAL_1 = "mistic/tutorial/level2/seqfam.png";
 
-    private static final String LEVEL_3_TUTORIAL_1 = "mistic/tutorial/level3/lantern.png";
+    private static final String LEVEL_3_TUTORIAL_1 = "mistic/tutorial/level3/spacebar.png";
+
+    private static final String COURIER_TAKEOUT = "mistic/tutorial/takeout.png";
 
 
 
@@ -202,6 +204,7 @@ public class GameController extends WorldController implements ContactListener{
     private TextureRegion level1tutorial3;
     private TextureRegion level2tutorial1;
     private TextureRegion level3tutorial1;
+    private TextureRegion takeouttutorial;
 
     private boolean textboxAnimateTop;
     private boolean textboxAnimateBottom;
@@ -362,6 +365,9 @@ public class GameController extends WorldController implements ContactListener{
         manager.load(LEVEL_3_TUTORIAL_1, Texture.class);
         assets.add(LEVEL_1_TUTORIAL_1);
 
+        manager.load(COURIER_TAKEOUT, Texture.class);
+        assets.add(COURIER_TAKEOUT);
+
 
 
         for(String m : MIST_WALLS){
@@ -485,6 +491,7 @@ public class GameController extends WorldController implements ContactListener{
         level1tutorial3 = createTexture(manager, LEVEL_1_TUTORIAL_3, false);
         level2tutorial1 = createTexture(manager, LEVEL_2_TUTORIAL_1, false);
         level3tutorial1 = createTexture(manager, LEVEL_3_TUTORIAL_1, false);
+        takeouttutorial = createTexture(manager, COURIER_TAKEOUT, false);
 
         pause = createFilmStrip(manager, PAUSE_SCREEN, 1, 3, 3);
         win = createFilmStrip(manager, WIN_SCREEN, 1, 2, 2);
@@ -1362,6 +1369,8 @@ public class GameController extends WorldController implements ContactListener{
             drawTextbox(level2tutorial1,1610.0f, 530.0f);
         } else if (LevelSelectController.getLevel() == 3 && familiars.getNumFam() == 0) {
             drawTextbox(level3tutorial1,900.0f, 880.0f);
+        } else if (LevelSelectController.getLevel() == 8) {
+            drawTextbox(takeouttutorial,1160.0f, 420.0f);
         }
         canvas.end();
 
@@ -2062,6 +2071,8 @@ public class GameController extends WorldController implements ContactListener{
                 } else if (LevelSelectController.getLevel() == 2) {
                     inputTimerText = 3;
                 } else if (LevelSelectController.getLevel() == 3) {
+                    inputTimerText = 3;
+                } else if (LevelSelectController.getLevel() == 8) {
                     inputTimerText = 3;
                 }
             }

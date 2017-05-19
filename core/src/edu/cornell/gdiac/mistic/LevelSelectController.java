@@ -18,7 +18,7 @@ import edu.cornell.gdiac.util.ScreenListener;
  */
 public class LevelSelectController extends WorldController implements Screen {
     private static final String GORF_TEXTURE = "mistic/gorfpose.png";
-    private static final String BACKGROUND = "mistic/levelmockup.png";
+    private static final String BACKGROUND = "mistic/levelselectnames.png";
     private static final String BACKGROUND_OVERLAY = "mistic/levelmockup_wood.png";
     private static final String WHITE_MIST = "mistic/whitemistresize.png";
     private static final String PURPLE_MIST = "mistic/purplemistresize.png";
@@ -231,7 +231,7 @@ public class LevelSelectController extends WorldController implements Screen {
         canvas.clear();
         canvas.resetCamera();
         canvas.begin();
-        canvas.draw(background, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
+        //canvas.draw(background, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
         canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
 
         if (level1complete) { canvas.draw(whiteMist, 500, 660); }
@@ -247,7 +247,7 @@ public class LevelSelectController extends WorldController implements Screen {
         if (level6complete) { canvas.draw(whiteMist, 930, 540); }
         else { canvas.draw(purpleMist, 930, 540); }
         if (level7complete) { canvas.draw(whiteMist, 1170, 650); }
-        else { canvas.draw(purpleMist, 1170, 650); }
+        else { canvas.draw(purpleMist, 1170, 642); }
         if (level8complete) { canvas.draw(whiteMist, 1362, 801); }
         else { canvas.draw(purpleMist, 1362, 801); }
         if (level9complete) { canvas.draw(whiteMist, 1205, 440); }
@@ -255,9 +255,9 @@ public class LevelSelectController extends WorldController implements Screen {
         if (level10complete) { canvas.draw(whiteMist, 1475, 259); }
         else { canvas.draw(purpleMist, 1475, 259); }
         if (level11complete) { canvas.draw(whiteMist, 1709, 395); }
-        else { canvas.draw(purpleMist, 1709, 395); }
+        else { canvas.draw(purpleMist, 1695, 382); }
         if (level12complete) { canvas.draw(whiteMist, 1716, 721); }
-        else { canvas.draw(purpleMist, 1716, 721); }
+        else { canvas.draw(purpleMist, 1706, 711); }
 
         switch (level) {
             case 1: canvas.draw(gorf, 500, 680); break;
