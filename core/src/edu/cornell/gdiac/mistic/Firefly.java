@@ -26,7 +26,7 @@ public class Firefly {
     private static final float FIREFLY_DENSITY = 1.0f;
     private static final float FIREFLY_FRICTION  = 0.3f;
     private static final float FIREFLY_RESTITUTION = 0.1f;
-    private int fireflyAnimateTimer = random(TIMER);
+    private int fireflyAnimateTimer = TIMER;
     int respawnTimer;
     private Vector2 scale = new Vector2(1f,1f);
     public static final int FRAMES = 18;
@@ -37,7 +37,7 @@ public class Firefly {
 
     public Firefly(float x, float y, TextureRegion texture) {
         this.fireflyAnimation  = new FilmStrip(texture.getTexture(),1,FRAMES,FRAMES);
-        this.fireflyAnimation.setFrame(0);
+        this.fireflyAnimation.setFrame(random(FRAMES-1));
         position = new Vector2(x,y);
         destroyed= false;
         object = new BoxObstacle(x,y,texture.getRegionWidth()/scale.x,texture.getRegionHeight()/scale.y);
@@ -46,6 +46,7 @@ public class Firefly {
         object.setRestitution(FIREFLY_RESTITUTION);
         object.setName("firefly"+x+y);
         object.setDrawScale(scale);
+
         //object.setTexture(texture);
     }
 
