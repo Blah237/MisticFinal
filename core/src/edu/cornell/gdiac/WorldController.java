@@ -89,6 +89,7 @@ public abstract class WorldController implements Screen {
 	public final String level10minimap = "minimaps/levelboxes.png";
 	public final String level12minimap = "minimaps/levelmistic.png";
 	public  final String level9minimap = "minimaps/level13.png";
+	public  final String level11minimap = "minimaps/level14.png";
 
 	/** The texture for walls and platforms */
 	protected TextureRegion earthTile;
@@ -173,6 +174,9 @@ public abstract class WorldController implements Screen {
 
 		manager.load(level9minimap,Texture.class);
 		assets.add(level9minimap);
+
+		manager.load(level11minimap,Texture.class);
+		assets.add(level11minimap);
 
 		// Load the font
 		FreetypeFontLoader.FreeTypeFontLoaderParameter size2Params = new FreetypeFontLoader.FreeTypeFontLoaderParameter();

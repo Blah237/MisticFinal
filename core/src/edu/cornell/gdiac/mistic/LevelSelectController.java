@@ -57,9 +57,11 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level6 = "final_release/level6_rooms2.json";
     public static final String level7 = "final_release/level7_misty.json";
     public static final String level8 = "final_release/levelstar.json";
-    public static final String level9 = "final_release/level13_arena.json";
-    public static final String level10 = "final_release/levelboxes.json";
     public static final String level12 = "final_release/levelmistic.json";
+    public static final String level9 = "final_release/level13_arena.json";
+    public static final String level11 = "final_release/level14_courier.json";
+    public static final String level10 = "final_release/levelboxes.json";
+
 
 
     public static final String level1minimap = "minimaps/level1.png";
@@ -70,9 +72,11 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level6minimap = "minimaps/level6.png";
     public static final String level7minimap = "minimaps/level7.png";
     public static final String level8minimap = "minimaps/levelstar.png";
-    public static final String level9minimap = "minimaps/level13.png";
-    public static final String level10minimap = "minimaps/levelboxes.png";
     public static final String level12minimap = "minimaps/levelmistic.png";
+    public static final String level9minimap = "minimaps/level13.png";
+    public static final String level11minimap = "minimaps/level14.png";
+    public static final String level10minimap = "minimaps/levelboxes.png";
+
 
 
 
@@ -200,6 +204,8 @@ public class LevelSelectController extends WorldController implements Screen {
                     WorldController.JSON_FILE = level9; break;
                 case 10: WorldController.MINIMAP_FILE = level10minimap;
                     WorldController.JSON_FILE = level10; break;
+                case 11: WorldController.MINIMAP_FILE = level11minimap;
+                    WorldController.JSON_FILE = level11; break;
                 case 12: WorldController.MINIMAP_FILE = level12minimap;
                     WorldController.JSON_FILE = level12;
 
@@ -297,6 +303,8 @@ public class LevelSelectController extends WorldController implements Screen {
                 WorldController.JSON_FILE = level9; break;
             case 10: WorldController.MINIMAP_FILE = level10minimap;
                 WorldController.JSON_FILE = level10; break;
+            case 11: WorldController.MINIMAP_FILE = level11minimap;
+                WorldController.JSON_FILE = level11; break;
             case 12: WorldController.MINIMAP_FILE = level12minimap;
                 WorldController.JSON_FILE = level12;
         }
