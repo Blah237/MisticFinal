@@ -67,6 +67,7 @@ public class GorfModel extends BoxObstacle {
 	FilmStrip UpRight;
 	FilmStrip UpLeft;
 	FilmStrip Up;
+	FilmStrip Idle;
 	FilmStrip current;
 
 	float lastFX;
@@ -196,8 +197,8 @@ public class GorfModel extends BoxObstacle {
 		UpLeft= new FilmStrip(texs[5].getTexture(),1,animateSize,animateSize);
 		UpRight= new FilmStrip(texs[6].getTexture(),1,animateSize,animateSize);
 		Up= new FilmStrip(texs[7].getTexture(),1, animateSize,animateSize);
-
-		current=Down;
+		Idle = new FilmStrip(texs[8].getTexture(),1, 6,6);
+		current=Idle;
 		current.setFrame(0);
 		this.setTexture(current);
 		force = new Vector2();
@@ -209,9 +210,6 @@ public class GorfModel extends BoxObstacle {
 	}
 
 	public void gorfAnimate(){
-		if(getForce().isZero()){
-			this.current.setFrame(this.current.getFrame());
-		}else{
 			setTexture(current);
 			//System.out.println(current.getFrame());
 			this.animateTimer--;
@@ -225,7 +223,6 @@ public class GorfModel extends BoxObstacle {
 					this.current.setFrame(0);
 				}
 			}
-		}
 	}
 
 	/**
@@ -252,7 +249,9 @@ public class GorfModel extends BoxObstacle {
 	}
 
 	public void updateTexture(){
-		if(getFX()<0 && getFY()<0){
+		if(getFX()==0 && getFY()==0){
+			current=Idle;
+		}else if(getFX()<0 && getFY()<0){
 			current=DownLeft;
 			this.setWidth(5);
 		}else if(getFX()<0 && getFY()>0){

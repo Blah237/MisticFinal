@@ -55,7 +55,7 @@ public class GameController extends WorldController implements ContactListener{
     /** Reference to the rocket texture */
     private static final String[] GORF_TEXTURES = {"mistic/gorfs/gorfD.png","mistic/gorfs/gorfDL.png","mistic/gorfs/gorfDR.png",
             "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfBL.png", "mistic/gorfs/gorfBR.png",
-            "mistic/gorfs/gorfB.png"};
+            "mistic/gorfs/gorfB.png", "mistic/gorfs/gorf.png"};
     private static final String[] GORF_HATS = {"mistic/gorfs/gorfDtop.png","mistic/gorfs/gorfDLtop.png","mistic/gorfs/gorfDRtop.png",
             "mistic/gorfs/gorfLtop.png","mistic/gorfs/gorfRtop.png","mistic/gorfs/gorfBLtop.png", "mistic/gorfs/gorfBRtop.png",
             "mistic/gorfs/gorfBtop.png"};
@@ -825,8 +825,8 @@ public class GameController extends WorldController implements ContactListener{
         float dheight = gorfTextures[0].getRegionHeight()/(scale.y*2);
         gorf = new GorfModel(gorfStart.x, gorfStart.y, dwidth*0.75f, dheight*0.75f,gorfTextures);
         gorf.setDrawScale(scale);
-        gorfhat= new GorfModel(gorfStart.x+1,gorfStart.y+1,1, 1, gorfHats);
-        gorfhat.setDrawScale(scale);
+        //gorfhat= new GorfModel(gorfStart.x+1,gorfStart.y+1,1, 1, gorfHats);
+        //gorfhat.setDrawScale(scale);
         addObject(gorf);
         //addObject(gorfhat);
 //        overFog.add(0, gorf);
