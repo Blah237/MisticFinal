@@ -572,8 +572,8 @@ public class GameController extends WorldController implements ContactListener{
     boolean pawTimerStart = false;
 
     //monster stuff
-    final int MONSTERTIMER=1000;
-    int monsterSpawnTimer = 500;
+    final int MONSTERTIMER=1500;
+    int monsterSpawnTimer = 900;
     BoardModel.Tile fogSpawn;
 
 
@@ -891,7 +891,7 @@ public class GameController extends WorldController implements ContactListener{
         MonsterModel monster = new MonsterModel(x, y, dwidth, dheight,tex,monsterTextureDead, ai.FRAMES);
         monster.setDrawScale(scale);
         this.monster.add(monster);
-        System.out.println("ADDING MOSNTER");
+        //System.out.println("ADDING MOSNTER");
         addObject(monster);
         monster.getBody().setUserData("monster");
     }

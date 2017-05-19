@@ -59,6 +59,7 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level8 = "final_release/levelstar.json";
     public static final String level12 = "final_release/levelmistic.json";
     public static final String level9 = "final_release/level13_arena.json";
+    public static final String level14 = "final_release/level4_courier.json";
 
 
     public static final String level1minimap = "minimaps/level1.png";
@@ -71,6 +72,7 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level8minimap = "minimaps/levelstar.png";
     public static final String level12minimap = "minimaps/levelmistic.png";
     public static final String level9minimap = "minimaps/level13.png";
+    public static final String level14minimap = "minimaps/level14.png";
 
 
 
