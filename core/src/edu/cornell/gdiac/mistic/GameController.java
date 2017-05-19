@@ -141,7 +141,6 @@ public class GameController extends WorldController implements ContactListener{
     SoundController sounds = SoundController.getInstance();
     private static final String A_PEACE_SONG = "sounds/A_Peace_DEMO2.mp3";
     private static final String B_MARSH_SONG = "sounds/B_Marsh_DEMO2.mp3";
-    private static final String C_FOG_SONG = "sounds/C_Fog_DEMO2.mp3";
     private static final String D_PEACE_SONG = "sounds/D_Peace_DEMO2.mp3";
     private static final String E_MARSH_SONG = "sounds/E_Marsh_DEMO2.mp3";
     private static final String F_MARSH_SONG = "sounds/F_Marsh_DEMO2.mp3";
@@ -415,8 +414,6 @@ public class GameController extends WorldController implements ContactListener{
         assets.add(A_PEACE_SONG);
         manager.load(B_MARSH_SONG, Sound.class);
         assets.add(B_MARSH_SONG);
-        manager.load(C_FOG_SONG, Sound.class);
-        assets.add(C_FOG_SONG);
         manager.load(D_PEACE_SONG, Sound.class);
         assets.add(D_PEACE_SONG);
         manager.load(E_MARSH_SONG, Sound.class);
@@ -532,7 +529,6 @@ public class GameController extends WorldController implements ContactListener{
         // allocate songs and marsh fx
         sounds.allocate(manager,A_PEACE_SONG,true);
         sounds.allocate(manager,B_MARSH_SONG,false);
-        sounds.allocate(manager,C_FOG_SONG,true);
         sounds.allocate(manager,D_PEACE_SONG,true);
         sounds.allocate(manager,E_MARSH_SONG,false);
         sounds.allocate(manager,F_MARSH_SONG,false);
