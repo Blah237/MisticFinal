@@ -57,6 +57,7 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level6 = "final_release/level6_rooms2.json";
     public static final String level7 = "final_release/level7_misty.json";
     public static final String level8 = "final_release/levelstar.json";
+    public static final String level12 = "final_release/levelmistic.json";
 
 
     public static final String level1minimap = "minimaps/level1.png";
@@ -67,6 +68,7 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level6minimap = "minimaps/level6.png";
     public static final String level7minimap = "minimaps/level7.png";
     public static final String level8minimap = "minimaps/levelstar.png";
+    public static final String level12minimap = "minimaps/levelmistic.png";
 
 
 
@@ -194,6 +196,8 @@ public class LevelSelectController extends WorldController implements Screen {
                     WorldController.JSON_FILE = level7; break;
                 case 8: WorldController.MINIMAP_FILE = level8minimap;
                     WorldController.JSON_FILE = level8; break;
+                case 12: WorldController.MINIMAP_FILE = level12minimap;
+                    WorldController.JSON_FILE = level12;
             }
             listener.exitScreen(this, this.EXIT_TO_PLAY);
         }
@@ -281,6 +285,8 @@ public class LevelSelectController extends WorldController implements Screen {
                 WorldController.JSON_FILE = level7; break;
             case 8: WorldController.MINIMAP_FILE = level8minimap;
                 WorldController.JSON_FILE = level8; break;
+            case 12: WorldController.MINIMAP_FILE = level12minimap;
+                WorldController.JSON_FILE = level12;
         }
     }
 
