@@ -1352,7 +1352,7 @@ public class GameController extends WorldController implements ContactListener{
         // Draw firefly glow
         canvas.setShader(glow.getFireflyShader());
         canvas.begin(gorf.getPosition());
-        drawGlow();
+        //drawGlow();
         canvas.end();
 
         canvas.setShader(null);

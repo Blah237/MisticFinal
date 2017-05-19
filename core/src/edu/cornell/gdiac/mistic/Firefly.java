@@ -37,7 +37,8 @@ public class Firefly {
 
     public Firefly(float x, float y, TextureRegion texture) {
         this.fireflyAnimation  = new FilmStrip(texture.getTexture(),1,FRAMES,FRAMES);
-        this.fireflyAnimation.setFrame(random(FRAMES-1));
+        this.fireflyAnimation.setFrame(random(FRAMES-1
+        ));
         position = new Vector2(x,y);
         destroyed= false;
         object = new BoxObstacle(x,y,texture.getRegionWidth()/scale.x,texture.getRegionHeight()/scale.y);
