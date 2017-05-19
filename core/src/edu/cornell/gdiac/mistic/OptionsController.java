@@ -10,20 +10,37 @@ import com.badlogic.gdx.physics.box2d.World;
 import edu.cornell.gdiac.GameCanvas;
 import edu.cornell.gdiac.InputController;
 import edu.cornell.gdiac.WorldController;
+import edu.cornell.gdiac.util.FilmStrip;
 import edu.cornell.gdiac.util.ScreenListener;
+import org.lwjgl.Sys;
 
 /**
  * Created by Nathaniel on 5/18/17.
  */
 public class OptionsController extends WorldController implements Screen {
     private static final String GORF_TEXTURE = "mistic/gorfright.png";
-    private static final String BACKGROUND = "mistic/credits.png";
-    private static final String BACKGROUND_OVERLAY = "mistic/levelmockup_wood.png";
+    private static final String BACKGROUND = "mistic/options/options_screen.png";
+    private static final String SPEAKER_ON = "mistic/options/speaker_on.png";
+    private static final String SPEAKER_OFF = "mistic/options/speaker_off.png";
+    private static final String MUSIC_ON = "mistic/options/music_on.png";
+    private static final String MUSIC_OFF = "mistic/options/music_off.png";
+    private static final String GLOW = "mistic/options/glow.png";
+
     private TextureRegion menu;
     private TextureRegion background;
     private TextureRegion gorf;
+    private TextureRegion speakerOn;
+    private TextureRegion speakerOff;
+    private TextureRegion musicOn;
+    private TextureRegion musicOff;
+    private TextureRegion glow;
+
+    private static final String FIREFLY = "mistic/firefly_static.png";
+    private FilmStrip firefly;
 
     private static final int LEVEL_CAP = 12;
+
+    private int optionSelect = 0;
 
     private int inputTimer = 20;
     private boolean timerGo = true;
@@ -52,6 +69,20 @@ public class OptionsController extends WorldController implements Screen {
         manager.load(BACKGROUND, Texture.class);
         assets.add(BACKGROUND);
 
+        manager.load(SPEAKER_ON, Texture.class);
+        assets.add(SPEAKER_ON);
+        manager.load(SPEAKER_OFF, Texture.class);
+        assets.add(SPEAKER_OFF);
+        manager.load(MUSIC_ON, Texture.class);
+        assets.add(MUSIC_ON);
+        manager.load(MUSIC_OFF, Texture.class);
+        assets.add(MUSIC_OFF);
+        manager.load(GLOW, Texture.class);
+        assets.add(GLOW);
+
+        manager.load(FIREFLY, Texture.class);
+        assets.add(FIREFLY);
+
 
         super.preLoadContent(manager);
     }
@@ -62,10 +93,17 @@ public class OptionsController extends WorldController implements Screen {
         }
 
         menu = createTexture(manager, BACKGROUND, false);
+        speakerOn = createTexture(manager, SPEAKER_ON, false);
+        speakerOff = createTexture(manager, SPEAKER_OFF, false);
+        musicOn = createTexture(manager, MUSIC_ON, false);
+        musicOff = createTexture(manager, MUSIC_OFF, false);
+        glow = createTexture(manager, GLOW, false);
+
+        firefly = createFilmStrip(manager, FIREFLY, 1, 18, 18);
 
     }
 
-    public OptionsController() {
+    public OptionsController    () {
         setDebug(false);
         setComplete(false);
         setFailure(false);
@@ -90,6 +128,41 @@ public class OptionsController extends WorldController implements Screen {
                 inputTimer = 20;
             }
         }
+        float forcey= InputController.getInstance().getVertical();
+        if (forcey < 0 && !timerGo) {
+            timerGo = true;
+            if (optionSelect != 2) {
+                inputTimer = inputTimer - 1;
+                optionSelect++;
+            } else {
+                optionSelect = 0;
+            }
+        } else if (forcey > 0 && !timerGo) {
+            timerGo = true;
+            if (optionSelect != 0) {
+                optionSelect--;
+            } else {
+                optionSelect = 2;
+            }
+        }
+
+        boolean didEnter = InputController.getInstance().didEnter();
+        if (didEnter && !timerGo) {
+            switch (optionSelect) {
+                case 0: if (WorldController.MUSIC_ON)
+                    {WorldController.MUSIC_ON = false;}
+                    else if (WorldController.MUSIC_ON == false) {WorldController.MUSIC_ON = true;} break;
+                case 1: if (WorldController.SFX_ON) {WorldController.SFX_ON = false;} else {WorldController.SFX_ON = true;} break;
+                //case 2: WorldController.
+            }
+        }
+
+
+        firflyAnimateTimer--;
+        if (firflyAnimateTimer == 0) {
+            firflyAnimateTimer = 20;
+        }
+
         boolean back = InputController.getInstance().didExit();
         if (back) {
             listener.exitScreen(this, EXIT_TO_MENU); //exit to menu when player presses escape
@@ -110,7 +183,35 @@ public class OptionsController extends WorldController implements Screen {
         canvas.resetCamera();
         canvas.begin();
         canvas.draw(menu, Color.WHITE, 0, 0, canvas.getWidth() * 2, canvas.getHeight() * 2);
-        canvas.end();
+
+        if (firflyAnimateTimer == 1) {
+            if (firefly.getFrame() != firefly.getSize() - 1) {
+                firefly.setFrame(firefly.getFrame() + 1);
+            } else {
+                firefly.setFrame(0);
+            }
+        }
+        switch (optionSelect) {
+            case 0: canvas.draw(firefly, canvas.getWidth() / 2.0f + 150.0f, canvas.getHeight() / 2.0f + 452.0f);
+                break;
+            case 1: canvas.draw(firefly, canvas.getWidth() / 2.0f + 175.0f, canvas.getHeight() / 2.0f + 335.0f);
+                break;
+            case 2: canvas.draw(firefly, canvas.getWidth() / 2.0f - 60.0f, canvas.getHeight() / 2.0f - 50.0f);
+                break;
+        }
+
+        if (WorldController.MUSIC_ON) {
+            canvas.draw(musicOn, 1100.0f, 750.0f);
+        } else {
+            canvas.draw(musicOff, 1100.0f, 750.0f);
+        }
+        if (WorldController.SFX_ON) {
+            canvas.draw(speakerOn, 1100.0f, 600.0f);
+        } else {
+            canvas.draw(speakerOff, 1100.0f, 600.0f);
+        }
+
+            canvas.end();
     }
 
     public int getLevel() {
