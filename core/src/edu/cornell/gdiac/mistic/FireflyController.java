@@ -56,8 +56,8 @@ public class FireflyController {
             F.fireflyAnimate();
             fogDeath(F);
             if (!F.isDestroyed()) {
-                float dx = Math.abs((F.getX() / scale.x) - gorf.getX());
-                float dy = Math.abs((F.getY() / scale.y) - gorf.getY());
+                float dx = Math.abs((F.getX() / scale.x) - gorf.getX()+4);
+                float dy = Math.abs((F.getY() / scale.y) - gorf.getY()+4);
                 if (dx < gorf.getWidth() && dy < gorf.getHeight()) {
                     F.setDestroyed(true);
                     collected=true;

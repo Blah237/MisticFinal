@@ -50,11 +50,11 @@ public class EnvAsset {
                 po = new BoxObstacle(x, y, tex.getRegionWidth() / (5 * scale.x),
                         tex.getRegionHeight() / (12 * scale.y));
             } else if (number == 1) {
-                po = new BoxObstacle(x,y, tex.getRegionWidth() / (4 * scale.x),
-                        tex.getRegionHeight() / (6 * scale.y));
+                po = new BoxObstacle(x,y, tex.getRegionWidth() / (8 * scale.x),
+                        tex.getRegionHeight() / (12 * scale.y));
             } else if (number == 2) {
-                po = new BoxObstacle(x,y, tex.getRegionWidth() / (4 * scale.x),
-                        tex.getRegionHeight() / (10 * scale.y));
+                po = new BoxObstacle(x,y, tex.getRegionWidth() / (5 * scale.x),
+                        tex.getRegionHeight() / (12 * scale.y));
 
             } else {
                 po = new BoxObstacle(x,y, tex.getRegionWidth() / (5 * scale.x),
