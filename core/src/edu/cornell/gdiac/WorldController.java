@@ -78,18 +78,18 @@ public abstract class WorldController implements Screen {
 	public static String MINIMAP_FILE = "minimaps/BETA_basic_blockfog.png"; // MINIMAP ASSET PATH PUT HERE!!!
 	private static int FONT_SIZE = 64;
 
-	public  final String level1minimap = "minimaps/level1.png";
-	public  final String level2minimap = "minimaps/level2.png";
-	public  final String level3minimap = "minimaps/level3.png";
-	public  final String level4minimap = "minimaps/level4.png";
-	public final String level5minimap = "minimaps/level5.png";
-	public final String level6minimap = "minimaps/level6.png";
-	public final String level7minimap = "minimaps/level7.png";
-	public final String level8minimap = "minimaps/levelstar.png";
-	public final String level10minimap = "minimaps/levelboxes.png";
-	public final String level12minimap = "minimaps/levelmistic.png";
-	public  final String level9minimap = "minimaps/level13.png";
-	public  final String level11minimap = "minimaps/level14.png";
+	public static final String level1minimap = "minimaps/level1.png";
+	public static final String level2minimap = "minimaps/level2.png";
+	public static final String level3minimap = "minimaps/level3.png";
+	public static final String level4minimap = "minimaps/level4.png";
+	public static final String level5minimap = "minimaps/level5.png";
+	public static final String level6minimap = "minimaps/level7.png";
+	public static final String level7minimap = "minimaps/level6.png";
+	public static final String level8minimap = "minimaps/levelstar.png";
+	public static final String level9minimap = "minimaps/level14.png";
+	public static final String level10minimap = "minimaps/level13.png";
+	public static final String level11minimap = "minimaps/levelboxes.png";
+	public static final String level12minimap = "minimaps/levelmistic.png";
 
 	/** The texture for walls and platforms */
 	protected TextureRegion earthTile;
