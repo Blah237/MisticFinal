@@ -17,7 +17,7 @@ import edu.cornell.gdiac.util.ScreenListener;
  * Created by Nathaniel on 4/22/17.
  */
 public class LevelSelectController extends WorldController implements Screen {
-    private static final String GORF_TEXTURE = "mistic/gorfright.png";
+    private static final String GORF_TEXTURE = "mistic/gorfpose.png";
     private static final String BACKGROUND = "mistic/levelmockup.png";
     private static final String BACKGROUND_OVERLAY = "mistic/levelmockup_wood.png";
     private static final String WHITE_MIST = "mistic/whitemistresize.png";
@@ -260,18 +260,18 @@ public class LevelSelectController extends WorldController implements Screen {
         else { canvas.draw(purpleMist, 1716, 721); }
 
         switch (level) {
-            case 1: canvas.draw(gorf, 450, 680); break;
-            case 2: canvas.draw(gorf, 720, 635); break;
-            case 3: canvas.draw(gorf, 400, 375); break;
-            case 4: canvas.draw(gorf, 670, 210); break;
-            case 5: canvas.draw(gorf, 920, 300); break;
-            case 6: canvas.draw(gorf, 870, 560); break;
-            case 7: canvas.draw(gorf, 1120, 670); break;
-            case 8: canvas.draw(gorf, 1312, 821); break;
-            case 9: canvas.draw(gorf, 1155, 460); break;
-            case 10: canvas.draw(gorf, 1425, 279); break;
-            case 11: canvas.draw(gorf, 1659, 415); break;
-            case 12: canvas.draw(gorf, 1666, 741); break;
+            case 1: canvas.draw(gorf, 500, 680); break;
+            case 2: canvas.draw(gorf, 770, 635); break;
+            case 3: canvas.draw(gorf, 450, 375); break;
+            case 4: canvas.draw(gorf, 720, 210); break;
+            case 5: canvas.draw(gorf, 970, 300); break;
+            case 6: canvas.draw(gorf, 920, 560); break;
+            case 7: canvas.draw(gorf, 1170, 670); break;
+            case 8: canvas.draw(gorf, 1362, 821); break;
+            case 9: canvas.draw(gorf, 1205, 460); break;
+            case 10: canvas.draw(gorf, 1475, 279); break;
+            case 11: canvas.draw(gorf, 1709, 415); break;
+            case 12: canvas.draw(gorf, 1716, 741); break;
         }
 
         canvas.end();
