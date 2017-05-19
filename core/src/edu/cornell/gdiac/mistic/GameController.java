@@ -1175,6 +1175,9 @@ public class GameController extends WorldController implements ContactListener{
                 case 6: LevelSelectController.level6complete = true; break;
                 case 7: LevelSelectController.level7complete = true; break;
                 case 8: LevelSelectController.level8complete = true; break;
+                case 9: LevelSelectController.level9complete = true; break;
+                case 10: LevelSelectController.level10complete = true; break;
+                case 11: LevelSelectController.level10complete = true; break;
                 case 12: LevelSelectController.level12complete = true; break;
             }
             if (timerGo) { //code to slow down multiple inputs and not register all of them
