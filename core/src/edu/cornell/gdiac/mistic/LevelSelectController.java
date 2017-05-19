@@ -54,8 +54,9 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level3 = "final_release/level3_lumina.json";
     public static final String level4 = "final_release/level4_hourglass.json"; //better name for this level please
     public static final String level5 = "final_release/level5_cross.json";
-    public static final String level6 = "final_release/level6_rooms.json";
+    public static final String level6 = "final_release/level6_rooms2.json";
     public static final String level7 = "final_release/level7_misty.json";
+    public static final String level8 = "final_release/levelstar.json";
 
 
     public static final String level1minimap = "minimaps/level1.png";
@@ -65,6 +66,7 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level5minimap = "minimaps/level5.png";
     public static final String level6minimap = "minimaps/level6.png";
     public static final String level7minimap = "minimaps/level7.png";
+    public static final String level8minimap = "minimaps/levelstar.png";
 
 
 
@@ -190,6 +192,8 @@ public class LevelSelectController extends WorldController implements Screen {
                     WorldController.JSON_FILE = level6; break;
                 case 7: WorldController.MINIMAP_FILE = level7minimap;
                     WorldController.JSON_FILE = level7; break;
+                case 8: WorldController.MINIMAP_FILE = level8minimap;
+                    WorldController.JSON_FILE = level8; break;
             }
             listener.exitScreen(this, this.EXIT_TO_PLAY);
         }
@@ -275,6 +279,8 @@ public class LevelSelectController extends WorldController implements Screen {
                 WorldController.JSON_FILE = level6; break;
             case 7: WorldController.MINIMAP_FILE = level7minimap;
                 WorldController.JSON_FILE = level7; break;
+            case 8: WorldController.MINIMAP_FILE = level8minimap;
+                WorldController.JSON_FILE = level8; break;
         }
     }
 
