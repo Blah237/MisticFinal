@@ -627,7 +627,6 @@ public class GameController extends WorldController implements ContactListener{
     int wallCount;
     int tileCount;
     int fogCount;
-    int fogPercentage;
 
     /**
      * Creates and initialize a new instance of the rocket lander game
@@ -692,7 +691,6 @@ public class GameController extends WorldController implements ContactListener{
         wallCount = 0;
         tileCount = tileBoard.getWidth()*tileBoard.getHeight();
         fogCount = 0;
-        fogPercentage = 0;
 
         populateLevel();
         familiars.reset();
@@ -1123,10 +1121,6 @@ public class GameController extends WorldController implements ContactListener{
              }
              }
              }*/
-
-            // fog percentage
-            fogCount = fog.getFogCount();
-            fogPercentage = Math.round((float)fogCount / (float)(tileCount - wallCount) * 100f);
 
 
 //        if (!tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX()*scale.x), tileBoard.screenToBoardY(gorf.getY()*scale.y))) {
@@ -1872,7 +1866,6 @@ public class GameController extends WorldController implements ContactListener{
         canvas.begin();
         displayFont.setColor(Color.PURPLE);
         displayFont.getData().setScale(.5f,.5f);
-        canvas.drawText(Float.toString(fogPercentage)+"%", displayFont, gorf.getPosition().x * scale.x - canvas.getWidth()*.59f/2f + 10f, gorf.getPosition().y * scale.y + canvas.getHeight()*.59f/2f - 10f); //OK guys this line is gonna be the longest line in our entire code and I will make it so with this comment, feel free to add more in your pushes
         // PLACEHOLDER--will be replaced by Victory screen
         //if (familiars.collectAll) {
           //  if (countdown > 0) {
