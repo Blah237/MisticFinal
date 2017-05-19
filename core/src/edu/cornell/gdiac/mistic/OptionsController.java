@@ -25,6 +25,8 @@ public class OptionsController extends WorldController implements Screen {
     private static final String MUSIC_ON = "mistic/options/music_on.png";
     private static final String MUSIC_OFF = "mistic/options/music_off.png";
     private static final String GLOW = "mistic/options/glow.png";
+    private static final String ARROWS = "mistic/options/arrows.png";
+    private static final String WASD = "mistic/options/wasd.png";
 
     private TextureRegion menu;
     private TextureRegion background;
@@ -34,6 +36,8 @@ public class OptionsController extends WorldController implements Screen {
     private TextureRegion musicOn;
     private TextureRegion musicOff;
     private TextureRegion glow;
+    private TextureRegion arrows;
+    private TextureRegion wasd;
 
     private static final String FIREFLY = "mistic/firefly_static.png";
     private FilmStrip firefly;
@@ -79,6 +83,10 @@ public class OptionsController extends WorldController implements Screen {
         assets.add(MUSIC_OFF);
         manager.load(GLOW, Texture.class);
         assets.add(GLOW);
+        manager.load(ARROWS, Texture.class);
+        assets.add(ARROWS);
+        manager.load(WASD, Texture.class);
+        assets.add(WASD);
 
         manager.load(FIREFLY, Texture.class);
         assets.add(FIREFLY);
@@ -98,6 +106,8 @@ public class OptionsController extends WorldController implements Screen {
         musicOn = createTexture(manager, MUSIC_ON, false);
         musicOff = createTexture(manager, MUSIC_OFF, false);
         glow = createTexture(manager, GLOW, false);
+        arrows = createTexture(manager, ARROWS, false);
+        wasd = createTexture(manager, WASD, false);
 
         firefly = createFilmStrip(manager, FIREFLY, 1, 18, 18);
 
@@ -128,7 +138,7 @@ public class OptionsController extends WorldController implements Screen {
                 inputTimer = 20;
             }
         }
-        float forcey= InputController.getInstance().getVertical();
+        float forcey = InputController.getInstance().getVertical();
         if (forcey < 0 && !timerGo) {
             timerGo = true;
             if (optionSelect != 2) {
@@ -149,11 +159,18 @@ public class OptionsController extends WorldController implements Screen {
         boolean didEnter = InputController.getInstance().didEnter();
         if (didEnter && !timerGo) {
             switch (optionSelect) {
-                case 0: if (WorldController.MUSIC_ON)
-                    {WorldController.MUSIC_ON = false;}
-                    else if (WorldController.MUSIC_ON == false) {WorldController.MUSIC_ON = true;} break;
-                case 1: if (WorldController.SFX_ON) {WorldController.SFX_ON = false;} else {WorldController.SFX_ON = true;} break;
-                //case 2: WorldController.
+                case 0:
+                    super.MUSIC_ON = !super.MUSIC_ON;
+                    timerGo = true;
+                    break;
+                case 1:
+                    super.SFX_ON = !super.SFX_ON;
+                    timerGo = true;
+                    break;
+                case 2:
+                    InputController.getInstance().WASD_ON = !InputController.getInstance().WASD_ON;
+                    timerGo = true;
+                    break;
             }
         }
 
@@ -200,18 +217,24 @@ public class OptionsController extends WorldController implements Screen {
                 break;
         }
 
-        if (WorldController.MUSIC_ON) {
+        if (super.MUSIC_ON) {
             canvas.draw(musicOn, 1100.0f, 750.0f);
         } else {
-            canvas.draw(musicOff, 1100.0f, 750.0f);
+            canvas.draw(musicOff, 1155.0f, 805.0f);
         }
-        if (WorldController.SFX_ON) {
+        if (super.SFX_ON) {
             canvas.draw(speakerOn, 1100.0f, 600.0f);
         } else {
-            canvas.draw(speakerOff, 1100.0f, 600.0f);
+            canvas.draw(speakerOff, 1155.0f, 675.0f);
         }
-
-            canvas.end();
+        if (!InputController.getInstance().WASD_ON) {
+            canvas.draw(glow,400.0f,0.0f);
+        } else {
+            canvas.draw(glow,950.0f,0.0f);
+        }
+        canvas.draw(arrows,639.0f,290.0f);
+        canvas.draw(wasd,1189.0f,290.0f);
+        canvas.end();
     }
 
     public int getLevel() {
