@@ -48,6 +48,8 @@ public class AIController extends InputController {
 
     private Vector2 scale;
 
+
+
     private LinkedList<Pair> finalpath;
 
     public AIController(MonsterModel monster, BoardModel board, GorfModel gorf, Vector2 scale) {

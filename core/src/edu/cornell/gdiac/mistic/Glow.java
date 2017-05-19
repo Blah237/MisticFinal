@@ -34,12 +34,13 @@ public class Glow {
 
     public static final int FIREFLY_TIMER = 8;
     public static final Vector2[] FIREFLY_OFFSET = {
-            new Vector2(0f, 5f), new Vector2(0f, 5f), new Vector2(1f, 4f), new Vector2(2f, 5f),
-            new Vector2(1f, 3f), new Vector2(2f, 5f), new Vector2(1f, 4f), new Vector2(0f, 5f),
-            new Vector2(0f, 5f), new Vector2(0f, 5f), new Vector2(1f, 4f), new Vector2(2f, 5f),
-            new Vector2(1f, 3f), new Vector2(2f, 5f), new Vector2(1f, 4f), new Vector2(0f, 5f),
-            new Vector2(1f, 4f), new Vector2(0f, 5f)
+            new Vector2(-3f, 2f), new Vector2(-2f, 1f), new Vector2(-2f, 1f), new Vector2(-2f, 3f),
+            new Vector2(0f, 1f), new Vector2(-1f, 1f), new Vector2(0f, 1f), new Vector2(2f, 2f),
+            new Vector2(1f, 1f), new Vector2(3f, 2f), new Vector2(3f, 2f), new Vector2(4f, 3f),
+            new Vector2(5f, 2f), new Vector2(6f, 1f), new Vector2(7f, 2f), new Vector2(7f, 2f),
+            new Vector2(8f, 2f), new Vector2(8f, 1f)
     };
+    public static final float[] ALPHAS = {.5f, .6f, .7f, .6f, .6f, .4f, .3f, .4f, .5f, .6f, .6f, .5f, .4f, .5f, .4f, .3f, .3f, .4f};
 
     Vector2 indicatorDir;
     float indicatorStrength;
@@ -146,11 +147,16 @@ public class Glow {
         }
 
         float[] firefliesPos = new float[spawnedFireflies.size()*2];
+        float[] ffAlphas = new float[spawnedFireflies.size()];
         for (int j=0; j<spawnedFireflies.size(); j++) {
             Firefly f = spawnedFireflies.get(j);
-            Vector2 ffOffset = FIREFLY_OFFSET[f.getFireflyAnimation().getFrame()];
+            int ffFrame = f.getFireflyAnimation().getFrame();
+            Vector2 ffOffset = FIREFLY_OFFSET[ffFrame];
+//            Vector2 ffOffset = FIREFLY_OFFSET[17];
             firefliesPos[2*j] = (f.getX() + ffOffset.x - (gorfPos.x - zoom * res.x / 2.0f)) / (zoom * res.x);
             firefliesPos[2*j + 1] = (f.getY() + ffOffset.y - (gorfPos.y - zoom * res.y / 2.0f)) / (zoom * res.y);
+
+            ffAlphas[j] = ALPHAS[ffFrame];
         }
 
 //        float dirX = Math.min(familiarPos.x - gorfPos.x, gorfPos.x - (screenDim.x - familiarPos.x));
@@ -183,6 +189,7 @@ public class Glow {
         fireflyShader.begin();
         fireflyShader.setUniform2fv("fireflies", firefliesPos, 0, firefliesPos.length);
         fireflyShader.setUniformi("numFireflies", spawnedFireflies.size());
+        fireflyShader.setUniform1fv("alphas", ffAlphas, 0, ffAlphas.length);
         fireflyShader.end();
     }
 

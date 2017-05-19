@@ -65,13 +65,14 @@ public class Firefly {
                     this.decreasing=true;
                 }else{
                     this.fireflyAnimation.setFrame(this.fireflyAnimation.getFrame()+1);
+//                    this.fireflyAnimation.setFrame(17);
                 }
             }else if(decreasing) {
                 if (this.fireflyAnimation.getFrame() == 0) {
                     this.decreasing = false;
                 } else {
                     this.fireflyAnimation.setFrame(this.fireflyAnimation.getFrame() - 1);
-
+//                    this.fireflyAnimation.setFrame(17);
                 }
             }
         }
