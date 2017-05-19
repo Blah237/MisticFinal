@@ -56,9 +56,11 @@ public class GameController extends WorldController implements ContactListener{
     private static final String[] GORF_TEXTURES = {"mistic/gorfs/gorfD.png","mistic/gorfs/gorfDL.png","mistic/gorfs/gorfDR.png",
             "mistic/gorfs/gorfL.png","mistic/gorfs/gorfR.png","mistic/gorfs/gorfBL.png", "mistic/gorfs/gorfBR.png",
             "mistic/gorfs/gorfB.png"};
+    private static final String[] GORF_HATS = {"mistic/gorfs/gorfDtop.png","mistic/gorfs/gorfDLtop.png","mistic/gorfs/gorfDRtop.png",
+            "mistic/gorfs/gorfLtop.png","mistic/gorfs/gorfRtop.png","mistic/gorfs/gorfBLtop.png", "mistic/gorfs/gorfBRtop.png",
+            "mistic/gorfs/gorfBtop.png"};
     private static final String[] ENEMY_TEXTURES = {"mistic/enemy/enemy1sheet.png","mistic/enemy/enemy2sheet.png",
             "mistic/enemy/enemy3sheet.png","mistic/enemy/enemy4sheet.png"};
-    private static final String HAT_TEXTURE = "mistic/gorfs/gorftop.png";
     private static final String BACKGROUND = "mistic/backgroundvibrant.png";
     private static final String MINIMAP_BACKGROUND = "mistic/mini_map_background.png";
     private static final String FIRE_FLY= "mistic/firefly.png";
@@ -158,7 +160,6 @@ public class GameController extends WorldController implements ContactListener{
     private FilmStrip pawAnimation;
 
     /** Texture assets for the rocket */
-    private TextureRegion gorfHat;
     private TextureRegion backgroundTexture;
     private TextureRegion minimapBackgroundTexture;
     private TextureRegion fogTexture;
@@ -167,6 +168,7 @@ public class GameController extends WorldController implements ContactListener{
     private TextureRegion monsterTextureDead;
     private TextureRegion[] monsterTextures = new TextureRegion[ENEMY_TEXTURES.length];
     private TextureRegion[] gorfTextures = new TextureRegion[GORF_TEXTURES.length];
+    private TextureRegion[] gorfHats= new TextureRegion[GORF_HATS.length];
     private TextureRegion[] mistwalls = new TextureRegion[MIST_WALLS.length];
     private TextureRegion[] familiarTex = new TextureRegion[FAMILIARS.length];
     private TextureRegion[] trees = new TextureRegion[TREES.length];
@@ -276,8 +278,6 @@ public class GameController extends WorldController implements ContactListener{
         assets.add(UNLITTOP_LANTERN);
         // Ship textures
 
-        manager.load(HAT_TEXTURE, Texture.class);
-        assets.add(HAT_TEXTURE);
         manager.load(FIRE_TRACK,Texture.class);
         assets.add(FIRE_TRACK);
 
@@ -396,6 +396,10 @@ public class GameController extends WorldController implements ContactListener{
             assets.add(f);
         }
         for(String f : GORF_TEXTURES){
+            manager.load(f, Texture.class);
+            assets.add(f);
+        }
+        for(String f : GORF_HATS){
             manager.load(f, Texture.class);
             assets.add(f);
         }
@@ -521,6 +525,9 @@ public class GameController extends WorldController implements ContactListener{
         for(int i=0; i<GORF_TEXTURES.length;i++){
             gorfTextures[i] = createTexture(manager,GORF_TEXTURES[i],false);
         }
+        for(int i=0; i<GORF_HATS.length;i++){
+            gorfHats[i] = createTexture(manager,GORF_HATS[i],false);
+        }
         for(int i=0; i<ENEMY_TEXTURES.length;i++){
             monsterTextures[i] = createTexture(manager, ENEMY_TEXTURES[i], false);
         }
@@ -581,7 +588,7 @@ public class GameController extends WorldController implements ContactListener{
     // Physics objects for the game
     /** Reference to the rocket/player avatar */
     public GorfModel gorf;
-    public BoxObstacle hat;
+    public GorfModel gorfhat;
     /** Reference to the monster */
     public ArrayList<MonsterModel> monster;
 
@@ -818,8 +825,10 @@ public class GameController extends WorldController implements ContactListener{
         float dheight = gorfTextures[0].getRegionHeight()/(scale.y*2);
         gorf = new GorfModel(gorfStart.x, gorfStart.y, dwidth*0.75f, dheight*0.75f,gorfTextures);
         gorf.setDrawScale(scale);
-        //gorf.setTexture(gorfTexture);
+        gorfhat= new GorfModel(gorfStart.x+1,gorfStart.y+1,1, 1, gorfHats);
+        gorfhat.setDrawScale(scale);
         addObject(gorf);
+        //addObject(gorfhat);
 //        overFog.add(0, gorf);
 
         fireflyController=new FireflyController(fireflyAnimation,fireflyPositions,scale,tileBoard);
@@ -1062,11 +1071,18 @@ public class GameController extends WorldController implements ContactListener{
             }
 
             this.gorf.setFX(temp.x);
+            //this.gorfhat.setFX(temp.x);
             this.gorf.setFY(temp.y);
+           // this.gorfhat.setFY(temp.y);
             gorf.applyForce();
+            //gorfhat.applyForce();
             gorf.updateTexture();
+            //gorfhat.updateTexture();
             gorf.gorfAnimate();
+            //gorfhat.gorfAnimate();
             wrapInBounds(gorf);
+            //wrapInBounds(gorfhat);
+
 
             gorf.setCollidingX(false);
             gorf.setCollidingY(false);
@@ -1111,21 +1127,7 @@ public class GameController extends WorldController implements ContactListener{
             if (InputController.getInstance().didDebug()) {
                 setDebug(!isDebug());
             }
-            /**
-             for (Body b : scheduledForRemoval) {
-             b.getWorld().destroyBody(b);
-             fireflyObjects.remove(b);
-             for (BoxObstacle o : fireflyObjectsO) {
-             if (b == o.getBody()) {
-             objects.remove(o);
-             }
-             }
-             }*/
 
-
-//        if (!tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX()*scale.x), tileBoard.screenToBoardY(gorf.getY()*scale.y))) {
-//            System.out.println(tileBoard.isFog(tileBoard.screenToBoardX(gorf.getX() * scale.x), tileBoard.screenToBoardY(gorf.getY() * scale.y)));
-//        }
         } else if (state == PAUSE) {
             if (timerGo) { //code to slow down multiple inputs and not register all of them
                 inputTimer--;
@@ -1584,6 +1586,7 @@ public class GameController extends WorldController implements ContactListener{
         canvas.setShader(null);
         for (Obstacle obj : lanterns) { if (obj.isActive()) { obj.draw(canvas); }}
         gorf.draw(canvas);
+        //gorfhat.draw(canvas);
         canvas.draw(fboRegion, 0, 0);
         for (Lantern l : Lanterns){l.drawtop(canvas);}
         for (Obstacle obj : edgewalls) { if (obj.isActive()) { obj.draw(canvas); }}
@@ -1976,6 +1979,9 @@ public class GameController extends WorldController implements ContactListener{
         }
         if (body1 == gorf.getBody() && body2.getUserData() == "monster") {
             this.DEAD = true;
+        }
+        if(body1.getUserData()=="hat" || body2.getUserData()=="hat"){
+
         }
 
         if (body1 == gorf.getBody() || body2 == gorf.getBody()) {
