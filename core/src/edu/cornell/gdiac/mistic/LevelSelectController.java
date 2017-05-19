@@ -54,8 +54,8 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level3 = "final_release/level3_lumina.json";
     public static final String level4 = "final_release/level4_hourglass.json"; //better name for this level please
     public static final String level5 = "final_release/level5_cross.json";
-//    public static final String level6 = "final_release/level6_rooms.json";
-//    public static final String level7 = "final_release/level7_misty.json";
+    public static final String level6 = "final_release/level6_rooms.json";
+    public static final String level7 = "final_release/level7_misty.json";
 
 
     public static final String level1minimap = "minimaps/level1.png";
@@ -63,8 +63,8 @@ public class LevelSelectController extends WorldController implements Screen {
     public static final String level3minimap = "minimaps/level3.png";
     public static final String level4minimap = "minimaps/level4.png";
     public static final String level5minimap = "minimaps/level5.png";
-    //public static final String level6minimap = "minimaps/level6.png";
-//    public static final String level5minimap = "minimaps/level7.png";
+    public static final String level6minimap = "minimaps/level6.png";
+    public static final String level7minimap = "minimaps/level7.png";
 
 
 
@@ -186,6 +186,10 @@ public class LevelSelectController extends WorldController implements Screen {
                         WorldController.JSON_FILE = level4; break;
                 case 5: WorldController.MINIMAP_FILE = level5minimap;
                         WorldController.JSON_FILE = level5; break;
+                case 6: WorldController.MINIMAP_FILE = level6minimap;
+                    WorldController.JSON_FILE = level6; break;
+                case 7: WorldController.MINIMAP_FILE = level7minimap;
+                    WorldController.JSON_FILE = level7; break;
             }
             listener.exitScreen(this, this.EXIT_TO_PLAY);
         }
@@ -252,6 +256,26 @@ public class LevelSelectController extends WorldController implements Screen {
         }
 
         canvas.end();
+    }
+
+    public static void setLevel(int the_level) {
+        level = the_level;
+        switch (level) {
+            case 1: WorldController.MINIMAP_FILE = level1minimap;
+                WorldController.JSON_FILE = level1; break;
+            case 2: WorldController.MINIMAP_FILE = level2minimap;
+                WorldController.JSON_FILE = level2; break;
+            case 3: WorldController.MINIMAP_FILE = level3minimap;
+                WorldController.JSON_FILE = level3; break;
+            case 4: WorldController.MINIMAP_FILE = level4minimap;
+                WorldController.JSON_FILE = level4; break;
+            case 5: WorldController.MINIMAP_FILE = level5minimap;
+                WorldController.JSON_FILE = level5; break;
+            case 6: WorldController.MINIMAP_FILE = level6minimap;
+                WorldController.JSON_FILE = level6; break;
+            case 7: WorldController.MINIMAP_FILE = level7minimap;
+                WorldController.JSON_FILE = level7; break;
+        }
     }
 
     public static int getLevel() {
