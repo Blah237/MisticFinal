@@ -154,7 +154,7 @@ public class LevelSelectController extends WorldController implements Screen {
             inputTimer--;
             if (inputTimer == 0) {
                 timerGo = false;
-                inputTimer = 20;
+                inputTimer = 25;
             }
         }
         float forcex= InputController.getInstance().getHorizontal();
@@ -166,15 +166,11 @@ public class LevelSelectController extends WorldController implements Screen {
             timerGo = true;
             if (level != LEVEL_CAP ) {
                 level++;
-            } else {
-                level = 1;
             }
         } else if (forcex < 0 && !timerGo) { //decrease level when player presses left arrow key
             timerGo = true;
             if (level != 1) {
                 level--;
-            } else {
-                level = LEVEL_CAP;
             }
         }
         if (back) {

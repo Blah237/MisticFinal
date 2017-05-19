@@ -1211,8 +1211,8 @@ public class GameController extends WorldController implements ContactListener{
                 timerGo = true;
                 switch (win.getFrame()) {
                     case 0: LevelSelectController.setLevel(LevelSelectController.getLevel() + 1);
-                        listener.exitScreen(this, LevelSelectController.EXIT_TO_PLAY);
-                        sounds.setAllActiveVolume(1f); break;
+                        sounds.setAllActiveVolume(1f);
+                        listener.exitScreen(this, LevelSelectController.EXIT_TO_PLAY); break;
                     case 1:
                         sounds.stopAllActive();
                         listener.exitScreen(this, LevelSelectController.EXIT_TO_MENU);
@@ -1374,7 +1374,7 @@ public class GameController extends WorldController implements ContactListener{
         } else if (LevelSelectController.getLevel() == 2 && familiars.getNumFam() == 1) {
             drawTextbox(level2tutorial1,1610.0f, 530.0f);
         } else if (LevelSelectController.getLevel() == 3 && familiars.getNumFam() == 0) {
-            drawTextbox(level3tutorial1,830.0f, 880.0f);
+            drawTextbox(level3tutorial1,900.0f, 880.0f);
         }
         canvas.end();
 
