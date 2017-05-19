@@ -101,8 +101,8 @@ public abstract class WorldController implements Screen {
 	public Rectangle screenSize;
 
 	/** Booleans for the options menu */
-	public boolean MUSIC_ON = true;
-	public boolean SFX_ON = true;
+	public static boolean MUSIC_ON = true;
+	public static boolean SFX_ON = true;
 
 	/**
 	 * Getter for this world's Board Model object

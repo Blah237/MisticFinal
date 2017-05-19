@@ -12,6 +12,7 @@ import edu.cornell.gdiac.InputController;
 import edu.cornell.gdiac.WorldController;
 import edu.cornell.gdiac.util.FilmStrip;
 import edu.cornell.gdiac.util.ScreenListener;
+import org.lwjgl.Sys;
 
 /**
  * Created by Nathaniel on 5/18/17.
@@ -73,6 +74,8 @@ public class OptionsController extends WorldController implements Screen {
         manager.load(SPEAKER_OFF, Texture.class);
         assets.add(SPEAKER_OFF);
         manager.load(MUSIC_ON, Texture.class);
+        assets.add(MUSIC_ON);
+        manager.load(MUSIC_OFF, Texture.class);
         assets.add(MUSIC_OFF);
         manager.load(GLOW, Texture.class);
         assets.add(GLOW);
@@ -142,6 +145,19 @@ public class OptionsController extends WorldController implements Screen {
                 optionSelect = 2;
             }
         }
+
+        boolean didEnter = InputController.getInstance().didEnter();
+        if (didEnter && !timerGo) {
+            switch (optionSelect) {
+                case 0: if (WorldController.MUSIC_ON)
+                    {WorldController.MUSIC_ON = false;}
+                    else if (WorldController.MUSIC_ON == false) {WorldController.MUSIC_ON = true;} break;
+                case 1: if (WorldController.SFX_ON) {WorldController.SFX_ON = false;} else {WorldController.SFX_ON = true;} break;
+                //case 2: WorldController.
+            }
+        }
+
+
         firflyAnimateTimer--;
         if (firflyAnimateTimer == 0) {
             firflyAnimateTimer = 20;
@@ -184,7 +200,16 @@ public class OptionsController extends WorldController implements Screen {
                 break;
         }
 
-        //if WorldController.MUSIC
+        if (WorldController.MUSIC_ON) {
+            canvas.draw(musicOn, 1100.0f, 750.0f);
+        } else {
+            canvas.draw(musicOff, 1100.0f, 750.0f);
+        }
+        if (WorldController.SFX_ON) {
+            canvas.draw(speakerOn, 1100.0f, 600.0f);
+        } else {
+            canvas.draw(speakerOff, 1100.0f, 600.0f);
+        }
 
             canvas.end();
     }
