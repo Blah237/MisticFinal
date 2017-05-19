@@ -149,8 +149,6 @@ public class GameController extends WorldController implements ContactListener{
     private static final String G_PEACE_SONG = "sounds/G_Wander_DEMO2.mp3";
     private static final String FX_FIREFLY = "sounds/_FX_firefly_FX.mp3";
     private static final String FX_FAMILIAR = "sounds/_FX_familiar_FX.mp3";
-    private static final String FX_VICTORY = "sounds/_FX_victory_FX.mp3";
-    private static final String FX_DEATH = "sounds/_FX_death_FX.mp3";
 
     /** Noise textures */
     private static final String PERLIN_NOISE = "mistic/noise/noise";
@@ -430,10 +428,6 @@ public class GameController extends WorldController implements ContactListener{
         assets.add(FX_FIREFLY);
         manager.load(FX_FAMILIAR, Sound.class);
         assets.add(FX_FAMILIAR);
-        manager.load(FX_VICTORY, Sound.class);
-        assets.add(FX_VICTORY);
-        manager.load(FX_DEATH, Sound.class);
-        assets.add(FX_DEATH);
 
         super.preLoadContent(manager);
     }
