@@ -220,6 +220,7 @@ public class GameController extends WorldController implements ContactListener{
     private static final int OFF = 5;
 
     private static final int MAX_MONSTER=4;
+    private static final int MAX_FIREFLY = 10;
 
 
     /** Track asset loading from all instances and subclasses */
@@ -1104,7 +1105,9 @@ public class GameController extends WorldController implements ContactListener{
                 if (SFX_ON) {
                     fireflyFX.play();
                 }
-                firefly_count++;
+                if (firefly_count<MAX_FIREFLY) {
+                    firefly_count++;
+                }
             }
 
             if (InputController.getInstance().didDebug()) {
